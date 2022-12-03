@@ -1,3 +1,13 @@
+File system as database
+and a personal server over it.
+
+- All data are owned by you.
+- Can have many frontends.
+  - A frontend might be readonly view.
+  - A frontend might has UI to update data.
+- View data as fects
+  and use relational programming to query it.
+
 fidb-api -- one backend for all
 
 fidb nest array in object
