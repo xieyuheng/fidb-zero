@@ -1,5 +1,5 @@
 import type { JsonObject } from "../utils/Json.ts";
-import { resolve, dirname } from "path";
+import { dirname, resolve } from "path";
 
 export type Data = JsonObject & { "@id": string };
 
