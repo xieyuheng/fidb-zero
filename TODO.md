@@ -1,3 +1,11 @@
+setup deno project
+
+# design
+
+every record has `@id` field
+
+# aim
+
 File system as database
 and a personal server over it.
 
@@ -8,7 +16,7 @@ and a personal server over it.
 - View data as fects
   and use relational programming to query it.
 
-fidb-api -- one backend for all
+# nest array in object
 
 fidb nest array in object
 
