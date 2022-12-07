@@ -9,7 +9,10 @@ TODO
 ## Development
 
 ```sh
-TODO
+deno task check
+deno task check:watch
+deno task test
+deno task test:watch
 ```
 
 ## Contributions
