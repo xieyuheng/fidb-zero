@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "lib": ["esnext", "dom"],
+    "importsNotUsedAsValues": "error",
+    "strict": true
+  },
+  "importMap": "import-map.json",
+  "tasks": {
+    "check": "deno run --check src/index.ts",
+    "check:watch": "deno run --check --watch src/index.ts"
+  },
+  "test": {
+    "files": {
+      "include": ["src/"]
+    }
+  },
+  "fmt": {
+    "files": {
+      "include": ["src/"]
+    }
+  }
+}

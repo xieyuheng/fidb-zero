@@ -1,0 +1,26 @@
+# for playing with the language
+play
+
+# typescript
+lib
+
+# vitest
+coverage
+
+# npm
+node_modules
+
+# 0x
+*.0x/
+*.log
+
+# emacs
+*~
+*#*
+.#*
+
+# vscode
+.vscode
+
+# idea
+.idea
