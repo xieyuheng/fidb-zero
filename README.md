@@ -9,8 +9,7 @@ TODO
 ## Development
 
 ```sh
-deno tasks test
-deno tasks test:watch
+TODO
 ```
 
 ## Contributions

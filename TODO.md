@@ -1,6 +1,7 @@
-# design
+# database
 
-every record has `@id` field
+Database.delete
+Database.find
 
 # aim
 

@@ -1,3 +1,1 @@
-import { x } from "./index.ts"
-
-console.log(x)
+export * from "./index.ts";

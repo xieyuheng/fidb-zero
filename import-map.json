@@ -1,5 +1,6 @@
 {
   "imports": {
-
+    "asserts": "https://deno.land/std@0.167.0/testing/asserts.ts",
+    "path": "https://deno.land/std@0.167.0/path/mod.ts"
   }
 }

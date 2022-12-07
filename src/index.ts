@@ -1,1 +1,1 @@
-export const x: number = 1;
+export * from "./database/index.ts";
