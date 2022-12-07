@@ -23,10 +23,17 @@ Deno.test("CRUD", async () => {
     name: "谢宇恒",
   });
 
+  assertEquals(patched.name, "谢宇恒");
+
   {
     const gotten = await db.get("users/xieyuheng");
     assertEquals(gotten, patched);
   }
 
-  // await db.delete("users/xieyuheng");
+  await db.delete("users/xieyuheng");
+
+  {
+    const gotten = await db.get("users/xieyuheng");
+    assertEquals(gotten, undefined);
+  }
 });

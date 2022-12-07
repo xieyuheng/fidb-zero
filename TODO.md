@@ -1,6 +1,5 @@
 # database
 
-Database.delete
 Database.find
 
 # aim
