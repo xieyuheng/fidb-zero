@@ -5,5 +5,5 @@ import { Database } from "../../database/index.ts";
 const filename = new URL(import.meta.url).pathname;
 
 export const db = new Database({
-  path: resolve(filename, "../../../../databases/test"),
+  path: resolve(filename, "../../../../tests/databases/test"),
 });
