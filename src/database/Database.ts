@@ -25,7 +25,7 @@ export class Database {
   }
 
   async getOrFail(id: string): Promise<Data> {
-    return readData(this.resolve(id));
+    return await readData(this.resolve(id));
   }
 
   async get(id: string): Promise<Data | undefined> {
@@ -65,8 +65,7 @@ export class Database {
         }
       }
     } catch (error) {
-      if (error instanceof Deno.errors.NotFound) {
-      } else {
+      if (!(error instanceof Deno.errors.NotFound)) {
         throw error;
       }
     }
