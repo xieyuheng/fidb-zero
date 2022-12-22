@@ -63,7 +63,7 @@ export class Database {
     for await (const data of this.all(prefix)) {
       if (
         Object.entries(options.properties).every(
-          ([key, value]) => data[key] === value
+          ([key, property]) => data[key] === property
         )
       ) {
         yield data;
