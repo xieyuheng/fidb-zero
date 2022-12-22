@@ -5,7 +5,7 @@ import { Database } from "../database/index.ts";
 const filename = new URL(import.meta.url).pathname;
 
 const db = new Database({
-  path: resolve(filename, "../../../databases/mimor"),
+  path: resolve(filename, "../../../databases/test"),
 });
 
 Deno.test("CRUD", async () => {
