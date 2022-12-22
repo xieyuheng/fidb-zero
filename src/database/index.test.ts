@@ -37,3 +37,42 @@ Deno.test("CRUD", async () => {
     assertEquals(gotten, undefined);
   }
 });
+
+Deno.test("search", async () => {
+  await db.put("users/xieyuheng", {
+    username: "xieyuheng",
+    name: "Xie Yuheng",
+  });
+
+  await db.put("users/cicada-lang", {
+    username: "cicada-lang",
+    name: "Cicada Language",
+  });
+
+  await db.put("users/fidb", {
+    username: "fidb",
+    name: "FiDB",
+  });
+
+  {
+    const results = [];
+    for await (const data of db.all("users")) {
+      results.push(data);
+    }
+
+    assertEquals(results.length, 3);
+  }
+
+  for await (const data of db.all("users")) {
+    await db.delete(data["@id"]);
+  }
+
+  {
+    const results = [];
+    for await (const data of db.all("users")) {
+      results.push(data);
+    }
+
+    assertEquals(results.length, 0);
+  }
+});

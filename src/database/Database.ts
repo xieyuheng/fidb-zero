@@ -7,33 +7,26 @@ export type Data = JsonObject & { "@id": string };
 export class Database {
   constructor(public options: { path: string }) {}
 
+  resolve(path: string): string {
+    return resolve(this.options.path, path);
+  }
+
   dir(id: string): string {
-    return resolve(this.options.path, dirname(id));
+    return this.resolve(dirname(id));
   }
 
   file(id: string): string {
-    return resolve(this.options.path, id + ".json");
-  }
-
-  private async writeData(id: string, data: Data): Promise<void> {
-    const text = JSON.stringify(data);
-    await ensureDir(this.dir(id));
-    await Deno.writeTextFile(this.file(id), text);
-  }
-
-  private async readData(id: string): Promise<Data> {
-    const text = await Deno.readTextFile(this.file(id));
-    return JSON.parse(text);
+    return this.resolve(id + ".json");
   }
 
   async put(id: string, json: JsonObject): Promise<Data> {
     const data = { "@id": id, ...json };
-    await this.writeData(id, data);
+    await writeData(this.file(id), data);
     return data;
   }
 
   async getOrFail(id: string): Promise<Data> {
-    return this.readData(id);
+    return readData(this.file(id));
   }
 
   async get(id: string): Promise<Data | undefined> {
@@ -50,11 +43,31 @@ export class Database {
 
   async patch(id: string, json: JsonObject): Promise<Data> {
     const data = { ...(await this.getOrFail(id)), ...json };
-    await this.writeData(id, data);
+    await writeData(this.file(id), data);
     return data;
   }
 
   async delete(id: string): Promise<void> {
-    await Deno.remove(this.file(id))
+    await Deno.remove(this.file(id));
   }
+
+  async *all(prefix: string): AsyncIterable<Data> {
+    const array: Array<Data> = [];
+    for await (const dirEntry of Deno.readDir(this.resolve(prefix))) {
+      if (dirEntry.isFile && dirEntry.name.endsWith(".json")) {
+        yield readData(this.resolve(`${prefix}/${dirEntry.name}`));
+      }
+    }
+  }
+}
+
+async function writeData(path: string, data: Data): Promise<void> {
+  const text = JSON.stringify(data);
+  await ensureDir(dirname(path));
+  await Deno.writeTextFile(path, text);
+}
+
+async function readData(path: string): Promise<Data> {
+  const text = await Deno.readTextFile(path);
+  return JSON.parse(text);
 }

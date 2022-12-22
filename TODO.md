@@ -1,7 +1,5 @@
 # database
 
-Database.all
-
 Database.find -- without index
 
 - Database.all + filter
