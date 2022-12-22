@@ -1,6 +1,7 @@
-import { assertEquals } from "asserts";
+import { assert, assertEquals } from "asserts";
 import { resolve } from "path";
 import { Database } from "../database/index.ts";
+import * as UUID from "uuid";
 
 const filename = new URL(import.meta.url).pathname;
 
@@ -35,6 +36,23 @@ Deno.test("CRUD", async () => {
   {
     const gotten = await db.get("users/xieyuheng");
     assertEquals(gotten, undefined);
+  }
+});
+
+Deno.test("create w/ uuid", async () => {
+  const created = await db.create("users", {
+    username: "xieyuheng",
+    name: "Xie Yuheng",
+  });
+
+  const [prefix, uuid] = created["@id"].split("/");
+  assert(UUID.validate(uuid));
+
+  {
+    const gotten = await db.get(created["@id"]);
+    assertEquals(gotten, created);
+    assert(gotten);
+    await db.delete(gotten["@id"]);
   }
 });
 

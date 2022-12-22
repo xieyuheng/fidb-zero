@@ -1,7 +1,5 @@
 # database
 
-Database.create -- generate uuid as id
-
 Database.index
 
 Database.find -- with index

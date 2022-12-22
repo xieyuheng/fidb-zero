@@ -11,12 +11,15 @@ export class Database {
     return resolve(this.options.path, path);
   }
 
-  dir(id: string): string {
-    return this.resolve(dirname(id));
-  }
-
   file(id: string): string {
     return this.resolve(id + ".json");
+  }
+
+  async create(prefix: string, json: JsonObject): Promise<Data> {
+    const id = `${prefix}/${crypto.randomUUID()}`;
+    const data = { "@id": id, ...json };
+    await writeData(this.file(id), data);
+    return data;
   }
 
   async put(id: string, json: JsonObject): Promise<Data> {
