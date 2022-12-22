@@ -11,25 +11,21 @@ export class Database {
     return resolve(this.options.path, path);
   }
 
-  file(id: string): string {
-    return this.resolve(id + ".json");
-  }
-
   async create(prefix: string, json: JsonObject): Promise<Data> {
     const id = `${prefix}/${crypto.randomUUID()}`;
     const data = { "@id": id, ...json };
-    await writeData(this.file(id), data);
+    await writeData(this.resolve(id), data);
     return data;
   }
 
   async put(id: string, json: JsonObject): Promise<Data> {
     const data = { "@id": id, ...json };
-    await writeData(this.file(id), data);
+    await writeData(this.resolve(id), data);
     return data;
   }
 
   async getOrFail(id: string): Promise<Data> {
-    return readData(this.file(id));
+    return readData(this.resolve(id));
   }
 
   async get(id: string): Promise<Data | undefined> {
@@ -46,17 +42,17 @@ export class Database {
 
   async patch(id: string, json: JsonObject): Promise<Data> {
     const data = { ...(await this.getOrFail(id)), ...json };
-    await writeData(this.file(id), data);
+    await writeData(this.resolve(id), data);
     return data;
   }
 
   async delete(id: string): Promise<void> {
-    await Deno.remove(this.file(id));
+    await Deno.remove(this.resolve(id));
   }
 
   async *all(prefix: string): AsyncIterable<Data> {
     for await (const dirEntry of Deno.readDir(this.resolve(prefix))) {
-      if (dirEntry.isFile && dirEntry.name.endsWith(".json")) {
+      if (dirEntry.isFile) {
         yield readData(this.resolve(`${prefix}/${dirEntry.name}`));
       }
     }

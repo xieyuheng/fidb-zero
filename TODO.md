@@ -1,6 +1,6 @@
 # database
 
-Database.index
+Database.createIndex(key)
 
 Database.find -- with index
 
