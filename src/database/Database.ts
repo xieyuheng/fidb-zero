@@ -1,4 +1,4 @@
-import type { JsonObject } from "../utils/Json.ts";
+import type { JsonObject, JsonAtom } from "../utils/Json.ts";
 import { dirname, resolve } from "path";
 import { ensureDir } from "fs";
 
@@ -85,7 +85,7 @@ export class Database {
 }
 
 type FindOptions = {
-  properties: Record<string, string | number>;
+  properties: Record<string, JsonAtom>;
 };
 
 async function writeData(path: string, data: Data): Promise<void> {
