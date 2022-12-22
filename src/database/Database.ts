@@ -61,17 +61,19 @@ export class Database {
 
   async *find(prefix: string, options: FindOptions): AsyncIterable<Data> {
     for await (const data of this.all(prefix)) {
-      for (const [key, value] of Object.entries(options.properties)) {
-        if (data[key] !== value) continue;
+      if (
+        Object.entries(options.properties).every(
+          ([key, value]) => data[key] === value
+        )
+      ) {
+        yield data;
       }
-
-      yield data;
     }
   }
 }
 
 type FindOptions = {
-  properties: Record<string, Data>;
+  properties: Record<string, string | number>;
 };
 
 async function writeData(path: string, data: Data): Promise<void> {

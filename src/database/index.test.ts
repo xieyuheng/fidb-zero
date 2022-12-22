@@ -98,9 +98,7 @@ Deno.test("find", async () => {
   {
     const results = [];
     for await (const data of db.find("users", {
-      properties: {
-        country: "China",
-      },
+      properties: { country: "China" },
     })) {
       results.push(data);
     }
