@@ -1,8 +1,12 @@
 # database
 
+FindOption -- `where`
+
 Database.find -- without index
 
 - Database.all + filter
+
+Database.create -- generate uuid as id
 
 Database.index
 

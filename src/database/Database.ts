@@ -52,14 +52,27 @@ export class Database {
   }
 
   async *all(prefix: string): AsyncIterable<Data> {
-    const array: Array<Data> = [];
     for await (const dirEntry of Deno.readDir(this.resolve(prefix))) {
       if (dirEntry.isFile && dirEntry.name.endsWith(".json")) {
         yield readData(this.resolve(`${prefix}/${dirEntry.name}`));
       }
     }
   }
+
+  async *find(prefix: string, options: FindOptions): AsyncIterable<Data> {
+    for await (const data of this.all(prefix)) {
+      for (const [key, value] of Object.entries(options.properties)) {
+        if (data[key] !== value) continue;
+      }
+
+      yield data;
+    }
+  }
 }
+
+type FindOptions = {
+  properties: Record<string, Data>;
+};
 
 async function writeData(path: string, data: Data): Promise<void> {
   const text = JSON.stringify(data);

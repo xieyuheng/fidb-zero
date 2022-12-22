@@ -38,7 +38,7 @@ Deno.test("CRUD", async () => {
   }
 });
 
-Deno.test("search", async () => {
+Deno.test("all", async () => {
   await db.put("users/xieyuheng", {
     username: "xieyuheng",
     name: "Xie Yuheng",
@@ -74,5 +74,41 @@ Deno.test("search", async () => {
     }
 
     assertEquals(results.length, 0);
+  }
+});
+
+Deno.test("find", async () => {
+  await db.put("users/xieyuheng", {
+    username: "xieyuheng",
+    name: "Xie Yuheng",
+    country: "China",
+  });
+
+  await db.put("users/cicada-lang", {
+    username: "cicada-lang",
+    name: "Cicada Language",
+  });
+
+  await db.put("users/fidb", {
+    username: "fidb",
+    name: "FiDB",
+    country: "China",
+  });
+
+  {
+    const results = [];
+    for await (const data of db.find("users", {
+      properties: {
+        country: "China",
+      },
+    })) {
+      results.push(data);
+    }
+
+    assertEquals(results.length, 2);
+  }
+
+  for await (const data of db.all("users")) {
+    await db.delete(data["@id"]);
   }
 });
