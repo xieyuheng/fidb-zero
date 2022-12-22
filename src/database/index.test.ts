@@ -81,9 +81,7 @@ Deno.test("all", async () => {
     assertEquals(results.length, 3);
   }
 
-  for await (const data of db.all("users")) {
-    await db.delete(data["@id"]);
-  }
+  await db.deleteAll("users");
 
   {
     const results = [];
@@ -124,7 +122,5 @@ Deno.test("find", async () => {
     assertEquals(results.length, 2);
   }
 
-  for await (const data of db.all("users")) {
-    await db.delete(data["@id"]);
-  }
+  await db.deleteAll("users");
 });

@@ -50,10 +50,24 @@ export class Database {
     await Deno.remove(this.resolve(id));
   }
 
+  async deleteAll(prefix: string): Promise<void> {
+    await Deno.remove(this.resolve(prefix), { recursive: true });
+  }
+
   async *all(prefix: string): AsyncIterable<Data> {
-    for await (const dirEntry of Deno.readDir(this.resolve(prefix))) {
-      if (dirEntry.isFile) {
-        yield readData(this.resolve(`${prefix}/${dirEntry.name}`));
+    try {
+      for await (const dirEntry of Deno.readDir(this.resolve(prefix))) {
+        if (dirEntry.isFile) {
+          const data = await this.get(`${prefix}/${dirEntry.name}`);
+          if (data !== undefined) {
+            yield data;
+          }
+        }
+      }
+    } catch (error) {
+      if (error instanceof Deno.errors.NotFound) {
+      } else {
+        throw error;
       }
     }
   }
