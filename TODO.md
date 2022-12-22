@@ -1,6 +1,14 @@
 # database
 
-Database.find
+Database.all
+
+Database.find -- without index
+
+- Database.all + filter
+
+Database.index
+
+Database.find -- with index
 
 # aim
 
