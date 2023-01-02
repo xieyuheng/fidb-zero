@@ -1,31 +1,48 @@
+use prettier
+
 # database
 
-Database.createIndex(key)
+Database.index(table, key)
+Database.createIndex(table, key)
+
+-
 
 Database.find -- with index
 
-# schema
+every object has `@revision` -- just like couchdb
 
-[maybe] Use json to represent schema.
+- can update an object only when the `@revision` is the same
 
-[datalog] Schema is constraints on data table,
-which is checked upon every update to that table.
+[learn] prisma -- API design -- for example `findMany`
 
-```whereabouts
-User { username, name } -- {
-  String username
-  String name
-}
+- `find` might deref a property which is an id to another data
 
-Post { title, content, author } -- {
-  String title
-  String content
-  Link [author, User] // Id to existing User
-}
-```
+`parseId` -- table + name
 
-# generate rest api
+token based
 
-learn from surrealdb and edgedb
+- schema for token
+
+- .fidb/tokens/<name>.json
+
+  store detailed `permissions`
+
+config
+
+- .fidb/config.json
+
+# learn
+
+[learn] from surrealdb
+[learn] from edgedb
+[learn] from couchdb
+
+# serve http rest api
+
+# deno script interface
+
+support serve
 
 # command line interface
+
+support serve

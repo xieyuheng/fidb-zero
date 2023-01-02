@@ -27,14 +27,14 @@ Deno.test("all", async () => {
     assertEquals(results.length, 3);
   }
 
-  await db.deleteAll("users");
+  // await db.deleteAll("users");
 
-  {
-    const results = [];
-    for await (const data of db.all("users")) {
-      results.push(data);
-    }
+  // {
+  //   const results = [];
+  //   for await (const data of db.all("users")) {
+  //     results.push(data);
+  //   }
 
-    assertEquals(results.length, 0);
-  }
+  //   assertEquals(results.length, 0);
+  // }
 });

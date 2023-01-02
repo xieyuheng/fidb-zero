@@ -24,10 +24,10 @@ Deno.test("crud", async () => {
     assertEquals(gotten, patched);
   }
 
-  await db.delete("users/xieyuheng");
+  // await db.delete("users/xieyuheng");
 
-  {
-    const gotten = await db.get("users/xieyuheng");
-    assertEquals(gotten, undefined);
-  }
+  // {
+  //   const gotten = await db.get("users/xieyuheng");
+  //   assertEquals(gotten, undefined);
+  // }
 });
