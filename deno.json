@@ -5,7 +5,6 @@
     "importsNotUsedAsValues": "error",
     "strict": true
   },
-  "importMap": "import-map.json",
   "tasks": {
     "check": "deno run --check src/index.ts",
     "check:watch": "deno run --check --watch src/index.ts",
@@ -17,5 +16,11 @@
     "options": {
       "semiColons": false
     }
+  },
+  "imports": {
+    "asserts": "https://deno.land/std@0.170.0/testing/asserts.ts",
+    "uuid": "https://deno.land/std@0.170.0/uuid/mod.ts",
+    "path": "https://deno.land/std@0.170.0/path/mod.ts",
+    "fs": "https://deno.land/std@0.170.0/fs/mod.ts"
   }
 }
