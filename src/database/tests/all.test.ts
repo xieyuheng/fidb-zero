@@ -1,30 +1,30 @@
-import { assertEquals } from "asserts";
-import { resolve } from "path";
-import { db } from "./utils.ts";
+import { assertEquals } from "asserts"
+import { resolve } from "path"
+import { db } from "./utils.ts"
 
 Deno.test("all", async () => {
   await db.put("users/xieyuheng", {
     username: "xieyuheng",
     name: "Xie Yuheng",
-  });
+  })
 
   await db.put("users/cicada-lang", {
     username: "cicada-lang",
     name: "Cicada Language",
-  });
+  })
 
   await db.put("users/fidb", {
     username: "fidb",
     name: "FiDB",
-  });
+  })
 
   {
-    const results = [];
+    const results = []
     for await (const data of db.all("users")) {
-      results.push(data);
+      results.push(data)
     }
 
-    assertEquals(results.length, 3);
+    assertEquals(results.length, 3)
   }
 
   // await db.deleteAll("users");
@@ -37,4 +37,4 @@ Deno.test("all", async () => {
 
   //   assertEquals(results.length, 0);
   // }
-});
+})

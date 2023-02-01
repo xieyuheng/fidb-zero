@@ -12,5 +12,10 @@
     "test": "deno test --check --allow-read --allow-write src",
     "test:watch": "deno test --check --allow-read --allow-write --watch src",
     "format": "deno fmt src"
+  },
+  "fmt": {
+    "options": {
+      "semiColons": false
+    }
   }
 }
