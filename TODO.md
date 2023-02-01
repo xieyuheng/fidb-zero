@@ -1,11 +1,7 @@
-use prettier
-
 # database
 
 Database.index(table, key)
 Database.createIndex(table, key)
-
--
 
 Database.find -- with index
 
