@@ -1,6 +1,6 @@
 import type { JsonAtom, JsonObject } from "../utils/Json.ts"
-import { dirname, resolve } from "path"
-import { ensureDir } from "fs"
+import { dirname, resolve } from "std/path/mod.ts"
+import { ensureDir } from "std/fs/mod.ts"
 
 export type Data = JsonObject & { "@id": string }
 

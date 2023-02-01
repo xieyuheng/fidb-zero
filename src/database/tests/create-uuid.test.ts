@@ -1,7 +1,6 @@
-import { assert, assertEquals } from "asserts"
-import { resolve } from "path"
+import { assert, assertEquals } from "std/testing/asserts.ts"
 import { db } from "./utils.ts"
-import * as UUID from "uuid"
+import * as UUID from "std/uuid/mod.ts"
 
 Deno.test("create w/ uuid", async () => {
   const created = await db.create("users", {

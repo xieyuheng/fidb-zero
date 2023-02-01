@@ -18,9 +18,6 @@
     }
   },
   "imports": {
-    "asserts": "https://deno.land/std@0.170.0/testing/asserts.ts",
-    "uuid": "https://deno.land/std@0.170.0/uuid/mod.ts",
-    "path": "https://deno.land/std@0.170.0/path/mod.ts",
-    "fs": "https://deno.land/std@0.170.0/fs/mod.ts"
+    "std/": "https://deno.land/std@0.174.0/"
   }
 }

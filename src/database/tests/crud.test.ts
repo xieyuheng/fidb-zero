@@ -1,5 +1,4 @@
-import { assertEquals } from "asserts"
-import { resolve } from "path"
+import { assertEquals } from "std/testing/asserts.ts"
 import { db } from "./utils.ts"
 
 Deno.test("crud", async () => {
