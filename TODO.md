@@ -1,5 +1,3 @@
-remove `old`
-
 # functional api
 
 `Database` as pure data -- instead of class
