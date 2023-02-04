@@ -1,6 +1,6 @@
 {
   "name": "@xieyuheng/fidb",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": "github:xieyuheng/fidb",
   "main": "./lib/index.js",
   "files": [
