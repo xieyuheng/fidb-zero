@@ -10,25 +10,21 @@ export type FindOptions = { properties: Record<string, JsonAtom> }
 export class Database {
   constructor(public options: { path: string }) {}
 
-  resolve(path: string): string {
-    return resolve(this.options.path, path)
-  }
-
   async create(prefix: string, json: JsonObject): Promise<Data> {
     const id = `${prefix}/${crypto.randomUUID()}`
     const data = { "@id": id, ...json }
-    await writeData(this.resolve(id), data)
+    await writeData(resolve(this.options.path, id), data)
     return data
   }
 
   async put(id: string, json: JsonObject): Promise<Data> {
     const data = { "@id": id, ...json }
-    await writeData(this.resolve(id), data)
+    await writeData(resolve(this.options.path, id), data)
     return data
   }
 
   async getOrFail(id: string): Promise<Data> {
-    return await readData(this.resolve(id))
+    return await readData(resolve(this.options.path, id))
   }
 
   async get(id: string): Promise<Data | undefined> {
@@ -45,23 +41,29 @@ export class Database {
 
   async patch(id: string, json: JsonObject): Promise<Data> {
     const data = { ...(await this.getOrFail(id)), ...json }
-    await writeData(this.resolve(id), data)
+    await writeData(resolve(this.options.path, id), data)
     return data
   }
 
   async delete(id: string): Promise<void> {
-    await fs.promises.rm(this.resolve(id), { force: true })
+    await fs.promises.rm(resolve(this.options.path, id), { force: true })
   }
 
   async deleteAll(prefix: string): Promise<void> {
-    await fs.promises.rm(this.resolve(prefix), { force: true, recursive: true })
+    await fs.promises.rm(resolve(this.options.path, prefix), {
+      force: true,
+      recursive: true,
+    })
   }
 
   async *all(prefix: string): AsyncIterable<Data> {
     try {
-      const dir = await fs.promises.opendir(this.resolve(prefix), {
-        bufferSize: 1024,
-      })
+      const dir = await fs.promises.opendir(
+        resolve(this.options.path, prefix),
+        {
+          bufferSize: 1024,
+        },
+      )
 
       for await (const dirEntry of dir) {
         if (dirEntry.isFile()) {
