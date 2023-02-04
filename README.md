@@ -9,10 +9,12 @@ TODO
 ## Development
 
 ```sh
-deno task check
-deno task check:watch
-deno task test
-deno task test:watch
+npm install           # Install dependencies
+npm run build         # Compile `src/` to `lib/`
+npm run build:watch   # Watch the compilation
+npm run format        # Format the code
+npm run test          # Run test
+npm run test:watch    # Watch the testing
 ```
 
 ## Contributions

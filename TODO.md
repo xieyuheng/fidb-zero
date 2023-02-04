@@ -1,5 +1,3 @@
-update README.md
-
 move `old` code to `src`
 
 # functional api
