@@ -2,6 +2,7 @@
 
 every object has `@revision` -- just like couchdb
 
+- use long random string -- not uuid
 - can update an object only when the `@revision` is the same
 
 # index
