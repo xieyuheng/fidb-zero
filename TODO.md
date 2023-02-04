@@ -1,13 +1,36 @@
-# database
+# functional api
+[diary] 2023-02-04-functional-api.md
+`Database` as pure data -- instead of class
 
-Database.index(table, key)
-Database.createIndex(table, key)
+- describing the configuration of the database
 
-Database.find -- with index
+createDatabase({ path })
+
+Db.resolve(db: Database, path: string): string
+Db.create(db: Database, prefix: string, json: JsonObject): Promise<Data>
+Db.put(db: Database, id: string, json: JsonObject): Promise<Data>
+Db.getOrFail(db: Database, id: string): Promise<Data>
+Db.get(db: Database, id: string): Promise<Data | undefined>
+Db.patch(db: Database, id: string, json: JsonObject): Promise<Data>
+Db.delete(db: Database, id: string): Promise<void>
+Db.deleteAll(db: Database, prefix: string): Promise<void>
+Db.*all(db: Database, prefix: string): AsyncIterable<Data>
+Db.*find(db: Database, prefix: string, options: FindOptions): AsyncIterable<Data>
+
+# revision
 
 every object has `@revision` -- just like couchdb
 
 - can update an object only when the `@revision` is the same
+
+# index
+
+Db.index(db, table, key)
+Db.createIndex(db, table, key)
+
+Db.find -- with index
+
+# find
 
 [learn] prisma -- API design -- for example `findMany`
 
@@ -15,7 +38,9 @@ every object has `@revision` -- just like couchdb
 
 `parseId` -- table + name
 
-token based
+# permission
+
+token based permission
 
 - schema for token
 
@@ -23,9 +48,9 @@ token based
 
   store detailed `permissions`
 
-config
+# config
 
-- .fidb/config.json
+`.fidb/config.json`
 
 # learn
 
@@ -33,9 +58,9 @@ config
 [learn] from edgedb
 [learn] from couchdb
 
-# serve http rest api
+# http rest api
 
-# deno script interface
+# script interface
 
 support serve
 

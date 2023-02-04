@@ -4,6 +4,8 @@ import { ensureDir } from "std/fs/mod.ts"
 
 export type Data = JsonObject & { "@id": string }
 
+export type FindOptions = { properties: Record<string, JsonAtom> }
+
 export class Database {
   constructor(public options: { path: string }) {}
 
@@ -82,10 +84,6 @@ export class Database {
       }
     }
   }
-}
-
-type FindOptions = {
-  properties: Record<string, JsonAtom>
 }
 
 async function writeData(path: string, data: Data): Promise<void> {

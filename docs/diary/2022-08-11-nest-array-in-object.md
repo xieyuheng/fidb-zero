@@ -1,5 +1,6 @@
 ---
 title: Nest array in object
+author: Xie Yuheng
 date: 2022-08-11
 ---
 
