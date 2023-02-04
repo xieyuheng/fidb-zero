@@ -1,6 +1,7 @@
 import assert from "node:assert/strict"
 import test from "node:test"
 import * as Db from "."
+import { arrayFromAsyncIterable } from "../utils/arrayFromAsyncIterable"
 import { db } from "./db"
 
 test("find", async () => {
@@ -21,16 +22,16 @@ test("find", async () => {
     country: "China",
   })
 
-  {
-    const results = []
-    for await (const data of Db.find(db, "users", {
-      properties: { country: "China" },
-    })) {
-      results.push(data)
-    }
-
-    assert.deepStrictEqual(results.length, 2)
-  }
+  assert.deepStrictEqual(
+    (
+      await arrayFromAsyncIterable(
+        Db.find(db, "users", {
+          properties: { country: "China" },
+        }),
+      )
+    ).length,
+    2,
+  )
 
   await Db.removeAll(db, "users")
 })

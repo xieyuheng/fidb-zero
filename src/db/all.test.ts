@@ -1,6 +1,7 @@
 import assert from "node:assert/strict"
 import test from "node:test"
 import * as Db from "."
+import { arrayFromAsyncIterable } from "../utils/arrayFromAsyncIterable"
 import { db } from "./db"
 
 test("all", async () => {
@@ -19,23 +20,14 @@ test("all", async () => {
     name: "FiDB",
   })
 
-  {
-    const results = []
-    for await (const data of Db.all(db, "users")) {
-      results.push(data)
-    }
-
-    assert.deepStrictEqual(results.length, 3)
-  }
+  assert.deepStrictEqual(
+    (await arrayFromAsyncIterable(Db.all(db, "users"))).length,
+    3,
+  )
 
   await Db.removeAll(db, "users")
-
-  {
-    const results = []
-    for await (const data of Db.all(db, "users")) {
-      results.push(data)
-    }
-
-    assert.deepStrictEqual(results.length, 0)
-  }
+  assert.deepStrictEqual(
+    (await arrayFromAsyncIterable(Db.all(db, "users"))).length,
+    0,
+  )
 })
