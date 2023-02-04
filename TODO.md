@@ -1,7 +1,6 @@
 # functional api
 
-Db.*all(db: Database, prefix: string): AsyncIterable<Data>
-Db.*find(db: Database, prefix: string, options: FindOptions): AsyncIterable<Data>
+Db.\*find(db: Database, prefix: string, options: FindOptions): AsyncIterable<Data>
 
 # revision
 
