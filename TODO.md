@@ -1,7 +1,3 @@
-# functional api
-
-Db.\*find(db: Database, prefix: string, options: FindOptions): AsyncIterable<Data>
-
 # revision
 
 every object has `@revision` -- just like couchdb
