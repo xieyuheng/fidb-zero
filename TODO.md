@@ -1,4 +1,7 @@
-move `old/database` to `src`
+Database.create
+atabase.put
+atabase.get
+remove `old`
 
 # functional api
 
