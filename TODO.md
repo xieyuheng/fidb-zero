@@ -1,6 +1,5 @@
 # functional api
 
-Db.removeAll(db: Database, prefix: string): Promise<void>
 Db.*all(db: Database, prefix: string): AsyncIterable<Data>
 Db.*find(db: Database, prefix: string, options: FindOptions): AsyncIterable<Data>
 
