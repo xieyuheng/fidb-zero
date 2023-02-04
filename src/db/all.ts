@@ -1,9 +1,9 @@
 import fs from "node:fs"
 import { resolve } from "node:path"
-import { get } from "."
 import { isErrnoException } from "../utils/isErrnoException"
 import type { Data } from "./Data"
 import type { Database } from "./Database"
+import { get } from "./get"
 
 export async function* all(db: Database, prefix: string): AsyncIterable<Data> {
   try {
