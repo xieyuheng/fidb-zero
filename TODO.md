@@ -1,5 +1,7 @@
+setup git hook
+
 # functional api
-[diary] 2023-02-04-functional-api.md
+
 `Database` as pure data -- instead of class
 
 - describing the configuration of the database
