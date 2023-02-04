@@ -1,6 +1,6 @@
-Database.create
-atabase.put
-atabase.get
+Database.put
+Database.get
+Database.delete
 remove `old`
 
 # functional api

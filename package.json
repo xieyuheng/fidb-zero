@@ -22,12 +22,14 @@
     "node-watch": "^0.7.3",
     "picocolors": "^1.0.0",
     "readdirp": "^3.6.0",
-    "sjcl": "^1.0.8"
+    "sjcl": "^1.0.8",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.191",
     "@types/node": "^18.11.18",
     "@types/sjcl": "^1.0.30",
+    "@types/uuid": "^9.0.0",
     "@xieyuheng/test-runner": "^0.2.7",
     "husky": "^8.0.3",
     "prettier": "^2.8.3",
