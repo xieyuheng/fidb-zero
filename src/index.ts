@@ -1,2 +1,1 @@
-export * from "./database/index.ts"
-export * as Db from "./db/index.ts"
+export const x = 1
