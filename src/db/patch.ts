@@ -1,6 +1,6 @@
 import { resolve } from "node:path"
-import type { JsonObject } from "src/utils/Json"
 import { Data, Database, getOrFail } from "."
+import type { JsonObject } from "../utils/Json"
 import { writeData } from "./utils/writeData"
 
 export async function patch(

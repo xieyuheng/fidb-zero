@@ -1,33 +1,34 @@
 import assert from "node:assert/strict"
 import test from "node:test"
-import { db } from "./utils"
+import * as Db from "."
+import { db } from "./db"
 
 test("crud", async () => {
-  const putted = await db.put("users/xieyuheng", {
+  const putted = await Db.put(db, "users/xieyuheng", {
     username: "xieyuheng",
     name: "Xie Yuheng",
   })
 
   {
-    const gotten = await db.get("users/xieyuheng")
+    const gotten = await Db.get(db, "users/xieyuheng")
     assert.deepStrictEqual(gotten, putted)
   }
 
-  const patched = await db.patch("users/xieyuheng", {
+  const patched = await Db.patch(db, "users/xieyuheng", {
     name: "谢宇恒",
   })
 
   assert.deepStrictEqual(patched.name, "谢宇恒")
 
   {
-    const gotten = await db.get("users/xieyuheng")
+    const gotten = await Db.get(db, "users/xieyuheng")
     assert.deepStrictEqual(gotten, patched)
   }
 
-  await db.delete("users/xieyuheng")
+  await Db.remove(db, "users/xieyuheng")
 
   {
-    const gotten = await db.get("users/xieyuheng")
+    const gotten = await Db.get(db, "users/xieyuheng")
     assert.deepStrictEqual(gotten, undefined)
   }
 })

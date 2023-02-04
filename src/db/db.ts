@@ -1,6 +1,6 @@
 import { resolve } from "path"
-import { Database } from "../../database"
+import { createDatabase } from "."
 
-export const db = new Database({
+export const db = createDatabase({
   path: resolve(__filename, "../../../../tmp/databases/test"),
 })

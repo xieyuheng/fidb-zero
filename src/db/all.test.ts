@@ -1,37 +1,38 @@
 import assert from "node:assert/strict"
 import test from "node:test"
-import { db } from "./utils"
+import * as Db from "."
+import { db } from "./db"
 
 test("all", async () => {
-  await db.put("users/xieyuheng", {
+  await Db.put(db, "users/xieyuheng", {
     username: "xieyuheng",
     name: "Xie Yuheng",
   })
 
-  await db.put("users/cicada-lang", {
+  await Db.put(db, "users/cicada-lang", {
     username: "cicada-lang",
     name: "Cicada Language",
   })
 
-  await db.put("users/fidb", {
+  await Db.put(db, "users/fidb", {
     username: "fidb",
     name: "FiDB",
   })
 
   {
     const results = []
-    for await (const data of db.all("users")) {
+    for await (const data of Db.all(db, "users")) {
       results.push(data)
     }
 
     assert.deepStrictEqual(results.length, 3)
   }
 
-  await db.deleteAll("users")
+  await Db.removeAll(db, "users")
 
   {
     const results = []
-    for await (const data of db.all("users")) {
+    for await (const data of Db.all(db, "users")) {
       results.push(data)
     }
 

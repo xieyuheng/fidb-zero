@@ -1,5 +1,5 @@
-import { isErrnoException } from "src/utils/isErrnoException"
 import { Data, Database, getOrFail } from "."
+import { isErrnoException } from "../utils/isErrnoException"
 
 export async function get(db: Database, id: string): Promise<Data | undefined> {
   try {

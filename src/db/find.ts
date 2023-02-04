@@ -1,5 +1,5 @@
-import type { JsonAtom } from "src/utils/Json"
 import { all, Data, Database } from "."
+import type { JsonAtom } from "../utils/Json"
 
 export type FindOptions = {
   properties: Record<string, JsonAtom>

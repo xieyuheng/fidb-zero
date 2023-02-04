@@ -1,20 +1,21 @@
 import assert from "node:assert/strict"
 import test from "node:test"
-import { db } from "./utils"
+import * as Db from "."
+import { db } from "./db"
 
 test("find", async () => {
-  await db.put("users/xieyuheng", {
+  await Db.put(db, "users/xieyuheng", {
     username: "xieyuheng",
     name: "Xie Yuheng",
     country: "China",
   })
 
-  await db.put("users/cicada-lang", {
+  await Db.put(db, "users/cicada-lang", {
     username: "cicada-lang",
     name: "Cicada Language",
   })
 
-  await db.put("users/fidb", {
+  await Db.put(db, "users/fidb", {
     username: "fidb",
     name: "FiDB",
     country: "China",
@@ -22,7 +23,7 @@ test("find", async () => {
 
   {
     const results = []
-    for await (const data of db.find("users", {
+    for await (const data of Db.find(db, "users", {
       properties: { country: "China" },
     })) {
       results.push(data)
@@ -31,5 +32,5 @@ test("find", async () => {
     assert.deepStrictEqual(results.length, 2)
   }
 
-  await db.deleteAll("users")
+  await Db.removeAll(db, "users")
 })

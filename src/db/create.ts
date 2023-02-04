@@ -3,7 +3,7 @@ import type { Data, Database } from "."
 import type { JsonObject } from "../utils/Json"
 import { writeData } from "./utils/writeData"
 
-async function create(
+export async function create(
   db: Database,
   prefix: string,
   json: JsonObject,
