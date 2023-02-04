@@ -18,7 +18,7 @@ type Data = JsonObject & { "@id": string }
 type FindOptions = { properties: Record<string, JsonAtom> }
 
 class Database {
-  constructor(public options: { path: string; })
+  constructor(public options: { path: string })
   resolve(path: string): string
   async create(prefix: string, json: JsonObject): Promise<Data>
   async put(id: string, json: JsonObject): Promise<Data>
@@ -64,3 +64,16 @@ Beside the options of database,
 we have not used dependency injection at all.
 Maybe we do not need it, and the API will be
 easier to understand without it.
+
+Maybe we should have the following rule:
+
+1. We should never use `class` for the syntax sugar -- `object.method(arg)`.
+
+2. We should use `class` when there is a real open `interface`.
+
+3. We should use `class` specially when the `interface` is stable
+   and we have many implementation of it.
+
+4. We should use `interface` instead of `abstract class`,
+   because the later is for handling complicated cases like fallback,
+   in this situation, maybe we should just use closed type instead.
