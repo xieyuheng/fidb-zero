@@ -1,5 +1,6 @@
 import fs from "node:fs"
 import { dirname, resolve } from "node:path"
+import { isErrnoException } from "src/utils/isErrnoException"
 import type { JsonAtom, JsonObject } from "../utils/Json"
 
 export type Data = JsonObject & { "@id": string }
@@ -20,33 +21,33 @@ export class Database {
     return data
   }
 
-  // async put(id: string, json: JsonObject): Promise<Data> {
-  //   const data = { "@id": id, ...json }
-  //   await writeData(this.resolve(id), data)
-  //   return data
-  // }
+  async put(id: string, json: JsonObject): Promise<Data> {
+    const data = { "@id": id, ...json }
+    await writeData(this.resolve(id), data)
+    return data
+  }
 
-  // async getOrFail(id: string): Promise<Data> {
-  //   return await readData(this.resolve(id))
-  // }
+  async getOrFail(id: string): Promise<Data> {
+    return await readData(this.resolve(id))
+  }
 
-  // async get(id: string): Promise<Data | undefined> {
-  //   try {
-  //     return await this.getOrFail(id)
-  //   } catch (error) {
-  //     if (error instanceof Deno.errors.NotFound) {
-  //       return undefined
-  //     }
+  async get(id: string): Promise<Data | undefined> {
+    try {
+      return await this.getOrFail(id)
+    } catch (error) {
+      if (isErrnoException(error) && error.code === "ENOENT") {
+        return undefined
+      }
 
-  //     throw error
-  //   }
-  // }
+      throw error
+    }
+  }
 
-  // async patch(id: string, json: JsonObject): Promise<Data> {
-  //   const data = { ...(await this.getOrFail(id)), ...json }
-  //   await writeData(this.resolve(id), data)
-  //   return data
-  // }
+  async patch(id: string, json: JsonObject): Promise<Data> {
+    const data = { ...(await this.getOrFail(id)), ...json }
+    await writeData(this.resolve(id), data)
+    return data
+  }
 
   // async delete(id: string): Promise<void> {
   //   await Deno.remove(this.resolve(id))
@@ -92,7 +93,7 @@ async function writeData(path: string, data: Data): Promise<void> {
   await fs.promises.writeFile(path, text)
 }
 
-// async function readData(path: string): Promise<Data> {
-//   const text = await Deno.readTextFile(path)
-//   return JSON.parse(text)
-// }
+async function readData(path: string): Promise<Data> {
+  const text = await fs.promises.readFile(path, "utf-8")
+  return JSON.parse(text)
+}
