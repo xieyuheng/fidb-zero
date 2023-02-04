@@ -1,6 +1,5 @@
 # functional api
 
-Db.put(db: Database, id: string, json: JsonObject): Promise<Data>
 Db.getOrFail(db: Database, id: string): Promise<Data>
 Db.get(db: Database, id: string): Promise<Data | undefined>
 Db.patch(db: Database, id: string, json: JsonObject): Promise<Data>

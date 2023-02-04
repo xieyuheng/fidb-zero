@@ -3,12 +3,11 @@ import type { Data, Database } from "."
 import type { JsonObject } from "../utils/Json"
 import { writeData } from "./utils/writeData"
 
-async function create(
+export async function put(
   db: Database,
-  prefix: string,
+  id: string,
   json: JsonObject,
 ): Promise<Data> {
-  const id = `${prefix}/${crypto.randomUUID()}`
   const data = { "@id": id, ...json }
   await writeData(resolve(db.path, id), data)
   return data
