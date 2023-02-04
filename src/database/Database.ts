@@ -57,34 +57,38 @@ export class Database {
     await fs.promises.rm(this.resolve(prefix), { force: true, recursive: true })
   }
 
-  // async *all(prefix: string): AsyncIterable<Data> {
-  //   try {
-  //     for await (const dirEntry of Deno.readDir(this.resolve(prefix))) {
-  //       if (dirEntry.isFile) {
-  //         const data = await this.get(`${prefix}/${dirEntry.name}`)
-  //         if (data !== undefined) {
-  //           yield data
-  //         }
-  //       }
-  //     }
-  //   } catch (error) {
-  //     if (!(error instanceof Deno.errors.NotFound)) {
-  //       throw error
-  //     }
-  //   }
-  // }
+  async *all(prefix: string): AsyncIterable<Data> {
+    try {
+      const dir = await fs.promises.opendir(this.resolve(prefix), {
+        bufferSize: 1024,
+      })
 
-  // async *find(prefix: string, options: FindOptions): AsyncIterable<Data> {
-  //   for await (const data of this.all(prefix)) {
-  //     if (
-  //       Object.entries(options.properties).every(
-  //         ([key, property]) => data[key] === property,
-  //       )
-  //     ) {
-  //       yield data
-  //     }
-  //   }
-  // }
+      for await (const dirEntry of dir) {
+        if (dirEntry.isFile()) {
+          const data = await this.get(`${prefix}/${dirEntry.name}`)
+          if (data !== undefined) {
+            yield data
+          }
+        }
+      }
+    } catch (error) {
+      if (!(isErrnoException(error) && error.code === "ENOENT")) {
+        throw error
+      }
+    }
+  }
+
+  async *find(prefix: string, options: FindOptions): AsyncIterable<Data> {
+    for await (const data of this.all(prefix)) {
+      if (
+        Object.entries(options.properties).every(
+          ([key, property]) => data[key] === property,
+        )
+      ) {
+        yield data
+      }
+    }
+  }
 }
 
 async function writeData(path: string, data: Data): Promise<void> {
