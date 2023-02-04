@@ -1,3 +1,5 @@
+// Code taken from: https://github.com/TokugawaTakeshi/Yamato-Daiwa-ES-Extensions
+
 export function isErrnoException(
   error: unknown,
 ): error is NodeJS.ErrnoException {

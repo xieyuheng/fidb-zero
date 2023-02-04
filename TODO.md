@@ -1,4 +1,3 @@
-copy tests from `old` to `src`
 remove `old`
 
 # functional api
