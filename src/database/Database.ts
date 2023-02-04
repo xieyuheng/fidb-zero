@@ -49,13 +49,13 @@ export class Database {
     return data
   }
 
-  // async delete(id: string): Promise<void> {
-  //   await Deno.remove(this.resolve(id))
-  // }
+  async delete(id: string): Promise<void> {
+    await fs.promises.rm(this.resolve(id), { force: true })
+  }
 
-  // async deleteAll(prefix: string): Promise<void> {
-  //   await Deno.remove(this.resolve(prefix), { recursive: true })
-  // }
+  async deleteAll(prefix: string): Promise<void> {
+    await fs.promises.rm(this.resolve(prefix), { force: true, recursive: true })
+  }
 
   // async *all(prefix: string): AsyncIterable<Data> {
   //   try {

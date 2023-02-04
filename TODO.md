@@ -1,6 +1,5 @@
-Database.put
-Database.get
-Database.delete
+Database.all
+Database.find
 remove `old`
 
 # functional api
