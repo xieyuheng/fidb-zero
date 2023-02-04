@@ -1,6 +1,6 @@
 import fs from "node:fs"
 import { dirname, resolve } from "node:path"
-import { isErrnoException } from "src/utils/isErrnoException"
+import { isErrnoException } from "../utils/isErrnoException"
 import type { JsonAtom, JsonObject } from "../utils/Json"
 
 export type Data = JsonObject & { "@id": string }

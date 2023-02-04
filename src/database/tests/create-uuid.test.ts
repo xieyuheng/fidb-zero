@@ -13,9 +13,9 @@ test("create w/ uuid", async () => {
   assert(UUID.validate(uuid))
 
   {
-    // const gotten = await db.get(created["@id"])
-    // assert.deepStrictEqual(gotten, created)
-    // assert(gotten)
+    const gotten = await db.get(created["@id"])
+    assert.deepStrictEqual(gotten, created)
+    assert(gotten)
     // await db.delete(gotten["@id"])
   }
 })
