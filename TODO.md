@@ -1,11 +1,5 @@
 # functional api
 
-`Database` as pure data -- instead of class
-
-- describing the configuration of the database
-
-createDatabase({ path })
-
 Db.resolve(db: Database, path: string): string
 Db.create(db: Database, prefix: string, json: JsonObject): Promise<Data>
 Db.put(db: Database, id: string, json: JsonObject): Promise<Data>
