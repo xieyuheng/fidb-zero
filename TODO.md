@@ -1,4 +1,4 @@
-move `old` code to `src`
+move `old/database` to `src`
 
 # functional api
 
