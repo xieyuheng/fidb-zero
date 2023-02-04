@@ -8,8 +8,8 @@
   ],
   "scripts": {
     "prepare": "husky install",
-    "build": "tsc",
-    "build:watch": "tsc --watch",
+    "build": "rm -r lib; tsc",
+    "build:watch": "rm -r lib; tsc --watch",
     "test:node": "node --test",
     "test": "npm run test:node",
     "format": "prettier src --write"
