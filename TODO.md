@@ -1,6 +1,5 @@
 # functional api
 
-Db.patch(db: Database, id: string, json: JsonObject): Promise<Data>
 Db.delete(db: Database, id: string): Promise<void>
 Db.deleteAll(db: Database, prefix: string): Promise<void>
 Db.*all(db: Database, prefix: string): AsyncIterable<Data>
