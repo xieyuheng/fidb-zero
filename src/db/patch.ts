@@ -1,6 +1,8 @@
 import { resolve } from "node:path"
-import { Data, Database, getOrFail } from "."
 import type { JsonObject } from "../utils/Json"
+import type { Data } from "./Data"
+import type { Database } from "./Database"
+import { getOrFail } from "./getOrFail"
 import { writeData } from "./utils/writeData"
 
 export async function patch(

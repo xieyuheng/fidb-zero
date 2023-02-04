@@ -1,6 +1,6 @@
 import assert from "node:assert/strict"
 import test from "node:test"
-import * as Db from "."
+import * as Db from "../db"
 import { db } from "./db"
 
 test("put-patch-remove", async () => {

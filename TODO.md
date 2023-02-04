@@ -11,6 +11,12 @@ Db.createIndex(db, table, key)
 
 Db.find -- with index
 
+# fi
+
+`Fi.save` -- API for saving file with metadata
+
+- use `<name>.metadata` postfix
+
 # find
 
 [learn] prisma -- API design -- for example `findMany`

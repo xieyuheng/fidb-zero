@@ -1,6 +1,7 @@
 import { resolve } from "node:path"
-import type { Data, Database } from "."
 import type { JsonObject } from "../utils/Json"
+import type { Data } from "./Data"
+import type { Database } from "./Database"
 import { writeData } from "./utils/writeData"
 
 export async function put(

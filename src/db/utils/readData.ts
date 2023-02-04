@@ -1,5 +1,5 @@
 import fs from "node:fs"
-import type { Data } from ".."
+import type { Data } from "../Data"
 
 export async function readData(path: string): Promise<Data> {
   const text = await fs.promises.readFile(path, "utf-8")

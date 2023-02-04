@@ -1,5 +1,7 @@
-import { Data, Database, getOrFail } from "."
 import { isErrnoException } from "../utils/isErrnoException"
+import type { Data } from "./Data"
+import type { Database } from "./Database"
+import { getOrFail } from "./getOrFail"
 
 export async function get(db: Database, id: string): Promise<Data | undefined> {
   try {
