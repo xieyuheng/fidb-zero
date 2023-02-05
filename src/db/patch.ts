@@ -11,12 +11,12 @@ export async function patch(
   id: string,
   input: Omit<Data, "@id">,
 ): Promise<Data> {
-  const old = await get(db, id)
-  if (old !== undefined && old["@revision"] !== input["@revision"]) {
+  const data = await get(db, id)
+  if (data !== undefined && data["@revision"] !== input["@revision"]) {
     throw new WriteConflict(`[patch] revision mismatch`)
   }
 
-  const result = { ...old, ...input, "@id": id, "@revision": randomRevision() }
+  const result = { ...data, ...input, "@id": id, "@revision": randomRevision() }
   await writeData(resolve(db.path, id), result)
   return result
 }

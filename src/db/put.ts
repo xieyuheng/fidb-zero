@@ -11,8 +11,8 @@ export async function put(
   id: string,
   input: Omit<Data, "@id">,
 ): Promise<Data> {
-  const old = await get(db, id)
-  if (old !== undefined && old["@revision"] !== input["@revision"]) {
+  const data = await get(db, id)
+  if (data !== undefined && data["@revision"] !== input["@revision"]) {
     throw new WriteConflict(`[put] revision mismatch`)
   }
 
