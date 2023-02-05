@@ -1,16 +1,16 @@
 import { resolve } from "node:path"
-import type { JsonObject } from "../utils/Json"
 import type { Data } from "./Data"
 import type { Database } from "./Database"
+import { randomRevision } from "./utils/randomRevision"
 import { writeData } from "./utils/writeData"
 
 export async function create(
   db: Database,
   prefix: string,
-  json: JsonObject,
+  input: Omit<Data, "@id" | "@revision">,
 ): Promise<Data> {
   const id = `${prefix}/${crypto.randomUUID()}`
-  const data = { "@id": id, ...json }
+  const data = { ...input, "@id": id, "@revision": randomRevision() }
   await writeData(resolve(db.path, id), data)
   return data
 }

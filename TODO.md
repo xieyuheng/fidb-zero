@@ -1,9 +1,10 @@
 # revision
 
-every `Data` has `@revision` -- just like couchdb
+`objectOmit`
 
-- can update an object only when the `@revision` is the same
-- use long random string -- not uuid
+`patch` check `@revision`
+`del` check `@revision`
+`delAll` check `@revision`
 
 `@deleted: boolean` -- soft deletion with `@revision`
 

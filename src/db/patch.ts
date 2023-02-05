@@ -10,7 +10,8 @@ export async function patch(
   id: string,
   json: JsonObject,
 ): Promise<Data> {
-  const data = { ...(await getOrFail(db, id)), ...json }
+  const old = await getOrFail(db, id)
+  const data = { ...old, ...json, "@id": id }
   await writeData(resolve(db.path, id), data)
   return data
 }
