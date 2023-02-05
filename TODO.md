@@ -1,16 +1,42 @@
 # revision
 
-every object has `@revision` -- just like couchdb
+every `Data` has `@commit` -- just like couchdb
 
+- can update an object only when the `@commit` is the same
+- should not call `@revision` or `@rev` -- which suggests version control
 - use long random string -- not uuid
-- can update an object only when the `@revision` is the same
+
+# http rest api
+
+# script interface
+
+`serve`
+
+# command line interface
+
+use `serve`
+
+# permission
+
+token based permission
+
+schema for token -- permission and date
+
+`.fidb/tokens/<token>` -- store `{ permissions }`
 
 # index
 
-Db.index(db, table, key)
-Db.createIndex(db, table, key)
+`Db.index(db, table, key)`
 
-Db.find -- with index
+`Db.createIndex(db, table, key)`
+
+# find
+
+`Db.find` -- use index
+
+[learn] prisma -- API design -- for example `findMany`
+
+- `find` might deref a property which is an id to another data
 
 # fi
 
@@ -18,40 +44,8 @@ Db.find -- with index
 
 - use `<name>.metadata` postfix
 
-# find
-
-[learn] prisma -- API design -- for example `findMany`
-
-- `find` might deref a property which is an id to another data
-
-`parseId` -- table + name
-
-# permission
-
-token based permission
-
-- schema for token
-
-- .fidb/tokens/<name>.json
-
-  store detailed `permissions`
-
-# config
-
-`.fidb/config.json`
-
 # learn
 
 [learn] from surrealdb
 [learn] from edgedb
 [learn] from couchdb
-
-# http rest api
-
-# script interface
-
-support serve
-
-# command line interface
-
-support serve
