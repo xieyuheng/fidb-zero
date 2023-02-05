@@ -32,6 +32,4 @@ test("find", async () => {
       )
     ).length,
   ).toEqual(2)
-
-  await Db.delAll(db, "users")
 })

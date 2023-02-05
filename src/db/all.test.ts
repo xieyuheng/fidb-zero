@@ -22,7 +22,4 @@ test("all", async () => {
   })
 
   expect((await arrayFromAsyncIterable(Db.all(db, "users"))).length).toEqual(3)
-
-  await Db.delAll(db, "users")
-  expect((await arrayFromAsyncIterable(Db.all(db, "users"))).length).toEqual(0)
 })

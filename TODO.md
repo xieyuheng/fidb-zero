@@ -1,7 +1,6 @@
 # revision
 
 `del` check `@revision`
-`delAll` check `@revision`
 
 `@deleted: boolean` -- soft deletion with `@revision`
 
