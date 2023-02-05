@@ -1,8 +1,7 @@
 import { resolve } from "node:path"
 import type { Data } from "../data"
+import { randomRevision, writeData } from "../data"
 import type { Database } from "../database"
-import { randomRevision } from "./utils/randomRevision"
-import { writeData } from "./utils/writeData"
 
 export async function create(
   db: Database,

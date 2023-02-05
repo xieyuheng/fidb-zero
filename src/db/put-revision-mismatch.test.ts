@@ -1,8 +1,8 @@
 import { expect, test } from "vitest"
 import * as Db from "."
+import { randomRevision } from "../data"
 import { RevisionMismatch } from "./errors/RevisionMismatch"
 import { prepareTest } from "./test-utils"
-import { randomRevision } from "./utils/randomRevision"
 
 test("put-revision-mismatch", async () => {
   const { db } = await prepareTest()

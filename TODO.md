@@ -1,5 +1,3 @@
-move `db/utils/` to `data/`
-
 # http rest api
 
 # script interface

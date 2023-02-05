@@ -1,10 +1,8 @@
 import { resolve } from "node:path"
-import type { Data } from "../data"
+import { Data, randomRevision, writeData } from "../data"
 import type { Database } from "../database"
 import { RevisionMismatch } from "./errors/RevisionMismatch"
 import { get } from "./get"
-import { randomRevision } from "./utils/randomRevision"
-import { writeData } from "./utils/writeData"
 
 export async function put(
   db: Database,
