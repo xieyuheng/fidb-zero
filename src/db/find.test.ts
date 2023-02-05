@@ -33,5 +33,5 @@ test("find", async () => {
     2,
   )
 
-  await Db.removeAll(db, "users")
+  await Db.delAll(db, "users")
 })

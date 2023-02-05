@@ -13,6 +13,6 @@ test("create-remove", async () => {
   assert(UUID.validate(uuid))
   assert.deepStrictEqual(await Db.get(db, created["@id"]), created)
 
-  await Db.remove(db, created["@id"])
+  await Db.del(db, created["@id"])
   assert.deepStrictEqual(await Db.get(db, created["@id"]), undefined)
 })

@@ -25,7 +25,7 @@ test("all", async () => {
     3,
   )
 
-  await Db.removeAll(db, "users")
+  await Db.delAll(db, "users")
   assert.deepStrictEqual(
     (await arrayFromAsyncIterable(Db.all(db, "users"))).length,
     0,

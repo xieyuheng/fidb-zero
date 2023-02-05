@@ -1,10 +1,16 @@
 # revision
 
-every `Data` has `@commit` -- just like couchdb
+`revision/Revision` -- has `serial` and `token`
 
-- can update an object only when the `@commit` is the same
-- should not call `@revision` or `@rev` -- which suggests version control
+`revision/parseRevision`
+`revision/revisionFormat`
+
+every `Data` has `@revision` -- just like couchdb
+
+- can update an object only when the `@revision` is the same
 - use long random string -- not uuid
+
+`@deleted: boolean` -- soft deletion with `@revision`
 
 # http rest api
 
@@ -40,9 +46,10 @@ schema for token -- permission and date
 
 # fi
 
-`Fi.save` -- API for saving file with metadata
+`Fi.get`
+`Fi.put`
 
-- use `<name>.metadata` postfix
+use `<name>.metadata` postfix for metadata in json format
 
 # learn
 
