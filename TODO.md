@@ -1,10 +1,5 @@
 # revision
 
-`revision/Revision` -- has `serial` and `token`
-
-`revision/parseRevision`
-`revision/revisionFormat`
-
 every `Data` has `@revision` -- just like couchdb
 
 - can update an object only when the `@revision` is the same
