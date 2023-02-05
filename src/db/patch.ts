@@ -2,7 +2,7 @@ import { resolve } from "node:path"
 import type { Data } from "./Data"
 import type { Database } from "./Database"
 import { NotFound } from "./errors/NotFound"
-import { WriteConflict } from "./errors/WriteConflict"
+import { RevisionMismatch } from "./errors/RevisionMismatch"
 import { get } from "./get"
 import { randomRevision } from "./utils/randomRevision"
 import { writeData } from "./utils/writeData"
@@ -15,7 +15,7 @@ export async function patch(db: Database, input: Data): Promise<Data> {
   }
 
   if (data["@revision"] !== input["@revision"]) {
-    throw new WriteConflict(`[patch] revision mismatch`)
+    throw new RevisionMismatch(`[patch] revision mismatch`)
   }
 
   const result = { ...data, ...input, "@id": id, "@revision": randomRevision() }

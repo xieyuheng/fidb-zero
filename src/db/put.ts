@@ -1,7 +1,7 @@
 import { resolve } from "node:path"
 import type { Data } from "./Data"
 import type { Database } from "./Database"
-import { WriteConflict } from "./errors/WriteConflict"
+import { RevisionMismatch } from "./errors/RevisionMismatch"
 import { get } from "./get"
 import { randomRevision } from "./utils/randomRevision"
 import { writeData } from "./utils/writeData"
@@ -13,7 +13,7 @@ export async function put(
   const id = input["@id"] as string
   const data = await get(db, id)
   if (data !== undefined && data["@revision"] !== input["@revision"]) {
-    throw new WriteConflict(`[put] revision mismatch`)
+    throw new RevisionMismatch(`[put] revision mismatch`)
   }
 
   const result = { ...input, "@id": id, "@revision": randomRevision() }

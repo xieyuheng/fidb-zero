@@ -1,4 +1,4 @@
-export class WriteConflict extends Error {
+export class RevisionMismatch extends Error {
   constructor(message: string) {
     super(message)
   }
