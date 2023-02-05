@@ -8,8 +8,8 @@
   ],
   "scripts": {
     "prepare": "husky install",
-    "build": "rm -r lib; tsc",
-    "build:watch": "rm -r lib; tsc --watch",
+    "build": "rm -rf lib; tsc",
+    "build:watch": "rm -rf lib; tsc --watch",
     "test:ts": "vitest --dir src --threads false --run",
     "test:watch": "vitest --dir src --threads false",
     "test:coverage": "vitest --dir src --threads false --run --coverage ",
