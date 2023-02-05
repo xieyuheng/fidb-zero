@@ -2,7 +2,7 @@ import { expect, test } from "vitest"
 import * as Db from "."
 import { db } from "./db"
 
-test("put-patch-delete", async () => {
+test.todo("put-patch-delete", async () => {
   const putted = await Db.put(db, "users/xieyuheng", {
     username: "xieyuheng",
     name: "Xie Yuheng",

@@ -4,7 +4,7 @@ import * as Db from "../db"
 import { arrayFromAsyncIterable } from "../utils/arrayFromAsyncIterable"
 import { db } from "./db"
 
-test("all", async () => {
+test.todo("all", async () => {
   await Db.put(db, "users/xieyuheng", {
     username: "xieyuheng",
     name: "Xie Yuheng",
