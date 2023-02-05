@@ -2,7 +2,7 @@ import assert from "node:assert/strict"
 import { test } from "vitest"
 import * as Db from "../db"
 import { arrayFromAsyncIterable } from "../utils/arrayFromAsyncIterable"
-import { db } from "./db"
+import { db } from "./test-utils"
 
 test("all", async () => {
   await Db.put(db, "users/xieyuheng", {

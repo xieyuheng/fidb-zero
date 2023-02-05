@@ -1,6 +1,6 @@
 import { expect, test } from "vitest"
 import * as Db from "."
-import { db } from "./db"
+import { db } from "./test-utils"
 
 test("put-patch-delete", async () => {
   const putted = await Db.put(db, "users/xieyuheng", {
