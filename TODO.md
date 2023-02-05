@@ -1,5 +1,3 @@
-`del` check `@revision`
-
 # http rest api
 
 # script interface

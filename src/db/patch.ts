@@ -1,6 +1,7 @@
 import { resolve } from "node:path"
-import type { JsonObject as Data } from "../utils/Json"
+import type { Data } from "./Data"
 import type { Database } from "./Database"
+import { NotFound } from "./errors/NotFound"
 import { WriteConflict } from "./errors/WriteConflict"
 import { get } from "./get"
 import { randomRevision } from "./utils/randomRevision"
@@ -12,7 +13,11 @@ export async function patch(
   input: Omit<Data, "@id">,
 ): Promise<Data> {
   const data = await get(db, id)
-  if (data !== undefined && data["@revision"] !== input["@revision"]) {
+  if (data === undefined) {
+    throw new NotFound(`[patch] not found, id ${id}`)
+  }
+
+  if (data["@revision"] !== input["@revision"]) {
     throw new WriteConflict(`[patch] revision mismatch`)
   }
 
