@@ -1,5 +1,7 @@
 # http rest api
 
+`Rest.serve(db, options)`
+
 # script interface
 
 `serve`
@@ -14,7 +16,7 @@ token based permission
 
 schema for token -- permission and date
 
-`.fidb/tokens/<token>` -- store `{ permissions }`
+`fidb/tokens/<token>` -- store `{ permissions }`
 
 # index
 
