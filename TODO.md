@@ -1,7 +1,5 @@
 # revision
 
-`objectOmit`
-
 `patch` check `@revision`
 `del` check `@revision`
 `delAll` check `@revision`

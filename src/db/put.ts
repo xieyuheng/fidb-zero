@@ -2,7 +2,7 @@ import { resolve } from "node:path"
 import type { Data } from "./Data"
 import type { Database } from "./Database"
 import { WriteConflict } from "./errors/WriteConflict"
-import { getOrFail } from "./getOrFail"
+import { get } from "./get"
 import { randomRevision } from "./utils/randomRevision"
 import { writeData } from "./utils/writeData"
 
@@ -11,8 +11,8 @@ export async function put(
   id: string,
   input: Omit<Data, "@id">,
 ): Promise<Data> {
-  const old = await getOrFail(db, id)
-  if (old["@revision"] !== input["@revision"]) {
+  const old = await get(db, id)
+  if (old !== undefined && old["@revision"] !== input["@revision"]) {
     throw new WriteConflict(`[put] revision mismatch`)
   }
 
