@@ -16,7 +16,7 @@ export async function put(
     throw new WriteConflict(`[put] revision mismatch`)
   }
 
-  const data = { ...input, "@id": id, "@revision": randomRevision() }
-  await writeData(resolve(db.path, id), data)
-  return data
+  const result = { ...input, "@id": id, "@revision": randomRevision() }
+  await writeData(resolve(db.path, id), result)
+  return result
 }

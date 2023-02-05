@@ -1,6 +1,6 @@
 import assert from "node:assert/strict"
-import test from "node:test"
 import * as UUID from "uuid"
+import { test } from "vitest"
 import * as Db from "../db"
 import { db } from "./db"
 

@@ -10,7 +10,7 @@ export async function create(
   input: Omit<Data, "@id" | "@revision">,
 ): Promise<Data> {
   const id = `${prefix}/${crypto.randomUUID()}`
-  const data = { ...input, "@id": id, "@revision": randomRevision() }
-  await writeData(resolve(db.path, id), data)
-  return data
+  const result = { ...input, "@id": id, "@revision": randomRevision() }
+  await writeData(resolve(db.path, id), result)
+  return result
 }

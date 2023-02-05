@@ -1,5 +1,4 @@
-import assert from "node:assert/strict"
-import test from "node:test"
+import { expect, test } from "vitest"
 import * as Db from "."
 import { db } from "./db"
 
@@ -8,8 +7,8 @@ test("put-delete", async () => {
     username: "xieyuheng",
     name: "Xie Yuheng",
   })
-  assert.deepStrictEqual(await Db.get(db, "users/xieyuheng"), putted)
+  expect(await Db.get(db, "users/xieyuheng")).toEqual(putted)
 
   await Db.del(db, "users/xieyuheng")
-  assert.deepStrictEqual(await Db.get(db, "users/xieyuheng"), undefined)
+  expect(await Db.get(db, "users/xieyuheng"), undefined).toEqual(undefined)
 })
