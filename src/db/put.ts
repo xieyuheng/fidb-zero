@@ -1,5 +1,5 @@
 import { resolve } from "node:path"
-import { Data, randomRevision, writeData } from "../data"
+import { Data, dataWrite, randomRevision } from "../data"
 import type { Database } from "../database"
 import { RevisionMismatch } from "./errors/RevisionMismatch"
 import { get } from "./get"
@@ -15,6 +15,6 @@ export async function put(
   }
 
   const result = { ...input, "@id": id, "@revision": randomRevision() }
-  await writeData(resolve(db.path, id), result)
+  await dataWrite(result, resolve(db.path, id))
   return result
 }

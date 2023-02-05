@@ -1,5 +1,5 @@
 import { resolve } from "node:path"
-import { Data, randomRevision, writeData } from "../data"
+import { Data, dataWrite, randomRevision } from "../data"
 import type { Database } from "../database"
 import { NotFound } from "./errors/NotFound"
 import { RevisionMismatch } from "./errors/RevisionMismatch"
@@ -17,6 +17,6 @@ export async function patch(db: Database, input: Data): Promise<Data> {
   }
 
   const result = { ...data, ...input, "@id": id, "@revision": randomRevision() }
-  await writeData(resolve(db.path, id), result)
+  await dataWrite(result, resolve(db.path, id))
   return result
 }

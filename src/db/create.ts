@@ -1,6 +1,6 @@
 import { resolve } from "node:path"
 import type { Data } from "../data"
-import { randomRevision, writeData } from "../data"
+import { dataWrite, randomRevision } from "../data"
 import type { Database } from "../database"
 
 export async function create(
@@ -10,6 +10,6 @@ export async function create(
 ): Promise<Data> {
   const id = `${prefix}/${crypto.randomUUID()}`
   const result = { ...input, "@id": id, "@revision": randomRevision() }
-  await writeData(resolve(db.path, id), result)
+  await dataWrite(result, resolve(db.path, id))
   return result
 }
