@@ -2,9 +2,11 @@ import assert from "node:assert/strict"
 import { test } from "vitest"
 import * as Db from "../db"
 import { arrayFromAsyncIterable } from "../utils/arrayFromAsyncIterable"
-import { db } from "./test-utils"
+import { prepareTest } from "./test-utils"
 
 test("find", async () => {
+  const { db } = await prepareTest()
+
   await Db.put(db, "users/xieyuheng", {
     username: "xieyuheng",
     name: "Xie Yuheng",

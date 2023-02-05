@@ -2,9 +2,11 @@ import assert from "node:assert/strict"
 import * as UUID from "uuid"
 import { test } from "vitest"
 import * as Db from "../db"
-import { db } from "./test-utils"
+import { prepareTest } from "./test-utils"
 
 test("create-remove", async () => {
+  const { db } = await prepareTest()
+
   const created = await Db.create(db, "users", {
     username: "xieyuheng",
     name: "Xie Yuheng",
