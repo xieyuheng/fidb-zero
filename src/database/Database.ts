@@ -1,1 +1,3 @@
-export type Database = { path: string }
+export type Database = {
+  path: string
+}
