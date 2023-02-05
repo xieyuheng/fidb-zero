@@ -1,5 +1,3 @@
-add test about `RevisionMismatch`
-
 # http rest api
 
 # script interface
