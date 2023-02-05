@@ -1,22 +1,22 @@
-# http rest api
+# rest
+
+setup nodejs http server
 
 `Rest.serve(db, options)`
 
-# script interface
+# console
 
-`serve`
+setup `console/`
 
-# command line interface
+[command] `fidb serve`
 
-use `serve`
+# rest permission
 
-# permission
+[rest] [permission] token based permission
 
-token based permission
+[rest] [permission] schema for token -- permission and date
 
-schema for token -- permission and date
-
-`fidb/tokens/<token>` -- store `{ permissions }`
+[rest] [permission] `fidb/tokens/<token>` -- store `{ permissions }`
 
 # index
 
