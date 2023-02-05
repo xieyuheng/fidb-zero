@@ -1,6 +1,5 @@
-import assert from "node:assert/strict"
 import * as UUID from "uuid"
-import { test } from "vitest"
+import { expect, test } from "vitest"
 import * as Db from "../db"
 import { prepareTest } from "./test-utils"
 
@@ -12,9 +11,9 @@ test("create-remove", async () => {
     name: "Xie Yuheng",
   })
   const [_prefix, uuid] = created["@id"].split("/")
-  assert(UUID.validate(uuid))
-  assert.deepStrictEqual(await Db.get(db, created["@id"]), created)
+  expect(UUID.validate(uuid)).toBe(true)
+  expect(await Db.get(db, created["@id"])).toEqual(created)
 
   await Db.del(db, created["@id"])
-  assert.deepStrictEqual(await Db.get(db, created["@id"]), undefined)
+  expect(await Db.get(db, created["@id"])).toBe(undefined)
 })

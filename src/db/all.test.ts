@@ -1,5 +1,4 @@
-import assert from "node:assert/strict"
-import { test } from "vitest"
+import { expect, test } from "vitest"
 import * as Db from "../db"
 import { arrayFromAsyncIterable } from "../utils/arrayFromAsyncIterable"
 import { prepareTest } from "./test-utils"
@@ -22,14 +21,8 @@ test("all", async () => {
     name: "FiDB",
   })
 
-  assert.deepStrictEqual(
-    (await arrayFromAsyncIterable(Db.all(db, "users"))).length,
-    3,
-  )
+  expect((await arrayFromAsyncIterable(Db.all(db, "users"))).length).toEqual(3)
 
   await Db.delAll(db, "users")
-  assert.deepStrictEqual(
-    (await arrayFromAsyncIterable(Db.all(db, "users"))).length,
-    0,
-  )
+  expect((await arrayFromAsyncIterable(Db.all(db, "users"))).length).toEqual(0)
 })
