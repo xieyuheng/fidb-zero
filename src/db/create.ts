@@ -1,6 +1,6 @@
 import { resolve } from "node:path"
+import type { Data } from "../data"
 import type { Database } from "../database"
-import type { Data } from "./Data"
 import { randomRevision } from "./utils/randomRevision"
 import { writeData } from "./utils/writeData"
 

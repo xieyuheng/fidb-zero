@@ -1,7 +1,7 @@
 import fs from "node:fs"
 import { resolve } from "node:path"
+import type { Data } from "../data"
 import type { Database } from "../database"
-import type { Data } from "./Data"
 import { RevisionMismatch } from "./errors/RevisionMismatch"
 import { get } from "./get"
 

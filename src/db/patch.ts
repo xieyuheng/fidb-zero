@@ -1,6 +1,6 @@
 import { resolve } from "node:path"
+import type { Data } from "../data"
 import type { Database } from "../database"
-import type { Data } from "./Data"
 import { NotFound } from "./errors/NotFound"
 import { RevisionMismatch } from "./errors/RevisionMismatch"
 import { get } from "./get"
