@@ -5,7 +5,8 @@ import { prepareTest } from "./test-utils"
 test("put-delete", async () => {
   const { db } = await prepareTest()
 
-  const putted = await Db.put(db, "users/xieyuheng", {
+  const putted = await Db.put(db, {
+    "@id": "users/xieyuheng",
     username: "xieyuheng",
     name: "Xie Yuheng",
   })

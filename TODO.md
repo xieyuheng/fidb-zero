@@ -1,6 +1,3 @@
-Db.put take id from input
-Db.patch take id from input
-
 # http rest api
 
 # script interface

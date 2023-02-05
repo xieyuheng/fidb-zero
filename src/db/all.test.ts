@@ -6,17 +6,20 @@ import { prepareTest } from "./test-utils"
 test("all", async () => {
   const { db } = await prepareTest()
 
-  await Db.put(db, "users/xieyuheng", {
+  await Db.put(db, {
+    "@id": "users/xieyuheng",
     username: "xieyuheng",
     name: "Xie Yuheng",
   })
 
-  await Db.put(db, "users/cicada-lang", {
+  await Db.put(db, {
+    "@id": "users/cicada-lang",
     username: "cicada-lang",
     name: "Cicada Language",
   })
 
-  await Db.put(db, "users/fidb", {
+  await Db.put(db, {
+    "@id": "users/fidb",
     username: "fidb",
     name: "FiDB",
   })

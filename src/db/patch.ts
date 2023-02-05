@@ -7,11 +7,8 @@ import { get } from "./get"
 import { randomRevision } from "./utils/randomRevision"
 import { writeData } from "./utils/writeData"
 
-export async function patch(
-  db: Database,
-  id: string,
-  input: Omit<Data, "@id">,
-): Promise<Data> {
+export async function patch(db: Database, input: Data): Promise<Data> {
+  const id = input["@id"]
   const data = await get(db, id)
   if (data === undefined) {
     throw new NotFound(`[patch] not found, id ${id}`)

@@ -5,13 +5,15 @@ import { prepareTest } from "./test-utils"
 test("put-patch-delete", async () => {
   const { db } = await prepareTest()
 
-  const putted = await Db.put(db, "users/xieyuheng", {
+  const putted = await Db.put(db, {
+    "@id": "users/xieyuheng",
     username: "xieyuheng",
     name: "Xie Yuheng",
   })
   expect(await Db.get(db, "users/xieyuheng")).toEqual(putted)
 
-  const patched = await Db.patch(db, "users/xieyuheng", {
+  const patched = await Db.patch(db, {
+    "@id": "users/xieyuheng",
     "@revision": putted["@revision"],
     name: "谢宇恒",
   })

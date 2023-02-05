@@ -8,9 +8,9 @@ import { writeData } from "./utils/writeData"
 
 export async function put(
   db: Database,
-  id: string,
-  input: Omit<Data, "@id">,
+  input: Omit<Data, "@revision">,
 ): Promise<Data> {
+  const id = input["@id"] as string
   const data = await get(db, id)
   if (data !== undefined && data["@revision"] !== input["@revision"]) {
     throw new WriteConflict(`[put] revision mismatch`)
