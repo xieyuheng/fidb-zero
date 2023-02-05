@@ -26,7 +26,6 @@ class Database {
   async get(id: string): Promise<Data | undefined>
   async patch(id: string, json: JsonObject): Promise<Data>
   async delete(id: string): Promise<void>
-  async deleteAll(prefix: string): Promise<void>
   async *all(prefix: string): AsyncIterable<Data>
   async *find(prefix: string, options: FindOptions): AsyncIterable<Data>
 }
@@ -50,7 +49,6 @@ Db.getOrFail(db: Database, id: string): Promise<Data>
 Db.get(db: Database, id: string): Promise<Data | undefined>
 Db.patch(db: Database, id: string, json: JsonObject): Promise<Data>
 Db.delete(db: Database, id: string): Promise<void>
-Db.deleteAll(db: Database, prefix: string): Promise<void>
 Db.*all(db: Database, prefix: string): AsyncIterable<Data>
 Db.*find(db: Database, prefix: string, options: FindOptions): AsyncIterable<Data>
 ```
