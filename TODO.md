@@ -1,3 +1,5 @@
+`data/`
+
 # http rest api
 
 # script interface

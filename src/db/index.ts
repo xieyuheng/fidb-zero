@@ -1,7 +1,6 @@
 export * from "./all"
 export * from "./create"
 export * from "./Data"
-export * from "./Database"
 export * from "./delete"
 export { del as delete } from "./delete"
 export * from "./find"
