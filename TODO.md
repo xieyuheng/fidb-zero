@@ -1,8 +1,4 @@
-# revision
-
 `del` check `@revision`
-
-`@deleted: boolean` -- soft deletion with `@revision`
 
 # http rest api
 
