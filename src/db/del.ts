@@ -8,10 +8,9 @@ import { get } from "./get"
 
 export async function del(
   db: Database,
-  id: string,
-  input: { "@revision": string },
+  input: { "@id": string; "@revision": string },
 ): Promise<void> {
-  const data = await get(db, id)
+  const data = await get(db, input["@id"])
   if (data === undefined) {
     return
   }
@@ -20,5 +19,5 @@ export async function del(
     throw new WriteConflict(`[delete] revision mismatch`)
   }
 
-  await fs.promises.rm(resolve(db.path, id), { force: true })
+  await fs.promises.rm(resolve(db.path, input["@id"]), { force: true })
 }

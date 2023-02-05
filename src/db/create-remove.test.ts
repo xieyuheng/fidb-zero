@@ -14,6 +14,6 @@ test("create-remove", async () => {
   expect(UUID.validate(uuid)).toBe(true)
   expect(await Db.get(db, created["@id"])).toEqual(created)
 
-  await Db.delete(db, created["@id"], created)
+  await Db.delete(db, created)
   expect(await Db.get(db, created["@id"])).toBe(undefined)
 })
