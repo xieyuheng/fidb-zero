@@ -8,3 +8,7 @@ export type Data = JsonObject & {
 export type DataOmitRevision = JsonObject & {
   "@id": string
 }
+
+export type DataOmitId = JsonObject & {
+  "@revision": string
+}

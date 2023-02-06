@@ -1,4 +1,5 @@
 export * from "./Data"
+export * from "./dataOmitIdFromJson"
 export * from "./dataWrite"
 export * from "./randomRevision"
 export * from "./readData"
