@@ -1,5 +1,3 @@
-[db] `Db.exists` -- improve `rest/handle`
-
 [rest] `Db.directories` -- test
 
 [db] `Db.find` -- like `findAll` but page by page

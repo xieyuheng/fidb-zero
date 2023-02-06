@@ -20,6 +20,7 @@ export async function handle(
     return await handleDirectory(request, db, path)
   }
 
-  // NOTE Not exists or file.
-  return await handleFile(request, db, path)
+  if ((await Db.isFile(db, path)) || !(await Db.exists(db, path))) {
+    return await handleFile(request, db, path)
+  }
 }
