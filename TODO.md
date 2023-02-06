@@ -1,7 +1,5 @@
 # console
 
-setup `console/`
-
 [command] `fidb serve`
 
 # fidb-manager
