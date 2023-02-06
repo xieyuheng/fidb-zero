@@ -1,6 +1,4 @@
-[rest] [extract] `handleFile`
-
-[rest] [extract] `handleDirectory`
+[rest] [extract] `handleFile` & `handleDirectory`
 
 [rest] `/` -- `Db.directories`
 
