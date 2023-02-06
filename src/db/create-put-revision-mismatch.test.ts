@@ -7,7 +7,7 @@ import { prepareTest } from "./test-utils"
 test("create-put-revision-mismatch", async () => {
   const { db } = await prepareTest()
 
-  await Db.put(db, {
+  await Db.create(db, {
     "@id": "users/xieyuheng",
     username: "xieyuheng",
     name: "Xie Yuheng",
@@ -17,14 +17,6 @@ test("create-put-revision-mismatch", async () => {
     Db.put(db, {
       "@id": "users/xieyuheng",
       "@revision": randomRevision(),
-      username: "xieyuheng",
-      name: "Xie Yuheng",
-    }),
-  ).rejects.toThrowError(RevisionMismatch)
-
-  await expect(
-    Db.put(db, {
-      "@id": "users/xieyuheng",
       username: "xieyuheng",
       name: "Xie Yuheng",
     }),

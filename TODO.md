@@ -1,7 +1,4 @@
-`Db.put` -- require `@revision` -- to be idempotent
-
-- `create-put-delete.test`
-- `create-patch-delete.test`
+`create-already-exists.test.ts`
 
 # console
 

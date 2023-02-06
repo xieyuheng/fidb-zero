@@ -53,15 +53,16 @@ async function handleRequest(db: Database, request: Http.IncomingMessage) {
       return await Db.get(db, url.pathname)
     }
 
-    case "PUT": {
-      const input = await requestJsonObject(request)
-      return await Db.put(db, { ...input, "@id": id })
-    }
-
     case "POST": {
       const json = await requestJsonObject(request)
       const input = dataOmitRevisionFromJson(json)
       return await Db.create(db, input)
+    }
+
+    case "PUT": {
+      const json = await requestJsonObject(request)
+      const input = dataOmitIdFromJson(json)
+      return await Db.put(db, { ...input, "@id": id })
     }
 
     case "PATCH": {
