@@ -2,7 +2,7 @@ import fs from "node:fs"
 import { resolve } from "node:path"
 import { createDatabase, Database } from "../database"
 
-const TEST_DB_PATH = resolve(__filename, "../../../tmp/databases/test")
+const TEST_DB_PATH = resolve(__filename, "../../../tmp/test")
 
 export async function prepareTest(): Promise<{ db: Database }> {
   const db = createDatabase({ path: TEST_DB_PATH })

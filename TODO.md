@@ -4,13 +4,21 @@ setup `console/`
 
 [command] `fidb serve`
 
-# rest permission
+# fidb-manager
 
-[rest] [permission] token based permission
+# rest tests
 
-[rest] [permission] schema for token -- permission and date
+[rest] `serve` only handle `"Content-Type: application/json"`
 
-[rest] [permission] `fidb/tokens/<token>` -- store `{ permissions }`
+[rest] test using `fetch`
+
+# token based permission
+
+[permission] schema for token -- has `permission` and `date`
+
+[permission] store `fidb-tokens/<token-name>`
+
+fidb-manager use admin token
 
 # index
 
