@@ -1,7 +1,3 @@
-# rest tests
-
-[rest] `serve.test.ts` -- delete
-
 # fidb-manager
 
 setup new frontend project

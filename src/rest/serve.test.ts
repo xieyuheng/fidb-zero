@@ -18,6 +18,7 @@ test("serve", async () => {
     })
   ).json()
   expect(created.name).toEqual("Xie Yuheng")
+  expect(await (await fetch(`${url}/users/xieyuheng`)).json()).toEqual(created)
 
   const putted = await (
     await fetch(`${url}/users/xieyuheng`, {
@@ -31,6 +32,7 @@ test("serve", async () => {
   ).json()
   expect(putted.username).toEqual(undefined)
   expect(putted.name).toEqual("谢宇恒")
+  expect(await (await fetch(`${url}/users/xieyuheng`)).json()).toEqual(putted)
 
   const patched = await (
     await fetch(`${url}/users/xieyuheng`, {
@@ -44,20 +46,14 @@ test("serve", async () => {
   ).json()
   expect(patched.username).toEqual("xyh")
   expect(patched.name).toEqual("谢宇恒")
+  expect(await (await fetch(`${url}/users/xieyuheng`)).json()).toEqual(patched)
 
-  // await fetch(`${url}/users/xieyuheng`, {
-  //   method: "DELETE",
-  //   headers: { "content-type": "application/json" },
-  //   body: JSON.stringify({
-  //     "@revision": patched["@revision"],
-  //   }),
-  // })
-
-  // const gotted = await (
-  //   await fetch(`${url}/users/xieyuheng`, {
-  //     method: "GET",
-  //   })
-  // ).json()
-
-  // console.log({ gotted })
+  await fetch(`${url}/users/xieyuheng`, {
+    method: "DELETE",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({
+      "@revision": patched["@revision"],
+    }),
+  })
+  expect((await fetch(`${url}/users/xieyuheng`)).status).toEqual(404)
 })

@@ -16,7 +16,7 @@ export async function handleRequest(
   const id = url.pathname.slice(1)
 
   if (request.method === "GET") {
-    return await Db.get(db, url.pathname)
+    return await Db.get(db, id)
   }
 
   if (request.headers["content-type"] !== "application/json") {
@@ -26,25 +26,22 @@ export async function handleRequest(
   }
 
   if (request.method === "POST") {
-    const json = await requestJsonObject(request)
-    return await Db.create(db, { ...json, "@id": id })
+    const input = await requestJsonObject(request)
+    return await Db.create(db, { ...input, "@id": id })
   }
 
   if (request.method === "PUT") {
-    const json = await requestJsonObject(request)
-    const input = dataOmitIdFromJson(json)
+    const input = dataOmitIdFromJson(await requestJsonObject(request))
     return await Db.put(db, { ...input, "@id": id })
   }
 
   if (request.method === "PATCH") {
-    const json = await requestJsonObject(request)
-    const input = dataOmitIdFromJson(json)
+    const input = dataOmitIdFromJson(await requestJsonObject(request))
     return await Db.patch(db, { ...input, "@id": id })
   }
 
   if (request.method === "DELETE") {
-    const json = await requestJsonObject(request)
-    const input = dataOmitIdFromJson(json)
+    const input = dataOmitIdFromJson(await requestJsonObject(request))
     return await Db.delete(db, { ...input, "@id": id })
   }
 
