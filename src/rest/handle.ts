@@ -5,8 +5,8 @@ import * as Db from "../db"
 import { requestJsonObject } from "../utils/requestJsonObject"
 
 export async function handle(
-  db: Database,
   request: Http.IncomingMessage,
+  db: Database,
 ): Promise<Data | void> {
   if (request.url === undefined) {
     throw new Error("[handleRequest] expect request.url")

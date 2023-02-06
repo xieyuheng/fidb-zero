@@ -13,7 +13,7 @@ export async function serve(options: ServeOptions): Promise<void> {
 
   const server = Http.createServer(async (request, response) => {
     try {
-      const result = await handle(db, request)
+      const result = await handle(request, db)
       if (result === undefined) {
         response.writeHead(404)
         response.end()
