@@ -11,11 +11,11 @@ export function dataOmitIdFromJson(json: Json): DataOmitId {
     )
   }
 
-  if (typeof json["@revision"] === "string") {
+  if (typeof json["@revision"] !== "string") {
     throw new Error(
       [
-        `[dataOmitIdFromJson] expect @revision string`,
-        `  json["@revision"]: ${JSON.stringify(json["@revision"])}`,
+        `[dataOmitIdFromJson] expect @revision to be string`,
+        `  @revision: ${JSON.stringify(json["@revision"])}`,
       ].join("\n"),
     )
   }

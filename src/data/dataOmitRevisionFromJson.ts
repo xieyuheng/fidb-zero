@@ -14,8 +14,8 @@ export function dataOmitRevisionFromJson(json: Json): DataOmitRevision {
   if (typeof json["@id"] !== "string") {
     throw new Error(
       [
-        `[dataOmitRevisionFromJson] expect @id string`,
-        `  json["@id"]: ${JSON.stringify(json["@id"])}`,
+        `[dataOmitRevisionFromJson] expect @id to be string`,
+        `  @id: ${JSON.stringify(json["@id"])}`,
       ].join("\n"),
     )
   }

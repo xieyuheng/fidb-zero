@@ -1,6 +1,6 @@
 # rest tests
 
-[rest] test using `fetch`
+[rest] `serve.test.ts` -- delete
 
 # fidb-manager
 

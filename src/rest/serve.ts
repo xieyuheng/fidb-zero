@@ -1,5 +1,6 @@
 import Http from "node:http"
 import type { Database } from "../database"
+import { handleRequest } from "./handleRequest"
 
 type ServeOptions = {
   db: Database
@@ -20,6 +21,8 @@ export async function serve(options: ServeOptions): Promise<void> {
       response.write(JSON.stringify(result))
       response.end()
     } catch (error) {
+      console.error(error)
+
       const result = {
         error: {
           message: error instanceof Error ? error.message : "Unknown Error",
@@ -41,7 +44,4 @@ export async function serve(options: ServeOptions): Promise<void> {
       options,
     })
   })
-}
-function handleRequest(db: Database, request: Http.IncomingMessage) {
-  throw new Error("Function not implemented.")
 }
