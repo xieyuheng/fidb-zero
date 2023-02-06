@@ -1,5 +1,5 @@
 {
-  "name": "@xieyuheng/fidb",
+  "name": "fidb",
   "version": "0.0.3",
   "repository": "github:xieyuheng/fidb",
   "main": "./lib/index.js",
