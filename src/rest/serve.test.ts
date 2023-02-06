@@ -1,11 +1,16 @@
 import { expect, test } from "vitest"
 import { prepareTest } from "../db/test-utils"
 import * as Rest from "../rest"
+import { findPort } from "../utils/findPort"
 
 test("serve", async () => {
   const { db } = await prepareTest()
-  await Rest.serve({ db, hostname: "127.0.0.1", port: 3000 })
-  const url = "http://127.0.0.1:3000"
+
+  const hostname = "127.0.0.1"
+  const port = await findPort(3000)
+  await Rest.serve({ db, hostname, port })
+
+  const url = `http://${hostname}:${port}`
 
   const created = await (
     await fetch(`${url}/users/xieyuheng`, {

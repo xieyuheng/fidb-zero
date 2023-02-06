@@ -1,5 +1,3 @@
-`serve.test.ts` use `findPort`
-
 # fidb-manager
 
 setup new frontend project
