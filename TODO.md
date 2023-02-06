@@ -1,3 +1,5 @@
+`Db.put` -- require `@revision` -- to be idempotent
+
 # console
 
 setup `console/`

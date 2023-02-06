@@ -1,5 +1,6 @@
 import Http from "node:http"
 import { dataOmitIdFromJson } from "../data"
+import { dataOmitRevisionFromJson } from "../data/dataOmitRevisionFromJson"
 import type { Database } from "../database"
 import * as Db from "../db"
 import { requestJsonObject } from "../utils/requestJsonObject"
@@ -58,8 +59,9 @@ async function handleRequest(db: Database, request: Http.IncomingMessage) {
     }
 
     case "POST": {
-      const input = await requestJsonObject(request)
-      return await Db.create(db, id, input)
+      const json = await requestJsonObject(request)
+      const input = dataOmitRevisionFromJson(json)
+      return await Db.create(db, input)
     }
 
     case "PATCH": {

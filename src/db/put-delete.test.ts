@@ -13,5 +13,5 @@ test("put-delete", async () => {
   expect(await Db.get(db, "users/xieyuheng")).toEqual(putted)
 
   await Db.delete(db, putted)
-  expect(await Db.get(db, "users/xieyuheng"), undefined).toBe(undefined)
+  expect(await Db.get(db, "users/xieyuheng"), undefined).toEqual(undefined)
 })

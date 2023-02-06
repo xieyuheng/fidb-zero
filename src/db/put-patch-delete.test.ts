@@ -21,5 +21,5 @@ test("put-patch-delete", async () => {
   expect(await Db.get(db, "users/xieyuheng")).toEqual(patched)
 
   await Db.delete(db, patched)
-  expect(await Db.get(db, "users/xieyuheng")).toBe(undefined)
+  expect(await Db.get(db, "users/xieyuheng")).toEqual(undefined)
 })
