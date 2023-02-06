@@ -1,62 +1,56 @@
 import Http from "node:http"
 import type { Database } from "../database"
-import { requestJson } from "../utils/requestJson"
+import * as Db from "../db"
+import { requestJsonObject } from "../utils/requestJsonObject"
 
 type ServeOptions = {
+  db: Database
   hostname: string
   port: number
 }
 
-export async function serve(
-  db: Database,
-  options: ServeOptions,
-): Promise<void> {
+export async function serve(options: ServeOptions): Promise<void> {
+  const { db, hostname, port } = options
+
   const server = Http.createServer(async (request, response) => {
     try {
-      const result = await handleRequest(request)
-      const text = JSON.stringify(result, undefined, 2)
-      response.statusCode = 200
-      response.setHeader("Content-Type", "application/json")
-      response.end(text)
+      const result = await handleRequest(db, request)
+      response.writeHead(200, {
+        "Content-Type": "application/json",
+      })
+      response.end(JSON.stringify(result))
     } catch (error) {
       const message = error instanceof Error ? error.message : "Unknown Error"
       const result = { message }
-      const text = JSON.stringify(result, undefined, 2)
-      response.statusCode = 500
-      response.setHeader("Content-Type", "application/json")
-      response.end(text)
+      response.writeHead(500, {
+        "Content-Type": "application/json",
+      })
+      response.end(JSON.stringify(result))
     }
   })
 
-  server.listen(options.port, options.hostname, () => {
-    console.log(`Server running at http://${options.hostname}:${options.port}/`)
+  server.listen(port, hostname, () => {
+    console.log(`Server running at http://${hostname}:${port}/`)
   })
 }
 
-async function handleRequest(request: Http.IncomingMessage) {
+async function handleRequest(db: Database, request: Http.IncomingMessage) {
+  if (request.url === undefined) throw new Error("expect request.url")
+
+  const url = new URL(request.url, `http://${request.headers.host}`)
+
   switch (request.method) {
     case "GET": {
-      return {
-        method: request.method,
-        url: request.url,
-        headers: request.headers,
-      }
+      return await Db.get(db, url.pathname)
     }
 
-    case "PUT":
-    case "POST":
-    case "PATCH": {
-      return {
-        method: request.method,
-        url: request.url,
-        headers: request.headers,
-        json: await requestJson(request),
-      }
+    case "PUT": {
+      const input = await requestJsonObject(request)
+      return await Db.put(db, { ...input, "@id": url.pathname })
     }
 
     default: {
       return {
-        method: request.method,
         url: request.url,
         headers: request.headers,
       }
