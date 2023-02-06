@@ -1,5 +1,3 @@
-[db] rename `Db.listAll` to `Db.findAll`
-
 [db] rename `Db.directories` to `Db.listDirectories`
 
 [db] `Db.findPage` -- like `Db.find` but page by page

@@ -5,7 +5,7 @@ import type { Database } from "../database"
 import { isErrnoException } from "../utils/isErrnoException"
 import { get } from "./get"
 
-export async function* listAll(
+export async function* findAll(
   db: Database,
   prefix: string,
 ): AsyncIterable<Data> {

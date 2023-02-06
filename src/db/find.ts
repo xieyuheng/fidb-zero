@@ -1,7 +1,7 @@
 import type { Data } from "../data"
 import type { Database } from "../database"
 import type { JsonAtom } from "../utils/Json"
-import { listAll } from "./listAll"
+import { findAll } from "./findAll"
 
 type FindOptions = {
   properties: Record<string, JsonAtom>
@@ -12,7 +12,7 @@ export async function* find(
   prefix: string,
   options: FindOptions,
 ): AsyncIterable<Data> {
-  for await (const data of listAll(db, prefix)) {
+  for await (const data of findAll(db, prefix)) {
     if (
       Object.entries(options.properties).every(
         ([key, property]) => data[key] === property,
