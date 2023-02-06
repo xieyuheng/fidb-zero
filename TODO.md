@@ -1,7 +1,5 @@
 # rest
 
-setup nodejs http server
-
 `Rest.serve(db, options)`
 
 # console
