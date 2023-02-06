@@ -18,7 +18,7 @@ export async function serve(options: ServeOptions): Promise<void> {
     try {
       const result = await handleRequest(db, request)
 
-      const headers = { "Content-Type": "application/json" }
+      const headers = { "content-type": "application/json" }
 
       response.writeHead(200, headers)
       response.write(JSON.stringify(result))
@@ -30,7 +30,7 @@ export async function serve(options: ServeOptions): Promise<void> {
         },
       }
 
-      const headers = { "Content-Type": "application/json" }
+      const headers = { "content-type": "application/json" }
 
       response.writeHead(500, headers)
       response.write(JSON.stringify(result))
@@ -50,6 +50,12 @@ export async function serve(options: ServeOptions): Promise<void> {
 async function handleRequest(db: Database, request: Http.IncomingMessage) {
   if (request.url === undefined) {
     throw new Error("[handleRequest] expect request.url")
+  }
+
+  if (request.headers["content-type"] !== "application/json") {
+    throw new Error(
+      `[handleRequest] expect content-type to be application/json, instead of ${request.headers["content-type"]}`,
+    )
   }
 
   const url = new URL(request.url, `http://${request.headers.host}`)

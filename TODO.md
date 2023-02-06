@@ -1,7 +1,5 @@
 # rest tests
 
-[rest] `serve` only handle `"Content-Type: application/json"`
-
 [rest] test using `fetch`
 
 # fidb-manager

@@ -12,7 +12,7 @@ export async function create(
   const id = input["@id"]
   const data = await get(db, id)
   if (data !== undefined) {
-    throw new AlreadyExists(`[create] already exists, id: ${id}`)
+    throw new AlreadyExists(`[create] already exists, @id: ${id}`)
   }
 
   const result = { ...input, "@revision": randomRevision() }
