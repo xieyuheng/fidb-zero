@@ -20,7 +20,7 @@
   "dependencies": {
     "@xieyuheng/command-line": "^0.0.10",
     "@xieyuheng/ty": "^0.1.20",
-    "immutable": "^4.2.3",
+    "immutable": "^4.2.4",
     "lodash": "^4.17.21",
     "node-watch": "^0.7.3",
     "picocolors": "^1.0.0",
