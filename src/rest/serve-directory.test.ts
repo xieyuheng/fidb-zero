@@ -33,4 +33,18 @@ test("serve-directory", async () => {
     body: JSON.stringify({}),
   })
   expect(await (await fetch(`${url}`)).json()).toEqual(["users", "posts"])
+
+  await fetch(`${url}/users/tokens/1`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({}),
+  })
+  expect(await (await fetch(`${url}/users`)).json()).toEqual(["tokens"])
+
+  await fetch(`${url}/users/tokens/2`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({}),
+  })
+  expect(await (await fetch(`${url}/users`)).json()).toEqual(["tokens"])
 })
