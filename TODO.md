@@ -1,5 +1,3 @@
-[rest] extract `serveTestDb`
-
 [db] `Db.exists` -- improve `rest/handle`
 
 [rest] `Db.directories` -- test
