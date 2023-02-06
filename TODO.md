@@ -1,7 +1,3 @@
-# fidb-manager
-
-setup new frontend project
-
 # token based permission
 
 [permission] schema for token -- has `permission` and `date`
