@@ -1,6 +1,6 @@
 import { expect, test } from "vitest"
 import * as Db from "../db"
-import { prepareTestDb } from "./test-utils"
+import { prepareTestDb } from "./prepareTestDb"
 
 test("create-put-delete", async () => {
   const db = await prepareTestDb()

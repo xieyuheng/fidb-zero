@@ -1,7 +1,7 @@
 import { expect, test } from "vitest"
 import * as Db from "."
 import { arrayFromAsyncIterable } from "../utils/arrayFromAsyncIterable"
-import { prepareTestDb } from "./test-utils"
+import { prepareTestDb } from "./prepareTestDb"
 
 test("find", async () => {
   const db = await prepareTestDb()

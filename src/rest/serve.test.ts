@@ -1,5 +1,5 @@
 import { expect, test } from "vitest"
-import { prepareTestDb } from "../db/test-utils"
+import { prepareTestDb } from "../db/prepareTestDb"
 import * as Rest from "../rest"
 import { findPort } from "../utils/findPort"
 

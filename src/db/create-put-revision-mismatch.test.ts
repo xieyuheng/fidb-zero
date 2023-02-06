@@ -2,7 +2,7 @@ import { expect, test } from "vitest"
 import { randomRevision } from "../data"
 import * as Db from "../db"
 import { RevisionMismatch } from "./errors/RevisionMismatch"
-import { prepareTestDb } from "./test-utils"
+import { prepareTestDb } from "./prepareTestDb"
 
 test("create-put-revision-mismatch", async () => {
   const db = await prepareTestDb()
