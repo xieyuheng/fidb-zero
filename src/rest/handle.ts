@@ -9,7 +9,7 @@ export async function handle(
   db: Database,
 ): Promise<Data | void> {
   if (request.url === undefined) {
-    throw new Error("[handleRequest] expect request.url")
+    throw new Error("[handle] expect request.url")
   }
 
   const url = new URL(request.url, `http://${request.headers.host}`)
@@ -21,7 +21,7 @@ export async function handle(
 
   if (request.headers["content-type"] !== "application/json") {
     throw new Error(
-      `[handleRequest] expect content-type to be application/json, instead of ${request.headers["content-type"]}`,
+      `[handle] expect content-type to be application/json, instead of ${request.headers["content-type"]}`,
     )
   }
 
@@ -45,5 +45,5 @@ export async function handle(
     return await Db.delete(db, { ...input, "@id": id })
   }
 
-  throw new Error(`[handleRequest] unhandled http method: ${request.method}`)
+  throw new Error(`[handle] unhandled http method: ${request.method}`)
 }
