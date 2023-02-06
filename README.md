@@ -4,7 +4,20 @@ File system as database.
 
 ## Usages
 
-TODO
+### Command line tool
+
+Install it by the following command:
+
+```sh
+sudo npm install -g fidb
+```
+
+The command line program is called `fidb`.
+
+```sh
+fidb help                # Print help message
+fidb serve <path>        # Serve a database
+```
 
 ## Development
 
