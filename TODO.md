@@ -1,11 +1,11 @@
-[db] `Db.directories`
+[rest] `/` -- `Db.directories`
+
 [db] `Db.find` -- like `findAll` but page by page
 
 - `type FindOptions = { page, size } & FindAllOptions` -- starting from 0
 
-[rest] `/:directory?page&size`
 [rest] `/:directory` -- return metadata
-[rest] `/:directory?page&size&properties`
+[rest] `/:directory?page&size&properties` -- `Db.find`
 
 # token based permission
 

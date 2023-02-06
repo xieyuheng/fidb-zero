@@ -1,6 +1,7 @@
 export * from "./create"
 export * from "./delete"
 export { del as delete } from "./delete"
+export * from "./directories"
 export * from "./findAll"
 export * from "./get"
 export * from "./getOrFail"
