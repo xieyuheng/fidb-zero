@@ -19,12 +19,10 @@ export class ServeCommand extends Command<Args> {
     const { blue } = this.colors
 
     return [
-      `The ${blue(this.name)} command takes you into a rabbit hole`,
-      `  called REPL -- "Read Evaluate Print Loop".`,
+      `The ${blue(this.name)} command takes a path to a directory,`,
+      `and serve it as a database.`,
       ``,
-      `In which you can try some ideas real quick.`,
-      ``,
-      blue(`  ${runner.name} ${this.name}`),
+      blue(`  ${runner.name} ${this.name} tmp/test`),
       ``,
     ].join("\n")
   }

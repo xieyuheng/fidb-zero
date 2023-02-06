@@ -1,5 +1,3 @@
-fix `ServeCommand` help message
-
 # rest tests
 
 [rest] `serve` only handle `"Content-Type: application/json"`
