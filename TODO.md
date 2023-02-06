@@ -1,3 +1,5 @@
+[db] `Db.exists` -- improve `rest/handle`
+
 [db] rename `prepareTest` to `prepareTestDb` -- return `db` instead of `{ db }`
 
 [rest] extract `test-utils.ts` -- `serveTestDb()`
