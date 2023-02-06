@@ -1,7 +1,3 @@
-# rest
-
-`Rest.serve(db, options)`
-
 # console
 
 setup `console/`

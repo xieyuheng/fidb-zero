@@ -31,7 +31,11 @@ export async function serve(options: ServeOptions): Promise<void> {
   })
 
   server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`)
+    console.log({
+      message: `[serve] start`,
+      url: `http://${hostname}:${port}`,
+      options,
+    })
   })
 }
 
@@ -41,7 +45,7 @@ async function handleRequest(db: Database, request: Http.IncomingMessage) {
   }
 
   const url = new URL(request.url, `http://${request.headers.host}`)
-  const id = url.pathname
+  const id = url.pathname.slice(1)
 
   switch (request.method) {
     case "GET": {
