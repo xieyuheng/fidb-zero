@@ -1,21 +1,25 @@
 import type Http from "node:http"
-import { Data, dataOmitIdFromJson } from "../data"
+import { dataOmitIdFromJson } from "../data"
 import type { Database } from "../database"
 import * as Db from "../db"
+import type { Json } from "../utils/Json"
 import { requestJsonObject } from "../utils/requestJsonObject"
 
 export async function handleFile(
   request: Http.IncomingMessage,
   db: Database,
   id: string,
-): Promise<Data | void> {
+): Promise<Json | void> {
   if (request.method === "GET") {
     return await Db.get(db, id)
   }
 
   if (request.headers["content-type"] !== "application/json") {
     throw new Error(
-      `[handleFile] expect content-type to be application/json, instead of ${request.headers["content-type"]}`,
+      [
+        `[handleFile] expect content-type to be application/json`,
+        `  content-type: ${request.headers["content-type"]}`,
+      ].join("\n"),
     )
   }
 
@@ -39,5 +43,11 @@ export async function handleFile(
     return await Db.delete(db, { ...input, "@id": id })
   }
 
-  throw new Error(`[handleFile] unhandled http method: ${request.method}`)
+  throw new Error(
+    [
+      `[handleFile] unhandled http request`,
+      `  method: ${request.method}`,
+      `  id: ${id}`,
+    ].join("\n"),
+  )
 }

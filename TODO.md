@@ -1,4 +1,8 @@
-[rest] `/` -- `Db.directories`
+[db] rename `prepareTest` to `prepareTestDb` -- return `db` instead of `{ db }`
+
+[rest] extract `test-utils.ts` -- `serveTestDb()`
+
+[rest] `Db.directories` -- test
 
 [db] `Db.find` -- like `findAll` but page by page
 

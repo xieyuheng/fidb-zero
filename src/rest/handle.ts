@@ -1,14 +1,14 @@
 import type Http from "node:http"
-import type { Data } from "../data"
 import type { Database } from "../database"
 import * as Db from "../db"
+import type { Json } from "../utils/Json"
 import { handleDirectory } from "./handleDirectory"
 import { handleFile } from "./handleFile"
 
 export async function handle(
   request: Http.IncomingMessage,
   db: Database,
-): Promise<Data | void> {
+): Promise<Json | void> {
   if (request.url === undefined) {
     throw new Error("[handle] expect request.url")
   }
