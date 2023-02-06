@@ -1,6 +1,6 @@
 import Http from "node:http"
 import type { Database } from "../database"
-import { handleRequest } from "./handleRequest"
+import { handle } from "./handle"
 
 type ServeOptions = {
   db: Database
@@ -13,7 +13,7 @@ export async function serve(options: ServeOptions): Promise<void> {
 
   const server = Http.createServer(async (request, response) => {
     try {
-      const result = await handleRequest(db, request)
+      const result = await handle(db, request)
       if (result === undefined) {
         response.writeHead(404)
         response.end()

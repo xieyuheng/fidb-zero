@@ -1,3 +1,7 @@
+[rest] [extract] `handleFile`
+
+[rest] [extract] `handleDirectory`
+
 [rest] `/` -- `Db.directories`
 
 [db] `Db.find` -- like `findAll` but page by page
@@ -5,6 +9,7 @@
 - `type FindOptions = { page, size } & FindAllOptions` -- starting from 0
 
 [rest] `/:directory` -- return metadata
+
 [rest] `/:directory?page&size&properties` -- `Db.find`
 
 # token based permission

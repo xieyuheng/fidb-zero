@@ -4,7 +4,7 @@ import type { Database } from "../database"
 import * as Db from "../db"
 import { requestJsonObject } from "../utils/requestJsonObject"
 
-export async function handleRequest(
+export async function handle(
   db: Database,
   request: Http.IncomingMessage,
 ): Promise<Data | void> {
