@@ -6,6 +6,9 @@
   "files": [
     "lib"
   ],
+  "bin": {
+    "fidb": "bin/fidb.js"
+  },
   "scripts": {
     "prepare": "husky install",
     "build": "rm -rf lib; tsc",
