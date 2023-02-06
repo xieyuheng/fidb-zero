@@ -1,5 +1,3 @@
-[db] rename `Db.directories` to `Db.listDirectories`
-
 [db] `Db.findPage` -- like `Db.find` but page by page
 
 - `type FindPageOptions = { page, size } & FindOptions` -- starting from 0

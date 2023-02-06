@@ -10,7 +10,7 @@ export async function handleDirectory(
   prefix: string,
 ): Promise<Json | void> {
   if (request.method === "GET" && prefix === "") {
-    return await arrayFromAsyncIterable(Db.directories(db))
+    return await arrayFromAsyncIterable(Db.listDirectories(db))
   }
 
   throw new Error(
