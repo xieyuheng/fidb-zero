@@ -4,7 +4,7 @@ import { randomRevision } from "../data"
 import { RevisionMismatch } from "./errors/RevisionMismatch"
 import { prepareTest } from "./test-utils"
 
-test("put-revision-mismatch", async () => {
+test("create-patch-revision-mismatch", async () => {
   const { db } = await prepareTest()
 
   await Db.put(db, {
@@ -14,19 +14,10 @@ test("put-revision-mismatch", async () => {
   })
 
   await expect(
-    Db.put(db, {
+    Db.patch(db, {
       "@id": "users/xieyuheng",
       "@revision": randomRevision(),
-      username: "xieyuheng",
-      name: "Xie Yuheng",
-    }),
-  ).rejects.toThrowError(RevisionMismatch)
-
-  await expect(
-    Db.put(db, {
-      "@id": "users/xieyuheng",
-      username: "xieyuheng",
-      name: "Xie Yuheng",
+      name: "谢宇恒",
     }),
   ).rejects.toThrowError(RevisionMismatch)
 })

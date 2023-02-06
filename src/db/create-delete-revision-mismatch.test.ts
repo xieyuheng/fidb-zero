@@ -4,7 +4,7 @@ import { randomRevision } from "../data"
 import { RevisionMismatch } from "./errors/RevisionMismatch"
 import { prepareTest } from "./test-utils"
 
-test("delete-revision-mismatch", async () => {
+test("create-delete-revision-mismatch", async () => {
   const { db } = await prepareTest()
 
   await Db.put(db, {

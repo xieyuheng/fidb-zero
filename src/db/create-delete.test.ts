@@ -2,7 +2,7 @@ import { expect, test } from "vitest"
 import * as Db from "../db"
 import { prepareTest } from "./test-utils"
 
-test("create-remove", async () => {
+test("create-delete", async () => {
   const { db } = await prepareTest()
 
   const created = await Db.create(db, {
