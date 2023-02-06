@@ -1,5 +1,5 @@
 import { expect, test } from "vitest"
-import * as Db from "."
+import * as Db from "../db"
 import { arrayFromAsyncIterable } from "../utils/arrayFromAsyncIterable"
 import { prepareTestDb } from "./prepareTestDb"
 
