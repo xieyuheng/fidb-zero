@@ -10,10 +10,10 @@ export async function serve(
   db: Database,
   options: ServeOptions,
 ): Promise<void> {
-  const server = http.createServer((req, res) => {
-    res.statusCode = 200
-    res.setHeader("Content-Type", "text/plain")
-    res.end("Hello World")
+  const server = http.createServer((request, response) => {
+    response.statusCode = 200
+    response.setHeader("Content-Type", "text/plain")
+    response.end("Hello World")
   })
 
   server.listen(options.port, options.hostname, () => {
