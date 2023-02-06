@@ -1,5 +1,3 @@
-[db] [refactor] rename `test-utils.ts` to `prepareTestDb`
-
 [rest] extract `serveTestDb`
 
 [db] `Db.exists` -- improve `rest/handle`
