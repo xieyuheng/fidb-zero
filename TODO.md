@@ -1,3 +1,15 @@
+[db] rename `all` to `listAll` -- private method
+[db] rename `find` to `findAll` -- use `listAll`
+
+[db] `Db.directories`
+[db] `Db.find` -- like `findAll` but page by page
+
+- `type FindOptions = { page, size } & FindAllOptions` -- starting from 0
+
+[rest] `/:directory?page&size`
+[rest] `/:directory` -- first page with default size
+[rest] `/:directory?page&size&properties`
+
 # token based permission
 
 [permission] schema for token -- has `permission` and `date`
@@ -8,9 +20,9 @@ fidb-manager use admin token
 
 # index
 
-`Db.index(db, table, key)`
+`Db.index(db, directory, key)`
 
-`Db.createIndex(db, table, key)`
+`Db.createIndex(db, directory, key)`
 
 # find
 
