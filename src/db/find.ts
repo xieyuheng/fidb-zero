@@ -9,10 +9,10 @@ type FindOptions = {
 
 export async function* find(
   db: Database,
-  prefix: string,
+  directory: string,
   options: FindOptions,
 ): AsyncIterable<Data> {
-  for await (const data of findAll(db, prefix)) {
+  for await (const data of findAll(db, directory)) {
     if (
       Object.entries(options.properties).every(
         ([key, property]) => data[key] === property,

@@ -7,9 +7,9 @@ import type { Json } from "../utils/Json"
 export async function handleDirectory(
   request: Http.IncomingMessage,
   db: Database,
-  prefix: string,
+  directory: string,
 ): Promise<Json | void> {
-  if (request.method === "GET" && prefix === "") {
+  if (request.method === "GET" && directory === "") {
     return await arrayFromAsyncIterable(Db.listDirectories(db))
   }
 
@@ -17,7 +17,7 @@ export async function handleDirectory(
     [
       `[handleDirectory] unhandled http request`,
       `  method: ${request.method}`,
-      `  prefix: ${prefix}`,
+      `  directory: ${directory}`,
     ].join("\n"),
   )
 }

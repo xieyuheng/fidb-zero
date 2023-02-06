@@ -7,16 +7,16 @@ import { get } from "./get"
 
 export async function* findAll(
   db: Database,
-  prefix: string,
+  directory: string,
 ): AsyncIterable<Data> {
   try {
-    const dir = await fs.promises.opendir(resolve(db.path, prefix), {
+    const dir = await fs.promises.opendir(resolve(db.path, directory), {
       bufferSize: 1024,
     })
 
     for await (const dirEntry of dir) {
       if (dirEntry.isFile()) {
-        const data = await get(db, `${prefix}/${dirEntry.name}`)
+        const data = await get(db, `${directory}/${dirEntry.name}`)
         if (data !== undefined) {
           yield data
         }
