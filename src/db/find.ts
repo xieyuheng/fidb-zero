@@ -7,7 +7,7 @@ type FindOptions = {
   properties: Record<string, JsonAtom>
 }
 
-export async function* findAll(
+export async function* find(
   db: Database,
   prefix: string,
   options: FindOptions,

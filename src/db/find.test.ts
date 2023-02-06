@@ -29,13 +29,13 @@ test("find", async () => {
   expect(
     (
       await arrayFromAsyncIterable(
-        Db.findAll(db, "users", { properties: { country: "China" } }),
+        Db.find(db, "users", { properties: { country: "China" } }),
       )
     ).length,
   ).toEqual(2)
 
   expect(
-    (await arrayFromAsyncIterable(Db.findAll(db, "users", { properties: {} })))
+    (await arrayFromAsyncIterable(Db.find(db, "users", { properties: {} })))
       .length,
   ).toEqual(3)
 })
