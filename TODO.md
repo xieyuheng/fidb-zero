@@ -1,5 +1,3 @@
-[db] rename `find` to `findAll` -- use `listAll`
-
 [db] `Db.directories`
 [db] `Db.find` -- like `findAll` but page by page
 

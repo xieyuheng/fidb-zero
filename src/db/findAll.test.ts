@@ -3,13 +3,14 @@ import * as Db from "."
 import { arrayFromAsyncIterable } from "../utils/arrayFromAsyncIterable"
 import { prepareTest } from "./test-utils"
 
-test("all", async () => {
+test("find", async () => {
   const { db } = await prepareTest()
 
   await Db.create(db, {
     "@id": "users/xieyuheng",
     username: "xieyuheng",
     name: "Xie Yuheng",
+    country: "China",
   })
 
   await Db.create(db, {
@@ -22,9 +23,19 @@ test("all", async () => {
     "@id": "users/fidb",
     username: "fidb",
     name: "FiDB",
+    country: "China",
   })
 
   expect(
-    (await arrayFromAsyncIterable(Db.listAll(db, "users"))).length,
+    (
+      await arrayFromAsyncIterable(
+        Db.findAll(db, "users", { properties: { country: "China" } }),
+      )
+    ).length,
+  ).toEqual(2)
+
+  expect(
+    (await arrayFromAsyncIterable(Db.findAll(db, "users", { properties: {} })))
+      .length,
   ).toEqual(3)
 })
