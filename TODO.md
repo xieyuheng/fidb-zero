@@ -6,6 +6,8 @@ setup `console/`
 
 # fidb-manager
 
+setup new frontend project
+
 # rest tests
 
 [rest] `serve` only handle `"Content-Type: application/json"`
@@ -30,9 +32,7 @@ fidb-manager use admin token
 
 `Db.find` -- use index
 
-[learn] prisma -- API design -- for example `findMany`
-
-- `find` might deref a property which is an id to another data
+`Db.find` -- support deref a property which is an `id` to another data
 
 # fi
 
@@ -40,9 +40,3 @@ fidb-manager use admin token
 `Fi.put`
 
 use `<name>.metadata` postfix for metadata in json format
-
-# learn
-
-[learn] from surrealdb
-[learn] from edgedb
-[learn] from couchdb
