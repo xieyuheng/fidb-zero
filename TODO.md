@@ -1,6 +1,5 @@
 # rest
 
-`utils/requestBuffer`
 `utils/requestJson`
 
 `Rest.serve(db, options)`
