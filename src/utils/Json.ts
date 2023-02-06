@@ -9,3 +9,7 @@ export type JsonObject = { [x: string]: Json }
 export function isJsonObject(json: Json): json is JsonObject {
   return typeof json === "object" && json !== null && json instanceof Array
 }
+
+export function isJsonArray(json: Json): json is JsonArray {
+  return json instanceof Array
+}
