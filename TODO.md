@@ -1,16 +1,12 @@
-# console
-
-[command] `fidb serve`
-
-# fidb-manager
-
-setup new frontend project
-
 # rest tests
 
 [rest] `serve` only handle `"Content-Type: application/json"`
 
 [rest] test using `fetch`
+
+# fidb-manager
+
+setup new frontend project
 
 # token based permission
 
