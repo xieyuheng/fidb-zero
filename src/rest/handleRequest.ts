@@ -1,5 +1,5 @@
 import type Http from "node:http"
-import { dataOmitIdFromJson } from "../data"
+import { Data, dataOmitIdFromJson } from "../data"
 import type { Database } from "../database"
 import * as Db from "../db"
 import { requestJsonObject } from "../utils/requestJsonObject"
@@ -7,7 +7,7 @@ import { requestJsonObject } from "../utils/requestJsonObject"
 export async function handleRequest(
   db: Database,
   request: Http.IncomingMessage,
-) {
+): Promise<Data | void> {
   if (request.url === undefined) {
     throw new Error("[handleRequest] expect request.url")
   }
