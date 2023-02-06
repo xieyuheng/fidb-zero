@@ -1,5 +1,7 @@
 # rest
 
+`utils/requestJson`
+
 `Rest.serve(db, options)`
 
 # console
