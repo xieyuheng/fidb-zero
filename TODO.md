@@ -1,5 +1,3 @@
-[rest] `/:directory` -- return `{ directories }`
-
 [db] `Db.findPage` -- like `Db.find` but page by page
 
 - `type FindPageOptions = { page, size } & FindOptions` -- starting from 0

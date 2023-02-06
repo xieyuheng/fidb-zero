@@ -10,7 +10,11 @@ export async function handleDirectory(
   directory: string,
 ): Promise<Json | void> {
   if (request.method === "GET") {
-    return await arrayFromAsyncIterable(Db.listDirectories(db, directory))
+    return {
+      directories: await arrayFromAsyncIterable(
+        Db.listDirectories(db, directory),
+      ),
+    }
   }
 
   throw new Error(
