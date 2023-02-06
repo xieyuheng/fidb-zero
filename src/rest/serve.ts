@@ -1,4 +1,4 @@
-import Http from "http"
+import Http from "node:http"
 import type { Database } from "../database"
 
 type ServeOptions = {

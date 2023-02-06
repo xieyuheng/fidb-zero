@@ -1,5 +1,5 @@
 import fs from "fs"
-import { resolve } from "path"
+import { resolve } from "node:path"
 import { createDatabase, Database } from "../database"
 
 const TEST_DB_PATH = resolve(__filename, "../../../tmp/databases/test")

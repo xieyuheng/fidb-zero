@@ -1,4 +1,5 @@
-import type Http from "http"
+import { Buffer } from "node:buffer"
+import type Http from "node:http"
 
 export function requestText(request: Http.IncomingMessage): Promise<string> {
   return new Promise((resolve, reject) => {

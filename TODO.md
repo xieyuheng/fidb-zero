@@ -1,6 +1,8 @@
 # rest
 
+`utils/requestBuffer`
 `utils/requestJson`
+`randomRevision` -- use hex
 
 `Rest.serve(db, options)`
 
