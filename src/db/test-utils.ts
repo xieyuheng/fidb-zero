@@ -1,4 +1,4 @@
-import fs from "fs"
+import fs from "node:fs"
 import { resolve } from "node:path"
 import { createDatabase, Database } from "../database"
 

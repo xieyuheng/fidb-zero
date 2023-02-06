@@ -6,7 +6,8 @@ export function requestText(request: Http.IncomingMessage): Promise<string> {
     const chunks: Array<Buffer> = []
 
     request.on("data", (chunk: Buffer) => {
-      console.log(chunk)
+      console.log({ chunk, text: chunk.toString() })
+
       chunks.push(chunk)
     })
 
