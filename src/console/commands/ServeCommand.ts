@@ -28,7 +28,7 @@ export class ServeCommand extends Command<Args> {
   }
 
   async execute(argv: Args & Opts): Promise<void> {
-    const db = createDatabase({ path: argv.path })
+    const db = await createDatabase({ path: argv.path })
     await Rest.serve({
       db,
       hostname: argv.hostname || "127.0.0.1",

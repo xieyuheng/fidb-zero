@@ -1,4 +1,4 @@
-import Http from "node:http"
+import type Http from "node:http"
 import { dataOmitIdFromJson } from "../data"
 import type { Database } from "../database"
 import * as Db from "../db"
