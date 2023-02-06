@@ -1,8 +1,9 @@
 import type Http from "node:http"
-import { Data, dataOmitIdFromJson } from "../data"
+import type { Data } from "../data"
 import type { Database } from "../database"
 import * as Db from "../db"
-import { requestJsonObject } from "../utils/requestJsonObject"
+import { handleDirectory } from "./handleDirectory"
+import { handleFile } from "./handleFile"
 
 export async function handle(
   request: Http.IncomingMessage,
@@ -13,37 +14,12 @@ export async function handle(
   }
 
   const url = new URL(request.url, `http://${request.headers.host}`)
-  const id = url.pathname.slice(1)
+  const path = url.pathname.slice(1)
 
-  if (request.method === "GET") {
-    return await Db.get(db, id)
+  if (await Db.isDirectory(db, path)) {
+    return await handleDirectory(request, db, path)
   }
 
-  if (request.headers["content-type"] !== "application/json") {
-    throw new Error(
-      `[handle] expect content-type to be application/json, instead of ${request.headers["content-type"]}`,
-    )
-  }
-
-  if (request.method === "POST") {
-    const input = await requestJsonObject(request)
-    return await Db.create(db, { ...input, "@id": id })
-  }
-
-  if (request.method === "PUT") {
-    const input = dataOmitIdFromJson(await requestJsonObject(request))
-    return await Db.put(db, { ...input, "@id": id })
-  }
-
-  if (request.method === "PATCH") {
-    const input = dataOmitIdFromJson(await requestJsonObject(request))
-    return await Db.patch(db, { ...input, "@id": id })
-  }
-
-  if (request.method === "DELETE") {
-    const input = dataOmitIdFromJson(await requestJsonObject(request))
-    return await Db.delete(db, { ...input, "@id": id })
-  }
-
-  throw new Error(`[handle] unhandled http method: ${request.method}`)
+  // NOTE Not exists or file.
+  return await handleFile(request, db, path)
 }

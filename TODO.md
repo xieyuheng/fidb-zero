@@ -1,5 +1,3 @@
-[rest] [extract] `handleFile` & `handleDirectory`
-
 [rest] `/` -- `Db.directories`
 
 [db] `Db.find` -- like `findAll` but page by page
