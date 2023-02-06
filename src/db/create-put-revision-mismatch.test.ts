@@ -1,6 +1,6 @@
 import { expect, test } from "vitest"
-import * as Db from "."
 import { randomRevision } from "../data"
+import * as Db from "../db"
 import { RevisionMismatch } from "./errors/RevisionMismatch"
 import { prepareTest } from "./test-utils"
 
