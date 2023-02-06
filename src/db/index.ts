@@ -1,4 +1,3 @@
-export * from "./all"
 export * from "./create"
 export * from "./delete"
 export { del as delete } from "./delete"

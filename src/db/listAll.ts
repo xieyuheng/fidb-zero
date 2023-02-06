@@ -5,7 +5,10 @@ import type { Database } from "../database"
 import { isErrnoException } from "../utils/isErrnoException"
 import { get } from "./get"
 
-export async function* all(db: Database, prefix: string): AsyncIterable<Data> {
+export async function* listAll(
+  db: Database,
+  prefix: string,
+): AsyncIterable<Data> {
   try {
     const dir = await fs.promises.opendir(resolve(db.path, prefix), {
       bufferSize: 1024,

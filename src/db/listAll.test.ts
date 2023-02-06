@@ -1,5 +1,5 @@
 import { expect, test } from "vitest"
-import * as Db from "../db"
+import * as Db from "."
 import { arrayFromAsyncIterable } from "../utils/arrayFromAsyncIterable"
 import { prepareTest } from "./test-utils"
 
@@ -24,5 +24,7 @@ test("all", async () => {
     name: "FiDB",
   })
 
-  expect((await arrayFromAsyncIterable(Db.all(db, "users"))).length).toEqual(3)
+  expect(
+    (await arrayFromAsyncIterable(Db.listAll(db, "users"))).length,
+  ).toEqual(3)
 })
