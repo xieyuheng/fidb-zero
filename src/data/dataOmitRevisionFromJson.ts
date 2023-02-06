@@ -11,7 +11,7 @@ export function dataOmitRevisionFromJson(json: Json): DataOmitRevision {
     )
   }
 
-  if (typeof json["@id"] === "string") {
+  if (typeof json["@id"] !== "string") {
     throw new Error(
       [
         `[dataOmitRevisionFromJson] expect @id string`,

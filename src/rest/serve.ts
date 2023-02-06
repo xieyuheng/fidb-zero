@@ -17,14 +17,21 @@ export async function serve(options: ServeOptions): Promise<void> {
   const server = Http.createServer(async (request, response) => {
     try {
       const result = await handleRequest(db, request)
+
       const headers = { "Content-Type": "application/json" }
+
       response.writeHead(200, headers)
       response.write(JSON.stringify(result))
       response.end()
     } catch (error) {
-      const message = error instanceof Error ? error.message : "Unknown Error"
-      const result = { message }
+      const result = {
+        error: {
+          message: error instanceof Error ? error.message : "Unknown Error",
+        },
+      }
+
       const headers = { "Content-Type": "application/json" }
+
       response.writeHead(500, headers)
       response.write(JSON.stringify(result))
       response.end()
