@@ -2,20 +2,17 @@ import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
 import * as Commands from "../commands"
 
-type Args = { file?: string }
-type Opts = { help?: boolean; version?: boolean }
+type Args = {}
+type Opts = { version?: boolean }
 
 export class DefaultCommand extends Command<Args, Opts> {
   name = "default"
 
-  description = "Print help message by default"
+  description = "Print help message"
 
-  args = { file: ty.optional(ty.string()) }
-  opts = {
-    help: ty.optional(ty.boolean()),
-    version: ty.optional(ty.boolean()),
-  }
-  alias = { help: ["h"], version: ["v"] }
+  args = {}
+  opts = { version: ty.optional(ty.boolean()) }
+  alias = { version: ["v"] }
 
   async execute(argv: Args & Opts, runner: CommandRunner): Promise<void> {
     if (argv["version"]) {

@@ -1,13 +1,16 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
+import ty from "@xieyuheng/ty"
 
-type Args = {}
+type Args = { dir: string }
+type Opts = { host: string; port: number }
 
 export class ServeCommand extends Command<Args> {
   name = "serve"
 
-  description = "Serve an database"
+  description = "Serve a database"
 
-  args = {}
+  args = { dir: ty.string() }
+  opts = { host: ty.string(), port: ty.number() }
 
   // prettier-ignore
   help(runner: CommandRunner): string {
