@@ -1,5 +1,3 @@
-[rest] `Db.directories` -- test
-
 [db] `Db.find` -- like `findAll` but page by page
 
 - `type FindOptions = { page, size } & FindAllOptions` -- starting from 0
