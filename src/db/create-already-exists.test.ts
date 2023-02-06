@@ -1,10 +1,10 @@
 import { expect, test } from "vitest"
 import * as Db from "../db"
 import { AlreadyExists } from "./errors/AlreadyExists"
-import { prepareTest } from "./test-utils"
+import { prepareTestDb } from "./test-utils"
 
 test("create-already-exists", async () => {
-  const { db } = await prepareTest()
+  const db = await prepareTestDb()
 
   const created = await Db.create(db, {
     "@id": `users/${crypto.randomUUID()}`,

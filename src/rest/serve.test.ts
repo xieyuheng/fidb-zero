@@ -1,10 +1,10 @@
 import { expect, test } from "vitest"
-import { prepareTest } from "../db/test-utils"
+import { prepareTestDb } from "../db/test-utils"
 import * as Rest from "../rest"
 import { findPort } from "../utils/findPort"
 
 test("serve", async () => {
-  const { db } = await prepareTest()
+  const db = await prepareTestDb()
 
   const hostname = "127.0.0.1"
   const port = await findPort(3000)

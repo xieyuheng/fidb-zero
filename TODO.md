@@ -1,8 +1,8 @@
+[db] [refactor] rename `test-utils.ts` to `prepareTestDb`
+
+[rest] extract `serveTestDb`
+
 [db] `Db.exists` -- improve `rest/handle`
-
-[db] rename `prepareTest` to `prepareTestDb` -- return `db` instead of `{ db }`
-
-[rest] extract `test-utils.ts` -- `serveTestDb()`
 
 [rest] `Db.directories` -- test
 
