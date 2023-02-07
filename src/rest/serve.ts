@@ -20,7 +20,10 @@ export async function serve(options: ServeOptions): Promise<void> {
         return
       }
 
-      response.writeHead(200, { "content-type": "application/json" })
+      response.writeHead(200, {
+        "content-type": "application/json",
+        "access-control-allow-origin": "*",
+      })
       response.write(JSON.stringify(result))
       response.end()
     } catch (error) {
@@ -30,7 +33,10 @@ export async function serve(options: ServeOptions): Promise<void> {
         },
       }
 
-      response.writeHead(500, { "content-type": "application/json" })
+      response.writeHead(500, {
+        "content-type": "application/json",
+        "access-control-allow-origin": "*",
+      })
       response.write(JSON.stringify(result))
       response.end()
     }
