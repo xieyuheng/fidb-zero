@@ -1,5 +1,3 @@
-[db] `findPage.test.ts`
-
 [rest] `/:directory?page&size&properties` -- `Db.findPage`
 
 # token based permission

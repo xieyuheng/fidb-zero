@@ -19,11 +19,14 @@ export async function* findPage(
   let count = 0
 
   for await (const data of find(db, directory, options)) {
-    if (start <= count && count < end) {
-      count++
-      yield data
-    } else {
+    if (count >= end) {
       break
     }
+
+    if (start <= count && count < end) {
+      yield data
+    }
+
+    count++
   }
 }
