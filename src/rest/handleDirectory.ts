@@ -3,13 +3,26 @@ import type { Database } from "../database"
 import * as Db from "../db"
 import { arrayFromAsyncIterable } from "../utils/arrayFromAsyncIterable"
 import type { Json } from "../utils/Json"
+import { requestQuery } from "../utils/requestQuery"
 
 export async function handleDirectory(
   request: Http.IncomingMessage,
   db: Database,
   directory: string,
 ): Promise<Json | void> {
+  const query = requestQuery(request)
+
   if (request.method === "GET") {
+    if (query.page !== undefined && query.size !== undefined) {
+      return await arrayFromAsyncIterable(
+        Db.findPage(db, directory, {
+          page: parseInt(query.page),
+          size: parseInt(query.size),
+          properties: {},
+        }),
+      )
+    }
+
     return {
       root: db.path,
       directory,

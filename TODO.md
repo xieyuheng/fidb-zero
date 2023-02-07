@@ -1,4 +1,6 @@
-[rest] `/:directory?page&size&properties` -- `Db.findPage`
+[rest] `/:directory?page&size&properties` -- handle `properties`
+
+- fix `serve-find-page.test`
 
 # token based permission
 
