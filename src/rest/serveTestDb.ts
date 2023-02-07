@@ -2,7 +2,7 @@ import { prepareTestDb } from "../db/prepareTestDb"
 import * as Rest from "../rest"
 import { findPort } from "../utils/findPort"
 
-export async function serveTestDb(): Promise<{ url: string }> {
+export async function serveTestDb() {
   const db = await prepareTestDb()
 
   const hostname = "127.0.0.1"
@@ -11,5 +11,5 @@ export async function serveTestDb(): Promise<{ url: string }> {
 
   const url = `http://${hostname}:${port}`
 
-  return { url }
+  return { url, db }
 }

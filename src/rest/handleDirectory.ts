@@ -11,6 +11,8 @@ export async function handleDirectory(
 ): Promise<Json | void> {
   if (request.method === "GET") {
     return {
+      root: db.path,
+      directory,
       directories: await arrayFromAsyncIterable(
         Db.listDirectories(db, directory),
       ),

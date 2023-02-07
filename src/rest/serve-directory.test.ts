@@ -2,9 +2,11 @@ import { expect, test } from "vitest"
 import { serveTestDb } from "./serveTestDb"
 
 test("serve-directory", async () => {
-  const { url } = await serveTestDb()
+  const { url, db } = await serveTestDb()
 
   expect(await (await fetch(`${url}`)).json()).toEqual({
+    root: db.path,
+    directory: "",
     directories: [],
   })
 
@@ -14,6 +16,8 @@ test("serve-directory", async () => {
     body: JSON.stringify({}),
   })
   expect(await (await fetch(`${url}`)).json()).toEqual({
+    root: db.path,
+    directory: "",
     directories: ["users"],
   })
 
@@ -23,6 +27,8 @@ test("serve-directory", async () => {
     body: JSON.stringify({}),
   })
   expect(await (await fetch(`${url}`)).json()).toEqual({
+    root: db.path,
+    directory: "",
     directories: ["users"],
   })
 
@@ -32,6 +38,8 @@ test("serve-directory", async () => {
     body: JSON.stringify({}),
   })
   expect(await (await fetch(`${url}`)).json()).toEqual({
+    root: db.path,
+    directory: "",
     directories: ["users", "posts"],
   })
 
@@ -41,6 +49,8 @@ test("serve-directory", async () => {
     body: JSON.stringify({}),
   })
   expect(await (await fetch(`${url}`)).json()).toEqual({
+    root: db.path,
+    directory: "",
     directories: ["users", "posts"],
   })
 
@@ -50,6 +60,8 @@ test("serve-directory", async () => {
     body: JSON.stringify({}),
   })
   expect(await (await fetch(`${url}/users`)).json()).toEqual({
+    root: db.path,
+    directory: "users",
     directories: ["tokens"],
   })
 
@@ -59,6 +71,8 @@ test("serve-directory", async () => {
     body: JSON.stringify({}),
   })
   expect(await (await fetch(`${url}/users`)).json()).toEqual({
+    root: db.path,
+    directory: "users",
     directories: ["tokens"],
   })
 })
