@@ -5,6 +5,7 @@ export function requestURL(request: Http.IncomingMessage): URL {
     throw new Error("[requestURL] expect request.url")
   }
 
-  const url = new URL(request.url, `http://${request.headers.host}`)
-  return url
+  const protocol = "http"
+
+  return new URL(request.url, `${protocol}://${request.headers.host}`)
 }
