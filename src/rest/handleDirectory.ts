@@ -14,13 +14,15 @@ export async function handleDirectory(
 
   if (request.method === "GET") {
     if (query.page !== undefined && query.size !== undefined) {
-      return await arrayFromAsyncIterable(
-        Db.findPage(db, directory, {
-          page: parseInt(query.page),
-          size: parseInt(query.size),
-          properties: {},
-        }),
-      )
+      return {
+        results: await arrayFromAsyncIterable(
+          Db.findPage(db, directory, {
+            page: parseInt(query.page),
+            size: parseInt(query.size),
+            properties: query.properties,
+          }),
+        ),
+      }
     }
 
     return {

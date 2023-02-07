@@ -1,7 +1,3 @@
-[rest] `/:directory?page&size&properties` -- handle `properties`
-
-- fix `serve-find-page.test`
-
 # token based permission
 
 [permission] schema for token -- has `permission` and `date`

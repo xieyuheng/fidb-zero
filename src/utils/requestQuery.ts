@@ -1,15 +1,10 @@
 import type Http from "node:http"
+import qs from "qs"
 import { requestURL } from "./requestURL"
 
 export function requestQuery(
   request: Http.IncomingMessage,
-): Record<string, string> {
+): Record<string, any> {
   const url = requestURL(request)
-
-  const query: Record<string, string> = {}
-  for (const [key, value] of url.searchParams) {
-    query[key] = value
-  }
-
-  return query
+  return qs.parse(url.search.slice(1))
 }

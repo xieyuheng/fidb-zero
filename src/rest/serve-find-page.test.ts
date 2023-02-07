@@ -1,3 +1,4 @@
+import qs from "qs"
 import { expect, test } from "vitest"
 import { serveTestDb } from "./serveTestDb"
 
@@ -26,10 +27,34 @@ test("serve-find-page", async () => {
   }
 
   expect(
-    (await (await fetch(`${url}/users?page=1&size=3`)).json()).length,
+    (
+      await (
+        await fetch(
+          `${url}/users?${qs.stringify({
+            page: 1,
+            size: 3,
+            properties: {
+              country: "China",
+            },
+          })}`,
+        )
+      ).json()
+    ).results.length,
   ).toEqual(3)
 
   expect(
-    (await (await fetch(`${url}/users?page=2&size=3`)).json()).length,
-  ).toEqual(3)
+    (
+      await (
+        await fetch(
+          `${url}/users?${qs.stringify({
+            page: 2,
+            size: 3,
+            properties: {
+              country: "China",
+            },
+          })}`,
+        )
+      ).json()
+    ).results.length,
+  ).toEqual(2)
 })
