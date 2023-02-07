@@ -1,7 +1,7 @@
 import { expect, test } from "vitest"
 import { serveTestDb } from "./serveTestDb"
 
-test("serve-file", async () => {
+test("serve-directory-file", async () => {
   const { url } = await serveTestDb()
 
   const created = await (
