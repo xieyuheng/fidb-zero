@@ -1,6 +1,4 @@
-[db] `Db.findPage` -- like `Db.find` but page by page
-
-- `type FindPageOptions = { page, size } & FindOptions` -- starting from 0
+[db] `findPage.test.ts`
 
 [rest] `/:directory?page&size&properties` -- `Db.findPage`
 

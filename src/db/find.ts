@@ -3,7 +3,7 @@ import type { Database } from "../database"
 import type { JsonAtom } from "../utils/Json"
 import { findAll } from "./findAll"
 
-type FindOptions = {
+export type FindOptions = {
   properties: Record<string, JsonAtom>
 }
 
