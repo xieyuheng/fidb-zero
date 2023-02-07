@@ -23,7 +23,7 @@ export class ServeCommand extends Command<Args> {
       `The ${blue(this.name)} command takes a path to a directory,`,
       `and serve it as a database.`,
       ``,
-      blue(`  ${runner.name} ${this.name} tmp/test`),
+      blue(`  ${runner.name} ${this.name} tmp/databases/test`),
       ``,
     ].join("\n")
   }
