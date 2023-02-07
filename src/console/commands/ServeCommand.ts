@@ -1,5 +1,6 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
+import { resolve } from "node:path"
 import { createDatabase } from "../../database"
 import * as Rest from "../../rest"
 import { findPort } from "../../utils/findPort"
@@ -29,10 +30,10 @@ export class ServeCommand extends Command<Args> {
   }
 
   async execute(argv: Args & Opts): Promise<void> {
-    const db = await createDatabase({ path: argv.path })
-
     await Rest.serve({
-      db,
+      db: await createDatabase({
+        path: resolve(argv.path),
+      }),
       hostname: argv.hostname || "127.0.0.1",
       port: argv.port || (await findPort(3000)),
     })
