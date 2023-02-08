@@ -1,6 +1,6 @@
-test use `setEqual` -- can take `Array`
+`Data` has `@createdAt` and `@updatedAt`
 
-Data has `@createdAt` and `@updatedAt`
+`fidb import` -- convert csv to database
 
 # token based permission
 

@@ -10,8 +10,10 @@ test("create-delete", async () => {
     username: "xieyuheng",
     name: "Xie Yuheng",
   })
+
   expect(await Db.get(db, created["@id"])).toEqual(created)
 
   await Db.delete(db, created)
+
   expect(await Db.get(db, created["@id"])).toEqual(undefined)
 })

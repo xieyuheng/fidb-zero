@@ -10,6 +10,7 @@ test("create-patch-delete", async () => {
     username: "xieyuheng",
     name: "Xie Yuheng",
   })
+
   expect(await Db.get(db, "users/xieyuheng")).toEqual(created)
 
   const patched = await Db.patch(db, {
@@ -17,9 +18,11 @@ test("create-patch-delete", async () => {
     "@revision": created["@revision"],
     name: "谢宇恒",
   })
+
   expect(patched.name).toEqual("谢宇恒")
   expect(await Db.get(db, "users/xieyuheng")).toEqual(patched)
 
   await Db.delete(db, patched)
+
   expect(await Db.get(db, "users/xieyuheng")).toEqual(undefined)
 })

@@ -10,6 +10,7 @@ test("create-put-delete", async () => {
     username: "xieyuheng",
     name: "Xie Yuheng",
   })
+
   expect(await Db.get(db, "users/xieyuheng")).toEqual(created)
 
   const putted = await Db.put(db, {
@@ -18,8 +19,10 @@ test("create-put-delete", async () => {
     username: "xieyuheng",
     name: "谢宇恒",
   })
+
   expect(await Db.get(db, "users/xieyuheng")).toEqual(putted)
 
   await Db.delete(db, putted)
+
   expect(await Db.get(db, "users/xieyuheng"), undefined).toEqual(undefined)
 })

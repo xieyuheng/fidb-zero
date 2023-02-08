@@ -14,6 +14,7 @@ test("serve-file", async () => {
       }),
     })
   ).json()
+
   expect(created.name).toEqual("Xie Yuheng")
   expect(await (await fetch(`${url}/users/xieyuheng`)).json()).toEqual(created)
 
@@ -27,6 +28,7 @@ test("serve-file", async () => {
       }),
     })
   ).json()
+
   expect(putted.username).toEqual(undefined)
   expect(putted.name).toEqual("谢宇恒")
   expect(await (await fetch(`${url}/users/xieyuheng`)).json()).toEqual(putted)
@@ -41,6 +43,7 @@ test("serve-file", async () => {
       }),
     })
   ).json()
+
   expect(patched.username).toEqual("xyh")
   expect(patched.name).toEqual("谢宇恒")
   expect(await (await fetch(`${url}/users/xieyuheng`)).json()).toEqual(patched)
@@ -52,5 +55,6 @@ test("serve-file", async () => {
       "@revision": patched["@revision"],
     }),
   })
+
   expect((await fetch(`${url}/users/xieyuheng`)).status).toEqual(404)
 })

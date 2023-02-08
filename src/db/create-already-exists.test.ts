@@ -11,6 +11,7 @@ test("create-already-exists", async () => {
     username: "xieyuheng",
     name: "Xie Yuheng",
   })
+
   expect(await Db.get(db, created["@id"])).toEqual(created)
 
   await expect(
