@@ -13,6 +13,18 @@ export async function serve(options: ServeOptions): Promise<void> {
 
   const server = Http.createServer(async (request, response) => {
     try {
+      if (request.method === "OPTIONS") {
+        response.writeHead(200, {
+          "access-control-allow-origin": request.headers["origin"],
+          "access-control-allow-methods":
+            request.headers["access-control-request-method"],
+          "access-control-allow-headers":
+            request.headers["access-control-request-headers"],
+        })
+        response.end()
+        return
+      }
+
       const result = await handle(request, db)
       if (result === undefined) {
         response.writeHead(404)
