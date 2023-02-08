@@ -1,11 +1,18 @@
 import { resolve } from "node:path"
 import { Data, dataWrite, randomRevision } from "../data"
 import type { Database } from "../database"
+import type { JsonObject } from "../utils/Json"
 import { NotFound } from "./errors/NotFound"
 import { RevisionMismatch } from "./errors/RevisionMismatch"
 import { get } from "./get"
 
-export async function patch(db: Database, input: Data): Promise<Data> {
+export async function patch(
+  db: Database,
+  input: JsonObject & {
+    "@id": string
+    "@revision": string
+  },
+): Promise<Data> {
   const id = input["@id"]
   const data = await get(db, id)
   if (data === undefined) {
@@ -16,7 +23,15 @@ export async function patch(db: Database, input: Data): Promise<Data> {
     throw new RevisionMismatch(`[patch] revision mismatch`)
   }
 
-  const result = { ...data, ...input, "@id": id, "@revision": randomRevision() }
+  const result = {
+    ...data,
+    ...input,
+    "@id": id,
+    "@revision": randomRevision(),
+    "@updatedAt": Date.now(),
+  }
+
   await dataWrite(result, resolve(db.path, id))
+
   return result
 }

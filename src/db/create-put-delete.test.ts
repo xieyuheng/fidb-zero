@@ -14,8 +14,7 @@ test("create-put-delete", async () => {
   expect(await Db.get(db, "users/xieyuheng")).toEqual(created)
 
   const putted = await Db.put(db, {
-    "@id": "users/xieyuheng",
-    "@revision": created["@revision"],
+    ...created,
     username: "xieyuheng",
     name: "谢宇恒",
   })

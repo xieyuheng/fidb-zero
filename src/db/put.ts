@@ -16,7 +16,14 @@ export async function put(db: Database, input: Data): Promise<Data> {
     throw new RevisionMismatch(`[put] revision mismatch`)
   }
 
-  const result = { ...input, "@id": id, "@revision": randomRevision() }
+  const result = {
+    ...input,
+    "@id": id,
+    "@revision": randomRevision(),
+    "@updatedAt": Date.now(),
+  }
+
   await dataWrite(result, resolve(db.path, id))
+
   return result
 }
