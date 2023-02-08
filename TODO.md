@@ -1,3 +1,5 @@
+test use `setEqual` -- can take `Array`
+
 # token based permission
 
 [permission] schema for token -- has `permission` and `date`

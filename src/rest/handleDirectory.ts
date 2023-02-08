@@ -19,7 +19,7 @@ export async function handleDirectory(
           Db.findPage(db, directory, {
             page: parseInt(query.page),
             size: parseInt(query.size),
-            properties: query.properties,
+            properties: query.properties || {},
           }),
         ),
       }
