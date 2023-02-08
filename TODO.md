@@ -1,5 +1,7 @@
 test use `setEqual` -- can take `Array`
 
+Data has `@createdAt` and `@updatedAt`
+
 # token based permission
 
 [permission] schema for token -- has `permission` and `date`
