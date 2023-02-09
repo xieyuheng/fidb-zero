@@ -15,7 +15,7 @@ export async function serve(options: ServeOptions): Promise<void> {
     try {
       if (request.method === "OPTIONS") {
         response.writeHead(200, {
-          "access-control-allow-origin": request.headers["origin"],
+          "access-control-allow-origin": request.headers["origin"] || "*",
           "access-control-allow-methods":
             request.headers["access-control-request-method"],
           "access-control-allow-headers":
@@ -27,7 +27,10 @@ export async function serve(options: ServeOptions): Promise<void> {
 
       const result = await handle(request, db)
       if (result === undefined) {
-        response.writeHead(404)
+        response.writeHead(204, {
+          "content-type": "application/json",
+          "access-control-allow-origin": "*",
+        })
         response.end()
         return
       }
