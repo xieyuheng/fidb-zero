@@ -54,15 +54,21 @@ function preflight(
   request: Http.IncomingMessage,
   response: Http.ServerResponse,
 ): void {
-  const preflightHeaders = {
-    "access-control-allow-origin": request.headers["origin"],
-    "access-control-allow-methods":
-      request.headers["access-control-request-method"],
-    "access-control-allow-headers":
-      request.headers["access-control-request-headers"],
+  const headers: Record<string, string> = {}
+
+  if (request.headers["origin"]) {
+    headers["access-control-allow-origin"] = request.headers["origin"]
   }
 
-  return responseSend(response, {
-    headers: preflightHeaders,
-  })
+  if (request.headers["access-control-request-method"]) {
+    headers["access-control-allow-methods"] =
+      request.headers["access-control-request-method"]
+  }
+
+  if (request.headers["access-control-request-headers"]) {
+    headers["access-control-allow-headers"] =
+      request.headers["access-control-request-headers"]
+  }
+
+  return responseSend(response, { headers })
 }
