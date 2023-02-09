@@ -5,13 +5,15 @@ import { randomRevision } from "./randomRevision"
 export async function importDataArrayFromCsv(
   file: string,
   options: {
+    directory: string
     idKey: string
   },
 ): Promise<Array<Data>> {
   const inputs = await readCsv(file)
 
   const results = inputs.map<Data>((input) => {
-    const id = input[options.idKey]
+    const id = `${options.directory}/${input[options.idKey]}`
+
     if (typeof id !== "string") {
       throw new Error(
         [
