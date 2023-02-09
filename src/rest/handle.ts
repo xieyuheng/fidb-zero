@@ -11,7 +11,7 @@ export async function handle(
   db: Database,
 ): Promise<Json | void> {
   const url = requestURL(request)
-  const path = url.pathname.slice(1)
+  const path = decodeURIComponent(url.pathname.slice(1))
 
   if (await Db.isDirectory(db, path)) {
     return await handleDirectory(request, db, path)
