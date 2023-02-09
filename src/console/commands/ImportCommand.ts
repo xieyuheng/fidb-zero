@@ -23,7 +23,7 @@ export class ImportCommand extends Command<Args> {
       `The ${blue(this.name)} command takes data from a file,`,
       `and import them to a database directory.`,
       ``,
-      blue(`  ${runner.name} ${this.name} --from <file> --to <directory> --id-key <key-name>`),
+      blue(`  ${runner.name} ${this.name} <database> --from <file> --directory <directory> --id-key <key-name>`),
       ``,
     ].join("\n")
   }
