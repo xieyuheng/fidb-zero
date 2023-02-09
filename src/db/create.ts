@@ -2,9 +2,9 @@ import { resolve } from "node:path"
 import type { Data } from "../data"
 import { randomRevision } from "../data"
 import type { Database } from "../database"
+import { AlreadyExists } from "../errors/AlreadyExists"
 import type { JsonObject } from "../utils/Json"
 import { jsonWrite } from "../utils/jsonWrite"
-import { AlreadyExists } from "./errors/AlreadyExists"
 import { get } from "./get"
 
 export async function create(

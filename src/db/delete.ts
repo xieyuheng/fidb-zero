@@ -1,8 +1,8 @@
 import fs from "node:fs"
 import { resolve } from "node:path"
 import type { Database } from "../database"
+import { RevisionMismatch } from "../errors/RevisionMismatch"
 import type { JsonObject } from "../utils/Json"
-import { RevisionMismatch } from "./errors/RevisionMismatch"
 import { get } from "./get"
 
 // NOTE `delete` is preserved javascript keyword.

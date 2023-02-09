@@ -1,10 +1,10 @@
 import { resolve } from "node:path"
 import { Data, randomRevision } from "../data"
 import type { Database } from "../database"
+import { NotFound } from "../errors/NotFound"
+import { RevisionMismatch } from "../errors/RevisionMismatch"
 import type { JsonObject } from "../utils/Json"
 import { jsonWrite } from "../utils/jsonWrite"
-import { NotFound } from "./errors/NotFound"
-import { RevisionMismatch } from "./errors/RevisionMismatch"
 import { get } from "./get"
 
 export async function put(
