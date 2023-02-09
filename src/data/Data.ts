@@ -14,9 +14,3 @@ export const dataSchema = ty.object({
   "@createdAt": ty.number(),
   "@updatedAt": ty.number(),
 })
-
-export type DataOmitId = JsonObject & {
-  "@revision": string
-  "@createdAt": number
-  "@updatedAt": number
-}

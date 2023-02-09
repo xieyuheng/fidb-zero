@@ -1,5 +1,6 @@
+import { ty } from "@xieyuheng/ty"
 import type Http from "node:http"
-import { dataOmitIdFromJson } from "../data"
+import { dataSchema } from "../data"
 import type { Database } from "../database"
 import * as Db from "../db"
 import type { Json } from "../utils/Json"
@@ -24,22 +25,25 @@ export async function handleFile(
   }
 
   if (request.method === "POST") {
-    const input = await requestJsonObject(request)
-    return await Db.create(db, { ...input, "@id": id })
+    const json = await requestJsonObject(request)
+    return await Db.create(db, { ...json, "@id": id })
   }
 
   if (request.method === "PUT") {
-    const input = dataOmitIdFromJson(await requestJsonObject(request))
+    const json = await requestJsonObject(request)
+    const input = ty.omit(dataSchema, "@id").validate(json)
     return await Db.put(db, { ...input, "@id": id })
   }
 
   if (request.method === "PATCH") {
-    const input = dataOmitIdFromJson(await requestJsonObject(request))
+    const json = await requestJsonObject(request)
+    const input = ty.omit(dataSchema, "@id").validate(json)
     return await Db.patch(db, { ...input, "@id": id })
   }
 
   if (request.method === "DELETE") {
-    const input = dataOmitIdFromJson(await requestJsonObject(request))
+    const json = await requestJsonObject(request)
+    const input = ty.omit(dataSchema, "@id").validate(json)
     return await Db.delete(db, { ...input, "@id": id })
   }
 
