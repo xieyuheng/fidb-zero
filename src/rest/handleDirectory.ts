@@ -45,6 +45,12 @@ export async function handleDirectory(
     }
   }
 
+  if (request.method === "DELETE") {
+    if (directory) {
+      return await Db.deleteDirectory(db, directory)
+    }
+  }
+
   throw new Error(
     [
       `[handleDirectory] unhandled http request`,

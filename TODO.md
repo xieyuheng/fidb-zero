@@ -1,5 +1,3 @@
-[rest] DELETE `/:directory`
-
 [rest] [refactor] `serve`
 
 # token based permission
