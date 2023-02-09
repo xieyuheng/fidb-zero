@@ -1,3 +1,5 @@
+[rest] [refactor] `serve`
+
 # token based permission
 
 [permission] schema for token -- has `permission`

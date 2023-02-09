@@ -1,5 +1,6 @@
 import Http from "node:http"
 import type { Database } from "../database"
+import { NotFound } from "../errors/NotFound"
 import { handle } from "./handle"
 
 type ServeOptions = {
@@ -42,6 +43,22 @@ export async function serve(options: ServeOptions): Promise<void> {
       response.write(JSON.stringify(result))
       response.end()
     } catch (error) {
+      if (error instanceof NotFound) {
+        const result = {
+          error: {
+            message: error instanceof Error ? error.message : "Unknown Error",
+          },
+        }
+
+        response.writeHead(404, {
+          "content-type": "application/json",
+          "access-control-allow-origin": "*",
+        })
+        response.write(JSON.stringify(result))
+        response.end()
+        return
+      }
+
       const result = {
         error: {
           message: error instanceof Error ? error.message : "Unknown Error",

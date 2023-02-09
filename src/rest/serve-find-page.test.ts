@@ -3,7 +3,7 @@ import { expect, test } from "vitest"
 import { serveTestDb } from "./serveTestDb"
 
 test("serve-find-page", async () => {
-  const { url, db } = await serveTestDb()
+  const { url } = await serveTestDb()
 
   const array = [
     { "@id": "users/0", country: "China" },

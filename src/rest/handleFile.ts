@@ -12,7 +12,7 @@ export async function handleFile(
   id: string,
 ): Promise<Json | void> {
   if (request.method === "GET") {
-    return await Db.get(db, id)
+    return await Db.getOrFail(db, id)
   }
 
   if (request.headers["content-type"] !== "application/json") {
