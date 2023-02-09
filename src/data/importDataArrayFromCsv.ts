@@ -2,7 +2,7 @@ import { readCsv } from "../utils/readCsv"
 import type { Data } from "./Data"
 import { randomRevision } from "./randomRevision"
 
-export async function readDataArrayFromCsv(
+export async function importDataArrayFromCsv(
   file: string,
   options: {
     idKey: string
@@ -15,7 +15,7 @@ export async function readDataArrayFromCsv(
     if (typeof id !== "string") {
       throw new Error(
         [
-          `[readDataArrayFromCsv] export id string undefined idKey`,
+          `[importDataArrayFromCsv] export id string undefined idKey`,
           `  idKey: ${options.idKey}`,
           `  id: ${id}`,
           `  input: ${JSON.stringify(input)}`,

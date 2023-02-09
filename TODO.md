@@ -1,5 +1,7 @@
 `ImportCommand` write data array
 
+- `importDataArrayFromCsv` fix `@id` prefix
+
 schema for Data
 
 `utils/readJson`

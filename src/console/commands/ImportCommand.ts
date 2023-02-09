@@ -1,6 +1,6 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
-import { readDataArrayFromCsv } from "../../data/readDataArrayFromCsv"
+import { importDataArrayFromCsv } from "../../data/importDataArrayFromCsv"
 
 type Args = {}
 type Opts = { from: string; to: string; "id-key": string }
@@ -27,7 +27,7 @@ export class ImportCommand extends Command<Args> {
   }
 
   async execute(argv: Args & Opts): Promise<void> {
-    const results = await readDataArrayFromCsv(argv.from, {
+    const results = await importDataArrayFromCsv(argv.from, {
       idKey: argv["id-key"],
     })
 
