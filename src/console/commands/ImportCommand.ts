@@ -34,7 +34,6 @@ export class ImportCommand extends Command<Args> {
       idKey: argv["id-key"],
     })
 
-    const directory = resolve(argv.database, argv.directory)
     for (const data of results) {
       const file = resolve(argv.database, data["@id"])
       await dataWrite(data, file)
