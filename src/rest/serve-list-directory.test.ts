@@ -1,7 +1,7 @@
 import { expect, test } from "vitest"
 import { serveTestDb } from "./serveTestDb"
 
-test("serve-directory", async () => {
+test("serve-list-directory", async () => {
   const { url, db } = await serveTestDb()
 
   expect((await (await fetch(`${url}`)).json()).root).toEqual(db.path)
