@@ -1,6 +1,7 @@
 import Http from "node:http"
 import type { Database } from "../database"
 import { NotFound } from "../errors/NotFound"
+import { responseSend } from "../utils/responseSend"
 import { handle } from "./handle"
 
 type ServeOptions = {
@@ -13,64 +14,30 @@ export async function serve(options: ServeOptions): Promise<void> {
   const { db, hostname, port } = options
 
   const server = Http.createServer(async (request, response) => {
+    if (request.method === "OPTIONS") {
+      return preflight(request, response)
+    }
+
+    const headers = {
+      "content-type": "application/json",
+      "access-control-allow-origin": "*",
+    }
+
     try {
-      if (request.method === "OPTIONS") {
-        response.writeHead(200, {
-          "access-control-allow-origin": request.headers["origin"] || "*",
-          "access-control-allow-methods":
-            request.headers["access-control-request-method"],
-          "access-control-allow-headers":
-            request.headers["access-control-request-headers"],
-        })
-        response.end()
-        return
+      const body = await handle(request, db)
+      if (body === undefined) {
+        responseSend(response, { status: 204, headers })
+      } else {
+        responseSend(response, { status: 200, headers, body })
       }
-
-      const result = await handle(request, db)
-      if (result === undefined) {
-        response.writeHead(204, {
-          "content-type": "application/json",
-          "access-control-allow-origin": "*",
-        })
-        response.end()
-        return
-      }
-
-      response.writeHead(200, {
-        "content-type": "application/json",
-        "access-control-allow-origin": "*",
-      })
-      response.write(JSON.stringify(result))
-      response.end()
     } catch (error) {
+      const message = error instanceof Error ? error.message : "Unknown Error"
+      const body = { error: { message } }
       if (error instanceof NotFound) {
-        const result = {
-          error: {
-            message: error instanceof Error ? error.message : "Unknown Error",
-          },
-        }
-
-        response.writeHead(404, {
-          "content-type": "application/json",
-          "access-control-allow-origin": "*",
-        })
-        response.write(JSON.stringify(result))
-        response.end()
-        return
+        responseSend(response, { status: 404, headers, body })
+      } else {
+        responseSend(response, { status: 500, headers, body })
       }
-
-      const result = {
-        error: {
-          message: error instanceof Error ? error.message : "Unknown Error",
-        },
-      }
-
-      response.writeHead(500, {
-        "content-type": "application/json",
-        "access-control-allow-origin": "*",
-      })
-      response.write(JSON.stringify(result))
-      response.end()
     }
   })
 
@@ -80,5 +47,22 @@ export async function serve(options: ServeOptions): Promise<void> {
       url: `http://${hostname}:${port}`,
       options,
     })
+  })
+}
+
+function preflight(
+  request: Http.IncomingMessage,
+  response: Http.ServerResponse,
+): void {
+  const preflightHeaders = {
+    "access-control-allow-origin": request.headers["origin"],
+    "access-control-allow-methods":
+      request.headers["access-control-request-method"],
+    "access-control-allow-headers":
+      request.headers["access-control-request-headers"],
+  }
+
+  return responseSend(response, {
+    headers: preflightHeaders,
   })
 }
