@@ -1,4 +1,9 @@
-`data/importFromCsv`
+`ImportCommand` write data array
+
+schema for Data
+
+`utils/readJson`
+`utils/jsonWrite`
 
 # token based permission
 
