@@ -1,4 +1,4 @@
-`fidb import` -- convert csv to database
+`data/importFromCsv`
 
 # token based permission
 
