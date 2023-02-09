@@ -1,8 +1,10 @@
+import ty from "@xieyuheng/ty"
 import type Http from "node:http"
 import type { Database } from "../database"
 import * as Db from "../db"
 import { arrayFromAsyncIterable } from "../utils/arrayFromAsyncIterable"
 import type { Json } from "../utils/Json"
+import { requestJsonObject } from "../utils/requestJsonObject"
 import { requestQuery } from "../utils/requestQuery"
 
 export async function handleDirectory(
@@ -11,6 +13,15 @@ export async function handleDirectory(
   directory: string,
 ): Promise<Json | void> {
   const query = requestQuery(request)
+
+  if (request.method === "POST") {
+    if (directory === "") {
+      const schema = ty.object({ directory: ty.string() })
+      const json = await requestJsonObject(request)
+      const input = schema.validate(json)
+      return await Db.createDirectory(db, input.directory)
+    }
+  }
 
   if (request.method === "GET") {
     if (query.page !== undefined && query.size !== undefined) {
