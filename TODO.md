@@ -1,11 +1,6 @@
-`ImportCommand` write data array
+`dataSchema`
 
-- `importDataArrayFromCsv` fix `@id` prefix
-
-schema for Data
-
-`utils/readJson`
-`utils/jsonWrite`
+- fix `getOrFail` typing
 
 # token based permission
 

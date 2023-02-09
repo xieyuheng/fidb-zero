@@ -1,8 +1,8 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
 import { resolve } from "path"
-import { dataWrite } from "../../data"
 import { importDataArrayFromCsv } from "../../data/importDataArrayFromCsv"
+import { jsonWrite } from "../../utils/jsonWrite"
 
 type Args = { database: string }
 type Opts = { from: string; directory: string; "id-key": string }
@@ -36,7 +36,7 @@ export class ImportCommand extends Command<Args> {
 
     for (const data of results) {
       const file = resolve(argv.database, data["@id"])
-      await dataWrite(data, file)
+      await jsonWrite(data, file)
       console.log(">", file)
     }
 

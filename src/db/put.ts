@@ -1,6 +1,7 @@
 import { resolve } from "node:path"
-import { Data, dataWrite, randomRevision } from "../data"
+import { Data, randomRevision } from "../data"
 import type { Database } from "../database"
+import { jsonWrite } from "../utils/jsonWrite"
 import { NotFound } from "./errors/NotFound"
 import { RevisionMismatch } from "./errors/RevisionMismatch"
 import { get } from "./get"
@@ -23,7 +24,7 @@ export async function put(db: Database, input: Data): Promise<Data> {
     "@updatedAt": Date.now(),
   }
 
-  await dataWrite(result, resolve(db.path, id))
+  await jsonWrite(result, resolve(db.path, id))
 
   return result
 }
