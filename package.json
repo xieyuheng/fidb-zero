@@ -24,6 +24,7 @@
     "@xieyuheng/command-line": "^0.0.10",
     "@xieyuheng/ty": "^0.1.20",
     "detect-port": "^1.5.1",
+    "fast-csv": "^4.3.6",
     "immutable": "^4.2.4",
     "lodash": "^4.17.21",
     "node-watch": "^0.7.3",
