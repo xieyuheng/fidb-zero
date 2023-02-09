@@ -29,21 +29,23 @@ export async function handleFile(
     return await Db.create(db, { ...json, "@id": id })
   }
 
+  const schema = ty.omitMany(dataSchema, ["@id", "@createdAt", "@updatedAt"])
+
   if (request.method === "PUT") {
     const json = await requestJsonObject(request)
-    const input = ty.omit(dataSchema, "@id").validate(json)
+    const input = schema.validate(json)
     return await Db.put(db, { ...input, "@id": id })
   }
 
   if (request.method === "PATCH") {
     const json = await requestJsonObject(request)
-    const input = ty.omit(dataSchema, "@id").validate(json)
+    const input = schema.validate(json)
     return await Db.patch(db, { ...input, "@id": id })
   }
 
   if (request.method === "DELETE") {
     const json = await requestJsonObject(request)
-    const input = ty.omit(dataSchema, "@id").validate(json)
+    const input = schema.validate(json)
     return await Db.delete(db, { ...input, "@id": id })
   }
 

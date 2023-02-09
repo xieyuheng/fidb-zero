@@ -1,12 +1,19 @@
 import { resolve } from "node:path"
 import { Data, randomRevision } from "../data"
 import type { Database } from "../database"
+import type { JsonObject } from "../utils/Json"
 import { jsonWrite } from "../utils/jsonWrite"
 import { NotFound } from "./errors/NotFound"
 import { RevisionMismatch } from "./errors/RevisionMismatch"
 import { get } from "./get"
 
-export async function put(db: Database, input: Data): Promise<Data> {
+export async function put(
+  db: Database,
+  input: JsonObject & {
+    "@id": string
+    "@revision": string
+  },
+): Promise<Data> {
   const id = input["@id"]
   const data = await get(db, id)
   if (data === undefined) {
@@ -21,6 +28,7 @@ export async function put(db: Database, input: Data): Promise<Data> {
     ...input,
     "@id": id,
     "@revision": randomRevision(),
+    "@createdAt": data["@createdAt"],
     "@updatedAt": Date.now(),
   }
 
