@@ -1,10 +1,10 @@
 # token based permission
 
-[permission] schema for token -- has `permission` and `date`
+[permission] schema for token -- has `permission`
 
-[permission] store `fidb-tokens/<token-name>`
+[permission] store `fidb/tokens/<token-name>`
 
-fidb-manager use admin token
+[permission] admin and readonly token -- used by `fidb-manager`
 
 # index
 
