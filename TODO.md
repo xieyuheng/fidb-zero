@@ -1,7 +1,3 @@
-`dataSchema`
-
-- fix `getOrFail` typing
-
 # token based permission
 
 [permission] schema for token -- has `permission` and `date`
