@@ -1,6 +1,8 @@
 import Http from "node:http"
 import type { Database } from "../database"
+import { AlreadyExists } from "../errors/AlreadyExists"
 import { NotFound } from "../errors/NotFound"
+import { RevisionMismatch } from "../errors/RevisionMismatch"
 import { responseSend } from "../utils/responseSend"
 import { handle } from "./handle"
 
@@ -35,6 +37,10 @@ export async function serve(options: ServeOptions): Promise<void> {
       const body = { error: { message } }
       if (error instanceof NotFound) {
         responseSend(response, { status: 404, headers, body })
+      } else if (error instanceof AlreadyExists) {
+        responseSend(response, { status: 403, headers, body })
+      } else if (error instanceof RevisionMismatch) {
+        responseSend(response, { status: 409, headers, body })
       } else {
         responseSend(response, { status: 500, headers, body })
       }
