@@ -4,16 +4,30 @@ import type { Json } from "./Json"
 export function responseSend(
   response: Http.ServerResponse,
   options: {
-    status?: number
+    status?: {
+      code?: number
+      message?: string
+    }
     headers?: Record<string, string | undefined>
     body?: Json
   },
 ) {
-  response.writeHead(options.status || 200, options.headers || {})
+  if (options.status?.code) {
+    response.statusCode = options.status?.code
+  }
+
+  if (options.status?.message) {
+    response.statusMessage = options.status?.message
+  }
+  if (options.headers) {
+    for (const [name, value] of Object.entries(options.headers))
+      if (value !== undefined) {
+        response.setHeader(name, value)
+      }
+  }
 
   if (options.body) {
-    const text = JSON.stringify(options.body)
-    response.write(text)
+    response.write(JSON.stringify(options.body))
   }
 
   response.end()

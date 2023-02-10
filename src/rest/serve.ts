@@ -17,7 +17,8 @@ export async function serve(options: ServeOptions): Promise<void> {
 
   const server = Http.createServer(async (request, response) => {
     if (request.method === "OPTIONS") {
-      return preflight(request, response)
+      preflight(request, response)
+      return
     }
 
     const headers = {
@@ -28,21 +29,20 @@ export async function serve(options: ServeOptions): Promise<void> {
     try {
       const body = await handle(request, db)
       if (body === undefined) {
-        responseSend(response, { status: 204, headers })
+        responseSend(response, { status: { code: 204 }, headers })
       } else {
-        responseSend(response, { status: 200, headers, body })
+        responseSend(response, { status: { code: 200 }, headers, body })
       }
     } catch (error) {
-      const message = error instanceof Error ? error.message : "Unknown Error"
-      const body = { error: { message } }
+      const message = error instanceof Error ? error.message : "Unknown error"
       if (error instanceof NotFound) {
-        responseSend(response, { status: 404, headers, body })
+        responseSend(response, { status: { code: 404, message }, headers })
       } else if (error instanceof AlreadyExists) {
-        responseSend(response, { status: 403, headers, body })
+        responseSend(response, { status: { code: 403, message }, headers })
       } else if (error instanceof RevisionMismatch) {
-        responseSend(response, { status: 409, headers, body })
+        responseSend(response, { status: { code: 409, message }, headers })
       } else {
-        responseSend(response, { status: 500, headers, body })
+        responseSend(response, { status: { code: 500, message }, headers })
       }
     }
   })
@@ -76,5 +76,5 @@ function preflight(
       request.headers["access-control-request-headers"]
   }
 
-  return responseSend(response, { headers })
+  responseSend(response, { headers })
 }
