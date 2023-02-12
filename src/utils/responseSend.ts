@@ -13,11 +13,12 @@ export function responseSend(
   },
 ) {
   if (options.status?.code) {
-    response.statusCode = options.status?.code
+    response.statusCode = options.status.code
   }
 
   if (options.status?.message) {
-    response.statusMessage = options.status?.message
+    const message = options.status.message.replaceAll("\n", "; ")
+    response.statusMessage = message
   }
   if (options.headers) {
     for (const [name, value] of Object.entries(options.headers))
