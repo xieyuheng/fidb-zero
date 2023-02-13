@@ -41,7 +41,7 @@ a **file system resolver for http semantics**.
 >
 > - [RFC 9110 -- HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html).
 
-# About relations between SQL tables
+# About relations between SQL tabless
 
 The most used relations between SQL tables
 are `has one` and `has many`,
