@@ -5,7 +5,7 @@ import { importDataArrayFromCsv } from "../../data/importDataArrayFromCsv"
 import { jsonWrite } from "../../utils/jsonWrite"
 
 type Args = { database: string }
-type Opts = { from: string; directory: string; "path-key": string }
+type Opts = { from: string; directory: string; "primary-key": string }
 
 export class ImportCommand extends Command<Args> {
   name = "import"
@@ -13,7 +13,11 @@ export class ImportCommand extends Command<Args> {
   description = "Import data to a database"
 
   args = { database: ty.string() }
-  opts = { from: ty.string(), directory: ty.string(), "path-key": ty.string() }
+  opts = {
+    from: ty.string(),
+    directory: ty.string(),
+    "primary-key": ty.string(),
+  }
 
   // prettier-ignore
   help(runner: CommandRunner): string {
@@ -23,7 +27,7 @@ export class ImportCommand extends Command<Args> {
       `The ${blue(this.name)} command takes data from a file,`,
       `and import them to a database directory.`,
       ``,
-      blue(`  ${runner.name} ${this.name} <database> --from <file> --directory <directory> --path-key <key-name>`),
+      blue(`  ${runner.name} ${this.name} <database> --from <file> --directory <directory> --primary-key <key-name>`),
       ``,
     ].join("\n")
   }
@@ -31,7 +35,7 @@ export class ImportCommand extends Command<Args> {
   async execute(argv: Args & Opts): Promise<void> {
     const results = await importDataArrayFromCsv(argv.from, {
       directory: argv.directory,
-      pathKey: argv["path-key"],
+      primaryKey: argv["primary-key"],
     })
 
     for (const data of results) {

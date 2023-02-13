@@ -6,19 +6,19 @@ export async function importDataArrayFromCsv(
   file: string,
   options: {
     directory: string
-    pathKey: string
+    primaryKey: string
   },
 ): Promise<Array<Data>> {
   const inputs = await readCsv(file)
 
   const results = inputs.map<Data>((input) => {
-    const path = `${options.directory}/${input[options.pathKey]}`
+    const path = `${options.directory}/${input[options.primaryKey]}`
 
     if (typeof path !== "string") {
       throw new Error(
         [
-          `[importDataArrayFromCsv] export path string undefined pathKey`,
-          `  pathKey: ${options.pathKey}`,
+          `[importDataArrayFromCsv] export path string undefined primaryKey`,
+          `  primaryKey: ${options.primaryKey}`,
           `  path: ${path}`,
           `  input: ${JSON.stringify(input)}`,
         ].join("\n"),
