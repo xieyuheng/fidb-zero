@@ -1,9 +1,3 @@
-[db] subtable -- "has many" relation
-[db] subdata -- "has one" relation
-
-[rest] subtable -- "has many" relation
-[rest] subdata -- "has one" relation
-
 # token based permission
 
 [permission] schema for token -- has `permission`
