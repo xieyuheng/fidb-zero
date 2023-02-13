@@ -14,7 +14,7 @@ OOP API create a `db` object from options,
 and all the methods are in `db`.
 
 ```typescript
-type Data = JsonObject & { "@path": string }
+type Data = JsonObject & { "@id": string }
 type FindOptions = { properties: Record<string, JsonAtom> }
 
 class Database {
@@ -39,7 +39,7 @@ What FP API will be?
 
 ```typescript
 type Database = { path: string }
-type Data = JsonObject & { "@path": string }
+type Data = JsonObject & { "@id": string }
 type FindOptions = { properties: Record<string, JsonAtom> }
 
 Db.resolve(db: Database, path: string): string
