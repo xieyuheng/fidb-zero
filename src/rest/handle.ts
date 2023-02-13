@@ -68,11 +68,18 @@ export async function handle(
   }
 
   if (request.method === "DELETE") {
-    if (path === "") {
-      return
+    if (kind === "directory") {
+      if (path === "") {
+        return
+      }
+
+      return await Db.deleteDirectory(db, path)
     }
 
-    return await Db.deleteDirectory(db, path)
+    const input = ty
+      .omitMany(dataSchema, ["@path", "@createdAt", "@updatedAt"])
+      .validate(await requestJsonObject(request))
+    return await Db.delete(db, { ...input, "@path": path })
   }
 
   throw new Error(

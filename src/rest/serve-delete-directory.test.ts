@@ -19,7 +19,7 @@ test("serve-delete-directory", async () => {
     expect(directories.includes("users")).toEqual(true)
   }
 
-  await fetch(`${url}/users`, { method: "DELETE" })
+  await fetch(`${url}/users?kind=directory`, { method: "DELETE" })
 
   {
     const response = await fetch(`${url}?kind=list`)
