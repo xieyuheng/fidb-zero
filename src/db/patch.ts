@@ -1,10 +1,9 @@
 import { resolve } from "node:path"
-import { Data, randomRevision } from "../data"
+import { Data, dataWrite, randomRevision } from "../data"
 import type { Database } from "../database"
 import { NotFound } from "../errors/NotFound"
 import { RevisionMismatch } from "../errors/RevisionMismatch"
 import type { JsonObject } from "../utils/Json"
-import { jsonWrite } from "../utils/jsonWrite"
 import { get } from "./get"
 
 export async function patch(
@@ -32,7 +31,7 @@ export async function patch(
     "@updatedAt": Date.now(),
   }
 
-  await jsonWrite(result, resolve(db.path, path))
+  await dataWrite(result, resolve(db.path, path))
 
   return result
 }

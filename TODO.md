@@ -1,11 +1,16 @@
-[db] save data to `/:id/index.json` -- `application/json` resolves to this
+[db] save data to `/:path/index.json` -- `application/json` resolves to `/:path/index.json`
+
+- handled by `readData` and `dataWrite`
 
 [rest] GET `/:directory` -- `listDirectories` vs `find`?
 
 - maybe use custom http method name
 
-[db] subtable "has many" relation
-[db] subdata "has one" relation
+[db] subtable -- "has many" relation
+[db] subdata -- "has one" relation
+
+[rest] subtable -- "has many" relation
+[rest] subdata -- "has one" relation
 
 # token based permission
 

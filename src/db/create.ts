@@ -1,10 +1,8 @@
 import { resolve } from "node:path"
-import type { Data } from "../data"
-import { randomRevision } from "../data"
+import { Data, dataWrite, randomRevision } from "../data"
 import type { Database } from "../database"
 import { AlreadyExists } from "../errors/AlreadyExists"
 import type { JsonObject } from "../utils/Json"
-import { jsonWrite } from "../utils/jsonWrite"
 import { get } from "./get"
 
 export async function create(
@@ -24,7 +22,7 @@ export async function create(
     "@updatedAt": Date.now(),
   }
 
-  await jsonWrite(result, resolve(db.path, path))
+  await dataWrite(result, resolve(db.path, path))
 
   return result
 }

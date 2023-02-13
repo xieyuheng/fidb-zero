@@ -1,7 +1,7 @@
-import fs from "node:fs"
-import type { Data } from "./Data"
+import { readJson } from "../utils/readJson"
+import { Data, dataSchema } from "./Data"
 
 export async function readData(path: string): Promise<Data> {
-  const text = await fs.promises.readFile(path, "utf-8")
-  return JSON.parse(text)
+  const json = await readJson(path)
+  return dataSchema.validate(json)
 }
