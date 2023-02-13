@@ -1,5 +1,5 @@
-import fs from "node:fs"
 import { resolve } from "node:path"
+import { deleteData } from "../data"
 import type { Database } from "../database"
 import { RevisionMismatch } from "../errors/RevisionMismatch"
 import type { JsonObject } from "../utils/Json"
@@ -21,5 +21,5 @@ export async function del(
     throw new RevisionMismatch(`[delete] revision mismatch`)
   }
 
-  await fs.promises.rm(resolve(db.path, path), { force: true })
+  await deleteData(resolve(db.path, path))
 }

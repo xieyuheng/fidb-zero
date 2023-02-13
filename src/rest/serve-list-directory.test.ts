@@ -56,29 +56,33 @@ test("serve-list-directory", async () => {
     (await (await fetch(`${url}`)).json()).directories.includes("posts"),
   ).toEqual(true)
 
-  await fetch(`${url}/users/tokens/1`, {
+  await fetch(`${url}/users/1/tokens/1`, {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({}),
   })
 
   expect(
-    (await (await fetch(`${url}/users`)).json()).directories.length,
+    (await (await fetch(`${url}/users/1`)).json()).directories.length,
   ).toEqual(1)
   expect(
-    (await (await fetch(`${url}/users`)).json()).directories.includes("tokens"),
+    (await (await fetch(`${url}/users/1`)).json()).directories.includes(
+      "tokens",
+    ),
   ).toEqual(true)
 
-  await fetch(`${url}/users/tokens/2`, {
+  await fetch(`${url}/users/1/tokens/2`, {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({}),
   })
 
   expect(
-    (await (await fetch(`${url}/users`)).json()).directories.length,
+    (await (await fetch(`${url}/users/1`)).json()).directories.length,
   ).toEqual(1)
   expect(
-    (await (await fetch(`${url}/users`)).json()).directories.includes("tokens"),
+    (await (await fetch(`${url}/users/1`)).json()).directories.includes(
+      "tokens",
+    ),
   ).toEqual(true)
 })

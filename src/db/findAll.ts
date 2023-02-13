@@ -15,7 +15,7 @@ export async function* findAll(
     })
 
     for await (const dirEntry of dir) {
-      if (dirEntry.isFile()) {
+      if (dirEntry.isDirectory()) {
         const data = await get(db, `${directory}/${dirEntry.name}`)
         if (data !== undefined) {
           yield data

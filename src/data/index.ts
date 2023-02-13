@@ -1,4 +1,5 @@
 export * from "./Data"
 export * from "./dataWrite"
+export * from "./deleteData"
 export * from "./randomRevision"
 export * from "./readData"

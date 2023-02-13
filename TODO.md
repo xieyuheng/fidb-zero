@@ -1,9 +1,6 @@
-[db] save data to `/:path/index.json` -- `application/json` resolves to `/:path/index.json`
-
-- handled by `readData` and `dataWrite`
-
 [rest] GET `/:directory` -- `listDirectories` vs `find`?
 
+- fix `src/rest/serve-crud-file.test.ts`
 - maybe use custom http method name
 
 [db] subtable -- "has many" relation
