@@ -1,5 +1,3 @@
-[command] `ImportCommand` -- use `dataWrite` instead of `jsonWrite`
-
 [db] subtable -- "has many" relation
 [db] subdata -- "has one" relation
 

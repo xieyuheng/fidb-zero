@@ -1,8 +1,8 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
 import { resolve } from "path"
+import { dataWrite } from "../../data"
 import { importDataArrayFromCsv } from "../../data/importDataArrayFromCsv"
-import { jsonWrite } from "../../utils/jsonWrite"
 
 type Args = { database: string }
 type Opts = { from: string; directory: string; "primary-key": string }
@@ -24,10 +24,10 @@ export class ImportCommand extends Command<Args> {
     const { blue } = this.colors
 
     return [
-      `The ${blue(this.name)} command takes data from a file,`,
+      `The ${blue(this.name)} command takes data from a csv file,`,
       `and import them to a database directory.`,
       ``,
-      blue(`  ${runner.name} ${this.name} <database> --from <file> --directory <directory> --primary-key <key-name>`),
+      blue(`  ${runner.name} ${this.name} <database> --from <csv-file> --directory <directory> --primary-key <key-name>`),
       ``,
     ].join("\n")
   }
@@ -39,9 +39,9 @@ export class ImportCommand extends Command<Args> {
     })
 
     for (const data of results) {
-      const file = resolve(argv.database, data["@path"])
-      await jsonWrite(data, file)
-      console.log(">", file)
+      const path = resolve(argv.database, data["@path"])
+      await dataWrite(data, path)
+      console.log(">", path)
     }
 
     console.log({
