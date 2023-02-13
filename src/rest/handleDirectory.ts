@@ -37,8 +37,6 @@ export async function handleDirectory(
     }
 
     return {
-      root: db.path,
-      directory,
       directories: await arrayFromAsyncIterable(
         Db.listDirectories(db, directory),
       ),

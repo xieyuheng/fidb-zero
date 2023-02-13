@@ -4,8 +4,6 @@ import { serveTestDb } from "./serveTestDb"
 test("serve-create-directory", async () => {
   const { url, db } = await serveTestDb()
 
-  expect((await (await fetch(`${url}`)).json()).root).toEqual(db.path)
-  expect((await (await fetch(`${url}`)).json()).directory).toEqual("")
   expect((await (await fetch(`${url}`)).json()).directories.length).toEqual(0)
 
   await fetch(`${url}`, {
@@ -16,8 +14,6 @@ test("serve-create-directory", async () => {
     }),
   })
 
-  expect((await (await fetch(`${url}`)).json()).root).toEqual(db.path)
-  expect((await (await fetch(`${url}`)).json()).directory).toEqual("")
   expect((await (await fetch(`${url}`)).json()).directories.length).toEqual(1)
   expect(
     (await (await fetch(`${url}`)).json()).directories.includes("users"),

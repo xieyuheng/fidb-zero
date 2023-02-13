@@ -1,3 +1,5 @@
+[rest] GET `/:directory` -- support page
+
 # token based permission
 
 [permission] schema for token -- has `permission`

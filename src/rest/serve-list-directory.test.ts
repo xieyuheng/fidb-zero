@@ -4,8 +4,6 @@ import { serveTestDb } from "./serveTestDb"
 test("serve-list-directory", async () => {
   const { url, db } = await serveTestDb()
 
-  expect((await (await fetch(`${url}`)).json()).root).toEqual(db.path)
-  expect((await (await fetch(`${url}`)).json()).directory).toEqual("")
   expect((await (await fetch(`${url}`)).json()).directories.length).toEqual(0)
 
   await fetch(`${url}/users/1`, {
@@ -14,8 +12,6 @@ test("serve-list-directory", async () => {
     body: JSON.stringify({}),
   })
 
-  expect((await (await fetch(`${url}`)).json()).root).toEqual(db.path)
-  expect((await (await fetch(`${url}`)).json()).directory).toEqual("")
   expect((await (await fetch(`${url}`)).json()).directories.length).toEqual(1)
   expect(
     (await (await fetch(`${url}`)).json()).directories.includes("users"),
@@ -27,8 +23,6 @@ test("serve-list-directory", async () => {
     body: JSON.stringify({}),
   })
 
-  expect((await (await fetch(`${url}`)).json()).root).toEqual(db.path)
-  expect((await (await fetch(`${url}`)).json()).directory).toEqual("")
   expect((await (await fetch(`${url}`)).json()).directories.length).toEqual(1)
   expect(
     (await (await fetch(`${url}`)).json()).directories.includes("users"),
@@ -40,8 +34,6 @@ test("serve-list-directory", async () => {
     body: JSON.stringify({}),
   })
 
-  expect((await (await fetch(`${url}`)).json()).root).toEqual(db.path)
-  expect((await (await fetch(`${url}`)).json()).directory).toEqual("")
   expect((await (await fetch(`${url}`)).json()).directories.length).toEqual(2)
   expect(
     (await (await fetch(`${url}`)).json()).directories.includes("users"),
@@ -56,8 +48,6 @@ test("serve-list-directory", async () => {
     body: JSON.stringify({}),
   })
 
-  expect((await (await fetch(`${url}`)).json()).root).toEqual(db.path)
-  expect((await (await fetch(`${url}`)).json()).directory).toEqual("")
   expect((await (await fetch(`${url}`)).json()).directories.length).toEqual(2)
   expect(
     (await (await fetch(`${url}`)).json()).directories.includes("users"),
@@ -72,10 +62,6 @@ test("serve-list-directory", async () => {
     body: JSON.stringify({}),
   })
 
-  expect((await (await fetch(`${url}/users`)).json()).root).toEqual(db.path)
-  expect((await (await fetch(`${url}/users`)).json()).directory).toEqual(
-    "users",
-  )
   expect(
     (await (await fetch(`${url}/users`)).json()).directories.length,
   ).toEqual(1)
@@ -89,10 +75,6 @@ test("serve-list-directory", async () => {
     body: JSON.stringify({}),
   })
 
-  expect((await (await fetch(`${url}/users`)).json()).root).toEqual(db.path)
-  expect((await (await fetch(`${url}/users`)).json()).directory).toEqual(
-    "users",
-  )
   expect(
     (await (await fetch(`${url}/users`)).json()).directories.length,
   ).toEqual(1)
