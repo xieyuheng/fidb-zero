@@ -1,8 +1,4 @@
-[command] rename path-key to primary-key
-
 [db] save data to `/:id/index.json` -- `application/json` resolves to this
-
-[diray] file system resolver with http semantic
 
 [rest] GET `/:directory` -- `listDirectories` vs `find`?
 
