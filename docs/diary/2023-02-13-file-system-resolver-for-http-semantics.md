@@ -11,10 +11,18 @@ is to use path patterns.
 One require of the permission system is to grant a user
 only the permission to read and write his own data.
 
+For example, the path patterns can be:
+
+```
+/users/
+/users/xieyuheng/
+/users/xieyuheng/*/posts/
+```
+
 Thus we change how data are stored, from
 
 ```
-/users/xieyuheng
+/users/xieyuheng // json file
 ```
 
 to
