@@ -1,4 +1,13 @@
-[rest] GET `/:directory` -- support page
+[db] save data to `/:id/index.json` -- `application/json` resolves to this
+
+[diray] file system resolver with http semantic
+
+[rest] GET `/:directory` -- `listDirectories` vs `find`?
+
+- maybe use custom http method name
+
+[db] subtable "has many" relation
+[db] subdata "has one" relation
 
 # token based permission
 
