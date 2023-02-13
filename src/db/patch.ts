@@ -10,14 +10,14 @@ import { get } from "./get"
 export async function patch(
   db: Database,
   input: JsonObject & {
-    "@id": string
+    "@path": string
     "@revision": string
   },
 ): Promise<Data> {
-  const id = input["@id"]
-  const data = await get(db, id)
+  const path = input["@path"]
+  const data = await get(db, path)
   if (data === undefined) {
-    throw new NotFound(`[patch] not found, id ${id}`)
+    throw new NotFound(`[patch] not found, path ${path}`)
   }
 
   if (data["@revision"] !== input["@revision"]) {
@@ -27,12 +27,12 @@ export async function patch(
   const result = {
     ...data,
     ...input,
-    "@id": id,
+    "@path": path,
     "@revision": randomRevision(),
     "@updatedAt": Date.now(),
   }
 
-  await jsonWrite(result, resolve(db.path, id))
+  await jsonWrite(result, resolve(db.path, path))
 
   return result
 }

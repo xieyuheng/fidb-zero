@@ -10,14 +10,14 @@ import { get } from "./get"
 export async function put(
   db: Database,
   input: JsonObject & {
-    "@id": string
+    "@path": string
     "@revision": string
   },
 ): Promise<Data> {
-  const id = input["@id"]
-  const data = await get(db, id)
+  const path = input["@path"]
+  const data = await get(db, path)
   if (data === undefined) {
-    throw new NotFound(`[put] not found, id ${id}`)
+    throw new NotFound(`[put] not found, path ${path}`)
   }
 
   if (data["@revision"] !== input["@revision"]) {
@@ -26,13 +26,13 @@ export async function put(
 
   const result = {
     ...input,
-    "@id": id,
+    "@path": path,
     "@revision": randomRevision(),
     "@createdAt": data["@createdAt"],
     "@updatedAt": Date.now(),
   }
 
-  await jsonWrite(result, resolve(db.path, id))
+  await jsonWrite(result, resolve(db.path, path))
 
   return result
 }

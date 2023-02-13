@@ -9,10 +9,10 @@ import { requestJsonObject } from "../utils/requestJsonObject"
 export async function handleFile(
   request: Http.IncomingMessage,
   db: Database,
-  id: string,
+  path: string,
 ): Promise<Json | void> {
   if (request.method === "GET") {
-    return await Db.getOrFail(db, id)
+    return await Db.getOrFail(db, path)
   }
 
   if (request.headers["content-type"] !== "application/json") {
@@ -26,34 +26,34 @@ export async function handleFile(
 
   if (request.method === "POST") {
     const json = await requestJsonObject(request)
-    return await Db.create(db, { ...json, "@id": id })
+    return await Db.create(db, { ...json, "@path": path })
   }
 
-  const schema = ty.omitMany(dataSchema, ["@id", "@createdAt", "@updatedAt"])
+  const schema = ty.omitMany(dataSchema, ["@path", "@createdAt", "@updatedAt"])
 
   if (request.method === "PUT") {
     const json = await requestJsonObject(request)
     const input = schema.validate(json)
-    return await Db.put(db, { ...input, "@id": id })
+    return await Db.put(db, { ...input, "@path": path })
   }
 
   if (request.method === "PATCH") {
     const json = await requestJsonObject(request)
     const input = schema.validate(json)
-    return await Db.patch(db, { ...input, "@id": id })
+    return await Db.patch(db, { ...input, "@path": path })
   }
 
   if (request.method === "DELETE") {
     const json = await requestJsonObject(request)
     const input = schema.validate(json)
-    return await Db.delete(db, { ...input, "@id": id })
+    return await Db.delete(db, { ...input, "@path": path })
   }
 
   throw new Error(
     [
       `[handleFile] unhandled http request`,
       `  method: ${request.method}`,
-      `  id: ${id}`,
+      `  path: ${path}`,
     ].join("\n"),
   )
 }

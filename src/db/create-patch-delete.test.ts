@@ -6,7 +6,7 @@ test("create-patch-delete", async () => {
   const db = await prepareTestDb()
 
   const created = await Db.create(db, {
-    "@id": "users/xieyuheng",
+    "@path": "users/xieyuheng",
     username: "xieyuheng",
     name: "Xie Yuheng",
   })
@@ -14,7 +14,7 @@ test("create-patch-delete", async () => {
   expect(await Db.get(db, "users/xieyuheng")).toEqual(created)
 
   const patched = await Db.patch(db, {
-    "@id": "users/xieyuheng",
+    "@path": "users/xieyuheng",
     "@revision": created["@revision"],
     name: "谢宇恒",
   })

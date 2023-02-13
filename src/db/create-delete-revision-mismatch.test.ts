@@ -8,14 +8,14 @@ test("create-delete-revision-mismatch", async () => {
   const db = await prepareTestDb()
 
   await Db.create(db, {
-    "@id": "users/xieyuheng",
+    "@path": "users/xieyuheng",
     username: "xieyuheng",
     name: "Xie Yuheng",
   })
 
   await expect(
     Db.delete(db, {
-      "@id": "users/xieyuheng",
+      "@path": "users/xieyuheng",
       "@revision": randomRevision(),
       name: "谢宇恒",
     }),

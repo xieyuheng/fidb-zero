@@ -6,20 +6,20 @@ test("serve-find-page", async () => {
   const { url } = await serveTestDb()
 
   const array = [
-    { "@id": "users/0", country: "China" },
-    { "@id": "users/1" },
-    { "@id": "users/2", country: "China" },
-    { "@id": "users/3" },
-    { "@id": "users/4", country: "China" },
-    { "@id": "users/5" },
-    { "@id": "users/6", country: "China" },
-    { "@id": "users/7" },
-    { "@id": "users/8", country: "China" },
-    { "@id": "users/9" },
+    { "@path": "users/0", country: "China" },
+    { "@path": "users/1" },
+    { "@path": "users/2", country: "China" },
+    { "@path": "users/3" },
+    { "@path": "users/4", country: "China" },
+    { "@path": "users/5" },
+    { "@path": "users/6", country: "China" },
+    { "@path": "users/7" },
+    { "@path": "users/8", country: "China" },
+    { "@path": "users/9" },
   ]
 
   for (const data of array) {
-    await fetch(`${url}/${data["@id"]}`, {
+    await fetch(`${url}/${data["@path"]}`, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),

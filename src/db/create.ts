@@ -9,12 +9,12 @@ import { get } from "./get"
 
 export async function create(
   db: Database,
-  input: JsonObject & { "@id": string },
+  input: JsonObject & { "@path": string },
 ): Promise<Data> {
-  const id = input["@id"]
-  const data = await get(db, id)
+  const path = input["@path"]
+  const data = await get(db, path)
   if (data !== undefined) {
-    throw new AlreadyExists(`[create] already exists, @id: ${id}`)
+    throw new AlreadyExists(`[create] already exists, @path: ${path}`)
   }
 
   const result = {
@@ -24,7 +24,7 @@ export async function create(
     "@updatedAt": Date.now(),
   }
 
-  await jsonWrite(result, resolve(db.path, id))
+  await jsonWrite(result, resolve(db.path, path))
 
   return result
 }

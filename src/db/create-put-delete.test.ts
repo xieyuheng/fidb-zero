@@ -6,7 +6,7 @@ test("create-put-delete", async () => {
   const db = await prepareTestDb()
 
   const created = await Db.create(db, {
-    "@id": "users/xieyuheng",
+    "@path": "users/xieyuheng",
     username: "xieyuheng",
     name: "Xie Yuheng",
   })

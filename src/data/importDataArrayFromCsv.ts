@@ -6,20 +6,20 @@ export async function importDataArrayFromCsv(
   file: string,
   options: {
     directory: string
-    idKey: string
+    pathKey: string
   },
 ): Promise<Array<Data>> {
   const inputs = await readCsv(file)
 
   const results = inputs.map<Data>((input) => {
-    const id = `${options.directory}/${input[options.idKey]}`
+    const path = `${options.directory}/${input[options.pathKey]}`
 
-    if (typeof id !== "string") {
+    if (typeof path !== "string") {
       throw new Error(
         [
-          `[importDataArrayFromCsv] export id string undefined idKey`,
-          `  idKey: ${options.idKey}`,
-          `  id: ${id}`,
+          `[importDataArrayFromCsv] export path string undefined pathKey`,
+          `  pathKey: ${options.pathKey}`,
+          `  path: ${path}`,
           `  input: ${JSON.stringify(input)}`,
         ].join("\n"),
       )
@@ -27,7 +27,7 @@ export async function importDataArrayFromCsv(
 
     return {
       ...input,
-      "@id": id,
+      "@path": path,
       "@revision": randomRevision(),
       "@createdAt": Date.now(),
       "@updatedAt": Date.now(),

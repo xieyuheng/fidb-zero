@@ -9,10 +9,10 @@ import { get } from "./get"
 
 export async function del(
   db: Database,
-  input: JsonObject & { "@id": string; "@revision": string },
+  input: JsonObject & { "@path": string; "@revision": string },
 ): Promise<void> {
-  const id = input["@id"]
-  const data = await get(db, id)
+  const path = input["@path"]
+  const data = await get(db, path)
   if (data === undefined) {
     return
   }
@@ -21,5 +21,5 @@ export async function del(
     throw new RevisionMismatch(`[delete] revision mismatch`)
   }
 
-  await fs.promises.rm(resolve(db.path, id), { force: true })
+  await fs.promises.rm(resolve(db.path, path), { force: true })
 }

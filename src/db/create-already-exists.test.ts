@@ -7,16 +7,16 @@ test("create-already-exists", async () => {
   const db = await prepareTestDb()
 
   const created = await Db.create(db, {
-    "@id": `users/${crypto.randomUUID()}`,
+    "@path": `users/${crypto.randomUUID()}`,
     username: "xieyuheng",
     name: "Xie Yuheng",
   })
 
-  expect(await Db.get(db, created["@id"])).toEqual(created)
+  expect(await Db.get(db, created["@path"])).toEqual(created)
 
   await expect(
     Db.create(db, {
-      "@id": created["@id"],
+      "@path": created["@path"],
       username: "xieyuheng",
       name: "Xie Yuheng",
     }),

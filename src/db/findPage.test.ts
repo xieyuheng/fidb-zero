@@ -6,16 +6,16 @@ import { prepareTestDb } from "./prepareTestDb"
 test("findPage", async () => {
   const db = await prepareTestDb()
 
-  await Db.create(db, { "@id": "users/0", country: "China" })
-  await Db.create(db, { "@id": "users/1" })
-  await Db.create(db, { "@id": "users/2", country: "China" })
-  await Db.create(db, { "@id": "users/3" })
-  await Db.create(db, { "@id": "users/4", country: "China" })
-  await Db.create(db, { "@id": "users/5" })
-  await Db.create(db, { "@id": "users/6", country: "China" })
-  await Db.create(db, { "@id": "users/7" })
-  await Db.create(db, { "@id": "users/8", country: "China" })
-  await Db.create(db, { "@id": "users/9" })
+  await Db.create(db, { "@path": "users/0", country: "China" })
+  await Db.create(db, { "@path": "users/1" })
+  await Db.create(db, { "@path": "users/2", country: "China" })
+  await Db.create(db, { "@path": "users/3" })
+  await Db.create(db, { "@path": "users/4", country: "China" })
+  await Db.create(db, { "@path": "users/5" })
+  await Db.create(db, { "@path": "users/6", country: "China" })
+  await Db.create(db, { "@path": "users/7" })
+  await Db.create(db, { "@path": "users/8", country: "China" })
+  await Db.create(db, { "@path": "users/9" })
 
   expect(
     (
