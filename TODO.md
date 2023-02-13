@@ -1,12 +1,25 @@
-# token based permission
+# tokens
 
-[permission] schema for token -- has `permission`
+> token based authorization,
+> path pattern based permission.
+
+[permission] `Token` and `tokenSchema` -- has `permission`
 
 [permission] store `fidb/tokens/<token-name>`
 
 [permission] admin and readonly token -- used by `fidb-manager`
 
-# index
+# data link
+
+```
+link:/users/xieyuheng
+```
+
+# password login
+
+# mail login
+
+# indexing
 
 `Db.index(db, directory, key)`
 
@@ -17,6 +30,8 @@
 `Db.find` -- use index
 
 `Db.find` -- support deref a property which is an `id` to another data
+
+# schema
 
 # fi
 
