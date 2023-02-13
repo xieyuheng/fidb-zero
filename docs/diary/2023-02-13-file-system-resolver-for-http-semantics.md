@@ -40,3 +40,21 @@ a **file system resolver for http semantics**.
 > implemented. However, there are no such limitations in practice.
 >
 > - [RFC 9110 -- HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html).
+
+# About relations between SQL tables
+
+The most used relations between SQL tables
+are `has one` and `has many`,
+which are naturally expressed by nested directories.
+
+For example, user has many posts, so we the following subdirectory:
+
+```
+/users/
+/users/*/posts/
+```
+
+When designing API or syntax,
+we often should optimize for the most used use case,
+our resolver can be viewed as optimizing for
+`has one` and `has many` relations.
