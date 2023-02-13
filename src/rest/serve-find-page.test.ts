@@ -31,6 +31,7 @@ test("serve-find-page", async () => {
       await (
         await fetch(
           `${url}/users?${qs.stringify({
+            kind: "find",
             page: 1,
             size: 3,
             properties: {
@@ -47,6 +48,7 @@ test("serve-find-page", async () => {
       await (
         await fetch(
           `${url}/users?${qs.stringify({
+            kind: "find",
             page: 2,
             size: 3,
             properties: {

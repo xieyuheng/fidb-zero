@@ -4,22 +4,26 @@ import { serveTestDb } from "./serveTestDb"
 test("serve-delete-directory", async () => {
   const { url, db } = await serveTestDb()
 
-  expect((await (await fetch(`${url}`)).json()).directories.length).toEqual(0)
+  {
+    const response = await fetch(`${url}?kind=list`)
+    const { directories } = await response.json()
+    expect(directories.length).toEqual(0)
+  }
 
-  await fetch(`${url}`, {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify({
-      directory: "users",
-    }),
-  })
+  await fetch(`${url}/users?kind=directory`, { method: "POST" })
 
-  expect((await (await fetch(`${url}`)).json()).directories.length).toEqual(1)
-  expect(
-    (await (await fetch(`${url}`)).json()).directories.includes("users"),
-  ).toEqual(true)
+  {
+    const response = await fetch(`${url}?kind=list`)
+    const { directories } = await response.json()
+    expect(directories.length).toEqual(1)
+    expect(directories.includes("users")).toEqual(true)
+  }
 
   await fetch(`${url}/users`, { method: "DELETE" })
 
-  expect((await (await fetch(`${url}`)).json()).directories.length).toEqual(0)
+  {
+    const response = await fetch(`${url}?kind=list`)
+    const { directories } = await response.json()
+    expect(directories.length).toEqual(0)
+  }
 })
