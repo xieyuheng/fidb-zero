@@ -1,7 +1,5 @@
 # token
 
-`Db.patch` take `path`, do not forget to normalize `@path`
-`Db.put` take `path`, do not forget to normalize `@path`
 `Db.delete` take `path`, do not forget to normalize `@path`
 
 `dataSchema` with given type

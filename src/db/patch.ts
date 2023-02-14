@@ -1,3 +1,4 @@
+import { normalize } from "node:path"
 import { Data, randomRevision } from "../data"
 import type { Database } from "../database"
 import { NotFound } from "../errors/NotFound"
@@ -8,12 +9,9 @@ import { writeData } from "./utils/writeData"
 
 export async function patch(
   db: Database,
-  input: JsonObject & {
-    "@path": string
-    "@revision": string
-  },
+  path: string,
+  input: JsonObject & { "@revision": string },
 ): Promise<Data> {
-  const path = input["@path"]
   const data = await get(db, path)
   if (data === undefined) {
     throw new NotFound(`[patch] not found, path ${path}`)
@@ -26,7 +24,7 @@ export async function patch(
   const result = {
     ...data,
     ...input,
-    "@path": path,
+    "@path": normalize(path),
     "@revision": randomRevision(),
     "@updatedAt": Date.now(),
   }

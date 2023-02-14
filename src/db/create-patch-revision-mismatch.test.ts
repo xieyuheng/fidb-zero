@@ -13,8 +13,7 @@ test("create-patch-revision-mismatch", async () => {
   })
 
   await expect(
-    Db.patch(db, {
-      "@path": "users/xieyuheng",
+    Db.patch(db, "users/xieyuheng", {
       "@revision": randomRevision(),
       name: "谢宇恒",
     }),

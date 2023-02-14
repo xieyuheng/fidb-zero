@@ -12,7 +12,7 @@ test("create-put-delete", async () => {
 
   expect(await Db.get(db, "users/xieyuheng")).toEqual(created)
 
-  const putted = await Db.put(db, {
+  const putted = await Db.put(db, created["@path"], {
     ...created,
     username: "xieyuheng",
     name: "谢宇恒",

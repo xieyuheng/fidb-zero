@@ -13,7 +13,7 @@ test("create-put-revision-mismatch", async () => {
   })
 
   await expect(
-    Db.put(db, {
+    Db.put(db, created["@path"], {
       ...created,
       "@revision": randomRevision(),
     }),

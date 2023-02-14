@@ -12,8 +12,7 @@ test("create-patch-delete", async () => {
 
   expect(await Db.get(db, "users/xieyuheng")).toEqual(created)
 
-  const patched = await Db.patch(db, {
-    "@path": "users/xieyuheng",
+  const patched = await Db.patch(db, "users/xieyuheng", {
     "@revision": created["@revision"],
     name: "谢宇恒",
   })

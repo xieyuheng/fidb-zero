@@ -1,3 +1,4 @@
+import { normalize } from "node:path"
 import { Data, randomRevision } from "../data"
 import type { Database } from "../database"
 import { NotFound } from "../errors/NotFound"
@@ -8,12 +9,9 @@ import { writeData } from "./utils/writeData"
 
 export async function put(
   db: Database,
-  input: JsonObject & {
-    "@path": string
-    "@revision": string
-  },
+  path: string,
+  input: JsonObject & { "@revision": string },
 ): Promise<Data> {
-  const path = input["@path"]
   const data = await get(db, path)
   if (data === undefined) {
     throw new NotFound(`[put] not found, path ${path}`)
@@ -25,7 +23,7 @@ export async function put(
 
   const result = {
     ...input,
-    "@path": path,
+    "@path": normalize(path),
     "@revision": randomRevision(),
     "@createdAt": data["@createdAt"],
     "@updatedAt": Date.now(),
