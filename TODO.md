@@ -1,7 +1,5 @@
 # tokens
 
-rename jsonWrite to writeJson
-
 `Db.deleteData` -- take `db`
 `Db.readData` -- take `db`
 
