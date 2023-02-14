@@ -1,7 +1,5 @@
 # tokens
 
-`Db` api should not use `fs` directly
-
 `unauthorized.test.ts` -- `deleteDirectory`
 `unauthorized.test.ts` -- `isFile`
 

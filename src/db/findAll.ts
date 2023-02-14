@@ -1,16 +1,16 @@
 import fs from "node:fs"
-import { resolve } from "node:path"
 import type { Data } from "../data"
 import type { Database } from "../database"
 import { isErrnoException } from "../utils/isErrnoException"
 import { get } from "./get"
+import { resolvePath } from "./utils/resolvePath"
 
 export async function* findAll(
   db: Database,
   directory: string,
 ): AsyncIterable<Data> {
   try {
-    const dir = await fs.promises.opendir(resolve(db.path, directory), {
+    const dir = await fs.promises.opendir(resolvePath(db, directory), {
       bufferSize: 1024,
     })
 

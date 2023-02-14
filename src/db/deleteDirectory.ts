@@ -1,12 +1,12 @@
 import fs from "node:fs"
-import { resolve } from "node:path"
 import type { Database } from "../database"
+import { resolvePath } from "./utils/resolvePath"
 
 export async function deleteDirectory(
   db: Database,
   directory: string,
 ): Promise<void> {
-  await fs.promises.rm(resolve(db.path, directory), {
+  await fs.promises.rm(resolvePath(db, directory), {
     force: true,
     recursive: true,
   })

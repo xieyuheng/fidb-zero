@@ -1,14 +1,14 @@
 import fs from "node:fs"
-import { resolve } from "path"
 import type { Database } from "../database"
 import { isErrnoException } from "../utils/isErrnoException"
+import { resolvePath } from "./utils/resolvePath"
 
 export async function* listDirectories(
   db: Database,
   directory: string = "",
 ): AsyncIterable<string> {
   try {
-    const dir = await fs.promises.opendir(resolve(db.path, directory), {
+    const dir = await fs.promises.opendir(resolvePath(db, directory), {
       bufferSize: 1024,
     })
 
