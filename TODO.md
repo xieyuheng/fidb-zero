@@ -1,6 +1,13 @@
 # tokens
 
-`get-unauthorized.test.ts`
+ambr resolveDataPath resolvePath
+
+`resolveDataPath` -- add `/index.json` postfix
+
+`Db` api should not use `fs` directly
+
+`unauthorized.test.ts` -- `deleteDirectory`
+`unauthorized.test.ts` -- `isFile`
 
 `Db` api take `path` as arg
 
