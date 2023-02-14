@@ -1,8 +1,10 @@
 # token
 
-`dataSchema` with given type
+`Db.patch` take `path`, do not forget to normalize `@path`
+`Db.put` take `path`, do not forget to normalize `@path`
+`Db.delete` take `path`, do not forget to normalize `@path`
 
-`Db` api take `path` as arg
+`dataSchema` with given type
 
 [db] `checkToken`
 

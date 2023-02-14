@@ -1,3 +1,4 @@
+import { normalize } from "node:path"
 import { Data, randomRevision } from "../data"
 import type { Database } from "../database"
 import { AlreadyExists } from "../errors/AlreadyExists"
@@ -7,9 +8,9 @@ import { writeData } from "./utils/writeData"
 
 export async function create(
   db: Database,
-  input: JsonObject & { "@path": string },
+  path: string,
+  input: JsonObject,
 ): Promise<Data> {
-  const path = input["@path"]
   const data = await get(db, path)
   if (data !== undefined) {
     throw new AlreadyExists(`[create] already exists, @path: ${path}`)
@@ -17,6 +18,7 @@ export async function create(
 
   const result = {
     ...input,
+    "@path": normalize(path),
     "@revision": randomRevision(),
     "@createdAt": Date.now(),
     "@updatedAt": Date.now(),

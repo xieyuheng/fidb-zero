@@ -50,7 +50,7 @@ export async function handle(
     }
 
     const input = await requestJsonObject(request)
-    return await Db.create(db, { ...input, "@path": path })
+    return await Db.create(db, path, input)
   }
 
   if (request.method === "PUT") {

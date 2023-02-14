@@ -6,9 +6,9 @@ import { prepareTestDb } from "./prepareTestDb"
 test("find", async () => {
   const db = await prepareTestDb()
 
-  await Db.create(db, { "@path": "users/0", country: "China" })
-  await Db.create(db, { "@path": "users/1" })
-  await Db.create(db, { "@path": "users/2", country: "China" })
+  await Db.create(db, "users/0", { country: "China" })
+  await Db.create(db, "users/1", {})
+  await Db.create(db, "users/2", { country: "China" })
 
   expect(
     (

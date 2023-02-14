@@ -5,8 +5,7 @@ import { prepareTestDb } from "./prepareTestDb"
 test("create-delete", async () => {
   const db = await prepareTestDb()
 
-  const created = await Db.create(db, {
-    "@path": `users/${crypto.randomUUID()}`,
+  const created = await Db.create(db, `users/${crypto.randomUUID()}`, {
     username: "xieyuheng",
     name: "Xie Yuheng",
   })

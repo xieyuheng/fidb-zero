@@ -8,8 +8,7 @@ test("unauthorized", async () => {
   const db = await prepareTestDb()
 
   await expect(
-    Db.create(db, {
-      "@path": `../users/${crypto.randomUUID()}`,
+    Db.create(db, `../users/${crypto.randomUUID()}`, {
       username: "xieyuheng",
       name: "Xie Yuheng",
     }),

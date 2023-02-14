@@ -7,8 +7,7 @@ import { prepareTestDb } from "./prepareTestDb"
 test("create-put-revision-mismatch", async () => {
   const db = await prepareTestDb()
 
-  const created = await Db.create(db, {
-    "@path": "users/xieyuheng",
+  const created = await Db.create(db, "users/xieyuheng", {
     username: "xieyuheng",
     name: "Xie Yuheng",
   })
