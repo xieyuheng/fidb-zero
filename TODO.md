@@ -1,12 +1,12 @@
 # tokens
 
-`Db.checkPath`
+`get-unauthorized.test.ts`
 
 `Db` api take `path` as arg
 
 [permission] `Token` and `tokenSchema` -- has `permission`
 
-`Db.checkToken`
+[db] `checkToken`
 
 `Db` api take `token` as arg
 

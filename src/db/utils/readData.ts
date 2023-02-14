@@ -1,11 +1,9 @@
-import { resolve } from "node:path"
 import { Data, dataSchema } from "../../data"
 import type { Database } from "../../database"
 import { readJson } from "../../utils/readJson"
+import { resolveDataPath } from "./resolveDataPath"
 
 export async function readData(db: Database, path: string): Promise<Data> {
-  path = resolve(db.path, path + "/index.json")
-
-  const json = await readJson(path)
+  const json = await readJson(resolveDataPath(db, path + "/index.json"))
   return dataSchema.validate(json)
 }
