@@ -3,7 +3,7 @@ import * as Db from "../../db"
 import { arrayFromAsyncIterable } from "../../utils/arrayFromAsyncIterable"
 import { prepareTestDb } from "./prepareTestDb"
 
-test("deleteDirectory", async () => {
+test("create-directory", async () => {
   const db = await prepareTestDb()
 
   expect((await arrayFromAsyncIterable(Db.listDirectories(db))).length).toEqual(
@@ -18,10 +18,4 @@ test("deleteDirectory", async () => {
   expect(
     (await arrayFromAsyncIterable(Db.listDirectories(db))).includes("users"),
   ).toEqual(true)
-
-  await Db.deleteDirectory(db, "users")
-
-  expect((await arrayFromAsyncIterable(Db.listDirectories(db))).length).toEqual(
-    0,
-  )
 })

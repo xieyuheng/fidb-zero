@@ -1,7 +1,5 @@
 # token
 
-[db] rename tests -- use lisp-case
-
 `prepareTestDb` and `prepareTestServer` -- take `testName`
 
 [rest] tests about token and permissions
