@@ -9,7 +9,6 @@ test("server-no-token", async ({ meta }) => {
       await fetch(`${url}/users/xieyuheng`, {
         method: "POST",
         headers: {
-          // authorization,
           "content-type": "application/json",
         },
         body: JSON.stringify({
