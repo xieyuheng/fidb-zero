@@ -2,7 +2,7 @@
 
 `Db` api take `path` as arg
 
-[permission] `Token` and `tokenSchema` -- has `permission`
+[permission] `Token` and `tokenSchema` -- has `permissions`
 
 [db] `checkToken`
 

@@ -42,9 +42,9 @@
     "@types/qs": "^6.9.7",
     "@types/sjcl": "^1.0.30",
     "@types/uuid": "^9.0.0",
-    "@vitest/coverage-c8": "^0.28.4",
-    "@vitest/coverage-istanbul": "^0.28.4",
-    "@vitest/ui": "^0.28.4",
+    "@vitest/coverage-c8": "^0.28.5",
+    "@vitest/coverage-istanbul": "^0.28.5",
+    "@vitest/ui": "^0.28.5",
     "@xieyuheng/test-runner": "^0.2.7",
     "husky": "^8.0.3",
     "prettier": "^2.8.4",
@@ -52,7 +52,7 @@
     "pretty-quick": "^3.1.3",
     "typescript": "^4.9.5",
     "vite": "^4.1.1",
-    "vitest": "^0.28.4"
+    "vitest": "^0.28.5"
   },
   "license": "GPL-3.0-or-later"
 }
