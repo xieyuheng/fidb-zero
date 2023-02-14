@@ -11,3 +11,9 @@ export const tokenSchema = ty.object({
     ty.array(ty.union(ty.const("read" as const), ty.const("write" as const))),
   ),
 })
+
+export const adminToken: Token = {
+  permissions: {
+    "**/*": ["read", "write"],
+  },
+}

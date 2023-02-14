@@ -1,8 +1,8 @@
 # token
 
-[db] `checkToken`
-
 `Db` api take `token` as arg
+
+[db] `utils/checkPath`
 
 [token] store `fidb/tokens/<token-name>`
 
