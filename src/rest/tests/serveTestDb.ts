@@ -1,6 +1,6 @@
-import { prepareTestDb } from "../db/prepareTestDb"
-import * as Rest from "../rest"
-import { findPort } from "../utils/findPort"
+import { prepareTestDb } from "../../db/prepareTestDb"
+import * as Rest from "../../rest"
+import { findPort } from "../../utils/findPort"
 
 export async function serveTestDb() {
   const db = await prepareTestDb()
