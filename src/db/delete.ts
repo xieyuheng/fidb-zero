@@ -1,9 +1,9 @@
 import { resolve } from "node:path"
-import { deleteData } from "../data"
 import type { Database } from "../database"
 import { RevisionMismatch } from "../errors/RevisionMismatch"
 import type { JsonObject } from "../utils/Json"
 import { get } from "./get"
+import { deleteData } from "./utils/deleteData"
 
 // NOTE `delete` is preserved javascript keyword.
 

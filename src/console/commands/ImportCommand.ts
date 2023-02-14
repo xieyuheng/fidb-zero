@@ -1,8 +1,8 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
 import { resolve } from "path"
-import { dataWrite } from "../../data"
 import { importDataArrayFromCsv } from "../../data/importDataArrayFromCsv"
+import { dataWrite } from "../../db/utils/dataWrite"
 
 type Args = { database: string }
 type Opts = { from: string; directory: string; "primary-key": string }
