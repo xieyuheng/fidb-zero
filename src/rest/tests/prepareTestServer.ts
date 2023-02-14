@@ -1,11 +1,13 @@
 import * as Db from "../../db"
 import { prepareTestDb } from "../../db/tests/prepareTestDb"
 import * as Rest from "../../rest"
+import type { TokenPermissions } from "../../token"
 import { findPort } from "../../utils/findPort"
 import { serverListen } from "../../utils/serverListen"
 
 type Options = {
   name: string
+  permissions?: TokenPermissions
 }
 
 export async function prepareTestServer(options: Options) {
@@ -24,11 +26,11 @@ export async function prepareTestServer(options: Options) {
     db,
   })
 
-  const tokenName = await Db.createToken(db, {
-    permissions: {
-      "**": "readwrite",
-    },
-  })
+  const permissions = options.permissions || {
+    "**": "readwrite",
+  }
+
+  const tokenName = await Db.createToken(db, { permissions })
 
   const authorization = `token ${tokenName}`
 
