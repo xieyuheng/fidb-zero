@@ -1,16 +1,16 @@
-# tokens
+# token
+
+`dataSchema` with given type
 
 `Db` api take `path` as arg
-
-[permission] `Token` and `tokenSchema` -- has `permissions`
 
 [db] `checkToken`
 
 `Db` api take `token` as arg
 
-[permission] store `fidb/tokens/<token-name>`
+[token] store `fidb/tokens/<token-name>`
 
-[permission] admin and readonly token -- used by `fidb-manager`
+[token] admin and readonly token -- used by `fidb-manager`
 
 # password login
 
