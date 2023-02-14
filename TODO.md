@@ -1,7 +1,5 @@
 # tokens
 
-`resolveDataPath` -- add `/index.json` postfix
-
 `Db` api should not use `fs` directly
 
 `unauthorized.test.ts` -- `deleteDirectory`
