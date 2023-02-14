@@ -4,7 +4,7 @@ import * as Rest from "../../rest"
 import { findPort } from "../../utils/findPort"
 import { serverListen } from "../../utils/serverListen"
 
-export async function serveTestDb() {
+export async function prepareTestServer() {
   const db = await prepareTestDb()
 
   const server = await Rest.createServer({ db })
@@ -15,7 +15,7 @@ export async function serveTestDb() {
   await serverListen(server, { port, hostname })
 
   console.log({
-    message: `[serveTestDb] start`,
+    message: `[prepareTestServer] start`,
     url: `http://${hostname}:${port}`,
     db,
   })

@@ -1,8 +1,8 @@
 import { expect, test } from "vitest"
-import { serveTestDb } from "./serveTestDb"
+import { prepareTestServer } from "./prepareTestServer"
 
-test("serve-delete-directory", async () => {
-  const { url, authorization } = await serveTestDb()
+test("server-delete-directory", async () => {
+  const { url, authorization } = await prepareTestServer()
 
   await fetch(`${url}/users?kind=directory`, {
     method: "POST",

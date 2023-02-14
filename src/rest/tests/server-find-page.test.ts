@@ -1,9 +1,9 @@
 import qs from "qs"
 import { expect, test } from "vitest"
-import { serveTestDb } from "./serveTestDb"
+import { prepareTestServer } from "./prepareTestServer"
 
-test("serve-find-page", async () => {
-  const { url, authorization } = await serveTestDb()
+test("server-find-page", async () => {
+  const { url, authorization } = await prepareTestServer()
 
   const array = [
     { "@path": "users/0", country: "China" },

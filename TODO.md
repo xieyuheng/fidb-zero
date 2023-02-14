@@ -1,6 +1,5 @@
 # token
 
-[rest] rename tests
 [rest] tests about token and permissions
 
 # password login
