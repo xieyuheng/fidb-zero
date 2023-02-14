@@ -30,12 +30,19 @@ export class ServeCommand extends Command<Args> {
   }
 
   async execute(argv: Args & Opts): Promise<void> {
-    await Rest.serve({
-      db: await createDatabase({
-        path: resolve(argv.path),
-      }),
-      hostname: argv.hostname || "127.0.0.1",
-      port: argv.port || (await findPort(3000)),
+    const db = await createDatabase({ path: resolve(argv.path) })
+
+    const server = await Rest.createServer({ db })
+
+    const hostname = argv.hostname || "127.0.0.1"
+    const port = argv.port || (await findPort(3000))
+
+    server.listen(port, hostname, () => {
+      console.log({
+        message: `[serve] start`,
+        url: `http://${hostname}:${port}`,
+        db,
+      })
     })
   }
 }

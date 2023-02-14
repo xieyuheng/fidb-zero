@@ -8,14 +8,14 @@ import { handle } from "./handle"
 
 type ServeOptions = {
   db: Database
-  hostname: string
-  port: number
 }
 
-export async function serve(options: ServeOptions): Promise<void> {
-  const { db, hostname, port } = options
+export async function createServer(
+  options: ServeOptions,
+): Promise<Http.Server> {
+  const { db } = options
 
-  const server = Http.createServer(async (request, response) => {
+  return Http.createServer(async (request, response) => {
     if (request.method === "OPTIONS") {
       preflight(request, response)
       return
@@ -45,14 +45,6 @@ export async function serve(options: ServeOptions): Promise<void> {
         responseSend(response, { status: { code: 500, message }, headers })
       }
     }
-  })
-
-  server.listen(port, hostname, () => {
-    console.log({
-      message: `[serve] start`,
-      url: `http://${hostname}:${port}`,
-      options,
-    })
   })
 }
 

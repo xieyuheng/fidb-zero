@@ -6,19 +6,28 @@ import { findPort } from "../../utils/findPort"
 export async function serveTestDb() {
   const db = await prepareTestDb()
 
+  const server = await Rest.createServer({ db })
+
+  const hostname = "127.0.0.1"
+  const port = await findPort(3000)
+
+  server.listen(port, hostname, () => {
+    console.log({
+      message: `[serveTestDb] start`,
+      url: `http://${hostname}:${port}`,
+      db,
+    })
+  })
+
   const tokenName = await Db.createToken(db, {
     permissions: {
       "**": "readwrite",
     },
   })
 
-  const hostname = "127.0.0.1"
-  const port = await findPort(3000)
-  await Rest.serve({ db, hostname, port })
+  const authorization = `token ${tokenName}`
 
   const url = `http://${hostname}:${port}`
-
-  const authorization = `token ${tokenName}`
 
   return { url, authorization }
 }

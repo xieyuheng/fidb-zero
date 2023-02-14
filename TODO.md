@@ -1,6 +1,7 @@
 # token
 
-[token] store default adminToken in token store -- used by `fidb-manager`
+[rest] rename tests
+[rest] tests about token and permissions
 
 # password login
 
