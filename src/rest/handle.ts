@@ -8,7 +8,7 @@ import { arrayFromAsyncIterable } from "../utils/arrayFromAsyncIterable"
 import type { Json } from "../utils/Json"
 import { requestJsonObject } from "../utils/requestJsonObject"
 import { requestQuery } from "../utils/requestQuery"
-import { requestToken } from "../utils/requestToken"
+import { requestTokenName } from "../utils/requestTokenName"
 import { requestURL } from "../utils/requestURL"
 
 export async function handle(
@@ -20,7 +20,7 @@ export async function handle(
   const query = requestQuery(request)
   const kind = query.kind ? query.kind.toLowerCase() : ""
 
-  const tokenName = requestToken(request)
+  const tokenName = requestTokenName(request)
   const token = adminToken
 
   if (!tokenCheckReadable(token, path)) {

@@ -1,6 +1,6 @@
 import type Http from "node:http"
 
-export function requestToken(
+export function requestTokenName(
   request: Http.IncomingMessage,
 ): string | undefined {
   if (!request.headers["authorization"]) {
