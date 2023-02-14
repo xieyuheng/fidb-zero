@@ -1,6 +1,5 @@
 # tokens
 
-`Db.deleteData` -- take `db`
 `Db.readData` -- take `db`
 
 `Db.checkPath`

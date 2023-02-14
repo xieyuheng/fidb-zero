@@ -8,5 +8,7 @@ export async function writeData(
   path: string,
   input: Data,
 ): Promise<void> {
-  await writeJson(resolve(db.path, path + "/index.json"), input)
+  path = resolve(db.path, path + "/index.json")
+
+  await writeJson(path, input)
 }
