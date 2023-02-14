@@ -1,5 +1,9 @@
 import micromatch from "micromatch"
 
-export function globMatch(input: string, pattern: string): boolean {
-  return micromatch.isMatch(pattern, input)
+export function globMatch(pattern: string, input: string): boolean {
+  // We add a "/" because:
+  //   micromatch.isMatch("", "**") => false
+  //   micromatch.isMatch("/", "/**") => true
+  // Note the argument order: `input` first, `pattern` second.
+  return micromatch.isMatch("/" + input, "/" + pattern)
 }

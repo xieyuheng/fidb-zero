@@ -14,6 +14,6 @@ export const tokenSchema = ty.object({
 
 export const adminToken: Token = {
   permissions: {
-    "**/*": "readwrite",
+    "**": "readwrite",
   },
 }
