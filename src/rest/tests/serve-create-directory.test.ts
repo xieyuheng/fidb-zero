@@ -12,7 +12,7 @@ test("serve-create-directory", async () => {
       },
     })
     const { directories } = await response.json()
-    expect(directories.length).toEqual(0)
+    expect(directories.includes("users")).toEqual(false)
   }
 
   await fetch(`${url}/users/?kind=directory`, {
@@ -28,7 +28,6 @@ test("serve-create-directory", async () => {
       },
     })
     const { directories } = await response.json()
-    expect(directories.length).toEqual(1)
     expect(directories.includes("users")).toEqual(true)
   }
 })

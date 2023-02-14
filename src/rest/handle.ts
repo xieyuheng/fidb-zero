@@ -3,7 +3,7 @@ import type { Database } from "../database"
 import * as Db from "../db"
 import { normalizePath } from "../db/utils/normalizePath"
 import { Unauthorized } from "../errors/Unauthorized"
-import { adminToken, tokenCheckReadable, tokenCheckWriteable } from "../token"
+import { tokenCheckReadable, tokenCheckWriteable } from "../token"
 import { arrayFromAsyncIterable } from "../utils/arrayFromAsyncIterable"
 import type { Json } from "../utils/Json"
 import { requestJsonObject } from "../utils/requestJsonObject"
@@ -22,15 +22,13 @@ export async function handle(
 
   const tokenName = requestTokenName(request)
   if (tokenName === undefined) {
-    throw new Unauthorized(`Not token in authorization header`)
+    throw new Unauthorized(`[handle] not token in authorization header`)
   }
 
-  // const token = await Db.getToken(db, tokenName)
-
-  const token = adminToken
+  const token = await Db.getToken(db, tokenName)
 
   if (!tokenCheckReadable(token, path)) {
-    throw new Unauthorized(`Not permitted to read path: ${path}`)
+    throw new Unauthorized(`[handle] not permitted to read path: ${path}`)
   }
 
   if (request.method === "GET") {
@@ -56,7 +54,7 @@ export async function handle(
   }
 
   if (!tokenCheckWriteable(token, path)) {
-    throw new Unauthorized(`Not permitted to write path: ${path}`)
+    throw new Unauthorized(`[handle] not permitted to write path: ${path}`)
   }
 
   if (request.method === "POST") {

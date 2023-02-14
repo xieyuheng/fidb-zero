@@ -1,3 +1,4 @@
+import * as Db from "../../db"
 import { prepareTestDb } from "../../db/tests/prepareTestDb"
 import * as Rest from "../../rest"
 import { findPort } from "../../utils/findPort"
@@ -5,13 +6,19 @@ import { findPort } from "../../utils/findPort"
 export async function serveTestDb() {
   const db = await prepareTestDb()
 
+  const tokenName = await Db.createToken(db, {
+    permissions: {
+      "**": "readwrite",
+    },
+  })
+
   const hostname = "127.0.0.1"
   const port = await findPort(3000)
   await Rest.serve({ db, hostname, port })
 
   const url = `http://${hostname}:${port}`
 
-  const authorization = "token 123456"
+  const authorization = `token ${tokenName}`
 
   return { url, authorization }
 }

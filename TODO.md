@@ -1,7 +1,5 @@
 # token
 
-`Db.getToken` -- get `token` from `fidb/tokens/<token-name>` -- safe path no `.`
-
 [token] store default adminToken in token store -- used by `fidb-manager`
 
 # password login

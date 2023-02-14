@@ -1,19 +1,15 @@
-import ty from "@xieyuheng/ty"
+import ty, { Schema } from "@xieyuheng/ty"
 
-export type Permission = "readonly" | "readwrite"
+export type TokenPermission = "readonly" | "readwrite"
+
+export type TokenPermissions = Record<string, TokenPermission>
 
 export type Token = {
-  permissions: Record<string, Permission>
+  permissions: TokenPermissions
 }
 
-export const tokenSchema = ty.object({
+export const tokenSchema: Schema<Token> = ty.object({
   permissions: ty.dict(
-    ty.union(ty.const("read" as const), ty.const("write" as const)),
+    ty.union(ty.const("readonly" as const), ty.const("readwrite" as const)),
   ),
 })
-
-export const adminToken: Token = {
-  permissions: {
-    "**": "readwrite",
-  },
-}
