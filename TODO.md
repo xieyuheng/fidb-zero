@@ -29,3 +29,9 @@ fidb+https://localhost:3000/users/xieyuheng
 `Fi.put`
 
 use `<name>.metadata.json` postfix for metadata in json format
+
+# proxy server
+
+`fidb proxy` -- start a proxy server
+
+`fidb connect` -- connect to proxy server
