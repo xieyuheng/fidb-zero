@@ -4,6 +4,7 @@ import { resolve } from "node:path"
 import { createDatabase } from "../../database"
 import * as Rest from "../../rest"
 import { findPort } from "../../utils/findPort"
+import { serverListen } from "../../utils/serverListen"
 
 type Args = { path: string }
 type Opts = { hostname?: string; port?: number }
@@ -37,12 +38,12 @@ export class ServeCommand extends Command<Args> {
     const hostname = argv.hostname || "127.0.0.1"
     const port = argv.port || (await findPort(3000))
 
-    server.listen(port, hostname, () => {
-      console.log({
-        message: `[serve] start`,
-        url: `http://${hostname}:${port}`,
-        db,
-      })
+    await serverListen(server, { hostname, port })
+
+    console.log({
+      message: `[serve] start`,
+      url: `http://${hostname}:${port}`,
+      db,
     })
   }
 }
