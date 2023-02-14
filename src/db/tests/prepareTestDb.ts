@@ -6,9 +6,13 @@ import { slug } from "../../utils/slug"
 
 const PREFIX = resolve(__filename, "../../../../tmp/databases/")
 
-export async function prepareTestDb(testName: string): Promise<Database> {
+type Options = {
+  name: string
+}
+
+export async function prepareTestDb(options: Options): Promise<Database> {
   const file = slug(
-    `${formatDateTime(Date.now())}-${randomHexString(4)}-${testName}`,
+    `${formatDateTime(Date.now())}-${randomHexString(4)}-${options.name}`,
   )
 
   return await createDatabase({

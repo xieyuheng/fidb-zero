@@ -3,7 +3,7 @@ import { expect, test } from "vitest"
 import { prepareTestServer } from "./prepareTestServer"
 
 test("server-find-page", async ({ meta }) => {
-  const { url, authorization } = await prepareTestServer(meta.name)
+  const { url, authorization } = await prepareTestServer(meta)
 
   const array = [
     { "@path": "users/0", country: "China" },

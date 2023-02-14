@@ -5,7 +5,7 @@ import { arrayFromAsyncIterable } from "../../utils/arrayFromAsyncIterable"
 import { prepareTestDb } from "./prepareTestDb"
 
 test("unauthorized", async ({ meta }) => {
-  const db = await prepareTestDb(meta.name)
+  const db = await prepareTestDb(meta)
 
   await expect(
     Db.create(db, `../users/${crypto.randomUUID()}`, {

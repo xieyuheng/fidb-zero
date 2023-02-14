@@ -4,7 +4,7 @@ import { arrayFromAsyncIterable } from "../../utils/arrayFromAsyncIterable"
 import { prepareTestDb } from "./prepareTestDb"
 
 test("list-directories", async ({ meta }) => {
-  const db = await prepareTestDb(meta.name)
+  const db = await prepareTestDb(meta)
 
   expect((await arrayFromAsyncIterable(Db.listDirectories(db))).length).toEqual(
     0,

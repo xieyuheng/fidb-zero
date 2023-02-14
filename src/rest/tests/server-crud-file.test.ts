@@ -2,7 +2,7 @@ import { expect, test } from "vitest"
 import { prepareTestServer } from "./prepareTestServer"
 
 test("server-file", async ({ meta }) => {
-  const { url, authorization } = await prepareTestServer(meta.name)
+  const { url, authorization } = await prepareTestServer(meta)
 
   const created = await (
     await fetch(`${url}/users/xieyuheng`, {

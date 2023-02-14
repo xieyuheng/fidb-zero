@@ -4,8 +4,12 @@ import * as Rest from "../../rest"
 import { findPort } from "../../utils/findPort"
 import { serverListen } from "../../utils/serverListen"
 
-export async function prepareTestServer(testName: string) {
-  const db = await prepareTestDb(testName)
+type Options = {
+  name: string
+}
+
+export async function prepareTestServer(options: Options) {
+  const db = await prepareTestDb(options)
 
   const server = await Rest.createServer({ db })
 

@@ -5,7 +5,7 @@ import { RevisionMismatch } from "../../errors/RevisionMismatch"
 import { prepareTestDb } from "./prepareTestDb"
 
 test("create-delete-revision-mismatch", async ({ meta }) => {
-  const db = await prepareTestDb(meta.name)
+  const db = await prepareTestDb(meta)
 
   await Db.create(db, "users/xieyuheng", {
     username: "xieyuheng",
