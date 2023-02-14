@@ -11,5 +11,7 @@ export async function serveTestDb() {
 
   const url = `http://${hostname}:${port}`
 
-  return { url, db }
+  const authorization = "token 123456"
+
+  return { url, authorization }
 }

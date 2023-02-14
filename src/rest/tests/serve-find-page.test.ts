@@ -3,7 +3,7 @@ import { expect, test } from "vitest"
 import { serveTestDb } from "./serveTestDb"
 
 test("serve-find-page", async () => {
-  const { url } = await serveTestDb()
+  const { url, authorization } = await serveTestDb()
 
   const array = [
     { "@path": "users/0", country: "China" },
@@ -21,7 +21,10 @@ test("serve-find-page", async () => {
   for (const data of array) {
     await fetch(`${url}/${data["@path"]}`, {
       method: "POST",
-      headers: { "content-type": "application/json" },
+      headers: {
+        authorization,
+        "content-type": "application/json",
+      },
       body: JSON.stringify(data),
     })
   }
@@ -38,6 +41,12 @@ test("serve-find-page", async () => {
               country: "China",
             },
           })}`,
+          {
+            method: "GET",
+            headers: {
+              authorization,
+            },
+          },
         )
       ).json()
     ).results.length,
@@ -55,6 +64,12 @@ test("serve-find-page", async () => {
               country: "China",
             },
           })}`,
+          {
+            method: "GET",
+            headers: {
+              authorization,
+            },
+          },
         )
       ).json()
     ).results.length,

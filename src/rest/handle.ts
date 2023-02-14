@@ -21,6 +21,12 @@ export async function handle(
   const kind = query.kind ? query.kind.toLowerCase() : ""
 
   const tokenName = requestTokenName(request)
+  if (tokenName === undefined) {
+    throw new Unauthorized(`Not token in authorization header`)
+  }
+
+  // const token = await Db.getToken(db, tokenName)
+
   const token = adminToken
 
   if (!tokenCheckReadable(token, path)) {
