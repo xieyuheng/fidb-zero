@@ -3,9 +3,10 @@
 > token based authorization,
 > path pattern based permission.
 
-`Db.dataWrite`
-`Db.deleteData`
-`Db.readData`
+rename dataWrite to writeData
+
+`Db.deleteData` -- take `db`
+`Db.readData` -- take `db`
 
 `Db.checkPath`
 

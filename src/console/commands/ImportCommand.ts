@@ -1,7 +1,7 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
-import { resolve } from "path"
 import { importDataArrayFromCsv } from "../../data/importDataArrayFromCsv"
+import { createDatabase } from "../../database"
 import { dataWrite } from "../../db/utils/dataWrite"
 
 type Args = { database: string }
@@ -39,9 +39,9 @@ export class ImportCommand extends Command<Args> {
     })
 
     for (const data of results) {
-      const path = resolve(argv.database, data["@path"])
-      await dataWrite(data, path)
-      console.log(">", path)
+      const db = await createDatabase({ path: argv.database })
+      await dataWrite(db, data, data["@path"])
+      console.log(data)
     }
 
     console.log({

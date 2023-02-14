@@ -1,4 +1,3 @@
-import { resolve } from "node:path"
 import { Data, randomRevision } from "../data"
 import type { Database } from "../database"
 import { AlreadyExists } from "../errors/AlreadyExists"
@@ -23,7 +22,7 @@ export async function create(
     "@updatedAt": Date.now(),
   }
 
-  await dataWrite(result, resolve(db.path, path))
+  await dataWrite(db, result, path)
 
   return result
 }

@@ -1,4 +1,3 @@
-import { resolve } from "node:path"
 import { Data, randomRevision } from "../data"
 import type { Database } from "../database"
 import { NotFound } from "../errors/NotFound"
@@ -32,7 +31,7 @@ export async function patch(
     "@updatedAt": Date.now(),
   }
 
-  await dataWrite(result, resolve(db.path, path))
+  await dataWrite(db, result, path)
 
   return result
 }
