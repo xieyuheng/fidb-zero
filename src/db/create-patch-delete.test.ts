@@ -20,7 +20,7 @@ test("create-patch-delete", async () => {
   expect(patched.name).toEqual("谢宇恒")
   expect(await Db.get(db, "users/xieyuheng")).toEqual(patched)
 
-  await Db.delete(db, patched)
+  await Db.delete(db, patched["@path"], patched)
 
   expect(await Db.get(db, "users/xieyuheng")).toEqual(undefined)
 })

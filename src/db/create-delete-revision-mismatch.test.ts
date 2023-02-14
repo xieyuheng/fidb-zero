@@ -13,8 +13,7 @@ test("create-delete-revision-mismatch", async () => {
   })
 
   await expect(
-    Db.delete(db, {
-      "@path": "users/xieyuheng",
+    Db.delete(db, "users/xieyuheng", {
       "@revision": randomRevision(),
       name: "谢宇恒",
     }),

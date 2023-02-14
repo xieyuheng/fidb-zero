@@ -1,7 +1,5 @@
 # token
 
-`Db.delete` take `path`, do not forget to normalize `@path`
-
 `dataSchema` with given type
 
 [db] `checkToken`

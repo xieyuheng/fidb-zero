@@ -12,7 +12,7 @@ test("create-delete", async () => {
 
   expect(await Db.get(db, created["@path"])).toEqual(created)
 
-  await Db.delete(db, created)
+  await Db.delete(db, created["@path"], created)
 
   expect(await Db.get(db, created["@path"])).toEqual(undefined)
 })

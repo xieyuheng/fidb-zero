@@ -79,7 +79,7 @@ export async function handle(
     const input = ty
       .omitMany(dataSchema, ["@path", "@createdAt", "@updatedAt"])
       .validate(await requestJsonObject(request))
-    return await Db.delete(db, { ...input, "@path": path })
+    return await Db.delete(db, path, input)
   }
 
   throw new Error(
