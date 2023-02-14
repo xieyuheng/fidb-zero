@@ -1,7 +1,5 @@
 # token
 
-[rest] server-no-permission-to-wirte.test.ts
-
 # password login
 
 # mail login

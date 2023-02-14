@@ -2,11 +2,12 @@ import { expect, test } from "vitest"
 import * as Db from "../../db"
 import { prepareTestServer } from "./prepareTestServer"
 
-test("server-no-permission-to-read", async ({ meta }) => {
+test("server-no-permission-to-write", async ({ meta }) => {
   const { url, db } = await prepareTestServer(meta)
 
   let authorization = `token ${await Db.createToken(db, {
     permissions: {
+      "users/*": "readonly",
       "users/xieyuheng/**": "readwrite",
     },
   })}`
@@ -39,17 +40,51 @@ test("server-no-permission-to-read", async ({ meta }) => {
 
   authorization = `token ${await Db.createToken(db, {
     permissions: {
+      "users/*": "readonly",
       "users/xyh/**": "readwrite",
     },
   })}`
 
+  // read is ok.
+
+  expect(
+    (
+      await (
+        await fetch(`${url}/users/xieyuheng`, {
+          method: "GET",
+          headers: {
+            authorization,
+          },
+        })
+      ).json()
+    ).username,
+  ).toEqual("xieyuheng")
+
+  // write is not ok
+
   expect(
     (
       await fetch(`${url}/users/xieyuheng`, {
-        method: "GET",
+        method: "PATCH",
         headers: {
           authorization,
-          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          "@revision": created["@revision"],
+          name: "谢宇恒",
+        }),
+      })
+    ).status,
+  ).toEqual(401)
+
+  // delete is like write
+
+  expect(
+    (
+      await fetch(`${url}/users/xieyuheng`, {
+        method: "DELETE",
+        headers: {
+          authorization,
         },
       })
     ).status,

@@ -1,14 +1,16 @@
 import { expect, test } from "vitest"
+import * as Db from "../../db"
 import { prepareTestServer } from "./prepareTestServer"
 
 test("server-no-permission-to-create", async ({ meta }) => {
-  const { url, authorization } = await prepareTestServer({
-    ...meta,
+  const { url, db } = await prepareTestServer(meta)
+
+  const authorization = `token ${await Db.createToken(db, {
     permissions: {
       "users/*/**": "readonly",
       "users/xyh/**": "readwrite",
     },
-  })
+  })}`
 
   expect(
     (
