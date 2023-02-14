@@ -9,7 +9,7 @@ import { deleteRecursive } from "./utils/deleteRecursive"
 export async function del(
   db: Database,
   path: string,
-  input: JsonObject & { "@revision": string },
+  input: JsonObject,
 ): Promise<void> {
   const data = await get(db, path)
   if (data === undefined) {

@@ -1,4 +1,3 @@
-import { ty } from "@xieyuheng/ty"
 import type Http from "node:http"
 import type { Database } from "../database"
 import * as Db from "../db"
@@ -52,41 +51,27 @@ export async function handle(
       return await Db.createDirectory(db, path)
     }
 
-    if (path === "") {
-      return
-    }
+    if (path === "") return
 
-    const input = await requestJsonObject(request)
-    return await Db.create(db, path, input)
+    return await Db.create(db, path, await requestJsonObject(request))
   }
 
   if (request.method === "PUT") {
-    const input = ty
-      .object({ "@revision": ty.string() })
-      .validate(await requestJsonObject(request))
-    return await Db.put(db, path, input)
+    return await Db.put(db, path, await requestJsonObject(request))
   }
 
   if (request.method === "PATCH") {
-    const input = ty
-      .object({ "@revision": ty.string() })
-      .validate(await requestJsonObject(request))
-    return await Db.patch(db, path, input)
+    return await Db.patch(db, path, await requestJsonObject(request))
   }
 
   if (request.method === "DELETE") {
     if (kind === "directory") {
-      if (path === "") {
-        return
-      }
+      if (path === "") return
 
       return await Db.deleteDirectory(db, path)
     }
 
-    const input = ty
-      .object({ "@revision": ty.string() })
-      .validate(await requestJsonObject(request))
-    return await Db.delete(db, path, input)
+    return await Db.delete(db, path, await requestJsonObject(request))
   }
 
   throw new Error(

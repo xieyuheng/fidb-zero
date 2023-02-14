@@ -10,7 +10,7 @@ import { writeData } from "./utils/writeData"
 export async function put(
   db: Database,
   path: string,
-  input: JsonObject & { "@revision": string },
+  input: JsonObject,
 ): Promise<Data> {
   const data = await get(db, path)
   if (data === undefined) {

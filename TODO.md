@@ -1,10 +1,8 @@
 # token
 
-`tokenCheckReadable` & `tokenCheckWriteable`
-
-[token] store `fidb/tokens/<token-name>`
-
-[token] admin and readonly token -- used by `fidb-manager`
+[rest] `handle` -- get `tokenName` from request header
+[rest] `handle` -- get `token` from `fidb/tokens/<token-name>`
+[token] store default adminToken in token store -- used by `fidb-manager`
 
 # password login
 
