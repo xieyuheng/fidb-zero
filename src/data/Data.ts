@@ -1,4 +1,4 @@
-import ty from "@xieyuheng/ty"
+import { Schema, ty } from "@xieyuheng/ty"
 import type { JsonObject } from "../utils/Json"
 
 export type Data = JsonObject & {
@@ -8,7 +8,7 @@ export type Data = JsonObject & {
   "@updatedAt": number
 }
 
-export const dataSchema = ty.object({
+export const dataSchema: Schema<Data> = ty.object({
   "@path": ty.string(),
   "@revision": ty.string(),
   "@createdAt": ty.number(),

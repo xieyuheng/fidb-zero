@@ -1,6 +1,5 @@
 import { ty } from "@xieyuheng/ty"
 import type Http from "node:http"
-import { dataSchema } from "../data"
 import type { Database } from "../database"
 import * as Db from "../db"
 import { arrayFromAsyncIterable } from "../utils/arrayFromAsyncIterable"
@@ -55,14 +54,14 @@ export async function handle(
 
   if (request.method === "PUT") {
     const input = ty
-      .omitMany(dataSchema, ["@path", "@createdAt", "@updatedAt"])
+      .object({ "@revision": ty.string() })
       .validate(await requestJsonObject(request))
     return await Db.put(db, path, input)
   }
 
   if (request.method === "PATCH") {
     const input = ty
-      .omitMany(dataSchema, ["@path", "@createdAt", "@updatedAt"])
+      .object({ "@revision": ty.string() })
       .validate(await requestJsonObject(request))
     return await Db.patch(db, path, input)
   }
@@ -77,7 +76,7 @@ export async function handle(
     }
 
     const input = ty
-      .omitMany(dataSchema, ["@path", "@createdAt", "@updatedAt"])
+      .object({ "@revision": ty.string() })
       .validate(await requestJsonObject(request))
     return await Db.delete(db, path, input)
   }

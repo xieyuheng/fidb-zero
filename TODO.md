@@ -1,7 +1,5 @@
 # token
 
-`dataSchema` with given type
-
 [db] `checkToken`
 
 `Db` api take `token` as arg
