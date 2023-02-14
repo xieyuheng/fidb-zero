@@ -1,5 +1,3 @@
-# token
-
 # password login
 
 # mail login
