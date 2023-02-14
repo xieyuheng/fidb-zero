@@ -2,11 +2,13 @@ import type Http from "node:http"
 import type { Database } from "../database"
 import * as Db from "../db"
 import { normalizePath } from "../db/utils/normalizePath"
+import { Unauthorized } from "../errors/Unauthorized"
 import { adminToken, tokenCheckReadable, tokenCheckWriteable } from "../token"
 import { arrayFromAsyncIterable } from "../utils/arrayFromAsyncIterable"
 import type { Json } from "../utils/Json"
 import { requestJsonObject } from "../utils/requestJsonObject"
 import { requestQuery } from "../utils/requestQuery"
+import { requestToken } from "../utils/requestToken"
 import { requestURL } from "../utils/requestURL"
 
 export async function handle(
@@ -18,9 +20,12 @@ export async function handle(
   const query = requestQuery(request)
   const kind = query.kind ? query.kind.toLowerCase() : ""
 
+  const tokenName = requestToken(request)
   const token = adminToken
 
-  tokenCheckReadable(token, path)
+  if (!tokenCheckReadable(token, path)) {
+    throw new Unauthorized(`Not permitted to read path: ${path}`)
+  }
 
   if (request.method === "GET") {
     if (kind === "list") {
@@ -44,7 +49,9 @@ export async function handle(
     return await Db.getOrFail(db, path)
   }
 
-  tokenCheckWriteable(token, path)
+  if (!tokenCheckWriteable(token, path)) {
+    throw new Unauthorized(`Not permitted to write path: ${path}`)
+  }
 
   if (request.method === "POST") {
     if (kind === "directory") {
