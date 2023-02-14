@@ -4,8 +4,8 @@ import { Unauthorized } from "../../errors/Unauthorized"
 import { arrayFromAsyncIterable } from "../../utils/arrayFromAsyncIterable"
 import { prepareTestDb } from "./prepareTestDb"
 
-test("unauthorized", async () => {
-  const db = await prepareTestDb()
+test("unauthorized", async ({ meta }) => {
+  const db = await prepareTestDb(meta.name)
 
   await expect(
     Db.create(db, `../users/${crypto.randomUUID()}`, {

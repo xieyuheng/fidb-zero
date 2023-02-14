@@ -3,8 +3,8 @@ import * as Db from "../../db"
 import { arrayFromAsyncIterable } from "../../utils/arrayFromAsyncIterable"
 import { prepareTestDb } from "./prepareTestDb"
 
-test("list-directories", async () => {
-  const db = await prepareTestDb()
+test("list-directories", async ({ meta }) => {
+  const db = await prepareTestDb(meta.name)
 
   expect((await arrayFromAsyncIterable(Db.listDirectories(db))).length).toEqual(
     0,

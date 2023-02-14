@@ -1,8 +1,8 @@
 import { expect, test } from "vitest"
 import { prepareTestServer } from "./prepareTestServer"
 
-test("server-delete-directory", async () => {
-  const { url, authorization } = await prepareTestServer()
+test("server-delete-directory", async ({ meta }) => {
+  const { url, authorization } = await prepareTestServer(meta.name)
 
   await fetch(`${url}/users?kind=directory`, {
     method: "POST",

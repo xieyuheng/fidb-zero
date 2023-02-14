@@ -3,8 +3,8 @@ import * as Db from "../../db"
 import { arrayFromAsyncIterable } from "../../utils/arrayFromAsyncIterable"
 import { prepareTestDb } from "./prepareTestDb"
 
-test("find", async () => {
-  const db = await prepareTestDb()
+test("find", async ({ meta }) => {
+  const db = await prepareTestDb(meta.name)
 
   await Db.create(db, "users/0", { country: "China" })
   await Db.create(db, "users/1", {})

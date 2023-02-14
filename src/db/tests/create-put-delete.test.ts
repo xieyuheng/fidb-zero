@@ -2,8 +2,8 @@ import { expect, test } from "vitest"
 import * as Db from "../../db"
 import { prepareTestDb } from "./prepareTestDb"
 
-test("create-put-delete", async () => {
-  const db = await prepareTestDb()
+test("create-put-delete", async ({ meta }) => {
+  const db = await prepareTestDb(meta.name)
 
   const created = await Db.create(db, "users/xieyuheng", {
     username: "xieyuheng",

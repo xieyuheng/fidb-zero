@@ -1,8 +1,8 @@
 import { expect, test } from "vitest"
 import { prepareTestServer } from "./prepareTestServer"
 
-test("server-list-directory", async () => {
-  const { url, authorization } = await prepareTestServer()
+test("server-list-directory", async ({ meta }) => {
+  const { url, authorization } = await prepareTestServer(meta.name)
 
   {
     const response = await fetch(`${url}?kind=list`, {
