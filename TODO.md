@@ -1,8 +1,6 @@
 # token
 
-`Db` api take `token` as arg
-
-[db] `utils/checkPath`
+`tokenCheckReadable` & `tokenCheckWriteable`
 
 [token] store `fidb/tokens/<token-name>`
 
@@ -37,4 +35,4 @@ fidb:users/xieyuheng
 `Fi.get`
 `Fi.put`
 
-use `<name>.metadata` postfix for metadata in json format
+use `<name>.metadata.json` postfix for metadata in json format
