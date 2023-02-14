@@ -1,7 +1,5 @@
-import { Buffer } from "node:buffer"
+import { randomHexString } from "../utils/randomHexString"
 
 export function randomRevision(): string {
-  const array = new Uint8Array(16)
-  crypto.getRandomValues(array)
-  return Buffer.from(array).toString("hex")
+  return randomHexString(16)
 }

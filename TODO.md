@@ -10,6 +10,7 @@
 
 ```
 fidb:users/xieyuheng
+fidb+https://localhost:3000/users/xieyuheng
 ```
 
 # indexing
