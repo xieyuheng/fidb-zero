@@ -3,21 +3,33 @@
 > token based authorization,
 > path pattern based permission.
 
+`Db.dataWrite`
+`Db.deleteData`
+`Db.readData`
+
+`Db.checkPath`
+
+`Db` api take `path` as arg
+
 [permission] `Token` and `tokenSchema` -- has `permission`
+
+`Db.checkToken`
+
+`Db` api take `token` as arg
 
 [permission] store `fidb/tokens/<token-name>`
 
 [permission] admin and readonly token -- used by `fidb-manager`
 
-# data link
-
-```
-link:/users/xieyuheng
-```
-
 # password login
 
 # mail login
+
+# data link
+
+```
+fidb:users/xieyuheng
+```
 
 # indexing
 
