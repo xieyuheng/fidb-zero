@@ -1,4 +1,3 @@
-import { resolve } from "node:path"
 import { Data, dataSchema } from "../data"
 import type { Database } from "../database"
 import { NotFound } from "../errors/NotFound"
@@ -7,7 +6,7 @@ import { readData } from "./utils/readData"
 
 export async function getOrFail(db: Database, path: string): Promise<Data> {
   try {
-    const json = await readData(resolve(db.path, path))
+    const json = await readData(db, path)
     const data = dataSchema.validate(json)
     return data
   } catch (error) {

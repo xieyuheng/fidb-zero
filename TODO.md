@@ -1,7 +1,5 @@
 # tokens
 
-`Db.readData` -- take `db`
-
 `Db.checkPath`
 
 `Db` api take `path` as arg
