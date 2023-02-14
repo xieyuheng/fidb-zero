@@ -1,7 +1,5 @@
 # tokens
 
-ambr resolveDataPath resolvePath
-
 `resolveDataPath` -- add `/index.json` postfix
 
 `Db` api should not use `fs` directly
