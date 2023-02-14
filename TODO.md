@@ -1,6 +1,5 @@
 # token
 
-[rest] server-no-permission-to-create.test.ts
 [rest] server-no-permission-to-wirte.test.ts
 
 # password login
