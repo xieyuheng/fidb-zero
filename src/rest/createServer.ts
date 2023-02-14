@@ -3,6 +3,7 @@ import type { Database } from "../database"
 import { AlreadyExists } from "../errors/AlreadyExists"
 import { NotFound } from "../errors/NotFound"
 import { RevisionMismatch } from "../errors/RevisionMismatch"
+import { Unauthorized } from "../errors/Unauthorized"
 import { responseSend } from "../utils/responseSend"
 import { handle } from "./handle"
 
@@ -37,6 +38,8 @@ export async function createServer(
       const message = error instanceof Error ? error.message : "Unknown error"
       if (error instanceof NotFound) {
         responseSend(response, { status: { code: 404, message }, headers })
+      } else if (error instanceof Unauthorized) {
+        responseSend(response, { status: { code: 401, message }, headers })
       } else if (error instanceof AlreadyExists) {
         responseSend(response, { status: { code: 403, message }, headers })
       } else if (error instanceof RevisionMismatch) {

@@ -1,6 +1,8 @@
 # token
 
-[rest] tests about token and permissions
+[rest] server-no-permission-to-read.test.ts
+[rest] server-no-permission-to-create.test.ts
+[rest] server-no-permission-to-wirte.test.ts
 
 # password login
 
