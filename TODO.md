@@ -1,8 +1,5 @@
 # tokens
 
-`unauthorized.test.ts` -- `deleteDirectory`
-`unauthorized.test.ts` -- `isFile`
-
 `Db` api take `path` as arg
 
 [permission] `Token` and `tokenSchema` -- has `permission`
