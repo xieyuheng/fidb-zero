@@ -2,6 +2,8 @@ import { ty } from "@xieyuheng/ty"
 import type Http from "node:http"
 import type { Database } from "../database"
 import * as Db from "../db"
+import { normalizePath } from "../db/utils/normalizePath"
+import { adminToken, tokenCheckReadable, tokenCheckWriteable } from "../token"
 import { arrayFromAsyncIterable } from "../utils/arrayFromAsyncIterable"
 import type { Json } from "../utils/Json"
 import { requestJsonObject } from "../utils/requestJsonObject"
@@ -13,9 +15,13 @@ export async function handle(
   db: Database,
 ): Promise<Json | void> {
   const url = requestURL(request)
-  const path = decodeURIComponent(url.pathname.slice(1))
+  const path = normalizePath(db, decodeURIComponent(url.pathname.slice(1)))
   const query = requestQuery(request)
   const kind = query.kind ? query.kind.toLowerCase() : ""
+
+  const token = adminToken
+
+  tokenCheckReadable(token, path)
 
   if (request.method === "GET") {
     if (kind === "list") {
@@ -38,6 +44,8 @@ export async function handle(
 
     return await Db.getOrFail(db, path)
   }
+
+  tokenCheckWriteable(token, path)
 
   if (request.method === "POST") {
     if (kind === "directory") {
