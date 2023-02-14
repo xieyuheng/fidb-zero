@@ -1,9 +1,6 @@
 # tokens
 
-> token based authorization,
-> path pattern based permission.
-
-rename dataWrite to writeData
+rename jsonWrite to writeJson
 
 `Db.deleteData` -- take `db`
 `Db.readData` -- take `db`

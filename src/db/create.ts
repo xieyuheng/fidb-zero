@@ -3,7 +3,7 @@ import type { Database } from "../database"
 import { AlreadyExists } from "../errors/AlreadyExists"
 import type { JsonObject } from "../utils/Json"
 import { get } from "./get"
-import { dataWrite } from "./utils/dataWrite"
+import { writeData } from "./utils/writeData"
 
 export async function create(
   db: Database,
@@ -22,7 +22,7 @@ export async function create(
     "@updatedAt": Date.now(),
   }
 
-  await dataWrite(db, result, path)
+  await writeData(db, path, result)
 
   return result
 }

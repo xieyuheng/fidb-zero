@@ -4,7 +4,7 @@ import { NotFound } from "../errors/NotFound"
 import { RevisionMismatch } from "../errors/RevisionMismatch"
 import type { JsonObject } from "../utils/Json"
 import { get } from "./get"
-import { dataWrite } from "./utils/dataWrite"
+import { writeData } from "./utils/writeData"
 
 export async function patch(
   db: Database,
@@ -31,7 +31,7 @@ export async function patch(
     "@updatedAt": Date.now(),
   }
 
-  await dataWrite(db, result, path)
+  await writeData(db, path, result)
 
   return result
 }

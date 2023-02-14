@@ -2,7 +2,7 @@ import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
 import { importDataArrayFromCsv } from "../../data/importDataArrayFromCsv"
 import { createDatabase } from "../../database"
-import { dataWrite } from "../../db/utils/dataWrite"
+import { writeData } from "../../db/utils/writeData"
 
 type Args = { database: string }
 type Opts = { from: string; directory: string; "primary-key": string }
@@ -40,7 +40,8 @@ export class ImportCommand extends Command<Args> {
 
     for (const data of results) {
       const db = await createDatabase({ path: argv.database })
-      await dataWrite(db, data, data["@path"])
+      const path = data["@path"]
+      await writeData(db, path, data)
       console.log(data)
     }
 
