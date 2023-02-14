@@ -1,10 +1,14 @@
-import fs from "node:fs"
 import { resolve } from "node:path"
 import { createDatabase, Database } from "../../database"
+import { formatDateTime } from "../../utils/formatDate"
+import { randomHexString } from "../../utils/randomHexString"
+import { slug } from "../../utils/slug"
 
-const TEST_DB_PATH = resolve(__filename, "../../../../tmp/databases/test")
+const PREFIX = resolve(__filename, "../../../../tmp/databases/")
 
 export async function prepareTestDb(): Promise<Database> {
-  await fs.promises.rm(TEST_DB_PATH, { force: true, recursive: true })
-  return await createDatabase({ path: TEST_DB_PATH })
+  const name = slug(`${formatDateTime(Date.now())}-${randomHexString(4)}`)
+  return await createDatabase({
+    path: resolve(PREFIX, name),
+  })
 }
