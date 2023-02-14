@@ -2,7 +2,7 @@ import type { Database } from "../database"
 import { RevisionMismatch } from "../errors/RevisionMismatch"
 import type { JsonObject } from "../utils/Json"
 import { get } from "./get"
-import { deleteData } from "./utils/deleteData"
+import { deleteRecursive } from "./utils/deleteRecursive"
 
 // NOTE `delete` is preserved javascript keyword.
 
@@ -20,5 +20,5 @@ export async function del(
     throw new RevisionMismatch(`[delete] revision mismatch`)
   }
 
-  await deleteData(db, path)
+  await deleteRecursive(db, path)
 }
