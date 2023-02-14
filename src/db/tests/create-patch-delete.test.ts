@@ -1,5 +1,5 @@
 import { expect, test } from "vitest"
-import * as Db from "../db"
+import * as Db from "../../db"
 import { prepareTestDb } from "./prepareTestDb"
 
 test("create-patch-delete", async () => {

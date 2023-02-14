@@ -1,4 +1,4 @@
-import { prepareTestDb } from "../../db/prepareTestDb"
+import { prepareTestDb } from "../../db/tests/prepareTestDb"
 import * as Rest from "../../rest"
 import { findPort } from "../../utils/findPort"
 

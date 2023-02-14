@@ -1,6 +1,6 @@
 import { expect, test } from "vitest"
-import * as Db from "../db"
-import { AlreadyExists } from "../errors/AlreadyExists"
+import * as Db from "../../db"
+import { AlreadyExists } from "../../errors/AlreadyExists"
 import { prepareTestDb } from "./prepareTestDb"
 
 test("create-already-exists", async () => {

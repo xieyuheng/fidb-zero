@@ -1,7 +1,5 @@
 # token
 
-[db] move tests to `/tests`
-
 `Db` api take `token` as arg
 
 [db] `utils/checkPath`

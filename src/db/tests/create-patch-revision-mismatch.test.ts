@@ -1,10 +1,10 @@
 import { expect, test } from "vitest"
-import { randomRevision } from "../data"
-import * as Db from "../db"
-import { RevisionMismatch } from "../errors/RevisionMismatch"
+import { randomRevision } from "../../data"
+import * as Db from "../../db"
+import { RevisionMismatch } from "../../errors/RevisionMismatch"
 import { prepareTestDb } from "./prepareTestDb"
 
-test("create-delete-revision-mismatch", async () => {
+test("create-patch-revision-mismatch", async () => {
   const db = await prepareTestDb()
 
   await Db.create(db, "users/xieyuheng", {
@@ -13,7 +13,7 @@ test("create-delete-revision-mismatch", async () => {
   })
 
   await expect(
-    Db.delete(db, "users/xieyuheng", {
+    Db.patch(db, "users/xieyuheng", {
       "@revision": randomRevision(),
       name: "谢宇恒",
     }),
