@@ -1,6 +1,6 @@
 import fs from "node:fs"
-import type { Database } from "../database"
-import { resolvePath } from "./utils/resolvePath"
+import type { Database } from "../../database"
+import { resolvePath } from "./resolvePath"
 
 export async function exists(db: Database, path: string): Promise<boolean> {
   try {

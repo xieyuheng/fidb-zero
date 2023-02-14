@@ -1,7 +1,7 @@
 import fs from "node:fs"
-import type { Database } from "../database"
-import { isErrnoException } from "../utils/isErrnoException"
-import { resolvePath } from "./utils/resolvePath"
+import type { Database } from "../../database"
+import { isErrnoException } from "../../utils/isErrnoException"
+import { resolvePath } from "./resolvePath"
 
 export async function isFile(db: Database, path: string): Promise<boolean> {
   try {
