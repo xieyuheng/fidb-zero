@@ -1,9 +1,8 @@
 import type { Database } from "../database"
 import { Unauthorized } from "../errors/Unauthorized"
 import { Token, tokenSchema } from "../token"
-import { readJson } from "../utils/readJson"
+import { get } from "./get"
 import { isValidTokenName } from "./utils/isValidTokenName"
-import { resolvePath } from "./utils/resolvePath"
 
 export async function getToken(
   db: Database,
@@ -13,7 +12,5 @@ export async function getToken(
     throw new Unauthorized(`[getToken] invalid token name: ${tokenName}`)
   }
 
-  const path = resolvePath(db, `fidb/tokens/${tokenName}`)
-  const json = await readJson(path)
-  return tokenSchema.validate(json)
+  return tokenSchema.validate(await get(db, `fidb/tokens/${tokenName}`))
 }

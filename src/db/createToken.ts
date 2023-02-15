@@ -1,8 +1,7 @@
 import type { Database } from "../database"
 import type { TokenPermissions } from "../token"
-import { writeJson } from "../utils/writeJson"
+import { create } from "./create"
 import { randomTokenName } from "./utils/randomTokenName"
-import { resolvePath } from "./utils/resolvePath"
 
 export async function createToken(
   db: Database,
@@ -12,11 +11,9 @@ export async function createToken(
 ): Promise<string> {
   const tokenName = randomTokenName()
 
-  const token = {
+  await create(db, `fidb/tokens/${tokenName}`, {
     permissions: options.permissions,
-  }
+  })
 
-  const path = resolvePath(db, `fidb/tokens/${tokenName}`)
-  await writeJson(path, token)
   return tokenName
 }
