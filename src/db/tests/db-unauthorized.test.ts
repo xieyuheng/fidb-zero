@@ -4,7 +4,7 @@ import { Unauthorized } from "../../errors/Unauthorized"
 import { arrayFromAsyncIterable } from "../../utils/arrayFromAsyncIterable"
 import { prepareTestDb } from "./prepareTestDb"
 
-test("unauthorized", async ({ meta }) => {
+test("db-unauthorized", async ({ meta }) => {
   const db = await prepareTestDb(meta)
 
   await expect(

@@ -2,7 +2,7 @@ import { expect, test } from "vitest"
 import * as Db from "../../db"
 import { prepareTestDb } from "./prepareTestDb"
 
-test("create-delete", async ({ meta }) => {
+test("db-create-delete", async ({ meta }) => {
   const db = await prepareTestDb(meta)
 
   const created = await Db.create(db, `users/${crypto.randomUUID()}`, {

@@ -4,18 +4,18 @@ import * as Db from "../../db"
 import { RevisionMismatch } from "../../errors/RevisionMismatch"
 import { prepareTestDb } from "./prepareTestDb"
 
-test("create-put-revision-mismatch", async ({ meta }) => {
+test("db-create-patch-revision-mismatch", async ({ meta }) => {
   const db = await prepareTestDb(meta)
 
-  const created = await Db.create(db, "users/xieyuheng", {
+  await Db.create(db, "users/xieyuheng", {
     username: "xieyuheng",
     name: "Xie Yuheng",
   })
 
   await expect(
-    Db.put(db, created["@path"], {
-      ...created,
+    Db.patch(db, "users/xieyuheng", {
       "@revision": randomRevision(),
+      name: "谢宇恒",
     }),
   ).rejects.toThrowError(RevisionMismatch)
 })
