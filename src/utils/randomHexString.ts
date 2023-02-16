@@ -1,7 +1,15 @@
-import { Buffer } from "node:buffer"
-
 export function randomHexString(size: number): string {
   const array = new Uint8Array(size)
   crypto.getRandomValues(array)
-  return Buffer.from(array).toString("hex")
+  let hexString = ""
+  for (const n of array) {
+    const s = n.toString(16)
+    if (s.length === 1) {
+      hexString += "0" + s
+    } else {
+      hexString += s
+    }
+  }
+
+  return hexString
 }

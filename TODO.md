@@ -1,5 +1,3 @@
-`randomHexString` quit using buffer
-
 update `ty`
 
 # password login
