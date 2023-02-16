@@ -1,5 +1,3 @@
-update `ty`
-
 # password login
 
 # mail login
