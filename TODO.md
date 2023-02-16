@@ -1,4 +1,4 @@
-[rest] `requestListener` -- handle schema error
+[rest] `createRequestListener` -- handle schema error
 
 # password login
 
