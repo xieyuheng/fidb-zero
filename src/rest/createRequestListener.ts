@@ -1,3 +1,4 @@
+import { Errors as TyErrors } from "@xieyuheng/ty"
 import type Http from "node:http"
 import type { Database } from "../database"
 import { AlreadyExists } from "../errors/AlreadyExists"
@@ -44,6 +45,14 @@ export function createRequestListener(options: {
         responseSend(response, { status: { code: 403, message }, headers })
       } else if (error instanceof RevisionMismatch) {
         responseSend(response, { status: { code: 409, message }, headers })
+      } else if (TyErrors.InvalidData.guard(error)) {
+        responseSend(response, {
+          status: { code: 422, message },
+          headers,
+          body: JSON.stringify({
+            errors: { [error.path]: error.msg },
+          }),
+        })
       } else {
         responseSend(response, { status: { code: 500, message }, headers })
       }
