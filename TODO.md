@@ -1,5 +1,4 @@
-[rest] `createServer` -- extract `handler`
-[rest] `handler` -- handle schema error
+[rest] `requestListener` -- handle schema error
 
 # password login
 
