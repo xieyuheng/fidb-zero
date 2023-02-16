@@ -1,4 +1,3 @@
-[rest] rename `handle` to `handleRequest`
 [rest] `createServer` -- extract `handler`
 [rest] `handler` -- handle schema error
 

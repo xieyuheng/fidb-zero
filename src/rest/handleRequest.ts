@@ -11,7 +11,7 @@ import { requestQuery } from "../utils/requestQuery"
 import { requestTokenName } from "../utils/requestTokenName"
 import { requestURL } from "../utils/requestURL"
 
-export async function handle(
+export async function handleRequest(
   request: Http.IncomingMessage,
   db: Database,
 ): Promise<Json | void> {

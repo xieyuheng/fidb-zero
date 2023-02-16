@@ -5,7 +5,7 @@ import { NotFound } from "../errors/NotFound"
 import { RevisionMismatch } from "../errors/RevisionMismatch"
 import { Unauthorized } from "../errors/Unauthorized"
 import { responseSend } from "../utils/responseSend"
-import { handle } from "./handle"
+import { handleRequest } from "./handleRequest"
 
 type ServeOptions = {
   db: Database
@@ -28,7 +28,7 @@ export async function createServer(
     }
 
     try {
-      const body = await handle(request, db)
+      const body = await handleRequest(request, db)
       if (body === undefined) {
         responseSend(response, { status: { code: 204 }, headers })
       } else {
