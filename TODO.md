@@ -1,4 +1,3 @@
-[rest] `handleRequest` -- dispatch based on content-type
 [rest] `handleRequestFile` -- `GET` -- `text/plain` for now
 
 [db] tests/db-put-file-get-file.test.ts
