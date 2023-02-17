@@ -1,3 +1,7 @@
+[db] `db/PathEntry`
+
+[rest] `handleRequestDirectory` -- GET list -- return `PathEntry` instead of `basename: string`
+
 [db] `Db.getFile` -- support optional `.meta.json` -- for `@revision`
 [db] `Db.putFile` -- support optional `.meta.json` -- for `@revision`
 

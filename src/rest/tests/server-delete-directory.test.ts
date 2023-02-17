@@ -20,8 +20,8 @@ test("server-delete-directory", async ({ meta }) => {
         "content-type": "application/json",
       },
     })
-    const { directories } = await response.json()
-    expect(directories.includes("users")).toEqual(true)
+    const { results } = await response.json()
+    expect(results.includes("users")).toEqual(true)
   }
 
   await fetch(`${url}/users?kind=directory`, {
@@ -40,7 +40,7 @@ test("server-delete-directory", async ({ meta }) => {
         "content-type": "application/json",
       },
     })
-    const { directories } = await response.json()
-    expect(directories.includes("users")).toEqual(false)
+    const { results } = await response.json()
+    expect(results.includes("users")).toEqual(false)
   }
 })

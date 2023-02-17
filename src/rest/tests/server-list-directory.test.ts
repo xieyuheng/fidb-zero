@@ -12,9 +12,9 @@ test("server-list-directory", async ({ meta }) => {
         "content-type": "application/json",
       },
     })
-    const { directories } = await response.json()
-    expect(directories.includes("users")).toEqual(false)
-    expect(directories.includes("posts")).toEqual(false)
+    const { results } = await response.json()
+    expect(results.includes("users")).toEqual(false)
+    expect(results.includes("posts")).toEqual(false)
   }
 
   await fetch(`${url}/users/1`, {
@@ -34,9 +34,9 @@ test("server-list-directory", async ({ meta }) => {
         "content-type": "application/json",
       },
     })
-    const { directories } = await response.json()
-    expect(directories.includes("users")).toEqual(true)
-    expect(directories.includes("posts")).toEqual(false)
+    const { results } = await response.json()
+    expect(results.includes("users")).toEqual(true)
+    expect(results.includes("posts")).toEqual(false)
   }
 
   await fetch(`${url}/posts/1`, {
@@ -56,12 +56,12 @@ test("server-list-directory", async ({ meta }) => {
         "content-type": "application/json",
       },
     })
-    const { directories } = await response.json()
-    expect(directories.includes("users")).toEqual(true)
-    expect(directories.includes("posts")).toEqual(true)
+    const { results } = await response.json()
+    expect(results.includes("users")).toEqual(true)
+    expect(results.includes("posts")).toEqual(true)
   }
 
-  // Nested directories.
+  // Nested results.
 
   {
     const response = await fetch(`${url}/users/1?kind=list`, {
@@ -71,8 +71,8 @@ test("server-list-directory", async ({ meta }) => {
         "content-type": "application/json",
       },
     })
-    const { directories } = await response.json()
-    expect(directories.includes("tokens")).toEqual(false)
+    const { results } = await response.json()
+    expect(results.includes("tokens")).toEqual(false)
   }
 
   await fetch(`${url}/users/1/tokens/1`, {
@@ -92,7 +92,7 @@ test("server-list-directory", async ({ meta }) => {
         "content-type": "application/json",
       },
     })
-    const { directories } = await response.json()
-    expect(directories.includes("tokens")).toEqual(true)
+    const { results } = await response.json()
+    expect(results.includes("tokens")).toEqual(true)
   }
 })
