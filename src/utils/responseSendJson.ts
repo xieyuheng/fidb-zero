@@ -1,5 +1,6 @@
 import type Http from "node:http"
 import type { Json } from "./Json"
+import { responseSend } from "./responseSend"
 
 export function responseSendJson(
   response: Http.ServerResponse,
@@ -12,24 +13,9 @@ export function responseSendJson(
     body?: Json
   },
 ) {
-  if (options.status?.code) {
-    response.statusCode = options.status.code
-  }
-
-  if (options.status?.message) {
-    const message = options.status.message.replaceAll("\n", "; ")
-    response.statusMessage = message
-  }
-  if (options.headers) {
-    for (const [name, value] of Object.entries(options.headers))
-      if (value !== undefined) {
-        response.setHeader(name, value)
-      }
-  }
-
-  if (options.body) {
-    response.write(JSON.stringify(options.body))
-  }
-
-  response.end()
+  responseSend(response, {
+    status: options.status,
+    headers: options.headers,
+    body: JSON.stringify(options.body),
+  })
 }

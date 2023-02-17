@@ -5,6 +5,7 @@ import { AlreadyExists } from "../errors/AlreadyExists"
 import { NotFound } from "../errors/NotFound"
 import { RevisionMismatch } from "../errors/RevisionMismatch"
 import { Unauthorized } from "../errors/Unauthorized"
+import { responseSend } from "../utils/responseSend"
 import { responseSendJson } from "../utils/responseSendJson"
 import { handleRequest } from "./handleRequest"
 
@@ -23,19 +24,41 @@ export function createRequestListener(options: {
       return
     }
 
-    const headers = {
-      "content-type": "application/json",
-      "access-control-allow-origin": "*",
-    }
-
     try {
       const body = await handleRequest(request, db)
       if (body === undefined) {
-        responseSendJson(response, { status: { code: 204 }, headers })
+        responseSendJson(response, {
+          status: { code: 204 },
+          headers: {
+            "content-type": "application/json",
+            "access-control-allow-origin": "*",
+          },
+        })
+      } else if (body instanceof Buffer) {
+        responseSend(response, {
+          status: { code: 200 },
+          headers: {
+            "content-type": "text/plain",
+            "access-control-allow-origin": "*",
+          },
+          body,
+        })
       } else {
-        responseSendJson(response, { status: { code: 200 }, headers, body })
+        responseSendJson(response, {
+          status: { code: 200 },
+          headers: {
+            "content-type": "application/json",
+            "access-control-allow-origin": "*",
+          },
+          body,
+        })
       }
     } catch (error) {
+      const headers = {
+        "content-type": "application/json",
+        "access-control-allow-origin": "*",
+      }
+
       const message = error instanceof Error ? error.message : "Unknown error"
       if (error instanceof NotFound) {
         responseSendJson(response, { status: { code: 404, message }, headers })

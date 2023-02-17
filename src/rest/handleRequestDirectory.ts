@@ -2,30 +2,25 @@ import type Http from "node:http"
 import type { Database } from "../database"
 import * as Db from "../db"
 import { Unauthorized } from "../errors/Unauthorized"
-import { tokenCheckReadable, tokenCheckWriteable } from "../token"
+import { Token, tokenCheckReadable, tokenCheckWriteable } from "../token"
 import { arrayFromAsyncIterable } from "../utils/arrayFromAsyncIterable"
 import type { Json } from "../utils/Json"
 import { requestJsonObject } from "../utils/requestJsonObject"
 import { requestQuery } from "../utils/requestQuery"
-import { requestTokenName } from "../utils/requestTokenName"
 
 export async function handleRequestDirectory(
   request: Http.IncomingMessage,
   db: Database,
   path: string,
+  token: Token,
 ): Promise<Json | void> {
   const query = requestQuery(request)
   const kind = query.kind ? query.kind.toLowerCase() : ""
 
-  const tokenName = requestTokenName(request)
-  if (tokenName === undefined) {
-    throw new Unauthorized(`[handle] not token in authorization header`)
-  }
-
-  const token = await Db.getToken(db, tokenName)
-
   if (!tokenCheckReadable(token, path)) {
-    throw new Unauthorized(`[handle] not permitted to read path: ${path}`)
+    throw new Unauthorized(
+      `[handleRequestDirectory] not permitted to read path: ${path}`,
+    )
   }
 
   if (request.method === "GET") {
@@ -51,7 +46,9 @@ export async function handleRequestDirectory(
   }
 
   if (!tokenCheckWriteable(token, path)) {
-    throw new Unauthorized(`[handle] not permitted to write path: ${path}`)
+    throw new Unauthorized(
+      `[handleRequestDirectory] not permitted to write path: ${path}`,
+    )
   }
 
   if (request.method === "POST") {
