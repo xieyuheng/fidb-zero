@@ -1,4 +1,4 @@
-[rest] tests/server-crud-file.test.ts
+[rest] `handleRequest` be strict about content-type header
 
 [db] `Db.getFile` -- support optional `.meta.json` -- for `@revision`
 [db] `Db.putFile` -- support optional `.meta.json` -- for `@revision`

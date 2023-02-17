@@ -37,15 +37,23 @@ export async function handleRequest(
     return await handleRequestDirectory(request, db, path, token)
   }
 
+  if (
+    request.headers["content-type"] === "text/plain" ||
+    request.headers["content-type"] === "application/octet-stream"
+  ) {
+    return await handleRequestFile(request, db, path, token)
+  }
+
   if (await isFile(db, path)) {
     return await handleRequestFile(request, db, path, token)
   }
 
   throw new Error(
     [
-      `[handleRequest] unhandled path type`,
+      `[handleRequest] unhandled content-type`,
       `  method: ${request.method}`,
       `  path: ${path}`,
+      `  content-type: ${request.headers["content-type"]}`,
     ].join("\n"),
   )
 }

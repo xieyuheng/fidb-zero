@@ -5,6 +5,7 @@ import * as Db from "../db"
 import { Unauthorized } from "../errors/Unauthorized"
 import { Token, tokenCheckReadable } from "../token"
 import type { Json } from "../utils/Json"
+import { requestBuffer } from "../utils/requestBuffer"
 
 export async function handleRequestFile(
   request: Http.IncomingMessage,
@@ -20,6 +21,10 @@ export async function handleRequestFile(
 
   if (request.method === "GET") {
     return await Db.getFileOrFail(db, path)
+  }
+
+  if (request.method === "PUT") {
+    return await Db.putFile(db, path, await requestBuffer(request))
   }
 
   throw new Error(
