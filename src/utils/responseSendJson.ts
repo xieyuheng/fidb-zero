@@ -1,7 +1,7 @@
 import type Http from "node:http"
 import type { Json } from "./Json"
 
-export function responseSend(
+export function responseSendJson(
   response: Http.ServerResponse,
   options: {
     status?: {

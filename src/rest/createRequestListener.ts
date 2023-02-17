@@ -5,7 +5,7 @@ import { AlreadyExists } from "../errors/AlreadyExists"
 import { NotFound } from "../errors/NotFound"
 import { RevisionMismatch } from "../errors/RevisionMismatch"
 import { Unauthorized } from "../errors/Unauthorized"
-import { responseSend } from "../utils/responseSend"
+import { responseSendJson } from "../utils/responseSendJson"
 import { handleRequest } from "./handleRequest"
 
 type RequestListener = (
@@ -31,22 +31,22 @@ export function createRequestListener(options: {
     try {
       const body = await handleRequest(request, db)
       if (body === undefined) {
-        responseSend(response, { status: { code: 204 }, headers })
+        responseSendJson(response, { status: { code: 204 }, headers })
       } else {
-        responseSend(response, { status: { code: 200 }, headers, body })
+        responseSendJson(response, { status: { code: 200 }, headers, body })
       }
     } catch (error) {
       const message = error instanceof Error ? error.message : "Unknown error"
       if (error instanceof NotFound) {
-        responseSend(response, { status: { code: 404, message }, headers })
+        responseSendJson(response, { status: { code: 404, message }, headers })
       } else if (error instanceof Unauthorized) {
-        responseSend(response, { status: { code: 401, message }, headers })
+        responseSendJson(response, { status: { code: 401, message }, headers })
       } else if (error instanceof AlreadyExists) {
-        responseSend(response, { status: { code: 403, message }, headers })
+        responseSendJson(response, { status: { code: 403, message }, headers })
       } else if (error instanceof RevisionMismatch) {
-        responseSend(response, { status: { code: 409, message }, headers })
+        responseSendJson(response, { status: { code: 409, message }, headers })
       } else if (TyErrors.InvalidData.guard(error)) {
-        responseSend(response, {
+        responseSendJson(response, {
           status: { code: 422, message },
           headers,
           body: JSON.stringify({
@@ -54,7 +54,7 @@ export function createRequestListener(options: {
           }),
         })
       } else {
-        responseSend(response, { status: { code: 500, message }, headers })
+        responseSendJson(response, { status: { code: 500, message }, headers })
       }
     }
   }
@@ -80,5 +80,5 @@ function preflight(
       request.headers["access-control-request-headers"]
   }
 
-  responseSend(response, { headers })
+  responseSendJson(response, { headers })
 }

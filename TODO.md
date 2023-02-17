@@ -1,3 +1,8 @@
+# db
+
+`Db.getFile`
+`Db.putFile`
+
 # password login
 
 # mail login
@@ -22,13 +27,6 @@ fidb+https://localhost:3000/users/xieyuheng
 `Db.find` -- support deref a property which is an `id` to another data
 
 # schema
-
-# fi
-
-`Fi.get`
-`Fi.put`
-
-use `<name>.metadata.json` postfix for metadata in json format
 
 # proxy server
 
