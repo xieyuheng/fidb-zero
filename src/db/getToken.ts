@@ -12,5 +12,5 @@ export async function getToken(
     throw new Unauthorized(`[getToken] invalid token name: ${tokenName}`)
   }
 
-  return tokenSchema.validate(await get(db, `fidb/tokens/${tokenName}`))
+  return tokenSchema.validate(await get(db, `tokens/${tokenName}`))
 }

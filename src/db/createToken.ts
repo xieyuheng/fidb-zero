@@ -11,7 +11,7 @@ export async function createToken(
 ): Promise<string> {
   const tokenName = randomTokenName()
 
-  await create(db, `fidb/tokens/${tokenName}`, {
+  await create(db, `tokens/${tokenName}`, {
     permissions: options.permissions,
   })
 
