@@ -25,6 +25,7 @@ test("server-crud-data", async ({ meta }) => {
         method: "GET",
         headers: {
           authorization,
+          "content-type": "application/json",
         },
       })
     ).json(),
@@ -52,6 +53,7 @@ test("server-crud-data", async ({ meta }) => {
         method: "GET",
         headers: {
           authorization,
+          "content-type": "application/json",
         },
       })
     ).json(),
@@ -79,6 +81,7 @@ test("server-crud-data", async ({ meta }) => {
         method: "GET",
         headers: {
           authorization,
+          "content-type": "application/json",
         },
       })
     ).json(),
@@ -101,6 +104,7 @@ test("server-crud-data", async ({ meta }) => {
         method: "GET",
         headers: {
           authorization,
+          "content-type": "application/json",
         },
       })
     ).status,

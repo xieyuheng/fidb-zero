@@ -9,6 +9,7 @@ test("server-list-directory", async ({ meta }) => {
       method: "GET",
       headers: {
         authorization,
+        "content-type": "application/json",
       },
     })
     const { directories } = await response.json()
@@ -30,6 +31,7 @@ test("server-list-directory", async ({ meta }) => {
       method: "GET",
       headers: {
         authorization,
+        "content-type": "application/json",
       },
     })
     const { directories } = await response.json()
@@ -51,6 +53,7 @@ test("server-list-directory", async ({ meta }) => {
       method: "GET",
       headers: {
         authorization,
+        "content-type": "application/json",
       },
     })
     const { directories } = await response.json()
@@ -65,6 +68,7 @@ test("server-list-directory", async ({ meta }) => {
       method: "GET",
       headers: {
         authorization,
+        "content-type": "application/json",
       },
     })
     const { directories } = await response.json()
@@ -85,6 +89,7 @@ test("server-list-directory", async ({ meta }) => {
       method: "GET",
       headers: {
         authorization,
+        "content-type": "application/json",
       },
     })
     const { directories } = await response.json()

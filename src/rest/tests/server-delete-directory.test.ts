@@ -8,6 +8,7 @@ test("server-delete-directory", async ({ meta }) => {
     method: "POST",
     headers: {
       authorization,
+      "content-type": "application/json",
     },
   })
 
@@ -16,6 +17,7 @@ test("server-delete-directory", async ({ meta }) => {
       method: "GET",
       headers: {
         authorization,
+        "content-type": "application/json",
       },
     })
     const { directories } = await response.json()
@@ -26,6 +28,7 @@ test("server-delete-directory", async ({ meta }) => {
     method: "DELETE",
     headers: {
       authorization,
+      "content-type": "application/json",
     },
   })
 
@@ -34,6 +37,7 @@ test("server-delete-directory", async ({ meta }) => {
       method: "GET",
       headers: {
         authorization,
+        "content-type": "application/json",
       },
     })
     const { directories } = await response.json()

@@ -45,6 +45,7 @@ test("server-find-page", async ({ meta }) => {
             method: "GET",
             headers: {
               authorization,
+              "content-type": "application/json",
             },
           },
         )
@@ -68,6 +69,7 @@ test("server-find-page", async ({ meta }) => {
             method: "GET",
             headers: {
               authorization,
+              "content-type": "application/json",
             },
           },
         )

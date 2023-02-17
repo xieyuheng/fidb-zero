@@ -33,6 +33,7 @@ test("server-no-permission-to-write", async ({ meta }) => {
         method: "GET",
         headers: {
           authorization,
+          "content-type": "application/json",
         },
       })
     ).json(),
@@ -54,6 +55,7 @@ test("server-no-permission-to-write", async ({ meta }) => {
           method: "GET",
           headers: {
             authorization,
+            "content-type": "application/json",
           },
         })
       ).json()
@@ -68,6 +70,7 @@ test("server-no-permission-to-write", async ({ meta }) => {
         method: "PATCH",
         headers: {
           authorization,
+          "content-type": "application/json",
         },
         body: JSON.stringify({
           "@revision": created["@revision"],
@@ -85,6 +88,7 @@ test("server-no-permission-to-write", async ({ meta }) => {
         method: "DELETE",
         headers: {
           authorization,
+          "content-type": "application/json",
         },
       })
     ).status,

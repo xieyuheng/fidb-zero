@@ -32,6 +32,7 @@ test("server-no-permission-to-read", async ({ meta }) => {
         method: "GET",
         headers: {
           authorization,
+          "content-type": "application/json",
         },
       })
     ).json(),

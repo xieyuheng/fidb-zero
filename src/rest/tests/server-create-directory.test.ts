@@ -9,6 +9,7 @@ test("server-create-directory", async ({ meta }) => {
       method: "GET",
       headers: {
         authorization,
+        "content-type": "application/json",
       },
     })
     const { directories } = await response.json()
@@ -17,7 +18,10 @@ test("server-create-directory", async ({ meta }) => {
 
   await fetch(`${url}/users/?kind=directory`, {
     method: "POST",
-    headers: { authorization },
+    headers: {
+      authorization,
+      "content-type": "application/json",
+    },
   })
 
   {
@@ -25,6 +29,7 @@ test("server-create-directory", async ({ meta }) => {
       method: "GET",
       headers: {
         authorization,
+        "content-type": "application/json",
       },
     })
     const { directories } = await response.json()
