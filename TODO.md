@@ -1,7 +1,7 @@
 # db
 
-`Db.getFile`
-`Db.putFile`
+[db] `Db.getFile`
+[db] `Db.putFile`
 
 # password login
 
