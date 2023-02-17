@@ -21,7 +21,7 @@ test("server-delete-directory", async ({ meta }) => {
       },
     })
     const { results } = await response.json()
-    expect(results.includes("users")).toEqual(true)
+    expect(Boolean(results.find(({ path }) => path === "users"))).toEqual(true)
   }
 
   await fetch(`${url}/users?kind=directory`, {
@@ -41,6 +41,6 @@ test("server-delete-directory", async ({ meta }) => {
       },
     })
     const { results } = await response.json()
-    expect(results.includes("users")).toEqual(false)
+    expect(Boolean(results.find(({ path }) => path === "users"))).toEqual(false)
   }
 })

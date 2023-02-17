@@ -16,7 +16,7 @@ test("db-unauthorized", async ({ meta }) => {
 
   await expect(Db.deleteDirectory(db, "..")).rejects.toThrowError(Unauthorized)
 
-  await expect(
-    arrayFromAsyncIterable(Db.listDirectories(db, "..")),
-  ).rejects.toThrowError(Unauthorized)
+  await expect(arrayFromAsyncIterable(Db.list(db, ".."))).rejects.toThrowError(
+    Unauthorized,
+  )
 })

@@ -26,7 +26,7 @@ export async function handleRequestDirectory(
   if (request.method === "GET") {
     if (kind === "list") {
       return {
-        results: await arrayFromAsyncIterable(Db.listDirectories(db, path)),
+        results: await arrayFromAsyncIterable(Db.list(db, path)),
       }
     }
 

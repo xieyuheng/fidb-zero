@@ -13,8 +13,8 @@ test("server-list-directory", async ({ meta }) => {
       },
     })
     const { results } = await response.json()
-    expect(results.includes("users")).toEqual(false)
-    expect(results.includes("posts")).toEqual(false)
+    expect(Boolean(results.find(({ path }) => path === "users"))).toEqual(false)
+    expect(Boolean(results.find(({ path }) => path === "posts"))).toEqual(false)
   }
 
   await fetch(`${url}/users/1`, {
@@ -35,8 +35,8 @@ test("server-list-directory", async ({ meta }) => {
       },
     })
     const { results } = await response.json()
-    expect(results.includes("users")).toEqual(true)
-    expect(results.includes("posts")).toEqual(false)
+    expect(Boolean(results.find(({ path }) => path === "users"))).toEqual(true)
+    expect(Boolean(results.find(({ path }) => path === "posts"))).toEqual(false)
   }
 
   await fetch(`${url}/posts/1`, {
@@ -57,8 +57,8 @@ test("server-list-directory", async ({ meta }) => {
       },
     })
     const { results } = await response.json()
-    expect(results.includes("users")).toEqual(true)
-    expect(results.includes("posts")).toEqual(true)
+    expect(Boolean(results.find(({ path }) => path === "users"))).toEqual(true)
+    expect(Boolean(results.find(({ path }) => path === "posts"))).toEqual(true)
   }
 
   // Nested results.
@@ -72,7 +72,9 @@ test("server-list-directory", async ({ meta }) => {
       },
     })
     const { results } = await response.json()
-    expect(results.includes("tokens")).toEqual(false)
+    expect(
+      Boolean(results.find(({ path }) => path === "users/1/tokens")),
+    ).toEqual(false)
   }
 
   await fetch(`${url}/users/1/tokens/1`, {
@@ -93,6 +95,8 @@ test("server-list-directory", async ({ meta }) => {
       },
     })
     const { results } = await response.json()
-    expect(results.includes("tokens")).toEqual(true)
+    expect(
+      Boolean(results.find(({ path }) => path === "users/1/tokens")),
+    ).toEqual(true)
   }
 })

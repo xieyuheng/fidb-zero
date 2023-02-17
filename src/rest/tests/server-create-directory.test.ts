@@ -13,7 +13,7 @@ test("server-create-directory", async ({ meta }) => {
       },
     })
     const { results } = await response.json()
-    expect(results.includes("users")).toEqual(false)
+    expect(Boolean(results.find(({ path }) => path === "users"))).toEqual(false)
   }
 
   await fetch(`${url}/users/?kind=directory`, {
@@ -33,6 +33,6 @@ test("server-create-directory", async ({ meta }) => {
       },
     })
     const { results } = await response.json()
-    expect(results.includes("users")).toEqual(true)
+    expect(Boolean(results.find(({ path }) => path === "users"))).toEqual(true)
   }
 })

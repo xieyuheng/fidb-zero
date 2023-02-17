@@ -1,12 +1,14 @@
 import fs from "node:fs"
+import { join } from "node:path"
 import type { Database } from "../database"
 import { isErrnoException } from "../utils/isErrnoException"
+import type { PathEntry } from "./PathEntry"
 import { resolvePath } from "./utils/resolvePath"
 
-export async function* listDirectories(
+export async function* list(
   db: Database,
   directory: string = "",
-): AsyncIterable<string> {
+): AsyncIterable<PathEntry> {
   try {
     const dir = await fs.promises.opendir(resolvePath(db, directory), {
       bufferSize: 1024,
@@ -14,7 +16,15 @@ export async function* listDirectories(
 
     for await (const dirEntry of dir) {
       if (dirEntry.isDirectory()) {
-        yield dirEntry.name
+        yield {
+          kind: "Directory",
+          path: join(directory, dirEntry.name),
+        }
+      } else if (dirEntry.isFile()) {
+        yield {
+          kind: "File",
+          path: join(directory, dirEntry.name),
+        }
       }
     }
   } catch (error) {
