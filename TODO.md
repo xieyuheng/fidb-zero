@@ -1,7 +1,10 @@
-# db
-
+[db] `Db.getFileOrFail`
 [db] `Db.getFile`
 [db] `Db.putFile`
+
+[rest] `handleRequestFile` -- `PUT` support `application/octet-stream`
+
+[db] tests/db-put-file-get-file.test.ts
 
 # password login
 
