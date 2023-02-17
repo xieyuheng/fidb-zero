@@ -1,6 +1,7 @@
 import { expect, test } from "vitest"
 import * as Db from "../../db"
 import { arrayFromAsyncIterable } from "../../utils/arrayFromAsyncIterable"
+import type { PathEntry } from "../PathEntry"
 import { prepareTestDb } from "./prepareTestDb"
 
 test("db-delete-directory", async ({ meta }) => {
@@ -14,7 +15,7 @@ test("db-delete-directory", async ({ meta }) => {
   expect(
     Boolean(
       (await arrayFromAsyncIterable(Db.list(db))).find(
-        ({ path }) => path === "users",
+        ({ path }: PathEntry) => path === "users",
       ),
     ),
   ).toEqual(true)

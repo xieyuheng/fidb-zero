@@ -1,4 +1,5 @@
 import { expect, test } from "vitest"
+import type { PathEntry } from "../../db/PathEntry"
 import { prepareTestServer } from "./prepareTestServer"
 
 test("server-create-directory", async ({ meta }) => {
@@ -13,7 +14,9 @@ test("server-create-directory", async ({ meta }) => {
       },
     })
     const { results } = await response.json()
-    expect(Boolean(results.find(({ path }) => path === "users"))).toEqual(false)
+    expect(
+      Boolean(results.find(({ path }: PathEntry) => path === "users")),
+    ).toEqual(false)
   }
 
   await fetch(`${url}/users/?kind=directory`, {
@@ -33,6 +36,8 @@ test("server-create-directory", async ({ meta }) => {
       },
     })
     const { results } = await response.json()
-    expect(Boolean(results.find(({ path }) => path === "users"))).toEqual(true)
+    expect(
+      Boolean(results.find(({ path }: PathEntry) => path === "users")),
+    ).toEqual(true)
   }
 })

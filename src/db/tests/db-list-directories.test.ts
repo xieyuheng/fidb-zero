@@ -1,6 +1,7 @@
 import { expect, test } from "vitest"
 import * as Db from "../../db"
 import { arrayFromAsyncIterable } from "../../utils/arrayFromAsyncIterable"
+import type { PathEntry } from "../PathEntry"
 import { prepareTestDb } from "./prepareTestDb"
 
 test("db-list-directories", async ({ meta }) => {
@@ -16,7 +17,7 @@ test("db-list-directories", async ({ meta }) => {
   expect(
     Boolean(
       (await arrayFromAsyncIterable(Db.list(db))).find(
-        ({ path }) => path === "users",
+        ({ path }: PathEntry) => path === "users",
       ),
     ),
   ).toEqual(true)
@@ -29,7 +30,7 @@ test("db-list-directories", async ({ meta }) => {
   expect(
     Boolean(
       (await arrayFromAsyncIterable(Db.list(db))).find(
-        ({ path }) => path === "users",
+        ({ path }: PathEntry) => path === "users",
       ),
     ),
   ).toEqual(true)
@@ -41,14 +42,14 @@ test("db-list-directories", async ({ meta }) => {
   expect(
     Boolean(
       (await arrayFromAsyncIterable(Db.list(db))).find(
-        ({ path }) => path === "users",
+        ({ path }: PathEntry) => path === "users",
       ),
     ),
   ).toEqual(true)
   expect(
     Boolean(
       (await arrayFromAsyncIterable(Db.list(db))).find(
-        ({ path }) => path === "posts",
+        ({ path }: PathEntry) => path === "posts",
       ),
     ),
   ).toEqual(true)

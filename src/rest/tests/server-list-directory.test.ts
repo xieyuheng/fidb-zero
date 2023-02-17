@@ -1,4 +1,5 @@
 import { expect, test } from "vitest"
+import type { PathEntry } from "../../db/PathEntry"
 import { prepareTestServer } from "./prepareTestServer"
 
 test("server-list-directory", async ({ meta }) => {
@@ -13,8 +14,12 @@ test("server-list-directory", async ({ meta }) => {
       },
     })
     const { results } = await response.json()
-    expect(Boolean(results.find(({ path }) => path === "users"))).toEqual(false)
-    expect(Boolean(results.find(({ path }) => path === "posts"))).toEqual(false)
+    expect(
+      Boolean(results.find(({ path }: PathEntry) => path === "users")),
+    ).toEqual(false)
+    expect(
+      Boolean(results.find(({ path }: PathEntry) => path === "posts")),
+    ).toEqual(false)
   }
 
   await fetch(`${url}/users/1`, {
@@ -35,8 +40,12 @@ test("server-list-directory", async ({ meta }) => {
       },
     })
     const { results } = await response.json()
-    expect(Boolean(results.find(({ path }) => path === "users"))).toEqual(true)
-    expect(Boolean(results.find(({ path }) => path === "posts"))).toEqual(false)
+    expect(
+      Boolean(results.find(({ path }: PathEntry) => path === "users")),
+    ).toEqual(true)
+    expect(
+      Boolean(results.find(({ path }: PathEntry) => path === "posts")),
+    ).toEqual(false)
   }
 
   await fetch(`${url}/posts/1`, {
@@ -57,8 +66,12 @@ test("server-list-directory", async ({ meta }) => {
       },
     })
     const { results } = await response.json()
-    expect(Boolean(results.find(({ path }) => path === "users"))).toEqual(true)
-    expect(Boolean(results.find(({ path }) => path === "posts"))).toEqual(true)
+    expect(
+      Boolean(results.find(({ path }: PathEntry) => path === "users")),
+    ).toEqual(true)
+    expect(
+      Boolean(results.find(({ path }: PathEntry) => path === "posts")),
+    ).toEqual(true)
   }
 
   // Nested results.
@@ -73,7 +86,7 @@ test("server-list-directory", async ({ meta }) => {
     })
     const { results } = await response.json()
     expect(
-      Boolean(results.find(({ path }) => path === "users/1/tokens")),
+      Boolean(results.find(({ path }: PathEntry) => path === "users/1/tokens")),
     ).toEqual(false)
   }
 
@@ -96,7 +109,7 @@ test("server-list-directory", async ({ meta }) => {
     })
     const { results } = await response.json()
     expect(
-      Boolean(results.find(({ path }) => path === "users/1/tokens")),
+      Boolean(results.find(({ path }: PathEntry) => path === "users/1/tokens")),
     ).toEqual(true)
   }
 })
