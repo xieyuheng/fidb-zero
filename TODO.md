@@ -1,8 +1,6 @@
-[db] `Db.getFileOrFail`
-[db] `Db.getFile`
 [db] `Db.putFile`
 
-[rest] `handleRequestFile` -- `PUT` support `application/octet-stream`
+[rest] `handleRequestFile` -- `GET` -- `text/plain` for now
 
 [db] tests/db-put-file-get-file.test.ts
 
