@@ -1,4 +1,4 @@
-[db] tests/db-put-file-get-file.test.ts
+[rest] tests/server-crud-file.test.ts
 
 [db] `Db.getFile` -- support optional `.meta.json` -- for `@revision`
 [db] `Db.putFile` -- support optional `.meta.json` -- for `@revision`
