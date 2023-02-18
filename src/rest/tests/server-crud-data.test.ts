@@ -25,7 +25,6 @@ test("server-crud-data", async ({ meta }) => {
         method: "GET",
         headers: {
           authorization,
-          "content-type": "application/json",
         },
       })
     ).json(),
@@ -53,7 +52,6 @@ test("server-crud-data", async ({ meta }) => {
         method: "GET",
         headers: {
           authorization,
-          "content-type": "application/json",
         },
       })
     ).json(),
@@ -81,7 +79,6 @@ test("server-crud-data", async ({ meta }) => {
         method: "GET",
         headers: {
           authorization,
-          "content-type": "application/json",
         },
       })
     ).json(),
@@ -91,7 +88,6 @@ test("server-crud-data", async ({ meta }) => {
     method: "DELETE",
     headers: {
       authorization,
-      "content-type": "application/json",
     },
     body: JSON.stringify({
       "@revision": patched["@revision"],
@@ -104,7 +100,6 @@ test("server-crud-data", async ({ meta }) => {
         method: "GET",
         headers: {
           authorization,
-          "content-type": "application/json",
         },
       })
     ).status,

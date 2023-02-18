@@ -2,7 +2,7 @@ import { expect, test } from "vitest"
 import { prepareTestServer } from "./prepareTestServer"
 
 test("server-no-token", async ({ meta }) => {
-  const { url, authorization } = await prepareTestServer(meta)
+  const { url } = await prepareTestServer(meta)
 
   expect(
     (

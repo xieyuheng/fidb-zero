@@ -21,7 +21,6 @@ test("server-crud-file", async ({ meta }) => {
         method: "GET",
         headers: {
           authorization,
-          "content-type": "text/plain",
         },
       })
     ).text(),
@@ -34,7 +33,6 @@ test("server-crud-file", async ({ meta }) => {
           method: "GET",
           headers: {
             authorization,
-            "content-type": "text/plain",
           },
         })
       ).arrayBuffer(),
