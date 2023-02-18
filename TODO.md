@@ -1,5 +1,8 @@
-[db] `Db.getFile` -- support optional `.meta.json` -- for `@revision`
-[db] `Db.putFile` -- support optional `.meta.json` -- for `@revision`
+[rest] `handleRequest` dispatch by `kind`
+
+- extract `handleRequestData`
+
+[rest] fix the use of request "content-type" -- should not be used for dispatching
 
 # password login
 
