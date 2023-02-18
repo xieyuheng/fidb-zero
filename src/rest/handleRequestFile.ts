@@ -3,7 +3,7 @@ import type Http from "node:http"
 import type { Database } from "../database"
 import * as Db from "../db"
 import { Unauthorized } from "../errors/Unauthorized"
-import { Token, tokenCheckReadable } from "../token"
+import { Token, tokenCheckReadable, tokenCheckWriteable } from "../token"
 import type { Json } from "../utils/Json"
 import { requestBuffer } from "../utils/requestBuffer"
 
@@ -21,6 +21,16 @@ export async function handleRequestFile(
 
   if (request.method === "GET") {
     return await Db.getFileOrFail(db, path)
+  }
+
+  if (!tokenCheckWriteable(token, path)) {
+    throw new Unauthorized(
+      `[handleRequestFile] not permitted to write path: ${path}`,
+    )
+  }
+
+  if (request.method === "POST") {
+    return await Db.createFile(db, path, await requestBuffer(request))
   }
 
   if (request.method === "PUT") {

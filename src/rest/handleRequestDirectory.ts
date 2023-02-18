@@ -23,25 +23,9 @@ export async function handleRequestDirectory(
   }
 
   if (request.method === "GET") {
-    if (kind === "list") {
-      return {
-        results: await arrayFromAsyncIterable(Db.list(db, path)),
-      }
+    return {
+      results: await arrayFromAsyncIterable(Db.list(db, path)),
     }
-
-    if (kind === "find") {
-      return {
-        results: await arrayFromAsyncIterable(
-          Db.findPage(db, path, {
-            page: query.page ? Number.parseInt(query.page) : 1,
-            size: query.size ? Number.parseInt(query.size) : 50,
-            properties: query.properties || {},
-          }),
-        ),
-      }
-    }
-
-    return await Db.getOrFail(db, path)
   }
 
   if (!tokenCheckWriteable(token, path)) {

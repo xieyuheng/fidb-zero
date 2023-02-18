@@ -6,7 +6,7 @@ test("server-list-directory", async ({ meta }) => {
   const { url, authorization } = await prepareTestServer(meta)
 
   {
-    const response = await fetch(`${url}?kind=list`, {
+    const response = await fetch(`${url}?kind=directory`, {
       method: "GET",
       headers: {
         authorization,
@@ -32,7 +32,7 @@ test("server-list-directory", async ({ meta }) => {
   })
 
   {
-    const response = await fetch(`${url}?kind=list`, {
+    const response = await fetch(`${url}?kind=directory`, {
       method: "GET",
       headers: {
         authorization,
@@ -58,7 +58,7 @@ test("server-list-directory", async ({ meta }) => {
   })
 
   {
-    const response = await fetch(`${url}?kind=list`, {
+    const response = await fetch(`${url}?kind=directory`, {
       method: "GET",
       headers: {
         authorization,
@@ -77,7 +77,7 @@ test("server-list-directory", async ({ meta }) => {
   // Nested results.
 
   {
-    const response = await fetch(`${url}/users/1?kind=list`, {
+    const response = await fetch(`${url}/users/1?kind=directory`, {
       method: "GET",
       headers: {
         authorization,
@@ -100,7 +100,7 @@ test("server-list-directory", async ({ meta }) => {
   })
 
   {
-    const response = await fetch(`${url}/users/1?kind=list`, {
+    const response = await fetch(`${url}/users/1?kind=directory`, {
       method: "GET",
       headers: {
         authorization,

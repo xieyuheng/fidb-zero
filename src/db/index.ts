@@ -1,5 +1,6 @@
 export * from "./create"
 export * from "./createDirectory"
+export * from "./createFile"
 export * from "./createToken"
 export * from "./delete"
 export { del as delete } from "./delete"

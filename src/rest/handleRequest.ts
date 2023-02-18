@@ -2,6 +2,7 @@ import type { Buffer } from "node:buffer"
 import type Http from "node:http"
 import type { Database } from "../database"
 import * as Db from "../db"
+import { isFile } from "../db/utils/isFile"
 import { normalizePath } from "../db/utils/normalizePath"
 import { Unauthorized } from "../errors/Unauthorized"
 import type { Json } from "../utils/Json"
@@ -29,19 +30,16 @@ export async function handleRequest(
   const query = requestQuery(request)
   const kind = query.kind ? query.kind.toLowerCase() : ""
 
-  if (request.headers["content-type"] === "application/json") {
-    if (!kind) {
-      return await handleRequestData(request, db, path, token)
-    }
+  if (kind.startsWith("file") || (await isFile(db, path))) {
+    return await handleRequestFile(request, db, path, token)
+  }
 
+  if (kind.startsWith("directory")) {
     return await handleRequestDirectory(request, db, path, token)
   }
 
-  if (
-    request.headers["content-type"] === "text/plain" ||
-    request.headers["content-type"] === "application/octet-stream"
-  ) {
-    return await handleRequestFile(request, db, path, token)
+  if (kind.startsWith("data") || kind === "") {
+    return await handleRequestData(request, db, path, token)
   }
 
   throw new Error(

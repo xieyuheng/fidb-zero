@@ -3,6 +3,7 @@ import type { Database } from "../database"
 import * as Db from "../db"
 import { Unauthorized } from "../errors/Unauthorized"
 import { Token, tokenCheckReadable, tokenCheckWriteable } from "../token"
+import { arrayFromAsyncIterable } from "../utils/arrayFromAsyncIterable"
 import type { Json } from "../utils/Json"
 import { requestJsonObject } from "../utils/requestJsonObject"
 import { requestQuery } from "../utils/requestQuery"
@@ -14,6 +15,7 @@ export async function handleRequestData(
   token: Token,
 ): Promise<Json | void> {
   const query = requestQuery(request)
+  const kind = query.kind ? query.kind.toLowerCase() : ""
 
   if (!tokenCheckReadable(token, path)) {
     throw new Unauthorized(
@@ -22,6 +24,18 @@ export async function handleRequestData(
   }
 
   if (request.method === "GET") {
+    if (kind === "data-find") {
+      return {
+        results: await arrayFromAsyncIterable(
+          Db.findPage(db, path, {
+            page: query.page ? Number.parseInt(query.page) : 1,
+            size: query.size ? Number.parseInt(query.size) : 50,
+            properties: query.properties || {},
+          }),
+        ),
+      }
+    }
+
     return await Db.getOrFail(db, path)
   }
 

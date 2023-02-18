@@ -14,7 +14,7 @@ test("server-delete-directory", async ({ meta }) => {
   })
 
   {
-    const response = await fetch(`${url}?kind=list`, {
+    const response = await fetch(`${url}?kind=directory`, {
       method: "GET",
       headers: {
         authorization,
@@ -36,7 +36,7 @@ test("server-delete-directory", async ({ meta }) => {
   })
 
   {
-    const response = await fetch(`${url}?kind=list`, {
+    const response = await fetch(`${url}?kind=directory`, {
       method: "GET",
       headers: {
         authorization,

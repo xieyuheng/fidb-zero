@@ -4,14 +4,16 @@ import { prepareTestServer } from "./prepareTestServer"
 test("server-crud-file", async ({ meta }) => {
   const { url, authorization } = await prepareTestServer(meta)
 
-  await fetch(`${url}/users/xieyuheng/haha.txt`, {
-    method: "PUT",
+  const response = await fetch(`${url}/users/xieyuheng/haha.txt?kind=file`, {
+    method: "POST",
     headers: {
       authorization,
       "content-type": "text/plain",
     },
     body: new TextEncoder().encode("hahaha!"),
   })
+
+  console.log(response.statusText)
 
   expect(
     await (

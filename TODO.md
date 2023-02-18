@@ -1,8 +1,4 @@
-`Db.createFile`
-
-[rest] `handleRequest` -- fix the use of request "content-type"
-
-- should not be used for dispatching
+[rest] `handleRequest` -- pass `options`
 
 # password login
 

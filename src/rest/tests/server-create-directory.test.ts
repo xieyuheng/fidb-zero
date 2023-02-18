@@ -6,7 +6,7 @@ test("server-create-directory", async ({ meta }) => {
   const { url, authorization } = await prepareTestServer(meta)
 
   {
-    const response = await fetch(`${url}/?kind=list`, {
+    const response = await fetch(`${url}/?kind=directory`, {
       method: "GET",
       headers: {
         authorization,
@@ -28,7 +28,7 @@ test("server-create-directory", async ({ meta }) => {
   })
 
   {
-    const response = await fetch(`${url}/?kind=list`, {
+    const response = await fetch(`${url}/?kind=directory`, {
       method: "GET",
       headers: {
         authorization,
