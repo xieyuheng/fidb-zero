@@ -39,6 +39,10 @@ export async function handleRequestFile(
     return await Db.putFile(db, path, await requestBuffer(request))
   }
 
+  if (request.method === "DELETE") {
+    return await Db.deleteFile(db, path)
+  }
+
   throw new Error(
     [
       `[handleRequestFile] unhandled http request`,

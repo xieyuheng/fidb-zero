@@ -4,7 +4,7 @@ import { prepareTestServer } from "./prepareTestServer"
 test("server-crud-file", async ({ meta }) => {
   const { url, authorization } = await prepareTestServer(meta)
 
-  const response = await fetch(`${url}/users/xieyuheng/haha.txt?kind=file`, {
+  await fetch(`${url}/users/xieyuheng/haha.txt?kind=file`, {
     method: "POST",
     headers: {
       authorization,
@@ -12,8 +12,6 @@ test("server-crud-file", async ({ meta }) => {
     },
     body: new TextEncoder().encode("hahaha!"),
   })
-
-  console.log(response.statusText)
 
   expect(
     await (
@@ -38,4 +36,22 @@ test("server-crud-file", async ({ meta }) => {
       ).arrayBuffer(),
     ),
   ).toEqual(new TextEncoder().encode("hahaha!"))
+
+  await fetch(`${url}/users/xieyuheng/haha.txt?kind=file`, {
+    method: "DELETE",
+    headers: {
+      authorization,
+    },
+  })
+
+  expect(
+    (
+      await fetch(`${url}/users/xieyuheng/haha.txt`, {
+        method: "GET",
+        headers: {
+          authorization,
+        },
+      })
+    ).status,
+  ).toEqual(404)
 })
