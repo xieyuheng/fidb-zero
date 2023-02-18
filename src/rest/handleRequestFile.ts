@@ -3,16 +3,18 @@ import type Http from "node:http"
 import type { Database } from "../database"
 import * as Db from "../db"
 import { Unauthorized } from "../errors/Unauthorized"
-import { Token, tokenCheckReadable, tokenCheckWriteable } from "../token"
+import { tokenCheckReadable, tokenCheckWriteable } from "../token"
 import type { Json } from "../utils/Json"
 import { requestBuffer } from "../utils/requestBuffer"
+import type { HandleRequestOptions } from "./handleRequest"
 
 export async function handleRequestFile(
   request: Http.IncomingMessage,
   db: Database,
-  path: string,
-  token: Token,
+  options: HandleRequestOptions,
 ): Promise<Json | Buffer | void> {
+  const { path, token } = options
+
   if (!tokenCheckReadable(token, path)) {
     throw new Unauthorized(
       `[handleRequestFile] not permitted to read path: ${path}`,

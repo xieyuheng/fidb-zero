@@ -1,5 +1,3 @@
-[rest] `handleRequest` -- pass `options`
-
 # password login
 
 # mail login

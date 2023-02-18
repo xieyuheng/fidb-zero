@@ -2,20 +2,18 @@ import type Http from "node:http"
 import type { Database } from "../database"
 import * as Db from "../db"
 import { Unauthorized } from "../errors/Unauthorized"
-import { Token, tokenCheckReadable, tokenCheckWriteable } from "../token"
+import { tokenCheckReadable, tokenCheckWriteable } from "../token"
 import { arrayFromAsyncIterable } from "../utils/arrayFromAsyncIterable"
 import type { Json } from "../utils/Json"
 import { requestJsonObject } from "../utils/requestJsonObject"
-import { requestQuery } from "../utils/requestQuery"
+import type { HandleRequestOptions } from "./handleRequest"
 
 export async function handleRequestData(
   request: Http.IncomingMessage,
   db: Database,
-  path: string,
-  token: Token,
+  options: HandleRequestOptions,
 ): Promise<Json | void> {
-  const query = requestQuery(request)
-  const kind = query.kind ? query.kind.toLowerCase() : ""
+  const { path, token, query, kind } = options
 
   if (!tokenCheckReadable(token, path)) {
     throw new Unauthorized(
