@@ -1,8 +1,8 @@
-[rest] `handleRequest` dispatch by `kind`
+`Db.createFile`
 
-- extract `handleRequestData`
+[rest] `handleRequest` -- fix the use of request "content-type"
 
-[rest] fix the use of request "content-type" -- should not be used for dispatching
+- should not be used for dispatching
 
 # password login
 

@@ -5,7 +5,6 @@ import { Unauthorized } from "../errors/Unauthorized"
 import { Token, tokenCheckReadable, tokenCheckWriteable } from "../token"
 import { arrayFromAsyncIterable } from "../utils/arrayFromAsyncIterable"
 import type { Json } from "../utils/Json"
-import { requestJsonObject } from "../utils/requestJsonObject"
 import { requestQuery } from "../utils/requestQuery"
 
 export async function handleRequestDirectory(
@@ -52,31 +51,13 @@ export async function handleRequestDirectory(
   }
 
   if (request.method === "POST") {
-    if (kind === "directory") {
-      return await Db.createDirectory(db, path)
-    }
-
-    if (path === "") return
-
-    return await Db.create(db, path, await requestJsonObject(request))
-  }
-
-  if (request.method === "PUT") {
-    return await Db.put(db, path, await requestJsonObject(request))
-  }
-
-  if (request.method === "PATCH") {
-    return await Db.patch(db, path, await requestJsonObject(request))
+    return await Db.createDirectory(db, path)
   }
 
   if (request.method === "DELETE") {
-    if (kind === "directory") {
-      if (path === "") return
+    if (path === "") return
 
-      return await Db.deleteDirectory(db, path)
-    }
-
-    return await Db.delete(db, path, await requestJsonObject(request))
+    return await Db.deleteDirectory(db, path)
   }
 
   throw new Error(

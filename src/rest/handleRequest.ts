@@ -5,8 +5,10 @@ import * as Db from "../db"
 import { normalizePath } from "../db/utils/normalizePath"
 import { Unauthorized } from "../errors/Unauthorized"
 import type { Json } from "../utils/Json"
+import { requestQuery } from "../utils/requestQuery"
 import { requestTokenName } from "../utils/requestTokenName"
 import { requestURL } from "../utils/requestURL"
+import { handleRequestData } from "./handleRequestData"
 import { handleRequestDirectory } from "./handleRequestDirectory"
 import { handleRequestFile } from "./handleRequestFile"
 
@@ -24,7 +26,14 @@ export async function handleRequest(
 
   const token = await Db.getToken(db, tokenName)
 
+  const query = requestQuery(request)
+  const kind = query.kind ? query.kind.toLowerCase() : ""
+
   if (request.headers["content-type"] === "application/json") {
+    if (!kind) {
+      return await handleRequestData(request, db, path, token)
+    }
+
     return await handleRequestDirectory(request, db, path, token)
   }
 
