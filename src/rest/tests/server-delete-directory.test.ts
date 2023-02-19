@@ -19,7 +19,7 @@ test("server-delete-directory", async ({ meta }) => {
         authorization,
       },
     })
-    const { results } = await response.json()
+    const results = await response.json()
     expect(
       Boolean(results.find(({ path }: PathEntry) => path === "users")),
     ).toEqual(true)
@@ -39,7 +39,7 @@ test("server-delete-directory", async ({ meta }) => {
         authorization,
       },
     })
-    const { results } = await response.json()
+    const results = await response.json()
     expect(
       Boolean(results.find(({ path }: PathEntry) => path === "users")),
     ).toEqual(false)

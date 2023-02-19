@@ -12,7 +12,7 @@ test("server-list-directory", async ({ meta }) => {
         authorization,
       },
     })
-    const { results } = await response.json()
+    const results = await response.json()
     expect(
       Boolean(results.find(({ path }: PathEntry) => path === "users")),
     ).toEqual(false)
@@ -37,7 +37,7 @@ test("server-list-directory", async ({ meta }) => {
         authorization,
       },
     })
-    const { results } = await response.json()
+    const results = await response.json()
     expect(
       Boolean(results.find(({ path }: PathEntry) => path === "users")),
     ).toEqual(true)
@@ -62,7 +62,7 @@ test("server-list-directory", async ({ meta }) => {
         authorization,
       },
     })
-    const { results } = await response.json()
+    const results = await response.json()
     expect(
       Boolean(results.find(({ path }: PathEntry) => path === "users")),
     ).toEqual(true)
@@ -80,7 +80,7 @@ test("server-list-directory", async ({ meta }) => {
         authorization,
       },
     })
-    const { results } = await response.json()
+    const results = await response.json()
     expect(
       Boolean(results.find(({ path }: PathEntry) => path === "users/1/tokens")),
     ).toEqual(false)
@@ -102,7 +102,7 @@ test("server-list-directory", async ({ meta }) => {
         authorization,
       },
     })
-    const { results } = await response.json()
+    const results = await response.json()
     expect(
       Boolean(results.find(({ path }: PathEntry) => path === "users/1/tokens")),
     ).toEqual(true)

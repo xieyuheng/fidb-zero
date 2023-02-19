@@ -29,47 +29,43 @@ test("server-find-page", async ({ meta }) => {
     })
   }
 
-  expect(
-    (
-      await (
-        await fetch(
-          `${url}/users?kind=data-find&${qs.stringify({
-            page: 1,
-            size: 3,
-            properties: {
-              country: "China",
-            },
-          })}`,
-          {
-            method: "GET",
-            headers: {
-              authorization,
-            },
-          },
-        )
-      ).json()
-    ).results.length,
-  ).toEqual(3)
+  {
+    const response = await fetch(
+      `${url}/users?kind=data-find&${qs.stringify({
+        page: 1,
+        size: 3,
+        properties: {
+          country: "China",
+        },
+      })}`,
+      {
+        method: "GET",
+        headers: {
+          authorization,
+        },
+      },
+    )
 
-  expect(
-    (
-      await (
-        await fetch(
-          `${url}/users?kind=data-find&${qs.stringify({
-            page: 2,
-            size: 3,
-            properties: {
-              country: "China",
-            },
-          })}`,
-          {
-            method: "GET",
-            headers: {
-              authorization,
-            },
-          },
-        )
-      ).json()
-    ).results.length,
-  ).toEqual(2)
+    expect((await response.json()).length).toEqual(3)
+  }
+
+  {
+    const response = await fetch(
+      `${url}/users?kind=data-find&${qs.stringify({
+        page: 2,
+        size: 3,
+        properties: {
+          country: "China",
+        },
+      })}`,
+      {
+        method: "GET",
+        headers: {
+          authorization,
+        },
+      },
+    )
+
+    expect((await response.json()).length).toEqual(2)
+  }
 })
