@@ -1,6 +1,4 @@
-`Db.list` -- page by page
-
-`db-list-all.test.ts`
+`Db.listAll` -- `directory` arg should not be optional
 
 [rest] `handleRequestDirectory` -- use `Db.list` instead of `Db.listAll`
 
