@@ -1,5 +1,7 @@
 `Db.list` -- page by page
 
+`db-list-all.test.ts`
+
 [rest] `handleRequestDirectory` -- use `Db.list` instead of `Db.listAll`
 
 # password login

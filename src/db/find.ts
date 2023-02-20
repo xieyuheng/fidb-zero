@@ -1,9 +1,9 @@
 import type { Data } from "../data"
 import type { Database } from "../database"
-import type { FindOptions } from "./findAll"
+import type { FindAllOptions } from "./findAll"
 import { findAll } from "./findAll"
 
-export type FindPageOptions = FindOptions & {
+export type FindOptions = FindAllOptions & {
   page: number // NOTE starting from 1
   size: number
 }
@@ -11,7 +11,7 @@ export type FindPageOptions = FindOptions & {
 export async function* find(
   db: Database,
   directory: string,
-  options: FindPageOptions,
+  options: FindOptions,
 ): AsyncIterable<Data> {
   const offset = options.page - 1
   const start = offset * options.size
