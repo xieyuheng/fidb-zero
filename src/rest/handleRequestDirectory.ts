@@ -21,7 +21,7 @@ export async function handleRequestDirectory(
   }
 
   if (request.method === "GET") {
-    return await arrayFromAsyncIterable(Db.list(db, path))
+    return await arrayFromAsyncIterable(Db.listAll(db, path))
   }
 
   if (!tokenCheckWriteable(token, path)) {

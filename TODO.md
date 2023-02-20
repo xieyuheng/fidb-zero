@@ -1,6 +1,6 @@
-rename `list` to `listAll`
-
 `Db.list` -- page by page
+
+[rest] `handleRequestDirectory` -- use `Db.list` instead of `Db.listAll`
 
 # password login
 
