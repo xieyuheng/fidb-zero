@@ -1,4 +1,3 @@
-rename `find` to `findAll`
 rename `findPage` to `find` -- page by page
 
 rename `list` to `listAll`

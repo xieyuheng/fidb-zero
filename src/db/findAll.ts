@@ -10,7 +10,7 @@ export type FindOptions = {
   properties: Record<string, JsonAtom>
 }
 
-export async function* find(
+export async function* findAll(
   db: Database,
   directory: string,
   options: FindOptions,
