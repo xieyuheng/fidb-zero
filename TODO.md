@@ -1,5 +1,3 @@
-`Db.listAll` -- `directory` arg should not be optional
-
 [rest] `handleRequestDirectory` -- use `Db.list` instead of `Db.listAll`
 
 # password login

@@ -7,7 +7,7 @@ import { resolvePath } from "./utils/resolvePath"
 
 export async function* listAll(
   db: Database,
-  directory: string = "",
+  directory: string,
 ): AsyncIterable<PathEntry> {
   try {
     const dir = await fs.promises.opendir(resolvePath(db, directory), {
