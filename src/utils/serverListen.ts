@@ -2,7 +2,7 @@ import type Http from "node:http"
 
 export type ServerListenOptions = {
   hostname: string
-  port: number
+  port: number | string
 }
 
 export function serverListen(
