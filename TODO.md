@@ -1,4 +1,4 @@
-fix `rest-directory-get.test.ts`
+`rest-directory-get-nested.test.ts`
 
 # password login
 
