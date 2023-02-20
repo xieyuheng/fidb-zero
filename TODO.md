@@ -1,6 +1,5 @@
-rename `findPage` to `find` -- page by page
-
 rename `list` to `listAll`
+
 `Db.list` -- page by page
 
 # password login

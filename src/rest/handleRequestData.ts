@@ -24,7 +24,7 @@ export async function handleRequestData(
   if (request.method === "GET") {
     if (kind === "data-find") {
       return await arrayFromAsyncIterable(
-        Db.findPage(db, path, {
+        Db.find(db, path, {
           page: query.page ? Number.parseInt(query.page) : 1,
           size: query.size ? Number.parseInt(query.size) : 50,
           properties: query.properties || {},

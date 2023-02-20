@@ -9,11 +9,32 @@ test("db-find", async ({ meta }) => {
   await Db.create(db, "users/0", { country: "China" })
   await Db.create(db, "users/1", {})
   await Db.create(db, "users/2", { country: "China" })
+  await Db.create(db, "users/3", {})
+  await Db.create(db, "users/4", { country: "China" })
+  await Db.create(db, "users/5", {})
+  await Db.create(db, "users/6", { country: "China" })
+  await Db.create(db, "users/7", {})
+  await Db.create(db, "users/8", { country: "China" })
+  await Db.create(db, "users/9", {})
 
   expect(
     (
       await arrayFromAsyncIterable(
-        Db.findAll(db, "users", {
+        Db.find(db, "users", {
+          page: 1,
+          size: 3,
+          properties: { country: "China" },
+        }),
+      )
+    ).length,
+  ).toEqual(3)
+
+  expect(
+    (
+      await arrayFromAsyncIterable(
+        Db.find(db, "users", {
+          page: 2,
+          size: 3,
           properties: { country: "China" },
         }),
       )
@@ -23,10 +44,12 @@ test("db-find", async ({ meta }) => {
   expect(
     (
       await arrayFromAsyncIterable(
-        Db.findAll(db, "users", {
-          properties: {},
+        Db.find(db, "users", {
+          page: 3,
+          size: 3,
+          properties: { country: "China" },
         }),
       )
     ).length,
-  ).toEqual(3)
+  ).toEqual(0)
 })

@@ -8,7 +8,7 @@ export type FindPageOptions = FindOptions & {
   size: number
 }
 
-export async function* findPage(
+export async function* find(
   db: Database,
   directory: string,
   options: FindPageOptions,
