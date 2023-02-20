@@ -1,4 +1,4 @@
-[rest] `handleRequestDirectory` -- use `Db.list` instead of `Db.listAll`
+fix `rest-directory-get.test.ts`
 
 # password login
 

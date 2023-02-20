@@ -12,7 +12,7 @@ export async function handleRequestDirectory(
   db: Database,
   options: HandleRequestOptions,
 ): Promise<Json | void> {
-  const { path, token } = options
+  const { path, token, query, kind } = options
 
   if (!tokenCheckReadable(token, path)) {
     throw new Unauthorized(
@@ -21,7 +21,12 @@ export async function handleRequestDirectory(
   }
 
   if (request.method === "GET") {
-    return await arrayFromAsyncIterable(Db.listAll(db, path))
+    return await arrayFromAsyncIterable(
+      Db.list(db, path, {
+        page: query.page ? Number.parseInt(query.page) : 1,
+        size: query.size ? Number.parseInt(query.size) : 30,
+      }),
+    )
   }
 
   if (!tokenCheckWriteable(token, path)) {

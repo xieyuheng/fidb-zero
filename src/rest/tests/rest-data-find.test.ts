@@ -2,7 +2,7 @@ import qs from "qs"
 import { expect, test } from "vitest"
 import { prepareTestServer } from "./prepareTestServer"
 
-test("server-find-page", async ({ meta }) => {
+test("rest-data-find", async ({ meta }) => {
   const { url, authorization } = await prepareTestServer(meta)
 
   const array = [
