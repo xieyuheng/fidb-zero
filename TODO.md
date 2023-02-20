@@ -1,5 +1,3 @@
-`rest-directory-get-nested.test.ts`
-
 # password login
 
 # mail login
