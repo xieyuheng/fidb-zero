@@ -36,7 +36,7 @@ export class ServeCommand extends Command<Args> {
     const server = await Rest.createServer({ db })
 
     const hostname = argv.hostname || "127.0.0.1"
-    const port = argv.port || (await findPort(3000))
+    const port = process.env.PORT || argv.port || (await findPort(3000))
 
     await serverListen(server, { hostname, port })
 
