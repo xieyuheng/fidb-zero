@@ -23,8 +23,9 @@ fidb+https://localhost:3000/users/xieyuheng
 
 # schema
 
-# proxy server
+# reverse proxy
 
-`fidb proxy` -- start a proxy server
-
-`fidb connect` -- connect to proxy server
+```
+fidb serve-reverse-proxy <database>
+fidb serve <database> --reverse-proxy-server <url> --reverse-proxy-user <user> --reverse-proxy-password <password>
+```
