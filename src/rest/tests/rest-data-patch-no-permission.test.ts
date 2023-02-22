@@ -7,8 +7,8 @@ test("rest-data-patch-no-permission", async ({ meta }) => {
 
   let authorization = `token ${await Db.createToken(db, {
     permissions: {
-      "users/*": "read",
-      "users/xieyuheng/**": "readwrite",
+      "users/*": ["read"],
+      "users/xieyuheng/**": ["create", "read", "update", "delete"],
     },
   })}`
 
@@ -40,8 +40,8 @@ test("rest-data-patch-no-permission", async ({ meta }) => {
 
   authorization = `token ${await Db.createToken(db, {
     permissions: {
-      "users/*": "read",
-      "users/xyh/**": "readwrite",
+      "users/*": ["read"],
+      "users/xyh/**": ["create", "read", "update", "delete"],
     },
   })}`
 

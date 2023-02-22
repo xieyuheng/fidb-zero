@@ -1,9 +1,21 @@
-[token] separate `"readwrite"` to `['read', 'write']`
-[token] general `tokenCheck`
+general `tokenCheck`
 
 # password login
 
 # mail login
+
+# token with scope
+
+```
+data:read
+data:update
+
+directory:read
+directory:update
+
+file:read
+file:update
+```
 
 # data link
 

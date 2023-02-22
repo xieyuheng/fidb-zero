@@ -20,7 +20,7 @@ export async function prepareTestServer(options: Options) {
 
   const authorization = `token ${await Db.createToken(db, {
     permissions: {
-      "**": "readwrite",
+      "**": ["create", "read", "update", "delete"],
     },
   })}`
 

@@ -27,6 +27,8 @@ export function responseSend(
       }
   }
 
+  response.flushHeaders()
+
   if (options.body) {
     response.write(options.body)
   }
