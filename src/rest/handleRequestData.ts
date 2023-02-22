@@ -14,9 +14,8 @@ export async function handleRequestData(
 ): Promise<Json | void> {
   const { path, token, query, kind } = options
 
-  tokenAssert(token, path, "read")
-
   if (request.method === "GET") {
+    tokenAssert(token, path, "read")
     if (kind === "data-find") {
       return await arrayFromAsyncIterable(
         Db.find(db, path, {
@@ -30,23 +29,25 @@ export async function handleRequestData(
     return await Db.getOrFail(db, path)
   }
 
-  tokenAssert(token, path, "update")
-
   if (request.method === "POST") {
+    tokenAssert(token, path, "create")
     if (path === "") return
 
     return await Db.create(db, path, await requestJsonObject(request))
   }
 
   if (request.method === "PUT") {
+    tokenAssert(token, path, "update")
     return await Db.put(db, path, await requestJsonObject(request))
   }
 
   if (request.method === "PATCH") {
+    tokenAssert(token, path, "update")
     return await Db.patch(db, path, await requestJsonObject(request))
   }
 
   if (request.method === "DELETE") {
+    tokenAssert(token, path, "delete")
     return await Db.delete(db, path, await requestJsonObject(request))
   }
 

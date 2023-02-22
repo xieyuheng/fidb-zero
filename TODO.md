@@ -1,5 +1,3 @@
-[rest] detailed `tokenAssert`
-
 # password login
 
 # mail login

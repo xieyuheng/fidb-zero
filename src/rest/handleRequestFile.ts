@@ -14,23 +14,23 @@ export async function handleRequestFile(
 ): Promise<Json | Buffer | void> {
   const { path, token } = options
 
-  tokenAssert(token, path, "read")
-
   if (request.method === "GET") {
+    tokenAssert(token, path, "read")
     return await Db.getFileOrFail(db, path)
   }
 
-  tokenAssert(token, path, "update")
-
   if (request.method === "POST") {
+    tokenAssert(token, path, "create")
     return await Db.createFile(db, path, await requestBuffer(request))
   }
 
   if (request.method === "PUT") {
+    tokenAssert(token, path, "update")
     return await Db.putFile(db, path, await requestBuffer(request))
   }
 
   if (request.method === "DELETE") {
+    tokenAssert(token, path, "delete")
     return await Db.deleteFile(db, path)
   }
 

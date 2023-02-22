@@ -13,9 +13,8 @@ export async function handleRequestDirectory(
 ): Promise<Json | void> {
   const { path, token, query, kind } = options
 
-  tokenAssert(token, path, "read")
-
   if (request.method === "GET") {
+    tokenAssert(token, path, "read")
     return await arrayFromAsyncIterable(
       Db.list(db, path, {
         page: query.page ? Number.parseInt(query.page) : 1,
@@ -24,13 +23,13 @@ export async function handleRequestDirectory(
     )
   }
 
-  tokenAssert(token, path, "update")
-
   if (request.method === "POST") {
+    tokenAssert(token, path, "create")
     return await Db.createDirectory(db, path)
   }
 
   if (request.method === "DELETE") {
+    tokenAssert(token, path, "delete")
     if (path === "") return
 
     return await Db.deleteDirectory(db, path)
