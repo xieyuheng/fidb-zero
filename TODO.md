@@ -1,3 +1,6 @@
+[token] separate `"readwrite"` to `['read', 'write']`
+[token] general `tokenCheck`
+
 # password login
 
 # mail login

@@ -7,7 +7,7 @@ test("rest-data-post-no-permission", async ({ meta }) => {
 
   const authorization = `token ${await Db.createToken(db, {
     permissions: {
-      "users/*/**": "readonly",
+      "users/*/**": "read",
       "users/xyh/**": "readwrite",
     },
   })}`
