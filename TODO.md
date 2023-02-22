@@ -1,4 +1,4 @@
-general `tokenCheck`
+[rest] detailed `tokenCheck`
 
 # password login
 
