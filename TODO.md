@@ -1,4 +1,4 @@
-[rest] detailed `tokenCheck`
+[rest] detailed `tokenAssert`
 
 # password login
 

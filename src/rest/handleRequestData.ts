@@ -1,8 +1,7 @@
 import type Http from "node:http"
 import type { Database } from "../database"
 import * as Db from "../db"
-import { Unauthorized } from "../errors/Unauthorized"
-import { tokenCheck } from "../token"
+import { tokenAssert } from "../token"
 import { arrayFromAsyncIterable } from "../utils/arrayFromAsyncIterable"
 import type { Json } from "../utils/Json"
 import { requestJsonObject } from "../utils/requestJsonObject"
@@ -15,11 +14,7 @@ export async function handleRequestData(
 ): Promise<Json | void> {
   const { path, token, query, kind } = options
 
-  if (!tokenCheck(token, path, "read")) {
-    throw new Unauthorized(
-      `[handleRequestData] not permitted to read path: ${path}`,
-    )
-  }
+  tokenAssert(token, path, "read")
 
   if (request.method === "GET") {
     if (kind === "data-find") {
@@ -35,11 +30,7 @@ export async function handleRequestData(
     return await Db.getOrFail(db, path)
   }
 
-  if (!tokenCheck(token, path, "update")) {
-    throw new Unauthorized(
-      `[handleRequestData] not permitted to write path: ${path}`,
-    )
-  }
+  tokenAssert(token, path, "update")
 
   if (request.method === "POST") {
     if (path === "") return

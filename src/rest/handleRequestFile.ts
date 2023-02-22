@@ -2,8 +2,7 @@ import type { Buffer } from "node:buffer"
 import type Http from "node:http"
 import type { Database } from "../database"
 import * as Db from "../db"
-import { Unauthorized } from "../errors/Unauthorized"
-import { tokenCheck } from "../token"
+import { tokenAssert } from "../token"
 import type { Json } from "../utils/Json"
 import { requestBuffer } from "../utils/requestBuffer"
 import type { HandleRequestOptions } from "./handleRequest"
@@ -15,21 +14,13 @@ export async function handleRequestFile(
 ): Promise<Json | Buffer | void> {
   const { path, token } = options
 
-  if (!tokenCheck(token, path, "read")) {
-    throw new Unauthorized(
-      `[handleRequestFile] not permitted to read path: ${path}`,
-    )
-  }
+  tokenAssert(token, path, "read")
 
   if (request.method === "GET") {
     return await Db.getFileOrFail(db, path)
   }
 
-  if (!tokenCheck(token, path, "update")) {
-    throw new Unauthorized(
-      `[handleRequestFile] not permitted to write path: ${path}`,
-    )
-  }
+  tokenAssert(token, path, "update")
 
   if (request.method === "POST") {
     return await Db.createFile(db, path, await requestBuffer(request))
