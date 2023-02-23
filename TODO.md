@@ -1,5 +1,3 @@
-[config] `database.json` -- config which directory can be used for sign up
-
 [rest] `handleRequestPassword` -- `kind=password-sign-up` -- create initial data and call `signUpPassword`
 
 # authentication by password -- for any directory

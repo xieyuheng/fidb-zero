@@ -40,10 +40,15 @@ export class ServeCommand extends Command<Args> {
 
     await serverListen(server, { hostname, port })
 
-    console.log({
-      message: `[serve] start`,
-      url: `http://${hostname}:${port}`,
-      db,
-    })
+    console.dir(
+      {
+        message: `[serve] start`,
+        url: `http://${hostname}:${port}`,
+        db,
+      },
+      {
+        depth: null,
+      },
+    )
   }
 }
