@@ -1,6 +1,6 @@
 import type { Database } from "../database"
 import type { PathEntry } from "../path-entry"
-import { listAllDirectory } from "./listAllDirectory"
+import { listDirectoryAll } from "./listDirectoryAll"
 
 export type ListOptions = {
   page: number // NOTE starting from 1
@@ -17,7 +17,7 @@ export async function* listDirectory(
   const end = start + options.size
   let count = 0
 
-  for await (const pathEntry of listAllDirectory(db, directory)) {
+  for await (const pathEntry of listDirectoryAll(db, directory)) {
     if (count >= end) {
       break
     }

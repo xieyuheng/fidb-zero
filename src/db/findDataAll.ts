@@ -6,14 +6,14 @@ import type { JsonAtom } from "../utils/Json"
 import { getData } from "./getData"
 import { resolvePath } from "./utils/resolvePath"
 
-export type FindAllDataOptions = {
+export type FindDataAllOptions = {
   properties: Record<string, JsonAtom>
 }
 
-export async function* findAllData(
+export async function* findDataAll(
   db: Database,
   directory: string,
-  options: FindAllDataOptions,
+  options: FindDataAllOptions,
 ): AsyncIterable<Data> {
   try {
     const dir = await fs.promises.opendir(resolvePath(db, directory), {

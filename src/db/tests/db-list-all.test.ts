@@ -8,7 +8,7 @@ test("db-list-all", async ({ meta }) => {
   const db = await prepareTestDb(meta)
 
   expect(
-    (await arrayFromAsyncIterable(Db.listAllDirectory(db, ""))).length,
+    (await arrayFromAsyncIterable(Db.listDirectoryAll(db, ""))).length,
   ).toEqual(0)
 
   await Db.createData(db, "users/1", {})
@@ -16,11 +16,11 @@ test("db-list-all", async ({ meta }) => {
   await Db.createData(db, "users/3", {})
 
   expect(
-    (await arrayFromAsyncIterable(Db.listAllDirectory(db, ""))).length,
+    (await arrayFromAsyncIterable(Db.listDirectoryAll(db, ""))).length,
   ).toEqual(1)
   expect(
     Boolean(
-      (await arrayFromAsyncIterable(Db.listAllDirectory(db, ""))).find(
+      (await arrayFromAsyncIterable(Db.listDirectoryAll(db, ""))).find(
         ({ path }: PathEntry) => path === "users",
       ),
     ),
@@ -31,11 +31,11 @@ test("db-list-all", async ({ meta }) => {
   await Db.createData(db, "users/projects/2", {})
 
   expect(
-    (await arrayFromAsyncIterable(Db.listAllDirectory(db, ""))).length,
+    (await arrayFromAsyncIterable(Db.listDirectoryAll(db, ""))).length,
   ).toEqual(1)
   expect(
     Boolean(
-      (await arrayFromAsyncIterable(Db.listAllDirectory(db, ""))).find(
+      (await arrayFromAsyncIterable(Db.listDirectoryAll(db, ""))).find(
         ({ path }: PathEntry) => path === "users",
       ),
     ),
@@ -45,18 +45,18 @@ test("db-list-all", async ({ meta }) => {
   await Db.createData(db, "posts/2", {})
 
   expect(
-    (await arrayFromAsyncIterable(Db.listAllDirectory(db, ""))).length,
+    (await arrayFromAsyncIterable(Db.listDirectoryAll(db, ""))).length,
   ).toEqual(2)
   expect(
     Boolean(
-      (await arrayFromAsyncIterable(Db.listAllDirectory(db, ""))).find(
+      (await arrayFromAsyncIterable(Db.listDirectoryAll(db, ""))).find(
         ({ path }: PathEntry) => path === "users",
       ),
     ),
   ).toEqual(true)
   expect(
     Boolean(
-      (await arrayFromAsyncIterable(Db.listAllDirectory(db, ""))).find(
+      (await arrayFromAsyncIterable(Db.listDirectoryAll(db, ""))).find(
         ({ path }: PathEntry) => path === "posts",
       ),
     ),

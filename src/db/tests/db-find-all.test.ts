@@ -13,7 +13,7 @@ test("db-find-all", async ({ meta }) => {
   expect(
     (
       await arrayFromAsyncIterable(
-        Db.findAllData(db, "users", {
+        Db.findDataAll(db, "users", {
           properties: { country: "China" },
         }),
       )
@@ -23,7 +23,7 @@ test("db-find-all", async ({ meta }) => {
   expect(
     (
       await arrayFromAsyncIterable(
-        Db.findAllData(db, "users", {
+        Db.findDataAll(db, "users", {
           properties: {},
         }),
       )

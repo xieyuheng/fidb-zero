@@ -1,9 +1,9 @@
 import type { Data } from "../data"
 import type { Database } from "../database"
-import type { FindAllDataOptions } from "./findAllData"
-import { findAllData } from "./findAllData"
+import type { FindDataAllOptions } from "./findDataAll"
+import { findDataAll } from "./findDataAll"
 
-export type FindDataOptions = FindAllDataOptions & {
+export type FindDataOptions = FindDataAllOptions & {
   page: number // NOTE starting from 1
   size: number
 }
@@ -18,7 +18,7 @@ export async function* findData(
   const end = start + options.size
   let count = 0
 
-  for await (const data of findAllData(db, directory, options)) {
+  for await (const data of findDataAll(db, directory, options)) {
     if (count >= end) {
       break
     }
