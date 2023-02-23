@@ -1,10 +1,15 @@
-[rest] `handleRequestPassword` -- `kind=password-sign-up` -- create initial data and call `signUpPassword`
-
 # authentication by password -- for any directory
 
-rest-password-sign-in-and-sign-up.test.ts
+[rest] `handleRequestPassword` -- `kind=password-sign-up` -- create initial data and call `signUpPassword`
+
+rest-password-sign-up.test.ts
+rest-password-sign-in.test.ts
+
+# rest
 
 [rest] rate limit by ip -- for `password-sign-up`
+
+[config] be able to config `rateLimits: { ... }`
 
 # authentication by email -- for any directory
 
