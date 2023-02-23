@@ -25,9 +25,10 @@ export async function signInPassword(
   })) {
     const password = passwordSchema.validate(data)
     if (await passwordCheck(options.password, password.hash)) {
+      const scope = join(directory, "*")
       const tokenName = await createToken(db, {
         permissionRecord: {
-          [directory]: password.permissions,
+          [scope]: password.permissions,
         },
       })
 

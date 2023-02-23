@@ -1,7 +1,12 @@
+[config] `config.json` -- with `name` and optional `description`
+
+[config] `config.json` -- config which directory can be used for sign up
+
+[rest] `handleRequestPassword` -- `kind=password-sign-up` -- create initial data and call `signUpPassword`
+
 # authentication by password -- for any directory
 
-rest-password-sign-up.test.ts
-rest-password-sign-in.test.ts
+rest-password-sign-in-and-sign-up.test.ts
 
 [rest] rate limit by ip -- for `password-sign-up`
 
