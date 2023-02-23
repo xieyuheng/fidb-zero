@@ -1,7 +1,3 @@
-# authentication by password -- for any directory
-
-rest-password-sign-in.test.ts
-
 # rest
 
 [rest] rate limit by ip -- for `password-sign-up`

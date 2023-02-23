@@ -9,8 +9,8 @@ export async function createFile(
   path: string,
   buffer: Buffer,
 ): Promise<void> {
-  const getted = await getFile(db, path)
-  if (getted !== undefined) {
+  const gotten = await getFile(db, path)
+  if (gotten !== undefined) {
     throw new AlreadyExists(`[createFile] already exists, @path: ${path}`)
   }
 

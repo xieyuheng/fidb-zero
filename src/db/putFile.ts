@@ -9,8 +9,8 @@ export async function putFile(
   path: string,
   buffer: Buffer,
 ): Promise<void> {
-  const getted = await getFile(db, path)
-  if (getted === undefined) {
+  const gotten = await getFile(db, path)
+  if (gotten === undefined) {
     throw new NotFound(`[putFile] not found, path ${path}`)
   }
 
