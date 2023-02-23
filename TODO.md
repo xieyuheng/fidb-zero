@@ -1,6 +1,6 @@
 # authentication by password -- for any directory
 
-[rest] `handleRequestPassword` -- `kind=password-sign-up` -- create initial data and call `signUpPassword`
+`Db.checkAuthDirectory`
 
 rest-password-sign-up.test.ts
 rest-password-sign-in.test.ts
