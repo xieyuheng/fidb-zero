@@ -5,16 +5,16 @@ import * as Db from "../db"
 import { tokenAssert } from "../token"
 import type { Json } from "../utils/Json"
 import { requestBuffer } from "../utils/requestBuffer"
-import type { HandleRequestOptions } from "./handleRequest"
+import { requestKind } from "../utils/requestKind"
+import { requestPath } from "./requestPath"
 import { requestToken } from "./requestToken"
 
 export async function handleRequestFile(
   request: Http.IncomingMessage,
   db: Database,
-  options: HandleRequestOptions,
 ): Promise<Json | Buffer | void> {
-  const { path, kind } = options
-
+  const kind = requestKind(request)
+  const path = requestPath(request, db)
   const token = await requestToken(request, db)
 
   if (request.method === "GET") {

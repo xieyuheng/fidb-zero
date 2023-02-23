@@ -4,16 +4,18 @@ import * as Db from "../db"
 import { tokenAssert } from "../token"
 import { arrayFromAsyncIterable } from "../utils/arrayFromAsyncIterable"
 import type { Json } from "../utils/Json"
-import type { HandleRequestOptions } from "./handleRequest"
+import { requestKind } from "../utils/requestKind"
+import { requestQuery } from "../utils/requestQuery"
+import { requestPath } from "./requestPath"
 import { requestToken } from "./requestToken"
 
 export async function handleRequestDirectory(
   request: Http.IncomingMessage,
   db: Database,
-  options: HandleRequestOptions,
 ): Promise<Json | void> {
-  const { path, query, kind } = options
-
+  const kind = requestKind(request)
+  const query = requestQuery(request)
+  const path = requestPath(request, db)
   const token = await requestToken(request, db)
 
   if (request.method === "GET") {

@@ -5,14 +5,15 @@ import * as Db from "../db"
 import { Unauthorized } from "../errors/Unauthorized"
 import type { Json } from "../utils/Json"
 import { requestJsonObject } from "../utils/requestJsonObject"
-import type { HandleRequestOptions } from "./handleRequest"
+import { requestKind } from "../utils/requestKind"
+import { requestPath } from "./requestPath"
 
 export async function handleRequestPassword(
   request: Http.IncomingMessage,
   db: Database,
-  options: HandleRequestOptions,
 ): Promise<Json | void> {
-  const { path, kind } = options
+  const path = requestPath(request, db)
+  const kind = requestKind(request)
 
   if (request.method === "POST") {
     if (kind === "password-sign-up") {
