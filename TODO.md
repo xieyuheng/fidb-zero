@@ -1,5 +1,3 @@
-`Database` has `config: DatabaseConfig`
-
 `createDatabase` load `database.json` to `config`
 
 [config] `database.json` -- with `name` and optional `description`
