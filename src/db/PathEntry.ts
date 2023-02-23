@@ -1,6 +1,11 @@
-export type PathEntryKind = "File" | "Directory"
+export type PathEntry = PathEntryFile | PathEntryDirectory
 
-export type PathEntry = {
-  kind: PathEntryKind
+export type PathEntryFile = {
+  kind: "File"
+  path: string
+}
+
+export type PathEntryDirectory = {
+  kind: "Directory"
   path: string
 }
