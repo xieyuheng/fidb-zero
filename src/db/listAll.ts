@@ -1,8 +1,8 @@
 import fs from "node:fs"
 import { join } from "node:path"
 import type { Database } from "../database"
+import type { PathEntry } from "../path-entry"
 import { isErrnoException } from "../utils/isErrnoException"
-import type { PathEntry } from "./PathEntry"
 import { resolvePath } from "./utils/resolvePath"
 
 export async function* listAll(

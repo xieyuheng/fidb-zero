@@ -1,6 +1,6 @@
 import type { Database } from "../database"
+import type { PathEntry } from "../path-entry"
 import { listAll } from "./listAll"
-import type { PathEntry } from "./PathEntry"
 
 export type ListOptions = {
   page: number // NOTE starting from 1
