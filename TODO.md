@@ -1,18 +1,18 @@
 # authentication by password -- for any directory
 
-[db] signupPassword(directory: string, password: string): Promise<void>
-[db] signinPassword(directory: string, password: string): Promise<Token>
+[db] signUpPassword(directory: string, password: string): Promise<void>
+[db] signInPassword(directory: string, password: string): Promise<Token>
 
-[rest] `handleRequestPassword` -- kind=password-signup
-[rest] `handleRequestPassword` -- kind=password-signin
+[rest] `handleRequestPassword` -- kind=password-sign-up
+[rest] `handleRequestPassword` -- kind=password-sign-in
 
 # authentication by email -- for any directory
 
-[db] signupEmail(directory: string, address: string): Promise<void>
-[db] signinEmail(directory: string, address: string): Promise<Token>
+[db] signUpEmail(directory: string, address: string): Promise<void>
+[db] signInEmail(directory: string, address: string): Promise<Token>
 
-[rest] `handleRequestEmail` -- kind=password-signup
-[rest] `handleRequestEmail` -- kind=password-signin
+[rest] `handleRequestEmail` -- kind=email-sign-up
+[rest] `handleRequestEmail` -- kind=email-sign-in
 
 # token with scope
 
