@@ -1,9 +1,9 @@
 import { expect, test } from "vitest"
-import * as Db from "../../db"
+import * as Db from ".."
 import { arrayFromAsyncIterable } from "../../utils/arrayFromAsyncIterable"
 import { prepareTestDb } from "./prepareTestDb"
 
-test("db-find", async ({ meta }) => {
+test("db-find-data", async ({ meta }) => {
   const db = await prepareTestDb(meta)
 
   await Db.createData(db, "users/0", { country: "China" })

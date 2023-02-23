@@ -2,7 +2,7 @@ import { expect, test } from "vitest"
 import * as Db from "../../db"
 import { prepareTestDb } from "./prepareTestDb"
 
-test("db-create-patch-delete", async ({ meta }) => {
+test("db-patch-data", async ({ meta }) => {
   const db = await prepareTestDb(meta)
 
   const created = await Db.createData(db, "users/xieyuheng", {

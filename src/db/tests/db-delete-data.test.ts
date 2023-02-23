@@ -1,9 +1,8 @@
 import { expect, test } from "vitest"
-import * as Db from "../../db"
-import { AlreadyExists } from "../../errors/AlreadyExists"
+import * as Db from ".."
 import { prepareTestDb } from "./prepareTestDb"
 
-test("db-create-already-exists", async ({ meta }) => {
+test("db-delete-data", async ({ meta }) => {
   const db = await prepareTestDb(meta)
 
   const created = await Db.createData(db, `users/${crypto.randomUUID()}`, {
@@ -13,10 +12,7 @@ test("db-create-already-exists", async ({ meta }) => {
 
   expect(await Db.getData(db, created["@path"])).toEqual(created)
 
-  await expect(
-    Db.createData(db, created["@path"], {
-      username: "xieyuheng",
-      name: "Xie Yuheng",
-    }),
-  ).rejects.toThrowError(AlreadyExists)
+  await Db.deleteData(db, created["@path"], created)
+
+  expect(await Db.getData(db, created["@path"])).toEqual(undefined)
 })

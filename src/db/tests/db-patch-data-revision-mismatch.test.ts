@@ -4,7 +4,7 @@ import * as Db from "../../db"
 import { RevisionMismatch } from "../../errors/RevisionMismatch"
 import { prepareTestDb } from "./prepareTestDb"
 
-test("db-create-patch-revision-mismatch", async ({ meta }) => {
+test("db-patch-data-revision-mismatch", async ({ meta }) => {
   const db = await prepareTestDb(meta)
 
   await Db.createData(db, "users/xieyuheng", {
