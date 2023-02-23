@@ -1,6 +1,6 @@
 # authentication by password -- for any directory
 
-extract `requestKind`
+extract `requestPath`
 
 `handleRequest` should not use `isFile` -- always dispatch by `kind`
 

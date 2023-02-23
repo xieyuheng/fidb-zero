@@ -10,6 +10,7 @@ import { handleRequestData } from "./handleRequestData"
 import { handleRequestDirectory } from "./handleRequestDirectory"
 import { handleRequestFile } from "./handleRequestFile"
 import { handleRequestPassword } from "./handleRequestPassword"
+import { requestKind } from "./requestKind"
 
 export type HandleRequestOptions = {
   path: string
@@ -25,7 +26,7 @@ export async function handleRequest(
   const path = normalizePath(db, decodeURIComponent(url.pathname.slice(1)))
 
   const query = requestQuery(request)
-  const kind = query.kind ? query.kind.toLowerCase() : "data"
+  const kind = requestKind(request)
 
   const options = { path, query, kind }
 
