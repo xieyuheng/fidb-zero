@@ -15,7 +15,7 @@ test("rest-file-crud", async ({ meta }) => {
 
   expect(
     await (
-      await fetch(`${url}/users/xieyuheng/haha.txt`, {
+      await fetch(`${url}/users/xieyuheng/haha.txt?kind=file`, {
         method: "GET",
         headers: {
           authorization,
@@ -27,7 +27,7 @@ test("rest-file-crud", async ({ meta }) => {
   expect(
     new Uint8Array(
       await (
-        await fetch(`${url}/users/xieyuheng/haha.txt`, {
+        await fetch(`${url}/users/xieyuheng/haha.txt?kind=file`, {
           method: "GET",
           headers: {
             authorization,
@@ -46,7 +46,7 @@ test("rest-file-crud", async ({ meta }) => {
 
   expect(
     (
-      await fetch(`${url}/users/xieyuheng/haha.txt`, {
+      await fetch(`${url}/users/xieyuheng/haha.txt?kind=file`, {
         method: "GET",
         headers: {
           authorization,

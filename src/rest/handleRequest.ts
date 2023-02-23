@@ -1,7 +1,6 @@
 import type { Buffer } from "node:buffer"
 import type Http from "node:http"
 import type { Database } from "../database"
-import { isFile } from "../db/utils/isFile"
 import { normalizePath } from "../db/utils/normalizePath"
 import type { Json } from "../utils/Json"
 import { requestKind } from "../utils/requestKind"
@@ -30,7 +29,7 @@ export async function handleRequest(
 
   const options = { path, query, kind }
 
-  if (kind.startsWith("file") || (await isFile(db, path))) {
+  if (kind.startsWith("file")) {
     return await handleRequestFile(request, db, options)
   }
 

@@ -2,7 +2,7 @@
 
 extract `requestPath`
 
-`handleRequest` should not use `isFile` -- always dispatch by `kind`
+`handleRequest` should not pass `options`
 
 rest-password-sign-up.test.ts
 rest-password-sign-in.test.ts
