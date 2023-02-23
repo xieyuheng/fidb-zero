@@ -5,8 +5,6 @@ db/signinPassword(directory: string, password: string): Promise<Token>
 
 # authentication by email -- for any directory
 
-`Email` and `emailSchema`
-
 `db/createEmail`
 `db/signinEmail`
 
