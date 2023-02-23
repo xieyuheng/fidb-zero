@@ -1,5 +1,5 @@
 import type Http from "node:http"
-import { requestQuery } from "../utils/requestQuery"
+import { requestQuery } from "./requestQuery"
 
 export function requestKind(request: Http.IncomingMessage): string {
   const query = requestQuery(request)

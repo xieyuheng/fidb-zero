@@ -4,13 +4,13 @@ import type { Database } from "../database"
 import { isFile } from "../db/utils/isFile"
 import { normalizePath } from "../db/utils/normalizePath"
 import type { Json } from "../utils/Json"
+import { requestKind } from "../utils/requestKind"
 import { requestQuery } from "../utils/requestQuery"
 import { requestURL } from "../utils/requestURL"
 import { handleRequestData } from "./handleRequestData"
 import { handleRequestDirectory } from "./handleRequestDirectory"
 import { handleRequestFile } from "./handleRequestFile"
 import { handleRequestPassword } from "./handleRequestPassword"
-import { requestKind } from "./requestKind"
 
 export type HandleRequestOptions = {
   path: string
