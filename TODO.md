@@ -1,12 +1,16 @@
-# authentication by password
+# authentication by password -- for any directory
 
-authentication/passwordCreate(data: Data, password: string): Promise<void>
-authentication/passwordSignin(data: Data, password: string): Promise<Token>
+`Password` and `passwordSchema`
 
-# authentication by email
+db/createPassword(directory: string, password: string): Promise<void>
+db/signinPassword(directory: string, password: string): Promise<Token>
 
-signup-email
-signin-email
+# authentication by email -- for any directory
+
+`Email` and `passwordEmail`
+
+`db/createEmail`
+`db/signinEmail`
 
 # token with scope
 
