@@ -1,15 +1,14 @@
 import type { Buffer } from "node:buffer"
 import type Http from "node:http"
 import type { Database } from "../database"
-import { normalizePath } from "../db/utils/normalizePath"
 import type { Json } from "../utils/Json"
 import { requestKind } from "../utils/requestKind"
 import { requestQuery } from "../utils/requestQuery"
-import { requestURL } from "../utils/requestURL"
 import { handleRequestData } from "./handleRequestData"
 import { handleRequestDirectory } from "./handleRequestDirectory"
 import { handleRequestFile } from "./handleRequestFile"
 import { handleRequestPassword } from "./handleRequestPassword"
+import { requestPath } from "./requestPath"
 
 export type HandleRequestOptions = {
   path: string
@@ -21,9 +20,7 @@ export async function handleRequest(
   request: Http.IncomingMessage,
   db: Database,
 ): Promise<Json | Buffer | void> {
-  const url = requestURL(request)
-  const path = normalizePath(db, decodeURIComponent(url.pathname.slice(1)))
-
+  const path = requestPath(request, db)
   const query = requestQuery(request)
   const kind = requestKind(request)
 

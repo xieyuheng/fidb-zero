@@ -1,7 +1,5 @@
 # authentication by password -- for any directory
 
-extract `requestPath`
-
 `handleRequest` should not pass `options`
 
 rest-password-sign-up.test.ts
