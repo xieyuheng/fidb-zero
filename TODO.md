@@ -24,6 +24,8 @@ fidb+https://localhost:3000/users/xieyuheng
 
 # indexing
 
+b-tree over file system
+
 `Db.index(db, directory, key)`
 
 `Db.createIndex(db, directory, key)`

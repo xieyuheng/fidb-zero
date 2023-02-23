@@ -5,5 +5,9 @@ import { createRequestListener } from "./createRequestListener"
 export async function createServer(options: {
   db: Database
 }): Promise<Http.Server> {
-  return Http.createServer(createRequestListener(options))
+  const server = Http.createServer()
+
+  server.on("request", createRequestListener(options))
+
+  return server
 }
