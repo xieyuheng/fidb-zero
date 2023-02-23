@@ -1,3 +1,4 @@
+import { ty } from "@xieyuheng/ty"
 import { join } from "node:path"
 import type { Database } from "../database"
 import { Unauthorized } from "../errors/Unauthorized"
@@ -9,6 +10,10 @@ import { findDataAll } from "./findDataAll"
 export type SignInPasswordOptions = {
   password: string
 }
+
+export const signInPasswordOptionsSchema = ty.object({
+  password: ty.string(),
+})
 
 export async function signInPassword(
   db: Database,

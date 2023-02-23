@@ -1,6 +1,7 @@
+import { ty } from "@xieyuheng/ty"
 import { join } from "node:path"
 import type { Database } from "../database"
-import type { TokenPermission } from "../token"
+import { TokenPermission, tokenPermissionSchema } from "../token"
 import { passwordHash } from "../utils/password"
 import { randomHexString } from "../utils/randomHexString"
 import { createData } from "./createData"
@@ -10,6 +11,12 @@ export type SignUpPasswordOptions = {
   password: string
   permissions: Array<TokenPermission>
 }
+
+export const signUpPasswordOptionsSchema = ty.object({
+  memo: ty.string(),
+  password: ty.string(),
+  permissions: ty.array(tokenPermissionSchema),
+})
 
 export async function signUpPassword(
   db: Database,

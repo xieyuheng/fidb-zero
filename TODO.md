@@ -1,7 +1,7 @@
 # authentication by password -- for any directory
 
-[rest] `handleRequestPassword` -- kind=password-sign-up
-[rest] `handleRequestPassword` -- kind=password-sign-in
+rest-password-sign-up.test.ts
+rest-password-sign-in.test.ts
 
 [rest] rate limit by ip -- for `password-sign-up`
 

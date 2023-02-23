@@ -13,6 +13,7 @@ import { requestURL } from "../utils/requestURL"
 import { handleRequestData } from "./handleRequestData"
 import { handleRequestDirectory } from "./handleRequestDirectory"
 import { handleRequestFile } from "./handleRequestFile"
+import { handleRequestPassword } from "./handleRequestPassword"
 
 export type HandleRequestOptions = {
   path: string
@@ -50,6 +51,10 @@ export async function handleRequest(
 
   if (kind.startsWith("data")) {
     return await handleRequestData(request, db, options)
+  }
+
+  if (kind.startsWith("password")) {
+    return await handleRequestPassword(request, db, options)
   }
 
   throw new Error(
