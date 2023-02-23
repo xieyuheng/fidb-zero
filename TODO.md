@@ -1,3 +1,5 @@
+[rest] GET file-metadata
+
 # password login
 
 # mail login
