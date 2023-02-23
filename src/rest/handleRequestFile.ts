@@ -6,6 +6,7 @@ import { tokenAssert } from "../token"
 import type { Json } from "../utils/Json"
 import { requestBuffer } from "../utils/requestBuffer"
 import { requestKind } from "../utils/requestKind"
+import { requestQuery } from "../utils/requestQuery"
 import { requestPath } from "./requestPath"
 import { requestToken } from "./requestToken"
 
@@ -14,6 +15,7 @@ export async function handleRequestFile(
   db: Database,
 ): Promise<Json | Buffer | void> {
   const kind = requestKind(request)
+  const query = requestQuery(request)
   const path = requestPath(request, db)
   const token = await requestToken(request, db)
 

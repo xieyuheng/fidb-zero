@@ -1,19 +1,22 @@
 import { ty } from "@xieyuheng/ty"
 import type Http from "node:http"
+import { dirname } from "node:path"
 import type { Database } from "../database"
 import * as Db from "../db"
 import { Unauthorized } from "../errors/Unauthorized"
 import type { Json } from "../utils/Json"
 import { requestJsonObject } from "../utils/requestJsonObject"
 import { requestKind } from "../utils/requestKind"
+import { requestQuery } from "../utils/requestQuery"
 import { requestPath } from "./requestPath"
 
 export async function handleRequestPassword(
   request: Http.IncomingMessage,
   db: Database,
 ): Promise<Json | void> {
-  const path = requestPath(request, db)
   const kind = requestKind(request)
+  const query = requestQuery(request)
+  const path = requestPath(request, db)
 
   if (request.method === "POST") {
     if (kind === "password-sign-up") {
@@ -29,7 +32,7 @@ export async function handleRequestPassword(
         await requestJsonObject(request),
       )
 
-      const config = await Db.getAuthDirectoryConfig(db, path)
+      const config = await Db.getAuthDirectoryConfig(db, dirname(path))
 
       if (config === undefined) {
         throw new Unauthorized(

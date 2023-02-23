@@ -2,7 +2,7 @@ import { expect, test } from "vitest"
 import { prepareTestServer } from "./prepareTestServer"
 
 test("rest-password-sign-up", async ({ meta }) => {
-  const { url, db } = await prepareTestServer(meta)
+  const { url, db, authorization } = await prepareTestServer(meta)
 
   db.config = {
     name: "rest-password-sign-up",
@@ -13,26 +13,37 @@ test("rest-password-sign-up", async ({ meta }) => {
     },
   }
 
-  const response = await fetch(`${url}/users?kind=password-sign-up`, {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      data: {
-        username: "xieyuheng",
-        name: "Xie Yuheng",
+  const created = await (
+    await fetch(`${url}/users/xieyuheng?kind=password-sign-up`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
       },
-      options: {
-        memo: "My favorite password.",
-        password: "123456",
+      body: JSON.stringify({
+        data: {
+          username: "xieyuheng",
+          name: "Xie Yuheng",
+        },
+        options: {
+          memo: "My favorite password.",
+          password: "123456",
+        },
+      }),
+    })
+  ).json()
+
+  {
+    const response = await fetch(
+      `${url}/users/xieyuheng/passwords?kind=directory`,
+      {
+        method: "GET",
+        headers: {
+          authorization,
+        },
       },
-    }),
-  })
+    )
 
-  console.log({
-    text: response.statusText,
-  })
-
-  expect(response.ok).toEqual(true)
+    const results = await response.json()
+    expect(results.length).toEqual(1)
+  }
 })

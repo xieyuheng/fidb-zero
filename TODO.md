@@ -1,6 +1,5 @@
 # authentication by password -- for any directory
 
-rest-password-sign-up.test.ts
 rest-password-sign-in.test.ts
 
 # rest
