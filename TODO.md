@@ -1,13 +1,11 @@
 # authentication by password -- for any directory
 
-`Password` and `passwordSchema`
-
 db/createPassword(directory: string, password: string): Promise<void>
 db/signinPassword(directory: string, password: string): Promise<Token>
 
 # authentication by email -- for any directory
 
-`Email` and `passwordEmail`
+`Email` and `emailSchema`
 
 `db/createEmail`
 `db/signinEmail`
