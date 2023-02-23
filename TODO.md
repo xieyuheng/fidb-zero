@@ -1,6 +1,5 @@
 # authentication by password -- for any directory
 
-[db] fix `signUpPassword` -- take `permissions`
 [db] fix `signInPassword` -- return `token`
 
 [rest] `handleRequestPassword` -- kind=password-sign-up
