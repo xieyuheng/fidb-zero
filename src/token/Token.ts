@@ -1,18 +1,18 @@
 import ty, { Schema } from "@xieyuheng/ty"
 import { Data, dataSchema } from "../data"
 
-export type TokenPermissionName = "create" | "read" | "update" | "delete"
+export type TokenPermission = "create" | "read" | "update" | "delete"
 
-export type TokenPermissions = Record<string, Array<TokenPermissionName>>
+export type TokenPermissionRecord = Record<string, Array<TokenPermission>>
 
 export type Token = Data & {
-  permissions: TokenPermissions
+  permissionRecord: TokenPermissionRecord
 }
 
 export const tokenSchema: Schema<Token> = ty.intersection(
   dataSchema,
   ty.object({
-    permissions: ty.dict(
+    permissionRecord: ty.dict(
       ty.array(
         ty.union(
           ty.const("create" as const),

@@ -1,9 +1,7 @@
 # authentication by password -- for any directory
 
-[token] rename token types
-
-[db] fix `signUpPassword` -- take token
-[db] fix `signInPassword` -- return token
+[db] fix `signUpPassword` -- take `permissions`
+[db] fix `signInPassword` -- return `token`
 
 [rest] `handleRequestPassword` -- kind=password-sign-up
 [rest] `handleRequestPassword` -- kind=password-sign-in

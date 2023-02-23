@@ -1,11 +1,11 @@
 import { Unauthorized } from "../errors/Unauthorized"
-import type { Token, TokenPermissionName } from "./Token"
+import type { Token, TokenPermission } from "./Token"
 import { tokenCheck } from "./tokenCheck"
 
 export function tokenAssert(
   token: Token,
   path: string,
-  name: TokenPermissionName,
+  name: TokenPermission,
 ): void {
   if (!tokenCheck(token, path, name)) {
     throw new Unauthorized(
