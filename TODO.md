@@ -1,5 +1,3 @@
-`createDatabase` load `database.json` to `config`
-
 [config] `database.json` -- with `name` and optional `description`
 
 [config] `database.json` -- config which directory can be used for sign up
