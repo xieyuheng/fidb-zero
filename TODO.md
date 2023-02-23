@@ -1,6 +1,10 @@
-[config] `config.json` -- with `name` and optional `description`
+`Database` has `config: DatabaseConfig`
 
-[config] `config.json` -- config which directory can be used for sign up
+`createDatabase` load `database.json` to `config`
+
+[config] `database.json` -- with `name` and optional `description`
+
+[config] `database.json` -- config which directory can be used for sign up
 
 [rest] `handleRequestPassword` -- `kind=password-sign-up` -- create initial data and call `signUpPassword`
 
