@@ -12,10 +12,14 @@ export async function handleRequestFile(
   db: Database,
   options: HandleRequestOptions,
 ): Promise<Json | Buffer | void> {
-  const { path, token } = options
+  const { path, token, kind } = options
 
   if (request.method === "GET") {
     tokenAssert(token, path, "read")
+    if (kind === "file-metadata") {
+      return await Db.getFileMetadataOrFail(db, path)
+    }
+
     return await Db.getFileOrFail(db, path)
   }
 
