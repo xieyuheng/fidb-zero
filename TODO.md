@@ -1,7 +1,5 @@
 # authentication by password -- for any directory
 
-ambr getToken getTokenOrFail
-
 extract `requestKind`
 
 `handleRequest` should not use `isFile` -- always dispatch by `kind`
