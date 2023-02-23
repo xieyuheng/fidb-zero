@@ -3,7 +3,7 @@ import * as Db from "../../db"
 import { prepareTestDb } from "./prepareTestDb"
 
 test("db-patch-data", async ({ meta }) => {
-  const db = await prepareTestDb(meta)
+  const { db } = await prepareTestDb(meta)
 
   const created = await Db.createData(db, "users/xieyuheng", {
     username: "xieyuheng",

@@ -5,7 +5,7 @@ import { arrayFromAsyncIterable } from "../../utils/arrayFromAsyncIterable"
 import { prepareTestDb } from "./prepareTestDb"
 
 test("db-delete-directory", async ({ meta }) => {
-  const db = await prepareTestDb(meta)
+  const { db } = await prepareTestDb(meta)
 
   expect(
     (await arrayFromAsyncIterable(Db.listDirectoryAll(db, ""))).length,

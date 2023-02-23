@@ -4,7 +4,7 @@ import { AlreadyExists } from "../../errors/AlreadyExists"
 import { prepareTestDb } from "./prepareTestDb"
 
 test("db-create-data-already-exists", async ({ meta }) => {
-  const db = await prepareTestDb(meta)
+  const { db } = await prepareTestDb(meta)
 
   const created = await Db.createData(db, `users/${crypto.randomUUID()}`, {
     username: "xieyuheng",

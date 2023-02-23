@@ -4,7 +4,7 @@ import { arrayFromAsyncIterable } from "../../utils/arrayFromAsyncIterable"
 import { prepareTestDb } from "./prepareTestDb"
 
 test("db-find-data", async ({ meta }) => {
-  const db = await prepareTestDb(meta)
+  const { db } = await prepareTestDb(meta)
 
   await Db.createData(db, "users/0", { country: "China" })
   await Db.createData(db, "users/1", {})

@@ -1,5 +1,7 @@
 # authentication by password -- for any directory
 
+[db] `prepareTestDb` returns `{ db }` -- to be symmetric with `prepareTestServer`
+
 rest-password-sign-up.test.ts
 rest-password-sign-in.test.ts
 

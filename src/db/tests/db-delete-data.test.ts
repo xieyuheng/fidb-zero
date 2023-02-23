@@ -3,7 +3,7 @@ import * as Db from ".."
 import { prepareTestDb } from "./prepareTestDb"
 
 test("db-delete-data", async ({ meta }) => {
-  const db = await prepareTestDb(meta)
+  const { db } = await prepareTestDb(meta)
 
   const created = await Db.createData(db, `users/${crypto.randomUUID()}`, {
     username: "xieyuheng",

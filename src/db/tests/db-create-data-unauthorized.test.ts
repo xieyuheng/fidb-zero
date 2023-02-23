@@ -4,7 +4,7 @@ import { Unauthorized } from "../../errors/Unauthorized"
 import { prepareTestDb } from "./prepareTestDb"
 
 test("db-create-data-unauthorized", async ({ meta }) => {
-  const db = await prepareTestDb(meta)
+  const { db } = await prepareTestDb(meta)
 
   await expect(
     Db.createData(db, `../users/${crypto.randomUUID()}`, {
