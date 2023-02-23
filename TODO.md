@@ -1,7 +1,5 @@
 # authentication by password -- for any directory
 
-`Db.checkAuthDirectory`
-
 rest-password-sign-up.test.ts
 rest-password-sign-in.test.ts
 

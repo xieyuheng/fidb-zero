@@ -2,7 +2,7 @@ import { ty } from "@xieyuheng/ty"
 import type Http from "node:http"
 import type { Database } from "../database"
 import * as Db from "../db"
-import type { TokenPermission } from "../token"
+import { Unauthorized } from "../errors/Unauthorized"
 import type { Json } from "../utils/Json"
 import { requestJsonObject } from "../utils/requestJsonObject"
 import type { HandleRequestOptions } from "./handleRequest"
@@ -24,19 +24,24 @@ export async function handleRequestPassword(
         }),
       })
 
-      const {
-        data,
-        options: { memo, password },
-      } = schema.validate(await requestJsonObject(request))
+      const { data, options } = schema.validate(
+        await requestJsonObject(request),
+      )
 
-      const permissions: Array<TokenPermission> = []
+      const config = await Db.getAuthDirectoryConfig(db, path)
+
+      if (config === undefined) {
+        throw new Unauthorized(
+          `[handleRequestPassword] path is not an auth directory: ${path}`,
+        )
+      }
 
       const created = await Db.createData(db, path, data)
 
       await Db.signUpPassword(db, created["@path"], {
-        memo,
-        password,
-        permissions,
+        memo: options.memo,
+        password: options.password,
+        permissions: config.permissions,
       })
 
       return created
