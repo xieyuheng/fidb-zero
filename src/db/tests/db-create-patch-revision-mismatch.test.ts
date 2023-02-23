@@ -7,13 +7,13 @@ import { prepareTestDb } from "./prepareTestDb"
 test("db-create-patch-revision-mismatch", async ({ meta }) => {
   const db = await prepareTestDb(meta)
 
-  await Db.create(db, "users/xieyuheng", {
+  await Db.createData(db, "users/xieyuheng", {
     username: "xieyuheng",
     name: "Xie Yuheng",
   })
 
   await expect(
-    Db.patch(db, "users/xieyuheng", {
+    Db.patchData(db, "users/xieyuheng", {
       "@revision": randomRevision(),
       name: "谢宇恒",
     }),

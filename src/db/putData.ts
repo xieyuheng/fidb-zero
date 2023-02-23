@@ -4,15 +4,15 @@ import type { Database } from "../database"
 import { NotFound } from "../errors/NotFound"
 import { RevisionMismatch } from "../errors/RevisionMismatch"
 import type { JsonObject } from "../utils/Json"
-import { get } from "./get"
+import { getData } from "./getData"
 import { writeData } from "./utils/writeData"
 
-export async function put(
+export async function putData(
   db: Database,
   path: string,
   input: JsonObject,
 ): Promise<Data> {
-  const data = await get(db, path)
+  const data = await getData(db, path)
   if (data === undefined) {
     throw new NotFound(`[put] not found, path ${path}`)
   }

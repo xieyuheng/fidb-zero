@@ -3,17 +3,17 @@ import type { Data } from "../data"
 import type { Database } from "../database"
 import { isErrnoException } from "../utils/isErrnoException"
 import type { JsonAtom } from "../utils/Json"
-import { get } from "./get"
+import { getData } from "./getData"
 import { resolvePath } from "./utils/resolvePath"
 
-export type FindAllOptions = {
+export type FindAllDataOptions = {
   properties: Record<string, JsonAtom>
 }
 
-export async function* findAll(
+export async function* findAllData(
   db: Database,
   directory: string,
-  options: FindAllOptions,
+  options: FindAllDataOptions,
 ): AsyncIterable<Data> {
   try {
     const dir = await fs.promises.opendir(resolvePath(db, directory), {
@@ -22,7 +22,7 @@ export async function* findAll(
 
     for await (const dirEntry of dir) {
       if (dirEntry.isDirectory()) {
-        const data = await get(db, `${directory}/${dirEntry.name}`)
+        const data = await getData(db, `${directory}/${dirEntry.name}`)
         if (data !== undefined) {
           if (
             Object.entries(options.properties).every(

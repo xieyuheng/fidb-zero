@@ -2,7 +2,7 @@ import type { Database } from "../database"
 import { Unauthorized } from "../errors/Unauthorized"
 import { Token, tokenSchema } from "../token"
 import { isValidTokenName } from "../token/isValidTokenName"
-import { get } from "./get"
+import { getData } from "./getData"
 
 export async function getToken(
   db: Database,
@@ -12,5 +12,5 @@ export async function getToken(
     throw new Unauthorized(`[getToken] invalid token name: ${tokenName}`)
   }
 
-  return tokenSchema.validate(await get(db, `tokens/${tokenName}`))
+  return tokenSchema.validate(await getData(db, `tokens/${tokenName}`))
 }

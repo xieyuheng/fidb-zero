@@ -6,21 +6,21 @@ import { prepareTestDb } from "./prepareTestDb"
 test("db-find", async ({ meta }) => {
   const db = await prepareTestDb(meta)
 
-  await Db.create(db, "users/0", { country: "China" })
-  await Db.create(db, "users/1", {})
-  await Db.create(db, "users/2", { country: "China" })
-  await Db.create(db, "users/3", {})
-  await Db.create(db, "users/4", { country: "China" })
-  await Db.create(db, "users/5", {})
-  await Db.create(db, "users/6", { country: "China" })
-  await Db.create(db, "users/7", {})
-  await Db.create(db, "users/8", { country: "China" })
-  await Db.create(db, "users/9", {})
+  await Db.createData(db, "users/0", { country: "China" })
+  await Db.createData(db, "users/1", {})
+  await Db.createData(db, "users/2", { country: "China" })
+  await Db.createData(db, "users/3", {})
+  await Db.createData(db, "users/4", { country: "China" })
+  await Db.createData(db, "users/5", {})
+  await Db.createData(db, "users/6", { country: "China" })
+  await Db.createData(db, "users/7", {})
+  await Db.createData(db, "users/8", { country: "China" })
+  await Db.createData(db, "users/9", {})
 
   expect(
     (
       await arrayFromAsyncIterable(
-        Db.find(db, "users", {
+        Db.findData(db, "users", {
           page: 1,
           size: 3,
           properties: { country: "China" },
@@ -32,7 +32,7 @@ test("db-find", async ({ meta }) => {
   expect(
     (
       await arrayFromAsyncIterable(
-        Db.find(db, "users", {
+        Db.findData(db, "users", {
           page: 2,
           size: 3,
           properties: { country: "China" },
@@ -44,7 +44,7 @@ test("db-find", async ({ meta }) => {
   expect(
     (
       await arrayFromAsyncIterable(
-        Db.find(db, "users", {
+        Db.findData(db, "users", {
           page: 3,
           size: 3,
           properties: { country: "China" },

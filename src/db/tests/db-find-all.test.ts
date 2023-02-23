@@ -6,14 +6,14 @@ import { prepareTestDb } from "./prepareTestDb"
 test("db-find-all", async ({ meta }) => {
   const db = await prepareTestDb(meta)
 
-  await Db.create(db, "users/0", { country: "China" })
-  await Db.create(db, "users/1", {})
-  await Db.create(db, "users/2", { country: "China" })
+  await Db.createData(db, "users/0", { country: "China" })
+  await Db.createData(db, "users/1", {})
+  await Db.createData(db, "users/2", { country: "China" })
 
   expect(
     (
       await arrayFromAsyncIterable(
-        Db.findAll(db, "users", {
+        Db.findAllData(db, "users", {
           properties: { country: "China" },
         }),
       )
@@ -23,7 +23,7 @@ test("db-find-all", async ({ meta }) => {
   expect(
     (
       await arrayFromAsyncIterable(
-        Db.findAll(db, "users", {
+        Db.findAllData(db, "users", {
           properties: {},
         }),
       )

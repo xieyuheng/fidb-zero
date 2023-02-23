@@ -3,7 +3,7 @@ import type { Database } from "../database"
 import { NotFound } from "../errors/NotFound"
 import { getOrFail } from "./getOrFail"
 
-export async function get(
+export async function getData(
   db: Database,
   path: string,
 ): Promise<Data | undefined> {

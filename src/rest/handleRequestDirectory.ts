@@ -16,7 +16,7 @@ export async function handleRequestDirectory(
   if (request.method === "GET") {
     tokenAssert(token, path, "read")
     return await arrayFromAsyncIterable(
-      Db.list(db, path, {
+      Db.listDirectory(db, path, {
         page: query.page ? Number.parseInt(query.page) : 1,
         size: query.size ? Number.parseInt(query.size) : 15,
       }),

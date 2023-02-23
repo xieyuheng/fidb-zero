@@ -8,7 +8,7 @@ test("db-unauthorized", async ({ meta }) => {
   const db = await prepareTestDb(meta)
 
   await expect(
-    Db.create(db, `../users/${crypto.randomUUID()}`, {
+    Db.createData(db, `../users/${crypto.randomUUID()}`, {
       username: "xieyuheng",
       name: "Xie Yuheng",
     }),
@@ -17,6 +17,6 @@ test("db-unauthorized", async ({ meta }) => {
   await expect(Db.deleteDirectory(db, "..")).rejects.toThrowError(Unauthorized)
 
   await expect(
-    arrayFromAsyncIterable(Db.listAll(db, "..")),
+    arrayFromAsyncIterable(Db.listAllDirectory(db, "..")),
   ).rejects.toThrowError(Unauthorized)
 })

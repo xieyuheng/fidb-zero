@@ -48,7 +48,7 @@ Db.put(db: Database, id: string, json: JsonObject): Promise<Data>
 Db.getOrFail(db: Database, id: string): Promise<Data>
 Db.get(db: Database, id: string): Promise<Data | undefined>
 Db.patch(db: Database, id: string, json: JsonObject): Promise<Data>
-Db.delete(db: Database, id: string): Promise<void>
+Db.deleteData(db: Database, id: string): Promise<void>
 Db.*all(db: Database, prefix: string): AsyncIterable<Data>
 Db.*find(db: Database, prefix: string, options: FindOptions): AsyncIterable<Data>
 ```
