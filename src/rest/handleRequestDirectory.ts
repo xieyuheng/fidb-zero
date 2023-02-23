@@ -18,7 +18,7 @@ export async function handleRequestDirectory(
     return await arrayFromAsyncIterable(
       Db.list(db, path, {
         page: query.page ? Number.parseInt(query.page) : 1,
-        size: query.size ? Number.parseInt(query.size) : 30,
+        size: query.size ? Number.parseInt(query.size) : 15,
       }),
     )
   }
