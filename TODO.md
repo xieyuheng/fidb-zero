@@ -1,6 +1,12 @@
-# password login
+# authentication by password
 
-# mail login
+authentication/passwordCreate(data: Data, password: string): Promise<void>
+authentication/passwordSignin(data: Data, password: string): Promise<Token>
+
+# authentication by email
+
+signup-email
+signin-email
 
 # token with scope
 
