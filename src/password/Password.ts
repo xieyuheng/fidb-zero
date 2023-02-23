@@ -6,7 +6,7 @@ export type Password = Data & {
   hash: string
 }
 
-export const tokenSchema: Schema<Password> = ty.intersection(
+export const passwordSchema: Schema<Password> = ty.intersection(
   dataSchema,
   ty.object({
     memo: ty.string(),

@@ -1,6 +1,9 @@
 # authentication by password -- for any directory
 
-[db] signInPassword(directory, options): Promise<Token>
+[token] rename token types
+
+[db] fix `signUpPassword` -- take token
+[db] fix `signInPassword` -- return token
 
 [rest] `handleRequestPassword` -- kind=password-sign-up
 [rest] `handleRequestPassword` -- kind=password-sign-in

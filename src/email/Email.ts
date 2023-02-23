@@ -5,7 +5,7 @@ export type Email = Data & {
   address: string
 }
 
-export const tokenSchema: Schema<Email> = ty.intersection(
+export const emailSchema: Schema<Email> = ty.intersection(
   dataSchema,
   ty.object({
     address: ty.email(),
