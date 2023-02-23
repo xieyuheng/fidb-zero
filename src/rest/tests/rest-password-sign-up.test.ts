@@ -2,9 +2,37 @@ import { expect, test } from "vitest"
 import { prepareTestServer } from "./prepareTestServer"
 
 test("rest-password-sign-up", async ({ meta }) => {
-  const { url } = await prepareTestServer(meta)
+  const { url, db } = await prepareTestServer(meta)
 
-  // const response = await fetch(`${url}/`)
+  db.config = {
+    name: "rest-password-sign-up",
+    authDirectories: {
+      users: {
+        permissions: ["create", "read", "update", "delete"],
+      },
+    },
+  }
 
-  expect // TODO
+  const response = await fetch(`${url}/users?kind=password-sign-up`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      data: {
+        username: "xieyuheng",
+        name: "Xie Yuheng",
+      },
+      options: {
+        memo: "My favorite password.",
+        password: "123456",
+      },
+    }),
+  })
+
+  console.log({
+    text: response.statusText,
+  })
+
+  expect(response.ok).toEqual(true)
 })

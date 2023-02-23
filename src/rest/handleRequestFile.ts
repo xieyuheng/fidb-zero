@@ -6,13 +6,16 @@ import { tokenAssert } from "../token"
 import type { Json } from "../utils/Json"
 import { requestBuffer } from "../utils/requestBuffer"
 import type { HandleRequestOptions } from "./handleRequest"
+import { requestToken } from "./requestToken"
 
 export async function handleRequestFile(
   request: Http.IncomingMessage,
   db: Database,
   options: HandleRequestOptions,
 ): Promise<Json | Buffer | void> {
-  const { path, token, kind } = options
+  const { path, kind } = options
+
+  const token = await requestToken(request, db)
 
   if (request.method === "GET") {
     tokenAssert(token, path, "read")

@@ -12,7 +12,7 @@ export async function handleRequestPassword(
   db: Database,
   options: HandleRequestOptions,
 ): Promise<Json | void> {
-  const { path, token, kind } = options
+  const { path, kind } = options
 
   if (request.method === "POST") {
     if (kind === "password-sign-up") {

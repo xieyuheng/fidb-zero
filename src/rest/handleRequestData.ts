@@ -6,13 +6,16 @@ import { arrayFromAsyncIterable } from "../utils/arrayFromAsyncIterable"
 import type { Json } from "../utils/Json"
 import { requestJsonObject } from "../utils/requestJsonObject"
 import type { HandleRequestOptions } from "./handleRequest"
+import { requestToken } from "./requestToken"
 
 export async function handleRequestData(
   request: Http.IncomingMessage,
   db: Database,
   options: HandleRequestOptions,
 ): Promise<Json | void> {
-  const { path, token, query, kind } = options
+  const { path, query, kind } = options
+
+  const token = await requestToken(request, db)
 
   if (request.method === "GET") {
     tokenAssert(token, path, "read")
