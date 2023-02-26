@@ -17,16 +17,16 @@ export async function handleRequest(
 ): Promise<Json | Buffer | void> {
   const kind = requestKind(request)
 
+  if (kind.startsWith("data") || kind === "") {
+    return await handleRequestData(ctx, request)
+  }
+
   if (kind.startsWith("file")) {
     return await handleRequestFile(ctx, request)
   }
 
   if (kind.startsWith("directory")) {
     return await handleRequestDirectory(ctx, request)
-  }
-
-  if (kind.startsWith("data")) {
-    return await handleRequestData(ctx, request)
   }
 
   if (kind.startsWith("password")) {

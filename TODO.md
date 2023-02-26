@@ -1,5 +1,3 @@
-`requestKind` should not default to `data`
-
 ambr handleRequest handle
 
 # reverse-proxy
