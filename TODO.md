@@ -1,3 +1,31 @@
+[rest] `handleRequestInfo` -- for testing
+
+# reverse-proxy
+
+[reverse-proxy] `createRequestListener`
+
+[reverse-proxy] `createRequestListener` -- `handleRequest`
+
+- `handleRequest` take `Context`
+
+[reverse-proxy] `handleRequest` -- handle `POST` `kind=proxy-target`
+
+- `Context` has`proxyTargets`
+
+[reverse-proxy] `handleRequest` -- handle normal request
+
+[command] `fidb serve-reverse-proxy`
+
+```
+fidb serve-reverse-proxy <database>
+```
+
+[command] `fidb serve` with reverse-proxy
+
+```
+fidb serve <database> --reverse-proxy-server <url> --reverse-proxy-user <user> --reverse-proxy-password <password>
+```
+
 # rest
 
 [rest] rate limit by ip -- for `password-sign-up`
@@ -47,10 +75,3 @@ fidb+https://localhost:3000/users/xieyuheng
 ```
 
 # schema
-
-# reverse proxy
-
-```
-fidb serve-reverse-proxy <database>
-fidb serve <database> --reverse-proxy-server <url> --reverse-proxy-user <user> --reverse-proxy-password <password>
-```
