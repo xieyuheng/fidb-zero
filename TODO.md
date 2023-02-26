@@ -1,5 +1,7 @@
 # reverse-proxy
 
+`createRequestListener` pass `response` to `handle`
+
 [reverse-proxy] `handleDefault`
 
 [reverse-proxy] `ReverseProxyWaiter` -- for the order of messages

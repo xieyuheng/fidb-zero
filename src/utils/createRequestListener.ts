@@ -31,6 +31,11 @@ export function createRequestListener<Context>(options: {
 
     try {
       const body = await handle(ctx, request)
+
+      if (response.writableEnded) {
+        return
+      }
+
       if (body === undefined) {
         responseSendJson(response, {
           status: { code: 204 },
