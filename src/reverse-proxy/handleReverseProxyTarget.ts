@@ -3,6 +3,7 @@ import type Http from "node:http"
 import type { Json } from "../utils/Json"
 import { requestJsonObject } from "../utils/requestJsonObject"
 import type { Context } from "./Context"
+import { ReverseProxyWaiter } from "./ReverseProxyWaiter"
 
 export async function handleReverseProxyTarget(
   ctx: Context,
@@ -20,6 +21,7 @@ export async function handleReverseProxyTarget(
 
     ctx.targets[username] = {
       socket: request.socket,
+      waiter: new ReverseProxyWaiter(request.socket),
     }
 
     // TODO

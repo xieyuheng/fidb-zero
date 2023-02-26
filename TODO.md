@@ -1,6 +1,6 @@
 # reverse-proxy
 
-[reverse-proxy] `handleDefault` -- proxy to `targets`
+[reverse-proxy] `handleDefault`
 
 [reverse-proxy] `ReverseProxyWaiter` -- for the order of messages
 
