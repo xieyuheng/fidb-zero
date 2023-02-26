@@ -25,13 +25,6 @@ file:read
 file:update
 ```
 
-# data link
-
-```
-fidb:users/xieyuheng
-fidb+https://localhost:3000/users/xieyuheng
-```
-
 # indexing
 
 b-tree over file system
@@ -44,7 +37,14 @@ b-tree over file system
 
 `Db.find` -- use index
 
-`Db.find` -- support deref a property which is an `id` to another data
+# data link
+
+`Db.find` -- support deref a property which is a path to another data
+
+```
+fidb:users/xieyuheng
+fidb+https://localhost:3000/users/xieyuheng
+```
 
 # schema
 
