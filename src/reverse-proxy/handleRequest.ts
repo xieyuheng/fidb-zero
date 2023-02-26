@@ -4,7 +4,7 @@ import type { Json } from "../utils/Json"
 import { requestKind } from "../utils/requestKind"
 
 export type Context = {
-  // db: Database
+  //
 }
 
 export async function handleRequest(

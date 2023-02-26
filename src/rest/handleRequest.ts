@@ -1,8 +1,8 @@
 import type { Buffer } from "node:buffer"
 import type Http from "node:http"
-import type { Database } from "../database"
 import type { Json } from "../utils/Json"
 import { requestKind } from "../utils/requestKind"
+import type { Context } from "./Context"
 import { handleRequestData } from "./handleRequestData"
 import { handleRequestDirectory } from "./handleRequestDirectory"
 import { handleRequestFile } from "./handleRequestFile"
@@ -10,10 +10,6 @@ import { handleRequestInfo } from "./handleRequestInfo"
 import { handleRequestPassword } from "./handleRequestPassword"
 import { handleRequestPing } from "./handleRequestPing"
 import { requestPath } from "./requestPath"
-
-export type Context = {
-  db: Database
-}
 
 export async function handleRequest(
   ctx: Context,

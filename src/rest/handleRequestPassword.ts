@@ -7,7 +7,7 @@ import type { Json } from "../utils/Json"
 import { requestJsonObject } from "../utils/requestJsonObject"
 import { requestKind } from "../utils/requestKind"
 import { requestQuery } from "../utils/requestQuery"
-import type { Context } from "./handleRequest"
+import type { Context } from "./Context"
 import { requestPath } from "./requestPath"
 
 export async function handleRequestPassword(

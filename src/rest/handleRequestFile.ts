@@ -6,7 +6,7 @@ import type { Json } from "../utils/Json"
 import { requestBuffer } from "../utils/requestBuffer"
 import { requestKind } from "../utils/requestKind"
 import { requestQuery } from "../utils/requestQuery"
-import type { Context } from "./handleRequest"
+import type { Context } from "./Context"
 import { requestPath } from "./requestPath"
 import { requestToken } from "./requestToken"
 
