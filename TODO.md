@@ -1,5 +1,3 @@
-[rest] `handleRequestInfo`
-
 # reverse-proxy
 
 [reverse-proxy] `createRequestListener`
