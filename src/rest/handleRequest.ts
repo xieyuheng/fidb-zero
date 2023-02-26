@@ -6,7 +6,9 @@ import { requestKind } from "../utils/requestKind"
 import { handleRequestData } from "./handleRequestData"
 import { handleRequestDirectory } from "./handleRequestDirectory"
 import { handleRequestFile } from "./handleRequestFile"
+import { handleRequestInfo } from "./handleRequestInfo"
 import { handleRequestPassword } from "./handleRequestPassword"
+import { handleRequestPing } from "./handleRequestPing"
 import { requestPath } from "./requestPath"
 
 export async function handleRequest(
@@ -29,6 +31,14 @@ export async function handleRequest(
 
   if (kind.startsWith("password")) {
     return await handleRequestPassword(request, db)
+  }
+
+  if (kind.startsWith("info")) {
+    return await handleRequestInfo(request, db)
+  }
+
+  if (kind.startsWith("ping")) {
+    return await handleRequestPing(request, db)
   }
 
   throw new Error(

@@ -1,4 +1,4 @@
-[rest] `handleRequestInfo` -- for testing
+[rest] `handleRequestInfo`
 
 # reverse-proxy
 
