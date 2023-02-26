@@ -37,9 +37,9 @@ export class ServeReverseProxyCommand extends Command<Args> {
 
     return [
       `The ${blue(this.name)} command takes a path to a directory,`,
-      `and serve it as a database.`,
+      `using it as a database, and serve a reverse proxy.`,
       ``,
-      blue(`  ${runner.name} ${this.name} tmp/databases/test`),
+      blue(`  ${runner.name} ${this.name} tmp/databases/reverse-proxy`),
       ``,
     ].join("\n")
   }
