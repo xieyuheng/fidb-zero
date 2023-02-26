@@ -6,12 +6,6 @@
 
 [reverse-proxy] `handleRequest` -- handle normal request
 
-[command] `fidb serve-reverse-proxy`
-
-```
-fidb serve-reverse-proxy <database>
-```
-
 [command] `fidb serve` with reverse-proxy
 
 ```

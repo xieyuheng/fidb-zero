@@ -7,8 +7,9 @@ export function createCommandRunner(): CommandRunner {
     defaultCommand: new Commands.DefaultCommand(),
     commands: [
       new Commands.CommonHelpCommand(),
-      new Commands.ServeCommand(),
       new Commands.ImportCommand(),
+      new Commands.ServeCommand(),
+      new Commands.ServeReverseProxyCommand(),
     ],
   })
 }
