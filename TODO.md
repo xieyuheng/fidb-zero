@@ -1,7 +1,5 @@
 # reverse-proxy
 
-[reverse-proxy] extract `Context` module -- has`proxyTargets`
-
 [reverse-proxy] `handleRequestProxyTarget` -- handle `POST`
 
 [reverse-proxy] `ProxyWaiter` -- for the order of messages

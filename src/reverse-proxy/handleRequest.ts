@@ -2,10 +2,7 @@ import type { Buffer } from "node:buffer"
 import type Http from "node:http"
 import type { Json } from "../utils/Json"
 import { requestKind } from "../utils/requestKind"
-
-export type Context = {
-  //
-}
+import type { Context } from "./Context"
 
 export async function handleRequest(
   ctx: Context,
