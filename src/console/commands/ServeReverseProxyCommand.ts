@@ -49,7 +49,7 @@ export class ServeReverseProxyCommand extends Command<Args> {
 
     const requestListener = createRequestListener({
       ctx: { db, reverseProxyTargets: {} },
-      handleRequest: ReverseProxy.handleRequest,
+      handle: ReverseProxy.handle,
     })
 
     const hostname = argv.hostname || "127.0.0.1"

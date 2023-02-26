@@ -10,7 +10,7 @@ import type { Context } from "./Context"
 import { requestPath } from "./requestPath"
 import { requestToken } from "./requestToken"
 
-export async function handleRequestData(
+export async function handleData(
   ctx: Context,
   request: Http.IncomingMessage,
 ): Promise<Json | void> {
@@ -60,7 +60,7 @@ export async function handleRequestData(
 
   throw new Error(
     [
-      `[handleRequestData] unhandled http request`,
+      `[handleData] unhandled http request`,
       `  method: ${request.method}`,
       `  path: ${path}`,
     ].join("\n"),

@@ -2,7 +2,7 @@ import type Http from "node:http"
 import type { Json } from "../utils/Json"
 import type { Context } from "./Context"
 
-export async function handleRequestInfo(
+export async function handleInfo(
   ctx: Context,
   request: Http.IncomingMessage,
 ): Promise<Json | void> {
@@ -21,9 +21,8 @@ export async function handleRequestInfo(
   }
 
   throw new Error(
-    [
-      `[handleRequestInfo] unhandled http request`,
-      `  method: ${request.method}`,
-    ].join("\n"),
+    [`[handleInfo] unhandled http request`, `  method: ${request.method}`].join(
+      "\n",
+    ),
   )
 }

@@ -1,12 +1,10 @@
-ambr handleRequest handle
-
 # reverse-proxy
 
-[reverse-proxy] `handleRequestReverseProxyTarget` -- handle `POST`
+[reverse-proxy] `handleReverseProxyTarget` -- handle `POST`
 
 [reverse-proxy] `ReverseProxyWaiter` -- for the order of messages
 
-[reverse-proxy] `handleRequest` -- handle normal request
+[reverse-proxy] `handle` -- handle normal request
 
 [command] `fidb serve` with reverse-proxy
 
@@ -25,8 +23,8 @@ fidb serve <database> --reverse-proxy-server <url> --reverse-proxy-user <user> -
 [db] signUpEmail(directory, options): Promise<void>
 [db] signInEmail(directory, options): Promise<Token>
 
-[rest] `handleRequestEmail` -- kind=email-sign-up
-[rest] `handleRequestEmail` -- kind=email-sign-in
+[rest] `handleEmail` -- kind=email-sign-up
+[rest] `handleEmail` -- kind=email-sign-in
 
 # token with scope
 

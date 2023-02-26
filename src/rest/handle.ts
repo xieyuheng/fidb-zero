@@ -3,47 +3,47 @@ import type Http from "node:http"
 import type { Json } from "../utils/Json"
 import { requestKind } from "../utils/requestKind"
 import type { Context } from "./Context"
-import { handleRequestData } from "./handleRequestData"
-import { handleRequestDirectory } from "./handleRequestDirectory"
-import { handleRequestFile } from "./handleRequestFile"
-import { handleRequestInfo } from "./handleRequestInfo"
-import { handleRequestPassword } from "./handleRequestPassword"
-import { handleRequestPing } from "./handleRequestPing"
+import { handleData } from "./handleData"
+import { handleDirectory } from "./handleDirectory"
+import { handleFile } from "./handleFile"
+import { handleInfo } from "./handleInfo"
+import { handlePassword } from "./handlePassword"
+import { handlePing } from "./handlePing"
 import { requestPath } from "./requestPath"
 
-export async function handleRequest(
+export async function handle(
   ctx: Context,
   request: Http.IncomingMessage,
 ): Promise<Json | Buffer | void> {
   const kind = requestKind(request)
 
   if (kind.startsWith("data") || kind === "") {
-    return await handleRequestData(ctx, request)
+    return await handleData(ctx, request)
   }
 
   if (kind.startsWith("file")) {
-    return await handleRequestFile(ctx, request)
+    return await handleFile(ctx, request)
   }
 
   if (kind.startsWith("directory")) {
-    return await handleRequestDirectory(ctx, request)
+    return await handleDirectory(ctx, request)
   }
 
   if (kind.startsWith("password")) {
-    return await handleRequestPassword(ctx, request)
+    return await handlePassword(ctx, request)
   }
 
   if (kind.startsWith("info")) {
-    return await handleRequestInfo(ctx, request)
+    return await handleInfo(ctx, request)
   }
 
   if (kind.startsWith("ping")) {
-    return await handleRequestPing(ctx, request)
+    return await handlePing(ctx, request)
   }
 
   throw new Error(
     [
-      `[handleRequest] unhandled content-type`,
+      `[handle] unhandled content-type`,
       `  method: ${request.method}`,
       `  path: ${requestPath(ctx, request)}`,
     ].join("\n"),

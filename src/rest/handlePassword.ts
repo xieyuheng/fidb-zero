@@ -10,7 +10,7 @@ import { requestQuery } from "../utils/requestQuery"
 import type { Context } from "./Context"
 import { requestPath } from "./requestPath"
 
-export async function handleRequestPassword(
+export async function handlePassword(
   ctx: Context,
   request: Http.IncomingMessage,
 ): Promise<Json | void> {
@@ -38,7 +38,7 @@ export async function handleRequestPassword(
 
       if (config === undefined) {
         throw new Unauthorized(
-          `[handleRequestPassword] path is not an auth directory: ${path}`,
+          `[handlePassword] path is not an auth directory: ${path}`,
         )
       }
 
@@ -66,7 +66,7 @@ export async function handleRequestPassword(
 
   throw new Error(
     [
-      `[handleRequestPassword] unhandled http request`,
+      `[handlePassword] unhandled http request`,
       `  method: ${request.method}`,
       `  path: ${path}`,
     ].join("\n"),

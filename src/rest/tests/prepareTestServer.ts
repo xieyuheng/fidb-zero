@@ -11,7 +11,7 @@ export async function prepareTestServer(options: { name: string }) {
 
   const requestListener = createRequestListener({
     ctx: { db },
-    handleRequest: Rest.handleRequest,
+    handle: Rest.handle,
   })
 
   const server = Http.createServer()

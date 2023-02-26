@@ -20,9 +20,9 @@ export type HandleRequest<Context> = (
 
 export function createRequestListener<Context>(options: {
   ctx: Context
-  handleRequest: HandleRequest<Context>
+  handle: HandleRequest<Context>
 }): RequestListener {
-  const { ctx, handleRequest } = options
+  const { ctx, handle } = options
   return async (request, response) => {
     if (request.method === "OPTIONS") {
       preflight(request, response)
@@ -30,7 +30,7 @@ export function createRequestListener<Context>(options: {
     }
 
     try {
-      const body = await handleRequest(ctx, request)
+      const body = await handle(ctx, request)
       if (body === undefined) {
         responseSendJson(response, {
           status: { code: 204 },

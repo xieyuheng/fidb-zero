@@ -1,1 +1,1 @@
-export * from "./handleRequest"
+export * from "./handle"

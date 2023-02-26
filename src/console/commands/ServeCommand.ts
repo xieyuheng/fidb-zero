@@ -49,7 +49,7 @@ export class ServeCommand extends Command<Args> {
 
     const requestListener = createRequestListener({
       ctx: { db },
-      handleRequest: Rest.handleRequest,
+      handle: Rest.handle,
     })
 
     const hostname = argv.hostname || "127.0.0.1"
