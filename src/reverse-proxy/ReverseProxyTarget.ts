@@ -1,3 +1,5 @@
+import type { Socket } from "node:net"
+
 export type ReverseProxyTarget = {
-  // TODO
+  socket: Socket
 }

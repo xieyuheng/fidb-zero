@@ -1,15 +1,15 @@
 # reverse-proxy
 
+[reverse-proxy] `handle` -- handle normal request
+
 [reverse-proxy] `handleReverseProxyTarget` -- handle `POST`
 
 [reverse-proxy] `ReverseProxyWaiter` -- for the order of messages
 
-[reverse-proxy] `handle` -- handle normal request
-
 [command] `fidb serve` with reverse-proxy
 
 ```
-fidb serve <database> --reverse-proxy-server <url> --reverse-proxy-user <user> --reverse-proxy-password <password>
+fidb serve <database> --reverse-proxy-server <url> --reverse-proxy-username <username> --reverse-proxy-password <password>
 ```
 
 # rest

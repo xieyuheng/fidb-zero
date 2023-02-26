@@ -48,7 +48,7 @@ export class ServeReverseProxyCommand extends Command<Args> {
     const db = await createDatabase({ path: resolve(argv.path) })
 
     const requestListener = createRequestListener({
-      ctx: { db, reverseProxyTargets: {} },
+      ctx: { db, targets: {} },
       handle: ReverseProxy.handle,
     })
 
