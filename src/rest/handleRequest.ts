@@ -50,7 +50,6 @@ export async function handleRequest(
       `[handleRequest] unhandled content-type`,
       `  method: ${request.method}`,
       `  path: ${requestPath(ctx, request)}`,
-      `  content-type: ${request.headers["content-type"]}`,
     ].join("\n"),
   )
 }
