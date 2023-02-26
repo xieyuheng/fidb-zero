@@ -1,6 +1,8 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
+import fs from "node:fs"
 import Http from "node:http"
+import Https from "node:https"
 import { resolve } from "node:path"
 import { createDatabase } from "../../database"
 import * as Rest from "../../rest"
@@ -8,7 +10,12 @@ import { findPort } from "../../utils/findPort"
 import { serverListen } from "../../utils/serverListen"
 
 type Args = { path: string }
-type Opts = { hostname?: string; port?: number }
+type Opts = {
+  hostname?: string
+  port?: number
+  cert?: string
+  key?: string
+}
 
 export class ServeCommand extends Command<Args> {
   name = "serve"
@@ -16,7 +23,12 @@ export class ServeCommand extends Command<Args> {
   description = "Serve a database"
 
   args = { path: ty.string() }
-  opts = { hostname: ty.optional(ty.string()), port: ty.optional(ty.number()) }
+  opts = {
+    hostname: ty.optional(ty.string()),
+    port: ty.optional(ty.number()),
+    cert: ty.optional(ty.string()),
+    key: ty.optional(ty.string()),
+  }
 
   // prettier-ignore
   help(runner: CommandRunner): string {
@@ -33,25 +45,48 @@ export class ServeCommand extends Command<Args> {
 
   async execute(argv: Args & Opts): Promise<void> {
     const db = await createDatabase({ path: resolve(argv.path) })
-
-    const server = Http.createServer()
-
-    server.on("request", Rest.createRequestListener({ db }))
+    const requestListener = Rest.createRequestListener({ db })
 
     const hostname = argv.hostname || "127.0.0.1"
     const port = process.env.PORT || argv.port || (await findPort(3000))
 
-    await serverListen(server, { hostname, port })
+    if (argv.cert && argv.key) {
+      const server = Https.createServer({
+        cert: await fs.promises.readFile(argv.cert),
+        key: await fs.promises.readFile(argv.key),
+      })
 
-    console.dir(
-      {
-        message: `[serve] start`,
-        url: `http://${hostname}:${port}`,
-        db,
-      },
-      {
-        depth: null,
-      },
-    )
+      server.on("request", requestListener)
+
+      await serverListen(server, { hostname, port })
+
+      console.dir(
+        {
+          message: `[serve] start`,
+          url: `https://${hostname}:${port}`,
+          db,
+        },
+        {
+          depth: null,
+        },
+      )
+    } else {
+      const server = Http.createServer()
+
+      server.on("request", requestListener)
+
+      await serverListen(server, { hostname, port })
+
+      console.dir(
+        {
+          message: `[serve] start`,
+          url: `http://${hostname}:${port}`,
+          db,
+        },
+        {
+          depth: null,
+        },
+      )
+    }
   }
 }
