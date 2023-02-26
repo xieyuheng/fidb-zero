@@ -1,7 +1,7 @@
 import type { Database } from "../database"
-import type { ProxyTarget } from "./ProxyTarget"
+import type { ReverseProxyTarget } from "./ReverseProxyTarget"
 
 export type Context = {
   db: Database
-  proxyTargets: Record<string, ProxyTarget>
+  reverseProxyTargets: Record<string, ReverseProxyTarget>
 }

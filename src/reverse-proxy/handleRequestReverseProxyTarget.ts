@@ -2,7 +2,7 @@ import type Http from "node:http"
 import type { Json } from "../utils/Json"
 import type { Context } from "./Context"
 
-export async function handleRequestProxyTarget(
+export async function handleRequestReverseProxyTarget(
   ctx: Context,
   request: Http.IncomingMessage,
 ): Promise<Json | void> {
@@ -12,7 +12,7 @@ export async function handleRequestProxyTarget(
 
   throw new Error(
     [
-      `[handleRequestProxyTarget] unhandled http request`,
+      `[handleRequestReverseProxyTarget] unhandled http request`,
       `  method: ${request.method}`,
     ].join("\n"),
   )

@@ -1,8 +1,12 @@
+`requestKind` should not default to `data`
+
+ambr handleRequest handle
+
 # reverse-proxy
 
-[reverse-proxy] `handleRequestProxyTarget` -- handle `POST`
+[reverse-proxy] `handleRequestReverseProxyTarget` -- handle `POST`
 
-[reverse-proxy] `ProxyWaiter` -- for the order of messages
+[reverse-proxy] `ReverseProxyWaiter` -- for the order of messages
 
 [reverse-proxy] `handleRequest` -- handle normal request
 
