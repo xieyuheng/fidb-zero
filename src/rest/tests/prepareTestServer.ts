@@ -1,3 +1,4 @@
+import Http from "node:http"
 import * as Db from "../../db"
 import { prepareTestDb } from "../../db/tests/prepareTestDb"
 import * as Rest from "../../rest"
@@ -7,7 +8,9 @@ import { serverListen } from "../../utils/serverListen"
 export async function prepareTestServer(options: { name: string }) {
   const { db } = await prepareTestDb(options)
 
-  const server = await Rest.createServer({ db })
+  const server = Http.createServer()
+
+  server.on("request", Rest.createRequestListener({ db }))
 
   const hostname = "127.0.0.1"
   const port = await findPort(3000)

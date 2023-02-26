@@ -1,3 +1,5 @@
+[command] `fidb serve` -- support https
+
 # rest
 
 [rest] rate limit by ip -- for `password-sign-up`
