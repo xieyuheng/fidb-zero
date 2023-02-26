@@ -67,7 +67,7 @@ export class ServeCommand extends Command<Args> {
 
       console.dir(
         {
-          message: `[serve] start`,
+          who: `[ServeCommand.execute]`,
           url: `https://${hostname}:${port}`,
           db,
         },
@@ -84,7 +84,7 @@ export class ServeCommand extends Command<Args> {
 
       console.dir(
         {
-          message: `[serve] start`,
+          who: `[ServeCommand.execute]`,
           url: `http://${hostname}:${port}`,
           db,
         },

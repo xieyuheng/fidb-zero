@@ -67,7 +67,7 @@ export class ServeReverseProxyCommand extends Command<Args> {
 
       console.dir(
         {
-          message: `[serve] start`,
+          who: `[ServeReverseProxyCommand.execute]`,
           url: `https://${hostname}:${port}`,
           db,
         },
@@ -84,7 +84,7 @@ export class ServeReverseProxyCommand extends Command<Args> {
 
       console.dir(
         {
-          message: `[serve] start`,
+          who: `[ServeReverseProxyCommand.execute]`,
           url: `http://${hostname}:${port}`,
           db,
         },
