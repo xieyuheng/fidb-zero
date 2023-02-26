@@ -1,23 +1,28 @@
 import { Errors as TyErrors } from "@xieyuheng/ty"
 import type Http from "node:http"
-import type { Database } from "../database"
 import { AlreadyExists } from "../errors/AlreadyExists"
 import { NotFound } from "../errors/NotFound"
 import { RevisionMismatch } from "../errors/RevisionMismatch"
 import { Unauthorized } from "../errors/Unauthorized"
-import { responseSend } from "../utils/responseSend"
-import { responseSendJson } from "../utils/responseSendJson"
-import { handleRequest } from "./handleRequest"
+import type { Json } from "./Json"
+import { responseSend } from "./responseSend"
+import { responseSendJson } from "./responseSendJson"
 
-type RequestListener = (
+export type RequestListener = (
   request: Http.IncomingMessage,
   response: Http.ServerResponse,
 ) => Promise<void>
 
-export function createRequestListener(options: {
-  db: Database
+export type HandleRequest<Context> = (
+  ctx: Context,
+  request: Http.IncomingMessage,
+) => Promise<Json | Buffer | void>
+
+export function createRequestListener<Context>(options: {
+  ctx: Context
+  handleRequest: HandleRequest<Context>
 }): RequestListener {
-  const { db } = options
+  const { ctx, handleRequest } = options
   return async (request, response) => {
     if (request.method === "OPTIONS") {
       preflight(request, response)
@@ -25,7 +30,7 @@ export function createRequestListener(options: {
     }
 
     try {
-      const body = await handleRequest(request, db)
+      const body = await handleRequest(ctx, request)
       if (body === undefined) {
         responseSendJson(response, {
           status: { code: 204 },

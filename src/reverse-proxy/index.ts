@@ -1,1 +1,1 @@
-export * from "./createRequestListener"
+export * from "./handleRequest"

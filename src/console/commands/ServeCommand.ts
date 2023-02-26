@@ -6,6 +6,7 @@ import Https from "node:https"
 import { resolve } from "node:path"
 import { createDatabase } from "../../database"
 import * as Rest from "../../rest"
+import { createRequestListener } from "../../utils/createRequestListener"
 import { findPort } from "../../utils/findPort"
 import { serverListen } from "../../utils/serverListen"
 
@@ -45,7 +46,11 @@ export class ServeCommand extends Command<Args> {
 
   async execute(argv: Args & Opts): Promise<void> {
     const db = await createDatabase({ path: resolve(argv.path) })
-    const requestListener = Rest.createRequestListener({ db })
+
+    const requestListener = createRequestListener({
+      ctx: { db },
+      handleRequest: Rest.handleRequest,
+    })
 
     const hostname = argv.hostname || "127.0.0.1"
     const port = process.env.PORT || argv.port || (await findPort(3000))

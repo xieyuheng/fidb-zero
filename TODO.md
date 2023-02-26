@@ -1,14 +1,14 @@
+[rest] fix `handleRequest*` typing -- take `ctx: RestContext`
+
 # reverse-proxy
 
-[reverse-proxy] `createRequestListener`
-
-[reverse-proxy] `createRequestListener` -- `handleRequest`
-
-- `handleRequest` take `Context`
+[reverse-proxy] `handleRequest`
 
 [reverse-proxy] `handleRequest` -- handle `POST` `kind=proxy-target`
 
 - `Context` has`proxyTargets`
+
+[reverse-proxy] `ProxyWaiter` -- for the order of messages
 
 [reverse-proxy] `handleRequest` -- handle normal request
 
