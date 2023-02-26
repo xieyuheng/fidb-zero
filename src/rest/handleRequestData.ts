@@ -1,5 +1,4 @@
 import type Http from "node:http"
-import type { Database } from "../database"
 import * as Db from "../db"
 import { tokenAssert } from "../token"
 import { arrayFromAsyncIterable } from "../utils/arrayFromAsyncIterable"
@@ -7,17 +6,20 @@ import type { Json } from "../utils/Json"
 import { requestJsonObject } from "../utils/requestJsonObject"
 import { requestKind } from "../utils/requestKind"
 import { requestQuery } from "../utils/requestQuery"
+import type { Context } from "./handleRequest"
 import { requestPath } from "./requestPath"
 import { requestToken } from "./requestToken"
 
 export async function handleRequestData(
+  ctx: Context,
   request: Http.IncomingMessage,
-  db: Database,
 ): Promise<Json | void> {
+  const { db } = ctx
+
   const kind = requestKind(request)
   const query = requestQuery(request)
-  const path = requestPath(request, db)
-  const token = await requestToken(request, db)
+  const path = requestPath(ctx, request)
+  const token = await requestToken(ctx, request)
 
   if (request.method === "GET") {
     tokenAssert(token, path, "read")

@@ -22,34 +22,34 @@ export async function handleRequest(
   const kind = requestKind(request)
 
   if (kind.startsWith("file")) {
-    return await handleRequestFile(request, ctx.db)
+    return await handleRequestFile(ctx, request)
   }
 
   if (kind.startsWith("directory")) {
-    return await handleRequestDirectory(request, ctx.db)
+    return await handleRequestDirectory(ctx, request)
   }
 
   if (kind.startsWith("data")) {
-    return await handleRequestData(request, ctx.db)
+    return await handleRequestData(ctx, request)
   }
 
   if (kind.startsWith("password")) {
-    return await handleRequestPassword(request, ctx.db)
+    return await handleRequestPassword(ctx, request)
   }
 
   if (kind.startsWith("info")) {
-    return await handleRequestInfo(request, ctx.db)
+    return await handleRequestInfo(ctx, request)
   }
 
   if (kind.startsWith("ping")) {
-    return await handleRequestPing(request, ctx.db)
+    return await handleRequestPing(ctx, request)
   }
 
   throw new Error(
     [
       `[handleRequest] unhandled content-type`,
       `  method: ${request.method}`,
-      `  path: ${requestPath(request, ctx.db)}`,
+      `  path: ${requestPath(ctx, request)}`,
       `  content-type: ${request.headers["content-type"]}`,
     ].join("\n"),
   )

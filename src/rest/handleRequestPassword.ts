@@ -1,22 +1,24 @@
 import { ty } from "@xieyuheng/ty"
 import type Http from "node:http"
 import { dirname } from "node:path"
-import type { Database } from "../database"
 import * as Db from "../db"
 import { Unauthorized } from "../errors/Unauthorized"
 import type { Json } from "../utils/Json"
 import { requestJsonObject } from "../utils/requestJsonObject"
 import { requestKind } from "../utils/requestKind"
 import { requestQuery } from "../utils/requestQuery"
+import type { Context } from "./handleRequest"
 import { requestPath } from "./requestPath"
 
 export async function handleRequestPassword(
+  ctx: Context,
   request: Http.IncomingMessage,
-  db: Database,
 ): Promise<Json | void> {
+  const { db } = ctx
+
   const kind = requestKind(request)
   const query = requestQuery(request)
-  const path = requestPath(request, db)
+  const path = requestPath(ctx, request)
 
   if (request.method === "POST") {
     if (kind === "password-sign-up") {

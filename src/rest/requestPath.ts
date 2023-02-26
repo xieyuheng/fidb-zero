@@ -1,13 +1,13 @@
 import type Http from "node:http"
-import type { Database } from "../database"
 import { normalizePath } from "../db/utils/normalizePath"
 import { requestURL } from "../utils/requestURL"
+import type { Context } from "./handleRequest"
 
 export function requestPath(
+  ctx: Context,
   request: Http.IncomingMessage,
-  db: Database,
 ): string {
   const url = requestURL(request)
-  const path = normalizePath(db, decodeURIComponent(url.pathname.slice(1)))
+  const path = normalizePath(ctx.db, decodeURIComponent(url.pathname.slice(1)))
   return path
 }

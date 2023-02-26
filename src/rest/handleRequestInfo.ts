@@ -1,11 +1,13 @@
 import type Http from "node:http"
-import type { Database } from "../database"
 import type { Json } from "../utils/Json"
+import type { Context } from "./handleRequest"
 
 export async function handleRequestInfo(
+  ctx: Context,
   request: Http.IncomingMessage,
-  db: Database,
 ): Promise<Json | void> {
+  const { db } = ctx
+
   if (request.method === "GET") {
     return {
       config: db.config

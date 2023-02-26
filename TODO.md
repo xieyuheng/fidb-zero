@@ -1,5 +1,3 @@
-[rest] fix `handleRequest*` typing -- take `ctx: RestContext`
-
 # reverse-proxy
 
 [reverse-proxy] `handleRequest`
