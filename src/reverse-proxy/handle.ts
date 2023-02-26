@@ -3,6 +3,7 @@ import type Http from "node:http"
 import type { Json } from "../utils/Json"
 import { requestKind } from "../utils/requestKind"
 import type { Context } from "./Context"
+import { handleDefault } from "./handleDefault"
 import { handlePing } from "./handlePing"
 import { handleReverseProxyTarget } from "./handleReverseProxyTarget"
 
@@ -20,9 +21,5 @@ export async function handle(
     return await handleReverseProxyTarget(ctx, request)
   }
 
-  throw new Error(
-    [`[handle] unhandled content-type`, `  method: ${request.method}`].join(
-      "\n",
-    ),
-  )
+  return await handleDefault(ctx, request)
 }

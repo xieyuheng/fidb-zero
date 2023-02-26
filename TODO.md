@@ -1,10 +1,10 @@
 # reverse-proxy
 
-[reverse-proxy] `handle` -- handle normal request
-
-[reverse-proxy] `handleReverseProxyTarget` -- handle `POST`
+[reverse-proxy] `handleDefault` -- proxy to `targets`
 
 [reverse-proxy] `ReverseProxyWaiter` -- for the order of messages
+
+[reverse-proxy] `handleReverseProxyTarget` -- handle `POST`
 
 [command] `fidb serve` with reverse-proxy
 
