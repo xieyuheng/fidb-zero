@@ -11,8 +11,8 @@ type Args = { path: string }
 type Opts = {
   hostname?: string
   port?: number
-  cert?: string
-  key?: string
+  "tls-cert"?: string
+  "tls-key"?: string
 }
 
 export class ServeReverseProxyCommand extends Command<Args> {
@@ -24,8 +24,8 @@ export class ServeReverseProxyCommand extends Command<Args> {
   opts = {
     hostname: ty.optional(ty.string()),
     port: ty.optional(ty.number()),
-    cert: ty.optional(ty.string()),
-    key: ty.optional(ty.string()),
+    "tls-cert": ty.optional(ty.string()),
+    "tls-key": ty.optional(ty.string()),
   }
 
   // prettier-ignore
