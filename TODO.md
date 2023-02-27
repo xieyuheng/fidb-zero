@@ -1,3 +1,5 @@
+[command] `fidb serve-reverse-proxy` -- support `tls-cert` and `tls-key`
+
 # reverse-proxy
 
 [reverse-proxy] `fidb serve` -- ping the socket to keep it alive

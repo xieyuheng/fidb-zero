@@ -15,9 +15,8 @@ type Args = { path: string }
 type Opts = {
   hostname?: string
   port?: number
-  cert?: string
-  key?: string
-
+  "tls-cert"?: string
+  "tls-key"?: string
   "reverse-proxy-server"?: string
   "reverse-proxy-username"?: string
   "reverse-proxy-password"?: string
@@ -32,9 +31,8 @@ export class ServeCommand extends Command<Args> {
   opts = {
     hostname: ty.optional(ty.string()),
     port: ty.optional(ty.number()),
-    cert: ty.optional(ty.string()),
-    key: ty.optional(ty.string()),
-
+    "tls-cert": ty.optional(ty.string()),
+    "tls-key": ty.optional(ty.string()),
     "reverse-proxy-server": ty.optional(ty.string()),
     "reverse-proxy-username": ty.optional(ty.string()),
     "reverse-proxy-password": ty.optional(ty.string()),
@@ -64,10 +62,10 @@ export class ServeCommand extends Command<Args> {
     const hostname = argv.hostname || "127.0.0.1"
     const port = Number(process.env.PORT || argv.port || (await findPort(3000)))
 
-    if (argv.cert && argv.key) {
+    if (argv["tls-cert"] && argv["tls-key"]) {
       const server = Https.createServer({
-        cert: await fs.promises.readFile(argv.cert),
-        key: await fs.promises.readFile(argv.key),
+        cert: await fs.promises.readFile(argv["tls-cert"]),
+        key: await fs.promises.readFile(argv["tls-key"]),
       })
 
       server.on("request", requestListener)
