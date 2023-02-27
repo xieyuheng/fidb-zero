@@ -1,16 +1,14 @@
 # reverse-proxy
 
-[reverse-proxy] `handleDefault` -- get raw http message from request
-
-[reverse-proxy] `handleReverseProxyTarget` -- `POST` -- check `password`
-
-[reverse-proxy] `handleDefault` -- find target by request `host`
-
 [command] `fidb serve` with reverse-proxy
 
 ```
 fidb serve <database> --reverse-proxy-server <url> --reverse-proxy-username <username> --reverse-proxy-password <password>
 ```
+
+[reverse-proxy] `handleReverseProxyTarget` -- `POST` -- check `password`
+
+[reverse-proxy] `handleDefault` -- find target by request `host`
 
 # rest
 
