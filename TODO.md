@@ -1,8 +1,10 @@
 # reverse-proxy
 
+[reverse-proxy] `fidb dev` for local -- `fidb serve` for reverse-proxy (with default reverse-proxy-server)
 [reverse-proxy] setup `fidb-app-website` project
 [reverse-proxy] design the database -- "user has subdomains"
 [reverse-proxy] `fidb serve` take `--reverse-proxy-subdomain`
+[reverse-proxy] `fidb serve` serve both website and database
 [reverse-proxy] `handleReverseProxyTarget` -- `POST` -- check `password`
 [reverse-proxy] `fidb serve` -- ping the socket to keep it alive
 [reverse-proxy] try to restart on `proxySocket` close
