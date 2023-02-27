@@ -62,7 +62,7 @@ export class ServeCommand extends Command<Args> {
     })
 
     const hostname = argv.hostname || "127.0.0.1"
-    const port = process.env.PORT || argv.port || (await findPort(3000))
+    const port = Number(process.env.PORT || argv.port || (await findPort(3000)))
 
     if (argv.cert && argv.key) {
       const server = Https.createServer({
@@ -112,6 +112,10 @@ export class ServeCommand extends Command<Args> {
         server: argv["reverse-proxy-server"],
         username: argv["reverse-proxy-username"],
         password: argv["reverse-proxy-password"],
+        target: {
+          host: hostname,
+          port: port,
+        },
       })
     }
   }

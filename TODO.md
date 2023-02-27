@@ -1,7 +1,5 @@
 # reverse-proxy
 
-[reverse-proxy] `connectReverseProxy`
-
 [maybe] [utils] rename `request*` to `incomingMessage*`
 [maybe] [utils] rename `response*` to `serverResponse*`
 
