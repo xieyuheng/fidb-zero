@@ -10,6 +10,7 @@ import { handleReverseProxyTarget } from "./handleReverseProxyTarget"
 export async function handle(
   ctx: Context,
   request: Http.IncomingMessage,
+  response: Http.ServerResponse,
 ): Promise<Json | Buffer | void> {
   const kind = requestKind(request)
 
@@ -18,7 +19,7 @@ export async function handle(
   }
 
   if (kind.startsWith("proxy-target")) {
-    return await handleReverseProxyTarget(ctx, request)
+    return await handleReverseProxyTarget(ctx, request, response)
   }
 
   return await handleDefault(ctx, request)

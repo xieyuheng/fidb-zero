@@ -16,6 +16,7 @@ export type RequestListener = (
 export type HandleRequest<Context> = (
   ctx: Context,
   request: Http.IncomingMessage,
+  response: Http.ServerResponse,
 ) => Promise<Json | Buffer | void>
 
 export function createRequestListener<Context>(options: {
@@ -30,7 +31,7 @@ export function createRequestListener<Context>(options: {
     }
 
     try {
-      const body = await handle(ctx, request)
+      const body = await handle(ctx, request, response)
 
       if (response.writableEnded) {
         return

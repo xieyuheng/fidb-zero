@@ -8,6 +8,7 @@ import { ReverseProxyWaiter } from "./ReverseProxyWaiter"
 export async function handleReverseProxyTarget(
   ctx: Context,
   request: Http.IncomingMessage,
+  response: Http.ServerResponse,
 ): Promise<Json | void> {
   if (request.method === "POST") {
     const schema = ty.object({
