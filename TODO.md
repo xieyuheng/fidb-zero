@@ -1,16 +1,12 @@
 # reverse-proxy
 
-[command] `fidb serve` with reverse-proxy
+[reverse-proxy] `connectReverseProxy`
 
-```
-fidb serve <database> --reverse-proxy-server <url> --reverse-proxy-username <username> --reverse-proxy-password <password>
-```
+[reverse-proxy] `fidb serve` -- ping the socket to keep it alive
 
 [reverse-proxy] `handleReverseProxyTarget` -- `POST` -- check `password`
 
 [reverse-proxy] `handleDefault` -- need to parse end of http request -- instead of just use `socketData`
-
-[reverse-proxy] `ReverseProxyTarget` -- ping the socket to keep it alive
 
 [reverse-proxy] `ReverseProxyTarget` -- `socket.on` need to parse end of http request
 

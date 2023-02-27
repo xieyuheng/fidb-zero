@@ -9,6 +9,7 @@ import * as Rest from "../../rest"
 import { createRequestListener } from "../../utils/createRequestListener"
 import { findPort } from "../../utils/findPort"
 import { serverListen } from "../../utils/serverListen"
+import { connectReverseProxy } from "./connectReverseProxy"
 
 type Args = { path: string }
 type Opts = {
@@ -16,6 +17,10 @@ type Opts = {
   port?: number
   cert?: string
   key?: string
+
+  "reverse-proxy-server"?: string
+  "reverse-proxy-username"?: string
+  "reverse-proxy-password"?: string
 }
 
 export class ServeCommand extends Command<Args> {
@@ -29,6 +34,10 @@ export class ServeCommand extends Command<Args> {
     port: ty.optional(ty.number()),
     cert: ty.optional(ty.string()),
     key: ty.optional(ty.string()),
+
+    "reverse-proxy-server": ty.optional(ty.number()),
+    "reverse-proxy-username": ty.optional(ty.string()),
+    "reverse-proxy-password": ty.optional(ty.string()),
   }
 
   // prettier-ignore
@@ -92,6 +101,24 @@ export class ServeCommand extends Command<Args> {
           depth: null,
         },
       )
+    }
+
+    if (
+      argv["reverse-proxy-server"] &&
+      argv["reverse-proxy-username"] &&
+      argv["reverse-proxy-password"]
+    ) {
+      await connectReverseProxy({
+        reverseProxy: {
+          server: argv["reverse-proxy-server"],
+          username: argv["reverse-proxy-username"],
+          password: argv["reverse-proxy-password"],
+        },
+        target: {
+          hostname,
+          port,
+        },
+      })
     }
   }
 }
