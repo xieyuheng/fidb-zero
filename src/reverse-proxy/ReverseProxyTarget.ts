@@ -19,6 +19,7 @@ export class ReverseProxyTarget {
 
       const handler = this.handlers[keyText]
       if (handler !== undefined) {
+        delete this.handlers[keyText]
         const messageBuffer = data.subarray(keySize)
         handler(messageBuffer)
       } else {
