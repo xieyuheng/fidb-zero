@@ -112,10 +112,7 @@ export class ServeCommand extends Command<Args> {
         server: { url: argv["reverse-proxy-server"] },
         username: argv["reverse-proxy-username"],
         password: argv["reverse-proxy-password"],
-        target: {
-          host: hostname,
-          port: port,
-        },
+        target: { hostname, port },
       })
     }
   }

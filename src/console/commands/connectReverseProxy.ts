@@ -2,13 +2,8 @@ import { Buffer } from "node:buffer"
 import Net from "node:net"
 
 type Options = {
-  server: {
-    url: string
-  }
-  target: {
-    host: string
-    port: number
-  }
+  server: { url: string }
+  target: { hostname: string; port: number }
   username: string
   password: string
 }
@@ -56,9 +51,13 @@ export async function connectReverseProxy(options: Options): Promise<void> {
     const keyBuffer = data.subarray(0, proxy.keySize)
     const messageBuffer = data.subarray(proxy.keySize)
 
-    const targetSocket = Net.createConnection(target.port, target.host, () => {
-      targetSocket.write(messageBuffer)
-    })
+    const targetSocket = Net.createConnection(
+      target.port,
+      target.hostname,
+      () => {
+        targetSocket.write(messageBuffer)
+      },
+    )
 
     targetSocket.on("close", () => {
       console.log({

@@ -8,6 +8,12 @@ export async function handleDefault(
   request: Http.IncomingMessage,
   response: Http.ServerResponse,
 ): Promise<void> {
+  console.log({
+    request: {
+      host: request.headers["host"],
+    },
+  })
+
   const target = Object.values(ctx.targets)[0]
 
   await target.send(await requestFormatRaw(request), (data) => {
