@@ -21,8 +21,6 @@ export async function handleDefault(
     throw new NotFound(`[handleDefault] unknown subdomain: ${subdomin}`)
   }
 
-  console.log({ who: "[handleDefault]", subdomin })
-
   await target.send(await requestFormatRaw(request), (data) => {
     const socket = response.socket as Socket
     socket.end(data)
