@@ -8,6 +8,8 @@ export class ReverseProxyTarget {
 
   constructor(public socket: Socket) {
     socket.on("data", (data) => {
+      // NOTE A target http server must sent
+      // the whole response in one `socket.write()`.
       const handleData = this.queue.shift()
       if (handleData !== undefined) {
         handleData(data)
