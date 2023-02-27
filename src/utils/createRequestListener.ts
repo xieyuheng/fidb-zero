@@ -44,6 +44,7 @@ export function createRequestListener<Context>(options: {
           headers: {
             "content-type": "application/json",
             "access-control-allow-origin": "*",
+            connection: "close",
           },
         })
       } else if (body instanceof Buffer) {
@@ -52,6 +53,7 @@ export function createRequestListener<Context>(options: {
           headers: {
             "content-type": "text/plain",
             "access-control-allow-origin": "*",
+            connection: "close",
           },
           body,
         })
@@ -61,6 +63,7 @@ export function createRequestListener<Context>(options: {
           headers: {
             "content-type": "application/json",
             "access-control-allow-origin": "*",
+            connection: "close",
           },
           body,
         })
@@ -73,6 +76,7 @@ export function createRequestListener<Context>(options: {
       const headers = {
         "content-type": "application/json",
         "access-control-allow-origin": "*",
+        connection: "close",
       }
 
       const message = error instanceof Error ? error.message : "Unknown error"
