@@ -1,8 +1,10 @@
 import { ty } from "@xieyuheng/ty"
 import type Http from "node:http"
-import { PersistentConnection } from "../errors/PersistentConnection"
+import Net from "node:net"
+import { findPort } from "../utils/findPort"
 import type { Json } from "../utils/Json"
 import { requestJsonObject } from "../utils/requestJsonObject"
+import { serverListen } from "../utils/serverListen"
 import type { Context } from "./Context"
 import { ReverseProxyTarget } from "./ReverseProxyTarget"
 
@@ -20,9 +22,22 @@ export async function handleReverseProxyTarget(
       await requestJsonObject(request),
     )
 
-    ctx.targets[username] = new ReverseProxyTarget(request.socket)
+    const server = Net.createServer((socket) => {
+      ctx.targets[username] = new ReverseProxyTarget(socket)
+    })
 
-    throw new PersistentConnection(`[handleReverseProxyTarget]`)
+    const hostname = "127.0.0.1"
+    const port = await findPort(9207)
+
+    await serverListen(server, {
+      port,
+      hostname,
+    })
+
+    return {
+      hostname,
+      port,
+    }
   }
 
   throw new Error(

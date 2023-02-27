@@ -17,7 +17,7 @@ export class ReverseProxyTarget {
 
   send(message: Buffer | string, handleData: HandleData): Promise<void> {
     return new Promise((resolve, reject) => {
-      this.socket.write("request")
+      this.socket.write(message)
       this.queue.push((data) => {
         try {
           handleData(data)

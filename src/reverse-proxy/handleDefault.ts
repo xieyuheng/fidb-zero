@@ -1,5 +1,4 @@
 import type Http from "node:http"
-import { socketData } from "../utils/socketData"
 import type { Context } from "./Context"
 
 export async function handleDefault(
@@ -9,7 +8,7 @@ export async function handleDefault(
 ): Promise<void> {
   const target = Object.values(ctx.targets)[0]
 
-  const message = await socketData(request.socket)
+  const message = "TODO"
 
   await target.send(message, (data) => {
     response.end(data)

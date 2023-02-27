@@ -35,7 +35,7 @@ export class ServeCommand extends Command<Args> {
     cert: ty.optional(ty.string()),
     key: ty.optional(ty.string()),
 
-    "reverse-proxy-server": ty.optional(ty.number()),
+    "reverse-proxy-server": ty.optional(ty.string()),
     "reverse-proxy-username": ty.optional(ty.string()),
     "reverse-proxy-password": ty.optional(ty.string()),
   }
@@ -109,7 +109,7 @@ export class ServeCommand extends Command<Args> {
       argv["reverse-proxy-password"]
     ) {
       await connectReverseProxy({
-        server: argv["reverse-proxy-server"],
+        server: { url: argv["reverse-proxy-server"] },
         username: argv["reverse-proxy-username"],
         password: argv["reverse-proxy-password"],
         target: {

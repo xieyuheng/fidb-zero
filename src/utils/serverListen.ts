@@ -1,12 +1,12 @@
-import type Http from "node:http"
+import type { Server } from "node:net"
 
 export type ServerListenOptions = {
-  hostname: string
-  port: number | string
+  hostname?: string
+  port?: number | string
 }
 
 export function serverListen(
-  server: Http.Server,
+  server: Server,
   options: ServerListenOptions,
 ): Promise<void> {
   return new Promise((resolve, reject) => {
