@@ -1,14 +1,10 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
-import fs from "node:fs"
-import Http from "node:http"
-import Https from "node:https"
 import { resolve } from "node:path"
 import { createDatabase } from "../../database"
 import * as ReverseProxy from "../../reverse-proxy"
 import { createRequestListener } from "../../utils/createRequestListener"
-import { findPort } from "../../utils/findPort"
-import { serverListen } from "../../utils/serverListen"
+import { startServer } from "./startServer"
 
 type Args = { path: string }
 type Opts = {
@@ -45,53 +41,17 @@ export class ServeReverseProxyCommand extends Command<Args> {
   }
 
   async execute(argv: Args & Opts): Promise<void> {
+    const who = `[ServeReverseProxyCommand.execute]`
+
     const db = await createDatabase({ path: resolve(argv.path) })
+
+    console.log({ who, db })
 
     const requestListener = createRequestListener({
       ctx: { db, targets: {} },
       handle: ReverseProxy.handle,
     })
 
-    const hostname = argv.hostname || "127.0.0.1"
-    const port = process.env.PORT || argv.port || (await findPort(3000))
-
-    if (argv.cert && argv.key) {
-      const server = Https.createServer({
-        cert: await fs.promises.readFile(argv.cert),
-        key: await fs.promises.readFile(argv.key),
-      })
-
-      server.on("request", requestListener)
-
-      await serverListen(server, { hostname, port })
-
-      console.dir(
-        {
-          who: `[ServeReverseProxyCommand.execute]`,
-          url: `https://${hostname}:${port}`,
-          db,
-        },
-        {
-          depth: null,
-        },
-      )
-    } else {
-      const server = Http.createServer()
-
-      server.on("request", requestListener)
-
-      await serverListen(server, { hostname, port })
-
-      console.dir(
-        {
-          who: `[ServeReverseProxyCommand.execute]`,
-          url: `http://${hostname}:${port}`,
-          db,
-        },
-        {
-          depth: null,
-        },
-      )
-    }
+    await startServer({ who, ...argv }, requestListener)
   }
 }

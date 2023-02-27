@@ -1,3 +1,5 @@
+[command] `startServer` if port is given (by env or option), we should not `findPort`
+
 [command] `fidb serve-reverse-proxy` -- support `tls-cert` and `tls-key`
 
 # reverse-proxy

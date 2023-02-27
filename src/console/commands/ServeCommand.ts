@@ -1,15 +1,11 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
-import fs from "node:fs"
-import Http from "node:http"
-import Https from "node:https"
 import { resolve } from "node:path"
 import { createDatabase } from "../../database"
 import * as Rest from "../../rest"
 import { createRequestListener } from "../../utils/createRequestListener"
-import { findPort } from "../../utils/findPort"
-import { serverListen } from "../../utils/serverListen"
 import { connectReverseProxy } from "./connectReverseProxy"
+import { startServer } from "./startServer"
 
 type Args = { path: string }
 type Opts = {
@@ -52,54 +48,18 @@ export class ServeCommand extends Command<Args> {
   }
 
   async execute(argv: Args & Opts): Promise<void> {
+    const who = `[ServeCommand.execute]`
+
     const db = await createDatabase({ path: resolve(argv.path) })
+
+    console.log({ who, db })
 
     const requestListener = createRequestListener({
       ctx: { db },
       handle: Rest.handle,
     })
 
-    const hostname = argv.hostname || "127.0.0.1"
-    const port = Number(process.env.PORT || argv.port || (await findPort(3000)))
-
-    if (argv["tls-cert"] && argv["tls-key"]) {
-      const server = Https.createServer({
-        cert: await fs.promises.readFile(argv["tls-cert"]),
-        key: await fs.promises.readFile(argv["tls-key"]),
-      })
-
-      server.on("request", requestListener)
-
-      await serverListen(server, { hostname, port })
-
-      console.dir(
-        {
-          who: `[ServeCommand.execute]`,
-          url: `https://${hostname}:${port}`,
-          db,
-        },
-        {
-          depth: null,
-        },
-      )
-    } else {
-      const server = Http.createServer()
-
-      server.on("request", requestListener)
-
-      await serverListen(server, { hostname, port })
-
-      console.dir(
-        {
-          who: `[ServeCommand.execute]`,
-          url: `http://${hostname}:${port}`,
-          db,
-        },
-        {
-          depth: null,
-        },
-      )
-    }
+    const { url } = await startServer({ who, ...argv }, requestListener)
 
     if (
       argv["reverse-proxy-server"] &&
@@ -110,7 +70,7 @@ export class ServeCommand extends Command<Args> {
         server: { url: argv["reverse-proxy-server"] },
         username: argv["reverse-proxy-username"],
         password: argv["reverse-proxy-password"],
-        target: { hostname, port },
+        target: { hostname: url.hostname, port: Number(url.port) },
       })
     }
   }

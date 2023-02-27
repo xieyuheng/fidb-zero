@@ -1,0 +1,52 @@
+import fs from "node:fs"
+import Http from "node:http"
+import Https from "node:https"
+import type { RequestListener } from "../../utils/createRequestListener"
+import { findPort } from "../../utils/findPort"
+import { serverListen } from "../../utils/serverListen"
+
+type Options = {
+  who: string
+  hostname?: string
+  port?: number
+  "tls-cert"?: string
+  "tls-key"?: string
+}
+
+export async function startServer(
+  options: Options,
+  requestListener: RequestListener,
+): Promise<{ server: Http.Server | Https.Server; url: URL }> {
+  const hostname = options.hostname || "127.0.0.1"
+  const port = Number(
+    process.env.PORT || options.port || (await findPort(3000)),
+  )
+
+  if (options["tls-cert"] && options["tls-key"]) {
+    const server = Https.createServer(
+      {
+        cert: await fs.promises.readFile(options["tls-cert"]),
+        key: await fs.promises.readFile(options["tls-key"]),
+      },
+      requestListener,
+    )
+
+    const url = new URL(`https://${hostname}:${port}`)
+
+    await serverListen(server, { hostname, port })
+
+    console.dir({ who: options.who, url: url.toString() }, { depth: null })
+
+    return { server, url }
+  } else {
+    const server = Http.createServer({}, requestListener)
+
+    const url = new URL(`http://${hostname}:${port}`)
+
+    await serverListen(server, { hostname, port })
+
+    console.dir({ who: options.who, url: url.toString() }, { depth: null })
+
+    return { server, url }
+  }
+}
