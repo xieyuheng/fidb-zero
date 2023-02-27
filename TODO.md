@@ -1,6 +1,5 @@
 # reverse-proxy
 
-[reverse-proxy] `handleDefault` -- format request
 [reverse-proxy] `fidb serve` -- ping the socket to keep it alive
 [reverse-proxy] `handleReverseProxyTarget` -- `POST` -- check `password`
 [reverse-proxy] `handleDefault` -- need to parse end of http request -- instead of just use `socketData`

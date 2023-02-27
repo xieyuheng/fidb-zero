@@ -1,4 +1,6 @@
 import type Http from "node:http"
+import type { Socket } from "node:net"
+import { requestFormatRaw } from "../utils/requestFormatRaw"
 import type { Context } from "./Context"
 
 export async function handleDefault(
@@ -8,9 +10,9 @@ export async function handleDefault(
 ): Promise<void> {
   const target = Object.values(ctx.targets)[0]
 
-  const message = "TODO"
-
-  await target.send(message, (data) => {
-    response.end(data)
+  await target.send(await requestFormatRaw(request), (data) => {
+    const socket = response.socket as Socket
+    socket.write(data)
+    response.end()
   })
 }
