@@ -109,15 +109,9 @@ export class ServeCommand extends Command<Args> {
       argv["reverse-proxy-password"]
     ) {
       await connectReverseProxy({
-        reverseProxy: {
-          server: argv["reverse-proxy-server"],
-          username: argv["reverse-proxy-username"],
-          password: argv["reverse-proxy-password"],
-        },
-        target: {
-          hostname,
-          port,
-        },
+        server: argv["reverse-proxy-server"],
+        username: argv["reverse-proxy-username"],
+        password: argv["reverse-proxy-password"],
       })
     }
   }

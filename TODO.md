@@ -2,6 +2,9 @@
 
 [reverse-proxy] `connectReverseProxy`
 
+[maybe] [utils] rename `request*` to `incomingMessage*`
+[maybe] [utils] rename `response*` to `serverResponse*`
+
 [reverse-proxy] `fidb serve` -- ping the socket to keep it alive
 
 [reverse-proxy] `handleReverseProxyTarget` -- `POST` -- check `password`

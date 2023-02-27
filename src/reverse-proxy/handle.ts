@@ -18,7 +18,7 @@ export async function handle(
     return await handlePing(ctx, request)
   }
 
-  if (kind.startsWith("proxy-target")) {
+  if (kind.startsWith("reverse-proxy-target")) {
     return await handleReverseProxyTarget(ctx, request)
   }
 
