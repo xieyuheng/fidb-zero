@@ -1,40 +1,51 @@
-import type { Buffer } from "node:buffer"
+import { Buffer } from "node:buffer"
 import type { Socket } from "node:net"
+import { randomHexString } from "../utils/randomHexString"
 
-type HandleData = (data: Buffer) => void
+type DataHandler = (data: Buffer) => void
+
+export const keySize = 20
 
 export class ReverseProxyTarget {
-  queue: Array<HandleData> = []
+  private handlers: Record<string, DataHandler> = {}
 
   constructor(public socket: Socket) {
     socket.on("data", (data) => {
       // NOTE A target http server must sent
       // the whole response in one `socket.write()`.
-      const handleData = this.queue.shift()
 
-      console.log({
-        who: "[ReverseProxyTarget]",
-        "queue.length": this.queue.length,
-      })
+      const keyBuffer = data.subarray(0, keySize)
+      const keyText = keyBuffer.toString()
 
-      if (handleData !== undefined) {
-        handleData(data)
+      const handler = this.handlers[keyText]
+      if (handler !== undefined) {
+        const messageBuffer = data.subarray(keySize)
+        handler(messageBuffer)
+      } else {
+        console.error({
+          who: "[ReverseProxyTarget]",
+          message: "Can not find handler",
+          key: keyText,
+        })
       }
     })
   }
 
-  send(message: Buffer | string, handleData: HandleData): Promise<void> {
+  send(messageBuffer: Buffer, handler: DataHandler): Promise<void> {
     return new Promise((resolve, reject) => {
-      this.queue.push((data) => {
+      const keyText = randomHexString(keySize / 2)
+      const keyBuffer = new TextEncoder().encode(keyText)
+
+      this.handlers[keyText] = (data) => {
         try {
-          handleData(data)
+          handler(data)
           resolve()
         } catch (error) {
           reject(error)
         }
-      })
+      }
 
-      this.socket.write(message)
+      this.socket.write(Buffer.concat([keyBuffer, messageBuffer]))
     })
   }
 }

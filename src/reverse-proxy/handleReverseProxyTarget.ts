@@ -6,7 +6,7 @@ import type { Json } from "../utils/Json"
 import { requestJsonObject } from "../utils/requestJsonObject"
 import { serverListen } from "../utils/serverListen"
 import type { Context } from "./Context"
-import { ReverseProxyTarget } from "./ReverseProxyTarget"
+import { keySize, ReverseProxyTarget } from "./ReverseProxyTarget"
 
 export async function handleReverseProxyTarget(
   ctx: Context,
@@ -37,6 +37,7 @@ export async function handleReverseProxyTarget(
     return {
       hostname,
       port,
+      keySize,
     }
   }
 

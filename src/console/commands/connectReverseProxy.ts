@@ -1,3 +1,4 @@
+import { Buffer } from "node:buffer"
 import Net from "node:net"
 
 type Options = {
@@ -52,8 +53,11 @@ export async function connectReverseProxy(options: Options): Promise<void> {
   })
 
   proxySocket.on("data", (data) => {
+    const keyBuffer = data.subarray(0, proxy.keySize)
+    const messageBuffer = data.subarray(proxy.keySize)
+
     const targetSocket = Net.createConnection(target.port, target.host, () => {
-      targetSocket.write(data)
+      targetSocket.write(messageBuffer)
     })
 
     targetSocket.on("close", () => {
@@ -64,7 +68,7 @@ export async function connectReverseProxy(options: Options): Promise<void> {
     })
 
     targetSocket.on("data", (data) => {
-      proxySocket.write(data)
+      proxySocket.write(Buffer.concat([keyBuffer, data]))
     })
   })
 }
