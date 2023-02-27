@@ -3,6 +3,7 @@ import ty from "@xieyuheng/ty"
 import { importDataArrayFromCsv } from "../../data/importDataArrayFromCsv"
 import { createDatabase } from "../../database"
 import { writeData } from "../../db/utils/writeData"
+import { log } from "../../utils/log"
 
 type Args = { database: string }
 type Opts = { from: string; directory: string; "primary-key": string }
@@ -33,6 +34,8 @@ export class ImportCommand extends Command<Args> {
   }
 
   async execute(argv: Args & Opts): Promise<void> {
+    const who = "ImportCommand.execute"
+
     const results = await importDataArrayFromCsv(argv.from, {
       directory: argv.directory,
       primaryKey: argv["primary-key"],
@@ -42,12 +45,9 @@ export class ImportCommand extends Command<Args> {
       const db = await createDatabase({ path: argv.database })
       const path = data["@path"]
       await writeData(db, path, data)
-      console.log(data)
+      log({ who, data })
     }
 
-    console.log({
-      message: `[ImportCommand]`,
-      length: results.length,
-    })
+    log({ who, length: results.length })
   }
 }

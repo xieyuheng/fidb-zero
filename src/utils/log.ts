@@ -3,28 +3,32 @@ import { formatTime } from "./formatDate"
 import { indent } from "./indent"
 
 type LogOptions = Record<string, any> & {
-  level: string
+  isError?: boolean
+  who: string
   elapse?: number
-  tag?: string
-  msg?: string
+  message?: string
 }
 
 export function log(opts: LogOptions): void {
-  const { level, elapse, tag, msg } = opts
+  const { isError, who, elapse, message } = opts
 
   let s = ""
 
   s += formatNow() + " "
-  s += formatLevel(level) + " "
 
-  if (tag) s += formatTag(tag) + " "
-  if (msg) s += `${msg}`
+  if (isError) {
+    s += formatError(formatWho(who)) + " "
+  } else {
+    s += formatWho(who) + " "
+  }
+
+  if (message) s += `${message}`
   if (elapse !== undefined) s += " " + formatElapse(elapse)
 
   s += "\n"
 
   for (const [key, value] of Object.entries(opts)) {
-    if (!["level", "tag", "msg", "elapse"].includes(key)) {
+    if (!["who", "message", "elapse"].includes(key)) {
       if (value !== undefined) {
         s += formatProperty(key, value)
         s += "\n"
@@ -35,29 +39,21 @@ export function log(opts: LogOptions): void {
   console.log(s.trim())
 }
 
-function formatLevel(level: string): string {
-  const lv = colors.bold(level.toUpperCase())
+function formatError(text: string): string {
+  return colors.red(text)
+}
 
-  if (level === "info") {
-    return colors.blue(lv)
-  } else if (level === "error") {
-    return colors.red(lv)
-  } else {
-    return lv
-  }
+function formatWho(who: string): string {
+  return colors.bold(`[${who}]`)
 }
 
 function formatNow(): string {
   const time = formatTime(new Date(), { withMilliseconds: true })
-  return colors.yellow(`[${time}]`)
+  return colors.yellow(`${time}`)
 }
 
 function formatElapse(elapse: number): string {
   return colors.yellow(`<${elapse}ms>`)
-}
-
-function formatTag(tag: string): string {
-  return colors.bold(`(${tag})`)
 }
 
 function formatProperty(key: string, value: any): string {

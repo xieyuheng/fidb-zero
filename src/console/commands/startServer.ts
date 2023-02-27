@@ -3,6 +3,7 @@ import Http from "node:http"
 import Https from "node:https"
 import type { RequestListener } from "../../utils/createRequestListener"
 import { findPort } from "../../utils/findPort"
+import { log } from "../../utils/log"
 import { serverListen } from "../../utils/serverListen"
 
 type Options = {
@@ -35,7 +36,7 @@ export async function startServer(
 
     await serverListen(server, { hostname, port })
 
-    console.dir({ who: options.who, url: url.toString() }, { depth: null })
+    log({ who: options.who, url: url.toString() })
 
     return { server, url }
   } else {
@@ -45,7 +46,7 @@ export async function startServer(
 
     await serverListen(server, { hostname, port })
 
-    console.dir({ who: options.who, url: url.toString() }, { depth: null })
+    log({ who: options.who, url: url.toString() })
 
     return { server, url }
   }

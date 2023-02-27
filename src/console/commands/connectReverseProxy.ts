@@ -1,5 +1,6 @@
 import { Buffer } from "node:buffer"
 import Net from "node:net"
+import { log } from "../../utils/log"
 
 type Options = {
   server: { url: string }
@@ -9,6 +10,8 @@ type Options = {
 }
 
 export async function connectReverseProxy(options: Options): Promise<void> {
+  const who = "connectReverseProxy"
+
   const { server, username, password, target } = options
 
   const response = await fetch(`${server.url}?kind=reverse-proxy-target`, {
@@ -20,8 +23,9 @@ export async function connectReverseProxy(options: Options): Promise<void> {
   })
 
   if (!response.ok) {
-    console.error({
-      who: "[connectReverseProxy]",
+    log({
+      isError: true,
+      who,
       status: {
         code: response.status,
         message: response.statusText,
@@ -33,18 +37,12 @@ export async function connectReverseProxy(options: Options): Promise<void> {
 
   const proxy = await response.json()
 
-  console.log({
-    who: "[connectReverseProxy]",
-    proxy,
-  })
+  log({ who, proxy })
 
   const proxySocket = Net.createConnection(proxy.port, proxy.hostname)
 
   proxySocket.on("close", () => {
-    console.log({
-      who: "[connectReverseProxy]",
-      message: "proxySocket closed",
-    })
+    log({ who, message: "proxySocket closed" })
   })
 
   proxySocket.on("data", (data) => {
@@ -60,10 +58,7 @@ export async function connectReverseProxy(options: Options): Promise<void> {
     )
 
     targetSocket.on("close", () => {
-      console.log({
-        who: "[connectReverseProxy]",
-        message: "targetSocket closed",
-      })
+      log({ who, message: "targetSocket closed" })
     })
 
     targetSocket.on("data", (data) => {

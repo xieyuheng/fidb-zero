@@ -1,5 +1,4 @@
 import { CommandRunner, CommandRunners } from "@xieyuheng/command-line"
-import "../app"
 import * as Commands from "./commands"
 
 export function createCommandRunner(): CommandRunner {

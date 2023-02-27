@@ -1,5 +1,3 @@
-[command] use `utils/log`
-
 # reverse-proxy
 
 [reverse-proxy] `fidb serve` -- ping the socket to keep it alive

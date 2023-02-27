@@ -4,6 +4,7 @@ import { resolve } from "node:path"
 import { createDatabase } from "../../database"
 import * as Rest from "../../rest"
 import { createRequestListener } from "../../utils/createRequestListener"
+import { log } from "../../utils/log"
 import { connectReverseProxy } from "./connectReverseProxy"
 import { startServer } from "./startServer"
 
@@ -48,11 +49,11 @@ export class ServeCommand extends Command<Args> {
   }
 
   async execute(argv: Args & Opts): Promise<void> {
-    const who = `[ServeCommand.execute]`
+    const who = "ServeCommand.execute"
 
     const db = await createDatabase({ path: resolve(argv.path) })
 
-    console.log({ who, db })
+    log({ who, db })
 
     const requestListener = createRequestListener({
       ctx: { db },
