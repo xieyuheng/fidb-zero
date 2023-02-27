@@ -1,5 +1,7 @@
 # reverse-proxy
 
+`handleReverseProxyTarget` throw ? -- keep the socket
+
 [command] `fidb serve` with reverse-proxy
 
 ```
@@ -7,6 +9,12 @@ fidb serve <database> --reverse-proxy-server <url> --reverse-proxy-username <use
 ```
 
 [reverse-proxy] `handleReverseProxyTarget` -- `POST` -- check `password`
+
+[reverse-proxy] `handleDefault` -- need to parse end of http request -- instead of just use `socketData`
+
+[reverse-proxy] `ReverseProxyTarget` -- ping the socket to keep it alive
+
+[reverse-proxy] `ReverseProxyTarget` -- `socket.on` need to parse end of http request
 
 [reverse-proxy] `handleDefault` -- find target by request `host`
 

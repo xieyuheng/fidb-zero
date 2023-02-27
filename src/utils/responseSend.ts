@@ -27,7 +27,10 @@ export function responseSend(
       }
   }
 
-  response.flushHeaders()
+  // NOTE We need to send one socket data,
+  // to keep the proxy simple for now.
+
+  // response.flushHeaders()
 
   if (options.body) {
     response.write(options.body)
