@@ -1,8 +1,4 @@
-`framework/loggers/PrettyLogger`
-
-`globals/logger`
-
-[command] `fidb serve-reverse-proxy` -- support `tls-cert` and `tls-key`
+[command] use `utils/log`
 
 # reverse-proxy
 
