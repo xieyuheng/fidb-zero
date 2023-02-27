@@ -3,12 +3,11 @@ import type Http from "node:http"
 import type { Json } from "../utils/Json"
 import { requestJsonObject } from "../utils/requestJsonObject"
 import type { Context } from "./Context"
-import { ReverseProxyWaiter } from "./ReverseProxyWaiter"
+import { ReverseProxyTarget } from "./ReverseProxyTarget"
 
 export async function handleReverseProxyTarget(
   ctx: Context,
   request: Http.IncomingMessage,
-  response: Http.ServerResponse,
 ): Promise<Json | void> {
   if (request.method === "POST") {
     const schema = ty.object({
@@ -20,12 +19,7 @@ export async function handleReverseProxyTarget(
       await requestJsonObject(request),
     )
 
-    ctx.targets[username] = {
-      socket: request.socket,
-      waiter: new ReverseProxyWaiter(request.socket),
-    }
-
-    // TODO
+    ctx.targets[username] = new ReverseProxyTarget(request.socket)
 
     return
   }

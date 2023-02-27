@@ -1,10 +1,10 @@
 # reverse-proxy
 
-[reverse-proxy] `handleDefault`
+[reverse-proxy] `handleDefault` -- get raw http message from request
 
-[reverse-proxy] `ReverseProxyWaiter` -- for the order of messages
+[reverse-proxy] `handleReverseProxyTarget` -- `POST` -- check `password`
 
-[reverse-proxy] `handleReverseProxyTarget` -- handle `POST`
+[reverse-proxy] `handleDefault` -- find target by request `host`
 
 [command] `fidb serve` with reverse-proxy
 

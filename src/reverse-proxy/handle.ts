@@ -19,8 +19,8 @@ export async function handle(
   }
 
   if (kind.startsWith("proxy-target")) {
-    return await handleReverseProxyTarget(ctx, request, response)
+    return await handleReverseProxyTarget(ctx, request)
   }
 
-  return await handleDefault(ctx, request)
+  return await handleDefault(ctx, request, response)
 }

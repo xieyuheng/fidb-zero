@@ -1,12 +1,14 @@
-import type { Buffer } from "node:buffer"
 import type Http from "node:http"
-import type { Json } from "../utils/Json"
 import type { Context } from "./Context"
 
 export async function handleDefault(
   ctx: Context,
   request: Http.IncomingMessage,
-): Promise<Json | Buffer | void> {
+  response: Http.ServerResponse,
+): Promise<void> {
   const target = Object.values(ctx.targets)[0]
-  return await target.waiter.sendRequest(request)
+  const message = "message from request"
+  await target.send(message, (data) => {
+    response.end(data)
+  })
 }
