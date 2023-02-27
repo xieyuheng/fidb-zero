@@ -3,7 +3,7 @@ import Net from "node:net"
 import { log } from "../../utils/log"
 
 type Options = {
-  server: { url: string }
+  server: { url: URL }
   target: { hostname: string; port: number }
   username: string
   password: string
@@ -14,13 +14,16 @@ export async function connectReverseProxy(options: Options): Promise<void> {
 
   const { server, username, password, target } = options
 
-  const response = await fetch(`${server.url}?kind=reverse-proxy-target`, {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
+  const response = await fetch(
+    `${server.url.protocol}//${server.url.host}?kind=reverse-proxy-target`,
+    {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
     },
-    body: JSON.stringify({ username, password }),
-  })
+  )
 
   if (!response.ok) {
     log({
@@ -39,7 +42,7 @@ export async function connectReverseProxy(options: Options): Promise<void> {
 
   log({ who, proxy })
 
-  const proxySocket = Net.createConnection(proxy.port, proxy.hostname)
+  const proxySocket = Net.createConnection(proxy.port, server.url.hostname)
 
   proxySocket.on("close", () => {
     log({ who, message: "proxySocket closed" })

@@ -26,19 +26,9 @@ export async function handleReverseProxyTarget(
       ctx.targets[username] = new ReverseProxyTarget(socket)
     })
 
-    const hostname = "127.0.0.1"
     const port = await findPort(9207)
-
-    await serverListen(server, {
-      port,
-      hostname,
-    })
-
-    return {
-      hostname,
-      port,
-      keySize,
-    }
+    await serverListen(server, { port })
+    return { port, keySize }
   }
 
   throw new Error(
