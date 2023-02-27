@@ -1,7 +1,9 @@
 # reverse-proxy
 
-[reverse-proxy] `handleDefault` -- find target by request `host` and `username`
 [reverse-proxy] `fidb serve` -- ping the socket to keep it alive
+
+[reverse-proxy] try to restart on `proxySocket` close
+
 [reverse-proxy] `handleReverseProxyTarget` -- `POST` -- check `password`
 
 # rest

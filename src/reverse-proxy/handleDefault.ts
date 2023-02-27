@@ -1,6 +1,8 @@
 import type Http from "node:http"
 import type { Socket } from "node:net"
+import { NotFound } from "../errors/NotFound"
 import { requestFormatRaw } from "../utils/requestFormatRaw"
+import { requestSubdomain } from "../utils/requestSubdomain"
 import type { Context } from "./Context"
 
 export async function handleDefault(
@@ -8,13 +10,18 @@ export async function handleDefault(
   request: Http.IncomingMessage,
   response: Http.ServerResponse,
 ): Promise<void> {
-  console.log({
-    request: {
-      host: request.headers["host"],
-    },
-  })
+  const subdomin = requestSubdomain(request)
+  if (subdomin === undefined) {
+    const host = request.headers["host"]
+    throw new NotFound(`[handleDefault] no subdomain in request host: ${host}`)
+  }
 
-  const target = Object.values(ctx.targets)[0]
+  const target = ctx.targets[subdomin]
+  if (target === undefined) {
+    throw new NotFound(`[handleDefault] unknown subdomain: ${subdomin}`)
+  }
+
+  console.log({ who: "[handleDefault]", subdomin })
 
   await target.send(await requestFormatRaw(request), (data) => {
     const socket = response.socket as Socket
