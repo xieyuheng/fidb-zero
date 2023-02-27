@@ -12,7 +12,6 @@ export async function handleDefault(
 
   await target.send(await requestFormatRaw(request), (data) => {
     const socket = response.socket as Socket
-    socket.write(data)
-    response.end()
+    socket.end(data)
   })
 }

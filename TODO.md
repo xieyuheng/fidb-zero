@@ -1,5 +1,6 @@
 # reverse-proxy
 
+[reverse-proxy] can not rely on `ReverseProxyTarget`'s simple queue -- use zmq
 [reverse-proxy] `fidb serve` -- ping the socket to keep it alive
 [reverse-proxy] `handleReverseProxyTarget` -- `POST` -- check `password`
 [reverse-proxy] `handleDefault` -- find target by request `host`

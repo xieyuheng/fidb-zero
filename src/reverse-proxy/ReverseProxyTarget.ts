@@ -11,6 +11,12 @@ export class ReverseProxyTarget {
       // NOTE A target http server must sent
       // the whole response in one `socket.write()`.
       const handleData = this.queue.shift()
+
+      console.log({
+        who: "[ReverseProxyTarget]",
+        "queue.length": this.queue.length,
+      })
+
       if (handleData !== undefined) {
         handleData(data)
       }
@@ -19,7 +25,6 @@ export class ReverseProxyTarget {
 
   send(message: Buffer | string, handleData: HandleData): Promise<void> {
     return new Promise((resolve, reject) => {
-      this.socket.write(message)
       this.queue.push((data) => {
         try {
           handleData(data)
@@ -28,6 +33,8 @@ export class ReverseProxyTarget {
           reject(error)
         }
       })
+
+      this.socket.write(message)
     })
   }
 }
