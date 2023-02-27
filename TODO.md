@@ -1,7 +1,5 @@
 # reverse-proxy
 
-`handleReverseProxyTarget` throw ? -- keep the socket
-
 [command] `fidb serve` with reverse-proxy
 
 ```

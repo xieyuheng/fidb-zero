@@ -1,5 +1,6 @@
 import { ty } from "@xieyuheng/ty"
 import type Http from "node:http"
+import { PersistentConnection } from "../errors/PersistentConnection"
 import type { Json } from "../utils/Json"
 import { requestJsonObject } from "../utils/requestJsonObject"
 import type { Context } from "./Context"
@@ -21,7 +22,7 @@ export async function handleReverseProxyTarget(
 
     ctx.targets[username] = new ReverseProxyTarget(request.socket)
 
-    return
+    throw new PersistentConnection(`[handleReverseProxyTarget]`)
   }
 
   throw new Error(

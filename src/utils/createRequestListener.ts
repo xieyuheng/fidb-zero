@@ -2,6 +2,7 @@ import { Errors as TyErrors } from "@xieyuheng/ty"
 import type Http from "node:http"
 import { AlreadyExists } from "../errors/AlreadyExists"
 import { NotFound } from "../errors/NotFound"
+import { PersistentConnection } from "../errors/PersistentConnection"
 import { RevisionMismatch } from "../errors/RevisionMismatch"
 import { Unauthorized } from "../errors/Unauthorized"
 import type { Json } from "./Json"
@@ -65,6 +66,10 @@ export function createRequestListener<Context>(options: {
         })
       }
     } catch (error) {
+      if (error instanceof PersistentConnection) {
+        return
+      }
+
       const headers = {
         "content-type": "application/json",
         "access-control-allow-origin": "*",
