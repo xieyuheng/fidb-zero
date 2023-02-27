@@ -1,5 +1,6 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
+import { packageJson } from "../../utils/packageJson"
 import * as Commands from "../commands"
 
 type Args = {}
@@ -16,7 +17,8 @@ export class DefaultCommand extends Command<Args, Opts> {
 
   async execute(argv: Args & Opts, runner: CommandRunner): Promise<void> {
     if (argv["version"]) {
-      console.log(app.config.pkg.version)
+      const { version } = packageJson()
+      console.log(version)
       return
     }
 

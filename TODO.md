@@ -1,4 +1,6 @@
-[command] `startServer` if port is given (by env or option), we should not `findPort`
+`framework/loggers/PrettyLogger`
+
+`globals/logger`
 
 [command] `fidb serve-reverse-proxy` -- support `tls-cert` and `tls-key`
 
