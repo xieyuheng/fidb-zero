@@ -1,3 +1,5 @@
+use Login and Register instead of SignIn and SignUp
+
 # reverse-proxy
 
 [reverse-proxy] support login
