@@ -27,7 +27,7 @@ export async function connectReverseProxy(options: Options): Promise<void> {
 
   if (!response.ok) {
     log({
-      isError: true,
+      knid: "Error",
       who,
       status: {
         code: response.status,

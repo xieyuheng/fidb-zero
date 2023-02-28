@@ -3,20 +3,20 @@ import { formatTime } from "./formatDate"
 import { indent } from "./indent"
 
 type LogOptions = Record<string, any> & {
-  isError?: boolean
+  kind?: string
   who: string
   elapse?: number
   message?: string
 }
 
 export function log(opts: LogOptions): void {
-  const { isError, who, elapse, message } = opts
+  const { kind, who, elapse, message } = opts
 
   let s = ""
 
   s += formatNow() + " "
 
-  if (isError) {
+  if (kind === "Error") {
     s += formatError(formatWho(who)) + " "
   } else {
     s += formatWho(who) + " "
