@@ -34,7 +34,7 @@ export class ImportCommand extends Command<Args> {
   }
 
   async execute(argv: Args & Opts): Promise<void> {
-    const who = "ImportCommand.execute"
+    const who = "ImportCommand"
 
     const results = await importDataArrayFromCsv(argv.from, {
       directory: argv.directory,

@@ -42,7 +42,7 @@ export class ServeReverseProxyCommand extends Command<Args> {
   }
 
   async execute(argv: Args & Opts): Promise<void> {
-    const who = "ServeReverseProxyCommand.execute"
+    const who = "ServeReverseProxyCommand"
 
     const db = await createDatabase({ path: resolve(argv.path) })
 

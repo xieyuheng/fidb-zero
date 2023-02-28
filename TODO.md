@@ -1,5 +1,7 @@
 # reverse-proxy
 
+remove `errors/PersistentConnection`
+`utils/log` take `kind?` instead of `isError`
 [reverse-proxy] `fidb dev` for local -- `fidb serve` for reverse-proxy (with default reverse-proxy-server)
 [reverse-proxy] setup `fidb-app-website` project
 [reverse-proxy] design the database -- "user has subdomains"
