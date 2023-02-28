@@ -19,8 +19,8 @@ type Opts = {
   "reverse-proxy-password"?: string
 }
 
-export class ServeCommand extends Command<Args> {
-  name = "serve"
+export class ServeDatabaseCommand extends Command<Args> {
+  name = "serve-database"
 
   description = "Serve a database"
 
@@ -49,7 +49,7 @@ export class ServeCommand extends Command<Args> {
   }
 
   async execute(argv: Args & Opts): Promise<void> {
-    const who = "ServeCommand"
+    const who = "ServeDatabaseCommand"
 
     const db = await createDatabase({ path: resolve(argv.path) })
 
