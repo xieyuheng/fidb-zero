@@ -1,7 +1,5 @@
 # reverse-proxy
 
-[command] rename `fidb import` to `fidb import-dataset`
-
 [diary] design the command line interface
 
 ```
@@ -53,11 +51,17 @@ reverse-proxy served at:
   https://127.0.0.1
 ```
 
-[reverse-proxy] database -- "user has subdomains"
-[reverse-proxy] `fidb serve` take `--reverse-proxy-subdomain`
+[reverse-proxy] support login
 [reverse-proxy] `handleReverseProxyTarget` -- `POST` -- check `password`
+[reverse-proxy] user has subdomains
+[reverse-proxy] `fidb serve` take `--reverse-proxy-subdomain`
+
+[reverse-proxy] encrypt tcp message by token
+
 [reverse-proxy] `fidb serve` -- ping the socket to keep it alive
-[reverse-proxy] try to restart on `proxySocket` close
+
+- try to restart on `proxySocket` close
+- learn from ZMQ
 
 # rest
 

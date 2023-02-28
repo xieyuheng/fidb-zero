@@ -8,10 +8,10 @@ import { log } from "../../utils/log"
 type Args = { database: string }
 type Opts = { from: string; directory: string; "primary-key": string }
 
-export class ImportCommand extends Command<Args> {
-  name = "import"
+export class ImportDatasetCommand extends Command<Args> {
+  name = "import-dataset"
 
-  description = "Import data to a database"
+  description = "Import dataset to a database"
 
   args = { database: ty.string() }
   opts = {
@@ -34,7 +34,7 @@ export class ImportCommand extends Command<Args> {
   }
 
   async execute(argv: Args & Opts): Promise<void> {
-    const who = "ImportCommand"
+    const who = "ImportDatasetCommand"
 
     const results = await importDataArrayFromCsv(argv.from, {
       directory: argv.directory,
