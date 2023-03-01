@@ -24,25 +24,25 @@ export async function handleFile(
   if (request.method === "GET") {
     tokenAssert(token, path, "read")
     if (kind === "file-metadata") {
-      return await Db.getFileMetadataOrFail(db, path)
+      return await Db.fileMetadataGetOrFail(db, path)
     }
 
-    return await Db.getFileOrFail(db, path)
+    return await Db.fileGetOrFail(db, path)
   }
 
   if (request.method === "POST") {
     tokenAssert(token, path, "create")
-    return await Db.createFile(db, path, await requestBuffer(request))
+    return await Db.fileCreate(db, path, await requestBuffer(request))
   }
 
   if (request.method === "PUT") {
     tokenAssert(token, path, "update")
-    return await Db.putFile(db, path, await requestBuffer(request))
+    return await Db.filePut(db, path, await requestBuffer(request))
   }
 
   if (request.method === "DELETE") {
     tokenAssert(token, path, "delete")
-    return await Db.deleteFile(db, path)
+    return await Db.fileDelete(db, path)
   }
 
   throw new Error(

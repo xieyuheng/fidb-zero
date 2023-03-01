@@ -6,5 +6,5 @@ import { prepareTestDb } from "./prepareTestDb"
 test("db-delete-directory-unauthorized", async ({ meta }) => {
   const { db } = await prepareTestDb(meta)
 
-  await expect(Db.deleteDirectory(db, "..")).rejects.toThrowError(Unauthorized)
+  await expect(Db.directoryDelete(db, "..")).rejects.toThrowError(Unauthorized)
 })

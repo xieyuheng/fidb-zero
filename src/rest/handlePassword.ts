@@ -34,7 +34,7 @@ export async function handlePassword(
         await requestJsonObject(request),
       )
 
-      const config = await Db.getAuthDirectoryConfig(db, dirname(path))
+      const config = await Db.authDirectoryConfig(db, dirname(path))
 
       if (config === undefined) {
         throw new Unauthorized(
@@ -42,7 +42,7 @@ export async function handlePassword(
         )
       }
 
-      const created = await Db.createData(db, path, data)
+      const created = await Db.dataCreate(db, path, data)
 
       await Db.PasswordRegister(db, created["@path"], {
         memo: options.memo,

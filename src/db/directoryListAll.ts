@@ -5,7 +5,7 @@ import type { PathEntry } from "../path-entry"
 import { isErrnoException } from "../utils/isErrnoException"
 import { resolvePath } from "./utils/resolvePath"
 
-export async function* listDirectoryAll(
+export async function* directoryListAll(
   db: Database,
   directory: string,
 ): AsyncIterable<PathEntry> {

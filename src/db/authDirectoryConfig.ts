@@ -1,6 +1,6 @@
 import type { AuthDirectoryConfig, Database } from "../database"
 
-export async function getAuthDirectoryConfig(
+export async function authDirectoryConfig(
   db: Database,
   directory: string,
 ): Promise<AuthDirectoryConfig | undefined> {

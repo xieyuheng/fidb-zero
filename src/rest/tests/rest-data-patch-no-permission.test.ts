@@ -5,7 +5,7 @@ import { prepareTestServer } from "./prepareTestServer"
 test("rest-data-patch-no-permission", async ({ meta }) => {
   const { url, db } = await prepareTestServer(meta)
 
-  let authorization = `token ${await Db.createToken(db, {
+  let authorization = `token ${await Db.tokenCreate(db, {
     permissionRecord: {
       "users/*": ["read"],
       "users/xieyuheng/**": ["create", "read", "update", "delete"],
@@ -38,7 +38,7 @@ test("rest-data-patch-no-permission", async ({ meta }) => {
     ).json(),
   ).toEqual(created)
 
-  authorization = `token ${await Db.createToken(db, {
+  authorization = `token ${await Db.tokenCreate(db, {
     permissionRecord: {
       "users/*": ["read"],
       "users/xyh/**": ["create", "read", "update", "delete"],

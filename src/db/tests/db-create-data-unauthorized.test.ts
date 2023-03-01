@@ -8,7 +8,7 @@ test("db-create-data-unauthorized", async ({ meta }) => {
   const { db } = await prepareTestDb(meta)
 
   await expect(
-    Db.createData(db, `../users/${randomHexString(10)}`, {
+    Db.dataCreate(db, `../users/${randomHexString(10)}`, {
       username: "xieyuheng",
       name: "Xie Yuheng",
     }),

@@ -9,19 +9,19 @@ test("db-list-directory", async ({ meta }) => {
 
   {
     const pathEntries = await arrayFromAsyncIterable(
-      Db.listDirectory(db, "", { page: 1, size: 2 }),
+      Db.directoryList(db, "", { page: 1, size: 2 }),
     )
 
     expect(pathEntries.length).toEqual(0)
   }
 
-  await Db.createData(db, "users/1", {})
-  await Db.createData(db, "users/2", {})
-  await Db.createData(db, "users/3", {})
+  await Db.dataCreate(db, "users/1", {})
+  await Db.dataCreate(db, "users/2", {})
+  await Db.dataCreate(db, "users/3", {})
 
   {
     const pathEntries = await arrayFromAsyncIterable(
-      Db.listDirectory(db, "", { page: 1, size: 2 }),
+      Db.directoryList(db, "", { page: 1, size: 2 }),
     )
 
     expect(pathEntries.length).toEqual(1)
@@ -30,12 +30,12 @@ test("db-list-directory", async ({ meta }) => {
     ).toEqual(true)
   }
 
-  await Db.createData(db, "posts/1", {})
-  await Db.createData(db, "posts/2", {})
+  await Db.dataCreate(db, "posts/1", {})
+  await Db.dataCreate(db, "posts/2", {})
 
   {
     const pathEntries = await arrayFromAsyncIterable(
-      Db.listDirectory(db, "", { page: 1, size: 2 }),
+      Db.directoryList(db, "", { page: 1, size: 2 }),
     )
 
     expect(pathEntries.length).toEqual(2)
@@ -49,7 +49,7 @@ test("db-list-directory", async ({ meta }) => {
 
   {
     const pathEntries = await arrayFromAsyncIterable(
-      Db.listDirectory(db, "", { page: 1, size: 1 }),
+      Db.directoryList(db, "", { page: 1, size: 1 }),
     )
 
     expect(pathEntries.length).toEqual(1)
@@ -64,7 +64,7 @@ test("db-list-directory", async ({ meta }) => {
 
   {
     const pathEntries = await arrayFromAsyncIterable(
-      Db.listDirectory(db, "", { page: 2, size: 1 }),
+      Db.directoryList(db, "", { page: 2, size: 1 }),
     )
 
     expect(pathEntries.length).toEqual(1)
@@ -79,7 +79,7 @@ test("db-list-directory", async ({ meta }) => {
 
   {
     const pathEntries = await arrayFromAsyncIterable(
-      Db.listDirectory(db, "", { page: 3, size: 1 }),
+      Db.directoryList(db, "", { page: 3, size: 1 }),
     )
 
     expect(pathEntries.length).toEqual(0)

@@ -1,3 +1,7 @@
+db rename test names
+
+improve `authDirectoryConfig`
+
 # reverse-proxy
 
 [reverse-proxy] support login

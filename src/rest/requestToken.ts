@@ -14,6 +14,6 @@ export async function requestToken(
     throw new Unauthorized(`[requestToken] not token in authorization header`)
   }
 
-  const token = await Db.getTokenOrFail(ctx.db, tokenName)
+  const token = await Db.tokenGetOrFail(ctx.db, tokenName)
   return token
 }

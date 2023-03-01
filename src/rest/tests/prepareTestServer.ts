@@ -23,7 +23,7 @@ export async function prepareTestServer(options: { name: string }) {
 
   await serverListen(server, { port, hostname })
 
-  const authorization = `token ${await Db.createToken(db, {
+  const authorization = `token ${await Db.tokenCreate(db, {
     permissionRecord: {
       "**": ["create", "read", "update", "delete"],
     },

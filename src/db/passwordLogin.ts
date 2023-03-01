@@ -4,8 +4,8 @@ import type { Database } from "../database"
 import { Unauthorized } from "../errors/Unauthorized"
 import { passwordSchema } from "../password"
 import { passwordCheck } from "../utils/password"
-import { createToken } from "./createToken"
-import { findDataAll } from "./findDataAll"
+import { dataFindAll } from "./dataFindAll"
+import { tokenCreate } from "./tokenCreate"
 
 export type PasswordLoginOptions = {
   password: string
@@ -20,13 +20,13 @@ export async function PasswordLogin(
   directory: string,
   options: PasswordLoginOptions,
 ): Promise<string> {
-  for await (const data of findDataAll(db, join(directory, "passwords"), {
+  for await (const data of dataFindAll(db, join(directory, "passwords"), {
     properties: {},
   })) {
     const password = passwordSchema.validate(data)
     if (await passwordCheck(options.password, password.hash)) {
       const pattern = join(directory, "**")
-      const tokenName = await createToken(db, {
+      const tokenName = await tokenCreate(db, {
         permissionRecord: {
           [pattern]: password.permissions,
         },

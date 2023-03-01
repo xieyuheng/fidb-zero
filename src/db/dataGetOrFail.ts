@@ -1,20 +1,14 @@
-import fs from "node:fs"
+import { Data, dataSchema } from "../data"
 import type { Database } from "../database"
 import { NotFound } from "../errors/NotFound"
 import { isErrnoException } from "../utils/isErrnoException"
-import { resolvePath } from "./utils/resolvePath"
+import { readData } from "./utils/readData"
 
-export type FileMetadata = {
-  size: number
-}
-
-export async function getFileMetadataOrFail(
-  db: Database,
-  path: string,
-): Promise<FileMetadata> {
+export async function dataGetOrFail(db: Database, path: string): Promise<Data> {
   try {
-    const stats = await fs.promises.stat(resolvePath(db, path))
-    return { size: stats.size }
+    const json = await readData(db, path)
+    const data = dataSchema.validate(json)
+    return data
   } catch (error) {
     if (isErrnoException(error) && error.code === "ENOENT") {
       throw new NotFound(`[getOrFail] path: ${path}`)

@@ -1,14 +1,14 @@
 import type { Data } from "../data"
 import type { Database } from "../database"
 import { NotFound } from "../errors/NotFound"
-import { getOrFail } from "./getOrFail"
+import { dataGetOrFail } from "./dataGetOrFail"
 
-export async function getData(
+export async function dataGet(
   db: Database,
   path: string,
 ): Promise<Data | undefined> {
   try {
-    return await getOrFail(db, path)
+    return await dataGetOrFail(db, path)
   } catch (error) {
     if (error instanceof NotFound) {
       return undefined

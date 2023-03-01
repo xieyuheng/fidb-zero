@@ -7,13 +7,13 @@ import { prepareTestDb } from "./prepareTestDb"
 test("db-put-data-revision-mismatch", async ({ meta }) => {
   const { db } = await prepareTestDb(meta)
 
-  const created = await Db.createData(db, "users/xieyuheng", {
+  const created = await Db.dataCreate(db, "users/xieyuheng", {
     username: "xieyuheng",
     name: "Xie Yuheng",
   })
 
   await expect(
-    Db.putData(db, created["@path"], {
+    Db.dataPut(db, created["@path"], {
       ...created,
       "@revision": randomRevision(),
     }),

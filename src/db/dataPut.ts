@@ -1,26 +1,31 @@
 import { normalize } from "node:path"
 import { Data, randomRevision } from "../data"
 import type { Database } from "../database"
-import { AlreadyExists } from "../errors/AlreadyExists"
+import { NotFound } from "../errors/NotFound"
+import { RevisionMismatch } from "../errors/RevisionMismatch"
 import type { JsonObject } from "../utils/Json"
-import { getData } from "./getData"
+import { dataGet } from "./dataGet"
 import { writeData } from "./utils/writeData"
 
-export async function createData(
+export async function dataPut(
   db: Database,
   path: string,
   input: JsonObject,
 ): Promise<Data> {
-  const data = await getData(db, path)
-  if (data !== undefined) {
-    throw new AlreadyExists(`[create] already exists, @path: ${path}`)
+  const data = await dataGet(db, path)
+  if (data === undefined) {
+    throw new NotFound(`[put] not found, path ${path}`)
+  }
+
+  if (data["@revision"] !== input["@revision"]) {
+    throw new RevisionMismatch(`[put] revision mismatch`)
   }
 
   const result = {
     ...input,
     "@path": normalize(path),
     "@revision": randomRevision(),
-    "@createdAt": Date.now(),
+    "@createdAt": data["@createdAt"],
     "@updatedAt": Date.now(),
   }
 

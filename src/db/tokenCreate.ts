@@ -1,9 +1,9 @@
 import type { Database } from "../database"
 import type { TokenPermissionRecord } from "../token"
 import { randomTokenName } from "../token/randomTokenName"
-import { createData } from "./createData"
+import { dataCreate } from "./dataCreate"
 
-export async function createToken(
+export async function tokenCreate(
   db: Database,
   options: {
     permissionRecord: TokenPermissionRecord
@@ -11,7 +11,7 @@ export async function createToken(
 ): Promise<string> {
   const tokenName = randomTokenName()
 
-  await createData(db, `tokens/${tokenName}`, {
+  await dataCreate(db, `tokens/${tokenName}`, {
     permissionRecord: options.permissionRecord,
   })
 

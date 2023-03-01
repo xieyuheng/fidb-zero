@@ -8,6 +8,6 @@ test("db-list-directory-all-unauthorized", async ({ meta }) => {
   const { db } = await prepareTestDb(meta)
 
   await expect(
-    arrayFromAsyncIterable(Db.listDirectoryAll(db, "..")),
+    arrayFromAsyncIterable(Db.directoryListAll(db, "..")),
   ).rejects.toThrowError(Unauthorized)
 })

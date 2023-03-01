@@ -25,7 +25,7 @@ export async function handleData(
     tokenAssert(token, path, "read")
     if (kind === "data-find") {
       return await arrayFromAsyncIterable(
-        Db.findData(db, path, {
+        Db.dataFind(db, path, {
           page: query.page ? Number.parseInt(query.page) : 1,
           size: query.size ? Number.parseInt(query.size) : 50,
           properties: query.properties || {},
@@ -33,29 +33,29 @@ export async function handleData(
       )
     }
 
-    return await Db.getOrFail(db, path)
+    return await Db.dataGetOrFail(db, path)
   }
 
   if (request.method === "POST") {
     tokenAssert(token, path, "create")
     if (path === "") return
 
-    return await Db.createData(db, path, await requestJsonObject(request))
+    return await Db.dataCreate(db, path, await requestJsonObject(request))
   }
 
   if (request.method === "PUT") {
     tokenAssert(token, path, "update")
-    return await Db.putData(db, path, await requestJsonObject(request))
+    return await Db.dataPut(db, path, await requestJsonObject(request))
   }
 
   if (request.method === "PATCH") {
     tokenAssert(token, path, "update")
-    return await Db.patchData(db, path, await requestJsonObject(request))
+    return await Db.dataPatch(db, path, await requestJsonObject(request))
   }
 
   if (request.method === "DELETE") {
     tokenAssert(token, path, "delete")
-    return await Db.deleteData(db, path, await requestJsonObject(request))
+    return await Db.dataDelete(db, path, await requestJsonObject(request))
   }
 
   throw new Error(

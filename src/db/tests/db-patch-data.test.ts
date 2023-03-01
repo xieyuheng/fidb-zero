@@ -5,22 +5,22 @@ import { prepareTestDb } from "./prepareTestDb"
 test("db-patch-data", async ({ meta }) => {
   const { db } = await prepareTestDb(meta)
 
-  const created = await Db.createData(db, "users/xieyuheng", {
+  const created = await Db.dataCreate(db, "users/xieyuheng", {
     username: "xieyuheng",
     name: "Xie Yuheng",
   })
 
-  expect(await Db.getData(db, "users/xieyuheng")).toEqual(created)
+  expect(await Db.dataGet(db, "users/xieyuheng")).toEqual(created)
 
-  const patched = await Db.patchData(db, "users/xieyuheng", {
+  const patched = await Db.dataPatch(db, "users/xieyuheng", {
     "@revision": created["@revision"],
     name: "谢宇恒",
   })
 
   expect(patched.name).toEqual("谢宇恒")
-  expect(await Db.getData(db, "users/xieyuheng")).toEqual(patched)
+  expect(await Db.dataGet(db, "users/xieyuheng")).toEqual(patched)
 
-  await Db.deleteData(db, patched["@path"], patched)
+  await Db.dataDelete(db, patched["@path"], patched)
 
-  expect(await Db.getData(db, "users/xieyuheng")).toEqual(undefined)
+  expect(await Db.dataGet(db, "users/xieyuheng")).toEqual(undefined)
 })

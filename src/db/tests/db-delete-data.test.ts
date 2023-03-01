@@ -6,14 +6,14 @@ import { prepareTestDb } from "./prepareTestDb"
 test("db-delete-data", async ({ meta }) => {
   const { db } = await prepareTestDb(meta)
 
-  const created = await Db.createData(db, `users/${randomHexString(10)}`, {
+  const created = await Db.dataCreate(db, `users/${randomHexString(10)}`, {
     username: "xieyuheng",
     name: "Xie Yuheng",
   })
 
-  expect(await Db.getData(db, created["@path"])).toEqual(created)
+  expect(await Db.dataGet(db, created["@path"])).toEqual(created)
 
-  await Db.deleteData(db, created["@path"], created)
+  await Db.dataDelete(db, created["@path"], created)
 
-  expect(await Db.getData(db, created["@path"])).toEqual(undefined)
+  expect(await Db.dataGet(db, created["@path"])).toEqual(undefined)
 })

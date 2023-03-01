@@ -8,25 +8,25 @@ test("db-delete-directory", async ({ meta }) => {
   const { db } = await prepareTestDb(meta)
 
   expect(
-    (await arrayFromAsyncIterable(Db.listDirectoryAll(db, ""))).length,
+    (await arrayFromAsyncIterable(Db.directoryListAll(db, ""))).length,
   ).toEqual(0)
 
-  await Db.createDirectory(db, "users")
+  await Db.directoryCreate(db, "users")
 
   expect(
-    (await arrayFromAsyncIterable(Db.listDirectoryAll(db, ""))).length,
+    (await arrayFromAsyncIterable(Db.directoryListAll(db, ""))).length,
   ).toEqual(1)
   expect(
     Boolean(
-      (await arrayFromAsyncIterable(Db.listDirectoryAll(db, ""))).find(
+      (await arrayFromAsyncIterable(Db.directoryListAll(db, ""))).find(
         ({ path }: PathEntry) => path === "users",
       ),
     ),
   ).toEqual(true)
 
-  await Db.deleteDirectory(db, "users")
+  await Db.directoryDelete(db, "users")
 
   expect(
-    (await arrayFromAsyncIterable(Db.listDirectoryAll(db, ""))).length,
+    (await arrayFromAsyncIterable(Db.directoryListAll(db, ""))).length,
   ).toEqual(0)
 })

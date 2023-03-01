@@ -5,7 +5,7 @@ import { prepareTestServer } from "./prepareTestServer"
 test("rest-data-post-no-permission", async ({ meta }) => {
   const { url, db } = await prepareTestServer(meta)
 
-  const authorization = `token ${await Db.createToken(db, {
+  const authorization = `token ${await Db.tokenCreate(db, {
     permissionRecord: {
       "users/*/**": ["read"],
       "users/xyh/**": ["create", "read", "update", "delete"],

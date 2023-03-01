@@ -1,15 +1,15 @@
 import type { Database } from "../database"
 import { RevisionMismatch } from "../errors/RevisionMismatch"
 import type { JsonObject } from "../utils/Json"
-import { getData } from "./getData"
+import { dataGet } from "./dataGet"
 import { deletePathRecursive } from "./utils/deletePath"
 
-export async function deleteData(
+export async function dataDelete(
   db: Database,
   path: string,
   input: JsonObject,
 ): Promise<void> {
-  const data = await getData(db, path)
+  const data = await dataGet(db, path)
   if (data === undefined) {
     return
   }

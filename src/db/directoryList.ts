@@ -1,30 +1,29 @@
-import type { Data } from "../data"
 import type { Database } from "../database"
-import type { FindDataAllOptions } from "./findDataAll"
-import { findDataAll } from "./findDataAll"
+import type { PathEntry } from "../path-entry"
+import { directoryListAll } from "./directoryListAll"
 
-export type FindDataOptions = FindDataAllOptions & {
+export type ListOptions = {
   page: number // NOTE starting from 1
   size: number
 }
 
-export async function* findData(
+export async function* directoryList(
   db: Database,
   directory: string,
-  options: FindDataOptions,
-): AsyncIterable<Data> {
+  options: ListOptions,
+): AsyncIterable<PathEntry> {
   const offset = options.page - 1
   const start = offset * options.size
   const end = start + options.size
   let count = 0
 
-  for await (const data of findDataAll(db, directory, options)) {
+  for await (const pathEntry of directoryListAll(db, directory)) {
     if (count >= end) {
       break
     }
 
     if (start <= count && count < end) {
-      yield data
+      yield pathEntry
     }
 
     count++

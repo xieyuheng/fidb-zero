@@ -7,13 +7,13 @@ import { prepareTestDb } from "./prepareTestDb"
 test("db-delete-data-revision-mismatch", async ({ meta }) => {
   const { db } = await prepareTestDb(meta)
 
-  await Db.createData(db, "users/xieyuheng", {
+  await Db.dataCreate(db, "users/xieyuheng", {
     username: "xieyuheng",
     name: "Xie Yuheng",
   })
 
   await expect(
-    Db.deleteData(db, "users/xieyuheng", {
+    Db.dataDelete(db, "users/xieyuheng", {
       "@revision": randomRevision(),
       name: "谢宇恒",
     }),
