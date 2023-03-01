@@ -67,7 +67,11 @@ Website served at
   https://pomodoro.fidb.app
 ```
 
-About the reverse proxy server itself
+About the reverse proxy server itself.
+
+- Here we explicit say `--database`,
+  because it is not obvious that
+  we need a database to serve a reverse proxy.
 
 ```
 fidb serve-reverse-proxy --port 5108 \
