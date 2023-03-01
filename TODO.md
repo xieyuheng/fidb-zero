@@ -1,5 +1,10 @@
+`ServeWebsiteCommand`
+
+`ServeWebsiteCommand` -- support `--single-page-app`
+
 # reverse-proxy
 
+[reverse-proxy] can take many ports -- sharing the same database
 [reverse-proxy] support login
 [reverse-proxy] `handleReverseProxyTarget` -- `POST` -- check `password`
 [reverse-proxy] user has subdomains

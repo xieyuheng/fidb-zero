@@ -84,3 +84,41 @@ The reverse-proxy served at:
 
   https://127.0.0.1:5108
 ```
+
+An app often need both website and database,
+but we do not want to `serve-reverse-proxy` twice
+and `login-reverse-proxy-server` twice.
+
+Thus `serve-reverse-proxy` and should support multiple ports.
+
+```
+fidb serve-reverse-proxy --port 443 --port 5108 \
+  --database <directory> \
+  --tls-cert /etc/letsencrypt/live/fidb.app/fullchain.pem \
+  --tls-key /etc/letsencrypt/live/fidb.app/privkey.pem
+```
+
+Login can also specify multiple ports,
+but by default we can infer 443 and 80 from https and http,
+and by default we can add 5108,
+
+If at least one `--port` is explicitly given,
+we will not infer from protocol or add default port of fidb -- 5108.
+
+```
+fidb login-reverse-proxy-server https://fidb.app
+
+Will login to 443 and 5108
+```
+
+```
+fidb login-reverse-proxy-server https://fidb.app --port 3000 --port 5000
+
+Will login to 3000 and 5000
+```
+
+```
+fidb login-reverse-proxy-server https://fidb.app --port 3000
+
+Will login to 3000
+```
