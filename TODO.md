@@ -1,6 +1,4 @@
-db rename test names
-
-improve `authDirectoryConfig`
+[db] improve `authDirectoryConfig`
 
 # reverse-proxy
 

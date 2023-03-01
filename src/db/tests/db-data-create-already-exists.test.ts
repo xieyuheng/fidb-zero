@@ -1,9 +1,10 @@
 import { expect, test } from "vitest"
 import * as Db from ".."
+import { AlreadyExists } from "../../errors/AlreadyExists"
 import { randomHexString } from "../../utils/randomHexString"
 import { prepareTestDb } from "./prepareTestDb"
 
-test("db-delete-data", async ({ meta }) => {
+test("db-data-create-already-exists", async ({ meta }) => {
   const { db } = await prepareTestDb(meta)
 
   const created = await Db.dataCreate(db, `users/${randomHexString(10)}`, {
@@ -13,7 +14,10 @@ test("db-delete-data", async ({ meta }) => {
 
   expect(await Db.dataGet(db, created["@path"])).toEqual(created)
 
-  await Db.dataDelete(db, created["@path"], created)
-
-  expect(await Db.dataGet(db, created["@path"])).toEqual(undefined)
+  await expect(
+    Db.dataCreate(db, created["@path"], {
+      username: "xieyuheng",
+      name: "Xie Yuheng",
+    }),
+  ).rejects.toThrowError(AlreadyExists)
 })

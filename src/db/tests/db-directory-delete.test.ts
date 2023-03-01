@@ -4,7 +4,7 @@ import type { PathEntry } from "../../path-entry"
 import { arrayFromAsyncIterable } from "../../utils/arrayFromAsyncIterable"
 import { prepareTestDb } from "./prepareTestDb"
 
-test("db-create-directory", async ({ meta }) => {
+test("db-directory-delete", async ({ meta }) => {
   const { db } = await prepareTestDb(meta)
 
   expect(
@@ -23,4 +23,10 @@ test("db-create-directory", async ({ meta }) => {
       ),
     ),
   ).toEqual(true)
+
+  await Db.directoryDelete(db, "users")
+
+  expect(
+    (await arrayFromAsyncIterable(Db.directoryListAll(db, ""))).length,
+  ).toEqual(0)
 })

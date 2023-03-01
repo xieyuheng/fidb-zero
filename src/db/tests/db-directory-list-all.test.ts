@@ -4,7 +4,7 @@ import type { PathEntry } from "../../path-entry"
 import { arrayFromAsyncIterable } from "../../utils/arrayFromAsyncIterable"
 import { prepareTestDb } from "./prepareTestDb"
 
-test("db-list-directory-all", async ({ meta }) => {
+test("db-directory-list-all", async ({ meta }) => {
   const { db } = await prepareTestDb(meta)
 
   expect(
