@@ -34,7 +34,7 @@ export async function handlePassword(
         await requestJsonObject(request),
       )
 
-      const config = await Db.authDirectoryConfig(db, dirname(path))
+      const config = db.config.authDirectories[dirname(path)]
 
       if (config === undefined) {
         throw new Unauthorized(

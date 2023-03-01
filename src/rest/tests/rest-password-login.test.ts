@@ -6,6 +6,7 @@ test("rest-password-login", async ({ meta }) => {
 
   db.config = {
     name: "rest-password-register",
+    description: "",
     authDirectories: {
       users: {
         permissions: ["create", "read", "update", "delete"],

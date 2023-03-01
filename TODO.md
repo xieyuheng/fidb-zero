@@ -1,5 +1,3 @@
-[db] improve `authDirectoryConfig`
-
 # reverse-proxy
 
 [reverse-proxy] support login

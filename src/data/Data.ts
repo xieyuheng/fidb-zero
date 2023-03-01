@@ -8,7 +8,7 @@ export type Data = JsonObject & {
   "@updatedAt": number
 }
 
-export const dataSchema: Schema<Data> = ty.object({
+export const DataSchema: Schema<Data> = ty.object({
   "@path": ty.string(),
   "@revision": ty.string(),
   "@createdAt": ty.number(),

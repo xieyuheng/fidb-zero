@@ -3,14 +3,23 @@ import { join, normalize, resolve } from "node:path"
 import { isErrnoException } from "../utils/isErrnoException"
 import { readJson } from "../utils/readJson"
 import type { Database } from "./Database"
-import { DatabaseConfig, databaseConfigSchema } from "./DatabaseConfig"
+import {
+  DatabaseConfig,
+  DatabaseConfigOptionsSchema,
+  emptyDatabaseConfig,
+} from "./DatabaseConfig"
 
-export async function createDatabase(options: Database): Promise<Database> {
+type Options = {
+  path: string
+  config?: DatabaseConfig
+}
+
+export async function createDatabase(options: Options): Promise<Database> {
   const path = normalize(resolve(options.path))
 
   await fs.promises.mkdir(path, { recursive: true })
 
-  const config = await loadDatabaseConfig(path)
+  const config = (await loadDatabaseConfig(path)) || emptyDatabaseConfig
 
   return {
     path,
@@ -23,7 +32,12 @@ async function loadDatabaseConfig(
 ): Promise<DatabaseConfig | undefined> {
   try {
     const json = await readJson(join(path, "database.json"))
-    return databaseConfigSchema.validate(json)
+    const options = DatabaseConfigOptionsSchema.validate(json)
+    return {
+      name: options.name,
+      description: options.description || "",
+      authDirectories: options.authDirectories || {},
+    }
   } catch (error) {
     if (isErrnoException(error) && error.code === "ENOENT") {
       return undefined

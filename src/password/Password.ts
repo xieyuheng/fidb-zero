@@ -1,6 +1,6 @@
 import ty, { Schema } from "@xieyuheng/ty"
-import { Data, dataSchema } from "../data"
-import { TokenPermission, tokenPermissionSchema } from "../token"
+import { Data, DataSchema } from "../data"
+import { TokenPermission, TokenPermissionSchema } from "../token"
 
 export type Password = Data & {
   memo: string
@@ -8,11 +8,11 @@ export type Password = Data & {
   permissions: Array<TokenPermission>
 }
 
-export const passwordSchema: Schema<Password> = ty.intersection(
-  dataSchema,
+export const PasswordSchema: Schema<Password> = ty.intersection(
+  DataSchema,
   ty.object({
     memo: ty.string(),
     hash: ty.string(),
-    permissions: ty.array(tokenPermissionSchema),
+    permissions: ty.array(TokenPermissionSchema),
   }),
 )

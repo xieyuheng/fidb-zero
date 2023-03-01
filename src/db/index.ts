@@ -1,4 +1,3 @@
-export * from "./authDirectoryConfig"
 export * from "./dataCreate"
 export * from "./dataDelete"
 export * from "./dataFind"

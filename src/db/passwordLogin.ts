@@ -2,7 +2,7 @@ import { ty } from "@xieyuheng/ty"
 import { join } from "node:path"
 import type { Database } from "../database"
 import { Unauthorized } from "../errors/Unauthorized"
-import { passwordSchema } from "../password"
+import { PasswordSchema } from "../password"
 import { passwordCheck } from "../utils/password"
 import { dataFindAll } from "./dataFindAll"
 import { tokenCreate } from "./tokenCreate"
@@ -23,7 +23,7 @@ export async function PasswordLogin(
   for await (const data of dataFindAll(db, join(directory, "passwords"), {
     properties: {},
   })) {
-    const password = passwordSchema.validate(data)
+    const password = PasswordSchema.validate(data)
     if (await passwordCheck(options.password, password.hash)) {
       const pattern = join(directory, "**")
       const tokenName = await tokenCreate(db, {
