@@ -69,12 +69,16 @@ Website served at
 
 About the reverse proxy server itself.
 
-- Here we explicit say `--database`,
-  because it is not obvious that
-  we need a database to serve a reverse proxy.
+Here we explicit say `--database`,
+because it is not obvious that
+we need a database to serve a reverse proxy.
+
+Since reverse proxy server's routing is based on subdomain,
+we also need to specify the domain of reverse proxy server.
 
 ```
 fidb serve-reverse-proxy --port 5108 \
+  --domain fidb.app \
   --database <directory> \
   --tls-cert /etc/letsencrypt/live/fidb.app/fullchain.pem \
   --tls-key /etc/letsencrypt/live/fidb.app/privkey.pem
@@ -93,6 +97,7 @@ Thus `serve-reverse-proxy` and should support multiple ports.
 
 ```
 fidb serve-reverse-proxy --port 443 --port 5108 \
+  --domain fidb.app \
   --database <directory> \
   --tls-cert /etc/letsencrypt/live/fidb.app/fullchain.pem \
   --tls-key /etc/letsencrypt/live/fidb.app/privkey.pem
