@@ -6,22 +6,22 @@ import { passwordHash } from "../utils/password"
 import { randomHexString } from "../utils/randomHexString"
 import { createData } from "./createData"
 
-export type SignUpPasswordOptions = {
+export type PasswordRegisterOptions = {
   memo: string
   password: string
   permissions: Array<TokenPermission>
 }
 
-export const signUpPasswordOptionsSchema = ty.object({
+export const PasswordRegisterOptionsSchema = ty.object({
   memo: ty.string(),
   password: ty.string(),
   permissions: ty.array(tokenPermissionSchema),
 })
 
-export async function signUpPassword(
+export async function PasswordRegister(
   db: Database,
   directory: string,
-  options: SignUpPasswordOptions,
+  options: PasswordRegisterOptions,
 ): Promise<void> {
   const id = randomHexString(10)
   await createData(db, join(directory, "passwords", id), {

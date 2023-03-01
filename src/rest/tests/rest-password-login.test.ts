@@ -1,11 +1,11 @@
 import { expect, test } from "vitest"
 import { prepareTestServer } from "./prepareTestServer"
 
-test("rest-password-sign-in", async ({ meta }) => {
+test("rest-password-login", async ({ meta }) => {
   const { url, db } = await prepareTestServer(meta)
 
   db.config = {
-    name: "rest-password-sign-up",
+    name: "rest-password-register",
     authDirectories: {
       users: {
         permissions: ["create", "read", "update", "delete"],
@@ -14,7 +14,7 @@ test("rest-password-sign-in", async ({ meta }) => {
   }
 
   const created = await (
-    await fetch(`${url}/users/xieyuheng?kind=password-sign-up`, {
+    await fetch(`${url}/users/xieyuheng?kind=password-register`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -34,7 +34,7 @@ test("rest-password-sign-in", async ({ meta }) => {
 
   {
     const token = await (
-      await fetch(`${url}/users/xieyuheng?kind=password-sign-in`, {
+      await fetch(`${url}/users/xieyuheng?kind=password-login`, {
         method: "POST",
         body: JSON.stringify({
           password: "123456",

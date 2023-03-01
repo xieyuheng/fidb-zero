@@ -21,7 +21,7 @@ export async function handlePassword(
   const path = requestPath(ctx, request)
 
   if (request.method === "POST") {
-    if (kind === "password-sign-up") {
+    if (kind === "password-register") {
       const schema = ty.object({
         data: ty.any(),
         options: ty.object({
@@ -44,7 +44,7 @@ export async function handlePassword(
 
       const created = await Db.createData(db, path, data)
 
-      await Db.signUpPassword(db, created["@path"], {
+      await Db.PasswordRegister(db, created["@path"], {
         memo: options.memo,
         password: options.password,
         permissions: config.permissions,
@@ -53,11 +53,11 @@ export async function handlePassword(
       return created
     }
 
-    if (kind === "password-sign-in") {
-      return Db.signInPassword(
+    if (kind === "password-login") {
+      return Db.PasswordLogin(
         db,
         path,
-        Db.signInPasswordOptionsSchema.validate(
+        Db.PasswordLoginOptionsSchema.validate(
           await requestJsonObject(request),
         ),
       )

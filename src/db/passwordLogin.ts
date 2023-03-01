@@ -7,18 +7,18 @@ import { passwordCheck } from "../utils/password"
 import { createToken } from "./createToken"
 import { findDataAll } from "./findDataAll"
 
-export type SignInPasswordOptions = {
+export type PasswordLoginOptions = {
   password: string
 }
 
-export const signInPasswordOptionsSchema = ty.object({
+export const PasswordLoginOptionsSchema = ty.object({
   password: ty.string(),
 })
 
-export async function signInPassword(
+export async function PasswordLogin(
   db: Database,
   directory: string,
-  options: SignInPasswordOptions,
+  options: PasswordLoginOptions,
 ): Promise<string> {
   for await (const data of findDataAll(db, join(directory, "passwords"), {
     properties: {},
@@ -37,6 +37,6 @@ export async function signInPassword(
   }
 
   throw new Unauthorized(
-    `[signInPassword] invalid password for directory: ${directory}`,
+    `[PasswordLogin] invalid password for directory: ${directory}`,
   )
 }

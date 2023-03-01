@@ -1,5 +1,3 @@
-use Login and Register instead of SignIn and SignUp
-
 # reverse-proxy
 
 [reverse-proxy] support login
@@ -16,17 +14,17 @@ use Login and Register instead of SignIn and SignUp
 
 # rest
 
-[rest] rate limit by ip -- for `password-sign-up`
+[rest] rate limit by ip -- for `password-register`
 
 [config] be able to config `rateLimits: { ... }`
 
 # authentication by email -- for any directory
 
-[db] signUpEmail(directory, options): Promise<void>
-[db] signInEmail(directory, options): Promise<Token>
+[db] RegisterEmail(directory, options): Promise<void>
+[db] LoginEmail(directory, options): Promise<Token>
 
-[rest] `handleEmail` -- kind=email-sign-up
-[rest] `handleEmail` -- kind=email-sign-in
+[rest] `handleEmail` -- kind=email-register
+[rest] `handleEmail` -- kind=email-login
 
 # token with scope
 
