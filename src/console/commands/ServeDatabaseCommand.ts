@@ -2,7 +2,7 @@ import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
 import { resolve } from "node:path"
 import { createDatabase } from "../../database"
-import * as Rest from "../../rest"
+import { handle } from "../../database-server"
 import { createRequestListener } from "../../utils/createRequestListener"
 import { log } from "../../utils/log"
 import { connectReverseProxy } from "./connectReverseProxy"
@@ -57,7 +57,7 @@ export class ServeDatabaseCommand extends Command<Args> {
 
     const requestListener = createRequestListener({
       ctx: { db },
-      handle: Rest.handle,
+      handle,
     })
 
     const { url } = await startServer({ who, ...argv }, requestListener)

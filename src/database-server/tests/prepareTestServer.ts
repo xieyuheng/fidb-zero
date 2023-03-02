@@ -1,7 +1,7 @@
 import Http from "node:http"
+import { handle } from "../../database-server"
 import * as Db from "../../db"
 import { prepareTestDb } from "../../db/tests/prepareTestDb"
-import * as Rest from "../../rest"
 import { createRequestListener } from "../../utils/createRequestListener"
 import { findPort } from "../../utils/findPort"
 import { serverListen } from "../../utils/serverListen"
@@ -11,7 +11,7 @@ export async function prepareTestServer(options: { name: string }) {
 
   const requestListener = createRequestListener({
     ctx: { db },
-    handle: Rest.handle,
+    handle,
   })
 
   const server = Http.createServer()
