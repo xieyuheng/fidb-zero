@@ -1,6 +1,6 @@
 import type { Data } from "../../data"
 import type { Database } from "../../database"
-import { writeJson } from "../../utils/writeJson"
+import { writeJson } from "../../utils/node/writeJson"
 import { resolveDataPath } from "./resolveDataPath"
 
 export async function writeData(

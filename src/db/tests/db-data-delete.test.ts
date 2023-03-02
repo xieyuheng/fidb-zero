@@ -1,6 +1,6 @@
 import { expect, test } from "vitest"
 import * as Db from ".."
-import { randomHexString } from "../../utils/randomHexString"
+import { randomHexString } from "../../utils/node/randomHexString"
 import { prepareTestDb } from "./prepareTestDb"
 
 test("db-data-delete", async ({ meta }) => {

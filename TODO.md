@@ -1,4 +1,4 @@
-use `utils/node` for code that can only run on nodejs
+`randomHexString` should not be only for node
 `ServeWebsiteCommand` -- use 8080 port by default
 [website-server] `handlePage`
 `ServeWebsiteCommand` -- support `--single-page-app`

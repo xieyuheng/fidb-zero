@@ -2,8 +2,8 @@ import { ty } from "@xieyuheng/ty"
 import { join } from "node:path"
 import type { Database } from "../database"
 import { TokenPermission, TokenPermissionSchema } from "../token"
+import { randomHexString } from "../utils/node/randomHexString"
 import { passwordHash } from "../utils/password"
-import { randomHexString } from "../utils/randomHexString"
 import { dataCreate } from "./dataCreate"
 
 export type PasswordRegisterOptions = {
