@@ -49,7 +49,7 @@ export class ServeDatabaseCommand extends Command<Args> {
   }
 
   async execute(argv: Args & Opts): Promise<void> {
-    const who = "ServeDatabaseCommand"
+    const who = this.name
 
     const db = await createDatabase({ path: resolve(argv.path) })
 

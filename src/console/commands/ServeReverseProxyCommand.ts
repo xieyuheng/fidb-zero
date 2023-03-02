@@ -2,7 +2,7 @@ import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
 import { resolve } from "node:path"
 import { createDatabase } from "../../database"
-import * as ReverseProxy from "../../reverse-proxy"
+import { handle } from "../../reverse-proxy-server"
 import { createRequestListener } from "../../utils/createRequestListener"
 import { log } from "../../utils/log"
 import { startServer } from "./startServer"
@@ -42,7 +42,7 @@ export class ServeReverseProxyCommand extends Command<Args> {
   }
 
   async execute(argv: Args & Opts): Promise<void> {
-    const who = "ServeReverseProxyCommand"
+    const who = this.name
 
     const db = await createDatabase({ path: resolve(argv.path) })
 
@@ -50,7 +50,7 @@ export class ServeReverseProxyCommand extends Command<Args> {
 
     const requestListener = createRequestListener({
       ctx: { db, targets: {} },
-      handle: ReverseProxy.handle,
+      handle,
     })
 
     await startServer({ who, ...argv }, requestListener)

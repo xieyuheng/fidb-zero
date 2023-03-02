@@ -1,10 +1,12 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
+import { log } from "../../utils/log"
 
 type Args = { path: string }
 type Opts = {
   hostname?: string
   port?: number
+  "is-single-page-app"?: boolean
   "tls-cert"?: string
   "tls-key"?: string
   "reverse-proxy-server"?: string
@@ -21,6 +23,7 @@ export class ServeWebsiteCommand extends Command<Args> {
   opts = {
     hostname: ty.optional(ty.string()),
     port: ty.optional(ty.number()),
+    "is-single-page-app": ty.optional(ty.boolean()),
     "tls-cert": ty.optional(ty.string()),
     "tls-key": ty.optional(ty.string()),
     "reverse-proxy-server": ty.optional(ty.string()),
@@ -42,8 +45,8 @@ export class ServeWebsiteCommand extends Command<Args> {
   }
 
   async execute(argv: Args & Opts): Promise<void> {
-    const who = "ServeWebsiteCommand"
+    const who = this.name
 
-    console.log({ argv })
+    log({ who, argv })
   }
 }
