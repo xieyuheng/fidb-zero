@@ -2,10 +2,10 @@ import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
 import { resolve } from "node:path"
 import { createDatabase } from "../../database"
+import { startServer } from "../../server"
 import { handle } from "../../servers/reverse-proxy-server"
 import { createRequestListener } from "../../utils/createRequestListener"
 import { log } from "../../utils/log"
-import { startServer } from "./startServer"
 
 type Args = { path: string }
 type Opts = {
