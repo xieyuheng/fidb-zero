@@ -1,10 +1,10 @@
 import fs from "node:fs"
 import Http from "node:http"
 import Https from "node:https"
-import type { RequestListener } from "../utils/createRequestListener"
+import type { RequestListener } from "../server/createRequestListener"
+import { serverListen } from "../server/serverListen"
 import { findPort } from "../utils/findPort"
 import { log } from "../utils/log"
-import { serverListen } from "../utils/serverListen"
 
 type Options = {
   who: string

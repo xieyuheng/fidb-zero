@@ -3,8 +3,8 @@ import ty from "@xieyuheng/ty"
 import { resolve } from "node:path"
 import { createDatabase } from "../../database"
 import { startServer } from "../../server"
+import { createRequestListener } from "../../server/createRequestListener"
 import { handle } from "../../servers/reverse-proxy-server"
-import { createRequestListener } from "../../utils/createRequestListener"
 import { log } from "../../utils/log"
 
 type Args = { path: string }

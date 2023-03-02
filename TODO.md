@@ -1,4 +1,3 @@
-move server related utils like `createRequestListener` to server/
 use `utils/node` for code that can only run on nodejs
 `ServeWebsiteCommand` -- use 8080 port by default
 [website-server] `handlePage`

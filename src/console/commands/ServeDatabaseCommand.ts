@@ -4,8 +4,8 @@ import { resolve } from "node:path"
 import { connectReverseProxy } from "../../clients/reverse-proxy-client"
 import { createDatabase } from "../../database"
 import { startServer } from "../../server"
+import { createRequestListener } from "../../server/createRequestListener"
 import { handle } from "../../servers/database-server"
-import { createRequestListener } from "../../utils/createRequestListener"
 import { log } from "../../utils/log"
 
 type Args = { path: string }

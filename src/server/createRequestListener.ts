@@ -4,7 +4,7 @@ import { AlreadyExists } from "../errors/AlreadyExists"
 import { NotFound } from "../errors/NotFound"
 import { RevisionMismatch } from "../errors/RevisionMismatch"
 import { Unauthorized } from "../errors/Unauthorized"
-import type { Json } from "./Json"
+import type { Json } from "../utils/Json"
 import { responseSend } from "./responseSend"
 import { responseSendJson } from "./responseSendJson"
 

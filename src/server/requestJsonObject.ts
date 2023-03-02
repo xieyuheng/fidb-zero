@@ -1,5 +1,5 @@
 import type Http from "node:http"
-import { isJsonObject, JsonObject } from "./Json"
+import { isJsonObject, JsonObject } from "../utils/Json"
 import { requestJson } from "./requestJson"
 
 export async function requestJsonObject(

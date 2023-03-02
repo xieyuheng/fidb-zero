@@ -1,5 +1,5 @@
 import type Http from "node:http"
-import type { Json } from "./Json"
+import type { Json } from "../utils/Json"
 import { requestText } from "./requestText"
 
 export async function requestJson(

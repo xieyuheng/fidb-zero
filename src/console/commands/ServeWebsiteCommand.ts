@@ -2,8 +2,8 @@ import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
 import { connectReverseProxy } from "../../clients/reverse-proxy-client"
 import { startServer } from "../../server"
+import { createRequestListener } from "../../server/createRequestListener"
 import { handle } from "../../servers/website-server"
-import { createRequestListener } from "../../utils/createRequestListener"
 
 type Args = { path: string }
 type Opts = {

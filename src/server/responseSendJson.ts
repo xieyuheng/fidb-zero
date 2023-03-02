@@ -1,5 +1,5 @@
 import type Http from "node:http"
-import type { Json } from "./Json"
+import type { Json } from "../utils/Json"
 import { responseSend } from "./responseSend"
 
 export function responseSendJson(

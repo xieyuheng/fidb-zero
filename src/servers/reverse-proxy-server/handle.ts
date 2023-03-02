@@ -1,7 +1,7 @@
 import type { Buffer } from "node:buffer"
 import type Http from "node:http"
+import { requestKind } from "../../server/requestKind"
 import type { Json } from "../../utils/Json"
-import { requestKind } from "../../utils/requestKind"
 import type { Context } from "./Context"
 import { handleDefault } from "./handleDefault"
 import { handlePing } from "./handlePing"

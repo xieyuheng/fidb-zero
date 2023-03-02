@@ -1,9 +1,9 @@
 import Http from "node:http"
 import * as Db from "../../../db"
 import { prepareTestDb } from "../../../db/tests/prepareTestDb"
-import { createRequestListener } from "../../../utils/createRequestListener"
+import { createRequestListener } from "../../../server/createRequestListener"
+import { serverListen } from "../../../server/serverListen"
 import { findPort } from "../../../utils/findPort"
-import { serverListen } from "../../../utils/serverListen"
 import { handle } from "../../database-server"
 
 export async function prepareTestServer(options: { name: string }) {
