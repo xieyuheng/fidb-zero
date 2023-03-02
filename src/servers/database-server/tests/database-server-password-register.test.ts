@@ -1,11 +1,11 @@
 import { expect, test } from "vitest"
 import { prepareTestServer } from "./prepareTestServer"
 
-test("rest-password-register", async ({ meta }) => {
+test("database-server-password-register", async ({ meta }) => {
   const { url, db, authorization } = await prepareTestServer(meta)
 
   db.config = {
-    name: "rest-password-register",
+    name: "database-server-password-register",
     description: "",
     authDirectories: {
       users: {

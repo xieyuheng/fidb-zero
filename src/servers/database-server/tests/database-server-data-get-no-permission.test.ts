@@ -2,12 +2,11 @@ import { expect, test } from "vitest"
 import * as Db from "../../../db"
 import { prepareTestServer } from "./prepareTestServer"
 
-test("rest-data-patch-no-permission", async ({ meta }) => {
+test("database-server-data-get-no-permission", async ({ meta }) => {
   const { url, db } = await prepareTestServer(meta)
 
   let authorization = `token ${await Db.tokenCreate(db, {
     permissionRecord: {
-      "users/*": ["read"],
       "users/xieyuheng/**": ["create", "read", "update", "delete"],
     },
   })}`
@@ -40,50 +39,14 @@ test("rest-data-patch-no-permission", async ({ meta }) => {
 
   authorization = `token ${await Db.tokenCreate(db, {
     permissionRecord: {
-      "users/*": ["read"],
       "users/xyh/**": ["create", "read", "update", "delete"],
     },
   })}`
 
-  // read is ok.
-
-  expect(
-    (
-      await (
-        await fetch(`${url}/users/xieyuheng`, {
-          method: "GET",
-          headers: {
-            authorization,
-          },
-        })
-      ).json()
-    ).username,
-  ).toEqual("xieyuheng")
-
-  // write is not ok
-
   expect(
     (
       await fetch(`${url}/users/xieyuheng`, {
-        method: "PATCH",
-        headers: {
-          authorization,
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          "@revision": created["@revision"],
-          name: "谢宇恒",
-        }),
-      })
-    ).status,
-  ).toEqual(401)
-
-  // delete is like write
-
-  expect(
-    (
-      await fetch(`${url}/users/xieyuheng`, {
-        method: "DELETE",
+        method: "GET",
         headers: {
           authorization,
         },

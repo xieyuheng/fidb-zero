@@ -2,7 +2,7 @@ import { expect, test } from "vitest"
 import type { PathEntry } from "../../../path-entry"
 import { prepareTestServer } from "./prepareTestServer"
 
-test("rest-directory-get-by-page", async ({ meta }) => {
+test("database-server-directory-get-by-page", async ({ meta }) => {
   const { url, authorization } = await prepareTestServer(meta)
 
   await fetch(`${url}/projects/1/users/1`, {

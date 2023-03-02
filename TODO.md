@@ -1,5 +1,3 @@
-rename `database-server/` tests
-
 `ServeWebsiteCommand` -- `execute`
 
 `ServeWebsiteCommand` -- support `--single-page-app`
