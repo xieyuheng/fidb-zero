@@ -1,6 +1,9 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
-import { log } from "../../utils/log"
+import { connectReverseProxy } from "../../clients/reverse-proxy-client"
+import { startServer } from "../../server"
+import { handle } from "../../servers/website-server"
+import { createRequestListener } from "../../utils/createRequestListener"
 
 type Args = { path: string }
 type Opts = {
@@ -47,6 +50,27 @@ export class ServeWebsiteCommand extends Command<Args> {
   async execute(argv: Args & Opts): Promise<void> {
     const who = this.name
 
-    log({ who, argv })
+    const requestListener = createRequestListener({
+      ctx: {},
+      handle,
+    })
+
+    const { url } = await startServer({ who, ...argv }, requestListener)
+
+    if (
+      argv["reverse-proxy-server"] &&
+      argv["reverse-proxy-username"] &&
+      argv["reverse-proxy-password"]
+    ) {
+      await connectReverseProxy({
+        server: { url: new URL(argv["reverse-proxy-server"]) },
+        username: argv["reverse-proxy-username"],
+        password: argv["reverse-proxy-password"],
+        target: {
+          hostname: url.hostname,
+          port: Number(url.port),
+        },
+      })
+    }
   }
 }
