@@ -1,5 +1,3 @@
-move servers to `servers/`
-
 rename `database-server/` tests
 
 `ServeWebsiteCommand` -- `execute`

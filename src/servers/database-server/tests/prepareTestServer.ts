@@ -1,10 +1,10 @@
 import Http from "node:http"
+import * as Db from "../../../db"
+import { prepareTestDb } from "../../../db/tests/prepareTestDb"
+import { createRequestListener } from "../../../utils/createRequestListener"
+import { findPort } from "../../../utils/findPort"
+import { serverListen } from "../../../utils/serverListen"
 import { handle } from "../../database-server"
-import * as Db from "../../db"
-import { prepareTestDb } from "../../db/tests/prepareTestDb"
-import { createRequestListener } from "../../utils/createRequestListener"
-import { findPort } from "../../utils/findPort"
-import { serverListen } from "../../utils/serverListen"
 
 export async function prepareTestServer(options: { name: string }) {
   const { db } = await prepareTestDb(options)

@@ -1,5 +1,5 @@
 import { expect, test } from "vitest"
-import type { PathEntry } from "../../path-entry"
+import type { PathEntry } from "../../../path-entry"
 import { prepareTestServer } from "./prepareTestServer"
 
 test("rest-directory-get-nested", async ({ meta }) => {

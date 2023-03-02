@@ -1,5 +1,5 @@
 import { expect, test } from "vitest"
-import * as Db from "../../db"
+import * as Db from "../../../db"
 import { prepareTestServer } from "./prepareTestServer"
 
 test("rest-data-post-no-permission", async ({ meta }) => {

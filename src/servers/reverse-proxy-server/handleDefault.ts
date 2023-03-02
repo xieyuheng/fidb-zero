@@ -1,8 +1,8 @@
 import type Http from "node:http"
 import type { Socket } from "node:net"
-import { NotFound } from "../errors/NotFound"
-import { requestFormatRaw } from "../utils/requestFormatRaw"
-import { requestSubdomain } from "../utils/requestSubdomain"
+import { NotFound } from "../../errors/NotFound"
+import { requestFormatRaw } from "../../utils/requestFormatRaw"
+import { requestSubdomain } from "../../utils/requestSubdomain"
 import type { Context } from "./Context"
 
 export async function handleDefault(

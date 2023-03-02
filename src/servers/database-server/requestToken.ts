@@ -1,8 +1,8 @@
 import type Http from "node:http"
-import * as Db from "../db"
-import { Unauthorized } from "../errors/Unauthorized"
-import type { Token } from "../token"
-import { requestTokenName } from "../utils/requestTokenName"
+import * as Db from "../../db"
+import { Unauthorized } from "../../errors/Unauthorized"
+import type { Token } from "../../token"
+import { requestTokenName } from "../../utils/requestTokenName"
 import type { Context } from "./Context"
 
 export async function requestToken(
