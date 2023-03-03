@@ -1,6 +1,6 @@
 [website-server] `handlePage`
 
-`ServeWebsiteCommand` -- support `--single-page-app`
+`ServeWebsiteCommand` -- support `--is-single-page-app`
 
 # reverse-proxy
 
