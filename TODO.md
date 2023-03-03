@@ -12,11 +12,6 @@ fidb serve-reverse-proxy --port 8080 --port 5108 \
  --domain cicada.localhost
 
 
-fidb serve-reverse-proxy --port 8080 --port 5108 \
- --database ~/fidb-official/fidb/tmp/databases/reverse-proxy \
- --domain 127.0.0.1
-
-
 fidb login-reverse-proxy http://cicada.localhost:8080
 
 # NOTE Login one port will login all ports,
@@ -27,7 +22,6 @@ fidb login-reverse-proxy http://cicada.localhost:8080
 
 fidb serve-website ~/learn-x/learn-alpinejs/notepad \
   --url http://notepad.cicada.localhost:8080
-
 
 curl 'http://notepad.cicada.localhost:8080'
 
@@ -40,13 +34,8 @@ curl 'http://notepad.cicada.localhost:5108?kind=info'
 
 # reverse-proxy interface
 
-[reverse-proxy-client] about `password-register` and `password-login`
-
+`fidb login-reverse-proxy` -- `password-login`
 [reverse-proxy-server] database `users/` -- user has `subdomains`
-
-[reverse-proxy-server] `handlePassword` -- `password-register`
-[reverse-proxy-server] `handlePassword` -- `password-login`
-
 [reverse-proxy-server] `handleReverseProxyTarget` -- `POST` -- check `password`
 
 # reverse-proxy messaging

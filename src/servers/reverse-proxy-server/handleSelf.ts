@@ -3,6 +3,7 @@ import type Http from "node:http"
 import { handlePreflight } from "../../server/handlePreflight"
 import { requestKind } from "../../server/requestKind"
 import type { Json } from "../../utils/Json"
+import { handlePassword } from "../database-server/handlePassword"
 import type { Context } from "./Context"
 import { handlePing } from "./handlePing"
 import { handleReverseProxyTarget } from "./handleReverseProxyTarget"
@@ -20,6 +21,14 @@ export async function handleSelf(
 
   if (kind.startsWith("ping")) {
     return await handlePing(ctx, request)
+  }
+
+  if (kind.startsWith("password")) {
+    if (kind === "password-register") {
+      throw new Error(`[handleSelf] password-register is currently not enabled`)
+    }
+
+    return await handlePassword(ctx, request)
   }
 
   if (kind.startsWith("reverse-proxy-target")) {
