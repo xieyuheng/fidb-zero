@@ -53,6 +53,16 @@ export class ServeReverseProxyCommand extends Command<Args> {
       handle,
     })
 
-    await startServer({ who, ...argv }, requestListener)
+    await startServer(
+      {
+        who,
+        hostname: argv.hostname,
+        port: argv.port,
+        startingPort: 3000,
+        tlsCert: argv["tls-cert"],
+        tlsKey: argv["tls-key"],
+      },
+      requestListener,
+    )
   }
 }

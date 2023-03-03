@@ -60,7 +60,17 @@ export class ServeDatabaseCommand extends Command<Args> {
       handle,
     })
 
-    const { url } = await startServer({ who, ...argv }, requestListener)
+    const { url } = await startServer(
+      {
+        who,
+        hostname: argv.hostname,
+        port: argv.port,
+        startingPort: 3000,
+        tlsCert: argv["tls-cert"],
+        tlsKey: argv["tls-key"],
+      },
+      requestListener,
+    )
 
     if (
       argv["reverse-proxy-server"] &&

@@ -1,5 +1,3 @@
-`startServer` fix name of options
-
 [website-server] `handlePage`
 `ServeWebsiteCommand` -- support `--single-page-app`
 

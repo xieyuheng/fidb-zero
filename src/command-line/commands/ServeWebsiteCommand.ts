@@ -56,7 +56,14 @@ export class ServeWebsiteCommand extends Command<Args> {
     })
 
     const { url } = await startServer(
-      { who, startingPort: 8080, ...argv },
+      {
+        who,
+        hostname: argv.hostname,
+        port: argv.port,
+        startingPort: 8080,
+        tlsCert: argv["tls-cert"],
+        tlsKey: argv["tls-key"],
+      },
       requestListener,
     )
 

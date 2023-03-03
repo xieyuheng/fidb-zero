@@ -11,8 +11,8 @@ type Options = {
   hostname?: string
   port?: number
   startingPort?: number
-  "tls-cert"?: string
-  "tls-key"?: string
+  tlsCert?: string
+  tlsKey?: string
 }
 
 export async function startServer(
@@ -26,11 +26,11 @@ export async function startServer(
       (await findPort(options.startingPort || 3000)),
   )
 
-  if (options["tls-cert"] && options["tls-key"]) {
+  if (options.tlsCert && options.tlsKey) {
     const server = Https.createServer(
       {
-        cert: await fs.promises.readFile(options["tls-cert"]),
-        key: await fs.promises.readFile(options["tls-key"]),
+        cert: await fs.promises.readFile(options.tlsCert),
+        key: await fs.promises.readFile(options.tlsKey),
       },
       requestListener,
     )
