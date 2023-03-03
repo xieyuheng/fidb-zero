@@ -1,10 +1,8 @@
-import fs from "node:fs"
-import Http from "node:http"
-import Https from "node:https"
 import type { RequestListener } from "../server/createRequestListener"
 import { serverListen } from "../server/serverListen"
 import { log } from "../utils/log"
 import { findPort } from "../utils/node/findPort"
+import { createServer } from "./createServer"
 
 type Options = {
   who: string
@@ -18,7 +16,9 @@ type Options = {
 export async function startServer(
   options: Options,
   requestListener: RequestListener,
-): Promise<{ server: Http.Server | Https.Server; url: URL }> {
+): Promise<{ url: URL }> {
+  const { scheme, server } = await createServer(options, requestListener)
+
   const hostname = options.hostname || "127.0.0.1"
   const port = Number(
     process.env.PORT ||
@@ -26,31 +26,11 @@ export async function startServer(
       (await findPort(options.startingPort || 3000)),
   )
 
-  if (options.tlsCert && options.tlsKey) {
-    const server = Https.createServer(
-      {
-        cert: await fs.promises.readFile(options.tlsCert),
-        key: await fs.promises.readFile(options.tlsKey),
-      },
-      requestListener,
-    )
+  await serverListen(server, { hostname, port })
 
-    await serverListen(server, { hostname, port })
+  const url = new URL(`${scheme}://${hostname}:${port}`)
 
-    const url = new URL(`https://${hostname}:${port}`)
+  log({ who: options.who, url: url.toString() })
 
-    log({ who: options.who, url: url.toString() })
-
-    return { server, url }
-  } else {
-    const server = Http.createServer({}, requestListener)
-
-    await serverListen(server, { hostname, port })
-
-    const url = new URL(`http://${hostname}:${port}`)
-
-    log({ who: options.who, url: url.toString() })
-
-    return { server, url }
-  }
+  return { url }
 }
