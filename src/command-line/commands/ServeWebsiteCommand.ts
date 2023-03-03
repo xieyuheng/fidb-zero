@@ -16,7 +16,7 @@ type Opts = {
   cors?: boolean
   "tls-cert"?: string
   "tls-key"?: string
-  "reverse-proxy"?: string
+  url?: string
 }
 
 export class ServeWebsiteCommand extends Command<Args> {
@@ -32,7 +32,7 @@ export class ServeWebsiteCommand extends Command<Args> {
     cors: ty.optional(ty.boolean()),
     "tls-cert": ty.optional(ty.string()),
     "tls-key": ty.optional(ty.string()),
-    "reverse-proxy": ty.optional(ty.string()),
+    url: ty.optional(ty.string()),
   }
 
   // prettier-ignore
@@ -69,9 +69,9 @@ export class ServeWebsiteCommand extends Command<Args> {
 
     log({ who, ctx, url, tls })
 
-    if (argv["reverse-proxy"]) {
+    if (argv["url"]) {
       await connectReverseProxy({
-        server: { url: new URL(argv["reverse-proxy"]) },
+        url: new URL(argv["url"]),
         username: "TODO",
         password: "TODO",
         target: {

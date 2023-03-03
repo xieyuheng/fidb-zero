@@ -14,16 +14,17 @@ export async function handleReverseProxyTarget(
 ): Promise<Json | void> {
   if (request.method === "POST") {
     const schema = ty.object({
+      subdomain: ty.string(),
       username: ty.string(),
       password: ty.string(),
     })
 
-    const { username, password } = schema.validate(
+    const { subdomain, username, password } = schema.validate(
       await requestJsonObject(request),
     )
 
     const server = Net.createServer((socket) => {
-      ctx.targets[username] = new ReverseProxyTarget(socket)
+      ctx.targets[subdomain] = new ReverseProxyTarget(socket)
     })
 
     const port = await findPort(9207)

@@ -45,7 +45,7 @@ Then in one line
 
 ```
 fidb serve-database <directory> --port 5108
-fidb serve-database <directory> --port 5108 --reverse-proxy https://pomodoro.fidb.app:5108
+fidb serve-database <directory> --port 5108 --url https://pomodoro.fidb.app:5108
 
 
 The database
@@ -60,7 +60,7 @@ served at
 
 ```
 fidb serve-website <directory> --port 8080
-fidb serve-website <directory> --port 8080 --reverse-proxy https://pomodoro.fidb.app
+fidb serve-website <directory> --port 8080 --url https://pomodoro.fidb.app
 
 Website served at
 

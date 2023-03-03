@@ -13,12 +13,12 @@ export async function handleDispatch(
   const subdomin = requestSubdomain(ctx, request)
   if (subdomin === undefined) {
     const host = request.headers["host"]
-    throw new NotFound(`[handleDefault] no subdomain in request host: ${host}`)
+    throw new NotFound(`[handleDispatch] no subdomain in request host: ${host}`)
   }
 
   const target = ctx.targets[subdomin]
   if (target === undefined) {
-    throw new NotFound(`[handleDefault] unknown subdomain: ${subdomin}`)
+    throw new NotFound(`[handleDispatch] unknown subdomain: ${subdomin}`)
   }
 
   await target.send(await requestFormatRaw(request), (data) => {

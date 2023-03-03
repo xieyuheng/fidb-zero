@@ -3,25 +3,37 @@ import Net from "node:net"
 import { log } from "../../utils/log"
 
 type Options = {
-  server: { url: URL }
-  target: { hostname: string; port: number }
+  url: URL
   username: string
   password: string
+  target: { hostname: string; port: number }
+}
+
+function parseArgURL(url: URL): { serverURL: URL; subdomain: string } {
+  const [subdomain, ...hostnameParts] = url.hostname.split(".")
+  const hostname = hostnameParts.join(".")
+  const serverURL = new URL(`${url.protocol}//${hostname}:${url.port}`)
+  return { serverURL, subdomain }
 }
 
 export async function connectReverseProxy(options: Options): Promise<void> {
   const who = "connectReverseProxy"
 
-  const { server, username, password, target } = options
+  const { url, username, password, target } = options
+  const { serverURL, subdomain } = parseArgURL(url)
 
   const response = await fetch(
-    `${server.url.protocol}//${server.url.host}?kind=reverse-proxy-target`,
+    `${serverURL.protocol}//${serverURL.host}?kind=reverse-proxy-target`,
     {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({
+        subdomain,
+        username,
+        password,
+      }),
     },
   )
 
@@ -42,7 +54,7 @@ export async function connectReverseProxy(options: Options): Promise<void> {
 
   log({ who, proxy })
 
-  const proxySocket = Net.createConnection(proxy.port, server.url.hostname)
+  const proxySocket = Net.createConnection(proxy.port, serverURL.hostname)
 
   proxySocket.on("close", () => {
     log({ who, message: "proxySocket closed" })

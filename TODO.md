@@ -1,20 +1,24 @@
+# reverse-proxy example
+
 ```
 fidb serve-reverse-proxy --port 8080 --port 5108 \
- --database tmp/databases/reverse-proxy \
+ --database ~/fidb-official/fidb/tmp/databases/reverse-proxy \
  --domain cicada.localhost
 
-fidb serve-website ~/learn-x/learn-alpinejs/notepad \
-  --reverse-proxy http://notepad.cicada.localhost:8080
 
 fidb serve-website ~/learn-x/learn-alpinejs/notepad \
-  --reverse-proxy http://notepad.cicada.localhost:5108
+  --url http://notepad.cicada.localhost:8080
+
+curl 'http://notepad.cicada.localhost:8080'
+
+
+fidb serve-database ~/fidb-official/fidb-databases/databases/test \
+  --url http://notepad.cicada.localhost:5108
+
+curl 'http://notepad.cicada.localhost:5108?kind=info'
 ```
 
 # reverse-proxy interface
-
-[reverse-proxy] `fidb serve-database` take `--reverse-proxy` -- no auth for now
-
-[reverse-proxy] `fidb serve-website` take `--reverse-proxy` -- no auth for now
 
 setup `LoginReverseProxyServerCommand`
 
