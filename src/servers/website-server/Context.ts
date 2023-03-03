@@ -1,11 +1,10 @@
-import { resolve } from "node:path"
+import { basename, dirname, resolve } from "node:path"
 import { pathIsDirectory } from "../../utils/node/pathIsDirectory"
 import { pathIsFile } from "../../utils/node/pathIsFile"
 
 export type Context = {
-  kind: "File" | "Directory"
   path: string
-  rewrite: Record<string, string>
+  rewrites: Record<string, string>
 }
 
 type ContextOptions = {
@@ -17,17 +16,17 @@ export async function createContext(options: ContextOptions): Promise<Context> {
 
   if (await pathIsFile(path)) {
     return {
-      kind: "File",
-      path: resolve(path),
-      rewrite: {},
+      path: dirname(resolve(path)),
+      rewrites: {
+        "": basename(path),
+      },
     }
   }
 
   if (await pathIsDirectory(path)) {
     return {
-      kind: "Directory",
       path: resolve(path),
-      rewrite: {},
+      rewrites: {},
     }
   }
 

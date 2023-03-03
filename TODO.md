@@ -1,4 +1,6 @@
-[website-server] `handlePage` -- use `ctx.rewrite: Record<string, string>` -- `micromatch`
+[website-server] `handlePage` -- can config headers
+
+[website-server] `handlePage` -- can config cors
 
 [website-server] `handlePage` -- can not access path outside of given directory
 

@@ -4,6 +4,7 @@ import { requestURL } from "../../server/requestURL"
 import { responseSend } from "../../server/responseSend"
 import type { Json } from "../../utils/Json"
 import type { Context } from "./Context"
+import { pathRewrite } from "./pathRewrite"
 import { readContent } from "./readContent"
 
 export async function handlePage(
@@ -16,7 +17,7 @@ export async function handlePage(
   // NOTE `decodeURIComponent` is necessary for space.
   const path = normalize(decodeURIComponent(url.pathname.slice(1)))
 
-  const fullPath = resolve(ctx.path, path)
+  const fullPath = resolve(ctx.path, pathRewrite(path, ctx.rewrites))
 
   if (request.method === "GET") {
     const content = await readContent(fullPath)
