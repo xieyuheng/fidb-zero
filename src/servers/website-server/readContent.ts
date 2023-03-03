@@ -18,7 +18,15 @@ export async function readContent(
 > {
   const resolvedPath = normalize(resolve(ctx.directory, path))
 
-  // NOTE Should not access path outside of given directory
+  // NOTE We should not access path outside of given directory.
+
+  // The URL constructor can already
+  // rewrite
+  //   "http://example.com/../secret"
+  // to
+  //   "http://example.com/secret"
+  // But we want to be absolutely sure about this.
+
   if (!resolvedPath.startsWith(ctx.directory)) {
     return undefined
   }
