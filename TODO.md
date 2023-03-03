@@ -1,6 +1,18 @@
-[website-server] `handlePage`
+[website-server] `Context` has `path`
 
-`ServeWebsiteCommand` -- support `--is-single-page-app`
+[website-server] `Context` has `root: WebsiteRoot`
+
+- `WebsiteRoot` has `@kind` for `File` and `Directory`
+
+[website-server] `handlePage` -- can not access path outside of given directory
+
+[website-server] `handlePage` context has `rewrite`
+
+`ServeWebsiteCommand` -- support `--rewrite-not-found-to`
+
+- do this by default when input is a file
+
+`startServer` take `tls` object -- which has `certPath` and `keyPath`
 
 # reverse-proxy
 
