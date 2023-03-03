@@ -1,7 +1,5 @@
 # reverse-proxy
 
-rename `handleDefault` to `handleDispatch`
-
 move `requestSubdomain` to `reverse-proxy-server/` and use `ctx`
 
 `fidb serve-reverse-proxy` can take many ports -- sharing the same database

@@ -5,7 +5,7 @@ import { requestFormatRaw } from "../../server/requestFormatRaw"
 import { requestSubdomain } from "../../server/requestSubdomain"
 import type { Context } from "./Context"
 
-export async function handleDefault(
+export async function handleDispatch(
   ctx: Context,
   request: Http.IncomingMessage,
   response: Http.ServerResponse,

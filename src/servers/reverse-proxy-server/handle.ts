@@ -5,7 +5,7 @@ import { requestKind } from "../../server/requestKind"
 import { requestURL } from "../../server/requestURL"
 import type { Json } from "../../utils/Json"
 import type { Context } from "./Context"
-import { handleDefault } from "./handleDefault"
+import { handleDispatch } from "./handleDispatch"
 import { handlePing } from "./handlePing"
 import { handleReverseProxyTarget } from "./handleReverseProxyTarget"
 
@@ -32,5 +32,5 @@ export async function handle(
     }
   }
 
-  return await handleDefault(ctx, request, response)
+  return await handleDispatch(ctx, request, response)
 }
