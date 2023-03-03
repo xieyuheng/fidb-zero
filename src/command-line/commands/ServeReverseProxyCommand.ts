@@ -10,6 +10,7 @@ import { log } from "../../utils/log"
 type Args = {}
 type Opts = {
   database: string
+  domain: string
   hostname?: string
   port?: number
   "tls-cert"?: string
@@ -24,6 +25,7 @@ export class ServeReverseProxyCommand extends Command<Args> {
   args = {}
   opts = {
     database: ty.string(),
+    domain: ty.string(),
     hostname: ty.optional(ty.string()),
     port: ty.optional(ty.number()),
     "tls-cert": ty.optional(ty.string()),
@@ -46,7 +48,11 @@ export class ServeReverseProxyCommand extends Command<Args> {
   async execute(argv: Args & Opts): Promise<void> {
     const who = this.name
 
-    const ctx = await createContext({ path: argv.database })
+    const ctx = await createContext({
+      path: argv.database,
+      domain: argv.domain,
+    })
+
     const requestListener = createRequestListener({ ctx, handle })
     const tls = maybeTlsOptionsFromArgv(argv)
 
