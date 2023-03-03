@@ -1,5 +1,5 @@
 ---
-title: Reverse proxy workflow
+title: Reverse proxy use case
 ---
 
 We can not yet run tests for command-line.
