@@ -30,6 +30,30 @@ export class LoginReverseProxyCommand extends Command<Args> {
   async execute(argv: Args & Opts): Promise<void> {
     const who = this.name
 
-    log({ who, argv })
+    const password = "TODO"
+
+    const response = await fetch(`${argv.url}?kind=password-login`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        password,
+      }),
+    })
+
+    if (response.ok) {
+      const token = await response.json()
+      log({ who, token })
+    } else {
+      log({
+        who,
+        kind: "Error",
+        status: {
+          code: response.status,
+          message: response.statusText,
+        },
+      })
+    }
   }
 }

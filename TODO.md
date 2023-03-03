@@ -1,3 +1,10 @@
+# reverse-proxy interface
+
+`fidb login-reverse-proxy` -- read password from command-line
+`fidb login-reverse-proxy` -- save token to `FIDB_DIR` -- `~/.fidb/`
+[reverse-proxy-server] database `users/` -- user has `subdomains`
+[reverse-proxy-server] `handleReverseProxyTarget` -- `POST` -- check `password`
+
 # reverse-proxy test
 
 [command-line] `tests/` -- be able to test command
@@ -5,38 +12,6 @@
 - need to setup example website
 - need to run command in `child_process`
 - need to use node http client -- which can mock DNS server
-
-```
-fidb serve-reverse-proxy --port 8080 --port 5108 \
- --database ~/fidb-official/fidb/tmp/databases/reverse-proxy \
- --domain cicada.localhost
-
-
-fidb login-reverse-proxy http://cicada.localhost:8080
-
-# NOTE Login one port will login all ports,
-#   so we do not need to do the following:
-#
-# fidb login-reverse-proxy http://cicada.localhost:5108
-
-
-fidb serve-website ~/learn-x/learn-alpinejs/notepad \
-  --url http://notepad.cicada.localhost:8080
-
-curl 'http://notepad.cicada.localhost:8080'
-
-
-fidb serve-database ~/fidb-official/fidb-databases/databases/test \
-  --url http://notepad.cicada.localhost:5108
-
-curl 'http://notepad.cicada.localhost:5108?kind=info'
-```
-
-# reverse-proxy interface
-
-`fidb login-reverse-proxy` -- `password-login`
-[reverse-proxy-server] database `users/` -- user has `subdomains`
-[reverse-proxy-server] `handleReverseProxyTarget` -- `POST` -- check `password`
 
 # reverse-proxy messaging
 
