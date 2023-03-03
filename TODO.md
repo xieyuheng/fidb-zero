@@ -1,5 +1,3 @@
-[reverse-proxy-server] `createContext` -- to be symmetric with other servers
-
 `startServer` take `tls` object -- which has `certPath` and `keyPath`
 
 [website-server] `handlePage` -- can not access path outside of given directory
