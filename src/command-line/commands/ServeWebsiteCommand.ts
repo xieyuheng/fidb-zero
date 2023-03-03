@@ -12,7 +12,7 @@ type Args = { path: string }
 type Opts = {
   hostname?: string
   port?: number
-  "is-single-page-app"?: boolean
+  "rewrite-not-found-to"?: string
   "tls-cert"?: string
   "tls-key"?: string
   "reverse-proxy-server"?: string
@@ -29,7 +29,7 @@ export class ServeWebsiteCommand extends Command<Args> {
   opts = {
     hostname: ty.optional(ty.string()),
     port: ty.optional(ty.number()),
-    "is-single-page-app": ty.optional(ty.boolean()),
+    "rewrite-not-found-to": ty.optional(ty.string()),
     "tls-cert": ty.optional(ty.string()),
     "tls-key": ty.optional(ty.string()),
     "reverse-proxy-server": ty.optional(ty.string()),
@@ -53,7 +53,11 @@ export class ServeWebsiteCommand extends Command<Args> {
   async execute(argv: Args & Opts): Promise<void> {
     const who = this.name
 
-    const ctx = await createContext({ path: argv.path })
+    const ctx = await createContext({
+      path: argv.path,
+      rewriteNotFoundTo: argv["rewrite-not-found-to"],
+    })
+
     const requestListener = createRequestListener({ ctx, handle })
     const tls = maybeTlsOptionsFromArgv(argv)
 

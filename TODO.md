@@ -1,14 +1,8 @@
-[website-server] `handlePage` -- can config headers
-
-[website-server] `handlePage` -- can config cors
+`ServeWebsiteCommand` -- `--enable-cors`
 
 [website-server] `handlePage` -- can not access path outside of given directory
 
-`ServeWebsiteCommand` -- support `--rewrite-not-found-to`
-
-- do this by default when input is a file
-
-`ServeWebsiteCommand` -- improve `log` -- make sure the report is good
+`createRequestListener` should not call `preflight`
 
 # reverse-proxy
 

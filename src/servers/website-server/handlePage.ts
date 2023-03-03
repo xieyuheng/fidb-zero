@@ -4,7 +4,6 @@ import { requestURL } from "../../server/requestURL"
 import { responseSend } from "../../server/responseSend"
 import type { Json } from "../../utils/Json"
 import type { Context } from "./Context"
-import { pathRewrite } from "./pathRewrite"
 import { readContent } from "./readContent"
 
 export async function handlePage(
@@ -17,10 +16,15 @@ export async function handlePage(
   // NOTE `decodeURIComponent` is necessary for space.
   const path = normalize(decodeURIComponent(url.pathname.slice(1)))
 
-  const fullPath = resolve(ctx.directory, pathRewrite(path, ctx.rewrites))
+  const fullPath = resolve(ctx.directory, path)
 
   if (request.method === "GET") {
-    const content = await readContent(fullPath)
+    const content =
+      (await readContent(fullPath)) ||
+      (ctx.rewriteNotFoundTo
+        ? await readContent(resolve(ctx.directory, ctx.rewriteNotFoundTo))
+        : undefined)
+
     if (content === undefined) {
       responseSend(response, {
         status: { code: 404 },
@@ -29,6 +33,7 @@ export async function handlePage(
           connection: "close",
         },
       })
+
       return
     }
 
@@ -41,6 +46,7 @@ export async function handlePage(
       },
       body: content.buffer,
     })
+
     return
   }
 
