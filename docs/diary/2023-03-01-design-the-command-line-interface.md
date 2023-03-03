@@ -31,7 +31,7 @@ served at
 Instead, we should first login to the reverse proxy server.
 
 ```
-fidb login-reverse-proxy-server https://fidb.app:5108
+fidb login-reverse-proxy https://fidb.app:5108
 
 
 Prompt for username
@@ -92,7 +92,7 @@ The reverse-proxy served at:
 
 An app often need both website and database,
 but we do not want to `serve-reverse-proxy` twice
-and `login-reverse-proxy-server` twice.
+and `login-reverse-proxy` twice.
 
 Thus `serve-reverse-proxy` and should support multiple ports.
 
@@ -112,19 +112,19 @@ If at least one `--port` is explicitly given,
 we will not infer from protocol or add default port of fidb -- 5108.
 
 ```
-fidb login-reverse-proxy-server https://fidb.app
+fidb login-reverse-proxy https://fidb.app
 
 Will login to 443 and 5108
 ```
 
 ```
-fidb login-reverse-proxy-server https://fidb.app --port 3000 --port 5000
+fidb login-reverse-proxy https://fidb.app --port 3000 --port 5000
 
 Will login to 3000 and 5000
 ```
 
 ```
-fidb login-reverse-proxy-server https://fidb.app --port 3000
+fidb login-reverse-proxy https://fidb.app --port 3000
 
 Will login to 3000
 ```

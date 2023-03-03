@@ -20,11 +20,11 @@ curl 'http://notepad.cicada.localhost:5108?kind=info'
 
 # reverse-proxy interface
 
-setup `LoginReverseProxyServerCommand`
+setup `LoginReverseProxyCommand`
 
-- `fidb login-reverse-proxy-server <server-url> --port --port`
+- `fidb login-reverse-proxy <server-url> --port --port`
 
-`LoginReverseProxyServerCommand` use client of reverse-proxy-server
+`LoginReverseProxyCommand` use client of reverse-proxy-server
 
 [reverse-proxy] database `users/` -- user has `subdomains`
 
