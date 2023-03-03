@@ -1,8 +1,8 @@
 `ServeWebsiteCommand` -- improve log to report more
 
-[website-server] `handlePage` -- can not access path outside of given directory
-
 [website-server] `handlePage` context has `rewrite: Record<string, string>`
+
+[website-server] `handlePage` -- can not access path outside of given directory
 
 `ServeWebsiteCommand` -- support `--rewrite-not-found-to`
 

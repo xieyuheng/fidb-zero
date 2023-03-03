@@ -1,11 +1,9 @@
 import type { RequestListener } from "../server/createRequestListener"
 import { serverListen } from "../server/serverListen"
-import { log } from "../utils/log"
 import { findPort } from "../utils/node/findPort"
 import { createServer, TlsOptions } from "./createServer"
 
 type Options = {
-  who: string
   hostname?: string
   port?: number
   startingPort?: number
@@ -28,8 +26,6 @@ export async function startServer(
   await serverListen(server, { hostname, port })
 
   const url = new URL(`${scheme}://${hostname}:${port}`)
-
-  log({ who: options.who, url: url.toString() })
 
   return { url }
 }

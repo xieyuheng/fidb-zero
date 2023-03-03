@@ -48,11 +48,8 @@ export class ServeReverseProxyCommand extends Command<Args> {
     const requestListener = createRequestListener({ ctx, handle })
     const tls = maybeTlsOptionsFromArgv(argv)
 
-    log({ who, ctx, tls })
-
-    await startServer(
+    const { url } = await startServer(
       {
-        who,
         hostname: argv.hostname,
         port: argv.port,
         startingPort: 3000,
@@ -60,5 +57,7 @@ export class ServeReverseProxyCommand extends Command<Args> {
       },
       requestListener,
     )
+
+    log({ who, ctx, url, tls })
   }
 }

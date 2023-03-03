@@ -57,11 +57,8 @@ export class ServeWebsiteCommand extends Command<Args> {
     const requestListener = createRequestListener({ ctx, handle })
     const tls = maybeTlsOptionsFromArgv(argv)
 
-    log({ who, ctx, tls })
-
     const { url } = await startServer(
       {
-        who,
         hostname: argv.hostname,
         port: argv.port,
         startingPort: 8080,
@@ -69,6 +66,8 @@ export class ServeWebsiteCommand extends Command<Args> {
       },
       requestListener,
     )
+
+    log({ who, ctx, url, tls })
 
     if (
       argv["reverse-proxy-server"] &&
