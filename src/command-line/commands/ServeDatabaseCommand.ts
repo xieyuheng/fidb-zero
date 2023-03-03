@@ -14,9 +14,7 @@ type Opts = {
   port?: number
   "tls-cert"?: string
   "tls-key"?: string
-  "reverse-proxy-server"?: string
-  "reverse-proxy-username"?: string
-  "reverse-proxy-password"?: string
+  "reverse-proxy"?: string
 }
 
 export class ServeDatabaseCommand extends Command<Args> {
@@ -30,9 +28,7 @@ export class ServeDatabaseCommand extends Command<Args> {
     port: ty.optional(ty.number()),
     "tls-cert": ty.optional(ty.string()),
     "tls-key": ty.optional(ty.string()),
-    "reverse-proxy-server": ty.optional(ty.string()),
-    "reverse-proxy-username": ty.optional(ty.string()),
-    "reverse-proxy-password": ty.optional(ty.string()),
+    "reverse-proxy": ty.optional(ty.string()),
   }
 
   // prettier-ignore
@@ -64,15 +60,11 @@ export class ServeDatabaseCommand extends Command<Args> {
 
     log({ who, ctx, url, tls })
 
-    if (
-      argv["reverse-proxy-server"] &&
-      argv["reverse-proxy-username"] &&
-      argv["reverse-proxy-password"]
-    ) {
+    if (argv["reverse-proxy"]) {
       await connectReverseProxy({
-        server: { url: new URL(argv["reverse-proxy-server"]) },
-        username: argv["reverse-proxy-username"],
-        password: argv["reverse-proxy-password"],
+        server: { url: new URL(argv["reverse-proxy"]) },
+        username: "TODO",
+        password: "TODO",
         target: {
           hostname: url.hostname,
           port: Number(url.port),

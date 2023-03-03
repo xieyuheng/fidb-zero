@@ -1,9 +1,14 @@
+```
 fidb serve-reverse-proxy --port 8080 --port 5108 \
  --database tmp/databases/reverse-proxy \
  --domain cicada.localhost
 
-fidb serve-website ~/learn-x/learn-alpinejs/notepad --reverse-proxy http://cicada.localhost:8080
-fidb serve-website ~/learn-x/learn-alpinejs/notepad --reverse-proxy http://cicada.localhost:5108
+fidb serve-website ~/learn-x/learn-alpinejs/notepad \
+  --reverse-proxy http://notepad.cicada.localhost:8080
+
+fidb serve-website ~/learn-x/learn-alpinejs/notepad \
+  --reverse-proxy http://notepad.cicada.localhost:5108
+```
 
 # reverse-proxy interface
 
