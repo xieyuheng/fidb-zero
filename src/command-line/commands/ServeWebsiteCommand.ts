@@ -5,6 +5,7 @@ import { connectReverseProxy } from "../../clients/reverse-proxy-client"
 import { createRequestListener } from "../../server/createRequestListener"
 import { startServer } from "../../server/startServer"
 import { handle } from "../../servers/website-server"
+import { createContext } from "../../servers/website-server/Context"
 
 type Args = { path: string }
 type Opts = {
@@ -51,10 +52,7 @@ export class ServeWebsiteCommand extends Command<Args> {
   async execute(argv: Args & Opts): Promise<void> {
     const who = this.name
 
-    const ctx = {
-      path: resolve(argv.path),
-    }
-
+    const ctx = await createContext({ path: resolve(argv.path) })
     const requestListener = createRequestListener({ ctx, handle })
 
     const { url } = await startServer(
