@@ -1,11 +1,10 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
-import { resolve } from "node:path"
 import { connectReverseProxy } from "../../clients/reverse-proxy-client"
-import { createDatabase } from "../../database"
 import { createRequestListener } from "../../server/createRequestListener"
 import { startServer } from "../../server/startServer"
 import { handle } from "../../servers/database-server"
+import { createContext } from "../../servers/database-server/Context"
 import { log } from "../../utils/log"
 
 type Args = { path: string }
@@ -51,12 +50,10 @@ export class ServeDatabaseCommand extends Command<Args> {
   async execute(argv: Args & Opts): Promise<void> {
     const who = this.name
 
-    const db = await createDatabase({ path: resolve(argv.path) })
-
-    log({ who, db })
-
-    const ctx = { db }
+    const ctx = await createContext({ path: argv.path })
     const requestListener = createRequestListener({ ctx, handle })
+
+    log({ who, ctx })
 
     const { url } = await startServer(
       {

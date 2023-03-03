@@ -1,6 +1,6 @@
-[database-server] `createContext` -- to be symmetric
+[reverse-proxy-server] `createContext` -- to be symmetric with other servers
 
-[reverse-proxy-server] `createContext` -- to be symmetric
+`startServer` take `tls` object -- which has `certPath` and `keyPath`
 
 [website-server] `handlePage` -- can not access path outside of given directory
 
@@ -9,8 +9,6 @@
 `ServeWebsiteCommand` -- support `--rewrite-not-found-to`
 
 - do this by default when input is a file
-
-`startServer` take `tls` object -- which has `certPath` and `keyPath`
 
 # reverse-proxy
 

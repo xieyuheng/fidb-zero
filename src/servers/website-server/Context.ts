@@ -1,3 +1,4 @@
+import { resolve } from "node:path"
 import { pathIsDirectory } from "../../utils/node/pathIsDirectory"
 import { pathIsFile } from "../../utils/node/pathIsFile"
 
@@ -6,7 +7,7 @@ export type Context = {
   path: string
 }
 
-export type ContextOptions = {
+type ContextOptions = {
   path: string
 }
 
@@ -16,14 +17,14 @@ export async function createContext(options: ContextOptions): Promise<Context> {
   if (await pathIsFile(path)) {
     return {
       kind: "File",
-      path,
+      path: resolve(path),
     }
   }
 
   if (await pathIsDirectory(path)) {
     return {
       kind: "Directory",
-      path,
+      path: resolve(path),
     }
   }
 
