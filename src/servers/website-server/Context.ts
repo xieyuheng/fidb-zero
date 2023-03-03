@@ -5,6 +5,7 @@ import { pathIsFile } from "../../utils/node/pathIsFile"
 export type Context = {
   kind: "File" | "Directory"
   path: string
+  rewrite: Record<string, string>
 }
 
 type ContextOptions = {
@@ -18,6 +19,7 @@ export async function createContext(options: ContextOptions): Promise<Context> {
     return {
       kind: "File",
       path: resolve(path),
+      rewrite: {},
     }
   }
 
@@ -25,6 +27,7 @@ export async function createContext(options: ContextOptions): Promise<Context> {
     return {
       kind: "Directory",
       path: resolve(path),
+      rewrite: {},
     }
   }
 

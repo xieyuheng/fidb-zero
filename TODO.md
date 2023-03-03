@@ -1,12 +1,12 @@
-`ServeWebsiteCommand` -- improve log to report more
-
-[website-server] `handlePage` context has `rewrite: Record<string, string>`
+[website-server] `handlePage` -- use `ctx.rewrite: Record<string, string>` -- `micromatch`
 
 [website-server] `handlePage` -- can not access path outside of given directory
 
 `ServeWebsiteCommand` -- support `--rewrite-not-found-to`
 
 - do this by default when input is a file
+
+`ServeWebsiteCommand` -- improve `log` -- make sure the report is good
 
 # reverse-proxy
 
