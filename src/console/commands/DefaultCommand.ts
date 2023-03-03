@@ -1,6 +1,6 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
-import { packageJson } from "../../utils/packageJson"
+import { packageJson } from "../../utils/node/packageJson"
 import * as Commands from "../commands"
 
 type Args = {}

@@ -1,4 +1,4 @@
-import { readCsv } from "../utils/readCsv"
+import { readCsv } from "../utils/node/readCsv"
 import type { Data } from "./Data"
 import { randomRevision } from "./randomRevision"
 

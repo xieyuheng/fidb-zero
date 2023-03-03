@@ -1,8 +1,8 @@
 import fs from "node:fs"
 import type { Data } from "../data"
 import type { Database } from "../database"
-import { isErrnoException } from "../utils/isErrnoException"
 import type { JsonAtom } from "../utils/Json"
+import { isErrnoException } from "../utils/node/isErrnoException"
 import { dataGet } from "./dataGet"
 import { resolvePath } from "./utils/resolvePath"
 

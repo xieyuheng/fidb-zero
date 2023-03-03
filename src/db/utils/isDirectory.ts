@@ -1,6 +1,6 @@
 import fs from "node:fs"
 import type { Database } from "../../database"
-import { isErrnoException } from "../../utils/isErrnoException"
+import { isErrnoException } from "../../utils/node/isErrnoException"
 import { resolvePath } from "./resolvePath"
 
 export async function isDirectory(

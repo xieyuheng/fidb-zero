@@ -2,7 +2,7 @@ import fs from "node:fs"
 import { join } from "node:path"
 import type { Database } from "../database"
 import type { PathEntry } from "../path-entry"
-import { isErrnoException } from "../utils/isErrnoException"
+import { isErrnoException } from "../utils/node/isErrnoException"
 import { resolvePath } from "./utils/resolvePath"
 
 export async function* directoryListAll(

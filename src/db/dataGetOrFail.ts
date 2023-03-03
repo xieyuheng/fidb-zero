@@ -1,7 +1,7 @@
 import { Data, DataSchema } from "../data"
 import type { Database } from "../database"
 import { NotFound } from "../errors/NotFound"
-import { isErrnoException } from "../utils/isErrnoException"
+import { isErrnoException } from "../utils/node/isErrnoException"
 import { readData } from "./utils/readData"
 
 export async function dataGetOrFail(db: Database, path: string): Promise<Data> {

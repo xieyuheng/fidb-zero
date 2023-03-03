@@ -3,7 +3,7 @@ import * as Db from "../../../db"
 import { prepareTestDb } from "../../../db/tests/prepareTestDb"
 import { createRequestListener } from "../../../server/createRequestListener"
 import { serverListen } from "../../../server/serverListen"
-import { findPort } from "../../../utils/findPort"
+import { findPort } from "../../../utils/node/findPort"
 import { handle } from "../../database-server"
 
 export async function prepareTestServer(options: { name: string }) {

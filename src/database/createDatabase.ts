@@ -1,6 +1,6 @@
 import fs from "node:fs"
 import { join, normalize, resolve } from "node:path"
-import { isErrnoException } from "../utils/isErrnoException"
+import { isErrnoException } from "../utils/node/isErrnoException"
 import { readJson } from "../utils/node/readJson"
 import type { Database } from "./Database"
 import {
