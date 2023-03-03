@@ -2,15 +2,15 @@ import type Http from "node:http"
 import type { Socket } from "node:net"
 import { NotFound } from "../../errors/NotFound"
 import { requestFormatRaw } from "../../server/requestFormatRaw"
-import { requestSubdomain } from "../../server/requestSubdomain"
 import type { Context } from "./Context"
+import { requestSubdomain } from "./requestSubdomain"
 
 export async function handleDispatch(
   ctx: Context,
   request: Http.IncomingMessage,
   response: Http.ServerResponse,
 ): Promise<void> {
-  const subdomin = requestSubdomain(request)
+  const subdomin = requestSubdomain(ctx, request)
   if (subdomin === undefined) {
     const host = request.headers["host"]
     throw new NotFound(`[handleDefault] no subdomain in request host: ${host}`)

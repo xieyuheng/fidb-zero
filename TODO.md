@@ -1,7 +1,5 @@
 # reverse-proxy
 
-move `requestSubdomain` to `reverse-proxy-server/` and use `ctx`
-
 `fidb serve-reverse-proxy` can take many ports -- sharing the same database
 
 [reverse-proxy] database `users/` -- user has `subdomains`
