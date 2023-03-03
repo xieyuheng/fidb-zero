@@ -1,6 +1,7 @@
 export * from "@xieyuheng/command-line/lib/commands"
 export * from "./DefaultCommand"
 export * from "./ImportDatasetCommand"
+export * from "./LoginReverseProxyCommand"
 export * from "./ServeDatabaseCommand"
 export * from "./ServeReverseProxyCommand"
 export * from "./ServeWebsiteCommand"

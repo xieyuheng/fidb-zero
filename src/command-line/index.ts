@@ -9,6 +9,7 @@ export function createCommandRunner(): CommandRunner {
       new Commands.ServeDatabaseCommand(),
       new Commands.ServeWebsiteCommand(),
       new Commands.ServeReverseProxyCommand(),
+      new Commands.LoginReverseProxyCommand(),
       new Commands.ImportDatasetCommand(),
     ],
   })

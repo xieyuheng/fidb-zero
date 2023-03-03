@@ -1,7 +1,3 @@
-setup `LoginReverseProxyCommand`
-
-- one argument command `fidb login-reverse-proxy <server-url>`
-
 [reverse-proxy-server] `Context` has `availablePorts`
 
 # reverse-proxy test
@@ -56,6 +52,8 @@ curl 'http://notepad.cicada.localhost:5108?kind=info'
 # reverse-proxy messaging
 
 [reverse-proxy] extract general proxy messaging pattern
+
+- learn from zmq tcp multipart message -- instead of using `keySize`
 
 [reverse-proxy] encrypt tcp message by token
 
