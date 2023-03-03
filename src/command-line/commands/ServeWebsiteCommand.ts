@@ -13,6 +13,7 @@ type Opts = {
   hostname?: string
   port?: number
   "rewrite-not-found-to"?: string
+  cors?: boolean
   "tls-cert"?: string
   "tls-key"?: string
   "reverse-proxy-server"?: string
@@ -30,6 +31,7 @@ export class ServeWebsiteCommand extends Command<Args> {
     hostname: ty.optional(ty.string()),
     port: ty.optional(ty.number()),
     "rewrite-not-found-to": ty.optional(ty.string()),
+    cors: ty.optional(ty.boolean()),
     "tls-cert": ty.optional(ty.string()),
     "tls-key": ty.optional(ty.string()),
     "reverse-proxy-server": ty.optional(ty.string()),
@@ -56,6 +58,7 @@ export class ServeWebsiteCommand extends Command<Args> {
     const ctx = await createContext({
       path: argv.path,
       rewriteNotFoundTo: argv["rewrite-not-found-to"],
+      cors: argv["cors"],
     })
 
     const requestListener = createRequestListener({ ctx, handle })

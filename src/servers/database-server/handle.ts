@@ -1,5 +1,6 @@
 import type { Buffer } from "node:buffer"
 import type Http from "node:http"
+import { handlePreflight } from "../../server/handlePreflight"
 import { requestKind } from "../../server/requestKind"
 import type { Json } from "../../utils/Json"
 import type { Context } from "./Context"
@@ -14,7 +15,12 @@ import { requestPath } from "./requestPath"
 export async function handle(
   ctx: Context,
   request: Http.IncomingMessage,
+  response: Http.ServerResponse,
 ): Promise<Json | Buffer | void> {
+  if (request.method === "OPTIONS") {
+    return handlePreflight(request, response)
+  }
+
   const kind = requestKind(request)
 
   if (kind.startsWith("data") || kind === "") {

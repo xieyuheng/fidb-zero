@@ -25,11 +25,6 @@ export function createRequestListener<Context>(options: {
 }): RequestListener {
   const { ctx, handle } = options
   return async (request, response) => {
-    if (request.method === "OPTIONS") {
-      preflight(request, response)
-      return
-    }
-
     try {
       const body = await handle(ctx, request, response)
 
@@ -96,27 +91,4 @@ export function createRequestListener<Context>(options: {
       }
     }
   }
-}
-
-function preflight(
-  request: Http.IncomingMessage,
-  response: Http.ServerResponse,
-): void {
-  const headers: Record<string, string> = {}
-
-  if (request.headers["origin"]) {
-    headers["access-control-allow-origin"] = request.headers["origin"]
-  }
-
-  if (request.headers["access-control-request-method"]) {
-    headers["access-control-allow-methods"] =
-      request.headers["access-control-request-method"]
-  }
-
-  if (request.headers["access-control-request-headers"]) {
-    headers["access-control-allow-headers"] =
-      request.headers["access-control-request-headers"]
-  }
-
-  responseSendJson(response, { headers })
 }

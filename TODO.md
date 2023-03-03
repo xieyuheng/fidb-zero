@@ -1,7 +1,3 @@
-`ServeWebsiteCommand` -- `--enable-cors`
-
-`createRequestListener` should not call `preflight`
-
 # reverse-proxy
 
 [reverse-proxy] can take many ports -- sharing the same database

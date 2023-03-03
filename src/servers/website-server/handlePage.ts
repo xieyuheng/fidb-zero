@@ -16,6 +16,8 @@ export async function handlePage(
   // NOTE `decodeURIComponent` is necessary for space.
   const path = normalize(decodeURIComponent(url.pathname.slice(1)))
 
+  const corsHeaders = ctx.cors ? { "access-control-allow-origin": "*" } : {}
+
   if (request.method === "GET") {
     const content =
       (await readContent(ctx, path)) ||
@@ -27,7 +29,7 @@ export async function handlePage(
       responseSend(response, {
         status: { code: 404 },
         headers: {
-          "access-control-allow-origin": "*",
+          ...corsHeaders,
           connection: "close",
         },
       })
@@ -39,7 +41,7 @@ export async function handlePage(
       status: { code: 200 },
       headers: {
         "content-type": content.type,
-        "access-control-allow-origin": "*",
+        ...corsHeaders,
         connection: "close",
       },
       body: content.buffer,
