@@ -55,10 +55,8 @@ export class ServeDatabaseCommand extends Command<Args> {
 
     log({ who, db })
 
-    const requestListener = createRequestListener({
-      ctx: { db },
-      handle,
-    })
+    const ctx = { db }
+    const requestListener = createRequestListener({ ctx, handle })
 
     const { url } = await startServer(
       {

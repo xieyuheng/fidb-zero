@@ -1,8 +1,10 @@
-[website-server] `Context` has `path`
-
-[website-server] `Context` has `root: WebsiteRoot`
+[website-server] `createContext` -- `Context` has `root: WebsiteRoot`
 
 - `WebsiteRoot` has `@kind` for `File` and `Directory`
+
+[database-server] `createContext`
+
+[reverse-proxy-server] `createContext`
 
 [website-server] `handlePage` -- can not access path outside of given directory
 

@@ -1,5 +1,6 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
+import { resolve } from "node:path"
 import { connectReverseProxy } from "../../clients/reverse-proxy-client"
 import { createRequestListener } from "../../server/createRequestListener"
 import { startServer } from "../../server/startServer"
@@ -50,10 +51,11 @@ export class ServeWebsiteCommand extends Command<Args> {
   async execute(argv: Args & Opts): Promise<void> {
     const who = this.name
 
-    const requestListener = createRequestListener({
-      ctx: {},
-      handle,
-    })
+    const ctx = {
+      path: resolve(argv.path),
+    }
+
+    const requestListener = createRequestListener({ ctx, handle })
 
     const { url } = await startServer(
       {
