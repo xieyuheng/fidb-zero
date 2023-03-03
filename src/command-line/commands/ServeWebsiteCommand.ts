@@ -64,15 +64,12 @@ export class ServeWebsiteCommand extends Command<Args> {
     const requestListener = createRequestListener({ ctx, handle })
     const tls = maybeTlsOptionsFromArgv(argv)
 
-    const { url } = await startServer(
-      {
-        hostname: argv.hostname,
-        port: argv.port,
-        startingPort: 8080,
-        tls,
-      },
-      requestListener,
-    )
+    const { url } = await startServer(requestListener, {
+      hostname: argv.hostname,
+      port: argv.port,
+      startingPort: 8080,
+      tls,
+    })
 
     log({ who, ctx, url, tls })
 

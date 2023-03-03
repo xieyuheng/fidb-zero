@@ -1,14 +1,33 @@
 # reverse-proxy
 
-[reverse-proxy] can take many ports -- sharing the same database
-[reverse-proxy] support login
+`fidb serve-reverse-proxy` take `--database` from options -- instead of taking from `args`
+
+`fidb serve-reverse-proxy` take `--domain`
+
+- check `domain` before dispatching to `handleReverseProxyTarget`
+
+`fidb serve-reverse-proxy` can take many ports -- sharing the same database
+
+[reverse-proxy] database `users/` -- user has `subdomains`
+
+[reverse-proxy] `handlePassword` -- `password-register`
+[reverse-proxy] `handlePassword` -- `password-login`
+
+setup `LoginReverseProxyServerCommand`
+
+- `fidb login-reverse-proxy-server <server-url> --port --port`
+
+`LoginReverseProxyServerCommand` use client of reverse-proxy-server
+
 [reverse-proxy] `handleReverseProxyTarget` -- `POST` -- check `password`
-[reverse-proxy] user has subdomains
-[reverse-proxy] `fidb serve` take `--reverse-proxy-subdomain`
+
+[reverse-proxy] `fidb serve-database` take `--reverse-proxy-subdomain`
+
+[reverse-proxy] extract general proxy messaging pattern
 
 [reverse-proxy] encrypt tcp message by token
 
-[reverse-proxy] `fidb serve` -- ping the socket to keep it alive
+[reverse-proxy] `fidb serve-database` -- ping the socket to keep it alive
 
 - try to restart on `proxySocket` close
 - learn from ZMQ

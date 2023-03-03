@@ -11,8 +11,8 @@ type Options = {
 }
 
 export async function startServer(
-  options: Options,
   requestListener: RequestListener,
+  options: Options,
 ): Promise<{ url: URL }> {
   const { scheme, server } = await createServer(requestListener, options)
 
