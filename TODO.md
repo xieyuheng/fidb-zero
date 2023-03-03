@@ -1,7 +1,5 @@
 # reverse-proxy
 
-`fidb serve-reverse-proxy` can take many ports -- sharing the same database
-
 [reverse-proxy] database `users/` -- user has `subdomains`
 
 [reverse-proxy] `handlePassword` -- `password-register`
@@ -20,6 +18,8 @@ setup `LoginReverseProxyServerCommand`
 [reverse-proxy] extract general proxy messaging pattern
 
 [reverse-proxy] encrypt tcp message by token
+
+[reverse-proxy] remove target on disconnect
 
 [reverse-proxy] `fidb serve-database` -- ping the socket to keep it alive
 

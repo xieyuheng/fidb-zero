@@ -11,8 +11,7 @@ type Args = {}
 type Opts = {
   database: string
   domain: string
-  hostname?: string
-  port?: number
+  port?: number | Array<number>
   "tls-cert"?: string
   "tls-key"?: string
 }
@@ -26,8 +25,7 @@ export class ServeReverseProxyCommand extends Command<Args> {
   opts = {
     database: ty.string(),
     domain: ty.string(),
-    hostname: ty.optional(ty.string()),
-    port: ty.optional(ty.number()),
+    port: ty.optional(ty.union(ty.number(), ty.array(ty.number()))),
     "tls-cert": ty.optional(ty.string()),
     "tls-key": ty.optional(ty.string()),
   }
@@ -48,21 +46,55 @@ export class ServeReverseProxyCommand extends Command<Args> {
   async execute(argv: Args & Opts): Promise<void> {
     const who = this.name
 
-    const ctx = await createContext({
-      path: argv.database,
-      domain: argv.domain,
-    })
-
-    const requestListener = createRequestListener({ ctx, handle })
     const tls = maybeTlsOptionsFromArgv(argv)
 
-    const { url } = await startServer(requestListener, {
-      hostname: argv.hostname,
-      port: argv.port,
-      startingPort: 3000,
-      tls,
-    })
+    if (typeof argv.port === "number" || argv.port === undefined) {
+      const ctx = await createContext({
+        path: argv.database,
+        domain: argv.domain,
+      })
 
-    log({ who, ctx, url, tls })
+      const requestListener = createRequestListener({ ctx, handle })
+
+      const { url } = await startServer(requestListener, {
+        hostname: argv.domain,
+        port: argv.port,
+        startingPort: 3000,
+        tls,
+      })
+
+      log({ who, ctx, url, tls })
+    }
+
+    if (argv.port instanceof Array) {
+      const urls = []
+
+      for (const port of argv.port) {
+        // NOTE `ctx` must not be shared.
+
+        const ctx = await createContext({
+          path: argv.database,
+          domain: argv.domain,
+        })
+
+        const requestListener = createRequestListener({ ctx, handle })
+
+        const { url } = await startServer(requestListener, {
+          hostname: argv.domain,
+          port,
+          tls,
+        })
+        urls.push(url)
+      }
+
+      // NOTE This `ctx` is only for log.
+
+      const ctx = await createContext({
+        path: argv.database,
+        domain: argv.domain,
+      })
+
+      log({ who, ctx, urls, tls })
+    }
   }
 }

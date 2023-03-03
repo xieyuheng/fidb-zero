@@ -4,7 +4,8 @@ author: Xie Yuheng
 date: 2023-03-01
 ---
 
-This has enough information, but is too long,
+The following command line has enough information,
+but is too long,
 and it write password to terminal,
 which will be save to terminal history,
 thus not good.
