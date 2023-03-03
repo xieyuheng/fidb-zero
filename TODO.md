@@ -1,6 +1,6 @@
 # reverse-proxy interface
 
-`fidb login-reverse-proxy` -- read password from command-line
+`fidb login-reverse-proxy` -- do not echo password to terminal
 `fidb login-reverse-proxy` -- save token to `FIDB_DIR` -- `~/.fidb/`
 [reverse-proxy-server] database `users/` -- user has `subdomains`
 [reverse-proxy-server] `handleReverseProxyTarget` -- `POST` -- check `password`

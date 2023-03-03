@@ -1,5 +1,6 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
+import * as Readline from "node:readline/promises"
 import { log } from "../../utils/log"
 
 type Args = { url: string }
@@ -30,7 +31,14 @@ export class LoginReverseProxyCommand extends Command<Args> {
   async execute(argv: Args & Opts): Promise<void> {
     const who = this.name
 
-    const password = "TODO"
+    const rl = Readline.createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    })
+
+    const password = await rl.question("Enter your password: ")
+
+    rl.close()
 
     const response = await fetch(`${argv.url}?kind=password-login`, {
       method: "POST",
