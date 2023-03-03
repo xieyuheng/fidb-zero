@@ -1,7 +1,5 @@
 `ServeWebsiteCommand` -- `--enable-cors`
 
-[website-server] `handlePage` -- can not access path outside of given directory
-
 `createRequestListener` should not call `preflight`
 
 # reverse-proxy

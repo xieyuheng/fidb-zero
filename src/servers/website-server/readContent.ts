@@ -1,28 +1,40 @@
 import type { Buffer } from "node:buffer"
 import fs from "node:fs"
-import { extname } from "node:path"
+import { extname, normalize, resolve } from "node:path"
 import { contentTypeRecord } from "../../utils/contentTypeRecord"
 import { pathIsDirectory } from "../../utils/node/pathIsDirectory"
 import { pathIsFile } from "../../utils/node/pathIsFile"
+import type { Context } from "./Context"
 
-export async function readContent(path: string): Promise<
+export async function readContent(
+  ctx: Context,
+  path: string,
+): Promise<
   | {
       type: string
       buffer: Buffer
     }
   | undefined
 > {
-  if (await pathIsDirectory(path)) {
+  const resolvedPath = normalize(resolve(ctx.directory, path))
+
+  // NOTE Should not access path outside of given directory
+  if (!resolvedPath.startsWith(ctx.directory)) {
+    return undefined
+  }
+
+  if (await pathIsDirectory(resolvedPath)) {
     return {
       type: "text/html",
-      buffer: await fs.promises.readFile(path + "/index.html"),
+      buffer: await fs.promises.readFile(resolvedPath + "/index.html"),
     }
   }
 
-  if (await pathIsFile(path)) {
+  if (await pathIsFile(resolvedPath)) {
     return {
-      type: contentTypeRecord[extname(path)] || "application/octet-stream",
-      buffer: await fs.promises.readFile(path),
+      type:
+        contentTypeRecord[extname(resolvedPath)] || "application/octet-stream",
+      buffer: await fs.promises.readFile(resolvedPath),
     }
   }
 }

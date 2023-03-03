@@ -1,5 +1,5 @@
 import type Http from "node:http"
-import { normalize, resolve } from "node:path"
+import { normalize } from "node:path"
 import { requestURL } from "../../server/requestURL"
 import { responseSend } from "../../server/responseSend"
 import type { Json } from "../../utils/Json"
@@ -16,13 +16,11 @@ export async function handlePage(
   // NOTE `decodeURIComponent` is necessary for space.
   const path = normalize(decodeURIComponent(url.pathname.slice(1)))
 
-  const fullPath = resolve(ctx.directory, path)
-
   if (request.method === "GET") {
     const content =
-      (await readContent(fullPath)) ||
+      (await readContent(ctx, path)) ||
       (ctx.rewriteNotFoundTo
-        ? await readContent(resolve(ctx.directory, ctx.rewriteNotFoundTo))
+        ? await readContent(ctx, ctx.rewriteNotFoundTo)
         : undefined)
 
     if (content === undefined) {
