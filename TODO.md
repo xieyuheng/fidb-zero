@@ -1,9 +1,15 @@
-# reverse-proxy
+fidb serve-reverse-proxy --port 8080 --port 5108 \
+ --database tmp/databases/reverse-proxy \
+ --domain cicada.localhost
 
-[reverse-proxy] database `users/` -- user has `subdomains`
+fidb serve-website ~/learn-x/learn-alpinejs/notepad --reverse-proxy http://cicada.localhost:8080
+fidb serve-website ~/learn-x/learn-alpinejs/notepad --reverse-proxy http://cicada.localhost:5108
 
-[reverse-proxy] `handlePassword` -- `password-register`
-[reverse-proxy] `handlePassword` -- `password-login`
+# reverse-proxy interface
+
+[reverse-proxy] `fidb serve-database` take `--reverse-proxy` -- no auth for now
+
+[reverse-proxy] `fidb serve-website` take `--reverse-proxy` -- no auth for now
 
 setup `LoginReverseProxyServerCommand`
 
@@ -11,9 +17,14 @@ setup `LoginReverseProxyServerCommand`
 
 `LoginReverseProxyServerCommand` use client of reverse-proxy-server
 
+[reverse-proxy] database `users/` -- user has `subdomains`
+
+[reverse-proxy] `handlePassword` -- `password-register`
+[reverse-proxy] `handlePassword` -- `password-login`
+
 [reverse-proxy] `handleReverseProxyTarget` -- `POST` -- check `password`
 
-[reverse-proxy] `fidb serve-database` take `--reverse-proxy-subdomain`
+# reverse-proxy messaging
 
 [reverse-proxy] extract general proxy messaging pattern
 
