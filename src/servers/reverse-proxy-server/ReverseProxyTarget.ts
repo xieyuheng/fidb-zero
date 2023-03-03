@@ -1,6 +1,6 @@
 import { Buffer } from "node:buffer"
 import type { Socket } from "node:net"
-import { randomHexString } from "../../utils/node/randomHexString"
+import { randomHexString } from "../../utils/randomHexString"
 
 type DataHandler = (data: Buffer) => void
 

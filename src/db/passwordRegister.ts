@@ -3,7 +3,7 @@ import { join } from "node:path"
 import type { Database } from "../database"
 import { TokenPermission, TokenPermissionSchema } from "../token"
 import { passwordHash } from "../utils/node/password"
-import { randomHexString } from "../utils/node/randomHexString"
+import { randomHexString } from "../utils/randomHexString"
 import { dataCreate } from "./dataCreate"
 
 export type PasswordRegisterOptions = {

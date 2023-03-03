@@ -1,7 +1,7 @@
 import { resolve } from "node:path"
 import { createDatabase } from "../../database"
 import { formatDateTime } from "../../utils/formatDate"
-import { randomHexString } from "../../utils/node/randomHexString"
+import { randomHexString } from "../../utils/randomHexString"
 import { slug } from "../../utils/slug"
 
 const PREFIX = resolve(__filename, "../../../../tmp/databases/")

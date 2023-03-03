@@ -1,7 +1,7 @@
 import { expect, test } from "vitest"
 import * as Db from "../../db"
 import { Unauthorized } from "../../errors/Unauthorized"
-import { randomHexString } from "../../utils/node/randomHexString"
+import { randomHexString } from "../../utils/randomHexString"
 import { prepareTestDb } from "./prepareTestDb"
 
 test("db-data-create-unauthorized", async ({ meta }) => {
