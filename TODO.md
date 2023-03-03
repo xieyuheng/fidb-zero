@@ -1,7 +1,5 @@
 # reverse-proxy
 
-`fidb serve-reverse-proxy` take `--database` from options -- instead of taking from `args`
-
 `fidb serve-reverse-proxy` take `--domain`
 
 - check `domain` before dispatching to `handleReverseProxyTarget`

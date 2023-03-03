@@ -7,8 +7,9 @@ import { handle } from "../../servers/reverse-proxy-server"
 import { createContext } from "../../servers/reverse-proxy-server/Context"
 import { log } from "../../utils/log"
 
-type Args = { path: string }
+type Args = {}
 type Opts = {
+  database: string
   hostname?: string
   port?: number
   "tls-cert"?: string
@@ -20,8 +21,9 @@ export class ServeReverseProxyCommand extends Command<Args> {
 
   description = "Serve a reverse proxy"
 
-  args = { path: ty.string() }
+  args = {}
   opts = {
+    database: ty.string(),
     hostname: ty.optional(ty.string()),
     port: ty.optional(ty.number()),
     "tls-cert": ty.optional(ty.string()),
@@ -36,7 +38,7 @@ export class ServeReverseProxyCommand extends Command<Args> {
       `The ${blue(this.name)} command takes a path to a directory,`,
       `using it as a database, and serve a reverse proxy.`,
       ``,
-      blue(`  ${runner.name} ${this.name} tmp/databases/reverse-proxy`),
+      blue(`  ${runner.name} ${this.name} --database tmp/databases/reverse-proxy`),
       ``,
     ].join("\n")
   }
@@ -44,7 +46,7 @@ export class ServeReverseProxyCommand extends Command<Args> {
   async execute(argv: Args & Opts): Promise<void> {
     const who = this.name
 
-    const ctx = await createContext({ path: argv.path })
+    const ctx = await createContext({ path: argv.database })
     const requestListener = createRequestListener({ ctx, handle })
     const tls = maybeTlsOptionsFromArgv(argv)
 
