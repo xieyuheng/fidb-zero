@@ -52,6 +52,7 @@ export class ServeReverseProxyCommand extends Command<Args> {
       const ctx = await createContext({
         path: argv.database,
         domain: argv.domain,
+        availablePorts: [Number(argv.port)],
       })
 
       const requestListener = createRequestListener({ ctx, handle })
@@ -75,6 +76,7 @@ export class ServeReverseProxyCommand extends Command<Args> {
         const ctx = await createContext({
           path: argv.database,
           domain: argv.domain,
+          availablePorts: argv.port.map(Number),
         })
 
         const requestListener = createRequestListener({ ctx, handle })
@@ -92,6 +94,7 @@ export class ServeReverseProxyCommand extends Command<Args> {
       const ctx = await createContext({
         path: argv.database,
         domain: argv.domain,
+        availablePorts: argv.port.map(Number),
       })
 
       log({ who, ctx, urls, tls })

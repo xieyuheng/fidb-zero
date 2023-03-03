@@ -1,9 +1,9 @@
-[reverse-proxy-server] `Context` has `availablePorts`
-
 # reverse-proxy test
 
 [command-line] `tests/` -- be able to test command
 
+- need to setup example website
+- need to run command in `child_process`
 - need to use node http client -- which can mock DNS server
 
 ```
