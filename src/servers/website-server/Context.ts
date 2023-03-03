@@ -3,7 +3,7 @@ import { pathIsDirectory } from "../../utils/node/pathIsDirectory"
 import { pathIsFile } from "../../utils/node/pathIsFile"
 
 export type Context = {
-  path: string
+  directory: string
   rewrites: Record<string, string>
 }
 
@@ -16,7 +16,7 @@ export async function createContext(options: ContextOptions): Promise<Context> {
 
   if (await pathIsFile(path)) {
     return {
-      path: dirname(resolve(path)),
+      directory: dirname(resolve(path)),
       rewrites: {
         "": basename(path),
       },
@@ -25,7 +25,7 @@ export async function createContext(options: ContextOptions): Promise<Context> {
 
   if (await pathIsDirectory(path)) {
     return {
-      path: resolve(path),
+      directory: resolve(path),
       rewrites: {},
     }
   }

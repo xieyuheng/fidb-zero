@@ -17,7 +17,7 @@ export async function handlePage(
   // NOTE `decodeURIComponent` is necessary for space.
   const path = normalize(decodeURIComponent(url.pathname.slice(1)))
 
-  const fullPath = resolve(ctx.path, pathRewrite(path, ctx.rewrites))
+  const fullPath = resolve(ctx.directory, pathRewrite(path, ctx.rewrites))
 
   if (request.method === "GET") {
     const content = await readContent(fullPath)
