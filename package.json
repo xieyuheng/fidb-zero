@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@xieyuheng/command-line": "^0.0.10",
-    "@xieyuheng/ty": "^0.1.21",
+    "@xieyuheng/ty": "^0.1.22",
     "bcrypt": "^5.1.0",
     "detect-port": "^1.5.1",
     "fast-csv": "^4.3.6",
