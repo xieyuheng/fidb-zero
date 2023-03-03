@@ -1,5 +1,3 @@
-[website-server] `createContext` -- `Context` has `kind` -- `File` or `Directory`
-
 [database-server] `createContext` -- to be symmetric
 
 [reverse-proxy-server] `createContext` -- to be symmetric
