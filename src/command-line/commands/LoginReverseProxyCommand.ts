@@ -34,6 +34,7 @@ export class LoginReverseProxyCommand extends Command<Args> {
     const rl = Readline.createInterface({
       input: process.stdin,
       output: process.stdout,
+      terminal: true,
     })
 
     const password = await rl.question("Enter your password: ")
