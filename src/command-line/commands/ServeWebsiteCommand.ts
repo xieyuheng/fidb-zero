@@ -55,7 +55,10 @@ export class ServeWebsiteCommand extends Command<Args> {
       handle,
     })
 
-    const { url } = await startServer({ who, ...argv }, requestListener)
+    const { url } = await startServer(
+      { who, startingPort: 8080, ...argv },
+      requestListener,
+    )
 
     if (
       argv["reverse-proxy-server"] &&

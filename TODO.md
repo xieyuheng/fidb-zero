@@ -1,4 +1,5 @@
-`ServeWebsiteCommand` -- use 8080 port by default
+`startServer` fix name of options
+
 [website-server] `handlePage`
 `ServeWebsiteCommand` -- support `--single-page-app`
 

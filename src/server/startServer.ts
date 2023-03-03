@@ -10,6 +10,7 @@ type Options = {
   who: string
   hostname?: string
   port?: number
+  startingPort?: number
   "tls-cert"?: string
   "tls-key"?: string
 }
@@ -20,7 +21,9 @@ export async function startServer(
 ): Promise<{ server: Http.Server | Https.Server; url: URL }> {
   const hostname = options.hostname || "127.0.0.1"
   const port = Number(
-    process.env.PORT || options.port || (await findPort(3000)),
+    process.env.PORT ||
+      options.port ||
+      (await findPort(options.startingPort || 3000)),
   )
 
   if (options["tls-cert"] && options["tls-key"]) {
@@ -32,9 +35,9 @@ export async function startServer(
       requestListener,
     )
 
-    const url = new URL(`https://${hostname}:${port}`)
-
     await serverListen(server, { hostname, port })
+
+    const url = new URL(`https://${hostname}:${port}`)
 
     log({ who: options.who, url: url.toString() })
 
@@ -42,9 +45,9 @@ export async function startServer(
   } else {
     const server = Http.createServer({}, requestListener)
 
-    const url = new URL(`http://${hostname}:${port}`)
-
     await serverListen(server, { hostname, port })
+
+    const url = new URL(`http://${hostname}:${port}`)
 
     log({ who: options.who, url: url.toString() })
 
