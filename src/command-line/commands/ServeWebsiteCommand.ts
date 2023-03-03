@@ -2,9 +2,11 @@ import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
 import { connectReverseProxy } from "../../clients/reverse-proxy-client"
 import { createRequestListener } from "../../server/createRequestListener"
+import { maybeTlsOptionsFromArgv } from "../../server/createServer"
 import { startServer } from "../../server/startServer"
 import { handle } from "../../servers/website-server"
 import { createContext } from "../../servers/website-server/Context"
+import { log } from "../../utils/log"
 
 type Args = { path: string }
 type Opts = {
@@ -53,6 +55,9 @@ export class ServeWebsiteCommand extends Command<Args> {
 
     const ctx = await createContext({ path: argv.path })
     const requestListener = createRequestListener({ ctx, handle })
+    const tls = maybeTlsOptionsFromArgv(argv)
+
+    log({ who, ctx, tls })
 
     const { url } = await startServer(
       {
@@ -60,8 +65,7 @@ export class ServeWebsiteCommand extends Command<Args> {
         hostname: argv.hostname,
         port: argv.port,
         startingPort: 8080,
-        tlsCert: argv["tls-cert"],
-        tlsKey: argv["tls-key"],
+        tls,
       },
       requestListener,
     )

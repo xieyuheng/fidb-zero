@@ -3,9 +3,25 @@ import Http from "node:http"
 import Https from "node:https"
 import type { RequestListener } from "../server/createRequestListener"
 
+export type TlsOptions = {
+  certPath: string
+  keyPath: string
+}
+
+export function maybeTlsOptionsFromArgv(argv: {
+  "tls-cert"?: string
+  "tls-key"?: string
+}): TlsOptions | undefined {
+  return argv["tls-cert"] && argv["tls-key"]
+    ? {
+        certPath: argv["tls-cert"],
+        keyPath: argv["tls-key"],
+      }
+    : undefined
+}
+
 type Options = {
-  tlsCert?: string
-  tlsKey?: string
+  tls?: TlsOptions
 }
 
 type Result =
@@ -19,16 +35,16 @@ type Result =
     }
 
 export async function createServer(
-  options: Options,
   requestListener: RequestListener,
+  options: Options,
 ): Promise<Result> {
-  if (options.tlsCert && options.tlsKey) {
+  if (options.tls) {
     return {
       scheme: "https",
       server: Https.createServer(
         {
-          cert: await fs.promises.readFile(options.tlsCert),
-          key: await fs.promises.readFile(options.tlsKey),
+          cert: await fs.promises.readFile(options.tls.certPath),
+          key: await fs.promises.readFile(options.tls.keyPath),
         },
         requestListener,
       ),

@@ -2,22 +2,21 @@ import type { RequestListener } from "../server/createRequestListener"
 import { serverListen } from "../server/serverListen"
 import { log } from "../utils/log"
 import { findPort } from "../utils/node/findPort"
-import { createServer } from "./createServer"
+import { createServer, TlsOptions } from "./createServer"
 
 type Options = {
   who: string
   hostname?: string
   port?: number
   startingPort?: number
-  tlsCert?: string
-  tlsKey?: string
+  tls?: TlsOptions
 }
 
 export async function startServer(
   options: Options,
   requestListener: RequestListener,
 ): Promise<{ url: URL }> {
-  const { scheme, server } = await createServer(options, requestListener)
+  const { scheme, server } = await createServer(requestListener, options)
 
   const hostname = options.hostname || "127.0.0.1"
   const port = Number(

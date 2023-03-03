@@ -2,6 +2,7 @@ import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
 import { connectReverseProxy } from "../../clients/reverse-proxy-client"
 import { createRequestListener } from "../../server/createRequestListener"
+import { maybeTlsOptionsFromArgv } from "../../server/createServer"
 import { startServer } from "../../server/startServer"
 import { handle } from "../../servers/database-server"
 import { createContext } from "../../servers/database-server/Context"
@@ -52,8 +53,9 @@ export class ServeDatabaseCommand extends Command<Args> {
 
     const ctx = await createContext({ path: argv.path })
     const requestListener = createRequestListener({ ctx, handle })
+    const tls = maybeTlsOptionsFromArgv(argv)
 
-    log({ who, ctx })
+    log({ who, ctx, tls })
 
     const { url } = await startServer(
       {
@@ -61,8 +63,7 @@ export class ServeDatabaseCommand extends Command<Args> {
         hostname: argv.hostname,
         port: argv.port,
         startingPort: 3000,
-        tlsCert: argv["tls-cert"],
-        tlsKey: argv["tls-key"],
+        tls,
       },
       requestListener,
     )
