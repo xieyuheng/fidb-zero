@@ -9,5 +9,5 @@ export async function handle(
   request: Http.IncomingMessage,
   response: Http.ServerResponse,
 ): Promise<Json | Buffer | void> {
-  return await handlePage(ctx, request)
+  return await handlePage(ctx, request, response)
 }

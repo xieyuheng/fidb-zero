@@ -1,6 +1,8 @@
+utils/contentTypeRecord
+
 [website-server] `handlePage` -- can not access path outside of given directory
 
-[website-server] `handlePage` context has `rewrite`
+[website-server] `handlePage` context has `rewrite: Record<string, string>`
 
 `ServeWebsiteCommand` -- support `--rewrite-not-found-to`
 
