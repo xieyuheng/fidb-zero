@@ -104,27 +104,13 @@ fidb serve-reverse-proxy --port 443 --port 5108 \
   --tls-key /etc/letsencrypt/live/fidb.app/privkey.pem
 ```
 
-Login can also specify multiple ports,
-but by default we can infer 443 and 80 from https and http,
-and by default we can add 5108,
+Login do not need to specify many ports.
 
-If at least one `--port` is explicitly given,
-we will not infer from protocol or add default port of fidb -- 5108.
+Login one port will login all ports.
 
 ```
 fidb login-reverse-proxy https://fidb.app
 
-Will login to 443 and 5108
-```
 
-```
-fidb login-reverse-proxy https://fidb.app --port 3000 --port 5000
-
-Will login to 3000 and 5000
-```
-
-```
-fidb login-reverse-proxy https://fidb.app --port 3000
-
-Will login to 3000
+Available reverse-proxy ports 443 and 5108
 ```
