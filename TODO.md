@@ -1,4 +1,4 @@
-utils/contentTypeRecord
+`ServeWebsiteCommand` -- improve log to report more
 
 [website-server] `handlePage` -- can not access path outside of given directory
 
