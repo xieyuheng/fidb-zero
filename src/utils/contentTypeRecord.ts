@@ -1,5 +1,6 @@
 export const contentTypeRecord: Record<string, string> = {
   ".html": "text/html",
+  ".htm": "text/html",
   ".css": "text/css",
   ".js": "text/javascript",
   ".mjs": "text/javascript",
