@@ -1,11 +1,11 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
-import { connectReverseProxy } from "../../clients/reverse-proxy-client"
+import { handle } from "../../database-server"
+import { createContext } from "../../database-server/Context"
+import { connectReverseProxy } from "../../reverse-proxy-client"
 import { createRequestListener } from "../../server/createRequestListener"
 import { maybeTlsOptionsFromArgv } from "../../server/createServer"
 import { startServer } from "../../server/startServer"
-import { handle } from "../../servers/database-server"
-import { createContext } from "../../servers/database-server/Context"
 import { log } from "../../utils/log"
 
 type Args = { path: string }

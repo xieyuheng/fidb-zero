@@ -1,12 +1,12 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
-import { connectReverseProxy } from "../../clients/reverse-proxy-client"
+import { connectReverseProxy } from "../../reverse-proxy-client"
 import { createRequestListener } from "../../server/createRequestListener"
 import { maybeTlsOptionsFromArgv } from "../../server/createServer"
 import { startServer } from "../../server/startServer"
-import { handle } from "../../servers/website-server"
-import { createContext } from "../../servers/website-server/Context"
 import { log } from "../../utils/log"
+import { handle } from "../../website-server"
+import { createContext } from "../../website-server/Context"
 
 type Args = { path: string }
 type Opts = {

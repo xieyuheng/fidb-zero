@@ -1,10 +1,10 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
+import { handle } from "../../reverse-proxy-server"
+import { createContext } from "../../reverse-proxy-server/Context"
 import { createRequestListener } from "../../server/createRequestListener"
 import { maybeTlsOptionsFromArgv } from "../../server/createServer"
 import { startServer } from "../../server/startServer"
-import { handle } from "../../servers/reverse-proxy-server"
-import { createContext } from "../../servers/reverse-proxy-server/Context"
 import { log } from "../../utils/log"
 
 type Args = {}
