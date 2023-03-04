@@ -1,14 +1,14 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
-import { loggedInGet } from "../../reverse-proxy-client/loggedInGet"
+import { loggedInDelete } from "../../reverse-proxy-client/loggedInDelete"
 
 type Args = { url: string }
 type Opts = {}
 
-export class ReverseProxyWhoamiCommand extends Command<Args> {
-  name = "reverse-proxy:whoami"
+export class ReverseProxyLogoutCommand extends Command<Args> {
+  name = "reverse-proxy:logout"
 
-  description = "See who I logged in for a given reverse proxy server"
+  description = "Logout a user for a given reverse proxy server"
 
   args = { url: ty.string() }
   opts = {}
@@ -19,7 +19,7 @@ export class ReverseProxyWhoamiCommand extends Command<Args> {
 
     return [
       `The ${blue(this.name)} command takes a url of a reverse proxy server,`,
-      `and print the username that is logged in.`,
+      `and logout the user if any.`,
       ``,
       blue(`  ${runner.name} ${this.name} https://fidb.app`),
       ``,
@@ -29,10 +29,8 @@ export class ReverseProxyWhoamiCommand extends Command<Args> {
   async execute(argv: Args & Opts): Promise<void> {
     const url = new URL(argv.url)
 
-    const found = await loggedInGet(url.href)
-    if (found !== undefined) {
-      console.log(found.username)
-    } else {
+    const actuallyDeleted = await loggedInDelete(url.href)
+    if (!actuallyDeleted) {
       process.exit(1)
     }
   }

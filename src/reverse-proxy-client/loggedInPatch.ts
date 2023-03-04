@@ -12,7 +12,8 @@ export async function loggedInPatch(url: string, value: Value): Promise<void> {
 
   const db = await createDatabase({ path: env.FIDB_SYSTEM_DB_DIR })
 
-  if (!(await Db.jsonFileGet(db, path))) {
+  const loggedInRecord = await Db.jsonFileGet(db, path)
+  if (loggedInRecord === undefined) {
     await Db.jsonFileCreate(db, path, {})
   }
 

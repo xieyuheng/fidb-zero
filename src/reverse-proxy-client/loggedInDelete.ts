@@ -4,12 +4,8 @@ import * as Db from "../db"
 import { isJsonObject } from "../utils/Json"
 import { stringTrimEnd } from "../utils/stringTrimEnd"
 
-type Value = {
-  username: string
-}
-
-export async function loggedInGet(url: string): Promise<Value | undefined> {
-  const who = "reverse-proxy-client/loggedInGet"
+export async function loggedInDelete(url: string): Promise<boolean> {
+  const who = "reverse-proxy-client/loggedInDelete"
 
   const path = "reverse-proxy/logged-in.json"
 
@@ -17,7 +13,7 @@ export async function loggedInGet(url: string): Promise<Value | undefined> {
 
   const loggedInRecord = await Db.jsonFileGet(db, path)
   if (loggedInRecord === undefined) {
-    return undefined
+    return false
   }
 
   if (!isJsonObject(loggedInRecord)) {
@@ -25,11 +21,11 @@ export async function loggedInGet(url: string): Promise<Value | undefined> {
   }
 
   const key = stringTrimEnd(url, "/")
-  const value = loggedInRecord[key]
-
-  if (value === undefined) {
-    return undefined
+  if (loggedInRecord[key] === undefined) {
+    return false
   }
 
-  return value as Value
+  delete loggedInRecord[key]
+  await Db.jsonFilePut(db, path, loggedInRecord)
+  return true
 }
