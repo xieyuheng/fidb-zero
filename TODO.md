@@ -1,3 +1,7 @@
+`fidb reverse-proxy:login` -- warning about already user logged in
+`fidb reverse-proxy:logout`
+`fidb reverse-proxy:whoami`
+
 # reverse-proxy interface
 
 [reverse-proxy-server] `handleReverseProxyTarget` -- check given subdomain can be used by the user
