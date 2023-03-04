@@ -1,4 +1,4 @@
-[command-line] can config `log` to output `json` -- for scripting
+[command-line] can config `--logger` to output `json` -- for scripting
 
 # reverse-proxy messaging
 
