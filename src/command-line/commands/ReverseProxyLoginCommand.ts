@@ -33,7 +33,8 @@ export class ReverseProxyLoginCommand extends Command<Args> {
   async execute(argv: Args & Opts): Promise<void> {
     const who = this.name
 
-    const url = new URL(argv.url || "https://fidb.app")
+    const defaultURL = new URL("https://fidb.app")
+    const url = argv.url ? new URL(argv.url) : defaultURL
 
     const found = await loggedInGet(url.href)
     if (found !== undefined) {

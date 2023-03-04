@@ -1,5 +1,5 @@
-`fidb reverse-proxy:logout`
 `fidb reverse-proxy:whoami`
+`fidb reverse-proxy:logout`
 
 # reverse-proxy interface
 
