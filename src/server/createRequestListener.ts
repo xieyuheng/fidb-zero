@@ -4,6 +4,7 @@ import { AlreadyExists } from "../errors/AlreadyExists"
 import { NotFound } from "../errors/NotFound"
 import { RevisionMismatch } from "../errors/RevisionMismatch"
 import { Unauthorized } from "../errors/Unauthorized"
+import { Unprocessable } from "../errors/Unprocessable"
 import type { Json } from "../utils/Json"
 import { responseSend } from "./responseSend"
 import { responseSendJson } from "./responseSendJson"
@@ -70,14 +71,16 @@ export function createRequestListener<Context>(options: {
       }
 
       const message = error instanceof Error ? error.message : "Unknown error"
-      if (error instanceof NotFound) {
-        responseSendJson(response, { status: { code: 404, message }, headers })
-      } else if (error instanceof Unauthorized) {
+      if (error instanceof Unauthorized) {
         responseSendJson(response, { status: { code: 401, message }, headers })
       } else if (error instanceof AlreadyExists) {
         responseSendJson(response, { status: { code: 403, message }, headers })
+      } else if (error instanceof NotFound) {
+        responseSendJson(response, { status: { code: 404, message }, headers })
       } else if (error instanceof RevisionMismatch) {
         responseSendJson(response, { status: { code: 409, message }, headers })
+      } else if (error instanceof Unprocessable) {
+        responseSendJson(response, { status: { code: 422, message }, headers })
       } else if (TyErrors.InvalidData.guard(error)) {
         responseSendJson(response, {
           status: { code: 422, message },
