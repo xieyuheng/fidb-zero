@@ -5,7 +5,7 @@ import * as ReverseProxyClient from "../../reverse-proxy-client"
 import { loggedInGet } from "../../reverse-proxy-client/loggedInGet"
 import { log } from "../../utils/log"
 
-type Args = { url?: string }
+type Args = { url: string }
 type Opts = {}
 
 export class ReverseProxyLoginCommand extends Command<Args> {
@@ -13,7 +13,7 @@ export class ReverseProxyLoginCommand extends Command<Args> {
 
   description = "Login to a reverse proxy server"
 
-  args = { url: ty.optional(ty.string()) }
+  args = { url: ty.string() }
   opts = {}
 
   // prettier-ignore
@@ -33,18 +33,18 @@ export class ReverseProxyLoginCommand extends Command<Args> {
   async execute(argv: Args & Opts): Promise<void> {
     const who = this.name
 
-    const defaultURL = new URL("https://fidb.app")
-    const url = argv.url ? new URL(argv.url) : defaultURL
+    const url = new URL(argv.url)
 
     const found = await loggedInGet(url.href)
     if (found !== undefined) {
       log({
         who,
         message: `already logged in to url, logout first`,
-        url,
+        url: url.href,
         username: found.username,
       })
-      return
+
+      process.exit(1)
     }
 
     const { username } = await inquirer.prompt([
