@@ -2,10 +2,12 @@ import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
 import { loggedInGet } from "../../reverse-proxy-client/loggedInGet"
 import { loggedInGetRecord } from "../../reverse-proxy-client/loggedInGetRecord"
-import { log } from "../../utils/log"
+import { changeLogger, log } from "../../utils/log"
 
 type Args = { url?: string }
-type Opts = {}
+type Opts = {
+  logger?: string
+}
 
 export class ReverseProxyWhoamiCommand extends Command<Args> {
   name = "reverse-proxy:whoami"
@@ -13,7 +15,9 @@ export class ReverseProxyWhoamiCommand extends Command<Args> {
   description = "See who I logged in for a given reverse proxy server"
 
   args = { url: ty.optional(ty.string()) }
-  opts = {}
+  opts = {
+    logger: ty.optional(ty.string()),
+  }
 
   // prettier-ignore
   help(runner: CommandRunner): string {
@@ -32,6 +36,10 @@ export class ReverseProxyWhoamiCommand extends Command<Args> {
   }
 
   async execute(argv: Args & Opts): Promise<void> {
+    if (argv.logger) {
+      changeLogger(argv.logger)
+    }
+
     const who = this.name
 
     if (argv.url !== undefined) {

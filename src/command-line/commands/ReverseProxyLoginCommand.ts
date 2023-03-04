@@ -3,10 +3,12 @@ import ty from "@xieyuheng/ty"
 import inquirer from "inquirer"
 import * as ReverseProxyClient from "../../reverse-proxy-client"
 import { loggedInGet } from "../../reverse-proxy-client/loggedInGet"
-import { log } from "../../utils/log"
+import { changeLogger, log } from "../../utils/log"
 
 type Args = { url: string }
-type Opts = {}
+type Opts = {
+  logger?: string
+}
 
 export class ReverseProxyLoginCommand extends Command<Args> {
   name = "reverse-proxy:login"
@@ -14,7 +16,9 @@ export class ReverseProxyLoginCommand extends Command<Args> {
   description = "Login to a reverse proxy server"
 
   args = { url: ty.string() }
-  opts = {}
+  opts = {
+    logger: ty.optional(ty.string()),
+  }
 
   // prettier-ignore
   help(runner: CommandRunner): string {
@@ -31,6 +35,10 @@ export class ReverseProxyLoginCommand extends Command<Args> {
   }
 
   async execute(argv: Args & Opts): Promise<void> {
+    if (argv.logger) {
+      changeLogger(argv.logger)
+    }
+
     const who = this.name
 
     const url = new URL(argv.url)

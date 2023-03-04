@@ -3,10 +3,15 @@ import ty from "@xieyuheng/ty"
 import { importDataArrayFromCsv } from "../../data/importDataArrayFromCsv"
 import { createDatabase } from "../../database"
 import { writeData } from "../../db/utils/writeData"
-import { log } from "../../utils/log"
+import { changeLogger, log } from "../../utils/log"
 
 type Args = { database: string }
-type Opts = { from: string; directory: string; "primary-key": string }
+type Opts = {
+  from: string
+  directory: string
+  "primary-key": string
+  logger?: string
+}
 
 export class DatabaseImportDatasetCommand extends Command<Args> {
   name = "database:import-dataset"
@@ -18,6 +23,7 @@ export class DatabaseImportDatasetCommand extends Command<Args> {
     from: ty.string(),
     directory: ty.string(),
     "primary-key": ty.string(),
+    logger: ty.optional(ty.string()),
   }
 
   // prettier-ignore
@@ -34,6 +40,10 @@ export class DatabaseImportDatasetCommand extends Command<Args> {
   }
 
   async execute(argv: Args & Opts): Promise<void> {
+    if (argv.logger) {
+      changeLogger(argv.logger)
+    }
+
     const who = "DatabaseImportDatasetCommand"
 
     const results = await importDataArrayFromCsv(argv.from, {

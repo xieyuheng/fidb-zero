@@ -4,7 +4,7 @@ import * as ReverseProxyClient from "../../reverse-proxy-client"
 import { createRequestListener } from "../../server/createRequestListener"
 import { maybeTlsOptionsFromArgv } from "../../server/createServer"
 import { startServer } from "../../server/startServer"
-import { log } from "../../utils/log"
+import { changeLogger, log } from "../../utils/log"
 import { handle } from "../../website-server"
 import { createContext } from "../../website-server/Context"
 
@@ -17,6 +17,7 @@ type Opts = {
   "tls-cert"?: string
   "tls-key"?: string
   url?: string
+  logger?: string
 }
 
 export class WebsiteServeCommand extends Command<Args> {
@@ -33,6 +34,7 @@ export class WebsiteServeCommand extends Command<Args> {
     "tls-cert": ty.optional(ty.string()),
     "tls-key": ty.optional(ty.string()),
     url: ty.optional(ty.string()),
+    logger: ty.optional(ty.string()),
   }
 
   // prettier-ignore
@@ -49,6 +51,10 @@ export class WebsiteServeCommand extends Command<Args> {
   }
 
   async execute(argv: Args & Opts): Promise<void> {
+    if (argv.logger) {
+      changeLogger(argv.logger)
+    }
+
     const who = this.name
 
     const ctx = await createContext({

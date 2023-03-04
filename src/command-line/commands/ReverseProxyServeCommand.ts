@@ -5,7 +5,7 @@ import { createContext } from "../../reverse-proxy-server/Context"
 import { createRequestListener } from "../../server/createRequestListener"
 import { maybeTlsOptionsFromArgv } from "../../server/createServer"
 import { startServer } from "../../server/startServer"
-import { log } from "../../utils/log"
+import { changeLogger, log } from "../../utils/log"
 
 type Args = {}
 type Opts = {
@@ -14,6 +14,7 @@ type Opts = {
   port?: number | Array<number>
   "tls-cert"?: string
   "tls-key"?: string
+  logger?: string
 }
 
 export class ReverseProxyServeCommand extends Command<Args> {
@@ -28,6 +29,7 @@ export class ReverseProxyServeCommand extends Command<Args> {
     port: ty.optional(ty.union(ty.number(), ty.array(ty.number()))),
     "tls-cert": ty.optional(ty.string()),
     "tls-key": ty.optional(ty.string()),
+    logger: ty.optional(ty.string()),
   }
 
   // prettier-ignore
@@ -44,6 +46,10 @@ export class ReverseProxyServeCommand extends Command<Args> {
   }
 
   async execute(argv: Args & Opts): Promise<void> {
+    if (argv.logger) {
+      changeLogger(argv.logger)
+    }
+
     const who = this.name
 
     const tls = maybeTlsOptionsFromArgv(argv)

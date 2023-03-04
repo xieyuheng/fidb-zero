@@ -1,5 +1,3 @@
-[command-line] can config `--logger` to output `json` -- for scripting
-
 # reverse-proxy messaging
 
 [reverse-proxy] extract general proxy messaging pattern
