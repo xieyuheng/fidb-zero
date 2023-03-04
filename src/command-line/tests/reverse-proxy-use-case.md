@@ -17,12 +17,12 @@ fidb reverse-proxy:serve --port 8080 --port 5108 \
  --domain cicada.localhost
 
 
-fidb reverse-proxy:login http://cicada.localhost:8080/users/xieyuheng
+fidb reverse-proxy:login http://cicada.localhost:8080
 
 # NOTE Login one port will login all ports,
 #   so we do not need to do the following:
 #
-# fidb reverse-proxy:login http://cicada.localhost:5108/users/xieyuheng
+# fidb reverse-proxy:login http://cicada.localhost:5108
 
 
 fidb website:serve ~/learn-x/learn-alpinejs/notepad \
