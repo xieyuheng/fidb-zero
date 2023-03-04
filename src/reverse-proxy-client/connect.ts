@@ -17,7 +17,7 @@ function parseArgURL(url: URL): { serverURL: URL; subdomain: string } {
 }
 
 export async function connect(options: Options): Promise<void> {
-  const who = "connect"
+  const who = "reverse-proxy-client/connect"
 
   const { url, username, password, target } = options
   const { serverURL, subdomain } = parseArgURL(url)

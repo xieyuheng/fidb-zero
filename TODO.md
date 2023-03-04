@@ -1,6 +1,8 @@
+use `new URL` to join url --- instead of `${url}/...`
+
 # reverse-proxy interface
 
-`fidb reverse-proxy:login` -- show available proxy servers' urls -- subdomains and ports
+`ReverseProxyClient.login` -- log available proxy servers' urls -- subdomains and ports
 
 `fidb website:serve` and `fidb database:serve` -- use token
 

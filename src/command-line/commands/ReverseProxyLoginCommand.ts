@@ -1,10 +1,7 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
 import inquirer from "inquirer"
-import { createDatabase } from "../../database"
-import * as Db from "../../db"
-import { log } from "../../utils/log"
-import { env } from "../env"
+import * as ReverseProxyClient from "../../reverse-proxy-client"
 
 type Args = { url: string }
 type Opts = {}
@@ -32,49 +29,15 @@ export class ReverseProxyLoginCommand extends Command<Args> {
   }
 
   async execute(argv: Args & Opts): Promise<void> {
-    const who = this.name
-
     const { username, password } = await inquirer.prompt([
       { type: "input", name: "username", message: "Username" },
       { type: "password", name: "password", message: "Password", mask: "*" },
     ])
 
-    const response = await fetch(
-      `${argv.url}/users/${username}?kind=password-login`,
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          password,
-        }),
-      },
-    )
-
-    if (response.ok) {
-      const token = await response.json()
-
-      const db = await createDatabase({ path: env.FIDB_SYSTEM_DB_DIR })
-
-      if (!(await Db.jsonFileGet(db, `reverse-proxy-tokens.json`))) {
-        await Db.jsonFileCreate(db, `reverse-proxy-tokens.json`, {})
-      }
-
-      await Db.jsonFilePatch(db, `reverse-proxy-tokens.json`, {
-        [argv.url]: token,
-      })
-
-      log({ who, message: `token saved` })
-    } else {
-      log({
-        who,
-        kind: "Error",
-        status: {
-          code: response.status,
-          message: response.statusText,
-        },
-      })
-    }
+    await ReverseProxyClient.login({
+      url: new URL(argv.url),
+      username,
+      password,
+    })
   }
 }
