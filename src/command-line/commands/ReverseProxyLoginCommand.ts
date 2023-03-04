@@ -3,7 +3,7 @@ import ty from "@xieyuheng/ty"
 import inquirer from "inquirer"
 import * as ReverseProxyClient from "../../reverse-proxy-client"
 
-type Args = { url: string }
+type Args = { url?: string }
 type Opts = {}
 
 export class ReverseProxyLoginCommand extends Command<Args> {
@@ -11,7 +11,7 @@ export class ReverseProxyLoginCommand extends Command<Args> {
 
   description = "Login to a reverse proxy server"
 
-  args = { url: ty.string() }
+  args = { url: ty.optional(ty.string()) }
   opts = {}
 
   // prettier-ignore
@@ -35,7 +35,7 @@ export class ReverseProxyLoginCommand extends Command<Args> {
     ])
 
     await ReverseProxyClient.login({
-      url: new URL(argv.url),
+      url: new URL(argv.url || "https://fidb.app"),
       username,
       password,
     })
