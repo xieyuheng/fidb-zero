@@ -9,8 +9,8 @@ export async function tokenPatch(
 ): Promise<void> {
   const db = await createDatabase({ path: env.FIDB_SYSTEM_DB_DIR })
 
-  if (!(await Db.jsonFileGet(db, `reverse-proxy-tokens.json`))) {
-    await Db.jsonFileCreate(db, `reverse-proxy-tokens.json`, {})
+  if (!(await Db.jsonFileGet(db, "reverse-proxy-tokens.json"))) {
+    await Db.jsonFileCreate(db, "reverse-proxy-tokens.json", {})
   }
 
   const patch: Record<string, string> = {}
@@ -19,5 +19,5 @@ export async function tokenPatch(
     patch[key] = token
   }
 
-  await Db.jsonFilePatch(db, `reverse-proxy-tokens.json`, patch)
+  await Db.jsonFilePatch(db, "reverse-proxy-tokens.json", patch)
 }

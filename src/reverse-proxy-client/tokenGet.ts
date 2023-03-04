@@ -9,7 +9,7 @@ export async function tokenGet(url: string): Promise<string | void> {
 
   const db = await createDatabase({ path: env.FIDB_SYSTEM_DB_DIR })
 
-  const tokens = await Db.jsonFileGet(db, `reverse-proxy-tokens.json`)
+  const tokens = await Db.jsonFileGet(db, "reverse-proxy-tokens.json")
 
   if (tokens === undefined) {
     return

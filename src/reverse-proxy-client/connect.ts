@@ -3,10 +3,10 @@ import Net from "node:net"
 import { formatAuthorizationHeader } from "../utils/formatAuthorizationHeader"
 import { log } from "../utils/log"
 import { tokenGet } from "./tokenGet"
+import { usernameGet } from "./usernameGet"
 
 type Options = {
   url: URL
-  username: string
   target: { hostname: string; port: number }
 }
 
@@ -20,9 +20,10 @@ function parseArgURL(url: URL): { serverURL: URL; subdomain: string } {
 export async function connect(options: Options): Promise<void> {
   const who = "reverse-proxy-client/connect"
 
-  const { url, username, target } = options
+  const { url, target } = options
   const { serverURL, subdomain } = parseArgURL(url)
 
+  const username = await usernameGet()
   const token = await tokenGet(url.href)
 
   if (token === undefined) {

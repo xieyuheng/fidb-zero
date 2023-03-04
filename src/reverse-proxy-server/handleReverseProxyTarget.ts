@@ -26,8 +26,6 @@ export async function handleReverseProxyTarget(
       await requestJsonObject(request),
     )
 
-    console.log({ subdomain, username })
-
     const path = `users/${username}`
 
     tokenAssert(token, path, "read")

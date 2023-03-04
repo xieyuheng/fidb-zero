@@ -1,7 +1,5 @@
 # reverse-proxy interface
 
-[reverse-proxy-client] `connect` -- get current `username`
-
 [reverse-proxy-server] `handleReverseProxyTarget` -- check given subdomain can be used by the user
 
 # reverse-proxy messaging
