@@ -9,13 +9,15 @@ export async function dataDelete(
   path: string,
   input: JsonObject,
 ): Promise<void> {
+  const who = "dataDelete"
+
   const data = await dataGet(db, path)
   if (data === undefined) {
     return
   }
 
   if (data["@revision"] !== input["@revision"]) {
-    throw new RevisionMismatch(`[delete] revision mismatch`)
+    throw new RevisionMismatch(`[${who}] revision mismatch`)
   }
 
   await deletePathRecursive(db, path)

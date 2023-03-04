@@ -15,11 +15,13 @@ export const PasswordLoginOptionsSchema = ty.object({
   password: ty.string(),
 })
 
-export async function PasswordLogin(
+export async function passwordLogin(
   db: Database,
   directory: string,
   options: PasswordLoginOptions,
 ): Promise<string> {
+  const who = "passwordLogin"
+
   for await (const data of dataFindAll(db, join(directory, "passwords"), {
     properties: {},
   })) {
@@ -37,6 +39,6 @@ export async function PasswordLogin(
   }
 
   throw new Unauthorized(
-    `[PasswordLogin] invalid password for directory: ${directory}`,
+    `[${who}] invalid password for directory: ${directory}`,
   )
 }

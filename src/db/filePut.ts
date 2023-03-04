@@ -9,9 +9,11 @@ export async function filePut(
   path: string,
   buffer: Buffer,
 ): Promise<void> {
+  const who = "filePut"
+
   const gotten = await fileGet(db, path)
   if (gotten === undefined) {
-    throw new NotFound(`[putFile] not found, path ${path}`)
+    throw new NotFound(`[${who}] not found, path ${path}`)
   }
 
   await writeBuffer(db, path, buffer)

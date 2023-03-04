@@ -54,7 +54,7 @@ export async function handlePassword(
     }
 
     if (kind === "password-login") {
-      return Db.PasswordLogin(
+      return Db.passwordLogin(
         db,
         path,
         Db.PasswordLoginOptionsSchema.validate(

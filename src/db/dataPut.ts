@@ -12,13 +12,15 @@ export async function dataPut(
   path: string,
   input: JsonObject,
 ): Promise<Data> {
+  const who = "dataPut"
+
   const data = await dataGet(db, path)
   if (data === undefined) {
-    throw new NotFound(`[put] not found, path ${path}`)
+    throw new NotFound(`[${who}] not found, path ${path}`)
   }
 
   if (data["@revision"] !== input["@revision"]) {
-    throw new RevisionMismatch(`[put] revision mismatch`)
+    throw new RevisionMismatch(`[${who}] revision mismatch`)
   }
 
   const result = {

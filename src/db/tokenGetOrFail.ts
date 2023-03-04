@@ -8,8 +8,10 @@ export async function tokenGetOrFail(
   db: Database,
   tokenName: string,
 ): Promise<Token> {
+  const who = "tokenGetOrFail"
+
   if (!isValidTokenName(tokenName)) {
-    throw new Unauthorized(`[getTokenOrFail] invalid token name: ${tokenName}`)
+    throw new Unauthorized(`[${who}] invalid token name: ${tokenName}`)
   }
 
   return TokenSchema.validate(await dataGet(db, `tokens/${tokenName}`))

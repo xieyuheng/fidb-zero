@@ -11,9 +11,11 @@ export async function dataCreate(
   path: string,
   input: JsonObject,
 ): Promise<Data> {
+  const who = "dataCreate"
+
   const data = await dataGet(db, path)
   if (data !== undefined) {
-    throw new AlreadyExists(`[create] already exists, @path: ${path}`)
+    throw new AlreadyExists(`[${who}] already exists, path: ${path}`)
   }
 
   const result = {

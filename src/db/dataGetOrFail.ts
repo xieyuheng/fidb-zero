@@ -5,13 +5,15 @@ import { isErrnoException } from "../utils/node/isErrnoException"
 import { readData } from "./utils/readData"
 
 export async function dataGetOrFail(db: Database, path: string): Promise<Data> {
+  const who = "dataGetOrFail"
+
   try {
     const json = await readData(db, path)
     const data = DataSchema.validate(json)
     return data
   } catch (error) {
     if (isErrnoException(error) && error.code === "ENOENT") {
-      throw new NotFound(`[getOrFail] path: ${path}`)
+      throw new NotFound(`[${who}] path: ${path}`)
     }
 
     throw error

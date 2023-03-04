@@ -12,13 +12,15 @@ export async function dataPatch(
   path: string,
   input: JsonObject,
 ): Promise<Data> {
+  const who = "dataPatch"
+
   const data = await dataGet(db, path)
   if (data === undefined) {
-    throw new NotFound(`[patch] not found, path ${path}`)
+    throw new NotFound(`[${who}] not found, path ${path}`)
   }
 
   if (data["@revision"] !== input["@revision"]) {
-    throw new RevisionMismatch(`[patch] revision mismatch`)
+    throw new RevisionMismatch(`[${who}] revision mismatch`)
   }
 
   const result = {
