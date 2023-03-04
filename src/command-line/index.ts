@@ -11,6 +11,7 @@ export function createCommandRunner(): CommandRunner {
       new Commands.WebsiteServeCommand(),
       new Commands.ReverseProxyServeCommand(),
       new Commands.ReverseProxyLoginCommand(),
+      new Commands.ReverseProxyWhoamiCommand(),
     ],
   })
 }

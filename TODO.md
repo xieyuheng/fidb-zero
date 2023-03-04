@@ -1,5 +1,6 @@
-`fidb reverse-proxy:whoami`
 `fidb reverse-proxy:logout`
+
+[command-line] can config `log` to output `json` -- for scripting
 
 # reverse-proxy interface
 
