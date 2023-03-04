@@ -14,5 +14,11 @@ export async function tokenGetOrFail(
     throw new Unauthorized(`[${who}] invalid token name: ${tokenName}`)
   }
 
-  return TokenSchema.validate(await dataGet(db, `tokens/${tokenName}`))
+  const data = await dataGet(db, `tokens/${tokenName}`)
+
+  if (data === undefined) {
+    throw new Unauthorized(`[${who}] invalid token name: ${tokenName}`)
+  }
+
+  return TokenSchema.validate(data)
 }

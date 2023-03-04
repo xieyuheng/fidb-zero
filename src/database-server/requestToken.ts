@@ -10,6 +10,7 @@ export async function requestToken(
   request: Http.IncomingMessage,
 ): Promise<Token> {
   const tokenName = requestTokenName(request)
+
   if (tokenName === undefined) {
     throw new Unauthorized(`[requestToken] not token in authorization header`)
   }

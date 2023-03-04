@@ -1,11 +1,8 @@
 # reverse-proxy interface
 
-`fidb website:serve` and `fidb database:serve` -- use token
+[reverse-proxy-client] `connect` -- get current `username`
 
-[reverse-proxy-server] `handleReverseProxyTarget` -- check token and subdomain
-
-- check token can access given user
-- check given subdomain can be used by the user
+[reverse-proxy-server] `handleReverseProxyTarget` -- check given subdomain can be used by the user
 
 # reverse-proxy messaging
 

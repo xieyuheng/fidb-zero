@@ -1,11 +1,12 @@
 import { Buffer } from "node:buffer"
 import Net from "node:net"
+import { formatAuthorizationHeader } from "../utils/formatAuthorizationHeader"
 import { log } from "../utils/log"
+import { tokenGet } from "./tokenGet"
 
 type Options = {
   url: URL
   username: string
-  password: string
   target: { hostname: string; port: number }
 }
 
@@ -19,8 +20,21 @@ function parseArgURL(url: URL): { serverURL: URL; subdomain: string } {
 export async function connect(options: Options): Promise<void> {
   const who = "reverse-proxy-client/connect"
 
-  const { url, username, password, target } = options
+  const { url, username, target } = options
   const { serverURL, subdomain } = parseArgURL(url)
+
+  const token = await tokenGet(url.href)
+
+  if (token === undefined) {
+    log({
+      knid: "Error",
+      who,
+      message: `not token for url`,
+      url,
+    })
+
+    return
+  }
 
   const response = await fetch(
     `${serverURL.protocol}//${serverURL.host}?kind=reverse-proxy-target`,
@@ -28,11 +42,11 @@ export async function connect(options: Options): Promise<void> {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: formatAuthorizationHeader(token),
       },
       body: JSON.stringify({
         subdomain,
         username,
-        password,
       }),
     },
   )
@@ -40,6 +54,8 @@ export async function connect(options: Options): Promise<void> {
   if (!response.ok) {
     log({
       knid: "Error",
+      message: `fail to post`,
+      url: `${serverURL.protocol}//${serverURL.host}?kind=reverse-proxy-target`,
       who,
       status: {
         code: response.status,

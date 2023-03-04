@@ -26,13 +26,13 @@ fidb reverse-proxy:login http://cicada.localhost:8080
 
 
 fidb website:serve ~/learn-x/learn-alpinejs/notepad \
-  --url http://notepad.cicada.localhost:8080
+  --url http://test.cicada.localhost:8080
 
-curl 'http://notepad.cicada.localhost:8080'
+curl 'http://test.cicada.localhost:8080'
 
 
 fidb database:serve ~/fidb-official/fidb-databases/databases/test \
-  --url http://notepad.cicada.localhost:5108
+  --url http://test.cicada.localhost:5108
 
-curl 'http://notepad.cicada.localhost:5108?kind=info'
+curl 'http://test.cicada.localhost:5108?kind=info'
 ```

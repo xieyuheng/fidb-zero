@@ -1,8 +1,6 @@
-import { env } from "../command-line/env"
-import { createDatabase } from "../database"
-import * as Db from "../db"
 import { formatAuthorizationHeader } from "../utils/formatAuthorizationHeader"
 import { log } from "../utils/log"
+import { tokenPatch } from "./tokenPatch"
 
 type Options = {
   url: URL
@@ -42,7 +40,7 @@ export async function login(options: Options): Promise<void> {
       return
     }
 
-    await saveToken(token, urls)
+    await tokenPatch(token, urls)
 
     log({
       who,
@@ -119,19 +117,4 @@ async function fetchAvailableURLs(
       ),
     )
   }
-}
-
-async function saveToken(token: string, urls: Array<string>): Promise<void> {
-  const db = await createDatabase({ path: env.FIDB_SYSTEM_DB_DIR })
-
-  if (!(await Db.jsonFileGet(db, `reverse-proxy-tokens.json`))) {
-    await Db.jsonFileCreate(db, `reverse-proxy-tokens.json`, {})
-  }
-
-  const patch: Record<string, string> = {}
-  for (const url of urls) {
-    patch[url] = token
-  }
-
-  await Db.jsonFilePatch(db, `reverse-proxy-tokens.json`, patch)
 }
