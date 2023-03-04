@@ -1,6 +1,7 @@
 import { env } from "../command-line/env"
 import { createDatabase } from "../database"
 import * as Db from "../db"
+import { formatAuthorizationHeader } from "../utils/formatAuthorizationHeader"
 import { log } from "../utils/log"
 
 type Options = {
@@ -9,7 +10,7 @@ type Options = {
   password: string
 }
 
-export async function login(options: Options) {
+export async function login(options: Options): Promise<void> {
   const who = "reverse-proxy-client/login"
 
   const { url, username, password } = options
@@ -30,17 +31,24 @@ export async function login(options: Options) {
   if (response.ok) {
     const token = await response.json()
 
-    const db = await createDatabase({ path: env.FIDB_SYSTEM_DB_DIR })
+    const urls = await fetchAvailableURLs(url, token, username)
+    if (urls === undefined) {
+      log({
+        who,
+        kind: "Error",
+        message: `fail to fetchAvailableURLs`,
+      })
 
-    if (!(await Db.jsonFileGet(db, `reverse-proxy-tokens.json`))) {
-      await Db.jsonFileCreate(db, `reverse-proxy-tokens.json`, {})
+      return
     }
 
-    await Db.jsonFilePatch(db, `reverse-proxy-tokens.json`, {
-      [url.toString()]: token,
-    })
+    await saveToken(token, urls)
 
-    log({ who, message: `token saved` })
+    log({
+      who,
+      message: `token saved`,
+      availableURLs: urls,
+    })
   } else {
     log({
       who,
@@ -51,4 +59,79 @@ export async function login(options: Options) {
       },
     })
   }
+}
+
+async function fetchAvailableURLs(
+  url: URL,
+  token: string,
+  username: string,
+): Promise<Array<string> | undefined> {
+  const who = "fetchAvailableURLs"
+
+  const response = await fetch(new URL(`/?kind=info`, url), {
+    method: "GET",
+  })
+
+  if (!response.ok) {
+    log({
+      who,
+      message: `fail to fetch /?kind=info`,
+      url,
+      status: {
+        code: response.status,
+        message: response.statusText,
+      },
+    })
+
+    return
+  }
+
+  const { availablePorts } = await response.json()
+
+  {
+    const response = await fetch(new URL(`/users/${username}`, url), {
+      method: "GET",
+      headers: {
+        authorization: formatAuthorizationHeader(token),
+      },
+    })
+
+    if (!response.ok) {
+      log({
+        who,
+        message: `fail to fetch /users/${username}`,
+        url,
+        status: {
+          code: response.status,
+          message: response.statusText,
+        },
+      })
+
+      return
+    }
+
+    const { subdomains } = await response.json()
+
+    return subdomains.flatMap((subdomain: string) =>
+      availablePorts.map(
+        (port: number) =>
+          `${url.protocol}//${subdomain}.${url.hostname}:${port}`,
+      ),
+    )
+  }
+}
+
+async function saveToken(token: string, urls: Array<string>): Promise<void> {
+  const db = await createDatabase({ path: env.FIDB_SYSTEM_DB_DIR })
+
+  if (!(await Db.jsonFileGet(db, `reverse-proxy-tokens.json`))) {
+    await Db.jsonFileCreate(db, `reverse-proxy-tokens.json`, {})
+  }
+
+  const patch: Record<string, string> = {}
+  for (const url of urls) {
+    patch[url] = token
+  }
+
+  await Db.jsonFilePatch(db, `reverse-proxy-tokens.json`, patch)
 }

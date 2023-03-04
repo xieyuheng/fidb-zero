@@ -1,7 +1,5 @@
 # reverse-proxy interface
 
-`ReverseProxyClient.login` -- log available proxy servers' urls -- subdomains and ports
-
 `fidb website:serve` and `fidb database:serve` -- use token
 
 [reverse-proxy-server] `handleReverseProxyTarget` -- check token and subdomain
