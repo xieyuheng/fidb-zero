@@ -16,7 +16,7 @@ function parseArgURL(url: URL): { serverURL: URL; subdomain: string } {
   return { serverURL, subdomain }
 }
 
-export async function connect(options: Options): Promise<void> {
+export async function connect(options: Options): Promise<boolean> {
   const who = "reverse-proxy-client/connect"
 
   const { url, target } = options
@@ -32,7 +32,7 @@ export async function connect(options: Options): Promise<void> {
       url,
     })
 
-    return
+    return false
   }
 
   const response = await fetch(
@@ -62,7 +62,7 @@ export async function connect(options: Options): Promise<void> {
       },
     })
 
-    return
+    return false
   }
 
   const proxy = await response.json()
@@ -95,4 +95,6 @@ export async function connect(options: Options): Promise<void> {
       proxySocket.write(Buffer.concat([keyBuffer, data]))
     })
   })
+
+  return true
 }
