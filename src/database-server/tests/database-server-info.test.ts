@@ -24,6 +24,8 @@ test("database-server-info", async ({ meta }) => {
   ).json()
 
   expect(info).toEqual({
-    config: db.config,
+    db: {
+      config: db.config,
+    },
   })
 })
