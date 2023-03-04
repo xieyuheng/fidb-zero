@@ -1,7 +1,5 @@
 # reverse-proxy interface
 
-`fidb reverse-proxy:login` -- save token to `FIDB_DIR` -- `~/.fidb/`
-
 `fidb reverse-proxy:login` -- show available proxy servers' urls -- subdomains and ports
 
 `fidb website:serve` and `fidb database:serve` -- use token

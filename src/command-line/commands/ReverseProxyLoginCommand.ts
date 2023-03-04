@@ -2,6 +2,7 @@ import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
 import inquirer from "inquirer"
 import { createDatabase } from "../../database"
+import * as Db from "../../db"
 import { log } from "../../utils/log"
 import { env } from "../env"
 
@@ -56,15 +57,15 @@ export class ReverseProxyLoginCommand extends Command<Args> {
 
       const db = await createDatabase({ path: env.FIDB_SYSTEM_DB_DIR })
 
-      // if (!(await Db.jsonFileGet(db, `reverse-proxy-tokens.json`))) {
-      //   await Db.jsonFileCreate(db, `reverse-proxy-tokens.json`, {})
-      // }
+      if (!(await Db.jsonFileGet(db, `reverse-proxy-tokens.json`))) {
+        await Db.jsonFileCreate(db, `reverse-proxy-tokens.json`, {})
+      }
 
-      // await Db.jsonFilePatch(db, `reverse-proxy-tokens.json`, {
-      //   [argv.url]: token,
-      // })
+      await Db.jsonFilePatch(db, `reverse-proxy-tokens.json`, {
+        [argv.url]: token,
+      })
 
-      log({ who, token })
+      log({ who, message: `token saved` })
     } else {
       log({
         who,
