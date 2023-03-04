@@ -1,16 +1,15 @@
 # reverse-proxy interface
 
 `fidb reverse-proxy:login` -- save token to `FIDB_DIR` -- `~/.fidb/`
-[reverse-proxy-server] database `users/` -- user has `subdomains`
-[reverse-proxy-server] `handleReverseProxyTarget` -- `POST` -- check `password`
 
-# reverse-proxy test
+`fidb reverse-proxy:login` -- show available proxy servers' urls -- subdomains and ports
 
-[command-line] `tests/` -- be able to test command
+`fidb website:serve` and `fidb database:serve` -- use token
 
-- need to setup example website
-- need to run command in `child_process`
-- need to use node http client -- which can mock DNS server
+[reverse-proxy-server] `handleReverseProxyTarget` -- check token and subdomain
+
+- check token can access given user
+- check given subdomain can be used by the user
 
 # reverse-proxy messaging
 

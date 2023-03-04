@@ -4,6 +4,13 @@ title: Reverse proxy use case
 
 We can not yet run tests for command-line.
 
+To be able to test this commands we need to:
+
+- Setup example website.
+- Run command in `child_process`.
+- Use node http client, which can mock DNS server,
+  instead of using `fetch`.
+
 ```
 fidb reverse-proxy:serve --port 8080 --port 5108 \
  --database ~/fidb-official/fidb-databases/databases/reverse-proxy \

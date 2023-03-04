@@ -32,7 +32,7 @@ export class ReverseProxyLoginCommand extends Command<Args> {
     const who = this.name
 
     const { password } = await inquirer.prompt([
-      { type: "password", name: "password", message: "Password: ", mask: "*" },
+      { type: "password", name: "password", message: "Password", mask: "*" },
     ])
 
     const response = await fetch(`${argv.url}?kind=password-login`, {
