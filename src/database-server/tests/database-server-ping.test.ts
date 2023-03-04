@@ -6,7 +6,7 @@ test("database-server-ping", async ({ meta }) => {
 
   expect(
     await (
-      await fetch(`${url}?kind=ping`, {
+      await fetch(new URL(`/?kind=ping`, url), {
         method: "GET",
         headers: {
           "content-type": "application/json",

@@ -5,7 +5,7 @@ import { prepareTestServer } from "./prepareTestServer"
 test("database-server-directory-get-by-page", async ({ meta }) => {
   const { url, authorization } = await prepareTestServer(meta)
 
-  await fetch(`${url}/projects/1/users/1`, {
+  await fetch(new URL(`/projects/1/users/1`, url), {
     method: "POST",
     headers: {
       authorization,
@@ -14,7 +14,7 @@ test("database-server-directory-get-by-page", async ({ meta }) => {
     body: JSON.stringify({}),
   })
 
-  await fetch(`${url}/projects/1/posts/1`, {
+  await fetch(new URL(`/projects/1/posts/1`, url), {
     method: "POST",
     headers: {
       authorization,
@@ -25,7 +25,7 @@ test("database-server-directory-get-by-page", async ({ meta }) => {
 
   {
     const response = await fetch(
-      `${url}/projects/1?kind=directory&page=1&size=1`,
+      new URL(`/projects/1?kind=directory&page=1&size=1`, url),
       {
         method: "GET",
         headers: {
@@ -47,7 +47,7 @@ test("database-server-directory-get-by-page", async ({ meta }) => {
 
   {
     const response = await fetch(
-      `${url}/projects/1?kind=directory&page=2&size=1`,
+      new URL(`/projects/1?kind=directory&page=2&size=1`, url),
       {
         method: "GET",
         headers: {
@@ -69,7 +69,7 @@ test("database-server-directory-get-by-page", async ({ meta }) => {
 
   {
     const response = await fetch(
-      `${url}/projects/1?kind=directory&page=3&size=1`,
+      new URL(`/projects/1?kind=directory&page=3&size=1`, url),
       {
         method: "GET",
         headers: {

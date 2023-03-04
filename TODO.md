@@ -1,5 +1,3 @@
-use `new URL` to join url --- instead of `${url}/...`
-
 # reverse-proxy interface
 
 `ReverseProxyClient.login` -- log available proxy servers' urls -- subdomains and ports

@@ -6,7 +6,7 @@ test("database-server-directory-get-nested", async ({ meta }) => {
   const { url, authorization } = await prepareTestServer(meta)
 
   {
-    const response = await fetch(`${url}/projects/1?kind=directory`, {
+    const response = await fetch(new URL(`/projects/1?kind=directory`, url), {
       method: "GET",
       headers: {
         authorization,
@@ -16,7 +16,7 @@ test("database-server-directory-get-nested", async ({ meta }) => {
     expect(results.length).toEqual(0)
   }
 
-  await fetch(`${url}/projects/1/users/1`, {
+  await fetch(new URL(`/projects/1/users/1`, url), {
     method: "POST",
     headers: {
       authorization,
@@ -26,7 +26,7 @@ test("database-server-directory-get-nested", async ({ meta }) => {
   })
 
   {
-    const response = await fetch(`${url}/projects/1?kind=directory`, {
+    const response = await fetch(new URL(`/projects/1?kind=directory`, url), {
       method: "GET",
       headers: {
         authorization,
@@ -46,7 +46,7 @@ test("database-server-directory-get-nested", async ({ meta }) => {
     ).toEqual(false)
   }
 
-  await fetch(`${url}/projects/1/posts/1`, {
+  await fetch(new URL(`/projects/1/posts/1`, url), {
     method: "POST",
     headers: {
       authorization,
@@ -56,7 +56,7 @@ test("database-server-directory-get-nested", async ({ meta }) => {
   })
 
   {
-    const response = await fetch(`${url}/projects/1?kind=directory`, {
+    const response = await fetch(new URL(`/projects/1?kind=directory`, url), {
       method: "GET",
       headers: {
         authorization,

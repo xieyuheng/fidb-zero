@@ -13,7 +13,7 @@ test("database-server-data-patch-no-permission", async ({ meta }) => {
   })}`
 
   const created = await (
-    await fetch(`${url}/users/xieyuheng`, {
+    await fetch(new URL(`/users/xieyuheng`, url), {
       method: "POST",
       headers: {
         authorization,
@@ -29,7 +29,7 @@ test("database-server-data-patch-no-permission", async ({ meta }) => {
   expect(created.name).toEqual("Xie Yuheng")
   expect(
     await (
-      await fetch(`${url}/users/xieyuheng`, {
+      await fetch(new URL(`/users/xieyuheng`, url), {
         method: "GET",
         headers: {
           authorization,
@@ -50,7 +50,7 @@ test("database-server-data-patch-no-permission", async ({ meta }) => {
   expect(
     (
       await (
-        await fetch(`${url}/users/xieyuheng`, {
+        await fetch(new URL(`/users/xieyuheng`, url), {
           method: "GET",
           headers: {
             authorization,
@@ -64,7 +64,7 @@ test("database-server-data-patch-no-permission", async ({ meta }) => {
 
   expect(
     (
-      await fetch(`${url}/users/xieyuheng`, {
+      await fetch(new URL(`/users/xieyuheng`, url), {
         method: "PATCH",
         headers: {
           authorization,
@@ -82,7 +82,7 @@ test("database-server-data-patch-no-permission", async ({ meta }) => {
 
   expect(
     (
-      await fetch(`${url}/users/xieyuheng`, {
+      await fetch(new URL(`/users/xieyuheng`, url), {
         method: "DELETE",
         headers: {
           authorization,

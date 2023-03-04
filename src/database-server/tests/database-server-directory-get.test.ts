@@ -6,7 +6,7 @@ test("database-server-directory-get", async ({ meta }) => {
   const { url, authorization } = await prepareTestServer(meta)
 
   {
-    const response = await fetch(`${url}?kind=directory`, {
+    const response = await fetch(new URL(`/?kind=directory`, url), {
       method: "GET",
       headers: {
         authorization,
@@ -21,7 +21,7 @@ test("database-server-directory-get", async ({ meta }) => {
     ).toEqual(false)
   }
 
-  await fetch(`${url}/users/1`, {
+  await fetch(new URL(`/users/1`, url), {
     method: "POST",
     headers: {
       authorization,
@@ -31,7 +31,7 @@ test("database-server-directory-get", async ({ meta }) => {
   })
 
   {
-    const response = await fetch(`${url}?kind=directory`, {
+    const response = await fetch(new URL(`/?kind=directory`, url), {
       method: "GET",
       headers: {
         authorization,
@@ -46,7 +46,7 @@ test("database-server-directory-get", async ({ meta }) => {
     ).toEqual(false)
   }
 
-  await fetch(`${url}/posts/1`, {
+  await fetch(new URL(`/posts/1`, url), {
     method: "POST",
     headers: {
       authorization,
@@ -56,7 +56,7 @@ test("database-server-directory-get", async ({ meta }) => {
   })
 
   {
-    const response = await fetch(`${url}?kind=directory`, {
+    const response = await fetch(new URL(`/?kind=directory`, url), {
       method: "GET",
       headers: {
         authorization,

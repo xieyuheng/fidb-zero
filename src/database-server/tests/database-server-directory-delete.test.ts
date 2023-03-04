@@ -5,7 +5,7 @@ import { prepareTestServer } from "./prepareTestServer"
 test("database-server-directory-delete", async ({ meta }) => {
   const { url, authorization } = await prepareTestServer(meta)
 
-  await fetch(`${url}/users?kind=directory`, {
+  await fetch(new URL(`/users?kind=directory`, url), {
     method: "POST",
     headers: {
       authorization,
@@ -13,7 +13,7 @@ test("database-server-directory-delete", async ({ meta }) => {
   })
 
   {
-    const response = await fetch(`${url}?kind=directory`, {
+    const response = await fetch(new URL(`/?kind=directory`, url), {
       method: "GET",
       headers: {
         authorization,
@@ -25,7 +25,7 @@ test("database-server-directory-delete", async ({ meta }) => {
     ).toEqual(true)
   }
 
-  await fetch(`${url}/users?kind=directory`, {
+  await fetch(new URL(`/users?kind=directory`, url), {
     method: "DELETE",
     headers: {
       authorization,
@@ -33,7 +33,7 @@ test("database-server-directory-delete", async ({ meta }) => {
   })
 
   {
-    const response = await fetch(`${url}?kind=directory`, {
+    const response = await fetch(new URL(`/?kind=directory`, url), {
       method: "GET",
       headers: {
         authorization,

@@ -6,7 +6,7 @@ test("database-server-data-post-no-token", async ({ meta }) => {
 
   expect(
     (
-      await fetch(`${url}/users/xieyuheng`, {
+      await fetch(new URL(`/users/xieyuheng`, url), {
         method: "POST",
         headers: {
           "content-type": "application/json",

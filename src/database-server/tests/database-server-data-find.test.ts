@@ -19,7 +19,7 @@ test("database-server-data-find", async ({ meta }) => {
   ]
 
   for (const data of array) {
-    await fetch(`${url}/${data["@path"]}`, {
+    await fetch(new URL(`/${data["@path"]}`, url), {
       method: "POST",
       headers: {
         authorization,
@@ -30,14 +30,16 @@ test("database-server-data-find", async ({ meta }) => {
   }
 
   {
+    const query = qs.stringify({
+      page: 1,
+      size: 3,
+      properties: {
+        country: "China",
+      },
+    })
+
     const response = await fetch(
-      `${url}/users?kind=data-find&${qs.stringify({
-        page: 1,
-        size: 3,
-        properties: {
-          country: "China",
-        },
-      })}`,
+      new URL(`/users?kind=data-find&${query}`, url),
       {
         method: "GET",
         headers: {
@@ -50,14 +52,16 @@ test("database-server-data-find", async ({ meta }) => {
   }
 
   {
+    const query = qs.stringify({
+      page: 2,
+      size: 3,
+      properties: {
+        country: "China",
+      },
+    })
+
     const response = await fetch(
-      `${url}/users?kind=data-find&${qs.stringify({
-        page: 2,
-        size: 3,
-        properties: {
-          country: "China",
-        },
-      })}`,
+      new URL(`/users?kind=data-find&${query}`, url),
       {
         method: "GET",
         headers: {

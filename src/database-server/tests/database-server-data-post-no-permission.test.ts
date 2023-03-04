@@ -14,7 +14,7 @@ test("database-server-data-post-no-permission", async ({ meta }) => {
 
   expect(
     (
-      await fetch(`${url}/users/xieyuheng`, {
+      await fetch(new URL(`/users/xieyuheng`, url), {
         method: "POST",
         headers: {
           authorization,

@@ -5,7 +5,7 @@ test("rest-data-crud", async ({ meta }) => {
   const { url, authorization } = await prepareTestServer(meta)
 
   const created = await (
-    await fetch(`${url}/users/xieyuheng`, {
+    await fetch(new URL(`/users/xieyuheng`, url), {
       method: "POST",
       headers: {
         authorization,
@@ -21,7 +21,7 @@ test("rest-data-crud", async ({ meta }) => {
   expect(created.name).toEqual("Xie Yuheng")
   expect(
     await (
-      await fetch(`${url}/users/xieyuheng`, {
+      await fetch(new URL(`/users/xieyuheng`, url), {
         method: "GET",
         headers: {
           authorization,
@@ -31,7 +31,7 @@ test("rest-data-crud", async ({ meta }) => {
   ).toEqual(created)
 
   const putted = await (
-    await fetch(`${url}/users/xieyuheng`, {
+    await fetch(new URL(`/users/xieyuheng`, url), {
       method: "PUT",
       headers: {
         authorization,
@@ -48,7 +48,7 @@ test("rest-data-crud", async ({ meta }) => {
   expect(putted.name).toEqual("谢宇恒")
   expect(
     await (
-      await fetch(`${url}/users/xieyuheng`, {
+      await fetch(new URL(`/users/xieyuheng`, url), {
         method: "GET",
         headers: {
           authorization,
@@ -58,7 +58,7 @@ test("rest-data-crud", async ({ meta }) => {
   ).toEqual(putted)
 
   const patched = await (
-    await fetch(`${url}/users/xieyuheng`, {
+    await fetch(new URL(`/users/xieyuheng`, url), {
       method: "PATCH",
       headers: {
         authorization,
@@ -75,7 +75,7 @@ test("rest-data-crud", async ({ meta }) => {
   expect(patched.name).toEqual("谢宇恒")
   expect(
     await (
-      await fetch(`${url}/users/xieyuheng`, {
+      await fetch(new URL(`/users/xieyuheng`, url), {
         method: "GET",
         headers: {
           authorization,
@@ -84,7 +84,7 @@ test("rest-data-crud", async ({ meta }) => {
     ).json(),
   ).toEqual(patched)
 
-  await fetch(`${url}/users/xieyuheng`, {
+  await fetch(new URL(`/users/xieyuheng`, url), {
     method: "DELETE",
     headers: {
       authorization,
@@ -96,7 +96,7 @@ test("rest-data-crud", async ({ meta }) => {
 
   expect(
     (
-      await fetch(`${url}/users/xieyuheng`, {
+      await fetch(new URL(`/users/xieyuheng`, url), {
         method: "GET",
         headers: {
           authorization,
