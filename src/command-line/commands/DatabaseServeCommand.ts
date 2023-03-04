@@ -2,7 +2,7 @@ import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
 import { handle } from "../../database-server"
 import { createContext } from "../../database-server/Context"
-import { connectReverseProxy } from "../../reverse-proxy-client"
+import * as ReverseProxyClient from "../../reverse-proxy-client"
 import { createRequestListener } from "../../server/createRequestListener"
 import { maybeTlsOptionsFromArgv } from "../../server/createServer"
 import { startServer } from "../../server/startServer"
@@ -61,7 +61,7 @@ export class DatabaseServeCommand extends Command<Args> {
     log({ who, ctx, url, tls })
 
     if (argv["url"]) {
-      await connectReverseProxy({
+      await ReverseProxyClient.connect({
         url: new URL(argv["url"]),
         username: "TODO",
         password: "TODO",

@@ -1,1 +1,1 @@
-export * from "./connectReverseProxy"
+export * from "./connect"
