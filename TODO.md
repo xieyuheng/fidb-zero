@@ -2,6 +2,8 @@
 `fidb reverse-proxy:logout`
 `fidb reverse-proxy:whoami`
 
+`fidb reverse-proxy:*` default url is `https://fidb.app`
+
 # reverse-proxy interface
 
 [reverse-proxy-server] `handleReverseProxyTarget` -- check given subdomain can be used by the user

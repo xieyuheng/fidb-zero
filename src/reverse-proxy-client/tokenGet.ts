@@ -4,7 +4,13 @@ import * as Db from "../db"
 import { isJsonObject } from "../utils/Json"
 import { stringTrimEnd } from "../utils/stringTrimEnd"
 
-export async function tokenGet(url: string): Promise<string | void> {
+export async function tokenGet(url: string): Promise<
+  | {
+      token: string
+      username: string
+    }
+  | undefined
+> {
   const who = "reverse-proxy-client/tokenGet"
 
   const db = await createDatabase({ path: env.FIDB_SYSTEM_DB_DIR })
@@ -12,7 +18,7 @@ export async function tokenGet(url: string): Promise<string | void> {
   const tokens = await Db.jsonFileGet(db, "reverse-proxy-tokens.json")
 
   if (tokens === undefined) {
-    return
+    return undefined
   }
 
   if (!isJsonObject(tokens)) {
@@ -20,15 +26,14 @@ export async function tokenGet(url: string): Promise<string | void> {
   }
 
   const key = stringTrimEnd(url, "/")
-  const token = tokens[key]
+  const value = tokens[key]
 
-  if (token === undefined) {
+  if (value === undefined) {
     return undefined
   }
 
-  if (typeof token !== "string") {
-    throw new Error(`[${who}] token not a string, ${token}`)
+  return value as {
+    token: string
+    username: string
   }
-
-  return token
 }

@@ -3,7 +3,6 @@ import Net from "node:net"
 import { formatAuthorizationHeader } from "../utils/formatAuthorizationHeader"
 import { log } from "../utils/log"
 import { tokenGet } from "./tokenGet"
-import { usernameGet } from "./usernameGet"
 
 type Options = {
   url: URL
@@ -23,10 +22,9 @@ export async function connect(options: Options): Promise<void> {
   const { url, target } = options
   const { serverURL, subdomain } = parseArgURL(url)
 
-  const username = await usernameGet()
-  const token = await tokenGet(url.href)
+  const value = await tokenGet(url.href)
 
-  if (token === undefined) {
+  if (value === undefined) {
     log({
       knid: "Error",
       who,
@@ -43,11 +41,11 @@ export async function connect(options: Options): Promise<void> {
       method: "POST",
       headers: {
         "content-type": "application/json",
-        authorization: formatAuthorizationHeader(token),
+        authorization: formatAuthorizationHeader(value.token),
       },
       body: JSON.stringify({
         subdomain,
-        username,
+        username: value.username,
       }),
     },
   )
