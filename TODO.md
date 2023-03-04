@@ -1,8 +1,10 @@
 # reverse-proxy interface
 
-[reverse-proxy-server] `handleReverseProxyTarget` -- check given subdomain can be used by the user
+`ReverseProxyClient.connect` return boolean about `successful` or not
 
 [command-line] can config `log` to output `json` -- for scripting
+
+catch `JSON.parse` error
 
 # reverse-proxy messaging
 
