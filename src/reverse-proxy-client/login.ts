@@ -1,5 +1,6 @@
 import { formatAuthorizationHeader } from "../utils/formatAuthorizationHeader"
 import { log } from "../utils/log"
+import { loggedInPatch } from "./loggedInPatch"
 import { tokenPatch } from "./tokenPatch"
 
 type Options = {
@@ -45,8 +46,16 @@ export async function login(options: Options): Promise<void> {
     log({
       who,
       message: `token saved`,
-      username,
       availableURLs: urls,
+    })
+
+    await loggedInPatch(url.href, { username })
+
+    log({
+      who,
+      message: `logged url saved`,
+      url: url.href,
+      username,
     })
   } else {
     log({

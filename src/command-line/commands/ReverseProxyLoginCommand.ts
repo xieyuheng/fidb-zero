@@ -2,6 +2,8 @@ import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
 import inquirer from "inquirer"
 import * as ReverseProxyClient from "../../reverse-proxy-client"
+import { loggedInGet } from "../../reverse-proxy-client/loggedInGet"
+import { log } from "../../utils/log"
 
 type Args = { url?: string }
 type Opts = {}
@@ -29,13 +31,31 @@ export class ReverseProxyLoginCommand extends Command<Args> {
   }
 
   async execute(argv: Args & Opts): Promise<void> {
-    const { username, password } = await inquirer.prompt([
+    const who = this.name
+
+    const url = new URL(argv.url || "https://fidb.app")
+
+    const found = await loggedInGet(url.href)
+    if (found !== undefined) {
+      log({
+        who,
+        message: `already logged in to url, logout first`,
+        url,
+        username: found.username,
+      })
+      return
+    }
+
+    const { username } = await inquirer.prompt([
       { type: "input", name: "username", message: "Username" },
+    ])
+
+    const { password } = await inquirer.prompt([
       { type: "password", name: "password", message: "Password", mask: "*" },
     ])
 
     await ReverseProxyClient.login({
-      url: new URL(argv.url || "https://fidb.app"),
+      url,
       username,
       password,
     })

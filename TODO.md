@@ -1,4 +1,3 @@
-`fidb reverse-proxy:login` -- warning about already user logged in
 `fidb reverse-proxy:logout`
 `fidb reverse-proxy:whoami`
 

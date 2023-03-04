@@ -4,15 +4,11 @@ import * as Db from "../db"
 import { stringTrimEnd } from "../utils/stringTrimEnd"
 
 type Value = {
-  token: string
   username: string
 }
 
-export async function tokenPatch(
-  urls: Array<string>,
-  value: Value,
-): Promise<void> {
-  const path = "reverse-proxy/tokens.json"
+export async function loggedInPatch(url: string, value: Value): Promise<void> {
+  const path = "reverse-proxy/logged-in.json"
 
   const db = await createDatabase({ path: env.FIDB_SYSTEM_DB_DIR })
 
@@ -20,9 +16,8 @@ export async function tokenPatch(
     await Db.jsonFileCreate(db, path, {})
   }
 
-  await Db.jsonFilePatch(
-    db,
-    path,
-    Object.fromEntries(urls.map((url) => [stringTrimEnd(url, "/"), value])),
-  )
+  const key = stringTrimEnd(url, "/")
+  await Db.jsonFilePatch(db, path, {
+    [key]: value,
+  })
 }
