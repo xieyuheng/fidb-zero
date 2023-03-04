@@ -6,7 +6,7 @@ export async function handleInfo(
   ctx: Context,
   request: Http.IncomingMessage,
 ): Promise<Json | void> {
-  const { db } = ctx
+  const { db, availablePorts } = ctx
 
   if (request.method === "GET") {
     return {
@@ -19,6 +19,7 @@ export async function handleInfo(
             }
           : null,
       },
+      availablePorts,
     }
   }
 

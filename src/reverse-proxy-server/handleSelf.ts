@@ -6,6 +6,7 @@ import { handlePreflight } from "../server/handlePreflight"
 import { requestKind } from "../server/requestKind"
 import type { Json } from "../utils/Json"
 import type { Context } from "./Context"
+import { handleInfo } from "./handleInfo"
 import { handlePing } from "./handlePing"
 import { handleReverseProxyTarget } from "./handleReverseProxyTarget"
 
@@ -26,6 +27,10 @@ export async function handleSelf(
 
   if (kind.startsWith("ping")) {
     return await handlePing(ctx, request)
+  }
+
+  if (kind.startsWith("info")) {
+    return await handleInfo(ctx, request)
   }
 
   if (kind.startsWith("password")) {
