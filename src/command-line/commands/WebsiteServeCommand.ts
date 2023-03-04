@@ -4,28 +4,32 @@ import { connectReverseProxy } from "../../clients/reverse-proxy-client"
 import { createRequestListener } from "../../server/createRequestListener"
 import { maybeTlsOptionsFromArgv } from "../../server/createServer"
 import { startServer } from "../../server/startServer"
-import { handle } from "../../servers/database-server"
-import { createContext } from "../../servers/database-server/Context"
+import { handle } from "../../servers/website-server"
+import { createContext } from "../../servers/website-server/Context"
 import { log } from "../../utils/log"
 
 type Args = { path: string }
 type Opts = {
   hostname?: string
   port?: number
+  "rewrite-not-found-to"?: string
+  cors?: boolean
   "tls-cert"?: string
   "tls-key"?: string
   url?: string
 }
 
-export class ServeDatabaseCommand extends Command<Args> {
-  name = "serve-database"
+export class WebsiteServeCommand extends Command<Args> {
+  name = "website:serve"
 
-  description = "Serve a database"
+  description = "Serve a website"
 
   args = { path: ty.string() }
   opts = {
     hostname: ty.optional(ty.string()),
     port: ty.optional(ty.number()),
+    "rewrite-not-found-to": ty.optional(ty.string()),
+    cors: ty.optional(ty.boolean()),
     "tls-cert": ty.optional(ty.string()),
     "tls-key": ty.optional(ty.string()),
     url: ty.optional(ty.string()),
@@ -37,9 +41,9 @@ export class ServeDatabaseCommand extends Command<Args> {
 
     return [
       `The ${blue(this.name)} command takes a path to a directory,`,
-      `and serve it as a database.`,
+      `and serve it as a website.`,
       ``,
-      blue(`  ${runner.name} ${this.name} tmp/databases/test`),
+      blue(`  ${runner.name} ${this.name} dist`),
       ``,
     ].join("\n")
   }
@@ -47,14 +51,19 @@ export class ServeDatabaseCommand extends Command<Args> {
   async execute(argv: Args & Opts): Promise<void> {
     const who = this.name
 
-    const ctx = await createContext({ path: argv.path })
+    const ctx = await createContext({
+      path: argv.path,
+      rewriteNotFoundTo: argv["rewrite-not-found-to"],
+      cors: argv["cors"],
+    })
+
     const requestListener = createRequestListener({ ctx, handle })
     const tls = maybeTlsOptionsFromArgv(argv)
 
     const { url } = await startServer(requestListener, {
       hostname: argv.hostname,
       port: argv.port,
-      startingPort: 3000,
+      startingPort: 8080,
       tls,
     })
 

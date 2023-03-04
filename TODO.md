@@ -1,6 +1,6 @@
 # reverse-proxy interface
 
-`fidb login-reverse-proxy` -- save token to `FIDB_DIR` -- `~/.fidb/`
+`fidb reverse-proxy:login` -- save token to `FIDB_DIR` -- `~/.fidb/`
 [reverse-proxy-server] database `users/` -- user has `subdomains`
 [reverse-proxy-server] `handleReverseProxyTarget` -- `POST` -- check `password`
 
@@ -22,7 +22,7 @@
 
 [reverse-proxy] remove target on disconnect
 
-[reverse-proxy] `fidb serve-database` -- ping the socket to keep it alive
+[reverse-proxy] `fidb database:serve` -- ping the socket to keep it alive
 
 - try to restart on `proxySocket` close
 - learn from ZMQ

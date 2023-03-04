@@ -16,8 +16,8 @@ type Opts = {
   "tls-key"?: string
 }
 
-export class ServeReverseProxyCommand extends Command<Args> {
-  name = "serve-reverse-proxy"
+export class ReverseProxyServeCommand extends Command<Args> {
+  name = "reverse-proxy:serve"
 
   description = "Serve a reverse proxy"
 

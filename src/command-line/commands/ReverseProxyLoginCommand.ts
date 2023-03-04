@@ -6,8 +6,8 @@ import { log } from "../../utils/log"
 type Args = { url: string }
 type Opts = {}
 
-export class LoginReverseProxyCommand extends Command<Args> {
-  name = "login-reverse-proxy"
+export class ReverseProxyLoginCommand extends Command<Args> {
+  name = "reverse-proxy:login"
 
   description = "Login to a reverse proxy server"
 

@@ -6,11 +6,11 @@ export function createCommandRunner(): CommandRunner {
     defaultCommand: new Commands.DefaultCommand(),
     commands: [
       new Commands.CommonHelpCommand(),
-      new Commands.ServeDatabaseCommand(),
-      new Commands.ServeWebsiteCommand(),
-      new Commands.ServeReverseProxyCommand(),
-      new Commands.LoginReverseProxyCommand(),
-      new Commands.ImportDatasetCommand(),
+      new Commands.DatabaseServeCommand(),
+      new Commands.DatabaseImportDatasetCommand(),
+      new Commands.WebsiteServeCommand(),
+      new Commands.ReverseProxyServeCommand(),
+      new Commands.ReverseProxyLoginCommand(),
     ],
   })
 }
