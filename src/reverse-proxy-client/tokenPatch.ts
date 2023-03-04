@@ -23,6 +23,8 @@ export async function tokenPatch(
   await Db.jsonFilePatch(
     db,
     path,
-    Object.fromEntries(urls.map((url) => [stringTrimEnd(url, "/"), value])),
+    Object.fromEntries(
+      urls.map((url) => [stringTrimEnd(new URL(url).href, "/"), value]),
+    ),
   )
 }

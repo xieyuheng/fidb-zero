@@ -1,5 +1,7 @@
 # reverse-proxy messaging
 
+`ReverseProxyTarget` -- fix `socket.on` -- need to parse http tcp message
+
 [reverse-proxy] extract general proxy messaging pattern
 
 - learn from zmq tcp multipart message -- instead of using `keySize`
