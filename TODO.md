@@ -1,5 +1,7 @@
 # reverse-proxy interface
 
+[reverse-proxy-server] `handleSelf` dispatch to `handleInfo` -- to get `availablePorts`
+
 `ReverseProxyClient.login` -- log available proxy servers' urls -- subdomains and ports
 
 `fidb website:serve` and `fidb database:serve` -- use token

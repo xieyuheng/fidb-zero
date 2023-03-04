@@ -1,5 +1,6 @@
 import type { Buffer } from "node:buffer"
 import type Http from "node:http"
+import { handleData } from "../database-server/handleData"
 import { handlePassword } from "../database-server/handlePassword"
 import { handlePreflight } from "../server/handlePreflight"
 import { requestKind } from "../server/requestKind"
@@ -18,6 +19,10 @@ export async function handleSelf(
   }
 
   const kind = requestKind(request)
+
+  if (kind.startsWith("data") || kind === "") {
+    return await handleData(ctx, request)
+  }
 
   if (kind.startsWith("ping")) {
     return await handlePing(ctx, request)
