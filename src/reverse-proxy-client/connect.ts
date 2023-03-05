@@ -105,8 +105,6 @@ export async function connect(options: Options): Promise<boolean> {
           body: new Uint8Array(),
         }),
       )
-
-      log({ who, message: "targetSocket ended" })
     })
   })
 
