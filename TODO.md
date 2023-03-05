@@ -1,12 +1,12 @@
 # reverse-proxy messaging
 
-[reverse-proxy] `messageEncode` & `messageEncode`
+[reverse-proxy] `message-encode-decode.test.ts`
 
 `ReverseProxyTarget` -- fix `socket.on` -- need to parse http tcp message
 
 [reverse-proxy] extract general proxy messaging pattern
 
-- learn from zmq tcp multipart message -- instead of using `keySize`
+- learn from zmq tcp `multibuffer` message -- instead of using `keySize`
 
 [reverse-proxy] encrypt tcp message by token
 
