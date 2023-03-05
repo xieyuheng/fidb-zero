@@ -1,12 +1,13 @@
-# reverse-proxy messaging
+# reverse-proxy
 
 [reverse-proxy] extract general proxy messaging pattern
 [reverse-proxy] encrypt tcp message by token
-[reverse-proxy] remove target on disconnect
-[reverse-proxy] `fidb database:serve` -- ping the socket to keep it alive
 
-- try to restart on `proxySocket` close
-- learn from ZMQ
+[reverse-proxy-server] remove target if a client disconnect
+[reverse-proxy-server] remove queued data when a request timeout
+
+[reverse-proxy-client] ping the socket to keep the socket alive
+[reverse-proxy-client] restart on `proxySocket` close
 
 # rest
 
