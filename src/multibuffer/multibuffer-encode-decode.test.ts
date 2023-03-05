@@ -8,9 +8,5 @@ test("multibuffer-encode-decode", () => {
     new Uint8Array([7, 8, 9]),
   ]
 
-  const buffer = multibufferEncode(parts)
-
-  const decodedParts = multibufferDecode(buffer)
-
-  expect(parts).toEqual(decodedParts)
+  expect(parts).toEqual(multibufferDecode(multibufferEncode(parts)))
 })

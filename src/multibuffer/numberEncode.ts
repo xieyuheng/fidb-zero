@@ -4,7 +4,3 @@ export function numberEncode(n: number): Uint8Array {
   new DataView(buffer).setUint32(0, n)
   return new Uint8Array(buffer)
 }
-
-export function numberDecode(part: Uint8Array): number {
-  return new DataView(part.buffer).getUint32(0)
-}
