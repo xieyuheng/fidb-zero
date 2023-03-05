@@ -2,7 +2,7 @@ import type { Socket } from "node:net"
 
 /**
 
-   The `Channel` multiplex one socket
+   This `Channel` multiplex one socket
    by have a record of handlers,
    one for each request.
 

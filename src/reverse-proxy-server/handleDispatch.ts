@@ -23,6 +23,7 @@ export async function handleDispatch(
   }
 
   const rawRequest = await requestFormatRaw(request)
+  // TODO catch error
   const data = await channelSend(channel, rawRequest)
   const socket = response.socket as Socket
   socket.end(data)

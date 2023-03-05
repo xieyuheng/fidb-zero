@@ -1,32 +1,12 @@
 import { Buffer } from "node:buffer"
 import { byteArrayMerge } from "../multibuffer/byteArrayMerge"
 import { messageDecode } from "../reverse-proxy/messageDecode"
-import { log } from "../utils/log"
 import type { Channel } from "./Channel"
+import { channelHandleMessage } from "./channelHandleMessage"
 
 export async function channelStart(channel: Channel): Promise<void> {
   for await (const message of reciveMessage(channel)) {
-    log({
-      who: "channelStart",
-      keys: Object.keys(channel.handlers),
-    })
-
-    const keyText = new TextDecoder().decode(message.key)
-    const handler = channel.handlers[keyText]
-    if (handler === undefined) {
-      console.error({
-        who: "[channelStart]",
-        message: "Can not find handler",
-        key: message.key,
-      })
-    }
-
-    if (message.isEnd) {
-      delete channel.handlers[keyText]
-      handler.ondata(Buffer.concat([...handler.parts, message.body]))
-    } else {
-      handler.parts.push(message.body)
-    }
+    channelHandleMessage(channel, message)
   }
 }
 
