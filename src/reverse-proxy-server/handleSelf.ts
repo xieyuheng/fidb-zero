@@ -10,7 +10,7 @@ import { handleInfo } from "./handleInfo"
 import { handlePing } from "./handlePing"
 import { handleTarget } from "./handleTarget"
 
-export async function handleSubdomain(
+export async function handleSelf(
   ctx: Context,
   request: Http.IncomingMessage,
   response: Http.ServerResponse,
@@ -35,21 +35,19 @@ export async function handleSubdomain(
 
   if (kind.startsWith("password")) {
     if (kind === "password-register") {
-      throw new Error(
-        `[handleSubdomain] password-register is currently not enabled`,
-      )
+      throw new Error(`[handleSelf] password-register is currently not enabled`)
     }
 
     return await handlePassword(ctx, request)
   }
 
-  if (kind.startsWith("reverse-proxy-target")) {
+  if (kind.startsWith("target")) {
     return await handleTarget(ctx, request)
   }
 
   throw new Error(
     [
-      `[handleSubdomain] unhandled content-type`,
+      `[handleSelf] unhandled content-type`,
       `  method: ${request.method}`,
       `  kind: ${kind}`,
     ].join("\n"),

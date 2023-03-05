@@ -37,7 +37,7 @@ export async function connect(options: Options): Promise<boolean> {
   }
 
   const response = await fetch(
-    `${serverURL.protocol}//${serverURL.host}?kind=reverse-proxy-target`,
+    `${serverURL.protocol}//${serverURL.host}?kind=target`,
     {
       method: "POST",
       headers: {
@@ -55,7 +55,7 @@ export async function connect(options: Options): Promise<boolean> {
     log({
       knid: "Error",
       message: `fail to post`,
-      url: `${serverURL.protocol}//${serverURL.host}?kind=reverse-proxy-target`,
+      url: `${serverURL.protocol}//${serverURL.host}?kind=target`,
       who,
       status: {
         code: response.status,
