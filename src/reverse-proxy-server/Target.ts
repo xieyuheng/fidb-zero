@@ -59,7 +59,8 @@ export class Target {
         keys: Object.keys(this.handlers),
       })
 
-      const handler = this.handlers[message.key]
+      const keyText = new TextDecoder().decode(message.key)
+      const handler = this.handlers[keyText]
       if (handler === undefined) {
         console.error({
           who: "[Target]",
@@ -69,7 +70,7 @@ export class Target {
       }
 
       if (message.isEnd) {
-        delete this.handlers[message.key]
+        delete this.handlers[keyText]
         handler.ondata(Buffer.concat([...handler.parts, message.body]))
       } else {
         handler.parts.push(message.body)
@@ -91,7 +92,7 @@ export class Target {
       this.socket.write(
         messageEncode({
           isEnd: true,
-          key: keyText,
+          key,
           body: data,
         }),
       )

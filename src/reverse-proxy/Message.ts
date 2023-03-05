@@ -1,5 +1,5 @@
 export type Message = {
   isEnd: boolean
-  key: string
+  key: Uint8Array
   body: Uint8Array
 }

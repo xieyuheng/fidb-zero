@@ -5,7 +5,7 @@ import { messageEncode } from "./messageEncode"
 test("message-encode-decode", () => {
   const message = {
     isEnd: false,
-    key: "abc",
+    key: new TextEncoder().encode("abc"),
     body: new Uint8Array([1, 2, 3]),
   }
 
