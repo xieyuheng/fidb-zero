@@ -13,7 +13,7 @@ async function* channelDataPartsStream(channel: Channel, length: number) {
   for await (const data of channelLengthPrefixedDataStream(channel)) {
     parts.push(data)
 
-    if (length === 3) {
+    if (parts.length === length) {
       yield parts
       parts = []
     }

@@ -16,6 +16,8 @@ export function channelHandleMessage(channel: Channel, message: Message): void {
       message: "Can not find handler",
       key: message.key,
     })
+
+    return
   }
 
   if (message.isEnd) {
