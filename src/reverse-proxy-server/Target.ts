@@ -1,5 +1,13 @@
 import type { Socket } from "node:net"
 
+/**
+
+   The `Target` multiplex one socket
+   by have a record of handlers,
+   one for each request.
+
+**/
+
 type Handler = {
   ondata: (data: Uint8Array) => void
   onerror: (error: Error) => void
