@@ -1,16 +1,21 @@
-import { Buffer } from "node:buffer"
 import { byteArrayMerge } from "../multibuffer/byteArrayMerge"
 import { messageDecode } from "../reverse-proxy/messageDecode"
 import type { Channel } from "./Channel"
 
 export async function* channelMessageStream(channel: Channel) {
-  let queue: Array<Uint8Array> = []
-  for await (const data of channelLengthPrefixedDataStream(channel)) {
-    queue.push(data)
+  for await (const parts of channelDataPartsStream(channel, 3)) {
+    yield messageDecode(Buffer.concat(parts))
+  }
+}
 
-    if (queue.length === 3) {
-      yield messageDecode(Buffer.concat(queue))
-      queue = []
+async function* channelDataPartsStream(channel: Channel, length: number) {
+  let parts: Array<Uint8Array> = []
+  for await (const data of channelLengthPrefixedDataStream(channel)) {
+    parts.push(data)
+
+    if (length === 3) {
+      yield parts
+      parts = []
     }
   }
 }
