@@ -34,7 +34,7 @@ export class ReverseProxyTarget {
       buffer = byteArrayMerge([buffer, data])
       length = new DataView(buffer.buffer).getUint32(buffer.byteOffset)
 
-      while (buffer.length >= length + 4) {
+      while (length !== undefined && buffer.length >= length + 4) {
         yield buffer.subarray(0, length + 4)
 
         buffer = buffer.subarray(length + 4, buffer.byteLength)
