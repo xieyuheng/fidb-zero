@@ -9,16 +9,16 @@ import { serverListen } from "../server/serverListen"
 import { tokenAssert } from "../token"
 import type { Json } from "../utils/Json"
 import { findPort } from "../utils/node/findPort"
+import { createChannel } from "./Channel"
+import { channelStart } from "./channelStart"
 import type { Context } from "./Context"
 import { SubdomainSchema } from "./SubdomainSchema"
-import { createTarget } from "./Target"
-import { targetStartReciving } from "./targetStartReciving"
 
-export async function handleTarget(
+export async function handleChannel(
   ctx: Context,
   request: Http.IncomingMessage,
 ): Promise<Json | void> {
-  const who = "handleTarget"
+  const who = "handleChannel"
 
   const token = await requestToken(ctx, request)
 
@@ -52,9 +52,9 @@ export async function handleTarget(
 
     const server = Net.createServer((socket) => {
       socket.setNoDelay()
-      const target = createTarget(socket)
-      ctx.targets[subdomain] = target
-      targetStartReciving(target)
+      const channel = createChannel(socket)
+      ctx.channels[subdomain] = channel
+      channelStart(channel)
     })
 
     const port = await findPort(9207)

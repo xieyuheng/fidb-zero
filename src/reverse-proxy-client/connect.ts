@@ -37,7 +37,7 @@ export async function connect(options: Options): Promise<boolean> {
   }
 
   const response = await fetch(
-    `${serverURL.protocol}//${serverURL.host}?kind=target`,
+    `${serverURL.protocol}//${serverURL.host}?kind=channel`,
     {
       method: "POST",
       headers: {
@@ -54,8 +54,8 @@ export async function connect(options: Options): Promise<boolean> {
   if (!response.ok) {
     log({
       knid: "Error",
-      message: `fail to post`,
-      url: `${serverURL.protocol}//${serverURL.host}?kind=target`,
+      message: `fail to create channel`,
+      host: serverURL.host,
       who,
       status: {
         code: response.status,

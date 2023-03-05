@@ -2,27 +2,27 @@ import { Buffer } from "node:buffer"
 import { byteArrayMerge } from "../multibuffer/byteArrayMerge"
 import { messageDecode } from "../reverse-proxy/messageDecode"
 import { log } from "../utils/log"
-import type { Target } from "./Target"
+import type { Channel } from "./Channel"
 
-export async function targetStartReciving(target: Target): Promise<void> {
-  for await (const message of reciveMessage(target)) {
+export async function channelStart(channel: Channel): Promise<void> {
+  for await (const message of reciveMessage(channel)) {
     log({
-      who: "Target",
-      keys: Object.keys(target.handlers),
+      who: "channelStart",
+      keys: Object.keys(channel.handlers),
     })
 
     const keyText = new TextDecoder().decode(message.key)
-    const handler = target.handlers[keyText]
+    const handler = channel.handlers[keyText]
     if (handler === undefined) {
       console.error({
-        who: "[Target]",
+        who: "[channelStart]",
         message: "Can not find handler",
         key: message.key,
       })
     }
 
     if (message.isEnd) {
-      delete target.handlers[keyText]
+      delete channel.handlers[keyText]
       handler.ondata(Buffer.concat([...handler.parts, message.body]))
     } else {
       handler.parts.push(message.body)
@@ -30,9 +30,9 @@ export async function targetStartReciving(target: Target): Promise<void> {
   }
 }
 
-async function* reciveMessage(target: Target) {
+async function* reciveMessage(channel: Channel) {
   let queue: Array<Uint8Array> = []
-  for await (const data of reciveLengthPrefixedData(target)) {
+  for await (const data of reciveLengthPrefixedData(channel)) {
     queue.push(data)
 
     if (queue.length === 3) {
@@ -42,11 +42,11 @@ async function* reciveMessage(target: Target) {
   }
 }
 
-async function* reciveLengthPrefixedData(target: Target) {
+async function* reciveLengthPrefixedData(channel: Channel) {
   let buffer = new Uint8Array()
   let length = undefined
 
-  for await (const data of target.socket) {
+  for await (const data of channel.socket) {
     buffer = byteArrayMerge([buffer, data])
     length = new DataView(buffer.buffer).getUint32(buffer.byteOffset)
 

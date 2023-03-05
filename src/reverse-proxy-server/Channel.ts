@@ -2,7 +2,7 @@ import type { Socket } from "node:net"
 
 /**
 
-   The `Target` multiplex one socket
+   The `Channel` multiplex one socket
    by have a record of handlers,
    one for each request.
 
@@ -14,12 +14,12 @@ type Handler = {
   parts: Array<Uint8Array>
 }
 
-export type Target = {
+export type Channel = {
   socket: Socket
   handlers: Record<string, Handler>
 }
 
-export function createTarget(socket: Socket): Target {
+export function createChannel(socket: Socket): Channel {
   return {
     socket,
     handlers: {},

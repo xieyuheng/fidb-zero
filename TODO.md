@@ -1,5 +1,6 @@
 # reverse-proxy
 
+[reverse-proxy] move `Channel` to `reverse-proxy/`
 [reverse-proxy] extract general proxy messaging pattern
 [reverse-proxy] learn about TCP and UDP low level details
 [reverse-proxy] proxy use UDP to communicate with the target

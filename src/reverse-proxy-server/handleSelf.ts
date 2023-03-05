@@ -6,9 +6,9 @@ import { handlePreflight } from "../server/handlePreflight"
 import { requestKind } from "../server/requestKind"
 import type { Json } from "../utils/Json"
 import type { Context } from "./Context"
+import { handleChannel } from "./handleChannel"
 import { handleInfo } from "./handleInfo"
 import { handlePing } from "./handlePing"
-import { handleTarget } from "./handleTarget"
 
 export async function handleSelf(
   ctx: Context,
@@ -41,8 +41,8 @@ export async function handleSelf(
     return await handlePassword(ctx, request)
   }
 
-  if (kind.startsWith("target")) {
-    return await handleTarget(ctx, request)
+  if (kind.startsWith("channel")) {
+    return await handleChannel(ctx, request)
   }
 
   throw new Error(
