@@ -21,6 +21,8 @@ async function* channelDataPartsStream(channel: Channel, length: number) {
 }
 
 async function* channelLengthPrefixedDataStream(channel: Channel) {
+  const prefixLength = 4
+
   let buffer = new Uint8Array()
   let length = undefined
 
@@ -28,11 +30,11 @@ async function* channelLengthPrefixedDataStream(channel: Channel) {
     buffer = byteArrayMerge([buffer, data])
     length = new DataView(buffer.buffer).getUint32(buffer.byteOffset)
 
-    while (length !== undefined && buffer.length >= length + 4) {
-      yield buffer.subarray(0, length + 4)
+    while (length !== undefined && buffer.length >= length + prefixLength) {
+      yield buffer.subarray(0, length + prefixLength)
 
-      buffer = buffer.subarray(length + 4, buffer.byteLength)
-      if (buffer.length < 4) {
+      buffer = buffer.subarray(length + prefixLength, buffer.byteLength)
+      if (buffer.length < prefixLength) {
         length = undefined
       } else {
         length = new DataView(buffer.buffer).getUint32(buffer.byteOffset)
