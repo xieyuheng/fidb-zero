@@ -68,12 +68,11 @@ export async function connect(options: Options): Promise<boolean> {
   }
 
   const channelInfo = await response.json()
-
-  log({ who, channelInfo })
-
   const channelSocket = new Socket()
 
   channelSocket.connect(channelInfo.port, serverURL.hostname)
+
+  log({ who, message: "connected to the channelSocket", channelInfo })
 
   channelSocket.setNoDelay()
 
@@ -94,7 +93,7 @@ function channelSocketHandleMessage(
   message: Message,
   target: { hostname: string; port: number },
 ): void {
-  const who = "channelSocketHandleData"
+  const who = "channelSocketHandleMessage"
 
   const targetSocket = new Socket()
 
@@ -102,9 +101,11 @@ function channelSocketHandleMessage(
     targetSocket.write(message.body)
     log({
       who,
-      message: `connected to target`,
+      message: "connected to new targetSocket",
       target,
-      sentLength: message.body.length,
+      sent: {
+        length: message.body.length,
+      },
     })
   })
 
