@@ -3,6 +3,7 @@ import type { Socket } from "node:net"
 import { byteArrayMerge } from "../multibuffer/byteArrayMerge"
 import { messageDecode } from "../reverse-proxy/messageDecode"
 import { messageEncode } from "../reverse-proxy/messageEncode"
+import { log } from "../utils/log"
 import { randomHexString } from "../utils/randomHexString"
 
 type DataHandler = (data: Uint8Array) => void
@@ -61,6 +62,12 @@ export class ReverseProxyTarget {
 
   async startReciving() {
     for await (const message of this.reciveMessage()) {
+      log({
+        who: "ReverseProxyTarget",
+        recived: { message },
+        keys: Object.keys(this.queue),
+      })
+
       const entry = this.queue[message.key]
       if (entry === undefined) {
         console.error({

@@ -88,6 +88,12 @@ export async function connect(options: Options): Promise<boolean> {
     )
 
     targetSocket.on("data", (data) => {
+      console.log({
+        isEnd: false,
+        key: message.key,
+        body: data,
+      })
+
       proxySocket.write(
         messageEncode({
           isEnd: false,
@@ -98,6 +104,12 @@ export async function connect(options: Options): Promise<boolean> {
     })
 
     targetSocket.on("end", () => {
+      console.log({
+        isEnd: true,
+        key: message.key,
+        body: new Uint8Array(),
+      })
+
       proxySocket.write(
         messageEncode({
           isEnd: true,
@@ -105,6 +117,8 @@ export async function connect(options: Options): Promise<boolean> {
           body: new Uint8Array(),
         }),
       )
+
+      log({ who, message: "targetSocket ended" })
     })
   })
 
