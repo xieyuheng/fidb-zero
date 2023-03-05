@@ -11,7 +11,7 @@ import type { Json } from "../utils/Json"
 import { findPort } from "../utils/node/findPort"
 import type { Context } from "./Context"
 import { SubdomainSchema } from "./SubdomainSchema"
-import { Target } from "./Target"
+import { createTarget, targetStartReciving } from "./Target"
 
 export async function handleTarget(
   ctx: Context,
@@ -51,9 +51,9 @@ export async function handleTarget(
 
     const server = Net.createServer((socket) => {
       socket.setNoDelay()
-      const target = new Target(socket)
+      const target = createTarget(socket)
       ctx.targets[subdomain] = target
-      target.startReciving()
+      targetStartReciving(target)
     })
 
     const port = await findPort(9207)

@@ -4,6 +4,7 @@ import { NotFound } from "../errors/NotFound"
 import { requestFormatRaw } from "../server/requestFormatRaw"
 import type { Context } from "./Context"
 import { requestSubdomain } from "./requestSubdomain"
+import { targetSend } from "./Target"
 
 export async function handleDispatch(
   ctx: Context,
@@ -22,7 +23,7 @@ export async function handleDispatch(
   }
 
   const rawRequest = await requestFormatRaw(request)
-  const data = await target.send(rawRequest)
+  const data = await targetSend(target, rawRequest)
   const socket = response.socket as Socket
   socket.end(data)
 }
