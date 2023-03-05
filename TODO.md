@@ -1,6 +1,5 @@
 # reverse-proxy
 
-[reverse-proxy] ambr ReverseProxyTarget Target
 [reverse-proxy] `Target` should be a pure object
 [reverse-proxy] extract general proxy messaging pattern
 [reverse-proxy] learn about TCP and UDP low level details

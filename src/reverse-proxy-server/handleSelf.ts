@@ -8,7 +8,7 @@ import type { Json } from "../utils/Json"
 import type { Context } from "./Context"
 import { handleInfo } from "./handleInfo"
 import { handlePing } from "./handlePing"
-import { handleReverseProxyTarget } from "./handleReverseProxyTarget"
+import { handleTarget } from "./handleTarget"
 
 export async function handleSelf(
   ctx: Context,
@@ -42,7 +42,7 @@ export async function handleSelf(
   }
 
   if (kind.startsWith("reverse-proxy-target")) {
-    return await handleReverseProxyTarget(ctx, request)
+    return await handleTarget(ctx, request)
   }
 
   throw new Error(

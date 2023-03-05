@@ -1,12 +1,12 @@
 import { resolve } from "node:path"
 import { createDatabase, Database } from "../database"
-import type { ReverseProxyTarget } from "./ReverseProxyTarget"
+import type { Target } from "./Target"
 
 export type Context = {
   db: Database
   domain: string
   availablePorts: Array<number>
-  targets: Record<string, ReverseProxyTarget>
+  targets: Record<string, Target>
 }
 
 type ContextOptions = {

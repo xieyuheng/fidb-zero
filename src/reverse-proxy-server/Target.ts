@@ -8,7 +8,7 @@ import { randomHexString } from "../utils/randomHexString"
 
 type DataHandler = (data: Uint8Array) => void
 
-export class ReverseProxyTarget {
+export class Target {
   private queue: Record<
     string,
     {
@@ -55,7 +55,7 @@ export class ReverseProxyTarget {
   async startReciving() {
     for await (const message of this.reciveMessage()) {
       log({
-        who: "ReverseProxyTarget",
+        who: "Target",
         recived: { isEnd: message.isEnd, key: message.key },
         keys: Object.keys(this.queue),
       })
@@ -63,7 +63,7 @@ export class ReverseProxyTarget {
       const entry = this.queue[message.key]
       if (entry === undefined) {
         console.error({
-          who: "[ReverseProxyTarget]",
+          who: "[Target]",
           message: "Can not find handler",
           key: message.key,
         })

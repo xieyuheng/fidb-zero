@@ -10,14 +10,14 @@ import { tokenAssert } from "../token"
 import type { Json } from "../utils/Json"
 import { findPort } from "../utils/node/findPort"
 import type { Context } from "./Context"
-import { ReverseProxyTarget } from "./ReverseProxyTarget"
 import { SubdomainSchema } from "./SubdomainSchema"
+import { Target } from "./Target"
 
-export async function handleReverseProxyTarget(
+export async function handleTarget(
   ctx: Context,
   request: Http.IncomingMessage,
 ): Promise<Json | void> {
-  const who = "handleReverseProxyTarget"
+  const who = "handleTarget"
 
   const token = await requestToken(ctx, request)
 
@@ -51,7 +51,7 @@ export async function handleReverseProxyTarget(
 
     const server = Net.createServer((socket) => {
       socket.setNoDelay()
-      const target = new ReverseProxyTarget(socket)
+      const target = new Target(socket)
       ctx.targets[subdomain] = target
       target.startReciving()
     })
