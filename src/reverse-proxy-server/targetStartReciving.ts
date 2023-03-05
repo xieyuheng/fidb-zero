@@ -30,6 +30,18 @@ export async function targetStartReciving(target: Target): Promise<void> {
   }
 }
 
+async function* reciveMessage(target: Target) {
+  let queue: Array<Uint8Array> = []
+  for await (const data of reciveLengthPrefixedData(target)) {
+    queue.push(data)
+
+    if (queue.length === 3) {
+      yield messageDecode(Buffer.concat(queue))
+      queue = []
+    }
+  }
+}
+
 async function* reciveLengthPrefixedData(target: Target) {
   let buffer = new Uint8Array()
   let length = undefined
@@ -47,18 +59,6 @@ async function* reciveLengthPrefixedData(target: Target) {
       } else {
         length = new DataView(buffer.buffer).getUint32(buffer.byteOffset)
       }
-    }
-  }
-}
-
-async function* reciveMessage(target: Target) {
-  let queue: Array<Uint8Array> = []
-  for await (const data of reciveLengthPrefixedData(target)) {
-    queue.push(data)
-
-    if (queue.length === 3) {
-      yield messageDecode(Buffer.concat(queue))
-      queue = []
     }
   }
 }
