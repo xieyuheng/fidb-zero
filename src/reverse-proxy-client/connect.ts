@@ -8,7 +8,7 @@ import { tokenGet } from "./tokenGet"
 
 type Options = {
   url: URL
-  target: { hostname: string; port: number }
+  local: { hostname: string; port: number }
 }
 
 function parseArgURL(url: URL): { serverURL: URL; subdomain: string } {
@@ -21,7 +21,7 @@ function parseArgURL(url: URL): { serverURL: URL; subdomain: string } {
 export async function connect(options: Options): Promise<boolean> {
   const who = "reverse-proxy-client/connect"
 
-  const { url, target } = options
+  const { url, local } = options
   const { serverURL, subdomain } = parseArgURL(url)
 
   const value = await tokenGet(url.href)
@@ -82,7 +82,7 @@ export async function connect(options: Options): Promise<boolean> {
 
   channelSocket.on("data", (data) => {
     const message = messageDecode(data)
-    channelSocketHandleMessage(channelSocket, message, target)
+    channelSocketHandleMessage(channelSocket, message, local)
   })
 
   return true
@@ -91,25 +91,31 @@ export async function connect(options: Options): Promise<boolean> {
 function channelSocketHandleMessage(
   channelSocket: Socket,
   message: Message,
-  target: { hostname: string; port: number },
+  local: { hostname: string; port: number },
 ): void {
   const who = "channelSocketHandleMessage"
 
-  const targetSocket = new Socket()
+  const localSocket = new Socket()
 
-  targetSocket.connect(target.port, target.hostname, () => {
-    targetSocket.write(message.body)
+  localSocket.connect(local.port, local.hostname, () => {
     log({
       who,
-      message: "connected to new targetSocket",
-      target,
+      message: "localSocket connected",
+      local,
+    })
+
+    localSocket.write(message.body)
+
+    log({
+      who,
+      message: "data sent to localSocket",
       sent: {
         length: message.body.length,
       },
     })
   })
 
-  targetSocket.on("data", (data) => {
+  localSocket.on("data", (data) => {
     channelSocketSendMessage(channelSocket, {
       isEnd: false,
       key: message.key,
@@ -117,11 +123,19 @@ function channelSocketHandleMessage(
     })
   })
 
-  targetSocket.on("end", () => {
+  localSocket.on("end", () => {
     channelSocketSendMessage(channelSocket, {
       isEnd: true,
       key: message.key,
       body: new Uint8Array(),
+    })
+  })
+
+  localSocket.on("close", () => {
+    log({
+      who,
+      message: "localSocket closed",
+      local,
     })
   })
 }

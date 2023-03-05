@@ -69,7 +69,7 @@ export class DatabaseServeCommand extends Command<Args> {
     if (argv["url"]) {
       const successful = await ReverseProxyClient.connect({
         url: new URL(argv["url"]),
-        target: {
+        local: {
           hostname: url.hostname,
           port: Number(url.port),
         },
