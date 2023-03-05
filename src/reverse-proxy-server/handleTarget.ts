@@ -11,7 +11,8 @@ import type { Json } from "../utils/Json"
 import { findPort } from "../utils/node/findPort"
 import type { Context } from "./Context"
 import { SubdomainSchema } from "./SubdomainSchema"
-import { createTarget, targetStartReciving } from "./Target"
+import { createTarget } from "./Target"
+import { targetStartReciving } from "./targetStartReciving"
 
 export async function handleTarget(
   ctx: Context,

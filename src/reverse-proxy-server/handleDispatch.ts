@@ -4,7 +4,7 @@ import { NotFound } from "../errors/NotFound"
 import { requestFormatRaw } from "../server/requestFormatRaw"
 import type { Context } from "./Context"
 import { requestSubdomain } from "./requestSubdomain"
-import { targetSend } from "./Target"
+import { targetSend } from "./targetSend"
 
 export async function handleDispatch(
   ctx: Context,
