@@ -50,6 +50,7 @@ export async function handleReverseProxyTarget(
     }
 
     const server = Net.createServer((socket) => {
+      socket.setNoDelay()
       ctx.targets[subdomain] = new ReverseProxyTarget(socket)
     })
 

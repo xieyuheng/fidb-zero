@@ -87,6 +87,8 @@ export async function connect(options: Options): Promise<boolean> {
       },
     )
 
+    targetSocket.setNoDelay()
+
     targetSocket.on("data", (data) => {
       console.log({
         isEnd: false,
@@ -94,13 +96,17 @@ export async function connect(options: Options): Promise<boolean> {
         body: data,
       })
 
-      proxySocket.write(
-        messageEncode({
-          isEnd: false,
-          key: message.key,
-          body: data,
-        }),
-      )
+      try {
+        proxySocket.write(
+          messageEncode({
+            isEnd: false,
+            key: message.key,
+            body: data,
+          }),
+        )
+      } catch (error) {
+        console.error(error)
+      }
     })
 
     targetSocket.on("end", () => {
@@ -110,15 +116,19 @@ export async function connect(options: Options): Promise<boolean> {
         body: new Uint8Array(),
       })
 
-      proxySocket.write(
-        messageEncode({
-          isEnd: true,
-          key: message.key,
-          body: new Uint8Array(),
-        }),
-      )
+      try {
+        proxySocket.write(
+          messageEncode({
+            isEnd: true,
+            key: message.key,
+            body: new Uint8Array(),
+          }),
+        )
 
-      log({ who, message: "targetSocket ended" })
+        log({ who, message: "targetSocket ended" })
+      } catch (error) {
+        console.error(error)
+      }
     })
   })
 
