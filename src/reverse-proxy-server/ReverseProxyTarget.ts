@@ -64,7 +64,7 @@ export class ReverseProxyTarget {
     for await (const message of this.reciveMessage()) {
       log({
         who: "ReverseProxyTarget",
-        recived: { message },
+        recived: { isEnd: message.isEnd, key: message.key },
         keys: Object.keys(this.queue),
       })
 
