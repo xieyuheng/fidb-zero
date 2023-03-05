@@ -21,8 +21,8 @@ export async function handleDispatch(
     throw new NotFound(`[handleDispatch] unknown subdomain: ${subdomin}`)
   }
 
-  await target.send(await requestFormatRaw(request), (data) => {
-    const socket = response.socket as Socket
-    socket.end(data)
-  })
+  const rawRequest = await requestFormatRaw(request)
+  const data = await target.send(rawRequest)
+  const socket = response.socket as Socket
+  socket.end(data)
 }

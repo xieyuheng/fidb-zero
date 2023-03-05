@@ -17,21 +17,13 @@ export class ReverseProxyTarget {
     }
   > = {}
 
-  constructor(public socket: Socket) {
-    this.startReciving()
-  }
-
-  async *reciveData() {
-    for await (const data of this.socket) {
-      yield data
-    }
-  }
+  constructor(public socket: Socket) {}
 
   async *reciveLengthPrefixedData() {
     let buffer = new Uint8Array()
     let length = undefined
 
-    for await (const data of this.reciveData()) {
+    for await (const data of this.socket) {
       buffer = byteArrayMerge([buffer, data])
       length = new DataView(buffer.buffer).getUint32(buffer.byteOffset)
 
@@ -86,21 +78,14 @@ export class ReverseProxyTarget {
     }
   }
 
-  send(data: Buffer, handler: DataHandler): Promise<void> {
+  send(data: Buffer): Promise<Uint8Array> {
     return new Promise((resolve, reject) => {
       const keyText = randomHexString(16)
       const key = new TextEncoder().encode(keyText)
 
       this.queue[keyText] = {
         parts: [],
-        handler: (data) => {
-          try {
-            handler(data)
-            resolve()
-          } catch (error) {
-            reject(error)
-          }
-        },
+        handler: (data) => resolve(data),
       }
 
       this.socket.write(

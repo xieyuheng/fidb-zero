@@ -51,7 +51,9 @@ export async function handleReverseProxyTarget(
 
     const server = Net.createServer((socket) => {
       socket.setNoDelay()
-      ctx.targets[subdomain] = new ReverseProxyTarget(socket)
+      const target = new ReverseProxyTarget(socket)
+      ctx.targets[subdomain] = target
+      target.startReciving()
     })
 
     const port = await findPort(9207)

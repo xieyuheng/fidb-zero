@@ -1,13 +1,18 @@
 # reverse-proxy
 
+[reverse-proxy] ambr ReverseProxyTarget Target
+[reverse-proxy] `Target` should be a pure object
 [reverse-proxy] extract general proxy messaging pattern
-[reverse-proxy] encrypt tcp message by token
+[reverse-proxy] learn about TCP and UDP low level details
+[reverse-proxy] proxy use UDP to communicate with the target
 
 [reverse-proxy-server] remove target if a client disconnect
 [reverse-proxy-server] remove queued data when a request timeout
 
 [reverse-proxy-client] ping the socket to keep the socket alive
 [reverse-proxy-client] restart on `proxySocket` close
+
+[reverse-proxy] encrypt TCP message by token
 
 # rest
 
