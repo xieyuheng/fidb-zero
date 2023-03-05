@@ -6,13 +6,12 @@ import { messageEncode } from "../reverse-proxy/messageEncode"
 import { log } from "../utils/log"
 import { randomHexString } from "../utils/randomHexString"
 
-type DataHandler = (data: Uint8Array) => void
-
 export class Target {
-  private queue: Record<
+  private handlers: Record<
     string,
     {
-      handler: DataHandler
+      ondata: (data: Uint8Array) => void
+      onerror: (error: Error) => void
       parts: Array<Uint8Array>
     }
   > = {}
@@ -57,11 +56,11 @@ export class Target {
       log({
         who: "Target",
         recived: { isEnd: message.isEnd, key: message.key },
-        keys: Object.keys(this.queue),
+        keys: Object.keys(this.handlers),
       })
 
-      const entry = this.queue[message.key]
-      if (entry === undefined) {
+      const handler = this.handlers[message.key]
+      if (handler === undefined) {
         console.error({
           who: "[Target]",
           message: "Can not find handler",
@@ -70,10 +69,10 @@ export class Target {
       }
 
       if (message.isEnd) {
-        delete this.queue[message.key]
-        entry.handler(Buffer.concat([...entry.parts, message.body]))
+        delete this.handlers[message.key]
+        handler.ondata(Buffer.concat([...handler.parts, message.body]))
       } else {
-        entry.parts.push(message.body)
+        handler.parts.push(message.body)
       }
     }
   }
@@ -83,9 +82,10 @@ export class Target {
       const keyText = randomHexString(16)
       const key = new TextEncoder().encode(keyText)
 
-      this.queue[keyText] = {
+      this.handlers[keyText] = {
         parts: [],
-        handler: (data) => resolve(data),
+        ondata: (data) => resolve(data),
+        onerror: (error) => reject(error),
       }
 
       this.socket.write(
