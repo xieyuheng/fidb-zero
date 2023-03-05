@@ -10,7 +10,7 @@ import { tokenAssert } from "../token"
 import type { Json } from "../utils/Json"
 import { findPort } from "../utils/node/findPort"
 import type { Context } from "./Context"
-import { keySize, ReverseProxyTarget } from "./ReverseProxyTarget"
+import { ReverseProxyTarget } from "./ReverseProxyTarget"
 import { SubdomainSchema } from "./SubdomainSchema"
 
 export async function handleReverseProxyTarget(
@@ -55,7 +55,7 @@ export async function handleReverseProxyTarget(
 
     const port = await findPort(9207)
     await serverListen(server, { port })
-    return { port, keySize }
+    return { port }
   }
 
   throw new Error(

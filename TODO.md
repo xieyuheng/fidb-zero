@@ -1,15 +1,8 @@
 # reverse-proxy messaging
 
-`ReverseProxyTarget` -- fix `socket.on` -- need to parse http tcp message
-
 [reverse-proxy] extract general proxy messaging pattern
-
-- learn from zmq tcp `multibuffer` message -- instead of using `keySize`
-
 [reverse-proxy] encrypt tcp message by token
-
 [reverse-proxy] remove target on disconnect
-
 [reverse-proxy] `fidb database:serve` -- ping the socket to keep it alive
 
 - try to restart on `proxySocket` close

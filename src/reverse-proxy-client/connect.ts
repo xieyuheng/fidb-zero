@@ -1,5 +1,6 @@
-import { Buffer } from "node:buffer"
 import Net from "node:net"
+import { messageDecode } from "../reverse-proxy/messageDecode"
+import { messageEncode } from "../reverse-proxy/messageEncode"
 import { formatAuthorizationHeader } from "../utils/formatAuthorizationHeader"
 import { log } from "../utils/log"
 import { tokenGet } from "./tokenGet"
@@ -76,23 +77,36 @@ export async function connect(options: Options): Promise<boolean> {
   })
 
   proxySocket.on("data", (data) => {
-    const keyBuffer = data.subarray(0, proxy.keySize)
-    const messageBuffer = data.subarray(proxy.keySize)
+    const message = messageDecode(data)
 
     const targetSocket = Net.createConnection(
       target.port,
       target.hostname,
       () => {
-        targetSocket.write(messageBuffer)
+        targetSocket.write(message.body)
       },
     )
 
-    targetSocket.on("close", () => {
-      log({ who, message: "targetSocket closed" })
+    targetSocket.on("data", (data) => {
+      proxySocket.write(
+        messageEncode({
+          isEnd: false,
+          key: message.key,
+          body: data,
+        }),
+      )
     })
 
-    targetSocket.on("data", (data) => {
-      proxySocket.write(Buffer.concat([keyBuffer, data]))
+    targetSocket.on("end", () => {
+      proxySocket.write(
+        messageEncode({
+          isEnd: true,
+          key: message.key,
+          body: new Uint8Array(),
+        }),
+      )
+
+      log({ who, message: "targetSocket ended" })
     })
   })
 

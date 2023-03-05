@@ -1,52 +1,108 @@
 import { Buffer } from "node:buffer"
 import type { Socket } from "node:net"
+import { byteArrayMerge } from "../multibuffer/byteArrayMerge"
+import { messageDecode } from "../reverse-proxy/messageDecode"
+import { messageEncode } from "../reverse-proxy/messageEncode"
 import { randomHexString } from "../utils/randomHexString"
 
-type DataHandler = (data: Buffer) => void
-
-export const keySize = 20
+type DataHandler = (data: Uint8Array) => void
 
 export class ReverseProxyTarget {
-  private handlers: Record<string, DataHandler> = {}
+  private queue: Record<
+    string,
+    {
+      handler: DataHandler
+      parts: Array<Uint8Array>
+    }
+  > = {}
 
   constructor(public socket: Socket) {
-    socket.on("data", (data) => {
-      // NOTE A target http server must sent
-      // the whole response in one `socket.write()`.
+    this.startReciving()
+  }
 
-      const keyBuffer = data.subarray(0, keySize)
-      const keyText = keyBuffer.toString()
+  async *reciveData() {
+    for await (const data of this.socket) {
+      yield data
+    }
+  }
 
-      const handler = this.handlers[keyText]
-      if (handler !== undefined) {
-        delete this.handlers[keyText]
-        const messageBuffer = data.subarray(keySize)
-        handler(messageBuffer)
-      } else {
+  async *reciveLengthPrefixedData() {
+    let buffer = new Uint8Array()
+    let length = undefined
+
+    for await (const data of this.reciveData()) {
+      buffer = byteArrayMerge([buffer, data])
+      length = new DataView(buffer.buffer).getUint32(buffer.byteOffset)
+
+      while (buffer.length >= length + 4) {
+        yield buffer.subarray(0, length + 4)
+
+        buffer = buffer.subarray(length + 4, buffer.byteLength)
+        if (buffer.length < 4) {
+          length = undefined
+        } else {
+          length = new DataView(buffer.buffer).getUint32(buffer.byteOffset)
+        }
+      }
+    }
+  }
+
+  async *reciveMessage() {
+    let queue: Array<Uint8Array> = []
+    for await (const data of this.reciveLengthPrefixedData()) {
+      queue.push(data)
+
+      if (queue.length === 3) {
+        yield messageDecode(Buffer.concat(queue))
+        queue = []
+      }
+    }
+  }
+
+  async startReciving() {
+    for await (const message of this.reciveMessage()) {
+      const entry = this.queue[message.key]
+      if (entry === undefined) {
         console.error({
           who: "[ReverseProxyTarget]",
           message: "Can not find handler",
-          key: keyText,
+          key: message.key,
         })
       }
-    })
+
+      if (message.isEnd) {
+        delete this.queue[message.key]
+        entry.handler(Buffer.concat([...entry.parts, message.body]))
+      } else {
+        entry.parts.push(message.body)
+      }
+    }
   }
 
-  send(messageBuffer: Buffer, handler: DataHandler): Promise<void> {
+  send(data: Buffer, handler: DataHandler): Promise<void> {
     return new Promise((resolve, reject) => {
-      const keyText = randomHexString(keySize / 2)
-      const keyBuffer = new TextEncoder().encode(keyText)
+      const keyText = randomHexString(16)
+      const key = new TextEncoder().encode(keyText)
 
-      this.handlers[keyText] = (data) => {
-        try {
-          handler(data)
-          resolve()
-        } catch (error) {
-          reject(error)
-        }
+      this.queue[keyText] = {
+        parts: [],
+        handler: (data) => {
+          try {
+            handler(data)
+            resolve()
+          } catch (error) {
+            reject(error)
+          }
+        },
       }
 
-      this.socket.write(Buffer.concat([keyBuffer, messageBuffer]))
+      this.socket.write(
+        messageEncode({
+          isEnd: true,
+          key: keyText,
+          body: data,
+        }),
+      )
     })
   }
 }
