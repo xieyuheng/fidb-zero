@@ -1,8 +1,8 @@
 import type Http from "node:http"
 import type { Socket } from "node:net"
 import { NotFound } from "../errors/NotFound"
+import { channelSend } from "../reverse-proxy/channelSend"
 import { requestFormatRaw } from "../server/requestFormatRaw"
-import { channelSend } from "./channelSend"
 import type { Context } from "./Context"
 import { requestSubdomain } from "./requestSubdomain"
 
