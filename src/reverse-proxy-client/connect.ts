@@ -1,4 +1,5 @@
-import Net from "node:net"
+import { Socket } from "node:net"
+import type { Message } from "../reverse-proxy/Message"
 import { messageDecode } from "../reverse-proxy/messageDecode"
 import { messageEncode } from "../reverse-proxy/messageEncode"
 import { formatAuthorizationHeader } from "../utils/formatAuthorizationHeader"
@@ -66,71 +67,79 @@ export async function connect(options: Options): Promise<boolean> {
     return false
   }
 
-  const proxy = await response.json()
+  const channelInfo = await response.json()
 
-  log({ who, proxy })
+  log({ who, channelInfo })
 
-  const proxySocket = Net.createConnection(proxy.port, serverURL.hostname)
+  const channelSocket = new Socket()
 
-  proxySocket.on("close", () => {
-    log({ who, message: "proxySocket closed" })
+  channelSocket.connect(channelInfo.port, serverURL.hostname)
+
+  channelSocket.setNoDelay()
+
+  channelSocket.on("close", () => {
+    log({ who, message: "channelSocket closed" })
   })
 
-  proxySocket.on("data", (data) => {
+  channelSocket.on("data", (data) => {
     const message = messageDecode(data)
-
-    const targetSocket = Net.createConnection(
-      target.port,
-      target.hostname,
-      () => {
-        targetSocket.write(message.body)
-      },
-    )
-
-    targetSocket.setNoDelay()
-
-    targetSocket.on("data", (data) => {
-      console.log({
-        isEnd: false,
-        key: message.key,
-        body: data,
-      })
-
-      try {
-        proxySocket.write(
-          messageEncode({
-            isEnd: false,
-            key: message.key,
-            body: data,
-          }),
-        )
-      } catch (error) {
-        console.error(error)
-      }
-    })
-
-    targetSocket.on("end", () => {
-      console.log({
-        isEnd: true,
-        key: message.key,
-        body: new Uint8Array(),
-      })
-
-      try {
-        proxySocket.write(
-          messageEncode({
-            isEnd: true,
-            key: message.key,
-            body: new Uint8Array(),
-          }),
-        )
-
-        log({ who, message: "targetSocket ended" })
-      } catch (error) {
-        console.error(error)
-      }
-    })
+    channelSocketHandleMessage(channelSocket, message, target)
   })
 
   return true
+}
+
+function channelSocketHandleMessage(
+  channelSocket: Socket,
+  message: Message,
+  target: { hostname: string; port: number },
+): void {
+  const who = "channelSocketHandleData"
+
+  const targetSocket = new Socket()
+
+  targetSocket.connect(target.port, target.hostname, () => {
+    targetSocket.write(message.body)
+    log({
+      who,
+      message: `connected to target`,
+      target,
+      sentLength: message.body.length,
+    })
+  })
+
+  targetSocket.on("data", (data) => {
+    channelSocketSendMessage(channelSocket, {
+      isEnd: false,
+      key: message.key,
+      body: data,
+    })
+  })
+
+  targetSocket.on("end", () => {
+    channelSocketSendMessage(channelSocket, {
+      isEnd: true,
+      key: message.key,
+      body: new Uint8Array(),
+    })
+  })
+}
+
+function channelSocketSendMessage(channelSocket: Socket, message: Message) {
+  const who = "channelSocketSendMessage"
+
+  try {
+    channelSocket.write(messageEncode(message))
+    log({
+      who,
+      isEnd: message.isEnd,
+      key: new TextDecoder().decode(message.key),
+    })
+  } catch (error) {
+    log({
+      who,
+      kind: "Error",
+      message: (error as Error).message,
+    })
+  }
 }
