@@ -10,7 +10,7 @@ import { handleInfo } from "./handleInfo"
 import { handlePing } from "./handlePing"
 import { handleTarget } from "./handleTarget"
 
-export async function handleSelf(
+export async function handleSubdomain(
   ctx: Context,
   request: Http.IncomingMessage,
   response: Http.ServerResponse,
@@ -35,7 +35,9 @@ export async function handleSelf(
 
   if (kind.startsWith("password")) {
     if (kind === "password-register") {
-      throw new Error(`[handleSelf] password-register is currently not enabled`)
+      throw new Error(
+        `[handleSubdomain] password-register is currently not enabled`,
+      )
     }
 
     return await handlePassword(ctx, request)
@@ -47,7 +49,7 @@ export async function handleSelf(
 
   throw new Error(
     [
-      `[handleSelf] unhandled content-type`,
+      `[handleSubdomain] unhandled content-type`,
       `  method: ${request.method}`,
       `  kind: ${kind}`,
     ].join("\n"),

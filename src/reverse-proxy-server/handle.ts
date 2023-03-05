@@ -4,7 +4,7 @@ import { requestURL } from "../server/requestURL"
 import type { Json } from "../utils/Json"
 import type { Context } from "./Context"
 import { handleDispatch } from "./handleDispatch"
-import { handleSelf } from "./handleSelf"
+import { handleSubdomain } from "./handleSubdomain"
 
 export async function handle(
   ctx: Context,
@@ -14,7 +14,7 @@ export async function handle(
   const url = requestURL(request)
 
   if (url.hostname === ctx.domain) {
-    return await handleSelf(ctx, request, response)
+    return await handleSubdomain(ctx, request, response)
   }
 
   return await handleDispatch(ctx, request, response)
