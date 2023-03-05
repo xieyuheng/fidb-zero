@@ -1,7 +1,5 @@
 # reverse-proxy messaging
 
-[reverse-proxy] `message-encode-decode.test.ts`
-
 `ReverseProxyTarget` -- fix `socket.on` -- need to parse http tcp message
 
 [reverse-proxy] extract general proxy messaging pattern
