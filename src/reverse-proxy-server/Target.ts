@@ -55,7 +55,6 @@ export class Target {
     for await (const message of this.reciveMessage()) {
       log({
         who: "Target",
-        recived: { isEnd: message.isEnd, key: message.key },
         keys: Object.keys(this.handlers),
       })
 
