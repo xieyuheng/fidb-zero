@@ -79,7 +79,7 @@ export async function connect(options: Options): Promise<boolean> {
 
   channelSocket.connect(channelTicket.channelServerPort, serverURL.hostname)
 
-  log({ who, message: "connected to the channelSocket", channelTicket })
+  log({ who, message: "connected to the channelSocket" })
 
   channelSocket.setNoDelay()
 

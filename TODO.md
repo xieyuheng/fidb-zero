@@ -1,9 +1,5 @@
 # reverse-proxy
 
-[reverse-proxy-server] extract `createChannelServer`
-
-- There should only be one `channelServer`.
-
 [reverse-proxy-client] ping the socket to keep the socket alive
 
 [reverse-proxy-client] restart on `ChannelSocket` close
