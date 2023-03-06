@@ -1,8 +1,10 @@
 import type Http from "node:http"
 import type { Socket } from "node:net"
 import { NotFound } from "../errors/NotFound"
+import { Processing } from "../errors/Processing"
 import { channelSend } from "../reverse-proxy/channelSend"
 import { requestFormatRaw } from "../server/requestFormatRaw"
+import { log } from "../utils/log"
 import type { Context } from "./Context"
 import { requestSubdomain } from "./requestSubdomain"
 
@@ -11,6 +13,8 @@ export async function handleDispatch(
   request: Http.IncomingMessage,
   response: Http.ServerResponse,
 ): Promise<void> {
+  const who = "handleDispatch"
+
   const subdomin = requestSubdomain(ctx, request)
   if (subdomin === undefined) {
     const host = request.headers["host"]
@@ -23,8 +27,13 @@ export async function handleDispatch(
   }
 
   const rawRequest = await requestFormatRaw(request)
-  // TODO catch error
-  const data = await channelSend(channel, rawRequest)
   const socket = response.socket as Socket
-  socket.end(data)
+
+  channelSend(channel, rawRequest, {
+    ondata: (data) => socket.write(data),
+    onend: () => socket.end(),
+    onerror: (error) => log({ who, kind: "Error", error }),
+  })
+
+  throw new Processing(`[${who}]`)
 }

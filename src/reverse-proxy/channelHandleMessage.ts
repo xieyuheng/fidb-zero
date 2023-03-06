@@ -1,4 +1,3 @@
-import { Buffer } from "node:buffer"
 import { log } from "../utils/log"
 import type { Channel } from "./Channel"
 import type { Message } from "./Message"
@@ -22,8 +21,8 @@ export function channelHandleMessage(channel: Channel, message: Message): void {
 
   if (message.isEnd) {
     delete channel.handlers[keyText]
-    handler.ondata(Buffer.concat([...handler.parts, message.body]))
+    handler.onend()
   } else {
-    handler.parts.push(message.body)
+    handler.ondata(message.body)
   }
 }

@@ -2,6 +2,7 @@ import { Errors as TyErrors } from "@xieyuheng/ty"
 import type Http from "node:http"
 import { AlreadyExists } from "../errors/AlreadyExists"
 import { NotFound } from "../errors/NotFound"
+import { Processing } from "../errors/Processing"
 import { RevisionMismatch } from "../errors/RevisionMismatch"
 import { Unauthorized } from "../errors/Unauthorized"
 import { Unprocessable } from "../errors/Unprocessable"
@@ -64,6 +65,10 @@ export function createRequestListener<Context>(options: {
         })
       }
     } catch (error) {
+      if (error instanceof Processing) {
+        return
+      }
+
       const headers = {
         "content-type": "application/json",
         "access-control-allow-origin": "*",
