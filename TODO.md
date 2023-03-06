@@ -1,5 +1,3 @@
-encrypt-decrypt.test.ts
-
 # reverse-proxy
 
 [reverse-proxy] encrypt TCP message by an `key`
