@@ -1,13 +1,19 @@
 import type { Socket } from "node:net"
 import { dataStreamFromSocket } from "../multibuffer/dataStreamFromSocket"
-import { streamGroup } from "../multibuffer/dataStreamGroup"
+import { streamGroup } from "../multibuffer/streamGroup"
+import { streamMap } from "../multibuffer/streamMap"
 import { messageDecrypt } from "./messageDecrypt"
 
 export async function* socketMessageStream(
   socket: Socket,
   encryptionKey: Uint8Array,
 ) {
-  for await (const parts of streamGroup(dataStreamFromSocket(socket), 3)) {
-    yield await messageDecrypt(Buffer.concat(parts), encryptionKey)
+  const stream = streamMap(
+    streamGroup(dataStreamFromSocket(socket), 3),
+    (parts) => messageDecrypt(Buffer.concat(parts), encryptionKey),
+  )
+
+  for await (const x of stream) {
+    yield x
   }
 }
