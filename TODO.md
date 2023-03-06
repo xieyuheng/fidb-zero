@@ -1,7 +1,5 @@
 # reverse-proxy
 
-[reverse-proxy-client] `channelSocket` on data should also parse data stream
-
 [reverse-proxy] translate the socket stream into data stream early -- for geting the first special data
 
 [reverse-proxy-server] there should only be one `channelServer`

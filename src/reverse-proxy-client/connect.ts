@@ -1,7 +1,7 @@
 import { Socket } from "node:net"
 import type { Message } from "../reverse-proxy/Message"
-import { messageDecrypt } from "../reverse-proxy/messageDecrypt"
 import { messageEncrypt } from "../reverse-proxy/messageEncrypt"
+import { socketMessageStream } from "../reverse-proxy/socketMessageStream"
 import { formatAuthorizationHeader } from "../utils/formatAuthorizationHeader"
 import { log } from "../utils/log"
 import { tokenGet } from "./tokenGet"
@@ -85,12 +85,22 @@ export async function connect(options: Options): Promise<boolean> {
 
   const encryptionKey = Buffer.from(channelInfo.encryptionKeyText, "hex")
 
-  channelSocket.on("data", async (data) => {
-    const message = await messageDecrypt(data, encryptionKey)
-    channelSocketHandleMessage(channelSocket, encryptionKey, message, local)
-  })
+  channelSocketStart(channelSocket, encryptionKey, local)
 
   return true
+}
+
+async function channelSocketStart(
+  channelSocket: Socket,
+  encryptionKey: Uint8Array,
+  local: { hostname: string; port: number },
+): Promise<void> {
+  for await (const message of socketMessageStream(
+    channelSocket,
+    encryptionKey,
+  )) {
+    channelSocketHandleMessage(channelSocket, encryptionKey, message, local)
+  }
 }
 
 function channelSocketHandleMessage(
