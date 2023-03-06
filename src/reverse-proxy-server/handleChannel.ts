@@ -47,7 +47,13 @@ export async function handleChannel(
 
     await serverListen(server, { port })
 
-    const localServerId = randomHexString(16)
+    if (request.socket === null) {
+      return
+    }
+
+    const localServerId = `${request.socket.remoteAddress}#${randomHexString(
+      16,
+    )}`
 
     const encryptionKey = await generateEncryptionKey()
     const encryptionKeyText = Buffer.from(encryptionKey).toString("hex")

@@ -85,6 +85,17 @@ export async function connect(options: Options): Promise<boolean> {
 
   const encryptionKey = Buffer.from(channelInfo.encryptionKeyText, "hex")
 
+  channelSocket.write(
+    await messageEncrypt(
+      {
+        kind: "LocalServerId",
+        key: new TextEncoder().encode(channelInfo.localServerId),
+        body: new Uint8Array(),
+      },
+      encryptionKey,
+    ),
+  )
+
   channelSocketStart(channelSocket, encryptionKey, local)
 
   return true

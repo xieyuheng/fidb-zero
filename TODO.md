@@ -1,7 +1,5 @@
 # reverse-proxy
 
-[reverse-proxy-client] send for "localServerId" message
-
 [reverse-proxy-server] there should only be one `channelServer`
 
 - `acceptConnection` -- first data should be an `localServerId` that maps to `ChannelOptions`
