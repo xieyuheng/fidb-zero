@@ -70,7 +70,7 @@ export class ReverseProxyServeCommand extends Command<Args> {
         tls,
       })
 
-      log({ who, ctx, url, tls })
+      log({ who, ctx, url: String(url), tls })
     }
 
     if (argv.port instanceof Array) {
@@ -103,7 +103,7 @@ export class ReverseProxyServeCommand extends Command<Args> {
         availablePorts: argv.port.map(Number),
       })
 
-      log({ who, ctx, urls, tls })
+      log({ who, ctx, urls: urls.map(String), tls })
     }
   }
 }

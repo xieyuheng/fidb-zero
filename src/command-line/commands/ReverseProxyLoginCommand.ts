@@ -48,7 +48,7 @@ export class ReverseProxyLoginCommand extends Command<Args> {
       log({
         who,
         message: `already logged in to url, logout first`,
-        url: url.href,
+        url: String(url),
         username: found.username,
       })
 

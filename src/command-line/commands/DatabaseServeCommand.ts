@@ -64,7 +64,7 @@ export class DatabaseServeCommand extends Command<Args> {
       tls,
     })
 
-    log({ who, ctx, url, tls })
+    log({ who, ctx, url: String(url), tls })
 
     if (argv["url"]) {
       const successful = await ReverseProxyClient.connect({
