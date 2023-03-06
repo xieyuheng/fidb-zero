@@ -7,7 +7,7 @@ import { Unauthorized } from "../errors/Unauthorized"
 import { requestJsonObject } from "../server/requestJsonObject"
 import { serverListen } from "../server/serverListen"
 import { tokenAssert } from "../token"
-import { encrypt } from "../utils/encrypt"
+import { generateEncryptionKey } from "../utils/generateEncryptionKey"
 import type { Json } from "../utils/Json"
 import { findPort } from "../utils/node/findPort"
 import { randomHexString } from "../utils/randomHexString"
@@ -49,8 +49,7 @@ export async function handleChannel(
 
     const localServerId = randomHexString(16)
 
-    const { encryptionKey } = await encrypt(new Uint8Array())
-
+    const encryptionKey = await generateEncryptionKey()
     const encryptionKeyText = Buffer.from(encryptionKey).toString("hex")
 
     return {

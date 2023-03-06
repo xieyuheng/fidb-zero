@@ -1,4 +1,4 @@
-import { ivLength } from "./encrypt"
+import { ivLength } from "./generateEncryptionKey"
 
 // Learned from:
 // - https://github.com/diafygi/webcrypto-examples#aes-gcm

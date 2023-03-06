@@ -68,6 +68,11 @@ export async function connect(options: Options): Promise<boolean> {
   }
 
   const channelInfo = await response.json()
+
+  log({ who, channelInfo })
+
+  const encryptionKey = Buffer.from(channelInfo.encryptionKeyText, "hex")
+
   const channelSocket = new Socket()
 
   channelSocket.connect(channelInfo.port, serverURL.hostname)
