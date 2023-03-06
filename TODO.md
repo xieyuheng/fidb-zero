@@ -1,10 +1,10 @@
 # reverse-proxy
 
-[reverse-proxy] translate the socket stream into data stream early -- for geting the first special data
+[reverse-proxy] translate the socket stream into message stream early -- for geting the first special message
 
 [reverse-proxy-server] there should only be one `channelServer`
 
-- `acceptConnection` -- first data should be an `id` that maps to `ChannelOptions`
+- `acceptConnection` -- first data should be an `localServerId` that maps to `ChannelOptions`
 
 [reverse-proxy-client] ping the socket to keep the socket alive
 

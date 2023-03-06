@@ -1,15 +1,16 @@
 import type { Socket } from "node:net"
 import { createChannel } from "../reverse-proxy/Channel"
-import { channelStart } from "../reverse-proxy/channelStart"
+import { channelReceiveMessage } from "../reverse-proxy/channelReceiveMessage"
+import { socketMessageStream } from "../reverse-proxy/socketMessageStream"
 import { log } from "../utils/log"
 import type { Context } from "./Context"
 
-export function acceptConnection(
+export async function acceptConnection(
   ctx: Context,
   socket: Socket,
   encryptionKey: Uint8Array,
   options: { username: string; subdomain: string },
-): void {
+): Promise<void> {
   const who = "acceptConnection"
 
   const { username, subdomain } = options
@@ -40,5 +41,12 @@ export function acceptConnection(
 
   ctx.channels[subdomain] = channel
 
-  channelStart(channel, encryptionKey)
+  const mesageStream = socketMessageStream(
+    channel.socket,
+    channel.encryptionKey,
+  )
+
+  for await (const message of mesageStream) {
+    channelReceiveMessage(channel, message)
+  }
 }
