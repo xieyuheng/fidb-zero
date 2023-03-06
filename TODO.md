@@ -1,7 +1,5 @@
 # reverse-proxy
 
-[reverse-proxy-server] `Channel` clean up handlers
-
 [reverse-proxy] learn about TCP and UDP low level details
 [reverse-proxy] proxy use UDP to communicate with the target
 

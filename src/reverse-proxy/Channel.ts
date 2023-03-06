@@ -8,20 +8,14 @@ import type { Socket } from "node:net"
 
 **/
 
-export type Handler = {
-  ondata: (data: Uint8Array) => void
-  onend: () => void
-  onerror: (error: Error) => void
-}
-
 export type Channel = {
   socket: Socket
-  handlers: Record<string, Handler>
+  clientSockets: Record<string, Socket>
 }
 
 export function createChannel(socket: Socket): Channel {
   return {
     socket,
-    handlers: {},
+    clientSockets: {},
   }
 }

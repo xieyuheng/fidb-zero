@@ -4,7 +4,6 @@ import { NotFound } from "../errors/NotFound"
 import { Processing } from "../errors/Processing"
 import { channelSend } from "../reverse-proxy/channelSend"
 import { requestFormatRaw } from "../server/requestFormatRaw"
-import { log } from "../utils/log"
 import type { Context } from "./Context"
 import { requestSubdomain } from "./requestSubdomain"
 
@@ -33,11 +32,7 @@ export async function handleDispatch(
     throw new Error(`[${who}] no response.socket`)
   }
 
-  channelSend(channel, rawRequest, {
-    ondata: (data) => socket.write(data),
-    onend: () => socket.end(),
-    onerror: (error) => log({ who, kind: "Error", error }),
-  })
+  channelSend(channel, rawRequest, socket)
 
   throw new Processing(`[${who}]`)
 }

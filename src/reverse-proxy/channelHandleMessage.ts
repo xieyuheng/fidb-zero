@@ -5,24 +5,32 @@ import type { Message } from "./Message"
 export function channelHandleMessage(channel: Channel, message: Message): void {
   const who = "channelHandleMessage"
 
-  log({ who, keys: Object.keys(channel.handlers) })
+  log({
+    who,
+    isEnd: message.isEnd,
+    key: new TextDecoder().decode(message.key),
+    pending: Object.keys(channel.clientSockets),
+  })
 
   const keyText = new TextDecoder().decode(message.key)
-  const handler = channel.handlers[keyText]
-  if (handler === undefined) {
-    console.error({
+  const clientSocket = channel.clientSockets[keyText]
+  if (clientSocket === undefined) {
+    log({
       who,
-      message: "Can not find handler",
-      key: message.key,
+      kind: "Error",
+      message: "can not find clientSocket, the client ended early",
+      isEnd: message.isEnd,
+      key: new TextDecoder().decode(message.key),
+      pending: Object.keys(channel.clientSockets),
     })
 
     return
   }
 
   if (message.isEnd) {
-    delete channel.handlers[keyText]
-    handler.onend()
+    delete channel.clientSockets[keyText]
+    clientSocket.end()
   } else {
-    handler.ondata(message.body)
+    clientSocket.write(message.body)
   }
 }

@@ -54,10 +54,10 @@ export async function handleChannel(
     const server = Net.createServer((socket) => {
       socket.setNoDelay()
 
-      log({ who, message: "channel socket created", subdomain })
+      log({ who, message: "channel socket created", subdomain, username })
 
       socket.on("end", () => {
-        log({ who, message: "channel socket end", subdomain })
+        log({ who, message: "channel socket end", subdomain, username })
         delete ctx.channels[subdomain]
       })
 
