@@ -15,6 +15,12 @@ import { acceptConnection } from "./acceptConnection"
 import type { Context } from "./Context"
 import { SubdomainSchema } from "./SubdomainSchema"
 
+export type ChannelInfo = {
+  username: string
+  domain: string
+  encryptionKey: Uint8Array
+}
+
 export async function handleChannel(
   ctx: Context,
   request: Http.IncomingMessage,

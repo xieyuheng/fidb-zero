@@ -1,12 +1,14 @@
 import { resolve } from "node:path"
 import { createDatabase, Database } from "../database"
 import type { Channel } from "../reverse-proxy/Channel"
+import type { ChannelInfo } from "./handleChannel"
 
 export type Context = {
   db: Database
   domain: string
   availablePorts: Array<number>
   channels: Record<string, Channel>
+  channelInfos: Record<string, ChannelInfo>
 }
 
 type ContextOptions = {
@@ -25,5 +27,6 @@ export async function createContext(options: ContextOptions): Promise<Context> {
     domain,
     availablePorts,
     channels: {},
+    channelInfos: {},
   }
 }
