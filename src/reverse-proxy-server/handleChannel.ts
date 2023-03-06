@@ -66,7 +66,7 @@ export async function handleChannel(
       channelStart(channel)
     })
 
-    const port = await findPort(26881)
+    const port = await findPort(10000)
     await serverListen(server, { port })
     return { port }
   }
