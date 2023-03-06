@@ -7,7 +7,7 @@ export async function messageEncrypt(
   encryptionKey: Uint8Array,
 ): Promise<Uint8Array> {
   return multibufferEncode([
-    new TextEncoder().encode(JSON.stringify(message.isEnd)),
+    new TextEncoder().encode(message.kind),
     message.key,
     await encrypt(message.body, encryptionKey),
   ])

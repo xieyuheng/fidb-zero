@@ -7,7 +7,7 @@ export function channelHandleMessage(channel: Channel, message: Message): void {
 
   log({
     who,
-    isEnd: message.isEnd,
+    kind: message.kind,
     key: new TextDecoder().decode(message.key),
     pending: Object.keys(channel.clientSockets),
   })
@@ -19,7 +19,7 @@ export function channelHandleMessage(channel: Channel, message: Message): void {
       who,
       kind: "Error",
       message: "can not find clientSocket, the client ended early",
-      isEnd: message.isEnd,
+      messageKind: message.kind,
       key: new TextDecoder().decode(message.key),
       pending: Object.keys(channel.clientSockets),
     })
@@ -27,10 +27,19 @@ export function channelHandleMessage(channel: Channel, message: Message): void {
     return
   }
 
-  if (message.isEnd) {
+  if (message.kind === "End") {
     delete channel.clientSockets[keyText]
     clientSocket.end()
-  } else {
+  } else if (message.kind === "Data") {
     clientSocket.write(message.body)
+  } else {
+    log({
+      who,
+      kind: "Error",
+      message: "unhandled message kind",
+      messageKind: message.kind,
+      key: new TextDecoder().decode(message.key),
+      pending: Object.keys(channel.clientSockets),
+    })
   }
 }

@@ -27,7 +27,7 @@ export function channelSend(
 
   channel.socket.write(
     messageEncode({
-      isEnd: true,
+      kind: "End",
       key,
       body: data,
     }),

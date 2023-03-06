@@ -7,7 +7,7 @@ test("message-encrypt-decrypt", async () => {
   const encryptionKey = await generateEncryptionKey()
 
   const message = {
-    isEnd: false,
+    kind: "Data",
     key: new TextEncoder().encode("abc"),
     body: new Uint8Array([1, 2, 3]),
   }

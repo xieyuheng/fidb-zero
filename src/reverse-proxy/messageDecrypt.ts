@@ -6,10 +6,10 @@ export async function messageDecrypt(
   buffer: Uint8Array,
   encryptionKey: Uint8Array,
 ): Promise<Message> {
-  const [isEnd, key, body] = multibufferDecode(buffer)
+  const [kind, key, body] = multibufferDecode(buffer)
 
   return {
-    isEnd: new TextDecoder().decode(await decrypt(isEnd, encryptionKey)),
+    kind: new TextDecoder().decode(kind),
     key,
     body: await decrypt(body, encryptionKey),
   }

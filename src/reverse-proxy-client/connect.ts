@@ -123,7 +123,7 @@ function channelSocketHandleMessage(
 
   localSocket.on("data", (data) => {
     channelSocketSendMessage(channelSocket, encryptionKey, {
-      isEnd: false,
+      kind: "Data",
       key: message.key,
       body: data,
     })
@@ -131,7 +131,7 @@ function channelSocketHandleMessage(
 
   localSocket.on("end", () => {
     channelSocketSendMessage(channelSocket, encryptionKey, {
-      isEnd: true,
+      kind: "End",
       key: message.key,
       body: new Uint8Array(),
     })
@@ -157,7 +157,7 @@ async function channelSocketSendMessage(
     channelSocket.write(await messageEncrypt(message, encryptionKey))
     log({
       who,
-      isEnd: message.isEnd,
+      kind: message.kind,
       key: new TextDecoder().decode(message.key),
     })
   } catch (error) {
