@@ -6,7 +6,7 @@ export async function channelStart(
   channel: Channel,
   encryptionKey: Uint8Array,
 ): Promise<void> {
-  for await (const message of channelMessageStream(channel, encryptionKey)) {
+  for await (const message of channelMessageStream(channel)) {
     channelHandleMessage(channel, message)
   }
 }

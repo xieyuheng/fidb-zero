@@ -2,12 +2,9 @@ import { byteArrayMerge } from "../utils/byteArrayMerge"
 import type { Channel } from "./Channel"
 import { messageDecrypt } from "./messageDecrypt"
 
-export async function* channelMessageStream(
-  channel: Channel,
-  encryptionKey: Uint8Array,
-) {
+export async function* channelMessageStream(channel: Channel) {
   for await (const parts of channelDataPartsStream(channel, 3)) {
-    yield await messageDecrypt(Buffer.concat(parts), encryptionKey)
+    yield await messageDecrypt(Buffer.concat(parts), channel.encryptionKey)
   }
 }
 

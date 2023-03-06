@@ -36,7 +36,7 @@ export function acceptConnection(
     delete ctx.channels[subdomain]
   })
 
-  const channel = createChannel(socket)
+  const channel = createChannel(socket, encryptionKey)
 
   ctx.channels[subdomain] = channel
 
