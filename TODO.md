@@ -1,7 +1,5 @@
 # reverse-proxy
 
-`messageEncrypt` & `messageDecrypt`
-
 [reverse-proxy] encrypt TCP message by the `key`
 
 [reverse-proxy] translate the socket stream into a `DataStream` early -- for geting the first special data

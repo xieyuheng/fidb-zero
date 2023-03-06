@@ -1,13 +1,17 @@
 import { multibufferEncode } from "../multibuffer"
+import { encrypt } from "../utils/encrypt"
 import type { Message } from "./Message"
 
-export function messageEncrypt(
+export async function messageEncrypt(
   message: Message,
   encryptionKey: Uint8Array,
-): Uint8Array {
+): Promise<Uint8Array> {
   return multibufferEncode([
-    new TextEncoder().encode(JSON.stringify(message.isEnd)),
-    message.key,
-    message.body,
+    await encrypt(
+      new TextEncoder().encode(JSON.stringify(message.isEnd)),
+      encryptionKey,
+    ),
+    await encrypt(message.key, encryptionKey),
+    await encrypt(message.body, encryptionKey),
   ])
 }
