@@ -5,12 +5,12 @@ import { randomHexString } from "../utils/randomHexString"
 import type { Channel } from "./Channel"
 import { messageEncrypt } from "./messageEncrypt"
 
-export async function channelSend(
+export async function channelSendData(
   channel: Channel,
   data: Buffer,
   clientSocket: Socket,
 ): Promise<void> {
-  const who = "channelSend"
+  const who = "channelSendData"
 
   const keyText = `${clientSocket.remoteAddress}:${
     clientSocket.remotePort

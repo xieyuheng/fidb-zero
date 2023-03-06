@@ -2,8 +2,11 @@ import { log } from "../utils/log"
 import type { Channel } from "./Channel"
 import type { Message } from "./Message"
 
-export function channelHandleMessage(channel: Channel, message: Message): void {
-  const who = "channelHandleMessage"
+export function channelReceiveMessage(
+  channel: Channel,
+  message: Message,
+): void {
+  const who = "channelReceiveMessage"
 
   log({
     who,

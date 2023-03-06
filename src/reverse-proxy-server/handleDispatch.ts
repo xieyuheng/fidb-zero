@@ -2,7 +2,7 @@ import type Http from "node:http"
 import type { Socket } from "node:net"
 import { NotFound } from "../errors/NotFound"
 import { Processing } from "../errors/Processing"
-import { channelSend } from "../reverse-proxy/channelSend"
+import { channelSendData } from "../reverse-proxy/channelSendData"
 import { requestFormatRaw } from "../server/requestFormatRaw"
 import type { Context } from "./Context"
 import { requestSubdomain } from "./requestSubdomain"
@@ -32,7 +32,7 @@ export async function handleDispatch(
     throw new Error(`[${who}] no response.socket`)
   }
 
-  channelSend(channel, rawRequest, socket)
+  channelSendData(channel, rawRequest, socket)
 
   throw new Processing(`[${who}]`)
 }
