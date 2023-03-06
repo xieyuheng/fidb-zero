@@ -28,7 +28,7 @@ export async function channelSendData(
   channel.socket.write(
     await messageEncrypt(
       {
-        kind: "End",
+        kind: "Request",
         key,
         body: data,
       },
