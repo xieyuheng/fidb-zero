@@ -1,7 +1,5 @@
 # reverse-proxy
 
-new `dataStreamFromSocket` with out the `LengthPrefixed`
-
 [reverse-proxy-server] extract `createChannelServer`
 
 - There should only be one `channelServer`.

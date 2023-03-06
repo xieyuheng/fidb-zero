@@ -71,15 +71,15 @@ export async function connect(options: Options): Promise<boolean> {
     return false
   }
 
-  const channelInfo = await response.json()
+  const channelTicket = await response.json()
 
-  log({ who, channelInfo })
+  log({ who, channelTicket })
 
   const channelSocket = new Socket()
 
-  channelSocket.connect(channelInfo.port, serverURL.hostname)
+  channelSocket.connect(channelTicket.channelServerPort, serverURL.hostname)
 
-  log({ who, message: "connected to the channelSocket", channelInfo })
+  log({ who, message: "connected to the channelSocket", channelTicket })
 
   channelSocket.setNoDelay()
 
@@ -87,9 +87,9 @@ export async function connect(options: Options): Promise<boolean> {
     log({ who, message: "channelSocket closed" })
   })
 
-  const encryptionKey = Buffer.from(channelInfo.encryptionKeyText, "hex")
+  const encryptionKey = Buffer.from(channelTicket.encryptionKeyText, "hex")
 
-  const firstData = new TextEncoder().encode(channelInfo.localServerId)
+  const firstData = new TextEncoder().encode(channelTicket.localServerId)
 
   channelSocket.write(multibufferEncode([firstData]))
 

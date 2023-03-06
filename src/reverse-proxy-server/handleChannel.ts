@@ -1,17 +1,13 @@
 import { ty } from "@xieyuheng/ty"
 import type Http from "node:http"
-import Net from "node:net"
 import { requestToken } from "../database-server/requestToken"
 import * as Db from "../db"
 import { Unauthorized } from "../errors/Unauthorized"
 import { requestJsonObject } from "../server/requestJsonObject"
-import { serverListen } from "../server/serverListen"
 import { tokenAssert } from "../token"
 import { generateEncryptionKey } from "../utils/generateEncryptionKey"
 import type { Json } from "../utils/Json"
-import { findPort } from "../utils/node/findPort"
 import { randomHexString } from "../utils/randomHexString"
-import { acceptConnection } from "./acceptConnection"
 import type { Context } from "./Context"
 import { SubdomainSchema } from "./SubdomainSchema"
 
@@ -58,18 +54,8 @@ export async function handleChannel(
 
     ctx.channelInfos[localServerId] = channelInfo
 
-    const channelServer = Net.createServer()
-
-    channelServer.on("connection", (socket) => {
-      acceptConnection(ctx, socket)
-    })
-
-    const port = await findPort(10000)
-
-    await serverListen(channelServer, { port })
-
     return {
-      port,
+      channelServerPort: ctx.channelServerPort,
       localServerId,
       encryptionKeyText,
     }

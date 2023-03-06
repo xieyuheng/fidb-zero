@@ -2,10 +2,13 @@ import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
 import { handle } from "../../reverse-proxy-server"
 import { createContext } from "../../reverse-proxy-server/Context"
+import { createChannelServer } from "../../reverse-proxy-server/createChannelServer"
 import { createRequestListener } from "../../server/createRequestListener"
 import { maybeTlsOptionsFromArgv } from "../../server/createServer"
+import { serverListen } from "../../server/serverListen"
 import { startServer } from "../../server/startServer"
 import { changeLogger, log } from "../../utils/log"
+import { findPort } from "../../utils/node/findPort"
 
 type Args = {}
 type Opts = {
@@ -55,11 +58,17 @@ export class ReverseProxyServeCommand extends Command<Args> {
     const tls = maybeTlsOptionsFromArgv(argv)
 
     if (typeof argv.port === "number" || argv.port === undefined) {
+      const channelServerPort = await findPort(10000)
+
       const ctx = await createContext({
         path: argv.database,
         domain: argv.domain,
         availablePorts: [Number(argv.port)],
+        channelServerPort,
       })
+
+      const channelServer = createChannelServer(ctx)
+      await serverListen(channelServer, { port: channelServerPort })
 
       const requestListener = createRequestListener({ ctx, handle })
 
@@ -78,12 +87,17 @@ export class ReverseProxyServeCommand extends Command<Args> {
 
       for (const port of argv.port) {
         // NOTE `ctx` must not be shared.
+        const channelServerPort = await findPort(10000)
 
         const ctx = await createContext({
           path: argv.database,
           domain: argv.domain,
           availablePorts: argv.port.map(Number),
+          channelServerPort,
         })
+
+        const channelServer = createChannelServer(ctx)
+        await serverListen(channelServer, { port: channelServerPort })
 
         const requestListener = createRequestListener({ ctx, handle })
 
@@ -95,15 +109,14 @@ export class ReverseProxyServeCommand extends Command<Args> {
         urls.push(url)
       }
 
-      // NOTE This `ctx` is only for log.
-
-      const ctx = await createContext({
+      log({
+        who,
         path: argv.database,
         domain: argv.domain,
         availablePorts: argv.port.map(Number),
+        urls: urls.map(String),
+        tls,
       })
-
-      log({ who, ctx, urls: urls.map(String), tls })
     }
   }
 }
