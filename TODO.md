@@ -1,5 +1,7 @@
 # reverse-proxy
 
+[reverse-proxy] also encrypt TCP message request
+
 [reverse-proxy] translate the socket stream into a `DataStream` early -- for geting the first special data
 
 - use async generator
