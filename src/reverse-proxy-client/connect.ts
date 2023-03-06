@@ -1,7 +1,10 @@
 import { Socket } from "node:net"
+import { dataStreamFromSocket } from "../multibuffer/dataStreamFromSocket"
+import { streamGroup } from "../multibuffer/streamGroup"
+import { streamMap } from "../multibuffer/streamMap"
 import type { Message } from "../reverse-proxy/Message"
+import { messageDecrypt } from "../reverse-proxy/messageDecrypt"
 import { messageEncrypt } from "../reverse-proxy/messageEncrypt"
-import { socketMessageStream } from "../reverse-proxy/socketMessageStream"
 import { formatAuthorizationHeader } from "../utils/formatAuthorizationHeader"
 import { log } from "../utils/log"
 import { tokenGet } from "./tokenGet"
@@ -108,10 +111,12 @@ async function channelSocketStart(
 ): Promise<void> {
   const who = "channelSocketStart"
 
-  for await (const message of socketMessageStream(
-    channelSocket,
-    encryptionKey,
-  )) {
+  const messageStream = streamMap(
+    streamGroup(dataStreamFromSocket(channelSocket), 3),
+    (parts) => messageDecrypt(Buffer.concat(parts), encryptionKey),
+  )
+
+  for await (const message of messageStream) {
     if (message.kind === "Request") {
       channelSocketHandleMessage(channelSocket, encryptionKey, message, local)
     } else {

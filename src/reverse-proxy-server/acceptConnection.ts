@@ -1,7 +1,10 @@
 import type { Socket } from "node:net"
+import { dataStreamFromSocket } from "../multibuffer/dataStreamFromSocket"
+import { streamGroup } from "../multibuffer/streamGroup"
+import { streamMap } from "../multibuffer/streamMap"
 import { createChannel } from "../reverse-proxy/Channel"
 import { channelReceiveMessage } from "../reverse-proxy/channelReceiveMessage"
-import { socketMessageStream } from "../reverse-proxy/socketMessageStream"
+import { messageDecrypt } from "../reverse-proxy/messageDecrypt"
 import { log } from "../utils/log"
 import type { Context } from "./Context"
 
@@ -41,9 +44,9 @@ export async function acceptConnection(
 
   ctx.channels[subdomain] = channel
 
-  const mesageStream = socketMessageStream(
-    channel.socket,
-    channel.encryptionKey,
+  const mesageStream = streamMap(
+    streamGroup(dataStreamFromSocket(channel.socket), 3),
+    (parts) => messageDecrypt(Buffer.concat(parts), channel.encryptionKey),
   )
 
   const { value: mesage, done } = await mesageStream.next()
