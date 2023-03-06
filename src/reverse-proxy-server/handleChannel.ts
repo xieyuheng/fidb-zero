@@ -17,7 +17,7 @@ import { SubdomainSchema } from "./SubdomainSchema"
 
 export type ChannelInfo = {
   username: string
-  domain: string
+  subdomain: string
   encryptionKey: Uint8Array
 }
 
@@ -43,16 +43,6 @@ export async function handleChannel(
 
     await assertSubdomainUsable(ctx, subdomain, username)
 
-    const channelServer = Net.createServer()
-
-    channelServer.on("connection", (socket) => {
-      acceptConnection(ctx, socket, encryptionKey, { username, subdomain })
-    })
-
-    const port = await findPort(10000)
-
-    await serverListen(channelServer, { port })
-
     if (request.socket === null) {
       return
     }
@@ -63,6 +53,20 @@ export async function handleChannel(
 
     const encryptionKey = await generateEncryptionKey()
     const encryptionKeyText = Buffer.from(encryptionKey).toString("hex")
+
+    const channelInfo: ChannelInfo = { username, subdomain, encryptionKey }
+
+    ctx.channelInfos[localServerId] = channelInfo
+
+    const channelServer = Net.createServer()
+
+    channelServer.on("connection", (socket) => {
+      acceptConnection(ctx, socket, encryptionKey, { username, subdomain })
+    })
+
+    const port = await findPort(10000)
+
+    await serverListen(channelServer, { port })
 
     return {
       port,

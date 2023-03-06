@@ -1,7 +1,5 @@
 # reverse-proxy
 
-[reverse-proxy-server] `handleChannel` save new `channelInfo` to `ctx`
-
 [reverse-proxy-server] `acceptConnection` use `localServerId` to get `ChannelInfo`
 
 [reverse-proxy-server] extract `createChannelServer`

@@ -66,7 +66,7 @@ The reverse proxying works as the following:
   ```ts
   type ChannelInfo = {
     username: string
-    domain: string
+    subdomain: string
     encryptionKey: Uint8Array
   }
   ```
