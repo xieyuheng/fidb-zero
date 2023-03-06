@@ -1,12 +1,10 @@
 # reverse-proxy
 
-[reverse-proxy-server] there should only be one `channelServer`
+[reverse-proxy] encrypt TCP message by an `encryptionKey`
 
-- `acceptConnection` -- first data should be a `token` that maps to `ChannelOptions`
+- send to local server by the proxy server (must use https)
 
-- the `token` will also be used to encrypt data
-
-- translate the socket stream into a `DataStream` early
+[reverse-proxy] translate the socket stream into a `DataStream` early -- for geting the first special data
 
 - use async generator
 
@@ -14,16 +12,19 @@
   but also has 'end' event and 'error' event,
   how should async generator implement these?
 
-[reverse-proxy] learn about TCP and UDP low level details
-[reverse-proxy] proxy use UDP to communicate with the target
+[reverse-proxy-server] there should only be one `channelServer`
+
+- `acceptConnection` -- first data should be an `id` that maps to `ChannelOptions`
 
 [reverse-proxy-client] ping the socket to keep the socket alive
-[reverse-proxy-client] restart on `proxySocket` close
 
-[reverse-proxy] encrypt TCP message
+[reverse-proxy-client] restart on `ChannelSocket` close
 
-- can not use the `token` (the first data) as key,
-  the key should be exchanged during https.
+# reverse-proxy over UDP
+
+[reverse-proxy] learn about UDP
+
+[reverse-proxy] channel server over UDP
 
 # rest
 

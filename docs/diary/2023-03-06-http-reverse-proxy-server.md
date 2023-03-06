@@ -16,6 +16,9 @@ HTTP reverse proxy server =
   HTTP server + channel server (over TCP or UDP)
 ```
 
+We talk about "over TCP" in this document,
+"over TCP" will be studied in another document.
+
 The network is the following:
 
 ```
@@ -46,19 +49,28 @@ The reverse proxying works as the following:
   an id of this local server,
   and a key for encryption.
 
-  The local server id maps to username, subdomain
-  and an encrypted password to be checked on next step.
-
-  Because we are sending a key for encryption,
-  the reverse proxy server must be using HTTPS instead of HTTP.
-
   ```ts
   {
     port: number
     id: string
-    key: string
+    encryptionKey: string
   }
   ```
+
+  The local server id maps to `ChannelOptions`,
+  which has username, subdomain and an encrypted password
+  to be checked on next step.
+
+  ```ts
+  {
+    username: string
+    subdomain: string
+    password: string
+  }
+  ```
+
+  Because we are sending a key for encryption,
+  the reverse proxy server must be using HTTPS instead of HTTP.
 
 - (3) The local server connect to the channel server,
   the first data should be the id and a encrypted password.
