@@ -4,14 +4,12 @@ import Net from "node:net"
 import { requestToken } from "../database-server/requestToken"
 import * as Db from "../db"
 import { Unauthorized } from "../errors/Unauthorized"
-import { createChannel } from "../reverse-proxy/Channel"
-import { channelStart } from "../reverse-proxy/channelStart"
 import { requestJsonObject } from "../server/requestJsonObject"
 import { serverListen } from "../server/serverListen"
 import { tokenAssert } from "../token"
 import type { Json } from "../utils/Json"
-import { log } from "../utils/log"
 import { findPort } from "../utils/node/findPort"
+import { acceptConnection } from "./acceptConnection"
 import type { Context } from "./Context"
 import { SubdomainSchema } from "./SubdomainSchema"
 
@@ -51,23 +49,16 @@ export async function handleChannel(
       )
     }
 
-    const server = Net.createServer((socket) => {
-      socket.setNoDelay()
+    const server = Net.createServer()
 
-      log({ who, message: "channel socket created", subdomain, username })
-
-      socket.on("end", () => {
-        log({ who, message: "channel socket end", subdomain, username })
-        delete ctx.channels[subdomain]
-      })
-
-      const channel = createChannel(socket)
-      ctx.channels[subdomain] = channel
-      channelStart(channel)
+    server.on("connection", (socket) => {
+      acceptConnection(ctx, socket, { username, subdomain })
     })
 
     const port = await findPort(10000)
+
     await serverListen(server, { port })
+
     return { port }
   }
 
