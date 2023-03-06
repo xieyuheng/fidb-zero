@@ -10,7 +10,7 @@ export async function* channelMessageStream(channel: Channel) {
 
 async function* channelDataPartsStream(channel: Channel, length: number) {
   let parts: Array<Uint8Array> = []
-  for await (const data of channelLengthPrefixedDataStream(channel)) {
+  for await (const data of channelDataStream(channel)) {
     parts.push(data)
 
     if (parts.length === length) {
@@ -20,7 +20,7 @@ async function* channelDataPartsStream(channel: Channel, length: number) {
   }
 }
 
-async function* channelLengthPrefixedDataStream(channel: Channel) {
+async function* channelDataStream(channel: Channel) {
   const prefixLength = 4
 
   let buffer = new Uint8Array()
