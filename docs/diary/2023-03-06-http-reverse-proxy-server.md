@@ -41,7 +41,7 @@ The reverse proxying works as the following:
   ```ts
   {
     username: string
-    domain: string
+    subdomain: string
   }
   ```
 
