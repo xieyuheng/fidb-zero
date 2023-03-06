@@ -1,8 +1,8 @@
 # reverse-proxy
 
-[reverse-proxy] also encrypt TCP message request
+[reverse-proxy-client] `channelSocket` on data should parse data stream
 
-[reverse-proxy] translate the socket stream into a `DataStream` early -- for geting the first special data
+[reverse-proxy] translate the socket stream into data stream early -- for geting the first special data
 
 - use async generator
 

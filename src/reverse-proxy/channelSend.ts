@@ -1,15 +1,15 @@
 import type { Buffer } from "node:buffer"
 import type { Socket } from "node:net"
-import { messageEncode } from "../reverse-proxy/messageEncode"
 import { log } from "../utils/log"
 import { randomHexString } from "../utils/randomHexString"
 import type { Channel } from "./Channel"
+import { messageEncrypt } from "./messageEncrypt"
 
-export function channelSend(
+export async function channelSend(
   channel: Channel,
   data: Buffer,
   clientSocket: Socket,
-): void {
+): Promise<void> {
   const who = "channelSend"
 
   const keyText = `${clientSocket.remoteAddress}:${
@@ -26,10 +26,13 @@ export function channelSend(
   })
 
   channel.socket.write(
-    messageEncode({
-      kind: "End",
-      key,
-      body: data,
-    }),
+    await messageEncrypt(
+      {
+        kind: "End",
+        key,
+        body: data,
+      },
+      channel.encryptionKey,
+    ),
   )
 }

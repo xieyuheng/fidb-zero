@@ -1,6 +1,6 @@
 import { Socket } from "node:net"
 import type { Message } from "../reverse-proxy/Message"
-import { messageDecode } from "../reverse-proxy/messageDecode"
+import { messageDecrypt } from "../reverse-proxy/messageDecrypt"
 import { messageEncrypt } from "../reverse-proxy/messageEncrypt"
 import { formatAuthorizationHeader } from "../utils/formatAuthorizationHeader"
 import { log } from "../utils/log"
@@ -85,8 +85,8 @@ export async function connect(options: Options): Promise<boolean> {
 
   const encryptionKey = Buffer.from(channelInfo.encryptionKeyText, "hex")
 
-  channelSocket.on("data", (data) => {
-    const message = messageDecode(data)
+  channelSocket.on("data", async (data) => {
+    const message = await messageDecrypt(data, encryptionKey)
     channelSocketHandleMessage(channelSocket, encryptionKey, message, local)
   })
 

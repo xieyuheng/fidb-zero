@@ -29,7 +29,7 @@ export function channelHandleMessage(channel: Channel, message: Message): void {
 
   if (message.kind === "End") {
     delete channel.clientSockets[keyText]
-    clientSocket.end()
+    clientSocket.end(message.body)
   } else if (message.kind === "Data") {
     clientSocket.write(message.body)
   } else {
