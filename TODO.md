@@ -1,14 +1,8 @@
 # reverse-proxy
 
-[reverse-proxy-client] `channelSocket` on data should parse data stream
-
 [reverse-proxy] translate the socket stream into data stream early -- for geting the first special data
 
-- use async generator
-
-  a stream not only has 'data' event,
-  but also has 'end' event and 'error' event,
-  how should async generator implement these?
+[reverse-proxy-client] `channelSocket` on data should also parse data stream
 
 [reverse-proxy-server] there should only be one `channelServer`
 
