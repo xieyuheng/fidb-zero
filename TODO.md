@@ -1,6 +1,6 @@
 # reverse-proxy
 
-[reverse-proxy] translate the socket stream into message stream early -- for geting the first special message
+[reverse-proxy-client] send for "localServerId" message
 
 [reverse-proxy-server] there should only be one `channelServer`
 

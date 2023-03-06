@@ -46,6 +46,14 @@ export async function acceptConnection(
     channel.encryptionKey,
   )
 
+  // const { value: mesage, done } = await mesageStream.next()
+
+  // if (done) {
+  //   return
+  // }
+
+  // mesage.kind === "LocalServerId"
+
   for await (const message of mesageStream) {
     channelReceiveMessage(channel, message)
   }
