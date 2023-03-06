@@ -95,11 +95,22 @@ async function channelSocketStart(
   encryptionKey: Uint8Array,
   local: { hostname: string; port: number },
 ): Promise<void> {
+  const who = "channelSocketStart"
+
   for await (const message of socketMessageStream(
     channelSocket,
     encryptionKey,
   )) {
-    channelSocketHandleMessage(channelSocket, encryptionKey, message, local)
+    if (message.kind === "Request") {
+      channelSocketHandleMessage(channelSocket, encryptionKey, message, local)
+    } else {
+      log({
+        who,
+        kind: "Error",
+        message: "unknown message kind",
+        messageKind: message.kind,
+      })
+    }
   }
 }
 
