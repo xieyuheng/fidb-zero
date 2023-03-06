@@ -1,7 +1,7 @@
 ---
 title: Length prefixed data
 author: Xie Yuheng
-date: 2023-03-06
+date: 2023-03-05
 ---
 
 TCP is a stream, we need protocol to send data part by part.
@@ -17,5 +17,10 @@ Wireshark recognize this as [Network Data Management Protocol (NDMP)](https://ww
 The draft RFC looks complicated, I did not read it.
 
 From wireshark, we can see beside encoding a length,
-NDMP also uses the first bit as flag for "is last fragment or not",
-I do not need such flag.
+NDMP also uses the first bit as flag for "is last fragment or not".
+
+I do not need such flag, because semantics like "ending or not"
+can be built on top of length prefixed data.
+
+Maybe we should setup a RFC project for this,
+just like [the RFC of ZeroMQ](https://rfc.zeromq.org).
