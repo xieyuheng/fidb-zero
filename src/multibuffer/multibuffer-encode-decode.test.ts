@@ -22,3 +22,9 @@ test("multibuffer-encode-decode", () => {
     expect(parts).toEqual(multibufferDecode(multibufferEncode(parts)))
   }
 })
+
+test("multibuffer-encode-decode -- only one part", () => {
+  const parts = [new Uint8Array([1, 2, 3])]
+
+  expect(parts).toEqual(multibufferDecode(multibufferEncode(parts)))
+})

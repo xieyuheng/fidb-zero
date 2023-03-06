@@ -1,9 +1,5 @@
 # reverse-proxy
 
-[reverse-proxy] the first data should not be encrypted
-
-[reverse-proxy-server] `acceptConnection` use `localServerId` to get `ChannelInfo`
-
 [reverse-proxy-server] extract `createChannelServer`
 
 - There should only be one `channelServer`.

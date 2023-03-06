@@ -1,4 +1,5 @@
 import { Socket } from "node:net"
+import { multibufferEncode } from "../multibuffer"
 import { dataStreamFromSocket } from "../multibuffer/dataStreamFromSocket"
 import { streamGroup } from "../multibuffer/streamGroup"
 import { streamMap } from "../multibuffer/streamMap"
@@ -88,16 +89,9 @@ export async function connect(options: Options): Promise<boolean> {
 
   const encryptionKey = Buffer.from(channelInfo.encryptionKeyText, "hex")
 
-  channelSocket.write(
-    await messageEncrypt(
-      {
-        kind: "LocalServerId",
-        key: new TextEncoder().encode(channelInfo.localServerId),
-        body: new Uint8Array(),
-      },
-      encryptionKey,
-    ),
-  )
+  const firstData = new TextEncoder().encode(channelInfo.localServerId)
+
+  channelSocket.write(multibufferEncode([firstData]))
 
   channelSocketStart(channelSocket, encryptionKey, local)
 

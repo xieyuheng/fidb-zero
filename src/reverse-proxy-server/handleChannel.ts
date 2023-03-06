@@ -61,7 +61,7 @@ export async function handleChannel(
     const channelServer = Net.createServer()
 
     channelServer.on("connection", (socket) => {
-      acceptConnection(ctx, socket, encryptionKey, { username, subdomain })
+      acceptConnection(ctx, socket)
     })
 
     const port = await findPort(10000)
