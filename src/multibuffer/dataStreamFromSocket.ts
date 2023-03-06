@@ -1,7 +1,7 @@
 import type { Socket } from "node:net"
 import { byteArrayMerge } from "../utils/byteArrayMerge"
 
-export async function* socketDataStream(socket: Socket) {
+export async function* dataStreamFromSocket(socket: Socket) {
   const prefixLength = 4
 
   let buffer = new Uint8Array()

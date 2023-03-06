@@ -1,7 +1,5 @@
 # reverse-proxy
 
-ambr socketDataStream dataStreamFromSocket
-
 [reverse-proxy] inline `socketMessageStream`
 
 [reverse-proxy-server] `acceptConnection` use `localServerId` to get `ChannelInfo`
