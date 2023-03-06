@@ -7,7 +7,7 @@ export const ivLength = 12
 
 export async function encrypt(data: Uint8Array): Promise<{
   encryptedData: Uint8Array
-  key: Uint8Array
+  encryptionKey: Uint8Array
 }> {
   const cryptoKey = await crypto.subtle.generateKey(
     { name: "AES-GCM", length: 256 },
@@ -25,5 +25,5 @@ export async function encrypt(data: Uint8Array): Promise<{
 
   const key = byteArrayMerge([iv, new Uint8Array(exportedKey)])
 
-  return { encryptedData, key }
+  return { encryptedData, encryptionKey: key }
 }

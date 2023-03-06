@@ -6,17 +6,16 @@ date: 2023-03-06
 
 My aim is to run local HTTP server (without a public IP),
 and use a HTTP reverse proxy server to make the local server
-publicly available on the internet.
+publicly available to the internet.
 
-Our current solution for such a HTTP reverse proxy server
-is the following (let's call it solution 1):
+Our current solution for such a HTTP reverse proxy server is the following:
 
 ```
 HTTP reverse proxy server =
   HTTP server + channel server (over TCP or UDP)
 ```
 
-We talk about "over TCP" in this document,
+In this document, we will only talk about "over TCP",
 "over TCP" will be studied in another document.
 
 The network is the following:
@@ -25,68 +24,57 @@ The network is the following:
 client <-> reverse proxy server <-> local server
 ```
 
-The reverse proxy server has a domain name,
+The reverse proxy server has a domain name (the base domain name),
 and it dispatches request by subdomain name.
 
-For example, take `fidb.app` as the domain of our reverse proxy server.
-a subdomain might be `xieyuheng.fidb.app`.
+For example, take `fidb.app` as the
+base domain of our reverse proxy server.
+A subdomain might be `xieyuheng.fidb.app`.
 
 The reverse proxying works as the following:
 
 - (1) A local server send POST HTTP request
-  to the reverse proxy server by the base domain,
-  with the following body:
+  to the reverse proxy server,
+  with host set to the base domain,
+  and with the following body:
 
   ```ts
-  {
+  type ChannelOptions = {
     username: string
     domain: string
   }
   ```
 
 - (2) The reverse proxy server auth the request by token,
-  and reply a port of the channel server to connect,
-  an id of this local server,
-  and a key for encryption.
+  add the the local server IP to a white list,
+  and reply `ChannelInfo` of the channel server to connect.
 
   ```ts
-  {
+  type ChannelInfo = {
     port: number
-    id: string
-    key: Uint8Array
+    localServerId: string
+    encryptionKeyText: string // hex encoding
   }
   ```
 
-  The local server id maps to `ChannelOptions`,
-  which has username, subdomain and an encrypted password
-  to be checked on next step.
+  Because we are sending a key for encryption through HTTP,
+  the reverse proxy server must use HTTPS instead of HTTP.
 
-  ```ts
-  {
-    username: string
-    subdomain: string
-    password: string
-  }
-  ```
-
-  Because we are sending a key for encryption,
-  the reverse proxy server must be using HTTPS instead of HTTP.
+  In the state of the reverse proxy server,
+  there is a record to map local server id back to `ChannelOptions`.
 
 - (3) The local server connect to the channel server,
-  the first data should be the id and a encrypted password.
+  the first data sent should be the id,
+  so that the channel server knows
+  which `ChannelOptions` to use.
 
-- (4) The channel server check the message,
+- (4) The channel server check the IP in its white list
+  (remove it from the white list if successful),
+  find the `ChannelOptions` back from the id,
   and accept the connection for future proxying.
 
 - (5) Proxying is done by multiplexing this TCP connection.
 
-Notes:
-
-- The first data length should be limited,
-  because this TCP connection is not encrypted,
-  and before it got the token and checked the encrypted password
-  the channel server does not trust the client yet,
-
-  It does not matter that it is a middle man passing this id,
-  because all future data will be encrypted by the key
-  which the middle man does not know.
+  It does not matter if a middle man
+  sets between the local server and the channel server,
+  because all future data will be encrypted.

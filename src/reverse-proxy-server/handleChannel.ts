@@ -7,8 +7,10 @@ import { Unauthorized } from "../errors/Unauthorized"
 import { requestJsonObject } from "../server/requestJsonObject"
 import { serverListen } from "../server/serverListen"
 import { tokenAssert } from "../token"
+import { encrypt } from "../utils/encrypt"
 import type { Json } from "../utils/Json"
 import { findPort } from "../utils/node/findPort"
+import { randomHexString } from "../utils/randomHexString"
 import { acceptConnection } from "./acceptConnection"
 import type { Context } from "./Context"
 import { SubdomainSchema } from "./SubdomainSchema"
@@ -45,7 +47,17 @@ export async function handleChannel(
 
     await serverListen(server, { port })
 
-    return { port }
+    const localServerId = randomHexString(16)
+
+    const { encryptionKey } = await encrypt(new Uint8Array())
+
+    const encryptionKeyText = Buffer.from(encryptionKey).toString("hex")
+
+    return {
+      port,
+      localServerId,
+      encryptionKeyText,
+    }
   }
 
   throw new Error(

@@ -1,8 +1,6 @@
 # reverse-proxy
 
-[reverse-proxy] encrypt TCP message by an `key`
-
-- send to local server by the proxy server (must use https)
+[reverse-proxy] encrypt TCP message by the `key`
 
 [reverse-proxy] translate the socket stream into a `DataStream` early -- for geting the first special data
 
