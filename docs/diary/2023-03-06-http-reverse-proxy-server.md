@@ -53,7 +53,7 @@ The reverse proxying works as the following:
   {
     port: number
     id: string
-    encryptionKey: string
+    key: string
   }
   ```
 

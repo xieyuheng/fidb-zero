@@ -1,5 +1,5 @@
-import { byteArrayMerge } from "../multibuffer/byteArrayMerge"
 import { messageDecode } from "../reverse-proxy/messageDecode"
+import { byteArrayMerge } from "../utils/byteArrayMerge"
 import type { Channel } from "./Channel"
 
 export async function* channelMessageStream(channel: Channel) {

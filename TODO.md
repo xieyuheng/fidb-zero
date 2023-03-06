@@ -1,6 +1,8 @@
+encrypt-decrypt.test.ts
+
 # reverse-proxy
 
-[reverse-proxy] encrypt TCP message by an `encryptionKey`
+[reverse-proxy] encrypt TCP message by an `key`
 
 - send to local server by the proxy server (must use https)
 
