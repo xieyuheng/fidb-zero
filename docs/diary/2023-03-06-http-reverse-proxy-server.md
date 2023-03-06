@@ -39,7 +39,7 @@ The reverse proxying works as the following:
   and with the following body:
 
   ```ts
-  type ChannelOptions = {
+  {
     username: string
     domain: string
   }
@@ -47,10 +47,10 @@ The reverse proxying works as the following:
 
 - (2) The reverse proxy server auth the request by token,
   add the the local server IP to a white list,
-  and reply `ChannelInfo` of the channel server to connect.
+  and reply `ChannelTicket` of the channel server to connect.
 
   ```ts
-  type ChannelInfo = {
+  type ChannelTicket = {
     port: number
     localServerId: string
     encryptionKeyText: string // hex encoding
@@ -61,16 +61,24 @@ The reverse proxying works as the following:
   the reverse proxy server must use HTTPS instead of HTTP.
 
   In the state of the reverse proxy server,
-  there is a record to map local server id back to `ChannelOptions`.
+  there is a record to map local server id back to `ChannelInfo`.
+
+  ```ts
+  type ChannelInfo = {
+    username: string
+    domain: string
+    encryptionKey: Uint8Array
+  }
+  ```
 
 - (3) The local server connect to the channel server,
   the first data sent should be the id,
   so that the channel server knows
-  which `ChannelOptions` to use.
+  which `ChannelInfo` to use.
 
 - (4) The channel server check the IP in its white list
   (remove it from the white list if successful),
-  find the `ChannelOptions` back from the id,
+  find the `ChannelInfo` back from the id,
   and accept the connection for future proxying.
 
 - (5) Proxying is done by multiplexing this TCP connection.

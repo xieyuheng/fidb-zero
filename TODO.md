@@ -1,8 +1,10 @@
 # reverse-proxy
 
+[reverse-proxy-server] `Context` has `channelInfos`
+
 [reverse-proxy-server] there should only be one `channelServer`
 
-- `acceptConnection` -- first data should be an `localServerId` that maps to `ChannelOptions`
+- `acceptConnection` -- first data should be an `localServerId` that maps to `ChannelInfo`
 
 [reverse-proxy-client] ping the socket to keep the socket alive
 

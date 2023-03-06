@@ -37,15 +37,15 @@ export async function handleChannel(
 
     await assertSubdomainUsable(ctx, subdomain, username)
 
-    const server = Net.createServer()
+    const channelServer = Net.createServer()
 
-    server.on("connection", (socket) => {
+    channelServer.on("connection", (socket) => {
       acceptConnection(ctx, socket, encryptionKey, { username, subdomain })
     })
 
     const port = await findPort(10000)
 
-    await serverListen(server, { port })
+    await serverListen(channelServer, { port })
 
     if (request.socket === null) {
       return
