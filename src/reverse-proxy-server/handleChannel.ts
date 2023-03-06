@@ -31,23 +31,9 @@ export async function handleChannel(
       await requestJsonObject(request),
     )
 
-    const path = `users/${username}`
+    tokenAssert(token, `users/${username}`, "read")
 
-    tokenAssert(token, path, "read")
-
-    const subdomainData = await Db.dataGet(ctx.db, `subdomains/${subdomain}`)
-    if (subdomainData === undefined) {
-      throw new Unauthorized(
-        `[${who}] subdomain: ${subdomain} can not be used by username: ${username}`,
-      )
-    }
-
-    const { usernames } = SubdomainSchema.validate(subdomainData)
-    if (!usernames.includes(username)) {
-      throw new Unauthorized(
-        `[${who}] subdomain: ${subdomain} can not be used by username: ${username}`,
-      )
-    }
+    await assertSubdomainUsable(ctx, subdomain, username)
 
     const server = Net.createServer()
 
@@ -67,4 +53,26 @@ export async function handleChannel(
       "\n",
     ),
   )
+}
+
+export async function assertSubdomainUsable(
+  ctx: Context,
+  subdomain: string,
+  username: string,
+): Promise<void> {
+  const who = "assertSubdomainUsable"
+
+  const subdomainData = await Db.dataGet(ctx.db, `subdomains/${subdomain}`)
+  if (subdomainData === undefined) {
+    throw new Unauthorized(
+      `[${who}] subdomain: ${subdomain} can not be used by username: ${username}`,
+    )
+  }
+
+  const { usernames } = SubdomainSchema.validate(subdomainData)
+  if (!usernames.includes(username)) {
+    throw new Unauthorized(
+      `[${who}] subdomain: ${subdomain} can not be used by username: ${username}`,
+    )
+  }
 }
