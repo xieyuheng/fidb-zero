@@ -7,6 +7,7 @@ import type { Context } from "./Context"
 export function acceptConnection(
   ctx: Context,
   socket: Socket,
+  encryptionKey: Uint8Array,
   options: { username: string; subdomain: string },
 ): void {
   const who = "acceptConnection"
@@ -39,5 +40,5 @@ export function acceptConnection(
 
   ctx.channels[subdomain] = channel
 
-  channelStart(channel)
+  channelStart(channel, encryptionKey)
 }

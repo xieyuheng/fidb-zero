@@ -1,7 +1,7 @@
 import { Socket } from "node:net"
 import type { Message } from "../reverse-proxy/Message"
 import { messageDecode } from "../reverse-proxy/messageDecode"
-import { messageEncode } from "../reverse-proxy/messageEncode"
+import { messageEncrypt } from "../reverse-proxy/messageEncrypt"
 import { formatAuthorizationHeader } from "../utils/formatAuthorizationHeader"
 import { log } from "../utils/log"
 import { tokenGet } from "./tokenGet"
@@ -71,8 +71,6 @@ export async function connect(options: Options): Promise<boolean> {
 
   log({ who, channelInfo })
 
-  const encryptionKey = Buffer.from(channelInfo.encryptionKeyText, "hex")
-
   const channelSocket = new Socket()
 
   channelSocket.connect(channelInfo.port, serverURL.hostname)
@@ -85,9 +83,11 @@ export async function connect(options: Options): Promise<boolean> {
     log({ who, message: "channelSocket closed" })
   })
 
+  const encryptionKey = Buffer.from(channelInfo.encryptionKeyText, "hex")
+
   channelSocket.on("data", (data) => {
     const message = messageDecode(data)
-    channelSocketHandleMessage(channelSocket, message, local)
+    channelSocketHandleMessage(channelSocket, encryptionKey, message, local)
   })
 
   return true
@@ -95,6 +95,7 @@ export async function connect(options: Options): Promise<boolean> {
 
 function channelSocketHandleMessage(
   channelSocket: Socket,
+  encryptionKey: Uint8Array,
   message: Message,
   local: { hostname: string; port: number },
 ): void {
@@ -121,7 +122,7 @@ function channelSocketHandleMessage(
   })
 
   localSocket.on("data", (data) => {
-    channelSocketSendMessage(channelSocket, {
+    channelSocketSendMessage(channelSocket, encryptionKey, {
       isEnd: false,
       key: message.key,
       body: data,
@@ -129,7 +130,7 @@ function channelSocketHandleMessage(
   })
 
   localSocket.on("end", () => {
-    channelSocketSendMessage(channelSocket, {
+    channelSocketSendMessage(channelSocket, encryptionKey, {
       isEnd: true,
       key: message.key,
       body: new Uint8Array(),
@@ -145,11 +146,15 @@ function channelSocketHandleMessage(
   })
 }
 
-function channelSocketSendMessage(channelSocket: Socket, message: Message) {
+async function channelSocketSendMessage(
+  channelSocket: Socket,
+  encryptionKey: Uint8Array,
+  message: Message,
+): Promise<void> {
   const who = "channelSocketSendMessage"
 
   try {
-    channelSocket.write(messageEncode(message))
+    channelSocket.write(await messageEncrypt(message, encryptionKey))
     log({
       who,
       isEnd: message.isEnd,

@@ -1,10 +1,13 @@
-import { messageDecode } from "../reverse-proxy/messageDecode"
 import { byteArrayMerge } from "../utils/byteArrayMerge"
 import type { Channel } from "./Channel"
+import { messageDecrypt } from "./messageDecrypt"
 
-export async function* channelMessageStream(channel: Channel) {
+export async function* channelMessageStream(
+  channel: Channel,
+  encryptionKey: Uint8Array,
+) {
   for await (const parts of channelDataPartsStream(channel, 3)) {
-    yield messageDecode(Buffer.concat(parts))
+    yield await messageDecrypt(Buffer.concat(parts), encryptionKey)
   }
 }
 
