@@ -9,10 +9,8 @@ export async function messageDecrypt(
   const [isEnd, key, body] = multibufferDecode(buffer)
 
   return {
-    isEnd: JSON.parse(
-      new TextDecoder().decode(await decrypt(isEnd, encryptionKey)),
-    ),
-    key: await decrypt(key, encryptionKey),
+    isEnd: new TextDecoder().decode(await decrypt(isEnd, encryptionKey)),
+    key,
     body: await decrypt(body, encryptionKey),
   }
 }

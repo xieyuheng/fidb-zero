@@ -1,6 +1,5 @@
 # reverse-proxy
 
-[reverse-proxy] should only encrypt `Message` `body`
 [reverse-proxy] `Message` change `isEnd` to `kind: string`
 
 [reverse-proxy] also encrypt TCP message request
