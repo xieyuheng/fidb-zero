@@ -1,6 +1,6 @@
 import { Socket } from "node:net"
 import { multibufferEncode } from "../multibuffer"
-import { dataStreamFromSocket } from "../multibuffer/dataStreamFromSocket"
+import { lengthPrefixedDataStreamFromSocket } from "../multibuffer/lengthPrefixedDataStreamFromSocket"
 import { streamGroup } from "../multibuffer/streamGroup"
 import { streamMap } from "../multibuffer/streamMap"
 import type { Message } from "../reverse-proxy/Message"
@@ -106,7 +106,7 @@ async function channelSocketStart(
   const who = "channelSocketStart"
 
   const messageStream = streamMap(
-    streamGroup(dataStreamFromSocket(channelSocket), 3),
+    streamGroup(lengthPrefixedDataStreamFromSocket(channelSocket), 3),
     (parts) => messageDecrypt(Buffer.concat(parts), encryptionKey),
   )
 

@@ -1,6 +1,6 @@
 import type { Socket } from "node:net"
 import { multibufferDecode } from "../multibuffer"
-import { dataStreamFromSocket } from "../multibuffer/dataStreamFromSocket"
+import { lengthPrefixedDataStreamFromSocket } from "../multibuffer/lengthPrefixedDataStreamFromSocket"
 import { streamGroup } from "../multibuffer/streamGroup"
 import { streamMap } from "../multibuffer/streamMap"
 import { createChannel } from "../reverse-proxy/Channel"
@@ -30,7 +30,7 @@ export async function acceptConnection(
     },
   })
 
-  const dataStream = dataStreamFromSocket(socket)
+  const dataStream = lengthPrefixedDataStreamFromSocket(socket)
 
   const { value, done } = await dataStream.next()
 
