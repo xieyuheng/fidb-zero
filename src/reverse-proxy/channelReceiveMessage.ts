@@ -18,14 +18,24 @@ export function channelReceiveMessage(
   const keyText = new TextDecoder().decode(message.key)
   const clientSocket = channel.clientSockets[keyText]
   if (clientSocket === undefined) {
-    log({
-      who,
-      kind: "Error",
-      message: "can not find clientSocket, the client ended early",
-      messageKind: message.kind,
-      key: new TextDecoder().decode(message.key),
-      pending: Object.keys(channel.clientSockets),
-    })
+    if (message.kind === "End") {
+      log({
+        who,
+        message: "the clientSocket ended quickly",
+        messageKind: message.kind,
+        key: new TextDecoder().decode(message.key),
+        pending: Object.keys(channel.clientSockets),
+      })
+    } else {
+      log({
+        who,
+        kind: "Error",
+        message: "the clientSocket ended early",
+        messageKind: message.kind,
+        key: new TextDecoder().decode(message.key),
+        pending: Object.keys(channel.clientSockets),
+      })
+    }
 
     return
   }

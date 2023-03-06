@@ -31,13 +31,8 @@ export function acceptConnection(
     },
   })
 
-  // socket.on("end", () => {
-  //   log({ who, message: "channel socket end", subdomain, username })
-  //   delete ctx.channels[subdomain]
-  // })
-
-  socket.on("close", () => {
-    log({ who, message: "channel socket closed", subdomain, username })
+  socket.on("end", () => {
+    log({ who, message: "channelSocket end", subdomain, username })
     delete ctx.channels[subdomain]
   })
 
