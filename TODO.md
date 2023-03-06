@@ -1,10 +1,9 @@
 # reverse-proxy
 
+[reverse-proxy-server] `Channel` clean up handlers
+
 [reverse-proxy] learn about TCP and UDP low level details
 [reverse-proxy] proxy use UDP to communicate with the target
-
-[reverse-proxy-server] remove target if a client disconnect
-[reverse-proxy-server] remove queued data when a request timeout
 
 [reverse-proxy-client] ping the socket to keep the socket alive
 [reverse-proxy-client] restart on `proxySocket` close

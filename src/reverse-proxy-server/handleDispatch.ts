@@ -29,6 +29,10 @@ export async function handleDispatch(
   const rawRequest = await requestFormatRaw(request)
   const socket = response.socket as Socket
 
+  if (!socket) {
+    throw new Error(`[${who}] no response.socket`)
+  }
+
   channelSend(channel, rawRequest, {
     ondata: (data) => socket.write(data),
     onend: () => socket.end(),

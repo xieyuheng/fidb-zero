@@ -10,6 +10,7 @@ import { requestJsonObject } from "../server/requestJsonObject"
 import { serverListen } from "../server/serverListen"
 import { tokenAssert } from "../token"
 import type { Json } from "../utils/Json"
+import { log } from "../utils/log"
 import { findPort } from "../utils/node/findPort"
 import type { Context } from "./Context"
 import { SubdomainSchema } from "./SubdomainSchema"
@@ -52,6 +53,14 @@ export async function handleChannel(
 
     const server = Net.createServer((socket) => {
       socket.setNoDelay()
+
+      log({ who, message: "channel socket created", subdomain })
+
+      socket.on("end", () => {
+        log({ who, message: "channel socket end", subdomain })
+        delete ctx.channels[subdomain]
+      })
+
       const channel = createChannel(socket)
       ctx.channels[subdomain] = channel
       channelStart(channel)
