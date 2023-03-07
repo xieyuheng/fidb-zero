@@ -35,7 +35,7 @@
     "micromatch": "^4.0.5",
     "node-watch": "^0.7.3",
     "picocolors": "^1.0.0",
-    "qs": "^6.11.0",
+    "qs": "^6.11.1",
     "readdirp": "^3.6.0",
     "urlpattern-polyfill": "^6.0.2",
     "uuid": "^9.0.0",
