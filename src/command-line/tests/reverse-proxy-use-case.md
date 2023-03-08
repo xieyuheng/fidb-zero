@@ -31,6 +31,24 @@ fidb website:serve ~/xieyuheng/pomodoro/dist \
 curl https://pomodoro.fidb.app
 ```
 
+# fidb.cn
+
+```
+fidb reverse-proxy:serve --port 443 --port 5108 \
+  --database /root/fidb-official/fidb-databases/databases/reverse-proxy \
+  --domain fidb.cn \
+  --tls-cert /etc/letsencrypt/live/fidb.cn/fullchain.pem \
+  --tls-key /etc/letsencrypt/live/fidb.cn/privkey.pem
+
+fidb reverse-proxy:login https://fidb.cn
+
+fidb website:serve ~/xieyuheng/pomodoro/dist \
+  --rewrite-not-found-to index.html \
+  --url https://pomodoro.fidb.cn
+
+curl https://pomodoro.fidb.cn
+```
+
 # cicada.localhost
 
 ```
