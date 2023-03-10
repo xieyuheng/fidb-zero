@@ -24,7 +24,7 @@ export function logPretter(options: LogOptions): void {
   s += "\n"
 
   for (const [key, value] of Object.entries(options)) {
-    if (!["who", "message", "elapse"].includes(key)) {
+    if (!["who", "kind", "message", "elapse"].includes(key)) {
       if (value !== undefined) {
         s += formatProperty(key, value)
         s += "\n"
