@@ -15,7 +15,7 @@ export function logPretter(options: LogOptions): void {
   } else if (kind === "Warning") {
     s += colors.magenta(formatWho(who)) + " "
   } else {
-    s += formatWho(who) + " "
+    s += colors.blue(formatWho(who)) + " "
   }
 
   if (message) s += `${message}`
