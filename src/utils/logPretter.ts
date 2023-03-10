@@ -11,7 +11,9 @@ export function logPretter(options: LogOptions): void {
   s += formatNow() + " "
 
   if (kind === "Error") {
-    s += formatError(formatWho(who)) + " "
+    s += colors.red(formatWho(who)) + " "
+  } else if (kind === "Warning") {
+    s += colors.magenta(formatWho(who)) + " "
   } else {
     s += formatWho(who) + " "
   }
@@ -31,10 +33,6 @@ export function logPretter(options: LogOptions): void {
   }
 
   console.log(s.trim())
-}
-
-function formatError(text: string): string {
-  return colors.red(text)
 }
 
 function formatWho(who: string): string {
