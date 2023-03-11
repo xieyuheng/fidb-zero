@@ -1,6 +1,5 @@
 # reverse-proxy -- by zmq
 
-[reverse-proxy] move `Channel` to `reverse-proxy-server/`
 [reverse-proxy] abstract the messaging between broker backend and worker
 
 # reverse-proxy

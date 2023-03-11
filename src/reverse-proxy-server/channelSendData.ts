@@ -1,9 +1,9 @@
 import type { Buffer } from "node:buffer"
 import type { Socket } from "node:net"
+import { messageEncrypt } from "../reverse-proxy/messageEncrypt"
 import { log } from "../utils/log"
 import { randomHexString } from "../utils/randomHexString"
 import type { Channel } from "./Channel"
-import { messageEncrypt } from "./messageEncrypt"
 
 export async function channelSendData(
   channel: Channel,

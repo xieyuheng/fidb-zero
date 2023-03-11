@@ -1,6 +1,6 @@
+import type { Message } from "../reverse-proxy/Message"
 import { log } from "../utils/log"
 import type { Channel } from "./Channel"
-import type { Message } from "./Message"
 
 export function channelReceiveMessage(
   channel: Channel,

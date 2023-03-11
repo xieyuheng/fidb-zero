@@ -3,10 +3,10 @@ import { multibufferDecode } from "../multibuffer"
 import { lengthPrefixedDataStreamFromSocket } from "../multibuffer/lengthPrefixedDataStreamFromSocket"
 import { streamGroup } from "../multibuffer/streamGroup"
 import { streamMap } from "../multibuffer/streamMap"
-import { createChannel } from "../reverse-proxy/Channel"
-import { channelReceiveMessage } from "../reverse-proxy/channelReceiveMessage"
 import { messageDecrypt } from "../reverse-proxy/messageDecrypt"
 import { log } from "../utils/log"
+import { createChannel } from "./Channel"
+import { channelReceiveMessage } from "./channelReceiveMessage"
 import type { Context } from "./Context"
 
 export async function acceptConnection(

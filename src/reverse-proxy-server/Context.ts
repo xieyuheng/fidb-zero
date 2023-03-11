@@ -1,6 +1,6 @@
 import { resolve } from "node:path"
 import { createDatabase, Database } from "../database"
-import type { Channel } from "../reverse-proxy/Channel"
+import type { Channel } from "./Channel"
 import type { ChannelInfo } from "./handleChannel"
 
 export type Context = {
