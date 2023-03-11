@@ -1,3 +1,4 @@
+import { createWorker } from "../reverse-proxy/Worker"
 import { formatAuthorizationHeader } from "../utils/formatAuthorizationHeader"
 import { log } from "../utils/log"
 import { createChannelWorker } from "./ChannelWorker"
@@ -69,6 +70,13 @@ export async function connect(options: Options): Promise<boolean> {
   log({ who, ticket })
 
   createChannelWorker({ ticket, hostname: serverURL.hostname, local })
+
+  const worker = await createWorker({
+    ticket,
+    subdomain,
+    hostname: serverURL.hostname,
+    local,
+  })
 
   return true
 }
