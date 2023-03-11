@@ -1,6 +1,9 @@
 # reverse-proxy -- by zmq
 
-[preverse-proxy] `workerListen`
+[reverse-proxy-client] `connect` use `Worker` -- instead of `channelSocket`
+[reverse-proxy-server] use `Broker` -- instead of `Channel`
+
+[reverse-proxy] `workerListen`
 
 [reverse-proxy] support encryption again -- use `encryptionKey`
 
@@ -8,7 +11,7 @@
 
 [reverse-proxy] set socket to keep alive
 [reverse-proxy] ping the socket to keep the socket alive
-[reverse-proxy] restart on `ChannelSocket` close
+[reverse-proxy] restart on `channelSocket` close
 
 # website-server
 
