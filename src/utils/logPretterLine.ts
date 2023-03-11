@@ -17,8 +17,8 @@ export function logPretterLine(options: LogOptions): void {
     s += colors.blue(formatWho(who)) + " "
   }
 
-  if (message) s += `${message}`
-  if (elapse !== undefined) s += " " + formatElapse(elapse)
+  if (message) s += colors.bold(`${message} `)
+  if (elapse !== undefined) s += formatElapse(elapse)
 
   const properties = Object.fromEntries(
     Object.entries(options).filter(
@@ -28,7 +28,10 @@ export function logPretterLine(options: LogOptions): void {
     ),
   )
 
-  s += JSON.stringify(properties)
+  if (Object.keys(properties).length > 0) {
+    s += "-- "
+    s += JSON.stringify(properties)
+  }
 
   console.log(s.trim())
 }
