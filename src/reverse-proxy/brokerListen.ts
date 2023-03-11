@@ -2,7 +2,7 @@ import { decrypt } from "../utils/decrypt"
 import type { Broker } from "./Broker"
 import { brokerPrepareWorker } from "./brokerPrepareWorker"
 
-export async function brokerListenBackend(broker: Broker) {
+export async function brokerListen(broker: Broker) {
   for await (const [workerId, kind, ...rest] of broker.backend) {
     switch (String(kind)) {
       case "Ready": {

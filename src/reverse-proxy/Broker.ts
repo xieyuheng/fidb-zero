@@ -1,5 +1,5 @@
 import * as Zmq from "zeromq"
-import { brokerListenBackend } from "./brokerListenBackend"
+import { brokerListen } from "./brokerListen"
 import type { Service } from "./Service"
 
 export type Broker = {
@@ -13,7 +13,7 @@ export function createBroker(): Broker {
     services: new Map(),
   }
 
-  brokerListenBackend(broker)
+  brokerListen(broker)
 
   // for (const eventType of eventTypes()) {
   //   broker.backend.events.on(eventType, (event) => {

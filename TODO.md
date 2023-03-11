@@ -1,6 +1,5 @@
 # reverse-proxy -- by zmq
 
-[reverse-proxy] ambr brokerListenBackend brokerListen
 [reverse-proxy] `brokerListen` add log
 [reverse-proxy] `brokerListen` extract method `brokerHandleMessage`
 [reverse-proxy] `brokerPrepareWorker` -- error on not find service
