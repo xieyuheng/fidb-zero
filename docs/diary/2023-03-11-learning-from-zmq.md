@@ -11,7 +11,8 @@ Currently our `channelServer` is like the `broker.backend` or ZMQ's majordemo.
 ```
 broker.backend.receive:
 | [workerId, "Ready", serviceName]
-| [workerId, "Reply", requestId, reply]
+| [workerId, "Data", requestId, data]
+| [workerId, "End", requestId]
 broker.backend.send:
 | [workerId, "Request", requestId, request]
 ```
