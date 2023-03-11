@@ -1,6 +1,7 @@
 # reverse-proxy -- by zmq
 
-[reverse-proxy-client] `connect` use `Worker` -- instead of `channelSocket`
+[reverse-proxy-client] `connect` use `Worker` -- instead of `ChannelWorker`
+
 [reverse-proxy-server] use `Broker` -- instead of `Channel`
 
 [reverse-proxy] `workerListen`
