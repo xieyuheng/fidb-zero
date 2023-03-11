@@ -3,6 +3,8 @@ import type Http from "node:http"
 import { requestToken } from "../database-server/requestToken"
 import * as Db from "../db"
 import { Unauthorized } from "../errors/Unauthorized"
+import { createService } from "../reverse-proxy/Service"
+import { serviceReactive } from "../reverse-proxy/serviceReactive"
 import { requestJsonObject } from "../server/requestJsonObject"
 import { tokenAssert } from "../token"
 import { generateEncryptionKey } from "../utils/generateEncryptionKey"
@@ -51,6 +53,11 @@ export async function handleChannel(
     const channelInfo: ChannelInfo = { username, subdomain, encryptionKey }
 
     ctx.channelInfos[workerId] = channelInfo
+
+    ctx.broker.services.set(
+      subdomain,
+      serviceReactive(ctx.broker, createService(subdomain, encryptionKey)),
+    )
 
     return {
       channelServerPort: ctx.channelServerPort,

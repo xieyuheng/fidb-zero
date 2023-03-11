@@ -4,7 +4,6 @@ import { NotFound } from "../errors/NotFound"
 import { Processing } from "../errors/Processing"
 import { requestFormatRaw } from "../server/requestFormatRaw"
 import { randomHexString } from "../utils/randomHexString"
-import { channelSendData } from "./channelSendData"
 import type { Context } from "./Context"
 import { requestSubdomain } from "./requestSubdomain"
 
@@ -21,15 +20,10 @@ export async function handleDispatch(
     throw new NotFound(`[handleDispatch] no subdomain in request host: ${host}`)
   }
 
-  const channel = ctx.channels[subdomin]
-  if (channel === undefined) {
+  const serviece = ctx.broker.services.get(subdomin)
+  if (serviece === undefined) {
     throw new NotFound(`[handleDispatch] unknown subdomain: ${subdomin}`)
   }
-
-  const serviece = ctx.broker.services.get(subdomin)
-  // if (serviece === undefined) {
-  //   throw new NotFound(`[handleDispatch] unknown subdomain: ${subdomin}`)
-  // }
 
   const rawRequest = await requestFormatRaw(request)
   const socket = response.socket as Socket
@@ -38,14 +32,13 @@ export async function handleDispatch(
     throw new Error(`[${who}] no response.socket`)
   }
 
-  channelSendData(channel, rawRequest, socket)
-
   const requestId = `${socket.remoteAddress}:${
     socket.remotePort
   }#${randomHexString(10)}`
 
-  // serviece.requestSockets.set(requestId, socket)
-  // serviece.requests.push({ requestId, request: rawRequest })
+  serviece.requestSockets.set(requestId, socket)
+  // TODO encryptionKey
+  serviece.requests.push({ requestId, request: rawRequest })
 
   throw new Processing(`[${who}]`)
 }

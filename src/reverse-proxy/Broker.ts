@@ -1,4 +1,5 @@
 import * as Zmq from "zeromq"
+import { brokerListenBackend } from "./brokerListenBackend"
 import type { Service } from "./Service"
 
 export type Broker = {
@@ -7,8 +8,18 @@ export type Broker = {
 }
 
 export function createBroker(): Broker {
-  return {
+  const broker = {
     backend: new Zmq.Router({ sendHighWaterMark: 1 }),
     services: new Map(),
   }
+
+  brokerListenBackend(broker)
+
+  // for (const eventType of eventTypes()) {
+  //   broker.backend.events.on(eventType, (event) => {
+  //     console.log({ who: "broker", event })
+  //   })
+  // }
+
+  return broker
 }

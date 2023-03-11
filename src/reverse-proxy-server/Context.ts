@@ -1,7 +1,6 @@
 import { resolve } from "node:path"
 import { createDatabase, Database } from "../database"
 import { Broker, createBroker } from "../reverse-proxy/Broker"
-import type { Channel } from "./Channel"
 import type { ChannelInfo } from "./handleChannel"
 
 export type Context = {
@@ -9,7 +8,6 @@ export type Context = {
   domain: string
   availablePorts: Array<number>
   channelServerPort: number
-  channels: Record<string, Channel>
   channelInfos: Record<string, ChannelInfo>
   broker: Broker
 }
@@ -31,7 +29,6 @@ export async function createContext(options: ContextOptions): Promise<Context> {
     domain,
     availablePorts,
     channelServerPort,
-    channels: {},
     channelInfos: {},
     broker: createBroker(),
   }

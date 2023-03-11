@@ -1,8 +1,9 @@
+import { markRaw } from "@vue/runtime-core"
 import type { Socket } from "node:net"
 
 export type Service = {
   name: string
-  // encryptionKey: Uint8Array
+  encryptionKey: Uint8Array
   requestSockets: Map<string, Socket>
   requests: Array<{ requestId: string; request: Buffer }>
   workerIds: Array<Buffer>
@@ -10,17 +11,17 @@ export type Service = {
 
 export function createService(
   name: string,
-  // encryptionKey: Uint8Array,
-  options: {
+  encryptionKey: Uint8Array,
+  options?: {
     requests?: Array<{ requestId: string; request: Buffer }>
     workerIds?: Array<Buffer>
   },
 ): Service {
   return {
     name,
-    // encryptionKey,
-    requestSockets: new Map(),
-    requests: options.requests || [],
-    workerIds: options.workerIds || [],
+    encryptionKey,
+    requestSockets: markRaw(new Map()),
+    requests: options?.requests || [],
+    workerIds: options?.workerIds || [],
   }
 }

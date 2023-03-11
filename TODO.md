@@ -1,10 +1,8 @@
 # reverse-proxy -- by zmq
 
-[reverse-proxy-client] `connect` use `Worker` -- instead of `ChannelWorker`
+[reverse-proxy] `workerListen` use for await on `localSocket`
 
-[reverse-proxy-server] use `Broker` -- instead of `Channel`
-
-[reverse-proxy] support encryption again -- use `encryptionKey`
+[reverse-proxy] `brokerPrepareWorker` -- error on not find service
 
 # reverse-proxy
 

@@ -2,10 +2,8 @@ import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
 import { handle } from "../../reverse-proxy-server"
 import { createContext } from "../../reverse-proxy-server/Context"
-import { createChannelServer } from "../../reverse-proxy-server/createChannelServer"
 import { createRequestListener } from "../../server/createRequestListener"
 import { maybeTlsOptionsFromArgv } from "../../server/createServer"
-import { serverListen } from "../../server/serverListen"
 import { startServer } from "../../server/startServer"
 import { changeLogger, log } from "../../utils/log"
 import { findPort } from "../../utils/node/findPort"
@@ -67,10 +65,7 @@ export class ReverseProxyServeCommand extends Command<Args> {
         channelServerPort,
       })
 
-      // await ctx.broker.backend.bind(`tcp://127.0.0.1:${channelServerPort}`)
-      const channelServer = createChannelServer(ctx)
-      await serverListen(channelServer, { port: channelServerPort })
-
+      await ctx.broker.backend.bind(`tcp://127.0.0.1:${channelServerPort}`)
       const requestListener = createRequestListener({ ctx, handle })
 
       const { url } = await startServer(requestListener, {
@@ -97,10 +92,7 @@ export class ReverseProxyServeCommand extends Command<Args> {
           channelServerPort,
         })
 
-        // await ctx.broker.backend.bind(`tcp://127.0.0.1:${channelServerPort}`)
-        const channelServer = createChannelServer(ctx)
-        await serverListen(channelServer, { port: channelServerPort })
-
+        await ctx.broker.backend.bind(`tcp://127.0.0.1:${channelServerPort}`)
         const requestListener = createRequestListener({ ctx, handle })
 
         const { url } = await startServer(requestListener, {

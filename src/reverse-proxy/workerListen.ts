@@ -1,6 +1,4 @@
 import { Socket } from "node:net"
-import { decrypt } from "../utils/decrypt"
-import { encrypt } from "../utils/encrypt"
 import { log } from "../utils/log"
 import type { Worker } from "./Worker"
 
@@ -17,21 +15,34 @@ export async function workerListen(worker: Worker) {
           worker.local.hostname,
           async () => {
             log({ who, message: "localSocket connected" })
-            localSocket.write(await decrypt(request, worker.encryptionKey))
-            log({ who, message: "data sent", length: request.length })
+            localSocket.write(request)
+            // localSocket.write(await decrypt(request, worker.encryptionKey))
+            log({
+              who,
+              message: "request sent to localSocket",
+              length: request.length,
+            })
           },
         )
 
         localSocket.on("data", async (data) => {
           await worker.dealer.send([
             "Data",
+            worker.subdomain,
             requestId,
-            await encrypt(data, worker.encryptionKey),
+            // await encrypt(data, worker.encryptionKey),
+            data,
           ])
+          log({
+            who,
+            message: "worker.dealer.send / Data",
+            length: data.length,
+          })
         })
 
         localSocket.on("end", async () => {
-          await worker.dealer.send(["End", requestId])
+          await worker.dealer.send(["End", worker.subdomain, requestId])
+          log({ who, message: "worker.dealer.send / End" })
         })
 
         localSocket.on("close", () => {

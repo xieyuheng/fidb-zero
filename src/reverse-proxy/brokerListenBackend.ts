@@ -8,6 +8,7 @@ export async function brokerListenBackend(broker: Broker) {
         const [serviceName] = rest
 
         brokerPrepareWorker(broker, String(serviceName), workerId)
+        continue
       }
 
       case "Data": {
@@ -17,15 +18,16 @@ export async function brokerListenBackend(broker: Broker) {
 
         const service = broker.services.get(String(serviceName))
         if (service === undefined) {
-          return
+          continue
         }
 
         const requestSocket = service.requestSockets.get(String(requestId))
         if (requestSocket === undefined) {
-          return
+          continue
         }
 
         requestSocket.write(data)
+        continue
       }
 
       case "End": {
@@ -35,17 +37,22 @@ export async function brokerListenBackend(broker: Broker) {
 
         const service = broker.services.get(String(serviceName))
         if (service === undefined) {
-          return
+          continue
         }
 
         const requestSocket = service.requestSockets.get(String(requestId))
         if (requestSocket === undefined) {
-          return
+          continue
         }
 
         requestSocket.end()
 
         service.requestSockets.delete(String(requestId))
+        continue
+      }
+
+      default: {
+        console.log(`unknown kind: ${String(kind)}`)
       }
     }
   }
