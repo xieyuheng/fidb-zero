@@ -1,7 +1,5 @@
 # reverse-proxy -- by zmq
 
-[preverse-proxy] `Worker`
-[preverse-proxy] `createWorker`
 [preverse-proxy] `workerListen`
 
 [reverse-proxy] support encryption again -- use `encryptionKey`
