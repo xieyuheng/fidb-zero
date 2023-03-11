@@ -1,7 +1,9 @@
 # reverse-proxy -- by zmq
 
-[reverse-proxy] `workerListen` use for await on `localSocket`
-
+[reverse-proxy] add encryption back
+[reverse-proxy] ambr brokerListenBackend brokerListen
+[reverse-proxy] `brokerListen` add log
+[reverse-proxy] `brokerListen` extract method `brokerHandleMessage`
 [reverse-proxy] `brokerPrepareWorker` -- error on not find service
 
 # reverse-proxy

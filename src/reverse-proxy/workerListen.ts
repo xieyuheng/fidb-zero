@@ -10,22 +10,24 @@ export async function workerListen(worker: Worker) {
       case "Request": {
         const localSocket = new Socket()
 
-        localSocket.connect(
-          worker.local.port,
-          worker.local.hostname,
-          async () => {
-            log({ who, message: "localSocket connected" })
-            localSocket.write(request)
-            // localSocket.write(await decrypt(request, worker.encryptionKey))
-            log({
-              who,
-              message: "request sent to localSocket",
-              length: request.length,
-            })
-          },
-        )
+        localSocket.connect(worker.local.port, worker.local.hostname)
 
-        localSocket.on("data", async (data) => {
+        localSocket.on("connect", async () => {
+          log({ who, message: "localSocket connected" })
+          localSocket.write(request)
+          // localSocket.write(await decrypt(request, worker.encryptionKey))
+          log({
+            who,
+            message: "request sent to localSocket",
+            length: request.length,
+          })
+        })
+
+        localSocket.on("close", () => {
+          log({ who, message: "localSocket closed" })
+        })
+
+        for await (const data of localSocket) {
           await worker.dealer.send([
             "Data",
             worker.subdomain,
@@ -33,21 +35,16 @@ export async function workerListen(worker: Worker) {
             // await encrypt(data, worker.encryptionKey),
             data,
           ])
+
           log({
             who,
             message: "worker.dealer.send / Data",
             length: data.length,
           })
-        })
+        }
 
-        localSocket.on("end", async () => {
-          await worker.dealer.send(["End", worker.subdomain, requestId])
-          log({ who, message: "worker.dealer.send / End" })
-        })
-
-        localSocket.on("close", () => {
-          log({ who, message: "localSocket closed" })
-        })
+        await worker.dealer.send(["End", worker.subdomain, requestId])
+        log({ who, message: "worker.dealer.send / End" })
       }
     }
   }
