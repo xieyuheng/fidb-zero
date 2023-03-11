@@ -1,5 +1,6 @@
 import { resolve } from "node:path"
 import { createDatabase, Database } from "../database"
+import { Broker, createBroker } from "../reverse-proxy/Broker"
 import type { Channel } from "./Channel"
 import type { ChannelInfo } from "./handleChannel"
 
@@ -10,6 +11,7 @@ export type Context = {
   channelServerPort: number
   channels: Record<string, Channel>
   channelInfos: Record<string, ChannelInfo>
+  broker: Broker
 }
 
 type ContextOptions = {
@@ -31,5 +33,6 @@ export async function createContext(options: ContextOptions): Promise<Context> {
     channelServerPort,
     channels: {},
     channelInfos: {},
+    broker: createBroker(),
   }
 }
