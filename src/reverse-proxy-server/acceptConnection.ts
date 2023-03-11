@@ -39,12 +39,12 @@ export async function acceptConnection(
   }
 
   const [firstData] = multibufferDecode(value)
-  const localServerId = new TextDecoder().decode(firstData)
+  const workerId = new TextDecoder().decode(firstData)
 
-  const channelInfo = ctx.channelInfos[localServerId]
+  const channelInfo = ctx.channelInfos[workerId]
 
   if (channelInfo === undefined) {
-    log({ who, message: "unknown localServerId", localServerId })
+    log({ who, message: "unknown workerId", workerId })
     return
   }
 

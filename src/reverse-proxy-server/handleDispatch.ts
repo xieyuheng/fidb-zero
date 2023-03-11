@@ -27,9 +27,9 @@ export async function handleDispatch(
   }
 
   const serviece = ctx.broker.services.get(subdomin)
-  if (serviece === undefined) {
-    throw new NotFound(`[handleDispatch] unknown subdomain: ${subdomin}`)
-  }
+  // if (serviece === undefined) {
+  //   throw new NotFound(`[handleDispatch] unknown subdomain: ${subdomin}`)
+  // }
 
   const rawRequest = await requestFormatRaw(request)
   const socket = response.socket as Socket
@@ -44,8 +44,8 @@ export async function handleDispatch(
     socket.remotePort
   }#${randomHexString(10)}`
 
-  serviece.requestSockets.set(requestId, socket)
-  serviece.requests.push({ requestId, request: rawRequest })
+  // serviece.requestSockets.set(requestId, socket)
+  // serviece.requests.push({ requestId, request: rawRequest })
 
   throw new Processing(`[${who}]`)
 }

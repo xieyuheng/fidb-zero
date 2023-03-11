@@ -52,7 +52,7 @@ The reverse proxying works as the following:
   ```ts
   type ChannelTicket = {
     port: number
-    localServerId: string
+    workerId: string
     encryptionKeyText: string // hex encoding
   }
   ```

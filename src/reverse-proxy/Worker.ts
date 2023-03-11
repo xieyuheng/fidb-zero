@@ -10,7 +10,7 @@ export function createWorker(options: {
   ticket: {
     channelServerPort: number
     encryptionKeyText: string
-    localServerId: string
+    workerId: string
   }
 }): Worker {
   const dealer = new Zmq.Dealer()

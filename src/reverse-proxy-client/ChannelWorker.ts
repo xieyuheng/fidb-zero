@@ -15,7 +15,7 @@ export function createChannelWorker(options: {
   ticket: {
     channelServerPort: number
     encryptionKeyText: string
-    localServerId: string
+    workerId: string
   }
 }): ChannelWorker {
   const who = "ChannelWorker"
@@ -34,7 +34,7 @@ export function createChannelWorker(options: {
     log({ who, message: "ChannelWorker socket closed" })
   })
 
-  const firstData = new TextEncoder().encode(ticket.localServerId)
+  const firstData = new TextEncoder().encode(ticket.workerId)
 
   socket.write(multibufferEncode([firstData]))
 

@@ -43,20 +43,18 @@ export async function handleChannel(
       return
     }
 
-    const localServerId = `${request.socket.remoteAddress}#${randomHexString(
-      16,
-    )}`
+    const workerId = `${request.socket.remoteAddress}#${randomHexString(16)}`
 
     const encryptionKey = await generateEncryptionKey()
     const encryptionKeyText = Buffer.from(encryptionKey).toString("hex")
 
     const channelInfo: ChannelInfo = { username, subdomain, encryptionKey }
 
-    ctx.channelInfos[localServerId] = channelInfo
+    ctx.channelInfos[workerId] = channelInfo
 
     return {
       channelServerPort: ctx.channelServerPort,
-      localServerId,
+      workerId,
       encryptionKeyText,
     }
   }
