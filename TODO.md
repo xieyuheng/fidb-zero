@@ -1,10 +1,10 @@
 # reverse-proxy -- by zmq
 
+[reverse-proxy] `workerListen`
+
 [reverse-proxy-client] `connect` use `Worker` -- instead of `ChannelWorker`
 
 [reverse-proxy-server] use `Broker` -- instead of `Channel`
-
-[reverse-proxy] `workerListen`
 
 [reverse-proxy] support encryption again -- use `encryptionKey`
 

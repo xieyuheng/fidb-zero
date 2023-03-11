@@ -5,7 +5,11 @@ export type Worker = {
 }
 
 export function createWorker(): Worker {
+  const dealer = new Zmq.Dealer()
+
+  dealer.connect
+
   return {
-    dealer: new Zmq.Dealer(),
+    dealer,
   }
 }
