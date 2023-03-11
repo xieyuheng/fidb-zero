@@ -1,7 +1,10 @@
+import type { Socket } from "node:net"
+
 export type Service = {
   name: string
-  requests: Array<{ requestId: string; request: Buffer }>
   encryptionKey: Uint8Array
+  requestSockets: Map<string, Socket>
+  requests: Array<{ requestId: string; request: Buffer }>
   workerIds: Array<Buffer>
 }
 
@@ -16,6 +19,7 @@ export function createService(
   return {
     name,
     encryptionKey,
+    requestSockets: new Map(),
     requests: options.requests || [],
     workerIds: options.workerIds || [],
   }

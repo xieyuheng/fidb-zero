@@ -1,10 +1,10 @@
 # reverse-proxy -- by zmq
 
-[reverse-proxy] `brokerListenBackend`
-
 [preverse-proxy] `Worker`
 [preverse-proxy] `createWorker`
 [preverse-proxy] `workerListen`
+
+[reverse-proxy] support encryption again -- use `encryptionKey`
 
 # reverse-proxy
 

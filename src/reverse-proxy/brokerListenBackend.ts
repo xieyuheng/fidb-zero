@@ -11,7 +11,17 @@ export async function brokerListenBackend(broker: Broker) {
       case "Reply": {
         const [serviceName, requestId, reply] = rest
         // brokerPrepareWorker(broker, String(serviceName), workerId)
-        // await broker.frontend.send([requestId, "Reply", serviceName, ...reply])
+        const service = broker.services.get(String(serviceName))
+        if (service === undefined) {
+          return
+        }
+
+        const requestSocket = service.requestSockets.get(String(requestId))
+        if (requestSocket === undefined) {
+          return
+        }
+
+        requestSocket.write(reply)
       }
     }
   }
