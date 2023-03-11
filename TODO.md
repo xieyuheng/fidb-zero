@@ -1,4 +1,3 @@
-`logPretterLine`
 [website-server] `Context` has `cacheControlPatterns`
 `fidb website:serve` support `--cache-control`
 [website-server] `--spa` as a shorthand for `--rewrite-not-found-to index.html` and the `spaCacheControlPatterns`
