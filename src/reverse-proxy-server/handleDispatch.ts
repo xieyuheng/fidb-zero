@@ -3,6 +3,7 @@ import type { Socket } from "node:net"
 import { NotFound } from "../errors/NotFound"
 import { Processing } from "../errors/Processing"
 import { requestFormatRaw } from "../server/requestFormatRaw"
+import { encrypt } from "../utils/encrypt"
 import { randomHexString } from "../utils/randomHexString"
 import type { Context } from "./Context"
 import { requestSubdomain } from "./requestSubdomain"
@@ -20,8 +21,8 @@ export async function handleDispatch(
     throw new NotFound(`[handleDispatch] no subdomain in request host: ${host}`)
   }
 
-  const serviece = ctx.broker.services.get(subdomin)
-  if (serviece === undefined) {
+  const service = ctx.broker.services.get(subdomin)
+  if (service === undefined) {
     throw new NotFound(`[handleDispatch] unknown subdomain: ${subdomin}`)
   }
 
@@ -36,9 +37,12 @@ export async function handleDispatch(
     socket.remotePort
   }#${randomHexString(10)}`
 
-  serviece.requestSockets.set(requestId, socket)
-  // TODO encryptionKey
-  serviece.requests.push({ requestId, request: rawRequest })
+  service.requestSockets.set(requestId, socket)
+
+  service.requests.push({
+    requestId,
+    request: Buffer.from(await encrypt(rawRequest, service.encryptionKey)),
+  })
 
   throw new Processing(`[${who}]`)
 }

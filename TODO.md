@@ -1,6 +1,5 @@
 # reverse-proxy -- by zmq
 
-[reverse-proxy] add encryption back
 [reverse-proxy] ambr brokerListenBackend brokerListen
 [reverse-proxy] `brokerListen` add log
 [reverse-proxy] `brokerListen` extract method `brokerHandleMessage`

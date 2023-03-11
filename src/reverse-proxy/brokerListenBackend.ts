@@ -1,3 +1,4 @@
+import { decrypt } from "../utils/decrypt"
 import type { Broker } from "./Broker"
 import { brokerPrepareWorker } from "./brokerPrepareWorker"
 
@@ -26,7 +27,7 @@ export async function brokerListenBackend(broker: Broker) {
           continue
         }
 
-        requestSocket.write(data)
+        requestSocket.write(await decrypt(data, service.encryptionKey))
         continue
       }
 
