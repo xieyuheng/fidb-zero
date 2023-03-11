@@ -93,17 +93,17 @@ export async function connect(options: Options): Promise<boolean> {
 
   channelSocket.write(multibufferEncode([firstData]))
 
-  channelSocketStart(channelSocket, encryptionKey, local)
+  channelSocketListen(channelSocket, encryptionKey, local)
 
   return true
 }
 
-async function channelSocketStart(
+async function channelSocketListen(
   channelSocket: Socket,
   encryptionKey: Uint8Array,
   local: { hostname: string; port: number },
 ): Promise<void> {
-  const who = "channelSocketStart"
+  const who = "channelSocketListen"
 
   const messageStream = streamMap(
     streamGroup(lengthPrefixedDataStreamFromSocket(channelSocket), 3),

@@ -1,14 +1,19 @@
-[website-server] `Context` has `cacheControlPatterns`
-`fidb website:serve` support `--cache-control`
-[website-server] `--spa` as a shorthand for `--rewrite-not-found-to index.html` and the `spaCacheControlPatterns`
+# reverse-proxy -- by zmq
 
-# use zmq
+[reverse-proxy] move `Channel` to `reverse-proxy-server/`
+[reverse-proxy] abstract the messaging between broker backend and worker
 
 # reverse-proxy
 
 [reverse-proxy] set socket to keep alive
 [reverse-proxy] ping the socket to keep the socket alive
 [reverse-proxy] restart on `ChannelSocket` close
+
+# website-server
+
+[website-server] `Context` has `cacheControlPatterns`
+`fidb website:serve` support `--cache-control`
+[website-server] `--spa` as a shorthand for `--rewrite-not-found-to index.html` and the `spaCacheControlPatterns`
 
 # reverse-proxy over zeromq
 
