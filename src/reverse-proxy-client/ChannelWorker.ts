@@ -12,7 +12,7 @@ export type ChannelWorker = {
 export function createChannelWorker(options: {
   hostname: string
   local: { hostname: string; port: number }
-  channelTicket: {
+  ticket: {
     channelServerPort: number
     encryptionKeyText: string
     localServerId: string
@@ -20,13 +20,13 @@ export function createChannelWorker(options: {
 }): ChannelWorker {
   const who = "ChannelWorker"
 
-  const { hostname, local, channelTicket } = options
+  const { hostname, local, ticket } = options
 
-  const encryptionKey = Buffer.from(channelTicket.encryptionKeyText, "hex")
+  const encryptionKey = Buffer.from(ticket.encryptionKeyText, "hex")
 
   const socket = new Socket()
 
-  socket.connect(channelTicket.channelServerPort, hostname)
+  socket.connect(ticket.channelServerPort, hostname)
 
   socket.setNoDelay()
 
@@ -34,7 +34,7 @@ export function createChannelWorker(options: {
     log({ who, message: "ChannelWorker socket closed" })
   })
 
-  const firstData = new TextEncoder().encode(channelTicket.localServerId)
+  const firstData = new TextEncoder().encode(ticket.localServerId)
 
   socket.write(multibufferEncode([firstData]))
 

@@ -64,11 +64,11 @@ export async function connect(options: Options): Promise<boolean> {
     return false
   }
 
-  const channelTicket = await response.json()
+  const ticket = await response.json()
 
-  log({ who, channelTicket })
+  log({ who, ticket })
 
-  createChannelWorker({ channelTicket, hostname: serverURL.hostname, local })
+  createChannelWorker({ ticket, hostname: serverURL.hostname, local })
 
   return true
 }
