@@ -84,6 +84,8 @@ export class WebsiteServeCommand extends Command<Args> {
         },
       })
 
+      log({ who, publicURL: argv["public-url"] })
+
       if (!successful) {
         process.exit(1)
       }

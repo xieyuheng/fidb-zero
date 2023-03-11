@@ -1,4 +1,3 @@
-`fidb website:serve` and `fidb database:serve` report `publicURL`
 `logPretterLine`
 [website-server] `Context` has `cacheControlPatterns`
 `fidb website:serve` support `--cache-control`
