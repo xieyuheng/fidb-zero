@@ -1,6 +1,6 @@
 export type Service = {
   name: string
-  requests: Array<{ clientId: string; request: Buffer }>
+  requests: Array<{ requestId: string; request: Buffer }>
   encryptionKey: Uint8Array
   workerIds: Array<Buffer>
 }
@@ -9,7 +9,7 @@ export function createService(
   name: string,
   encryptionKey: Uint8Array,
   options: {
-    requests?: Array<{ clientId: string; request: Buffer }>
+    requests?: Array<{ requestId: string; request: Buffer }>
     workerIds?: Array<Buffer>
   },
 ): Service {

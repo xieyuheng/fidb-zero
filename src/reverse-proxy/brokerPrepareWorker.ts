@@ -13,7 +13,6 @@ export function brokerPrepareWorker(
     const service = serviceReactive(
       broker,
       createService(serviceName, encryptionKey, {
-        requests: [],
         workerIds: [workerId],
       }),
     )
