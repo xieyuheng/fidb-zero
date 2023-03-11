@@ -9,12 +9,10 @@ export async function brokerHandleMessage(
 ) {
   const who = "brokerHandleMessage"
 
-  const [workerId, kind, ...rest] = message
+  const [workerId, kind, serviceName, ...rest] = message
 
   switch (String(kind)) {
     case "Ready": {
-      const [serviceName] = rest
-
       log({
         who,
         message: "Ready",
@@ -27,7 +25,7 @@ export async function brokerHandleMessage(
     }
 
     case "Data": {
-      const [serviceName, requestId, data] = rest
+      const [requestId, data] = rest
 
       brokerPrepareWorker(broker, String(serviceName), workerId)
 
@@ -53,7 +51,7 @@ export async function brokerHandleMessage(
     }
 
     case "End": {
-      const [serviceName, requestId] = rest
+      const [requestId] = rest
 
       brokerPrepareWorker(broker, String(serviceName), workerId)
 

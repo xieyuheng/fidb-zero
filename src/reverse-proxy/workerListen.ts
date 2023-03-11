@@ -41,13 +41,13 @@ export async function workerListen(worker: Worker) {
 
           log({
             who,
-            message: "worker.dealer.send / Data",
+            message: "Data",
             length: data.length,
           })
         }
 
         await worker.dealer.send(["End", worker.subdomain, requestId])
-        log({ who, message: "worker.dealer.send / End" })
+        log({ who, message: "End" })
       }
     }
   }

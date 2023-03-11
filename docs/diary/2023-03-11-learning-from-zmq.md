@@ -11,15 +11,15 @@ Currently our `channelServer` is like the `broker.backend` or ZMQ's majordemo.
 ```
 worker.dealer.send:
 | ["Ready", serviceName]
-| ["Data", requestId, data]
-| ["End", requestId]
+| ["Data", serviceName, requestId, data]
+| ["End", serviceName, requestId]
 worker.dealer.receive:
 | ["Request", requestId, request]
 
 broker.backend.receive:
 | [workerId, "Ready", serviceName]
-| [workerId, "Data", requestId, data]
-| [workerId, "End", requestId]
+| [workerId, "Data", serviceName, requestId, data]
+| [workerId, "End", serviceName, requestId]
 broker.backend.send:
 | [workerId, "Request", requestId, request]
 ```
