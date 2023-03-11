@@ -1,8 +1,14 @@
-import type { Socket } from "node:net"
-import type * as Zmq from "zeromq"
+import * as Zmq from "zeromq"
+import type { Service } from "./Service"
 
 export type Broker = {
   backend: Zmq.Router
-  encryptionKey: Uint8Array
-  clientSockets: Record<string, Socket>
+  services: Map<string, Service>
+}
+
+export function createBroker(): Broker {
+  return {
+    backend: new Zmq.Router({ sendHighWaterMark: 1 }),
+    services: new Map(),
+  }
 }

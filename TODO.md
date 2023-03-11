@@ -1,5 +1,11 @@
 # reverse-proxy -- by zmq
 
+[reverse-proxy-server] `brokerListen`
+
+[preverse-proxy-client] `Worker`
+[preverse-proxy-client] `createWorker`
+[preverse-proxy-client] `workerListen`
+
 # reverse-proxy
 
 [reverse-proxy] set socket to keep alive
