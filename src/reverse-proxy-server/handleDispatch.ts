@@ -25,6 +25,11 @@ export async function handleDispatch(
     throw new NotFound(`[handleDispatch] unknown subdomain: ${subdomin}`)
   }
 
+  const serviece = ctx.broker.services.get(subdomin)
+  if (serviece === undefined) {
+    throw new NotFound(`[handleDispatch] unknown subdomain: ${subdomin}`)
+  }
+
   const rawRequest = await requestFormatRaw(request)
   const socket = response.socket as Socket
 
@@ -33,6 +38,11 @@ export async function handleDispatch(
   }
 
   channelSendData(channel, rawRequest, socket)
+
+  const requestId = "TODO"
+
+  serviece.requestSockets.set(requestId, socket)
+  serviece.requests.push({ requestId, request: rawRequest })
 
   throw new Processing(`[${who}]`)
 }

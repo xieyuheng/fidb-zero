@@ -1,6 +1,7 @@
 # reverse-proxy -- by zmq
 
-[reverse-proxy-server] `handleDispatch` add `service` to `broker` -- with initial `request`
+[reverse-proxy-server] `handleDispatch` fix `requestId`
+[reverse-proxy] `brokerBind` -- used by to replace `createChannelServer`
 [reverse-proxy-server] `handleDispatch` use `encryptionKey` when adding `service` to `broker`
 
 [reverse-proxy] `workerListen`
