@@ -24,6 +24,7 @@
     "format": "prettier src --write"
   },
   "dependencies": {
+    "@vue/runtime-core": "^3.2.47",
     "@xieyuheng/command-line": "^0.0.10",
     "@xieyuheng/ty": "^0.1.22",
     "bcrypt": "^5.1.0",

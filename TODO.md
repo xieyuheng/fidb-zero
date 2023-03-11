@@ -1,10 +1,10 @@
 # reverse-proxy -- by zmq
 
-[reverse-proxy-server] `brokerListen`
+[reverse-proxy] `brokerListen`
 
-[preverse-proxy-client] `Worker`
-[preverse-proxy-client] `createWorker`
-[preverse-proxy-client] `workerListen`
+[preverse-proxy] `Worker`
+[preverse-proxy] `createWorker`
+[preverse-proxy] `workerListen`
 
 # reverse-proxy
 
