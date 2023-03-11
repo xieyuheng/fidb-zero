@@ -1,13 +1,5 @@
 import type { Socket } from "node:net"
 
-/**
-
-   This `Channel` multiplex one socket
-   by have a record of handlers,
-   one for each request.
-
-**/
-
 export type Channel = {
   socket: Socket
   encryptionKey: Uint8Array
