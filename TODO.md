@@ -1,7 +1,5 @@
 # reverse-proxy -- by zmq
 
-[reverse-proxy] abstract the messaging between broker backend and worker
-
 # reverse-proxy
 
 [reverse-proxy] set socket to keep alive
