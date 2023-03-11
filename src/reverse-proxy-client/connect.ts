@@ -11,7 +11,7 @@ import { log } from "../utils/log"
 import { tokenGet } from "./tokenGet"
 
 type Options = {
-  url: URL
+  publicURL: URL
   local: { hostname: string; port: number }
 }
 
@@ -25,17 +25,17 @@ function parseArgURL(url: URL): { serverURL: URL; subdomain: string } {
 export async function connect(options: Options): Promise<boolean> {
   const who = "reverse-proxy-client/connect"
 
-  const { url, local } = options
-  const { serverURL, subdomain } = parseArgURL(url)
+  const { publicURL, local } = options
+  const { serverURL, subdomain } = parseArgURL(publicURL)
 
-  const value = await tokenGet(url.href)
+  const value = await tokenGet(publicURL.href)
 
   if (value === undefined) {
     log({
       knid: "Error",
       who,
       message: `not token for url`,
-      url,
+      url: publicURL,
     })
 
     return false

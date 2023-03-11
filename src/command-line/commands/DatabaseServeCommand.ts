@@ -14,7 +14,7 @@ type Opts = {
   port?: number
   "tls-cert"?: string
   "tls-key"?: string
-  url?: string
+  "public-url"?: string
   logger?: string
 }
 
@@ -29,7 +29,7 @@ export class DatabaseServeCommand extends Command<Args> {
     port: ty.optional(ty.number()),
     "tls-cert": ty.optional(ty.string()),
     "tls-key": ty.optional(ty.string()),
-    url: ty.optional(ty.string()),
+    "public-url": ty.optional(ty.string()),
     logger: ty.optional(ty.string()),
   }
 
@@ -66,9 +66,9 @@ export class DatabaseServeCommand extends Command<Args> {
 
     log({ who, ctx, url: String(url), tls })
 
-    if (argv["url"]) {
+    if (argv["public-url"]) {
       const successful = await ReverseProxyClient.connect({
-        url: new URL(argv["url"]),
+        publicURL: new URL(argv["public-url"]),
         local: {
           hostname: url.hostname,
           port: Number(url.port),

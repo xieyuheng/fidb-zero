@@ -26,7 +26,7 @@ fidb reverse-proxy:login https://fidb.app
 
 fidb website:serve ~/xieyuheng/pomodoro/dist \
   --rewrite-not-found-to index.html \
-  --url https://pomodoro.fidb.app
+  --public-url https://pomodoro.fidb.app
 
 curl https://pomodoro.fidb.app
 ```
@@ -44,7 +44,7 @@ fidb reverse-proxy:login https://fidb.cn
 
 fidb website:serve ~/xieyuheng/pomodoro/dist \
   --rewrite-not-found-to index.html \
-  --url https://pomodoro.fidb.cn
+  --public-url https://pomodoro.fidb.cn
 
 curl https://pomodoro.fidb.cn
 ```
@@ -60,7 +60,7 @@ fidb reverse-proxy:login http://cicada.localhost:8080
 
 fidb website:serve ~/xieyuheng/pomodoro/dist \
   --rewrite-not-found-to index.html \
-  --url http://test.cicada.localhost:8080
+  --public-url http://test.cicada.localhost:8080
 
 curl http://test.cicada.localhost:8080
 ```

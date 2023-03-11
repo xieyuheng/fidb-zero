@@ -1,28 +1,16 @@
-`fidb website:serve` and `fidb database:serve` change `--url` to `--public-url`
+`fidb website:serve` and `fidb database:serve` report `publicURL`
+`logPretterLine`
 [website-server] `Context` has `cacheControlPatterns`
 `fidb website:serve` support `--cache-control`
 [website-server] `--spa` as a shorthand for `--rewrite-not-found-to index.html` and the `spaCacheControlPatterns`
 
+# use zmq
+
 # reverse-proxy
 
-move `reverse-proxy/` to `reverse-proxy-over-tcp/`
-
-[reverse-proxy-over-tcp] `ChannelServerOverTCP` and `ChannelClientOverTCP`
-
-- `ChannelServerOverTCP` -- `bind`, `accept`, `send`, `receive`
-- `ChannelClientOverTCP` -- `connect`, `send`, `receive`
-
-[reverse-proxy-over-tcp] set socket to keep alive
-[reverse-proxy-over-tcp] ping the socket to keep the socket alive
-[reverse-proxy-over-tcp] restart on `ChannelSocket` close
-
-[reverse-proxy] `ChannelServer` and `ChannelClient` interface
-
-[reverse-proxy] how to make `ChannelServer` and `ChannelClient` a component?
-
-- zmq sockets are primitive messaging patterns
-- we can define new pattern from exiting patterns
-- the interface of used defined patterns must be the same as primitive patterns
+[reverse-proxy] set socket to keep alive
+[reverse-proxy] ping the socket to keep the socket alive
+[reverse-proxy] restart on `ChannelSocket` close
 
 # reverse-proxy over zeromq
 
