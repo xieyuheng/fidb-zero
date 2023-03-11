@@ -2,6 +2,8 @@
 
 [reverse-proxy] `brokerPrepareWorker` -- error on not find service
 
+rename channel to service -- little by little -- see about the use of the name
+
 # reverse-proxy
 
 [reverse-proxy] set socket to keep alive

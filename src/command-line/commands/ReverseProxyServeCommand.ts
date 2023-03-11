@@ -65,7 +65,7 @@ export class ReverseProxyServeCommand extends Command<Args> {
         channelServerPort,
       })
 
-      await ctx.broker.backend.bind(`tcp://127.0.0.1:${channelServerPort}`)
+      await ctx.broker.backend.bind(`tcp://*:${channelServerPort}`)
       const requestListener = createRequestListener({ ctx, handle })
 
       const { url } = await startServer(requestListener, {
@@ -92,7 +92,7 @@ export class ReverseProxyServeCommand extends Command<Args> {
           channelServerPort,
         })
 
-        await ctx.broker.backend.bind(`tcp://127.0.0.1:${channelServerPort}`)
+        await ctx.broker.backend.bind(`tcp://*:${channelServerPort}`)
         const requestListener = createRequestListener({ ctx, handle })
 
         const { url } = await startServer(requestListener, {
