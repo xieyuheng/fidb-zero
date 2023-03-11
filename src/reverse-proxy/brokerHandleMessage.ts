@@ -15,6 +15,13 @@ export async function brokerHandleMessage(
     case "Ready": {
       const [serviceName] = rest
 
+      log({
+        who,
+        message: "Ready",
+        serviceName: String(serviceName),
+        workerId: String(workerId),
+      })
+
       brokerPrepareWorker(broker, String(serviceName), workerId)
       return
     }
@@ -33,6 +40,13 @@ export async function brokerHandleMessage(
       if (requestSocket === undefined) {
         return
       }
+
+      log({
+        who,
+        message: "Data",
+        serviceName: String(serviceName),
+        workerId: String(workerId),
+      })
 
       requestSocket.write(await decrypt(data, service.encryptionKey))
       return
@@ -55,12 +69,24 @@ export async function brokerHandleMessage(
 
       requestSocket.end()
 
+      log({
+        who,
+        message: "End",
+        serviceName: String(serviceName),
+        workerId: String(workerId),
+      })
+
       service.requestSockets.delete(String(requestId))
       return
     }
 
     default: {
-      log({ who, message: `unknown kind: ${String(kind)}` })
+      log({
+        who,
+        message: `Unknown kind: ${String(kind)}`,
+        serviceName: String(serviceName),
+        workerId: String(workerId),
+      })
       return
     }
   }

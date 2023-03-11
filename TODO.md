@@ -1,6 +1,5 @@
 # reverse-proxy -- by zmq
 
-[reverse-proxy] `brokerHandleMessage` add log
 [reverse-proxy] `brokerPrepareWorker` -- error on not find service
 
 # reverse-proxy
