@@ -3,6 +3,7 @@ import type { Socket } from "node:net"
 import { NotFound } from "../errors/NotFound"
 import { Processing } from "../errors/Processing"
 import { requestFormatRaw } from "../server/requestFormatRaw"
+import { randomHexString } from "../utils/randomHexString"
 import { channelSendData } from "./channelSendData"
 import type { Context } from "./Context"
 import { requestSubdomain } from "./requestSubdomain"
@@ -39,7 +40,9 @@ export async function handleDispatch(
 
   channelSendData(channel, rawRequest, socket)
 
-  const requestId = "TODO"
+  const requestId = `${socket.remoteAddress}:${
+    socket.remotePort
+  }#${randomHexString(10)}`
 
   serviece.requestSockets.set(requestId, socket)
   serviece.requests.push({ requestId, request: rawRequest })
