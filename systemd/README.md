@@ -21,3 +21,11 @@ Reload systemd config files:
 ```
 systemctl daemon-reload
 ```
+
+## Note
+
+Note that systemd services will be ran by the root user,
+thus if we are not the root user,
+when doing `fidb reverse-proxy:login`,
+we should add `sudo` to login for the root user
+-- `sudo fidb reverse-proxy:login`.
