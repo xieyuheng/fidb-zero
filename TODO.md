@@ -1,24 +1,13 @@
 # reverse-proxy -- by zmq
 
 [reverse-proxy] `brokerPrepareWorker` -- error on not find service
-
-rename channel to service -- little by little -- see about the use of the name
-
-# reverse-proxy
-
-[reverse-proxy] set socket to keep alive
-[reverse-proxy] ping the socket to keep the socket alive
-[reverse-proxy] restart on `channelSocket` close
+[reverse-proxy] rename channel to service -- little by little -- see about the use of the name
 
 # website-server
 
 [website-server] `Context` has `cacheControlPatterns`
 `fidb website:serve` support `--cache-control`
 [website-server] `--spa` as a shorthand for `--rewrite-not-found-to index.html` and the `spaCacheControlPatterns`
-
-# reverse-proxy over zeromq
-
-which pattern to use?
 
 # rest
 
