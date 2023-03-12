@@ -30,18 +30,14 @@ export async function workerListen(worker: Worker) {
           log({ who, message: "localSocket closed" })
         })
 
-        const parts: Array<Uint8Array> = []
-
         for await (const data of localSocket) {
-          // await worker.dealer.send([
-          //   "Data",
-          //   worker.subdomain,
-          //   requestId,
-          //   await encrypt(data, worker.encryptionKey),
-          //   data,
-          // ])
-
-          parts.push(data)
+          await worker.dealer.send([
+            "Data",
+            worker.subdomain,
+            requestId,
+            await encrypt(data, worker.encryptionKey),
+            data,
+          ])
 
           log({
             who,
@@ -50,12 +46,6 @@ export async function workerListen(worker: Worker) {
           })
         }
 
-        await worker.dealer.send([
-          "Data",
-          worker.subdomain,
-          requestId,
-          await encrypt(Buffer.concat(parts), worker.encryptionKey),
-        ])
         await worker.dealer.send(["End", worker.subdomain, requestId])
         log({ who, message: "End" })
       }
