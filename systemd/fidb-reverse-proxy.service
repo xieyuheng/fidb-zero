@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 ExecStart=/usr/local/bin/fidb reverse-proxy:serve --port 443 --port 5108 \
-  --database ~/fidb-official/fidb-databases/databases/reverse-proxy \
+  --database /databases/reverse-proxy \
   --domain fidb.app \
   --tls-cert /etc/letsencrypt/live/fidb.app/fullchain.pem \
   --tls-key /etc/letsencrypt/live/fidb.app/privkey.pem
