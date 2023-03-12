@@ -1,0 +1,12 @@
+[Unit]
+Description=Pomodoro website by FiDB
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/fidb website:serve /home/admin/xieyuheng/pomodoro/dist \
+  --rewrite-not-found-to index.html \
+  --public-url https://pomodoro.fidb.app
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
