@@ -16,6 +16,12 @@ sudo systemctl enable <name>.service
 sudo systemctl status <name>.service
 ```
 
+To view log:
+
+```
+journalctl -f -u <name>.service
+```
+
 Reload systemd config files:
 
 ```
