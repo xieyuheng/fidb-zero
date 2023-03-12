@@ -3,7 +3,7 @@ Description=Pomodoro website by FiDB
 After=network.target
 
 [Service]
-ExecStart=/usr/local/bin/fidb website:serve /home/admin/xieyuheng/pomodoro/dist \
+ExecStart=/usr/local/bin/fidb website:serve /websites/pomodoro \
   --rewrite-not-found-to index.html \
   --public-url https://pomodoro.fidb.app
 Restart=on-failure
