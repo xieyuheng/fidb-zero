@@ -25,7 +25,7 @@ export async function connect(options: Options): Promise<boolean> {
 
   if (value === undefined) {
     log({
-      knid: "Error",
+      kind: "Error",
       who,
       message: `not token for url`,
       url: publicURL,
@@ -51,7 +51,7 @@ export async function connect(options: Options): Promise<boolean> {
 
   if (!response.ok) {
     log({
-      knid: "Error",
+      kind: "Error",
       message: `fail to create channel`,
       host: serverURL.host,
       who,
