@@ -48,7 +48,7 @@
     "@types/inquirer": "8.2.5",
     "@types/lodash": "^4.14.191",
     "@types/micromatch": "^4.0.2",
-    "@types/node": "^18.15.0",
+    "@types/node": "^18.15.3",
     "@types/qs": "^6.9.7",
     "@types/uuid": "^9.0.1",
     "@vitest/coverage-c8": "^0.29.2",
