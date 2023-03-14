@@ -27,7 +27,7 @@ export async function connect(options: Options): Promise<boolean> {
     log({
       kind: "Error",
       who,
-      message: `not token for url`,
+      message: `no token for url`,
       url: publicURL,
     })
 
