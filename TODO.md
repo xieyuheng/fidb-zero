@@ -1,3 +1,7 @@
+fix `--rewrite-not-found-to`
+
+- example 500: https://readonlylink.fidb.app/docs
+
 # reverse-proxy -- by zmq
 
 [reverse-proxy] `brokerPrepareWorker` -- error on not find service
