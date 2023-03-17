@@ -4,6 +4,7 @@ After=network.target
 
 [Service]
 ExecStart=/usr/local/bin/fidb website:serve /websites/pomodoro \
+  --cors \
   --rewrite-not-found-to index.html \
   --public-url https://pomodoro.fidb.app
 Restart=on-failure
