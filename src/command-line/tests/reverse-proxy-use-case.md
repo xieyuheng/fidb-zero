@@ -25,6 +25,7 @@ sudo fidb reverse-proxy:serve --port 443 --port 5108 \
 fidb reverse-proxy:login https://fidb.app
 
 fidb website:serve ~/xieyuheng/pomodoro/dist \
+  --cors \
   --rewrite-not-found-to index.html \
   --public-url https://pomodoro.fidb.app
 
@@ -43,6 +44,7 @@ fidb reverse-proxy:serve --port 443 --port 5108 \
 fidb reverse-proxy:login https://fidb.cn
 
 fidb website:serve ~/xieyuheng/pomodoro/dist \
+  --cors \
   --rewrite-not-found-to index.html \
   --public-url https://pomodoro.fidb.cn
 
@@ -59,6 +61,7 @@ fidb reverse-proxy:serve --port 8080 --port 5108 \
 fidb reverse-proxy:login http://cicada.localhost:8080
 
 fidb website:serve ~/xieyuheng/pomodoro/dist \
+  --cors \
   --rewrite-not-found-to index.html \
   --public-url http://test.cicada.localhost:8080
 

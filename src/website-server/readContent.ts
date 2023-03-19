@@ -31,7 +31,10 @@ export async function readContent(
     return undefined
   }
 
-  if (await pathIsDirectory(resolvedPath)) {
+  if (
+    (await pathIsDirectory(resolvedPath)) &&
+    (await pathIsFile(resolvedPath + "/index.html"))
+  ) {
     return {
       type: "text/html",
       buffer: await fs.promises.readFile(resolvedPath + "/index.html"),
