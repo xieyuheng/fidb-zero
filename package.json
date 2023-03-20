@@ -7,7 +7,7 @@
     "lib"
   ],
   "engines": {
-    "node": ">=19"
+    "node": ">=18"
   },
   "bin": {
     "fidb": "bin/fidb.js"
@@ -51,9 +51,9 @@
     "@types/node": "^18.15.3",
     "@types/qs": "^6.9.7",
     "@types/uuid": "^9.0.1",
-    "@vitest/coverage-c8": "^0.29.3",
-    "@vitest/coverage-istanbul": "^0.29.3",
-    "@vitest/ui": "^0.29.3",
+    "@vitest/coverage-c8": "^0.29.5",
+    "@vitest/coverage-istanbul": "^0.29.5",
+    "@vitest/ui": "^0.29.5",
     "@xieyuheng/test-runner": "^0.2.7",
     "husky": "^8.0.3",
     "prettier": "^2.8.5",
@@ -61,7 +61,7 @@
     "pretty-quick": "^3.1.3",
     "typescript": "^5.0.2",
     "vite": "^4.2.1",
-    "vitest": "^0.29.3"
+    "vitest": "^0.29.5"
   },
   "license": "GPL-3.0-or-later"
 }

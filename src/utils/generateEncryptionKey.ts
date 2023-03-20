@@ -1,3 +1,4 @@
+import crypto from "node:crypto"
 import { byteArrayMerge } from "./byteArrayMerge"
 
 // Learned from:
