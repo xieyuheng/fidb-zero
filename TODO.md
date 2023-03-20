@@ -1,7 +1,5 @@
 # website-server
 
-`createCacheControlPatterns`
-
 `fidb website:serve` takes `--cache-control-pattern` as a string or array
 
 - `--cache-control-pattern 'assets/**: max-age=31536000'`

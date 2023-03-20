@@ -105,5 +105,16 @@ export class WebsiteServeCommand extends Command<Args> {
 function createCacheControlPatterns(
   input: undefined | string | Array<string>,
 ): Record<string, string> {
-  return {}
+  if (input === undefined) {
+    return {}
+  }
+
+  if (typeof input === "string") {
+    const [pattern, value] = input.split(":").map((s) => s.trim())
+    return Object.fromEntries([[pattern, value]])
+  }
+
+  return Object.fromEntries(
+    input.map((entry) => entry.split(":").map((s) => s.trim())),
+  )
 }
