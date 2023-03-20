@@ -7,6 +7,7 @@ import { handlePreflight } from "../server/handlePreflight"
 import { requestURL } from "../server/requestURL"
 import { responseSend } from "../server/responseSend"
 import type { Json } from "../utils/Json"
+import { globMatch } from "../utils/globMatch"
 import type { Context } from "./Context"
 import { readContent } from "./readContent"
 
@@ -31,6 +32,13 @@ export async function handle(
 
   const corsHeaders = ctx.cors ? { "access-control-allow-origin": "*" } : {}
 
+  let cacheControlHeaders: Record<string, string> = {}
+  for (const [pattern, value] of Object.entries(ctx.cacheControlPatterns)) {
+    if (globMatch(pattern, path)) {
+      cacheControlHeaders["cache-control"] = value
+    }
+  }
+
   if (request.method === "GET") {
     const content =
       (await readContent(ctx, path)) ||
@@ -43,6 +51,7 @@ export async function handle(
         status: { code: 404 },
         headers: {
           ...corsHeaders,
+          ...cacheControlHeaders,
           connection: "close",
         },
       })
@@ -60,6 +69,7 @@ export async function handle(
             "content-type": content.type,
             "content-encoding": "br",
             ...corsHeaders,
+            ...cacheControlHeaders,
             connection: "close",
           },
           body: await brotliCompress(content.buffer),
@@ -75,6 +85,7 @@ export async function handle(
             "content-type": content.type,
             "content-encoding": "gzip",
             ...corsHeaders,
+            ...cacheControlHeaders,
             connection: "close",
           },
           body: await gzip(content.buffer),
@@ -89,6 +100,7 @@ export async function handle(
       headers: {
         "content-type": content.type,
         ...corsHeaders,
+        ...cacheControlHeaders,
         connection: "close",
       },
       body: content.buffer,

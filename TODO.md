@@ -1,9 +1,3 @@
-# website-server
-
-`fidb website:serve` takes `--cache-control-pattern` as a string or array
-
-- `--cache-control-pattern 'assets/**: max-age=31536000'`
-
 # fidb reverse-proxy:connect
 
 `fidb reverse-proxy:connect` -- can be used without `fidb website:serve`

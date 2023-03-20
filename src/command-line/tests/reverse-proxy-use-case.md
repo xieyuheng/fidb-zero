@@ -27,6 +27,7 @@ fidb reverse-proxy:login https://fidb.app
 fidb website:serve ~/xieyuheng/pomodoro/dist \
   --cors \
   --rewrite-not-found-to index.html \
+  --cache-control-pattern 'assets/**: max-age=31536000' \
   --public-url https://pomodoro.fidb.app
 
 curl https://pomodoro.fidb.app
@@ -46,6 +47,7 @@ fidb reverse-proxy:login https://fidb.cn
 fidb website:serve ~/xieyuheng/pomodoro/dist \
   --cors \
   --rewrite-not-found-to index.html \
+  --cache-control-pattern 'assets/**: max-age=31536000' \
   --public-url https://pomodoro.fidb.cn
 
 curl https://pomodoro.fidb.cn
@@ -63,6 +65,7 @@ fidb reverse-proxy:login http://cicada.localhost:8080
 fidb website:serve ~/xieyuheng/pomodoro/dist \
   --cors \
   --rewrite-not-found-to index.html \
+  --cache-control-pattern 'assets/**: max-age=31536000' \
   --public-url http://test.cicada.localhost:8080
 
 curl http://test.cicada.localhost:8080
