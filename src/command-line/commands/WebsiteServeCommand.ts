@@ -13,6 +13,7 @@ type Opts = {
   hostname?: string
   port?: number
   "rewrite-not-found-to"?: string
+  "cache-control-pattern"?: string | Array<string>
   cors?: boolean
   "tls-cert"?: string
   "tls-key"?: string
@@ -30,6 +31,9 @@ export class WebsiteServeCommand extends Command<Args> {
     hostname: ty.optional(ty.string()),
     port: ty.optional(ty.number()),
     "rewrite-not-found-to": ty.optional(ty.string()),
+    "cache-control-pattern": ty.optional(
+      ty.union(ty.string(), ty.array(ty.string())),
+    ),
     cors: ty.optional(ty.boolean()),
     "tls-cert": ty.optional(ty.string()),
     "tls-key": ty.optional(ty.string()),
@@ -57,9 +61,14 @@ export class WebsiteServeCommand extends Command<Args> {
 
     const who = this.name
 
+    const cacheControlPatterns = createCacheControlPatterns(
+      argv["cache-control-pattern"],
+    )
+
     const ctx = await createContext({
       path: argv.path,
       rewriteNotFoundTo: argv["rewrite-not-found-to"],
+      cacheControlPatterns,
       cors: argv["cors"],
     })
 
@@ -91,4 +100,10 @@ export class WebsiteServeCommand extends Command<Args> {
       }
     }
   }
+}
+
+function createCacheControlPatterns(
+  input: undefined | string | Array<string>,
+): Record<string, string> {
+  return {}
 }

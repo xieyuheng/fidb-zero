@@ -1,10 +1,12 @@
 # website-server
 
-`fidb website:serve` always take config.json instead of command-line options
+`createCacheControlPatterns`
 
-[website-server] `Context` has `config`
+`fidb website:serve` takes `--cache-control-pattern` as a string or array
 
-fidb.json -- `website: cacheControls`
+- `--cache-control-pattern 'assets/**: max-age=31536000'`
+
+# fidb reverse-proxy:connect
 
 `fidb reverse-proxy:connect` -- can be used without `fidb website:serve`
 
