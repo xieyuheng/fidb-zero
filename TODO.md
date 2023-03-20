@@ -1,3 +1,7 @@
+# fidb website:serve
+
+`fidb website:serve` -- refactor code about http compression
+
 # fidb reverse-proxy:connect
 
 `fidb reverse-proxy:connect` -- can be used without `fidb website:serve`
@@ -11,6 +15,8 @@ many machine -- one master many works
 - what are other patterns? learn from ZMQ guide
 
 # fidb database:deploy
+
+like `fidb website:deploy`
 
 # reverse-proxy -- by zmq
 
