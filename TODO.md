@@ -1,13 +1,27 @@
+# website-server
+
+`fidb website:serve` always take config.json instead of command-line options
+
+[website-server] `Context` has `config`
+
+fidb.json -- `website: cacheControls`
+
+`fidb reverse-proxy:connect` -- can be used without `fidb website:serve`
+
+# fidb website:deploy
+
+one machine
+
+many machine -- one master many works
+
+- what are other patterns? learn from ZMQ guide
+
+# fidb database:deploy
+
 # reverse-proxy -- by zmq
 
 [reverse-proxy] `brokerPrepareWorker` -- error on not find service
 [reverse-proxy] rename channel to service -- little by little -- see about the use of the name
-
-# website-server
-
-[website-server] `Context` has `cacheControlPatterns`
-`fidb website:serve` support `--cache-control`
-[website-server] `--spa` as a shorthand for `--rewrite-not-found-to index.html` and the `spaCacheControlPatterns`
 
 # rest
 
