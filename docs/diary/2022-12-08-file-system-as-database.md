@@ -5,7 +5,7 @@ date: 2022-12-08
 ---
 
 Use file system as database,
-and a build personal server over it.
+and build a personal server over it.
 
 All data are owned by you.
 
