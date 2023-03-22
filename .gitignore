@@ -27,3 +27,5 @@ node_modules
 
 # idea
 .idea
+# Local Netlify folder
+.netlify
