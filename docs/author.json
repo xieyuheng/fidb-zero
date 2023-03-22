@@ -1,0 +1,8 @@
+{
+  "kind": "Author",
+  "name": "FiDB",
+  "tagline": "File system as database.",
+  "homepage": "../README.md",
+  "avatar": "assets/images/logo.png",
+  "activities": ["diary/2022-12-08-file-system-as-database.md"]
+}
