@@ -66,6 +66,6 @@ Before we begin, let's solve the most import problem first.
 
   How about `FiDB`?
 
-  **Fi**le system as **DB**.
+  **Fi**le system as **DB**!
 
 I kinda like it already :)
