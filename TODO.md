@@ -1,4 +1,3 @@
-[server] `requestCompressionMethod`
 [website-server] extract `compress`
 
 # docs

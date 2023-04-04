@@ -4,6 +4,7 @@ import { normalize } from "node:path"
 import { promisify } from "node:util"
 import Zlib from "node:zlib"
 import { handlePreflight } from "../server/handlePreflight"
+import { requestCompressionMethod } from "../server/requestCompressionMethod"
 import { requestURL } from "../server/requestURL"
 import { responseSetHeaders } from "../server/responseSetHeaders"
 import { responseSetStatus } from "../server/responseSetStatus"
@@ -46,31 +47,29 @@ export async function handle(
       return
     }
 
-    if (typeof request.headers["accept-encoding"] === "string") {
-      const encodings = request.headers["accept-encoding"].split(",")
+    const compressionMethod = requestCompressionMethod(request)
 
-      if (encodings.find((encoding) => encoding.trim().startsWith("br"))) {
-        responseSetStatus(response, { code: 200 })
-        responseSetHeaders(response, {
-          "content-type": content.type,
-          "content-encoding": "br",
-          connection: "close",
-        })
-        response.write(await brotliCompress(content.buffer))
-        response.end()
-        return
-      }
+    if (compressionMethod === "br") {
+      responseSetStatus(response, { code: 200 })
+      responseSetHeaders(response, {
+        "content-type": content.type,
+        "content-encoding": "br",
+        connection: "close",
+      })
+      response.write(await brotliCompress(content.buffer))
+      response.end()
+      return
+    }
 
-      if (encodings.find((encoding) => encoding.trim().startsWith("gzip"))) {
-        responseSetStatus(response, { code: 200 })
-        responseSetHeaders(response, {
-          "content-type": content.type,
-          "content-encoding": "gzip",
-          connection: "close",
-        })
-        response.end(await gzip(content.buffer))
-        return
-      }
+    if (compressionMethod === "gzip") {
+      responseSetStatus(response, { code: 200 })
+      responseSetHeaders(response, {
+        "content-type": content.type,
+        "content-encoding": "gzip",
+        connection: "close",
+      })
+      response.end(await gzip(content.buffer))
+      return
     }
 
     responseSetStatus(response, { code: 200 })
