@@ -9,7 +9,7 @@ import { responseSetHeaders } from "../server/responseSetHeaders"
 import { responseSetStatus } from "../server/responseSetStatus"
 import type { Json } from "../utils/Json"
 import type { Context } from "./Context"
-import { readContentWithRewrite } from "./readContentWithRewrite"
+import { readContent } from "./readContent"
 import { responseSetCacheControlHeaders } from "./responseSetCacheControlHeaders"
 import { responseSetCorsHeaders } from "./responseSetCorsHeaders"
 
@@ -28,6 +28,7 @@ export async function handle(
   }
 
   const url = requestURL(request)
+
   // NOTE `decodeURIComponent` is necessary for space.
   const path = normalize(decodeURIComponent(url.pathname.slice(1)))
 
@@ -35,7 +36,11 @@ export async function handle(
   responseSetCacheControlHeaders(ctx, response, path)
 
   if (request.method === "GET") {
-    const content = await readContentWithRewrite(ctx, path)
+    const content =
+      (await readContent(ctx, path)) ||
+      (ctx.rewriteNotFoundTo
+        ? await readContent(ctx, ctx.rewriteNotFoundTo)
+        : undefined)
 
     if (content === undefined) {
       responseSetStatus(response, { code: 404 })

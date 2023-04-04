@@ -6,15 +6,16 @@ import { pathIsDirectory } from "../utils/node/pathIsDirectory"
 import { pathIsFile } from "../utils/node/pathIsFile"
 import type { Context } from "./Context"
 
-export type Content = {
-  type: string
-  buffer: Buffer
-}
-
 export async function readContent(
   ctx: Context,
   path: string,
-): Promise<Content | undefined> {
+): Promise<
+  | {
+      type: string
+      buffer: Buffer
+    }
+  | undefined
+> {
   const resolvedPath = normalize(resolve(ctx.directory, path))
 
   // NOTE We should not access path outside of given directory.
