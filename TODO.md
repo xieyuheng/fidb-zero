@@ -1,4 +1,4 @@
-quit using `responseSend` and `responseSendJson`
+quit using `responseSend`
 
 # fidb website:serve
 

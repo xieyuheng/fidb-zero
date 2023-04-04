@@ -8,7 +8,6 @@ import { Unauthorized } from "../errors/Unauthorized"
 import { Unprocessable } from "../errors/Unprocessable"
 import type { Json } from "../utils/Json"
 import { responseSend } from "./responseSend"
-import { responseSendJson } from "./responseSendJson"
 
 export type RequestListener = (
   request: Http.IncomingMessage,
@@ -35,7 +34,7 @@ export function createRequestListener<Context>(options: {
       }
 
       if (body === undefined) {
-        responseSendJson(response, {
+        responseSend(response, {
           status: { code: 204 },
           headers: {
             "content-type": "application/json",
@@ -54,14 +53,14 @@ export function createRequestListener<Context>(options: {
           body,
         })
       } else {
-        responseSendJson(response, {
+        responseSend(response, {
           status: { code: 200 },
           headers: {
             "content-type": "application/json",
             "access-control-allow-origin": "*",
             connection: "close",
           },
-          body,
+          body: JSON.stringify(body),
         })
       }
     } catch (error) {
@@ -77,17 +76,17 @@ export function createRequestListener<Context>(options: {
 
       const message = error instanceof Error ? error.message : "Unknown error"
       if (error instanceof Unauthorized) {
-        responseSendJson(response, { status: { code: 401, message }, headers })
+        responseSend(response, { status: { code: 401, message }, headers })
       } else if (error instanceof AlreadyExists) {
-        responseSendJson(response, { status: { code: 403, message }, headers })
+        responseSend(response, { status: { code: 403, message }, headers })
       } else if (error instanceof NotFound) {
-        responseSendJson(response, { status: { code: 404, message }, headers })
+        responseSend(response, { status: { code: 404, message }, headers })
       } else if (error instanceof RevisionMismatch) {
-        responseSendJson(response, { status: { code: 409, message }, headers })
+        responseSend(response, { status: { code: 409, message }, headers })
       } else if (error instanceof Unprocessable) {
-        responseSendJson(response, { status: { code: 422, message }, headers })
+        responseSend(response, { status: { code: 422, message }, headers })
       } else if (TyErrors.InvalidData.guard(error)) {
-        responseSendJson(response, {
+        responseSend(response, {
           status: { code: 422, message },
           headers,
           body: JSON.stringify({
@@ -95,7 +94,7 @@ export function createRequestListener<Context>(options: {
           }),
         })
       } else {
-        responseSendJson(response, { status: { code: 500, message }, headers })
+        responseSend(response, { status: { code: 500, message }, headers })
       }
     }
   }
