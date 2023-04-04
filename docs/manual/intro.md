@@ -55,3 +55,15 @@ the tool feels so handy and easy to understand.
 So, what if we use file system as database?
 It feels like an idea worth trying.
 Now, let us explore how execatly can we implement this idea.
+
+Before we begin, let's solve the most import problem first.
+
+- **Problem:** How should we name this project?
+
+- **Solution:** This project is about using file system as database,
+  specially using the subdirectory relation to represent
+  `has one` and `has many` relations between data.
+
+- So, how about `FiDB` -- **Fi**le system as **DB**.
+
+I kinda like it already :)
