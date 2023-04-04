@@ -1,3 +1,7 @@
+`responseSetHeaders`
+
+quit using `responseSend` and `responseSendJson`
+
 # fidb website:serve
 
 `fidb website:serve` -- refactor code about http compression
@@ -5,6 +9,12 @@
 # fidb reverse-proxy:connect
 
 `fidb reverse-proxy:connect` -- can be used without `fidb website:serve`
+
+# reverse-proxy -- by zmq
+
+[reverse-proxy] support cname -- test this by mimor.app
+[reverse-proxy] `brokerPrepareWorker` -- error on not find service
+[reverse-proxy] rename channel to service -- little by little -- see about the use of the name
 
 # fidb router
 
@@ -18,14 +28,14 @@ many machine -- one master many works
 
 # fidb database:deploy
 
-like `fidb website:deploy`
+Like `fidb website:deploy`.
 
-# reverse-proxy -- by zmq
-
-[reverse-proxy] `brokerPrepareWorker` -- error on not find service
-[reverse-proxy] rename channel to service -- little by little -- see about the use of the name
+This command will only be meaningful
+if we have some scripts to generate database and datasets.
 
 # rest
+
+[rest] read of a file should not need `kind=file`
 
 [rest] rate limit by ip -- for `password-register`
 

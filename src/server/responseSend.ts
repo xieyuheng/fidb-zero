@@ -1,4 +1,5 @@
 import type Http from "node:http"
+import { responseSetStatus } from "./responseSetStatus"
 
 export function responseSend(
   response: Http.ServerResponse,
@@ -11,13 +12,8 @@ export function responseSend(
     body?: Buffer | string
   },
 ) {
-  if (options.status?.code) {
-    response.statusCode = options.status.code
-  }
-
-  if (options.status?.message) {
-    const message = options.status.message.replaceAll("\n", "; ")
-    response.statusMessage = message
+  if (options.status) {
+    responseSetStatus(response, options.status)
   }
 
   if (options.headers) {
@@ -26,11 +22,6 @@ export function responseSend(
         response.setHeader(name, value)
       }
   }
-
-  // NOTE We need to send one socket data,
-  // to keep the proxy simple for now.
-
-  // response.flushHeaders()
 
   if (options.body) {
     response.write(options.body)
