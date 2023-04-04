@@ -1,4 +1,5 @@
 import type Http from "node:http"
+import { responseSetHeaders } from "./responseSetHeaders"
 import { responseSetStatus } from "./responseSetStatus"
 
 export function responseSend(
@@ -17,10 +18,7 @@ export function responseSend(
   }
 
   if (options.headers) {
-    for (const [name, value] of Object.entries(options.headers))
-      if (value !== undefined) {
-        response.setHeader(name, value)
-      }
+    responseSetHeaders(response, options.headers)
   }
 
   if (options.body) {

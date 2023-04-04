@@ -1,5 +1,3 @@
-`responseSetHeaders`
-
 quit using `responseSend` and `responseSendJson`
 
 # fidb website:serve
