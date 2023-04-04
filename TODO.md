@@ -6,6 +6,8 @@
 
 `fidb reverse-proxy:connect` -- can be used without `fidb website:serve`
 
+# fidb router
+
 # fidb website:deploy
 
 one machine
