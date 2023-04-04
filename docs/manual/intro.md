@@ -64,6 +64,8 @@ Before we begin, let's solve the most import problem first.
   specially using the subdirectory relation to represent
   `has one` and `has many` relations between data.
 
-- So, how about `FiDB` -- **Fi**le system as **DB**.
+  How about `FiDB`?
+
+  **Fi**le system as **DB**.
 
 I kinda like it already :)
