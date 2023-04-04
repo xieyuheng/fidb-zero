@@ -8,9 +8,9 @@ import { requestURL } from "../server/requestURL"
 import { responseSetHeaders } from "../server/responseSetHeaders"
 import { responseSetStatus } from "../server/responseSetStatus"
 import type { Json } from "../utils/Json"
-import { globMatch } from "../utils/globMatch"
 import type { Context } from "./Context"
 import { readContent } from "./readContent"
+import { responseSetCacheControlHeaders } from "./responseSetCacheControlHeaders"
 import { responseSetCorsHeaders } from "./responseSetCorsHeaders"
 
 const brotliCompress = promisify(Zlib.brotliCompress)
@@ -92,19 +92,4 @@ export async function handle(
       "\n",
     ),
   )
-}
-
-export function responseSetCacheControlHeaders(
-  ctx: Context,
-  response: Http.ServerResponse,
-  path: string,
-): void {
-  const cacheControlHeaders: Record<string, string> = {}
-  for (const [pattern, value] of Object.entries(ctx.cacheControlPatterns)) {
-    if (globMatch(pattern, path)) {
-      cacheControlHeaders["cache-control"] = value
-    }
-  }
-
-  responseSetHeaders(response, cacheControlHeaders)
 }

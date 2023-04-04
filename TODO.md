@@ -1,4 +1,3 @@
-[website-server] `responseSetCacheControlHeaders`
 [website-server] `handle` -- refactor code about http compression
 
 # docs
