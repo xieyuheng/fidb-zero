@@ -47,7 +47,7 @@ The most used relations between SQL tables
 are `has one` and `has many`,
 which are naturally expressed by nested directories.
 
-For example, user has many posts, so we the following subdirectory:
+For example, user has many posts, so we use the following subdirectory:
 
 ```
 /users/
