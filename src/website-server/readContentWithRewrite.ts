@@ -7,7 +7,7 @@ export async function readContentWithRewrite(
 ): Promise<Content | undefined> {
   const content = await readContent(ctx, path)
   if (content !== undefined) {
-    return content
+    return
   }
 
   if (ctx.rewriteNotFoundTo !== undefined) {

@@ -4,13 +4,11 @@ import { normalize } from "node:path"
 import { promisify } from "node:util"
 import Zlib from "node:zlib"
 import { handlePreflight } from "../server/handlePreflight"
-import { requestCompressionMethod } from "../server/requestCompressionMethod"
 import { requestURL } from "../server/requestURL"
 import { responseSetHeaders } from "../server/responseSetHeaders"
 import { responseSetStatus } from "../server/responseSetStatus"
 import type { Json } from "../utils/Json"
 import type { Context } from "./Context"
-import { compress } from "./compress"
 import { readContentWithRewrite } from "./readContentWithRewrite"
 import { responseSetCacheControlHeaders } from "./responseSetCacheControlHeaders"
 import { responseSetCorsHeaders } from "./responseSetCorsHeaders"
@@ -33,11 +31,12 @@ export async function handle(
   // NOTE `decodeURIComponent` is necessary for space.
   const path = normalize(decodeURIComponent(url.pathname.slice(1)))
 
-  if (request.method === "GET") {
-    responseSetCorsHeaders(ctx, response)
-    responseSetCacheControlHeaders(ctx, response, path)
+  responseSetCorsHeaders(ctx, response)
+  responseSetCacheControlHeaders(ctx, response, path)
 
+  if (request.method === "GET") {
     const content = await readContentWithRewrite(ctx, path)
+
     if (content === undefined) {
       responseSetStatus(response, { code: 404 })
       responseSetHeaders(response, {
@@ -47,17 +46,40 @@ export async function handle(
       return
     }
 
-    const compressionMethod = requestCompressionMethod(request)
-    const buffer = await compress(compressionMethod, content.buffer)
+    if (typeof request.headers["accept-encoding"] === "string") {
+      const encodings = request.headers["accept-encoding"].split(",")
+
+      if (encodings.find((encoding) => encoding.trim().startsWith("br"))) {
+        responseSetStatus(response, { code: 200 })
+        responseSetHeaders(response, {
+          "content-type": content.type,
+          "content-encoding": "br",
+          connection: "close",
+        })
+        response.write(await brotliCompress(content.buffer))
+        response.end()
+        return
+      }
+
+      if (encodings.find((encoding) => encoding.trim().startsWith("gzip"))) {
+        responseSetStatus(response, { code: 200 })
+        responseSetHeaders(response, {
+          "content-type": content.type,
+          "content-encoding": "gzip",
+          connection: "close",
+        })
+        response.end(await gzip(content.buffer))
+        return
+      }
+    }
 
     responseSetStatus(response, { code: 200 })
     responseSetHeaders(response, {
       "content-type": content.type,
-      "content-encoding": compressionMethod,
       connection: "close",
     })
-    response.write(buffer)
-    response.end()
+    response.end(content.buffer)
+    return
   }
 
   throw new Error(
