@@ -33,12 +33,11 @@ export async function handle(
   // NOTE `decodeURIComponent` is necessary for space.
   const path = normalize(decodeURIComponent(url.pathname.slice(1)))
 
-  responseSetCorsHeaders(ctx, response)
-  responseSetCacheControlHeaders(ctx, response, path)
-
   if (request.method === "GET") {
-    const content = await readContentWithRewrite(ctx, path)
+    responseSetCorsHeaders(ctx, response)
+    responseSetCacheControlHeaders(ctx, response, path)
 
+    const content = await readContentWithRewrite(ctx, path)
     if (content === undefined) {
       responseSetStatus(response, { code: 404 })
       responseSetHeaders(response, {
