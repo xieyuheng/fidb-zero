@@ -24,36 +24,34 @@ but the most used relations between SQL tables
 are `has one` and `has many`,
 which are must naturally expressed by nested directories.
 
-For example, a user _has many_ posts,
-so we use the following directories:
+For example:
 
-```
-/users/*/posts/*
-```
+- A user _has many_ posts,
+  so we use the following directories:
 
-And a user _has one_ config,
-so we might use the following directories:
+  ```
+  /users/*/posts/*
+  ```
 
-```
-/users/*/config
-```
+- A user _has one_ config,
+  so we might use the following directories:
 
-Or we might just let `config` be
-a property of the JSON that represent a user.
+  ```
+  /users/*/config
+  ```
 
-When designing API or syntax,
-we often should optimize for the most used use case,
-thus using file system as database can be viewed as
+  Or we might just let `config` be a property of `user`,
+  as people might do in some document database.
+
+When designing a tool (such as API and formal language syntax),
+we should _optimize for the most used use case_.
+Thus using file system as database can be viewed as
 optimizing for `has one` and `has many` relations.
-
 The `many to many` relation can still be implemented by indexes,
 just like normal relational database.
-
-Since we optimized the tool for the most use case,
+Since we optimized the tool for the most used use case,
 the tool feels so handy and easy to understand.
 
 So, what if we use file system as database?
-
 It feels like an idea worth trying.
-
 Now, let us explore how execatly can we implement this idea.
