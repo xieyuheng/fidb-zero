@@ -1,5 +1,5 @@
 import type Http from "node:http"
-import { responseSend } from "./responseSend"
+import { responseSetHeaders } from "./responseSetHeaders"
 
 export function handlePreflight(
   request: Http.IncomingMessage,
@@ -21,5 +21,6 @@ export function handlePreflight(
       request.headers["access-control-request-headers"]
   }
 
-  responseSend(response, { headers })
+  responseSetHeaders(response, headers)
+  response.end()
 }

@@ -1,4 +1,6 @@
-quit using `responseSend`
+# docs
+
+[manual] manual/intro.md
 
 # fidb website:serve
 

@@ -5,7 +5,8 @@ import { promisify } from "node:util"
 import Zlib from "node:zlib"
 import { handlePreflight } from "../server/handlePreflight"
 import { requestURL } from "../server/requestURL"
-import { responseSend } from "../server/responseSend"
+import { responseSetHeaders } from "../server/responseSetHeaders"
+import { responseSetStatus } from "../server/responseSetStatus"
 import type { Json } from "../utils/Json"
 import { globMatch } from "../utils/globMatch"
 import type { Context } from "./Context"
@@ -47,15 +48,13 @@ export async function handle(
         : undefined)
 
     if (content === undefined) {
-      responseSend(response, {
-        status: { code: 404 },
-        headers: {
-          ...corsHeaders,
-          ...cacheControlHeaders,
-          connection: "close",
-        },
+      responseSetStatus(response, { code: 404 })
+      responseSetHeaders(response, {
+        ...corsHeaders,
+        ...cacheControlHeaders,
+        connection: "close",
       })
-
+      response.end()
       return
     }
 
@@ -63,49 +62,43 @@ export async function handle(
       const encodings = request.headers["accept-encoding"].split(",")
 
       if (encodings.find((encoding) => encoding.trim().startsWith("br"))) {
-        responseSend(response, {
-          status: { code: 200 },
-          headers: {
-            "content-type": content.type,
-            "content-encoding": "br",
-            ...corsHeaders,
-            ...cacheControlHeaders,
-            connection: "close",
-          },
-          body: await brotliCompress(content.buffer),
+        responseSetStatus(response, { code: 200 })
+        responseSetHeaders(response, {
+          "content-type": content.type,
+          "content-encoding": "br",
+          ...corsHeaders,
+          ...cacheControlHeaders,
+          connection: "close",
         })
-
+        response.write(await brotliCompress(content.buffer))
+        response.end()
         return
       }
 
       if (encodings.find((encoding) => encoding.trim().startsWith("gzip"))) {
-        responseSend(response, {
-          status: { code: 200 },
-          headers: {
-            "content-type": content.type,
-            "content-encoding": "gzip",
-            ...corsHeaders,
-            ...cacheControlHeaders,
-            connection: "close",
-          },
-          body: await gzip(content.buffer),
+        responseSetStatus(response, { code: 200 })
+        responseSetHeaders(response, {
+          "content-type": content.type,
+          "content-encoding": "gzip",
+          ...corsHeaders,
+          ...cacheControlHeaders,
+          connection: "close",
         })
-
+        response.write(await gzip(content.buffer))
+        response.end()
         return
       }
     }
 
-    responseSend(response, {
-      status: { code: 200 },
-      headers: {
-        "content-type": content.type,
-        ...corsHeaders,
-        ...cacheControlHeaders,
-        connection: "close",
-      },
-      body: content.buffer,
+    responseSetStatus(response, { code: 200 })
+    responseSetHeaders(response, {
+      "content-type": content.type,
+      ...corsHeaders,
+      ...cacheControlHeaders,
+      connection: "close",
     })
-
+    response.write(content.buffer)
+    response.end()
     return
   }
 
