@@ -25,3 +25,13 @@ With a one-machine solution, and without reverse-proxy,
 the number of users that this router can serve
 is limited by the machine that runs this router,
 but this is ok for our current use case.
+
+# The new plan
+
+We should have a command `fidb router`
+that serves a subdomain-based router.
+
+Both for website and database.
+
+Maybe we can merge `fidb reverse-proxy` into this router,
+so that we can _deploy_ to the router or _connect_ to the router.
