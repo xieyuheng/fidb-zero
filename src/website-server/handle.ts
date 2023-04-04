@@ -10,6 +10,7 @@ import { responseSetHeaders } from "../server/responseSetHeaders"
 import { responseSetStatus } from "../server/responseSetStatus"
 import type { Json } from "../utils/Json"
 import type { Context } from "./Context"
+import { compress } from "./compress"
 import { readContentWithRewrite } from "./readContentWithRewrite"
 import { responseSetCacheControlHeaders } from "./responseSetCacheControlHeaders"
 import { responseSetCorsHeaders } from "./responseSetCorsHeaders"
@@ -48,37 +49,16 @@ export async function handle(
     }
 
     const compressionMethod = requestCompressionMethod(request)
-
-    if (compressionMethod === "br") {
-      responseSetStatus(response, { code: 200 })
-      responseSetHeaders(response, {
-        "content-type": content.type,
-        "content-encoding": "br",
-        connection: "close",
-      })
-      response.write(await brotliCompress(content.buffer))
-      response.end()
-      return
-    }
-
-    if (compressionMethod === "gzip") {
-      responseSetStatus(response, { code: 200 })
-      responseSetHeaders(response, {
-        "content-type": content.type,
-        "content-encoding": "gzip",
-        connection: "close",
-      })
-      response.end(await gzip(content.buffer))
-      return
-    }
+    const buffer = await compress(compressionMethod, content.buffer)
 
     responseSetStatus(response, { code: 200 })
     responseSetHeaders(response, {
       "content-type": content.type,
+      "content-encoding": compressionMethod,
       connection: "close",
     })
-    response.end(content.buffer)
-    return
+    response.write(buffer)
+    response.end()
   }
 
   throw new Error(
