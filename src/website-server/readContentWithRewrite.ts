@@ -5,10 +5,12 @@ export async function readContentWithRewrite(
   ctx: Context,
   path: string,
 ): Promise<Content | undefined> {
-  return (
-    (await readContent(ctx, path)) ||
-    (ctx.rewriteNotFoundTo
-      ? await readContent(ctx, ctx.rewriteNotFoundTo)
-      : undefined)
-  )
+  const content = await readContent(ctx, path)
+  if (content !== undefined) {
+    return content
+  }
+
+  if (ctx.rewriteNotFoundTo !== undefined) {
+    return await readContent(ctx, ctx.rewriteNotFoundTo)
+  }
 }
