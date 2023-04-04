@@ -1,10 +1,9 @@
+[website-server] `responseSetCacheControlHeaders`
+[website-server] `handle` -- refactor code about http compression
+
 # docs
 
 [manual] manual/intro.md
-
-# fidb website:serve
-
-`fidb website:serve` -- refactor code about http compression
 
 # fidb reverse-proxy:connect
 

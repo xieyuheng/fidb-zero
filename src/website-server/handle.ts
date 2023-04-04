@@ -11,6 +11,7 @@ import type { Json } from "../utils/Json"
 import { globMatch } from "../utils/globMatch"
 import type { Context } from "./Context"
 import { readContent } from "./readContent"
+import { responseSetCorsHeaders } from "./responseSetCorsHeaders"
 
 const brotliCompress = promisify(Zlib.brotliCompress)
 const gzip = promisify(Zlib.gzip)
@@ -31,14 +32,8 @@ export async function handle(
   // NOTE `decodeURIComponent` is necessary for space.
   const path = normalize(decodeURIComponent(url.pathname.slice(1)))
 
-  const corsHeaders = ctx.cors ? { "access-control-allow-origin": "*" } : {}
-
-  let cacheControlHeaders: Record<string, string> = {}
-  for (const [pattern, value] of Object.entries(ctx.cacheControlPatterns)) {
-    if (globMatch(pattern, path)) {
-      cacheControlHeaders["cache-control"] = value
-    }
-  }
+  responseSetCorsHeaders(ctx, response)
+  responseSetCacheControlHeaders(ctx, response, path)
 
   if (request.method === "GET") {
     const content =
@@ -50,8 +45,6 @@ export async function handle(
     if (content === undefined) {
       responseSetStatus(response, { code: 404 })
       responseSetHeaders(response, {
-        ...corsHeaders,
-        ...cacheControlHeaders,
         connection: "close",
       })
       response.end()
@@ -66,8 +59,6 @@ export async function handle(
         responseSetHeaders(response, {
           "content-type": content.type,
           "content-encoding": "br",
-          ...corsHeaders,
-          ...cacheControlHeaders,
           connection: "close",
         })
         response.write(await brotliCompress(content.buffer))
@@ -80,12 +71,9 @@ export async function handle(
         responseSetHeaders(response, {
           "content-type": content.type,
           "content-encoding": "gzip",
-          ...corsHeaders,
-          ...cacheControlHeaders,
           connection: "close",
         })
-        response.write(await gzip(content.buffer))
-        response.end()
+        response.end(await gzip(content.buffer))
         return
       }
     }
@@ -93,12 +81,9 @@ export async function handle(
     responseSetStatus(response, { code: 200 })
     responseSetHeaders(response, {
       "content-type": content.type,
-      ...corsHeaders,
-      ...cacheControlHeaders,
       connection: "close",
     })
-    response.write(content.buffer)
-    response.end()
+    response.end(content.buffer)
     return
   }
 
@@ -107,4 +92,19 @@ export async function handle(
       "\n",
     ),
   )
+}
+
+export function responseSetCacheControlHeaders(
+  ctx: Context,
+  response: Http.ServerResponse,
+  path: string,
+): void {
+  const cacheControlHeaders: Record<string, string> = {}
+  for (const [pattern, value] of Object.entries(ctx.cacheControlPatterns)) {
+    if (globMatch(pattern, path)) {
+      cacheControlHeaders["cache-control"] = value
+    }
+  }
+
+  responseSetHeaders(response, cacheControlHeaders)
 }
