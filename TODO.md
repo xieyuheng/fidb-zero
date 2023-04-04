@@ -1,4 +1,6 @@
-[website-server] `handle` -- refactor code about http compression
+[website-server] `readContentWithRewrite`
+[server] `requestCompressionMethod`
+[website-server] extract `compress`
 
 # docs
 
