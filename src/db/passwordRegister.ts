@@ -18,7 +18,7 @@ export const PasswordRegisterOptionsSchema = ty.object({
   permissions: ty.array(TokenPermissionSchema),
 })
 
-export async function PasswordRegister(
+export async function passwordRegister(
   db: Database,
   directory: string,
   options: PasswordRegisterOptions,

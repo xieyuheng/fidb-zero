@@ -1,3 +1,7 @@
+[rest] `handle` -- read of a file should not need `kind=file`
+
+- so that simple url can be used in frontends like readonly.link and mimor.app
+
 # docs
 
 [manual] manual/intro.md
@@ -30,8 +34,6 @@ This command will only be meaningful
 if we have some scripts to generate database and datasets.
 
 # rest
-
-[rest] read of a file should not need `kind=file`
 
 [rest] rate limit by ip -- for `password-register`
 

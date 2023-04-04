@@ -44,7 +44,7 @@ export async function handlePassword(
 
       const created = await Db.dataCreate(db, path, data)
 
-      await Db.PasswordRegister(db, created["@path"], {
+      await Db.passwordRegister(db, created["@path"], {
         memo: options.memo,
         password: options.password,
         permissions: config.permissions,
