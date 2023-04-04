@@ -1,0 +1,12 @@
+{
+  "kind": "Manual",
+  "title": "FiDB Manual",
+  "version": "0.0.1",
+  "authors": ["Xie Yuheng"],
+  "date": "2023",
+  "src": "manual",
+  "main": "intro.md",
+  "sections": {
+    "default": ["intro.md"]
+  }
+}
