@@ -1,4 +1,3 @@
-[website-server] `readContentWithRewrite`
 [server] `requestCompressionMethod`
 [website-server] extract `compress`
 

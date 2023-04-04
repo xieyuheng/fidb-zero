@@ -9,7 +9,7 @@ import { responseSetHeaders } from "../server/responseSetHeaders"
 import { responseSetStatus } from "../server/responseSetStatus"
 import type { Json } from "../utils/Json"
 import type { Context } from "./Context"
-import { readContent } from "./readContent"
+import { readContentWithRewrite } from "./readContentWithRewrite"
 import { responseSetCacheControlHeaders } from "./responseSetCacheControlHeaders"
 import { responseSetCorsHeaders } from "./responseSetCorsHeaders"
 
@@ -36,12 +36,7 @@ export async function handle(
   responseSetCacheControlHeaders(ctx, response, path)
 
   if (request.method === "GET") {
-    const content =
-      (await readContent(ctx, path)) ||
-      (ctx.rewriteNotFoundTo
-        ? await readContent(ctx, ctx.rewriteNotFoundTo)
-        : undefined)
-
+    const content = await readContentWithRewrite(ctx, path)
     if (content === undefined) {
       responseSetStatus(response, { code: 404 })
       responseSetHeaders(response, {
