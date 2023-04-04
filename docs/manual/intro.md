@@ -10,6 +10,8 @@ of data represented by JSON files.
 
 This is actually what URL and HTTP is designed for.
 
+- Although people had not yet discovered JSON at that time.
+
 > It is tempting to think of resource identifiers as remote file
 > system pathnames and of representations as being a copy of the
 > contents of such files. In fact, that is how many resources are
