@@ -3,6 +3,7 @@ import type Http from "node:http"
 import { normalize } from "node:path"
 import { promisify } from "node:util"
 import Zlib from "node:zlib"
+import { compress } from "../server/compress"
 import { handlePreflight } from "../server/handlePreflight"
 import { requestCompressionMethod } from "../server/requestCompressionMethod"
 import { requestURL } from "../server/requestURL"
@@ -48,36 +49,15 @@ export async function handle(
     }
 
     const compressionMethod = requestCompressionMethod(request)
-
-    if (compressionMethod === "br") {
-      responseSetStatus(response, { code: 200 })
-      responseSetHeaders(response, {
-        "content-type": content.type,
-        "content-encoding": "br",
-        connection: "close",
-      })
-      response.write(await brotliCompress(content.buffer))
-      response.end()
-      return
-    }
-
-    if (compressionMethod === "gzip") {
-      responseSetStatus(response, { code: 200 })
-      responseSetHeaders(response, {
-        "content-type": content.type,
-        "content-encoding": "gzip",
-        connection: "close",
-      })
-      response.end(await gzip(content.buffer))
-      return
-    }
+    const buffer = await compress(compressionMethod, content.buffer)
 
     responseSetStatus(response, { code: 200 })
     responseSetHeaders(response, {
       "content-type": content.type,
+      "content-encoding": compressionMethod,
       connection: "close",
     })
-    response.end(content.buffer)
+    response.end(buffer)
     return
   }
 

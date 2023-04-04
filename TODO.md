@@ -1,5 +1,3 @@
-[website-server] extract `compress`
-
 # docs
 
 [manual] manual/intro.md
