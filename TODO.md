@@ -1,7 +1,3 @@
-[rest] `handle` -- read of a file should not need `kind=file`
-
-- so that simple url can be used in frontends like readonly.link and mimor.app
-
 # docs
 
 [manual] manual/intro.md
@@ -33,9 +29,9 @@ Like `fidb website:deploy`.
 This command will only be meaningful
 if we have some scripts to generate database and datasets.
 
-# rest
+# database-server
 
-[rest] rate limit by ip -- for `password-register`
+[database-server] rate limit by ip -- for `password-register`
 
 [config] be able to config `rateLimits: { ... }`
 
@@ -44,8 +40,8 @@ if we have some scripts to generate database and datasets.
 [db] RegisterEmail(directory, options): Promise<void>
 [db] LoginEmail(directory, options): Promise<Token>
 
-[rest] `handleEmail` -- kind=email-register
-[rest] `handleEmail` -- kind=email-login
+[database-server] `handleEmail` -- kind=email-register
+[database-server] `handleEmail` -- kind=email-login
 
 # token with scope
 

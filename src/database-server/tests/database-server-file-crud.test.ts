@@ -24,6 +24,19 @@ test("database-server-file-crud", async ({ meta }) => {
     ).text(),
   ).toEqual("hahaha!")
 
+  // NOTE `kind=file` is optional.
+
+  expect(
+    await (
+      await fetch(new URL(`/users/xieyuheng/haha.txt`, url), {
+        method: "GET",
+        headers: {
+          authorization,
+        },
+      })
+    ).text(),
+  ).toEqual("hahaha!")
+
   expect(
     new Uint8Array(
       await (
@@ -47,6 +60,19 @@ test("database-server-file-crud", async ({ meta }) => {
   expect(
     (
       await fetch(new URL(`/users/xieyuheng/haha.txt?kind=file`, url), {
+        method: "GET",
+        headers: {
+          authorization,
+        },
+      })
+    ).status,
+  ).toEqual(404)
+
+  // NOTE `kind=file` is optional.
+
+  expect(
+    (
+      await fetch(new URL(`/users/xieyuheng/haha.txt`, url), {
         method: "GET",
         headers: {
           authorization,

@@ -1,5 +1,6 @@
 import type { Buffer } from "node:buffer"
 import type Http from "node:http"
+import * as Db from "../db"
 import { handlePreflight } from "../server/handlePreflight"
 import { requestKind } from "../server/requestKind"
 import type { Json } from "../utils/Json"
@@ -22,6 +23,11 @@ export async function handle(
   }
 
   const kind = requestKind(request)
+  const path = requestPath(ctx, request)
+
+  if (await Db.isFile(ctx.db, path)) {
+    return await handleFile(ctx, request)
+  }
 
   if (kind.startsWith("data") || kind === "") {
     return await handleData(ctx, request)

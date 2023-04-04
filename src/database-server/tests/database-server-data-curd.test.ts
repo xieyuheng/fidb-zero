@@ -1,7 +1,7 @@
 import { expect, test } from "vitest"
 import { prepareTestServer } from "./prepareTestServer"
 
-test("rest-data-crud", async ({ meta }) => {
+test("database-server-data-curd", async ({ meta }) => {
   const { url, authorization } = await prepareTestServer(meta)
 
   const created = await (
