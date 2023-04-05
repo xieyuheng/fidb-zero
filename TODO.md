@@ -1,7 +1,5 @@
 # docs
 
-[diary] light and easy to understand
-
 [docs] manual/data-table.md
 
 [docs] manual/metadata-properties.md
