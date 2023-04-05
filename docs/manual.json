@@ -5,7 +5,7 @@
   "authors": ["Xie Yuheng"],
   "date": "2023",
   "src": "manual",
-  "main": "intro.md",
+  "main": "00-intro.md",
   "sections": {
     "default": [
       "00-intro.md",
