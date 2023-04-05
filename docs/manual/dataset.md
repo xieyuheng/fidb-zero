@@ -66,6 +66,15 @@ and solve it once for all.
 
 By the way, the form of problem and solution is learned from a book called [Scalable C](https://readonly.link/books/https://books.readonly.link/scalable-c/book.json).
 
-- **Problem 2:** How should we represent `has one` and `has many` relations in file system?
+- **Problem:** How should we represent `has one` and `has many` relations in file system?
+
+Actually we should view them as two different problems,
+with the condition that the solutions of them must feel symmetric together.
+
+- **Problem 2:** How should we represent `has many` relations in file system?
 
 - **Solution 2:** TODO.
+
+- **Problem 3:** How should we represent `has one` relations in file system?
+
+- **Solution 3:** TODO.
