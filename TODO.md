@@ -1,6 +1,8 @@
 # docs
 
-[docs] manual/metadata-properties.md
+[docs] manual/the-http-api.md -- about different kind of resources
+
+[docs] manual/the-http-api.md -- about metadata properties
 
 ```
   "@path": "tokens/123456",
@@ -8,8 +10,6 @@
   "@createdAt": 1676503789948,
   "@updatedAt": 1676503789948
 ```
-
-[docs] manual/the-http-api.md -- about different kind of resources
 
 [docs] manual/access-token.md
 [docs] manual/register-and-login.md

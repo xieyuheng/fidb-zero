@@ -8,7 +8,7 @@ the familiar concept of _data table_.
 
 - **Problem 1:** How should we represent data table in file system?
 
-- **Solution 1.0:** Using a directory of JSON files to represent a table,
+- **Solution 1.A:** Using a directory of JSON files to represent a table,
   where each JSON file represents a row of the table,
   and the name of the file relative to the root of the database
   is viewed as the primary key of the row.
@@ -34,7 +34,7 @@ because we want to use subdirectory relation
 to represent `has one` and `has many` relations,
 while a file can not have any subdirectory at all.
 
-- **Solution 1.1:** Using a directory of directories to represent a table,
+- **Solution 1.B:** Using a directory of directories to represent a table,
   where each subdirectory contains one JSON file named `index.json`
   that represents a row of the table,
   and the name of the subdirectory relative to the root of the database
@@ -56,8 +56,8 @@ while a file can not have any subdirectory at all.
   mimor
   ```
 
-Note that, different from **Solution 1.0**,
-in **Solution 1.1** a primary key does not have the `.json` file extension,
+Note that, different from **Solution 1.A**,
+in **Solution 1.B** a primary key does not have the `.json` file extension,
 this is a good feature.
 
 We talked about representing `has one` and `has many` relations
