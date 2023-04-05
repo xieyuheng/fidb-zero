@@ -1,13 +1,27 @@
 # docs
 
 [docs] manual/data-table.md
-[docs] manual/the-http-api.md
+
+[docs] manual/metadata-properties.md
+
+```
+  "@path": "tokens/123456",
+  "@revision": "cc224145f46a393f8ca71c4eb62aafe1",
+  "@createdAt": 1676503789948,
+  "@updatedAt": 1676503789948
+```
+
+[docs] manual/the-http-api.md -- about different kind of resources
 
 [docs] manual/access-token.md
 [docs] manual/register-and-login.md
 
 [docs] manual/indexing.md
 [docs] manual/schema.md
+
+[docs] manual/config.md
+
+- `rateLimits`
 
 # refactor
 
@@ -89,3 +103,5 @@ fidb+https://localhost:3000/users/xieyuheng
 ```
 
 # schema
+
+use json to describe schema of json data
