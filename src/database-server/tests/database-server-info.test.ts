@@ -15,7 +15,7 @@ test("database-server-info", async ({ meta }) => {
   }
 
   const info = await (
-    await fetch(new URL(`/?kind=info`, url), {
+    await fetch(new URL(`?kind=info`, url), {
       method: "GET",
       headers: {
         "content-type": "application/json",

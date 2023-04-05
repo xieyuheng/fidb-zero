@@ -21,6 +21,8 @@
 
 - `rateLimits`
 
+[token] eack directory can grant access to token owner
+
 # refactor
 
 web server and reverse-proxy should be its own project

@@ -15,7 +15,7 @@ test("database-server-password-register", async ({ meta }) => {
   }
 
   const created = await (
-    await fetch(new URL(`/users/xieyuheng?kind=password-register`, url), {
+    await fetch(new URL(`users/xieyuheng?kind=password-register`, url), {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -35,7 +35,7 @@ test("database-server-password-register", async ({ meta }) => {
 
   {
     const response = await fetch(
-      new URL(`/users/xieyuheng/passwords?kind=directory`, url),
+      new URL(`users/xieyuheng/passwords?kind=directory`, url),
       {
         method: "GET",
         headers: {

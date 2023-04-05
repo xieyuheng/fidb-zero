@@ -12,7 +12,7 @@ test("database-server-data-get-no-permission", async ({ meta }) => {
   })}`
 
   const created = await (
-    await fetch(new URL(`/users/xieyuheng`, url), {
+    await fetch(new URL(`users/xieyuheng`, url), {
       method: "POST",
       headers: {
         authorization,
@@ -28,7 +28,7 @@ test("database-server-data-get-no-permission", async ({ meta }) => {
   expect(created.name).toEqual("Xie Yuheng")
   expect(
     await (
-      await fetch(new URL(`/users/xieyuheng`, url), {
+      await fetch(new URL(`users/xieyuheng`, url), {
         method: "GET",
         headers: {
           authorization,
@@ -45,7 +45,7 @@ test("database-server-data-get-no-permission", async ({ meta }) => {
 
   expect(
     (
-      await fetch(new URL(`/users/xieyuheng`, url), {
+      await fetch(new URL(`users/xieyuheng`, url), {
         method: "GET",
         headers: {
           authorization,

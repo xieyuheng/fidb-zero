@@ -15,7 +15,7 @@ test("database-server-password-login", async ({ meta }) => {
   }
 
   const created = await (
-    await fetch(new URL(`/users/xieyuheng?kind=password-register`, url), {
+    await fetch(new URL(`users/xieyuheng?kind=password-register`, url), {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -35,7 +35,7 @@ test("database-server-password-login", async ({ meta }) => {
 
   {
     const token = await (
-      await fetch(new URL(`/users/xieyuheng?kind=password-login`, url), {
+      await fetch(new URL(`users/xieyuheng?kind=password-login`, url), {
         method: "POST",
         body: JSON.stringify({
           password: "123456",
@@ -46,7 +46,7 @@ test("database-server-password-login", async ({ meta }) => {
     // The `token` can read user data.
 
     const gotten = await (
-      await fetch(new URL(`/users/xieyuheng?kind=data`, url), {
+      await fetch(new URL(`users/xieyuheng?kind=data`, url), {
         method: "GET",
         headers: {
           authorization: `token ${token}`,
@@ -59,7 +59,7 @@ test("database-server-password-login", async ({ meta }) => {
     // The `token` can update user data.
 
     const patched = await (
-      await fetch(new URL(`/users/xieyuheng`, url), {
+      await fetch(new URL(`users/xieyuheng`, url), {
         method: "PATCH",
         headers: {
           authorization: `token ${token}`,
@@ -76,7 +76,7 @@ test("database-server-password-login", async ({ meta }) => {
 
     // The `token` can delete user data.
 
-    await fetch(new URL(`/users/xieyuheng`, url), {
+    await fetch(new URL(`users/xieyuheng`, url), {
       method: "DELETE",
       headers: {
         authorization: `token ${token}`,
@@ -89,7 +89,7 @@ test("database-server-password-login", async ({ meta }) => {
 
     expect(
       (
-        await fetch(new URL(`/users/xieyuheng`, url), {
+        await fetch(new URL(`users/xieyuheng`, url), {
           method: "GET",
           headers: {
             authorization: `token ${token}`,

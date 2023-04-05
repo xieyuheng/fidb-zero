@@ -4,7 +4,7 @@ import { prepareTestServer } from "./prepareTestServer"
 test("database-server-file-crud", async ({ meta }) => {
   const { url, authorization } = await prepareTestServer(meta)
 
-  await fetch(new URL(`/users/xieyuheng/haha.txt?kind=file`, url), {
+  await fetch(new URL(`users/xieyuheng/haha.txt?kind=file`, url), {
     method: "POST",
     headers: {
       authorization,
@@ -15,7 +15,7 @@ test("database-server-file-crud", async ({ meta }) => {
 
   expect(
     await (
-      await fetch(new URL(`/users/xieyuheng/haha.txt?kind=file`, url), {
+      await fetch(new URL(`users/xieyuheng/haha.txt?kind=file`, url), {
         method: "GET",
         headers: {
           authorization,
@@ -28,7 +28,7 @@ test("database-server-file-crud", async ({ meta }) => {
 
   expect(
     await (
-      await fetch(new URL(`/users/xieyuheng/haha.txt`, url), {
+      await fetch(new URL(`users/xieyuheng/haha.txt`, url), {
         method: "GET",
         headers: {
           authorization,
@@ -40,7 +40,7 @@ test("database-server-file-crud", async ({ meta }) => {
   expect(
     new Uint8Array(
       await (
-        await fetch(new URL(`/users/xieyuheng/haha.txt?kind=file`, url), {
+        await fetch(new URL(`users/xieyuheng/haha.txt?kind=file`, url), {
           method: "GET",
           headers: {
             authorization,
@@ -50,7 +50,7 @@ test("database-server-file-crud", async ({ meta }) => {
     ),
   ).toEqual(new TextEncoder().encode("hahaha!"))
 
-  await fetch(new URL(`/users/xieyuheng/haha.txt?kind=file`, url), {
+  await fetch(new URL(`users/xieyuheng/haha.txt?kind=file`, url), {
     method: "DELETE",
     headers: {
       authorization,
@@ -59,7 +59,7 @@ test("database-server-file-crud", async ({ meta }) => {
 
   expect(
     (
-      await fetch(new URL(`/users/xieyuheng/haha.txt?kind=file`, url), {
+      await fetch(new URL(`users/xieyuheng/haha.txt?kind=file`, url), {
         method: "GET",
         headers: {
           authorization,
@@ -72,7 +72,7 @@ test("database-server-file-crud", async ({ meta }) => {
 
   expect(
     (
-      await fetch(new URL(`/users/xieyuheng/haha.txt`, url), {
+      await fetch(new URL(`users/xieyuheng/haha.txt`, url), {
         method: "GET",
         headers: {
           authorization,
