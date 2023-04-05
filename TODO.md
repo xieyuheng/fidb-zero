@@ -1,24 +1,13 @@
 # docs
 
-[docs] manual/the-http-api.md -- about different kind of resources
+[manual] the-http-api -- about different kind of resources
+[manual] access-token
 
-[docs] manual/the-http-api.md -- about metadata properties
-
-```
-  "@path": "tokens/123456",
-  "@revision": "cc224145f46a393f8ca71c4eb62aafe1",
-  "@createdAt": 1676503789948,
-  "@updatedAt": 1676503789948
-```
-
-[docs] manual/access-token.md
-[docs] manual/register-and-login.md
-
-[docs] manual/indexing.md
-[docs] manual/schema.md
-
-[docs] manual/config.md
-
+- rename `permissionRecord` to `permissions`
+  [manual] register-and-login
+  [manual] indexing
+  [manual] schema
+  [manual] config
 - `rateLimits`
 
 [token] eack directory can grant access to token owner

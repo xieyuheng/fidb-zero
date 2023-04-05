@@ -7,6 +7,11 @@
   "src": "manual",
   "main": "intro.md",
   "sections": {
-    "default": ["intro.md", "data-table.md", "the-http-api.md"]
+    "default": [
+      "00-intro.md",
+      "01-data-table.md",
+      "02-metadata-properties.md",
+      "03-the-http-api.md"
+    ]
   }
 }
