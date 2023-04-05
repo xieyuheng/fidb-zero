@@ -5,9 +5,9 @@ title: Intro
 What if we use file system as database?
 
 I mean a suite of protocols about
-representing database concepts in file system,
-and a suite of HTTP API which just do
-basic read and write of data represented in file system.
+implementing database concepts in file system,
+including a suite of HTTP API which can
+read and write data represented in file system.
 
 What is a protocol?
 
