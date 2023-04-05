@@ -6,9 +6,9 @@ To implement the idea of using file system as database,
 we must first answer the question about
 the familiar concept of _data table_.
 
-- **Problem 1:** How should we represent data table in file system?
+- **Problem 1.1:** How should we represent data table in file system?
 
-- **Solution 1.A:** Using a directory of JSON files to represent a table,
+- **Solution 1.1.A:** Using a directory of JSON files to represent a table,
   where each JSON file represents a row of the table,
   and the name of the file relative to the root of the database
   is viewed as the primary key of the row.
@@ -34,7 +34,7 @@ because we want to use subdirectory relation
 to represent `has one` and `has many` relations,
 while a file can not have any subdirectory at all.
 
-- **Solution 1.B:** Using a directory of directories to represent a table,
+- **Solution 1.1.B:** Using a directory of directories to represent a table,
   where each subdirectory contains one JSON file named `index.json`
   that represents a row of the table,
   and the name of the subdirectory relative to the root of the database
@@ -56,8 +56,8 @@ while a file can not have any subdirectory at all.
   mimor
   ```
 
-Note that, different from **Solution 1.A**,
-in **Solution 1.B** a primary key does not have the `.json` file extension,
+Note that, different from **Solution 1.1.A**,
+in **Solution 1.1.B** a primary key does not have the `.json` file extension,
 this is a good feature.
 
 We talked about representing `has one` and `has many` relations
@@ -71,9 +71,9 @@ By the way, the form of problem and solution is learned from a book called [Scal
 Actually we should view them as two different problems,
 with the condition that the solutions of them must feel symmetric together.
 
-- **Problem 2:** How should we represent `has many` relations in file system?
+- **Problem 1.2:** How should we represent `has many` relations in file system?
 
-- **Solution 2:** The data belong to another data,
+- **Solution 1.2:** The data belong to another data,
   should be represented as subdirectory belong to the corresponding directory.
 
   For example, "a user has many projects",
@@ -99,12 +99,12 @@ with the condition that the solutions of them must feel symmetric together.
   users/readonlylink/projects/x-markdown/index.json
   ```
 
-- **Problem 3:** How should we represent `has one` relations in file system?
+- **Problem 1.3:** How should we represent `has one` relations in file system?
 
-- **Solution 3:** The data belong to another data,
+- **Solution 1.3:** The data belong to another data,
   should be represented as subdirectory belong to the corresponding directory.
 
-  (This principle is the same as **Solution 2** for **Problem 2**.)
+  (This principle is the same as **Solution 1.2** for **Problem 1.2**.)
 
   For example, "a user has one config",
   then each user has a subdirectory called `config`.

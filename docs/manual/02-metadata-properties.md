@@ -8,9 +8,9 @@ Beside the JSON data stored in file,
 when reading the data, we also want to add some metadata
 such as primary key, timestamps and so on,
 
-- **Problem 4:** How should we add metadata properties to JSON data?
+- **Problem 2.1:** How should we add metadata properties to JSON data?
 
-- **Solution 4:** We can use `@` as prefix of property name,
+- **Solution 2.1:** We can use `@` as prefix of property name,
   to denote that this property is metadata.
 
 For the ease of creating data by editing JSON files,
@@ -72,12 +72,12 @@ based on current timestamp.
 
 ## @revision
 
-- **Problem 5:** When I want to update a data, I first read it by it's `@path`,
+- **Problem 2.2:** When I want to update a data, I first read it by it's `@path`,
   then I edit the data and write it back to the database.
   What it the during this time, the data is updated by other user?
   How should I now about this?
 
-- **Solution 5:** We can use `@revision` as a metadata property.
+- **Solution 2.2:** We can use `@revision` as a metadata property.
 
   When reading data, if there is no `@revision` property,
   we add a random string as `@revision`.
