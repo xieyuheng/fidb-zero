@@ -4,9 +4,22 @@ title: Intro
 
 What if we use file system as database?
 
-I mean a suite of HTTP API over file system,
-which just do basic read and write
-of data represented by JSON files.
+I mean a suite of protocols about
+representing database concepts in file system,
+and a suite of HTTP API which just do
+basic read and write of data represented in file system.
+
+What is a protocol?
+
+The most beautiful definition I know is by Pieter Hintjens:
+
+> A protocol is a kind of contract, an agreement that lets different
+> teams in different times and places write code that is guaranteed to
+> work together.
+>
+> Code that can work together is called interoperable.
+>
+> -- Pieter Hintjens
 
 This is actually what URL and HTTP is designed for.
 
@@ -20,9 +33,9 @@ This is actually what URL and HTTP is designed for.
 > - [RFC 9110 -- HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html).
 
 Nowaday people use relational database and SQL,
-but the most used relations between SQL tables
+but the most used relations between SQL data
 are `has one` and `has many`,
-which are must naturally expressed by nested directories.
+which are most naturally expressed by nested directories.
 
 For example:
 
@@ -52,15 +65,16 @@ just like normal relational database.
 Since we optimized the tool for the most used use case,
 the tool feels so handy and easy to understand.
 
-So, what if we use file system as database?
+What if we use file system as database?
+
 It feels like an idea worth trying.
-Now, let us explore how execatly can we implement this idea.
+Let us explore how execatly can we implement this idea.
 
 Before we begin, let's solve the most import problem first.
 
-- **Problem:** How should we name this project?
+- **Problem 0:** How should we name this project?
 
-- **Solution:** This project is about using file system as database,
+- **Solution 0:** This project is about using file system as database,
   specially using the subdirectory relation to represent
   `has one` and `has many` relations between data.
 

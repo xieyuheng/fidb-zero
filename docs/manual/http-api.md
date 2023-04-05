@@ -1,5 +1,0 @@
----
-title: HTTP API
----
-
-TODO

@@ -1,7 +1,8 @@
 # docs
 
 [docs] manual/dataset.md
-[docs] manual/http-api.md
+[docs] manual/the-http-api.md
+[docs] manual/indexing.md
 
 # fidb reverse-proxy:connect
 
