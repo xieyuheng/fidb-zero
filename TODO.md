@@ -1,13 +1,16 @@
 # docs
 
 [manual] the-http-api -- about different kind of resources
+
 [manual] access-token
 
 - rename `permissionRecord` to `permissions`
-  [manual] register-and-login
-  [manual] indexing
-  [manual] schema
-  [manual] config
+
+[manual] register-and-login
+[manual] indexing
+[manual] schema
+[manual] config
+
 - `rateLimits`
 
 [token] eack directory can grant access to token owner
