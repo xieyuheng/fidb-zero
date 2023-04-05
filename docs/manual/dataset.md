@@ -6,33 +6,6 @@ To implement the idea of using file system as database,
 we must first answer the question about
 the familiar concept of _table_.
 
-Actually an hierarchy of concepts:
-
-In SQL the hierarchy is:
-
-```
-database > table > row > column
-```
-
-In document database (like mongodb) the hierarchy is:
-
-```
-database > collection > document (JSON) > property
-```
-
-In our FiDB, we would like to use the following hierarchy:
-
-```
-database > dataset > data
-```
-
-Because we want to emphasize that
-
-1. There are no duplicated data in a dataset.
-2. The data in a dataset are unordered.
-
-Just like the axioms of [mathematical set](<https://en.wikipedia.org/wiki/Set_(mathematics)>).
-
 - **Problem 1:** How should we represent data table in file system?
 
 - **Solution 1.0:** Using a directory of JSON files to represent a table,
