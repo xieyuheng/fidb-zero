@@ -12,3 +12,5 @@ This is a waste of time and a problem.
 
 The solution might be writing good documentation for fidb during it's development,
 explaining the problem it solves and the ideas about solving them.
+
+It is actually much cheaper to write documentation than to write code.

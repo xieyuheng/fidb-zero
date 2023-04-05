@@ -13,7 +13,7 @@
 
 - `rateLimits`
 
-[token] eack directory can grant access to token owner
+[token] each directory can grant access to token owner
 
 # refactor
 
