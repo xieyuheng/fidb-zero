@@ -1,10 +1,10 @@
 ---
-title: Dataset
+title: Data Table
 ---
 
 To implement the idea of using file system as database,
 we must first answer the question about
-the familiar concept of _table_.
+the familiar concept of _data table_.
 
 - **Problem 1:** How should we represent data table in file system?
 

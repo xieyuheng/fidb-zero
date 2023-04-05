@@ -7,6 +7,6 @@
   "src": "manual",
   "main": "intro.md",
   "sections": {
-    "default": ["intro.md", "dataset.md", "the-http-api.md"]
+    "default": ["intro.md", "data-table.md", "the-http-api.md"]
   }
 }

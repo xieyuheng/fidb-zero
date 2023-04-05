@@ -1,8 +1,17 @@
 # docs
 
-[docs] manual/dataset.md
+[docs] manual/data-table.md
 [docs] manual/the-http-api.md
+
+[docs] manual/access-token.md
+[docs] manual/register-and-login.md
+
 [docs] manual/indexing.md
+[docs] manual/schema.md
+
+# refactor
+
+web server and reverse-proxy should be its own project
 
 # fidb reverse-proxy:connect
 
