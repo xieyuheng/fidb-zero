@@ -17,16 +17,20 @@ the familiar concept of _data table_.
 
   ```
   users/xieyuheng.json
-  users/fidb.json
-  ...
+  users/digrap.json
+  users/cicada.json
+  users/readonlylink.json
+  users/mimor.json
   ```
 
   The primary keys will be:
 
   ```
   xieyuheng.json
-  fidb.json
-  ...
+  digrap.json
+  cicada.json
+  readonlylink.json
+  mimor.json
   ```
 
 This seems is the most simple solution, but we can not use it,
@@ -44,16 +48,20 @@ while a file can not have any subdirectory at all.
 
   ```
   users/xieyuheng/index.json
-  users/fidb/index.json
-  ...
+  users/digrap/index.json
+  users/cicada/index.json
+  users/readonlylink/index.json
+  users/mimor/index.json
   ```
 
   The primary keys will be:
 
   ```
   xieyuheng
-  fidb
-  ...
+  digrap
+  cicada
+  readonlylink
+  mimor
   ```
 
 Note that, different from **Solution 1.0**,

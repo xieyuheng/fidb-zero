@@ -39,11 +39,11 @@ which are most naturally expressed by nested directories.
 
 For example:
 
-- A user _has many_ posts,
+- A user _has many_ projects,
   so we use the following directories:
 
   ```
-  /users/*/posts/*
+  /users/*/projects/*
   ```
 
 - A user _has one_ config,
