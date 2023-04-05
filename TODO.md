@@ -1,7 +1,5 @@
 # docs
 
-[docs] manual/data-table.md
-
 [docs] manual/metadata-properties.md
 
 ```

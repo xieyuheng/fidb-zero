@@ -17,8 +17,6 @@ the familiar concept of _data table_.
 
   ```
   users/xieyuheng.json
-  users/digrap.json
-  users/cicada.json
   users/readonlylink.json
   users/mimor.json
   ```
@@ -27,8 +25,6 @@ the familiar concept of _data table_.
 
   ```
   xieyuheng.json
-  digrap.json
-  cicada.json
   readonlylink.json
   mimor.json
   ```
@@ -48,8 +44,6 @@ while a file can not have any subdirectory at all.
 
   ```
   users/xieyuheng/index.json
-  users/digrap/index.json
-  users/cicada/index.json
   users/readonlylink/index.json
   users/mimor/index.json
   ```
@@ -58,8 +52,6 @@ while a file can not have any subdirectory at all.
 
   ```
   xieyuheng
-  digrap
-  cicada
   readonlylink
   mimor
   ```
@@ -81,8 +73,54 @@ with the condition that the solutions of them must feel symmetric together.
 
 - **Problem 2:** How should we represent `has many` relations in file system?
 
-- **Solution 2:** TODO.
+- **Solution 2:** The data belong to another data,
+  should be represented as subdirectory belong to the corresponding directory.
+
+  For example, "a user has many projects",
+  then each user has a subdirectory called `projects`.
+
+  The pattern of directories will be:
+
+  ```
+  users/*/projects/*/index.json
+  ```
+
+  Concrete examples:
+
+  ```
+  users/xieyuheng/index.json
+  users/xieyuheng/projects/inner/index.json
+  users/xieyuheng/projects/pomodoro/index.json
+  users/xieyuheng/projects/learn-x/index.json
+  users/xieyuheng/projects/cell-complex/index.json
+
+  users/readonlylink/index.json
+  users/readonlylink/projects/x-node/index.json
+  users/readonlylink/projects/x-markdown/index.json
+  ```
 
 - **Problem 3:** How should we represent `has one` relations in file system?
 
-- **Solution 3:** TODO.
+- **Solution 3:** The data belong to another data,
+  should be represented as subdirectory belong to the corresponding directory.
+
+  (This principle is the same as **Solution 2** for **Problem 2**.)
+
+  For example, "a user has one config",
+  then each user has a subdirectory called `config`.
+
+  The pattern of directories will be:
+
+  ```
+  users/*/config/index.json
+  ```
+
+  Concrete examples:
+
+  ```
+  users/xieyuheng/index.json
+  users/xieyuheng/config/index.json
+
+  users/readonlylink/index.json
+  users/readonlylink/config/index.json
+  ```
