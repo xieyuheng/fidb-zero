@@ -3,9 +3,9 @@ import { join } from "node:path"
 import type { Database } from "../database"
 import { Unauthorized } from "../errors/Unauthorized"
 import { PasswordSchema } from "../password"
+import { tokenCreate } from "../token/tokenCreate"
 import { passwordCheck } from "../utils/node/password"
 import { dataFindAll } from "./dataFindAll"
-import { tokenCreate } from "./tokenCreate"
 
 export type PasswordLoginOptions = {
   password: string

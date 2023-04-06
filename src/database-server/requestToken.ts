@@ -1,8 +1,7 @@
 import type Http from "node:http"
-import * as Db from "../db"
 import { Unauthorized } from "../errors/Unauthorized"
 import { requestTokenName } from "../server/requestTokenName"
-import type { Token } from "../token"
+import { Token, tokenGetOrFail } from "../token"
 import type { Context } from "./Context"
 
 export async function requestToken(
@@ -15,6 +14,6 @@ export async function requestToken(
     throw new Unauthorized(`[requestToken] not token in authorization header`)
   }
 
-  const token = await Db.tokenGetOrFail(ctx.db, tokenName)
+  const token = await tokenGetOrFail(ctx.db, tokenName)
   return token
 }

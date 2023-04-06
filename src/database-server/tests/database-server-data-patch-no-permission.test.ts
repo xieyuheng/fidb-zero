@@ -1,11 +1,11 @@
 import { expect, test } from "vitest"
-import * as Db from "../../db"
+import { tokenCreate } from "../../token"
 import { prepareTestServer } from "./prepareTestServer"
 
 test("database-server-data-patch-no-permission", async ({ meta }) => {
   const { url, db } = await prepareTestServer(meta)
 
-  let authorization = `token ${await Db.tokenCreate(db, {
+  let authorization = `token ${await tokenCreate(db, {
     permissionRecord: {
       "users/*": ["read"],
       "users/xieyuheng/**": ["create", "read", "update", "delete"],
@@ -38,7 +38,7 @@ test("database-server-data-patch-no-permission", async ({ meta }) => {
     ).json(),
   ).toEqual(created)
 
-  authorization = `token ${await Db.tokenCreate(db, {
+  authorization = `token ${await tokenCreate(db, {
     permissionRecord: {
       "users/*": ["read"],
       "users/xyh/**": ["create", "read", "update", "delete"],

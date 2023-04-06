@@ -1,9 +1,9 @@
 import Http from "node:http"
 import { handle } from "../../database-server"
-import * as Db from "../../db"
 import { prepareTestDb } from "../../db/tests/prepareTestDb"
 import { createRequestListener } from "../../server/createRequestListener"
 import { serverListen } from "../../server/serverListen"
+import { tokenCreate } from "../../token"
 import { findPort } from "../../utils/node/findPort"
 
 export async function prepareTestServer(options: { name: string }) {
@@ -23,7 +23,7 @@ export async function prepareTestServer(options: { name: string }) {
 
   await serverListen(server, { port, hostname })
 
-  const authorization = `token ${await Db.tokenCreate(db, {
+  const authorization = `token ${await tokenCreate(db, {
     permissionRecord: {
       "**": ["create", "read", "update", "delete"],
     },

@@ -1,8 +1,5 @@
 # docs
 
-[diary] 2023-04-06-my-json-schema.md
-
-move `token*` from `db/` to `token/`
 move `password*` from `db/` to `password/`
 
 [manual] the-http-api -- kind=file
