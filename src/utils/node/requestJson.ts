@@ -1,5 +1,4 @@
 import type Http from "node:http"
-import { JsonParsingError } from "../../errors/JsonParsingError"
 import type { Json } from "../Json"
 import { requestText } from "./requestText"
 import { requestURL } from "./requestURL"
@@ -14,7 +13,13 @@ export async function requestJson(
   try {
     return JSON.parse(text)
   } catch (error) {
-    const url = requestURL(request)
-    throw new JsonParsingError(`[${who}] request url: ${url}, text: ${text}`)
+    if (error instanceof SyntaxError) {
+      const url = requestURL(request)
+      const message = `[${who}] request url: ${url}, text: ${text}`
+      error.message += "\n"
+      error.message += message
+    }
+
+    throw error
   }
 }

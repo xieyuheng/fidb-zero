@@ -1,5 +1,4 @@
 import type { Database } from "../database"
-import { JsonParsingError } from "../errors/JsonParsingError"
 import { NotFound } from "../errors/NotFound"
 import type { Json } from "../utils/Json"
 import { fileGetOrFail } from "./fileGetOrFail"
@@ -17,9 +16,13 @@ export async function jsonFileGet(
     try {
       return JSON.parse(text)
     } catch (error) {
-      throw new JsonParsingError(
-        `[${who}] db name: ${db.config.name}, path: ${path}, text: ${text}`,
-      )
+      if (error instanceof SyntaxError) {
+        const message = `[${who}] db name: ${db.config.name}, path: ${path}, text: ${text}`
+        error.message += "\n"
+        error.message += message
+      }
+
+      throw error
     }
   } catch (error) {
     if (error instanceof NotFound) {

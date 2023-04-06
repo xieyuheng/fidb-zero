@@ -1,5 +1,3 @@
-remove `JsonParsingError` -- native `JSON.parse` already throws `SyntaxError`
-
 # docs
 
 [manual] the-http-api -- kind=file

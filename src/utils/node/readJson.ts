@@ -1,5 +1,4 @@
 import fs from "node:fs"
-import { JsonParsingError } from "../../errors/JsonParsingError"
 import type { Json } from "../Json"
 
 export async function readJson(path: string): Promise<Json> {
@@ -10,6 +9,12 @@ export async function readJson(path: string): Promise<Json> {
   try {
     return JSON.parse(text)
   } catch (error) {
-    throw new JsonParsingError(`[${who}] path: ${path}, text: ${text}`)
+    if (error instanceof SyntaxError) {
+      const message = `[${who}] request path: ${path}, text: ${text}`
+      error.message += "\n"
+      error.message += message
+    }
+
+    throw error
   }
 }
