@@ -1,9 +1,9 @@
 # docs
 
-add `createdAt` and `updatedAt` to file metadata
-
 [manual] the-http-api -- kind=directory
-[manual] access-token
+add `createdAt` and `updatedAt` to file metadata
+[manual] the-http-api -- kind=file-metadata
+[manual] access-token -- path patterns and scoped permissions
 [manual] config
 [manual] register-and-login
 [manual] indexing
