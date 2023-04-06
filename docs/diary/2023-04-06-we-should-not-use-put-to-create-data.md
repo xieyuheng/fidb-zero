@@ -6,7 +6,8 @@ date: 2023-04-06
 
 We need to use json to describe schema of json data.
 
-We can not use json-schema, because instead of the following:
+We can not use [json-schema](https://json-schema.org/understanding-json-schema/index.html),
+because instead of the following:
 
 ```
 {
