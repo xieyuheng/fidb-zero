@@ -6,7 +6,7 @@ test("database-server-data-post-no-permission", async ({ meta }) => {
   const { url, db } = await prepareTestServer(meta)
 
   const authorization = `token ${await tokenCreate(db, {
-    permissionRecord: {
+    permissions: {
       "users/*/**": ["read"],
       "users/xyh/**": ["create", "read", "update", "delete"],
     },

@@ -29,7 +29,7 @@ export async function passwordLogin(
     if (await passwordCheck(options.password, password.hash)) {
       const pattern = join(directory, "**")
       const tokenName = await tokenCreate(db, {
-        permissionRecord: {
+        permissions: {
           [pattern]: password.permissions,
         },
       })

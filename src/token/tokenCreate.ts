@@ -6,13 +6,13 @@ import { randomTokenName } from "../token/randomTokenName"
 export async function tokenCreate(
   db: Database,
   options: {
-    permissionRecord: TokenPermissionRecord
+    permissions: TokenPermissionRecord
   },
 ): Promise<string> {
   const tokenName = randomTokenName()
 
   await dataCreate(db, `tokens/${tokenName}`, {
-    permissionRecord: options.permissionRecord,
+    permissions: options.permissions,
   })
 
   return tokenName

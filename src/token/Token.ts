@@ -6,7 +6,7 @@ export type TokenPermission = "create" | "read" | "update" | "delete"
 export type TokenPermissionRecord = Record<string, Array<TokenPermission>>
 
 export type Token = Data & {
-  permissionRecord: TokenPermissionRecord
+  permissions: TokenPermissionRecord
 }
 
 export const TokenPermissionSchema: Schema<TokenPermission> = ty.union(
@@ -20,6 +20,6 @@ export const TokenPermissionSchema: Schema<TokenPermission> = ty.union(
 export const TokenSchema: Schema<Token> = ty.intersection(
   DataSchema,
   ty.object({
-    permissionRecord: ty.dict(ty.array(TokenPermissionSchema)),
+    permissions: ty.dict(ty.array(TokenPermissionSchema)),
   }),
 )

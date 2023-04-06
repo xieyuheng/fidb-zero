@@ -5,8 +5,6 @@
 
 [manual] access-token
 
-- rename `permissionRecord` to `permissions`
-
 [manual] register-and-login
 [manual] indexing
 [manual] schema
