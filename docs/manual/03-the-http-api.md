@@ -14,7 +14,7 @@ We will do this little by little.
 Firstly, the most basic four operations is the **CRUD**
 -- **C**reate, **R**ead, **U**pdate and **D**elete.
 
-- To **create** data, `POST` to the path with the data.
+- To **create** data, `POST` the path with the data.
 
   Note that, when JSON is used as HTTP request body,
   the `Content-Type` header should be `application/json`,
@@ -167,7 +167,7 @@ such as markdown, image, mp3 and so on.
 
 - **Problem 3.1:** How to distinguish kinds of resources referenced by a path?
 
-- **Solution 3.1:** We can add `kind=...` to the query string of a request,
+- **Solution 3.1:** We can add `kind=...` query parameter to a request,
   where the value of `kind` explicitly denotes the kind of resource.
 
   For examples, value can be `data`, `file`, `directory` and so on.
@@ -181,7 +181,7 @@ i.e. we can add as many kinds as we want in the future.
 
 Now we are ready to specify the HTTP API about file operations.
 
-- To **create** data, `POST` with `kind=file` to the path with the file.
+- To **create** file, `POST` the path with query parameter `kind=file` and the file content.
 
   Note that, when file is used as HTTP request body,
   the `Content-Type` header should be `text/plain` for plaintext file,
@@ -189,6 +189,32 @@ Now we are ready to specify the HTTP API about file operations.
   It actually does not matter what `Content-Type` is used here,
   because when reading a file, the file extension is used
   to determine the response `Content-Type` header.
+
+  For example:
+
+  ```
+  users/xieyuheng/human.txt?kind=file
+
+  Hello, I am Xie Yuheng.
+  ```
+
+- To **read** file, `GET` the path with query parameter `kind=file`.
+
+  For example, after the POST above, we can read file by:
+
+  ```
+  GET users/xieyuheng/human.txt
+  ```
+
+  The `Content-Type` of the HTTP response will be setted
+  based on the corresponding file extension,
+  for example, `.txt` maps to `text/plain`.
+
+- To **update** file, `PUT` the path with query parameter `kind=file` and the file content.
+
+  TODO
+
+- To **delete** file, `DELETE` the path with query parameter `kind=file`.
 
   TODO
 

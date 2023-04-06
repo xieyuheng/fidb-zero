@@ -12,7 +12,7 @@ test("database-server-file-crud", async ({ meta }) => {
       // NOTE "content-type" does not matter, file extension matters.
       // "content-type": "text/plain",
     },
-    body: new TextEncoder().encode("hahaha!"),
+    body: new TextEncoder().encode("Hello, I am Xie Yuheng."),
   })
 
   {
@@ -28,7 +28,7 @@ test("database-server-file-crud", async ({ meta }) => {
 
     const headers = responseHeaders(response)
     expect(headers["content-type"]).toEqual("text/plain")
-    expect(await response.text()).toEqual("hahaha!")
+    expect(await response.text()).toEqual("Hello, I am Xie Yuheng.")
   }
 
   {
@@ -43,7 +43,7 @@ test("database-server-file-crud", async ({ meta }) => {
 
     const headers = responseHeaders(response)
     expect(headers["content-type"]).toEqual("text/plain")
-    expect(await response.text()).toEqual("hahaha!")
+    expect(await response.text()).toEqual("Hello, I am Xie Yuheng.")
   }
 
   {
@@ -60,7 +60,7 @@ test("database-server-file-crud", async ({ meta }) => {
     const headers = responseHeaders(response)
     expect(headers["content-type"]).toEqual("text/plain")
     expect(new Uint8Array(await response.arrayBuffer())).toEqual(
-      new TextEncoder().encode("hahaha!"),
+      new TextEncoder().encode("Hello, I am Xie Yuheng."),
     )
   }
 

@@ -10,7 +10,7 @@ test("database-server-file-get-metadata", async ({ meta }) => {
       authorization,
       "content-type": "text/plain",
     },
-    body: new TextEncoder().encode("hahaha!"),
+    body: new TextEncoder().encode("Hello, I am Xie Yuheng."),
   })
 
   expect(
@@ -25,7 +25,7 @@ test("database-server-file-get-metadata", async ({ meta }) => {
         },
       )
     ).json(),
-  ).toEqual({ size: "hahaha!".length })
+  ).toEqual({ size: "Hello, I am Xie Yuheng.".length })
 
   await fetch(new URL(`users/xieyuheng/human.txt?kind=file`, url), {
     method: "DELETE",
