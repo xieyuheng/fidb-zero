@@ -1,7 +1,5 @@
 # docs
 
-database-server-file-crud.test.ts -- also tests PUT
-
 add `createdAt` and `updatedAt` to file metadata
 
 [manual] the-http-api -- kind=file

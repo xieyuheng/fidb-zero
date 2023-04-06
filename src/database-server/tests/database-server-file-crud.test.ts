@@ -32,21 +32,8 @@ test("database-server-file-crud", async ({ meta }) => {
   }
 
   {
-    // NOTE `kind=file` is optional.
+    // NOTE use `response.arrayBuffer`.
 
-    const response = await fetch(new URL(`users/xieyuheng/human.txt`, url), {
-      method: "GET",
-      headers: {
-        authorization,
-      },
-    })
-
-    const headers = responseHeaders(response)
-    expect(headers["content-type"]).toEqual("text/plain")
-    expect(await response.text()).toEqual("Hello, I am Xie Yuheng.")
-  }
-
-  {
     const response = await fetch(
       new URL(`users/xieyuheng/human.txt?kind=file`, url),
       {
@@ -62,6 +49,63 @@ test("database-server-file-crud", async ({ meta }) => {
     expect(new Uint8Array(await response.arrayBuffer())).toEqual(
       new TextEncoder().encode("Hello, I am Xie Yuheng."),
     )
+  }
+
+  {
+    // NOTE `kind=file` is optional.
+
+    const response = await fetch(new URL(`users/xieyuheng/human.txt`, url), {
+      method: "GET",
+      headers: {
+        authorization,
+      },
+    })
+
+    const headers = responseHeaders(response)
+    expect(headers["content-type"]).toEqual("text/plain")
+    expect(await response.text()).toEqual("Hello, I am Xie Yuheng.")
+  }
+
+  {
+    // NOTE Post to existing file is not ok.
+
+    const response = await fetch(
+      new URL(`users/xieyuheng/human.txt?kind=file`, url),
+      {
+        method: "POST",
+        headers: {
+          authorization,
+        },
+        body: new TextEncoder().encode("Hello, I am Xie Yuheng (谢宇恒)."),
+      },
+    )
+
+    expect(response.ok).toEqual(false)
+    expect(response.status).toEqual(403)
+  }
+
+  await fetch(new URL(`users/xieyuheng/human.txt?kind=file`, url), {
+    method: "PUT",
+    headers: {
+      authorization,
+    },
+    body: new TextEncoder().encode("Hello, I am Xie Yuheng (谢宇恒)."),
+  })
+
+  {
+    const response = await fetch(
+      new URL(`users/xieyuheng/human.txt?kind=file`, url),
+      {
+        method: "GET",
+        headers: {
+          authorization,
+        },
+      },
+    )
+
+    const headers = responseHeaders(response)
+    expect(headers["content-type"]).toEqual("text/plain")
+    expect(await response.text()).toEqual("Hello, I am Xie Yuheng (谢宇恒).")
   }
 
   await fetch(new URL(`users/xieyuheng/human.txt?kind=file`, url), {
