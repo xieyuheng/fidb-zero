@@ -1,4 +1,4 @@
-move some simple `servers/` methods to `utils/node`
+remove `JsonParsingError` -- native `JSON.parse` already throws `SyntaxError`
 
 # docs
 

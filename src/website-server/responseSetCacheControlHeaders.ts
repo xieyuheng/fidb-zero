@@ -1,6 +1,6 @@
 import type Http from "node:http"
-import { responseSetHeaders } from "../server/responseSetHeaders"
 import { globMatch } from "../utils/globMatch"
+import { responseSetHeaders } from "../utils/node/responseSetHeaders"
 import type { Context } from "./Context"
 
 export function responseSetCacheControlHeaders(

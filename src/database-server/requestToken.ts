@@ -1,7 +1,7 @@
 import type Http from "node:http"
 import { Unauthorized } from "../errors/Unauthorized"
-import { requestTokenName } from "../server/requestTokenName"
 import { Token, tokenGetOrFail } from "../token"
+import { requestTokenName } from "../utils/node/requestTokenName"
 import type { Context } from "./Context"
 
 export async function requestToken(

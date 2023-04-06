@@ -7,8 +7,8 @@ import { RevisionMismatch } from "../errors/RevisionMismatch"
 import { Unauthorized } from "../errors/Unauthorized"
 import { Unprocessable } from "../errors/Unprocessable"
 import type { Json } from "../utils/Json"
-import { responseSetHeaders } from "./responseSetHeaders"
-import { responseSetStatus } from "./responseSetStatus"
+import { responseSetHeaders } from "../utils/node/responseSetHeaders"
+import { responseSetStatus } from "../utils/node/responseSetStatus"
 
 export type RequestListener = (
   request: Http.IncomingMessage,

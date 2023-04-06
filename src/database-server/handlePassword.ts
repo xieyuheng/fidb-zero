@@ -8,10 +8,10 @@ import {
   PasswordLoginOptionsSchema,
   passwordRegister,
 } from "../password"
-import { requestJsonObject } from "../server/requestJsonObject"
-import { requestKind } from "../server/requestKind"
-import { requestQuery } from "../server/requestQuery"
 import type { Json } from "../utils/Json"
+import { requestJsonObject } from "../utils/node/requestJsonObject"
+import { requestKind } from "../utils/node/requestKind"
+import { requestQuery } from "../utils/node/requestQuery"
 import type { Context } from "./Context"
 import { requestPath } from "./requestPath"
 

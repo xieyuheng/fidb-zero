@@ -1,6 +1,6 @@
 import type Http from "node:http"
-import { JsonParsingError } from "../errors/JsonParsingError"
-import type { Json } from "../utils/Json"
+import { JsonParsingError } from "../../errors/JsonParsingError"
+import type { Json } from "../Json"
 import { requestText } from "./requestText"
 import { requestURL } from "./requestURL"
 

@@ -1,5 +1,5 @@
 import type Http from "node:http"
-import { responseSetHeaders } from "./responseSetHeaders"
+import { responseSetHeaders } from "../utils/node/responseSetHeaders"
 
 export function handlePreflight(
   request: Http.IncomingMessage,

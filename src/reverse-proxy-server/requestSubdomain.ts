@@ -1,5 +1,5 @@
 import type Http from "node:http"
-import { requestURL } from "../server/requestURL"
+import { requestURL } from "../utils/node/requestURL"
 import { stringTrimEnd } from "../utils/stringTrimEnd"
 import type { Context } from "./Context"
 
