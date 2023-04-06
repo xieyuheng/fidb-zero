@@ -8,21 +8,29 @@ test("database-server-file-crud", async ({ meta }) => {
     method: "POST",
     headers: {
       authorization,
-      "content-type": "text/plain",
+      // NOTE "content-type" does not matter, file extension matters.
+      // "content-type": "text/plain",
     },
     body: new TextEncoder().encode("hahaha!"),
   })
 
-  expect(
-    await (
-      await fetch(new URL(`users/xieyuheng/haha.txt?kind=file`, url), {
+  {
+    const response = await fetch(
+      new URL(`users/xieyuheng/haha.txt?kind=file`, url),
+      {
         method: "GET",
         headers: {
           authorization,
         },
-      })
-    ).text(),
-  ).toEqual("hahaha!")
+      },
+    )
+
+    // const headers = Object.fromEntries((response.headers as any).entries())
+
+    // console.log(headers)
+
+    expect(await response.text()).toEqual("hahaha!")
+  }
 
   // NOTE `kind=file` is optional.
 

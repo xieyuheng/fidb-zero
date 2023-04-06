@@ -16,6 +16,10 @@ Firstly, the most basic four operations is the **CRUD**
 
 - To **create** data, `POST` to the path with the data.
 
+  Note that, when JSON is used as HTTP request body,
+  the `Content-Type` header should be `application/json`,
+  this is the same for all HTTP APIs.
+
   For example, after the following `POST`s:
 
   ```
@@ -177,10 +181,22 @@ i.e. we can add as many kinds as we want in the future.
 
 Now we are ready to specify the HTTP API about file operations.
 
-TODO
+- To **create** data, `POST` with `kind=file` to the path with the file.
+
+  Note that, when file is used as HTTP request body,
+  the `Content-Type` header should be `text/plain` for plaintext file,
+  and `application/octet-stream` for other kinds of file,
+  It actually does not matter what `Content-Type` is used here,
+  because when reading a file, the file extension is used
+  to determine the response `Content-Type` header.
+
+  TODO
 
 - **Problem: 3.2** It is not convenient to always have to write
-  `kind=data` and `kind=file`.
+  `kind=data` and `kind=file`,
+  specially we do not want to write `kind=file`
+  when using web apps that dynamicly load content from URL
+  -- like [readonly.link](https://readonly.link) and [mimor.app](https://mimor.app).
 
 - **Solution: 3.2** We can identify some situations
   where it is unambiguous to omit `kind=...`.

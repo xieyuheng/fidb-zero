@@ -1,8 +1,11 @@
+improve database-server-file-crud.test.ts
+
+move some simple `servers/` methods to `utils/node`
+
 # docs
 
 [manual] the-http-api -- kind=file
 [manual] the-http-api -- kind=directory
-
 [manual] access-token
 [manual] config
 [manual] register-and-login
