@@ -193,7 +193,7 @@ Now we are ready to specify the HTTP API about file operations.
   For example:
 
   ```
-  users/xieyuheng/human.txt?kind=file
+  POST users/xieyuheng/human.txt?kind=file
 
   Hello, I am Xie Yuheng.
   ```
@@ -212,11 +212,19 @@ Now we are ready to specify the HTTP API about file operations.
 
 - To **update** file, `PUT` the path with query parameter `kind=file` and the file content.
 
-  TODO
+  For example:
+
+  ```
+  PUT users/xieyuheng/human.txt?kind=file
+
+  Hello, I am Xie Yuheng from China.
+  ```
 
 - To **delete** file, `DELETE` the path with query parameter `kind=file`.
 
-  TODO
+  ```
+  DELETE users/xieyuheng/human.txt?kind=file
+  ```
 
 - **Problem: 3.2** It is not convenient to always have to write
   `kind=data` and `kind=file`,

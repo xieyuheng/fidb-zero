@@ -76,7 +76,7 @@ test("database-server-file-crud", async ({ meta }) => {
         headers: {
           authorization,
         },
-        body: new TextEncoder().encode("Hello, I am Xie Yuheng (谢宇恒)."),
+        body: new TextEncoder().encode("Hello, I am Xie Yuheng from China."),
       },
     )
 
@@ -89,7 +89,7 @@ test("database-server-file-crud", async ({ meta }) => {
     headers: {
       authorization,
     },
-    body: new TextEncoder().encode("Hello, I am Xie Yuheng (谢宇恒)."),
+    body: new TextEncoder().encode("Hello, I am Xie Yuheng from China."),
   })
 
   {
@@ -105,7 +105,7 @@ test("database-server-file-crud", async ({ meta }) => {
 
     const headers = responseHeaders(response)
     expect(headers["content-type"]).toEqual("text/plain")
-    expect(await response.text()).toEqual("Hello, I am Xie Yuheng (谢宇恒).")
+    expect(await response.text()).toEqual("Hello, I am Xie Yuheng from China.")
   }
 
   await fetch(new URL(`users/xieyuheng/human.txt?kind=file`, url), {
