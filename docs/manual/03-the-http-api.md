@@ -182,7 +182,7 @@ i.e. we can add as many kinds as we want in the future.
 
 Now we are ready to specify the HTTP API about file operations.
 
-- To **create** file, `POST` the path with query parameter `kind=file` and the file content.
+- To **create** a file, `POST` the path with query parameter `kind=file` and the file content.
 
   Note that, when file is used as HTTP request body,
   the `Content-Type` header should be `text/plain` for plaintext file,
@@ -199,7 +199,7 @@ Now we are ready to specify the HTTP API about file operations.
   Hello, I am Xie Yuheng.
   ```
 
-- To **read** file, `GET` the path with query parameter `kind=file`.
+- To **read** a file, `GET` the path with query parameter `kind=file`.
 
   For example, after the POST above, we can read file by:
 
@@ -211,7 +211,7 @@ Now we are ready to specify the HTTP API about file operations.
   based on the corresponding file extension,
   for example, `.txt` maps to `text/plain`.
 
-- To **update** file, `PUT` the path with query parameter `kind=file` and the file content.
+- To **update** a file, `PUT` the path with query parameter `kind=file` and the file content.
 
   For example:
 
@@ -221,7 +221,7 @@ Now we are ready to specify the HTTP API about file operations.
   Hello, I am Xie Yuheng from China.
   ```
 
-- To **delete** file, `DELETE` the path with query parameter `kind=file`.
+- To **delete** a file, `DELETE` the path with query parameter `kind=file`.
 
   ```
   DELETE users/xieyuheng/human.txt?kind=file
