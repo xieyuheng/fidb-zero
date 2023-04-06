@@ -1,4 +1,5 @@
 import { expect, test } from "vitest"
+import { responseHeaders } from "../../utils/responseHeaders"
 import { prepareTestServer } from "./prepareTestServer"
 
 test("database-server-file-crud", async ({ meta }) => {
@@ -25,38 +26,43 @@ test("database-server-file-crud", async ({ meta }) => {
       },
     )
 
-    // const headers = Object.fromEntries((response.headers as any).entries())
-
-    // console.log(headers)
-
+    const headers = responseHeaders(response)
+    expect(headers["content-type"]).toEqual("text/plain")
     expect(await response.text()).toEqual("hahaha!")
   }
 
-  // NOTE `kind=file` is optional.
+  {
+    // NOTE `kind=file` is optional.
 
-  expect(
-    await (
-      await fetch(new URL(`users/xieyuheng/haha.txt`, url), {
+    const response = await fetch(new URL(`users/xieyuheng/haha.txt`, url), {
+      method: "GET",
+      headers: {
+        authorization,
+      },
+    })
+
+    const headers = responseHeaders(response)
+    expect(headers["content-type"]).toEqual("text/plain")
+    expect(await response.text()).toEqual("hahaha!")
+  }
+
+  {
+    const response = await fetch(
+      new URL(`users/xieyuheng/haha.txt?kind=file`, url),
+      {
         method: "GET",
         headers: {
           authorization,
         },
-      })
-    ).text(),
-  ).toEqual("hahaha!")
+      },
+    )
 
-  expect(
-    new Uint8Array(
-      await (
-        await fetch(new URL(`users/xieyuheng/haha.txt?kind=file`, url), {
-          method: "GET",
-          headers: {
-            authorization,
-          },
-        })
-      ).arrayBuffer(),
-    ),
-  ).toEqual(new TextEncoder().encode("hahaha!"))
+    const headers = responseHeaders(response)
+    expect(headers["content-type"]).toEqual("text/plain")
+    expect(new Uint8Array(await response.arrayBuffer())).toEqual(
+      new TextEncoder().encode("hahaha!"),
+    )
+  }
 
   await fetch(new URL(`users/xieyuheng/haha.txt?kind=file`, url), {
     method: "DELETE",
@@ -65,27 +71,30 @@ test("database-server-file-crud", async ({ meta }) => {
     },
   })
 
-  expect(
-    (
-      await fetch(new URL(`users/xieyuheng/haha.txt?kind=file`, url), {
+  {
+    const response = await fetch(
+      new URL(`users/xieyuheng/haha.txt?kind=file`, url),
+      {
         method: "GET",
         headers: {
           authorization,
         },
-      })
-    ).status,
-  ).toEqual(404)
+      },
+    )
 
-  // NOTE `kind=file` is optional.
+    expect(response.status).toEqual(404)
+  }
 
-  expect(
-    (
-      await fetch(new URL(`users/xieyuheng/haha.txt`, url), {
-        method: "GET",
-        headers: {
-          authorization,
-        },
-      })
-    ).status,
-  ).toEqual(404)
+  {
+    // NOTE `kind=file` is optional.
+
+    const response = await fetch(new URL(`users/xieyuheng/haha.txt`, url), {
+      method: "GET",
+      headers: {
+        authorization,
+      },
+    })
+
+    expect(response.status).toEqual(404)
+  }
 })
