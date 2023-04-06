@@ -1,5 +1,3 @@
-use PUT instead of POST to create data
-
 # docs
 
 [manual] the-http-api -- about different kind of resources
