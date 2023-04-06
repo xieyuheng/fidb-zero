@@ -204,7 +204,7 @@ Now we are ready to specify the HTTP API about file operations.
   For example, after the POST above, we can read file by:
 
   ```
-  GET users/xieyuheng/human.txt
+  GET users/xieyuheng/human.txt?kind=file
   ```
 
   The `Content-Type` of the HTTP response will be setted
@@ -223,9 +223,15 @@ Now we are ready to specify the HTTP API about file operations.
 
 - To **delete** a file, `DELETE` the path with query parameter `kind=file`.
 
+  For example:
+
   ```
   DELETE users/xieyuheng/human.txt?kind=file
   ```
+
+Now, all data operations require us to write `kind=data`,
+and all file operations require us to write `kind=file`,
+we can improve this situation a little bit.
 
 - **Problem: 3.2** It is not convenient to always have to write
   `kind=data` and `kind=file`,
