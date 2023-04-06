@@ -1,5 +1,3 @@
-[db] `readData` -- all metadata should be optional
-
 use PUT instead of POST to create data
 
 # docs
