@@ -10,7 +10,7 @@ We will do this little by little.
 Firstly, the most basic four operations is the **CRUD**
 -- **C**reate, **R**ead, **U**pdate and **D**elete.
 
-- To **create** data, use `POST` the path and the data.
+- To **create** data, `POST` to the path with the data.
 
   For example, after the following `POST`s:
 
@@ -36,7 +36,7 @@ Firstly, the most basic four operations is the **CRUD**
   users/xieyuheng/projects/pomodoro/index.json
   ```
 
-- To **read** data, use `GET` and the path.
+- To **read** data, `GET` the path.
 
   For example, if we have the following data:
 
@@ -54,7 +54,7 @@ Firstly, the most basic four operations is the **CRUD**
   GET users/xieyuheng/projects/pomodoro
   ```
 
-- To **update** the whole data, use `PUT` the path and the data.
+- To **update** the whole data, `PUT` the path with the data.
 
   We first need to read the data to get `@revision`.
 
@@ -88,7 +88,7 @@ Firstly, the most basic four operations is the **CRUD**
   }
   ```
 
-- To **update** some properties of a data, use `PATCH` the path and the data.
+- To **update** some properties of a data, `PATCH` the path with the data.
 
   We first need to read the data to get `@revision`.
 
@@ -119,7 +119,7 @@ Firstly, the most basic four operations is the **CRUD**
   }
   ```
 
-- To **delete** data, use `DELETE` and the path.
+- To **delete** data, `DELETE` the path with the `@revision`.
 
   We first need to read the data to get `@revision`.
 
