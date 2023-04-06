@@ -1,4 +1,4 @@
-import { Data, DataSchema } from "../data"
+import { Data } from "../data"
 import type { Database } from "../database"
 import { NotFound } from "../errors/NotFound"
 import { isErrnoException } from "../utils/node/isErrnoException"
@@ -8,9 +8,7 @@ export async function dataGetOrFail(db: Database, path: string): Promise<Data> {
   const who = "dataGetOrFail"
 
   try {
-    const json = await readData(db, path)
-    const data = DataSchema.validate(json)
-    return data
+    return await readData(db, path)
   } catch (error) {
     if (isErrnoException(error) && error.code === "ENOENT") {
       throw new NotFound(`[${who}] path: ${path}`)

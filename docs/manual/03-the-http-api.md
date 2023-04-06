@@ -2,27 +2,35 @@
 title: The HTTP API
 ---
 
-Let's go through the CRUD.
+Let's go through the CRUD -- Create, Read, Update, and Delete.
 
-To **read** data in fidb via HTTP API.
+- To **create** data, use `PUT` the path and the data.
 
-Use `GET` and the path.
+  ```
 
-For example, if we have the following data:
+  ```
 
-```
-users/xieyuheng/index.json
-users/xieyuheng/projects/inner/index.json
-users/xieyuheng/projects/pomodoro/index.json
-```
+- To **read** data, use `GET` and the path.
 
-The `GET` requests would be:
+  For example, if we have the following data:
 
-```
-GET users/xieyuheng
-GET users/xieyuheng/projects/inner
-GET users/xieyuheng/projects/pomodoro
-```
+  ```
+  users/xieyuheng/index.json
+  users/xieyuheng/projects/inner/index.json
+  users/xieyuheng/projects/pomodoro/index.json
+  ```
+
+  The `GET` requests would be:
+
+  ```
+  GET users/xieyuheng
+  GET users/xieyuheng/projects/inner
+  GET users/xieyuheng/projects/pomodoro
+  ```
+
+- To **update** some properties of a data, use `PATCH` the path and the data.
+
+- To **update** the whole data, use `PUT` the path and the data.
 
 TODO
 
