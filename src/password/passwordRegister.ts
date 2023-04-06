@@ -1,10 +1,10 @@
 import { ty } from "@xieyuheng/ty"
 import { join } from "node:path"
 import type { Database } from "../database"
+import { dataCreate } from "../db/dataCreate"
 import { TokenPermission, TokenPermissionSchema } from "../token"
 import { passwordHash } from "../utils/node/password"
 import { randomHexString } from "../utils/randomHexString"
-import { dataCreate } from "./dataCreate"
 
 export type PasswordRegisterOptions = {
   memo: string

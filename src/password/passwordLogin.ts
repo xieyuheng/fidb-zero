@@ -1,11 +1,11 @@
 import { ty } from "@xieyuheng/ty"
 import { join } from "node:path"
 import type { Database } from "../database"
+import { dataFindAll } from "../db/dataFindAll"
 import { Unauthorized } from "../errors/Unauthorized"
 import { PasswordSchema } from "../password"
 import { tokenCreate } from "../token/tokenCreate"
 import { passwordCheck } from "../utils/node/password"
-import { dataFindAll } from "./dataFindAll"
 
 export type PasswordLoginOptions = {
   password: string

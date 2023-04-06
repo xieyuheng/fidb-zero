@@ -3,6 +3,11 @@ import type Http from "node:http"
 import { dirname } from "node:path"
 import * as Db from "../db"
 import { Unauthorized } from "../errors/Unauthorized"
+import {
+  passwordLogin,
+  PasswordLoginOptionsSchema,
+  passwordRegister,
+} from "../password"
 import { requestJsonObject } from "../server/requestJsonObject"
 import { requestKind } from "../server/requestKind"
 import { requestQuery } from "../server/requestQuery"
@@ -44,7 +49,7 @@ export async function handlePassword(
 
       const created = await Db.dataCreate(db, path, data)
 
-      await Db.passwordRegister(db, created["@path"], {
+      await passwordRegister(db, created["@path"], {
         memo: options.memo,
         password: options.password,
         permissions: config.permissions,
@@ -54,12 +59,10 @@ export async function handlePassword(
     }
 
     if (kind === "password-login") {
-      return Db.passwordLogin(
+      return passwordLogin(
         db,
         path,
-        Db.PasswordLoginOptionsSchema.validate(
-          await requestJsonObject(request),
-        ),
+        PasswordLoginOptionsSchema.validate(await requestJsonObject(request)),
       )
     }
   }

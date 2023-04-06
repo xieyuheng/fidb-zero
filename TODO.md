@@ -1,7 +1,5 @@
 # docs
 
-move `password*` from `db/` to `password/`
-
 [manual] the-http-api -- kind=file
 [manual] the-http-api -- kind=directory
 
