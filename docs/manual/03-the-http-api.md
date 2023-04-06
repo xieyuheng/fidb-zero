@@ -9,6 +9,8 @@ thus almost never need to write backend API code over database anymore.
 
 We will do this little by little.
 
+## Data Operations
+
 Firstly, the most basic four operations is the **CRUD**
 -- **C**reate, **R**ead, **U**pdate and **D**elete.
 
@@ -151,3 +153,46 @@ Firstly, the most basic four operations is the **CRUD**
     "@revision": "3f71a2d894180a2145ea7b05e2931e15"
   }
   ```
+
+## File Operations
+
+Since we are using file system as database,
+beside operations on JSON data files,
+we also want to operate on other kinds of files
+such as markdown, image, mp3 and so on.
+
+- **Problem 3.1:** How to distinguish kinds of resources referenced by a path?
+
+- **Solution 3.1:** We can add `kind=...` to the query string of a request,
+  where the value of `kind` explicitly denotes the kind of resource.
+
+  For examples, value can be `data`, `file`, `directory` and so on.
+
+  We require an implementation to view the value of `kind` as case insensitive,
+  so a user can write both `kind=Data` and `kind=data`.
+
+I feel good about this solution,
+because it is scalable,
+i.e. we can add as many kinds as we want in the future.
+
+Now we are ready to specify the HTTP API about file operations.
+
+TODO
+
+- **Problem: 3.2** It is not convenient to always have to write
+  `kind=data` and `kind=file`.
+
+- **Solution: 3.2** We can identify some situations
+  where it is unambiguous to omit `kind=...`.
+
+  It is unambiguous to omit `kind=file`,
+  if we are simply reading a file and the given `path`
+  is to an existing file (instead of a directory).
+
+  For `kind=data`, since it is the most used use case of our system,
+  we view it as the default when `kind` is omitted,
+  when the given `path` does not exist or the given path is to a directory.
+
+## Directory Operations
+
+TODO

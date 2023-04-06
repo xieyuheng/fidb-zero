@@ -4,13 +4,10 @@
 [manual] the-http-api -- kind=directory
 
 [manual] access-token
-
+[manual] config
 [manual] register-and-login
 [manual] indexing
 [manual] schema
-[manual] config
-
-- `rateLimits`
 
 [token] each directory can grant access to token owner
 
