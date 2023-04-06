@@ -1,4 +1,4 @@
-[database-server] `PUT` `kind=data` -- can also create data
+use PUT instead of POST to create data
 
 # docs
 
