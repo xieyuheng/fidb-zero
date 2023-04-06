@@ -41,37 +41,39 @@ is the inspiration and archetype of such system,
 and is also how such system end up been implemented
 at the early days of HTTP.
 
-Nowaday people use relational database and SQL,
+Nowaday people use relational database and SQL to implement HTTP API,
 but the most used relations between SQL data
-are `has one` and `has many`,
+are the one-to-one "has one" relation
+and the one-to-many "has many" relation,
 which are most naturally expressed by nested directories.
 
 For example:
 
 - A user _has many_ projects,
-  so we use the following directories:
+  so we give each user a subdirectory called "projects":
 
   ```
   /users/*/projects/*
   ```
 
 - A user _has one_ config,
-  so we might use the following directories:
+  so we give each user one subdirectory called "config":
 
   ```
   /users/*/config
   ```
 
-  Or we might just let `config` be a property of `user`,
+  We might also just let `config` be a property of `user`,
   as people might do in some document database.
 
 When designing a tool (such as API and formal language syntax),
 we should _optimize for the most used use case_.
 Thus using file system as database can be viewed as
-optimizing for `has one` and `has many` relations.
-The `many to many` relation can still be implemented by indexes,
-just like normal relational database.
-Since we optimized the tool for the most used use case,
+optimizing for "has one" and "has many" relations.
+The _many-to-many_ relation, which is about graph instead of tree,
+can still be implemented by indexes,
+just like how normal relational database do.
+Since we are optimizing the tool for the most used use case,
 the tool feels so handy and easy to understand.
 
 What if we use file system as database?
@@ -85,10 +87,10 @@ Before we begin, let's solve the most import problem first.
 
 - **Solution 0:** This project is about using file system as database,
   specially using the subdirectory relation to represent
-  `has one` and `has many` relations between data.
+  "has one" and "has many" relations between data.
 
-  How about `FiDB`?
+  How about **FiDB**?
 
   **Fi**le system as **DB**!
 
-I kinda like it already :)
+FiDB, fidb, sounds kinda cute, and I kinda like it already :)

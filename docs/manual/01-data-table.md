@@ -31,7 +31,7 @@ the familiar concept of _data table_.
 
 This seems is the most simple solution, but we can not use it,
 because we want to use subdirectory relation
-to represent `has one` and `has many` relations,
+to represent "has one" and "has many" relations,
 while a file can not have any subdirectory at all.
 
 - **Solution 1.1.B:** Using a directory of directories to represent a table,
@@ -60,24 +60,24 @@ Note that, different from **Solution 1.1.A**,
 in **Solution 1.1.B** a primary key does not have the `.json` file extension,
 this is a good feature.
 
-We talked about representing `has one` and `has many` relations
+We talked about representing "has one" and "has many" relations
 many many times already, let's articulate it as a problem
 and solve it once for all.
 
 By the way, the form of problem and solution is learned from a book called [Scalable C](https://readonly.link/books/https://books.readonly.link/scalable-c/book.json).
 
-- **Problem:** How should we represent `has one` and `has many` relations in file system?
+- **Problem:** How should we represent "has one" and "has many" relations in file system?
 
 Actually we should view them as two different problems,
 with the condition that the solutions of them must feel symmetric together.
 
-- **Problem 1.2:** How should we represent `has many` relations in file system?
+- **Problem 1.2:** How should we represent "has many" relations in file system?
 
 - **Solution 1.2:** The data belong to another data,
   should be represented as subdirectory belong to the corresponding directory.
 
   For example, "a user has many projects",
-  then each user has a subdirectory called `projects`.
+  then each user has a subdirectory called "projects".
 
   The pattern of directories will be:
 
@@ -99,7 +99,7 @@ with the condition that the solutions of them must feel symmetric together.
   users/readonlylink/projects/x-markdown/index.json
   ```
 
-- **Problem 1.3:** How should we represent `has one` relations in file system?
+- **Problem 1.3:** How should we represent "has one" relations in file system?
 
 - **Solution 1.3:** The data belong to another data,
   should be represented as subdirectory belong to the corresponding directory.
@@ -107,7 +107,7 @@ with the condition that the solutions of them must feel symmetric together.
   (This principle is the same as **Solution 1.2** for **Problem 1.2**.)
 
   For example, "a user has one config",
-  then each user has a subdirectory called `config`.
+  then each user has a subdirectory called "config".
 
   The pattern of directories will be:
 
