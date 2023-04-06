@@ -2,12 +2,38 @@
 title: The HTTP API
 ---
 
-Let's go through the CRUD -- Create, Read, Update, and Delete.
+The aim is to enable a developer to describe rules about HTTP API declaratively,
+thus almost never need to write backend API code over database anymore.
 
-- To **create** data, use `PUT` the path and the data.
+We will do this little by little.
+
+Firstly, the most basic four operations is the **CRUD**
+-- **C**reate, **R**ead, **U**pdate and **D**elete.
+
+- To **create** data, use `POST` the path and the data.
+
+  For example, after the following `POST`s:
 
   ```
+  POST users/xieyuheng
 
+  { "name": "Xie Yuheng" }
+
+  POST users/xieyuheng/projects/inner
+
+  { "name": "inner", "description": "My inner universe." }
+
+  POST users/xieyuheng/projects/pomodoro
+
+  { "name": "Pomodoro", "description": "🍅 A Pomodoro timer." }
+  ```
+
+  We will create the following data files:
+
+  ```
+  users/xieyuheng/index.json
+  users/xieyuheng/projects/inner/index.json
+  users/xieyuheng/projects/pomodoro/index.json
   ```
 
 - To **read** data, use `GET` and the path.
@@ -28,13 +54,98 @@ Let's go through the CRUD -- Create, Read, Update, and Delete.
   GET users/xieyuheng/projects/pomodoro
   ```
 
-- To **update** some properties of a data, use `PATCH` the path and the data.
-
 - To **update** the whole data, use `PUT` the path and the data.
 
-TODO
+  We first need to read the data to get `@revision`.
 
-The aim is to enable a developer to describe rules about HTTP API declaratively,
-thus almost never need to write backend API code over database anymore.
+  ```
+  GET users/xieyuheng
+  ```
 
-TODO
+  Result:
+
+  ```
+  {
+    "name": "Xie Yuheng",
+    "@path": "users/xieyuheng",
+    "@revision": "1b0d4dc0b6e68853aa0005b03c059a47",
+    "@createdAt": 1677377821957,
+    "@updatedAt": 1679424624733,
+  }
+  ```
+
+  Update the whole data:
+
+  ```
+  PUT users/xieyuheng
+
+  {
+    "name": "谢宇恒",
+    "@path": "users/xieyuheng",
+    "@revision": "1b0d4dc0b6e68853aa0005b03c059a47",
+    "@createdAt": 1677377821957,
+    "@updatedAt": 1679424624733
+  }
+  ```
+
+- To **update** some properties of a data, use `PATCH` the path and the data.
+
+  We first need to read the data to get `@revision`.
+
+  ```
+  GET users/xieyuheng
+  ```
+
+  Result:
+
+  ```
+  {
+    "name": "谢宇恒",
+    "@path": "users/xieyuheng",
+    "@revision": "2b983c7a51376a61747eb9d79da13c77",
+    "@createdAt": 1677377821957,
+    "@updatedAt": 1679424824733
+  }
+  ```
+
+  Update only some properties:
+
+  ```
+  PATCH users/xieyuheng
+
+  {
+    "@revision": "2b983c7a51376a61747eb9d79da13c77",
+    "country": "China"
+  }
+  ```
+
+- To **delete** data, use `DELETE` and the path.
+
+  We first need to read the data to get `@revision`.
+
+  ```
+  GET users/xieyuheng
+  ```
+
+  Result:
+
+  ```
+  {
+    "name": "谢宇恒",
+    "country": "China",
+    "@path": "users/xieyuheng",
+    "@revision": "3f71a2d894180a2145ea7b05e2931e15",
+    "@createdAt": 1677377821957,
+    "@updatedAt": 1679425024733
+  }
+  ```
+
+  Delete the data:
+
+  ```
+  DELETE users/xieyuheng
+
+  {
+    "@revision": "3f71a2d894180a2145ea7b05e2931e15"
+  }
+  ```

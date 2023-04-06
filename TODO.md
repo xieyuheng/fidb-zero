@@ -1,7 +1,5 @@
 # docs
 
-[manual] the-http-api -- about different kind of resources
-
 [manual] access-token
 
 - rename `permissionRecord` to `permissions`
