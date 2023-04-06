@@ -21,9 +21,8 @@ The most beautiful definition I know is by Pieter Hintjens:
 >
 > -- Pieter Hintjens
 
-This is actually what URL and HTTP is designed for.
-
-- Although people had not yet discovered JSON at that time.
+This is actually what URL and HTTP is designed for
+(Although people had not yet discovered JSON at that time).
 
 > It is tempting to think of resource identifiers as remote file
 > system pathnames and of representations as being a copy of the
@@ -31,6 +30,16 @@ This is actually what URL and HTTP is designed for.
 > implemented. However, there are no such limitations in practice.
 >
 > - [RFC 9110 -- HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html).
+
+A resource identifier is a URL (or say URI) that denotes a resource,
+while resource is a abstract concept which might have many kinds of implementations
+and a representation of a resource is one implementation of concrete format
+that programmers can work with.
+We see that file system,
+with it's pathname and files,
+is the inspiration and archetype of such system,
+and is also how such system end up been implemented
+at the early days of HTTP.
 
 Nowaday people use relational database and SQL,
 but the most used relations between SQL data
