@@ -5,7 +5,7 @@ import { prepareTestServer } from "./prepareTestServer"
 test("database-server-file-crud", async ({ meta }) => {
   const { url, authorization } = await prepareTestServer(meta)
 
-  await fetch(new URL(`users/xieyuheng/haha.txt?kind=file`, url), {
+  await fetch(new URL(`users/xieyuheng/human.txt?kind=file`, url), {
     method: "POST",
     headers: {
       authorization,
@@ -17,7 +17,7 @@ test("database-server-file-crud", async ({ meta }) => {
 
   {
     const response = await fetch(
-      new URL(`users/xieyuheng/haha.txt?kind=file`, url),
+      new URL(`users/xieyuheng/human.txt?kind=file`, url),
       {
         method: "GET",
         headers: {
@@ -34,7 +34,7 @@ test("database-server-file-crud", async ({ meta }) => {
   {
     // NOTE `kind=file` is optional.
 
-    const response = await fetch(new URL(`users/xieyuheng/haha.txt`, url), {
+    const response = await fetch(new URL(`users/xieyuheng/human.txt`, url), {
       method: "GET",
       headers: {
         authorization,
@@ -48,7 +48,7 @@ test("database-server-file-crud", async ({ meta }) => {
 
   {
     const response = await fetch(
-      new URL(`users/xieyuheng/haha.txt?kind=file`, url),
+      new URL(`users/xieyuheng/human.txt?kind=file`, url),
       {
         method: "GET",
         headers: {
@@ -64,7 +64,7 @@ test("database-server-file-crud", async ({ meta }) => {
     )
   }
 
-  await fetch(new URL(`users/xieyuheng/haha.txt?kind=file`, url), {
+  await fetch(new URL(`users/xieyuheng/human.txt?kind=file`, url), {
     method: "DELETE",
     headers: {
       authorization,
@@ -73,7 +73,7 @@ test("database-server-file-crud", async ({ meta }) => {
 
   {
     const response = await fetch(
-      new URL(`users/xieyuheng/haha.txt?kind=file`, url),
+      new URL(`users/xieyuheng/human.txt?kind=file`, url),
       {
         method: "GET",
         headers: {
@@ -88,7 +88,7 @@ test("database-server-file-crud", async ({ meta }) => {
   {
     // NOTE `kind=file` is optional.
 
-    const response = await fetch(new URL(`users/xieyuheng/haha.txt`, url), {
+    const response = await fetch(new URL(`users/xieyuheng/human.txt`, url), {
       method: "GET",
       headers: {
         authorization,
