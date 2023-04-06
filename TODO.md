@@ -1,5 +1,13 @@
 # docs
 
+[diary] 2023-04-06-my-json-schema.md
+
+move `token*` from `db/` to `token/`
+move `password*` from `db/` to `password/`
+
+[manual] the-http-api -- kind=file
+[manual] the-http-api -- kind=directory
+
 [manual] access-token
 
 - rename `permissionRecord` to `permissions`
@@ -92,6 +100,4 @@ fidb:users/xieyuheng
 fidb+https://localhost:3000/users/xieyuheng
 ```
 
-# schema
-
-use json to describe schema of json data
+# x-schema
