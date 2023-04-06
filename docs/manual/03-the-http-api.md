@@ -4,8 +4,9 @@ title: The HTTP API
 
 We want to use [HTTP API](https://www.rfc-editor.org/rfc/rfc9110) to operate data in FiDB.
 
-The aim is to enable a developer to describe rules about HTTP API declaratively,
-thus almost never need to write backend API code over database anymore.
+The aim is to enable a developer to describe rules about HTTP API,
+and let fidb dynamicly serves the HTTP API based on the rules,
+thus a developer almost never need to write backend API code over database again.
 
 We will do this little by little.
 
