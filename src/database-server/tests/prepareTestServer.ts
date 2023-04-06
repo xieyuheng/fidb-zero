@@ -2,9 +2,9 @@ import Http from "node:http"
 import { handle } from "../../database-server"
 import { prepareTestDb } from "../../db/tests/prepareTestDb"
 import { createRequestListener } from "../../server/createRequestListener"
-import { serverListen } from "../../server/serverListen"
 import { tokenCreate } from "../../token"
 import { findPort } from "../../utils/node/findPort"
+import { serverListen } from "../../utils/node/serverListen"
 
 export async function prepareTestServer(options: { name: string }) {
   const { db } = await prepareTestDb(options)
