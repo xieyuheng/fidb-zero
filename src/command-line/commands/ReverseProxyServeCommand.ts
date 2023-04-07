@@ -3,7 +3,6 @@ import ty from "@xieyuheng/ty"
 import { handle } from "../../reverse-proxy-server"
 import { createContext } from "../../reverse-proxy-server/Context"
 import { createRequestListener } from "../../server/createRequestListener"
-import { maybeTlsOptionsFromArgv } from "../../server/createServer"
 import { startServer } from "../../server/startServer"
 import { changeLogger, log } from "../../utils/log"
 import { findPort } from "../../utils/node/findPort"
@@ -53,7 +52,13 @@ export class ReverseProxyServeCommand extends Command<Args> {
 
     const who = this.name
 
-    const tls = maybeTlsOptionsFromArgv(argv)
+    const tls =
+      argv["tls-cert"] && argv["tls-key"]
+        ? {
+            certPath: argv["tls-cert"],
+            keyPath: argv["tls-key"],
+          }
+        : undefined
 
     if (typeof argv.port === "number" || argv.port === undefined) {
       const channelServerPort = await findPort(10000)

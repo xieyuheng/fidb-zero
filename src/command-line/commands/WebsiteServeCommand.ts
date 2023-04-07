@@ -2,7 +2,6 @@ import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
 import * as ReverseProxyClient from "../../reverse-proxy-client"
 import { createRequestListener } from "../../server/createRequestListener"
-import { maybeTlsOptionsFromArgv } from "../../server/createServer"
 import { startServer } from "../../server/startServer"
 import { changeLogger, log } from "../../utils/log"
 import { handle } from "../../website-server"
@@ -73,7 +72,13 @@ export class WebsiteServeCommand extends Command<Args> {
     })
 
     const requestListener = createRequestListener({ ctx, handle })
-    const tls = maybeTlsOptionsFromArgv(argv)
+    const tls =
+      argv["tls-cert"] && argv["tls-key"]
+        ? {
+            certPath: argv["tls-cert"],
+            keyPath: argv["tls-key"],
+          }
+        : undefined
 
     const { url } = await startServer(requestListener, {
       hostname: argv.hostname,

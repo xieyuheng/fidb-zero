@@ -8,18 +8,6 @@ export type TlsOptions = {
   keyPath: string
 }
 
-export function maybeTlsOptionsFromArgv(argv: {
-  "tls-cert"?: string
-  "tls-key"?: string
-}): TlsOptions | undefined {
-  return argv["tls-cert"] && argv["tls-key"]
-    ? {
-        certPath: argv["tls-cert"],
-        keyPath: argv["tls-key"],
-      }
-    : undefined
-}
-
 type Options = {
   tls?: TlsOptions
 }

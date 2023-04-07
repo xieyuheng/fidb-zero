@@ -1,7 +1,5 @@
-inline `maybeTlsOptionsFromArgv`
-
-move website-server to it's own project
-move reverse-proxy to it's own project
+move `website-server` to it's own project
+move `reverse-proxy` to it's own project
 
 # docs
 
