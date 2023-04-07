@@ -237,7 +237,8 @@ we can improve this situation a little bit.
   `kind=data` and `kind=file`,
   specially we do not want to write `kind=file`
   when using web apps that dynamicly load content from URL
-  -- like [readonly.link](https://readonly.link) and [mimor.app](https://mimor.app).
+  -- like [readonly.link](https://readonly.link)
+  and [mimor.app](https://mimor.app).
 
 - **Solution: 3.2** We can identify some situations
   where it is unambiguous to omit `kind=...`.

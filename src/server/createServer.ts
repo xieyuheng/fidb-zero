@@ -25,14 +25,8 @@ type Options = {
 }
 
 type Result =
-  | {
-      scheme: "http"
-      server: Http.Server
-    }
-  | {
-      scheme: "https"
-      server: Https.Server
-    }
+  | { scheme: "http"; server: Http.Server }
+  | { scheme: "https"; server: Https.Server }
 
 export async function createServer(
   requestListener: RequestListener,

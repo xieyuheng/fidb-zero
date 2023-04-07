@@ -1,7 +1,7 @@
-# fidb reverse-proxy:connect
+inline `maybeTlsOptionsFromArgv`
 
-other command should reuse `ReverseProxyConnectCommand`
-`ReverseProxyClient.connect` take `localURL`
+move website-server to it's own project
+move reverse-proxy to it's own project
 
 # docs
 
@@ -26,8 +26,6 @@ web server and reverse-proxy should be its own project
 [reverse-proxy] support cname -- test this by mimor.app
 [reverse-proxy] `brokerPrepareWorker` -- error on not find service
 [reverse-proxy] rename channel to service -- little by little -- see about the use of the name
-
-# fidb router
 
 # fidb website:deploy
 
