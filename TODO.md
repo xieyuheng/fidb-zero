@@ -1,3 +1,8 @@
+# fidb reverse-proxy:connect
+
+other command should reuse `ReverseProxyConnectCommand`
+`ReverseProxyClient.connect` take `localURL`
+
 # docs
 
 [manual] the-http-api -- `kind=directory`
@@ -15,10 +20,6 @@ add `createdAt` and `updatedAt` to file metadata
 # refactor
 
 web server and reverse-proxy should be its own project
-
-# fidb reverse-proxy:connect
-
-`fidb reverse-proxy:connect` -- can be used without `fidb website:serve`
 
 # reverse-proxy -- by zmq
 
