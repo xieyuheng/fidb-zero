@@ -1,5 +1,5 @@
-move `website-server` to it's own project
-move `reverse-proxy` to it's own project
+remove `website-server` -- it should have it's own project
+remove `reverse-proxy` -- it should have it's own project
 
 # docs
 
