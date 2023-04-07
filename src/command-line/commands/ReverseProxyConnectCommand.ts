@@ -13,7 +13,7 @@ type Opts = {
 export class ReverseProxyConnectCommand extends Command<Args> {
   name = "reverse-proxy:connect"
 
-  description = "Connect a http server to a reverse-proxy"
+  description = "Connect a http server to a reverse proxy"
 
   args = { path: ty.string() }
   opts = {
@@ -27,7 +27,7 @@ export class ReverseProxyConnectCommand extends Command<Args> {
     const { blue } = this.colors
 
     return [
-      `The ${blue(this.name)} command takes a local url to a http server and a public url of reverse-proxy server,`,
+      `The ${blue(this.name)} command takes a local url to a http server and a public url of reverse proxy server,`,
       `and connect them.`,
       ``,
       blue(`  ${runner.name} ${this.name} --local-url http://localhost:8000 --public-url https://pomodoro.fidb.app`),
