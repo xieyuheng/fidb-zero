@@ -17,7 +17,7 @@ fix the use of `password.permissions`
     loginDirectories: { [pattern]: { permissions: .. } }
     ```
 
-permission with kind prefix
+operation with kind prefix
 
 ```
 data:post
