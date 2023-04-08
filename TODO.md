@@ -1,7 +1,5 @@
 # docs
 
-`Token` has optional `owner`
-
 fix the use of `password.permissions`
 
 permission with kind prefix
