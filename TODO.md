@@ -1,5 +1,3 @@
-book.json
-
 # docs
 
 fix the use of `password.permissions`

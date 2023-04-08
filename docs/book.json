@@ -1,0 +1,22 @@
+{
+  "kind": "Book",
+  "title": "FiDB Manual",
+  "subtitle": "What if we use file system as database?",
+  "version": "0.0.1",
+  "authors": ["Xie Yuheng"],
+  "date": "2023",
+  "src": "manual",
+  "contents": [
+    "00-intro.md",
+    "01-data-table.md",
+    "02-metadata-properties.md",
+    "03-the-http-api.md",
+    "04-access-token.md",
+    "05-register-and-login.md",
+    "06-schema.md",
+    "07-indexing.md",
+    "08-command-line.md",
+    "09-management.md",
+    "appendix-a-faq.md"
+  ]
+}
