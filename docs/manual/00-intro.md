@@ -99,4 +99,4 @@ I kinda like it already :)
 
 The source code of this **FiDB** project is on [GitHub](https://github.com/fidb-official/fidb), and the source code of this manual is in the `docs/` directory of the repo.
 
-Welcame feedback.
+Welcome feedback.

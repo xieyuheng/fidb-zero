@@ -2,6 +2,21 @@
 
 fix the use of `password.permissions`
 
+- current each password has permissions and generate token
+  with this permissions to this directory/\*\*,
+  and the permissions of a password is given by authDirectories config.
+
+- conditions:
+
+  - any data directory that has a password can be used to do password login.
+  - upon a password login a token is generated and return in response.
+  - the permissions of login token can be configed.
+  - maybe use password-login-strategies.json to do the config.
+
+    ```
+    loginDirectories: { [pattern]: { permissions: .. } }
+    ```
+
 permission with kind prefix
 
 ```
