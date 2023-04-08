@@ -187,3 +187,45 @@ Here is how I understand them:
     ]
   }
   ```
+
+- **Problem 4.5:** What if a user want to grant permissions
+  to operate on his/hers non-public data
+  to some other users?
+
+- **Solution 4.5:** A user can only grant permissions to other users,
+  but not to tokens, thus each token can optionally has an `owner` property
+  that point to the path of the user (or any data) that owns this token.
+
+  A user directory can have a `granted-permissions.json` config file,
+  that represents who his/her want to grant permissions to.
+
+  For example, the user `readonlylink` want to
+  grant some permissions to `xieyuheng`:
+
+  ```
+  [
+    {
+      "grantee": "users/xieyuheng",
+      "permissions": {
+        "users/readonlylink/**": [
+          "file:get",
+          "file:put",
+          "file:delete",
+          "file-metadata:get",
+          "directory:post",
+          "directory:get",
+          "directory:delete"
+        ]
+      }
+    },
+    ...
+  ]
+  ```
+
+  Of course `readonlylink` must have permissions to the targets of the grant,
+  this also means that we must be able to know `readonlylink`'s permissions,
+  currently we can not do this. TODO
+
+  If a token is not permitted to operate on a resource,
+  `granted-permissions.json` is used to decide whether the token's `owner`
+  is granted permissions to operate on this resource.
