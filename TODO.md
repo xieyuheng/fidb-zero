@@ -19,22 +19,9 @@ fix the use of `password.permissions`
 
 operation with kind prefix
 
-```
-data:post
-data:get
-data:put
-data:patch
-data-find:get
-directory:get
-directory:post
-file:get
-file:put
-file-metadata:get
-```
-
 default token -- when no token is provided
 
-[manual] access-token -- path patterns and permissions
+[manual] access-token -- user be able to grant access to token owner
 [manual] register-and-login
 [manual] schema
 [manual] indexing

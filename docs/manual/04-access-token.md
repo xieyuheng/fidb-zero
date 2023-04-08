@@ -12,21 +12,20 @@ Here is how I understand them:
 
 - Access control is about
   using an access token to declare "I am authorized",
-  while the token maps to a list of permitted operations.
+  while the token maps to a list of permitted operations,
+  and each potential target of operation has it's own list of permitted operations.
 
 - Login is about issuing access token to a user.
-
   Specially, password login is about issuing access token to a user
   who can provide the right password.
 
 - Register is about preparing a user for later login.
-
   Specially, password register is about setting up the password for a user.
 
 - **Problem 4.1:** How should we map a token to permissions?
 
-- **Solution 4.1:** We tokens as data, in a preserved data table
-  (a directory) -- `tokens/`.
+- **Solution 4.1:** We store tokens as data,
+  in a preserved `tokens` table (a directory).
 
   For example:
 
@@ -36,27 +35,105 @@ Here is how I understand them:
   ...
   ```
 
-  Where each token as a `permissions` property.
+  Where each token has a `permissions` property.
 
 - **Problem 4.2:** How should we represent permissions?
 
 - **Solution 4.3:** We use a record (a JSON object) to represent permissions,
   where the key is a path pattern, and the value is an array of operations.
 
-  For example:
+  An operation is composed of
+  a kind parameter of HTTP API
+  and a HTTP method
+  (both are case insensitive):
+
+  ```
+  <kind-parameter>:<http-method>
+  ```
+
+  Example operations:
+
+  ```
+  data:post
+  data:get
+  data:put
+  data:patch
+  data:delete
+  data-find:get
+  file:get
+  file:put
+  file:delete
+  file-metadata:get
+  directory:post
+  directory:get
+  directory:delete
+  ```
+
+  We use the [`micromatch`](https://github.com/micromatch/micromatch) wildcard and glob matching library for our path pattern.
+
+  For example, we want to have an admin token
+  that can do everything to every directories.
+  The permissions would be:
 
   ```
   {
-    "**": []
+    "**": [
+      "data:post",
+      "data:get",
+      "data:put",
+      "data:patch",
+      "data:delete",
+      "data-find:get",
+      "file:get",
+      "file:put",
+      "file:delete",
+      "file-metadata:get",
+      "directory:post",
+      "directory:get",
+      "directory:delete"
+    ]
   }
   ```
 
-  TODO
+  For another example, when a user logged in,
+  we want to give him/her a token
+  that permits him/her to read and write his/hers own directory
+  but only permits him/her to read all other users' `public` directories.
 
-- **Problem 4.3:** How should a user use token?
+  Let's just suppose the user is me, and my username is `xieyuheng`.
+  The permissions would be:
+
+  ```
+  {
+    "users/xieyuheng/**": [
+      "data:post",
+      "data:get",
+      "data:put",
+      "data:patch",
+      "data:delete",
+      "data-find:get",
+      "file:get",
+      "file:put",
+      "file:delete",
+      "file-metadata:get",
+      "directory:post",
+      "directory:get",
+      "directory:delete"
+    ],
+    "users/*/public/**": [
+      "data:get",
+      "data-find:get",
+      "file:get",
+      "file-metadata:get",
+      "directory:get"
+    ]
+  }
+  ```
+
+- **Problem 4.3:** How should a user use a token?
 
 - **Solution 4.3:** When sending a HTTP request,
-  a user (a client) should add the token to
+  a user should add the token to
   the [`Authorization` HTTP header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization).
 
   The syntax of this header is:
@@ -75,6 +152,27 @@ Here is how I understand them:
   ```
 
   If no token is sent, a default token
-  with default permissions will be used.
+  with default `permissions` will be used.
 
-TODO
+- **Problem 4.4:** How to config the default `permissions`?
+
+- **Solution 4.4:** The most direct and minimal solution
+  is to use a `default-permissions.json` file
+  at the root of the database directory,
+  which contains the value of the `permissions`
+
+  For example, suppose we want all not logged in visitors
+  to be able to read all users public data.
+  The permissions would be:
+
+  ```
+  {
+    "users/*/public/**": [
+      "data:get",
+      "data-find:get",
+      "file:get",
+      "file-metadata:get",
+      "directory:get"
+    ]
+  }
+  ```
