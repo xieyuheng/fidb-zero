@@ -93,4 +93,4 @@ Before we begin, let's solve the most import problem first.
 
   **Fi**le system as **DB**!
 
-FiDB, fidb, sounds kinda cute, and I kinda like it already :)
+I kinda like it already :)
