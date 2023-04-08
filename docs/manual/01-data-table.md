@@ -64,8 +64,6 @@ We talked about representing "has one" and "has many" relations
 many many times already, let's articulate it as a problem
 and solve it once for all.
 
-By the way, the form of problem and solution is learned from a book called [Scalable C](https://readonly.link/books/https://books.readonly.link/scalable-c/book.json).
-
 - **Problem:** How should we represent "has one" and "has many" relations in file system?
 
 Actually we should view them as two different problems,

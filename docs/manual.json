@@ -8,7 +8,8 @@
   "main": "00-intro.md",
   "sections": {
     "default": [
-      "00-intro.md",
+      "00.0-faq.md",
+      "00.1-intro.md",
       "01-data-table.md",
       "02-metadata-properties.md",
       "03-the-http-api.md",

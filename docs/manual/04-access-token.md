@@ -24,3 +24,7 @@ Here is how I understand them:
   Specially, password register is about setting up the password for a user.
 
 TODO
+
+- How should we map a token to permissions?
+
+- How should a user use token?
