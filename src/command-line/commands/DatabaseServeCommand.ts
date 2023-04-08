@@ -12,7 +12,6 @@ type Opts = {
   port?: number
   "tls-cert"?: string
   "tls-key"?: string
-  "public-url"?: string
   logger?: string
 }
 
@@ -27,7 +26,6 @@ export class DatabaseServeCommand extends Command<Args> {
     port: ty.optional(ty.number()),
     "tls-cert": ty.optional(ty.string()),
     "tls-key": ty.optional(ty.string()),
-    "public-url": ty.optional(ty.string()),
     logger: ty.optional(ty.string()),
   }
 
