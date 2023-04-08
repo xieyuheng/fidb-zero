@@ -32,39 +32,39 @@ is actually what URL and HTTP is designed for
 >
 > -- [RFC 9110 -- HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html).
 
-A resource identifier is a URL (or say URI) that denotes a resource,
-while resource is a abstract concept which might have many kinds of implementations
-and a representation of a resource is one implementation of concrete format
+A resource identifier is a URL (or say a URI) that denotes a resource,
+while resource is an abstract concept which might have many kinds of implementations
+and a representation of resource is an implementation of resource in concrete format
 that programmers can work with.
 We see that file system,
-with it's pathname and files,
-is the inspiration and archetype of such system,
-and is also how such system end up been implemented
-at the early days of HTTP.
+with it's pathnames and files,
+is both the inspiration and the archetype of such system,
+and it is also how many such systems end up been implemented
+specially at the early days of HTTP.
 
 Nowaday people use relational database and SQL to implement HTTP API,
 but the most used relations between SQL data
-are the one-to-one "has one" relation
-and the one-to-many "has many" relation,
+are the _one-to-one "has one"_ relation
+and the _one-to-many "has many"_ relation,
 which are most naturally expressed by nested directories.
 
-For example:
+For examples:
 
 - A user _has many_ projects,
-  so we give each user a subdirectory called "projects":
+  so we give each user a `projects` subdirectory:
 
   ```
   /users/*/projects/*
   ```
 
 - A user _has one_ config,
-  so we give each user one subdirectory called "config":
+  so we give each user a `config` subdirectory:
 
   ```
   /users/*/config
   ```
 
-  We might also just let `config` be a property of `user`,
+  We might also just let `config` be a property of `user` data,
   as people might do in some document database.
 
 When designing a tool (such as API and formal language syntax),
@@ -73,9 +73,9 @@ Thus using file system as database can be viewed as
 optimizing for "has one" and "has many" relations.
 The _many-to-many_ relation, which is about graph instead of tree,
 can still be implemented by indexes,
-just like how normal relational database do.
-Since we are optimizing the tool for the most used use case,
-the tool feels so handy and easy to understand.
+just like how normal relational databases do.
+Since we are optimizing our tool for the most used use case,
+the tool feels very handy and easy to understand.
 
 What if we use file system as database?
 
@@ -86,9 +86,7 @@ Before we begin, let's solve the most import problem first.
 
 - **Problem 0:** How should we name this project?
 
-- **Solution 0:** This project is about using file system as database,
-  specially using the subdirectory relation to represent
-  "has one" and "has many" relations between data.
+- **Solution 0:** This project is about using file system as database.
 
   How about **FiDB**?
 
