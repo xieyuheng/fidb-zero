@@ -1,5 +1,3 @@
-remove unused dependencies
-
 # docs
 
 [manual] the-http-api -- `kind=directory`
