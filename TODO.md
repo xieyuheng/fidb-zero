@@ -35,10 +35,11 @@ file-metadata:get
 default token -- when no token is provided
 
 [manual] access-token -- path patterns and permissions
-[manual] config
 [manual] register-and-login
-[manual] indexing
 [manual] schema
+[manual] indexing
+[manual] command-line
+[manual] management
 
 [token] each directory can grant access to token owner
 
