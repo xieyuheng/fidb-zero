@@ -11,7 +11,7 @@ read and write data represented in file system.
 
 What is a protocol?
 
-The most beautiful definition I know is by Pieter Hintjens:
+The most beautiful definition I know of is by Pieter Hintjens:
 
 > A protocol is a kind of contract, an agreement that lets different
 > teams in different times and places write code that is guaranteed to
@@ -21,8 +21,9 @@ The most beautiful definition I know is by Pieter Hintjens:
 >
 > -- Pieter Hintjens
 
-This is actually what URL and HTTP is designed for
-(Although people had not yet discovered JSON at that time).
+In a sense, "file system as database"
+is actually what URL and HTTP is designed for
+(although people had not yet discovered JSON at that time).
 
 > It is tempting to think of resource identifiers as remote file
 > system pathnames and of representations as being a copy of the
