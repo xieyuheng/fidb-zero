@@ -210,6 +210,9 @@ We use `kind=data-find` for this operation.
   ]
   ```
 
+  We will talk about how to use indexes to make query more efficient
+  in later chapters.
+
 ## File Operations
 
 Since we are using file system as database,
