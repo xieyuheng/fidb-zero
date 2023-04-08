@@ -1,13 +1,13 @@
 import { Schema, ty } from "@xieyuheng/ty"
-import { TokenPermission, TokenPermissionSchema } from "../token"
+import { Operation, OperationSchema } from "../token"
 
 export type AuthDirectoryConfig = {
-  permissions: Array<TokenPermission>
+  permissions: Array<Operation>
 }
 
 export const AuthDirectoryConfigSchema: Schema<AuthDirectoryConfig> = ty.object(
   {
-    permissions: ty.array(TokenPermissionSchema),
+    permissions: ty.array(OperationSchema),
   },
 )
 

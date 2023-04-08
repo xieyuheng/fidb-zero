@@ -1,12 +1,12 @@
 import type { Database } from "../database"
 import { dataCreate } from "../db/dataCreate"
-import type { TokenPermissionRecord } from "../token"
 import { randomTokenName } from "../token/randomTokenName"
+import { Operation } from "./Token"
 
 export async function tokenCreate(
   db: Database,
   options: {
-    permissions: TokenPermissionRecord
+    permissions: Record<string, Array<Operation>>
   },
 ): Promise<string> {
   const tokenName = randomTokenName()

@@ -1,10 +1,10 @@
 import { globMatch } from "../utils/globMatch"
-import type { Token, TokenPermission } from "./Token"
+import type { Operation, Token } from "./Token"
 
 export function tokenCheck(
   token: Token,
   path: string,
-  name: TokenPermission,
+  name: Operation,
 ): boolean {
   for (const [pattern, names] of Object.entries(token.permissions)) {
     if (globMatch(pattern, path)) {

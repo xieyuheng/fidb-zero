@@ -1,6 +1,27 @@
 # docs
 
-[manual] access-token -- path patterns and scoped permissions
+`Token` has optional `owner`
+
+fix the use of `password.permissions`
+
+permission with kind prefix
+
+```
+data:post
+data:get
+data:put
+data:patch
+data-find:get
+directory:get
+directory:post
+file:get
+file:put
+file-metadata:get
+```
+
+default token -- when no token is provided
+
+[manual] access-token -- path patterns and permissions
 [manual] config
 [manual] register-and-login
 [manual] indexing
@@ -28,19 +49,6 @@ if we have some scripts to generate database and datasets.
 
 [database-server] `handleEmail` -- `kind=email-register`
 [database-server] `handleEmail` -- `kind=email-login`
-
-# token with scope
-
-```
-data:read
-data:update
-
-directory:read
-directory:update
-
-file:read
-file:update
-```
 
 # indexing
 
