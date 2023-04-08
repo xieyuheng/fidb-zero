@@ -231,6 +231,6 @@ Here is how I understand them:
   TODO This means we must be able to know `readonlylink`'s permissions,
   maybe store it in `permissions.json`.
 
-  TODO This means whoever can editing this `permissions.json`,
-  can change the permissions that is granted to him/her,
+  TODO This means whoever can editing this `granted-permissions.json`,
+  can also change the permissions that is granted to him/her,
   which does not make sense.
