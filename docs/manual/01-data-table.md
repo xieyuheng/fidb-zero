@@ -74,8 +74,8 @@ with the condition that the solutions of them must feel symmetric together.
 - **Solution 1.2:** The data belong to another data,
   should be represented as subdirectory belong to the corresponding directory.
 
-  For example, "a user has many projects",
-  then each user has a subdirectory called "projects".
+  For example, a user has many projects,
+  then each user has a `projects` subdirectory.
 
   The pattern of directories will be:
 
@@ -104,8 +104,8 @@ with the condition that the solutions of them must feel symmetric together.
 
   (This principle is the same as **Solution 1.2** for **Problem 1.2**.)
 
-  For example, "a user has one config",
-  then each user has a subdirectory called "config".
+  For example, a user has one config,
+  thus each user has a `config` subdirectory.
 
   The pattern of directories will be:
 
