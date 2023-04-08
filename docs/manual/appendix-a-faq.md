@@ -13,3 +13,10 @@ title: FAQ
 - **Q:** What tool is used to generate this manual from Markdown files?
 
   **A:** [Readonly.Link](https://readonly.link/manuals/https://readonly.link/contents/manual/en.json).
+
+- **Q:** Who uses FiDB?
+
+  **A:** Open source projects that uses FiDB:
+
+  - [pomodoro](https://github.com/xieyuheng/pomodoro)
+  - [mimor](https://github.com/mimor-official/mimor)
