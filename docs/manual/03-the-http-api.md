@@ -251,6 +251,30 @@ we can improve this situation a little bit.
   we view it as the default when `kind` is omitted,
   when the given `path` does not exist or the given path is to a directory.
 
+Beside the file content,
+we also want to read metadata of a file,
+specially it's size.
+This is where the scalability of `kind` parameter comes into play,
+because we can use something like `kind=file-metadata`.
+
+- To **read** a file's metadata, `GET` the path with query parameter `kind=file-metadata`.
+
+  For example:
+
+  ```
+  GET users/xieyuheng/human.txt?kind=file-metadata
+  ```
+
+  The result could be:
+
+  ```
+  {
+    size: 35,
+    createdAt: 1680918204367,
+    updatedAt: 1680918226860
+  }
+  ```
+
 ## Directory Operations
 
 TODO

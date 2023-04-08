@@ -1,4 +1,3 @@
-[manual] the-http-api -- `kind=file-metadata`
 [manual] the-http-api -- `kind=directory`
 [manual] the-http-api -- `kind=data-find`
 
