@@ -101,6 +101,6 @@ The source code of this **FiDB** project is on [GitHub](https://github.com/fidb-
 
 This manual is available
 both [in the form of a manual](https://readonly.link/manuals/https://cdn.fidb.dev/docs/manual.json)
-and [in the form of a book](https://readonly.link/manuals/https://cdn.fidb.dev/docs/book.json).
+and [in the form of a book](https://readonly.link/books/https://cdn.fidb.dev/docs/book.json).
 
 Welcome feedback.
