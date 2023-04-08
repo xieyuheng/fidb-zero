@@ -15,8 +15,8 @@ type Opts = {
   logger?: string
 }
 
-export class DatabaseServeCommand extends Command<Args> {
-  name = "database:serve"
+export class ServeCommand extends Command<Args> {
+  name = "serve"
 
   description = "Serve a database"
 

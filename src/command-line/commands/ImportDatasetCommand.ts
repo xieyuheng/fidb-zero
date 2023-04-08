@@ -13,8 +13,8 @@ type Opts = {
   logger?: string
 }
 
-export class DatabaseImportDatasetCommand extends Command<Args> {
-  name = "database:import-dataset"
+export class ImportDatasetCommand extends Command<Args> {
+  name = "import-dataset"
 
   description = "Import dataset to a database"
 

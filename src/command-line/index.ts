@@ -6,8 +6,8 @@ export function createCommandRunner(): CommandRunner {
     defaultCommand: new Commands.DefaultCommand(),
     commands: [
       new Commands.CommonHelpCommand(),
-      new Commands.DatabaseServeCommand(),
-      new Commands.DatabaseImportDatasetCommand(),
+      new Commands.ServeCommand(),
+      new Commands.ImportDatasetCommand(),
     ],
   })
 }
