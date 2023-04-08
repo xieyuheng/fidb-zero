@@ -159,6 +159,57 @@ Firstly, the most basic four operations is the **CRUD**
   }
   ```
 
+Beside basic CRUD operations,
+we also want to do query in a data table,
+specially we want to find data based on properties.
+We use `kind=data-find` for this operation.
+
+- To **find** data in a table based on some properties,
+  `GET` the path of the table with query parameter `kind=data-find`
+  and other query options in the query string.
+
+  There might be many query results,
+  thus we need to specify the page (starting from 1, default to 1)
+  and the page size (default to 50).
+
+  We use [qs](https://github.com/ljharb/qs) for parsing query string.
+
+  For example, to get the first page of 3 user from China,
+  we can specify `country` in `properties`,
+  and the query options should be:
+
+  ```
+  {
+     page: 1,
+     size: 3,
+     properties: {
+       country: "China",
+     },
+  }
+  ```
+
+  `qs` can parse the options from the following query string:
+
+  ```
+  GET /users?kind=data-find&page=1&size=3&properties[country]=China
+  ```
+
+  Query results:
+
+  ```
+  [
+    {
+      "name": "谢宇恒",
+      "country": "China",
+      "@path": "users/xieyuheng",
+      "@revision": "4b987c7a58376a61747eb9d79da13c77",
+      "@createdAt": 1677377821957,
+      "@updatedAt": 1679424824733
+    },
+    ...
+  ]
+  ```
+
 ## File Operations
 
 Since we are using file system as database,
@@ -254,8 +305,7 @@ we can improve this situation a little bit.
 Beside the file content,
 we also want to read metadata of a file,
 specially it's size.
-This is where the scalability of `kind` parameter comes into play,
-because we can use something like `kind=file-metadata`.
+We use `kind=file-metadata` as the `kind` parameter for this operation.
 
 - To **read** a file's metadata, `GET` the path with query parameter `kind=file-metadata`.
 
@@ -276,5 +326,9 @@ because we can use something like `kind=file-metadata`.
   ```
 
 ## Directory Operations
+
+Since we are using file system as database,
+and we can operate on files,
+thus we naturally also want to operate on directories.
 
 TODO

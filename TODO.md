@@ -1,5 +1,4 @@
 [manual] the-http-api -- `kind=directory`
-[manual] the-http-api -- `kind=data-find`
 
 # docs
 
@@ -29,8 +28,8 @@ if we have some scripts to generate database and datasets.
 [db] RegisterEmail(directory, options): Promise<void>
 [db] LoginEmail(directory, options): Promise<Token>
 
-[database-server] `handleEmail` -- kind=email-register
-[database-server] `handleEmail` -- kind=email-login
+[database-server] `handleEmail` -- `kind=email-register`
+[database-server] `handleEmail` -- `kind=email-login`
 
 # token with scope
 
@@ -50,20 +49,11 @@ file:update
 b-tree over file system
 
 `Db.index(db, directory, key)`
-
 `Db.createIndex(db, directory, key)`
 
 # find
 
 `Db.find` -- use index
-
-# data link
-
 `Db.find` -- support deref a property which is a path to another data
-
-```
-fidb:users/xieyuheng
-fidb+https://localhost:3000/users/xieyuheng
-```
 
 # x-schema
