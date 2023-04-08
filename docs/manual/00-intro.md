@@ -29,7 +29,7 @@ This is actually what URL and HTTP is designed for
 > contents of such files. In fact, that is how many resources are
 > implemented. However, there are no such limitations in practice.
 >
-> - [RFC 9110 -- HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html).
+> -- [RFC 9110 -- HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html).
 
 A resource identifier is a URL (or say URI) that denotes a resource,
 while resource is a abstract concept which might have many kinds of implementations
