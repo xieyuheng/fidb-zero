@@ -8,7 +8,12 @@ title: FAQ
 
 - **Q:** Why this manual uses examples instead of rigorous specification?
 
-  **A:** I learned this from [The Nine Chapters on the Mathematical Art](https://en.wikipedia.org/wiki/The_Nine_Chapters_on_the_Mathematical_Art), which uses examples to specify algorithms, I feel it really practical and easy to understand.
+  **A:** I learned this from [The Nine Chapters on the Mathematical Art](https://en.wikipedia.org/wiki/The_Nine_Chapters_on_the_Mathematical_Art), in which algorithms are purely described by examples. I feel it is really practical and easy to understand.
+
+  While there is no intention to be deliberately vague.
+  If you find any vague part of this manual,
+  that makes it hard for code that implements FiDB to work together,
+  welcome to [open an issue](https://github.com/fidb-official/fidb/issues).
 
 - **Q:** What tool is used to generate this manual from Markdown files?
 
