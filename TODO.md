@@ -12,24 +12,6 @@ add `createdAt` and `updatedAt` to file metadata
 
 [token] each directory can grant access to token owner
 
-# refactor
-
-web server and reverse-proxy should be its own project
-
-# reverse-proxy -- by zmq
-
-[reverse-proxy] support cname -- test this by mimor.app
-[reverse-proxy] `brokerPrepareWorker` -- error on not find service
-[reverse-proxy] rename channel to service -- little by little -- see about the use of the name
-
-# fidb website:deploy
-
-one machine
-
-many machine -- one master many works
-
-- what are other patterns? learn from ZMQ guide
-
 # fidb database:deploy
 
 Like `fidb website:deploy`.
