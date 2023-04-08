@@ -332,6 +332,44 @@ We use `kind=file-metadata` as the `kind` parameter for this operation.
 
 Since we are using file system as database,
 and we can operate on files,
-thus we naturally also want to operate on directories.
+then we naturally also want to operate on directories.
 
-TODO
+- To **create** a directory, `POST` the path with query parameter `kind=directory`.
+
+  For example:
+
+  ```
+  POST users?kind=directory
+  ```
+
+- To **read** a directory's direct subdirectories and subfiles,
+  `GET` the path with query parameter `kind=directory`.
+
+  For example:
+
+  ```
+  GET users?kind=directory
+  ```
+
+  Results:
+
+  ```
+  [
+    { "kind": "Directory", "path": "users/xieyuheng" },
+    { "kind": "Directory", "path": "users/readonlylink" },
+    ...
+  ]
+  ```
+
+  The `kind` can be `"Directory"` or `"File"`,
+  the `path` is relative to the root of the database
+  (thus can be used as primarily key).
+
+- To **delete** a directory recursively,
+  `DELETE` the path with query parameter `kind=directory`.
+
+  For example:
+
+  ```
+  DELETE users?kind=directory
+  ```

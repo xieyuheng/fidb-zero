@@ -1,5 +1,3 @@
-[manual] the-http-api -- `kind=directory`
-
 # docs
 
 [manual] access-token -- path patterns and scoped permissions

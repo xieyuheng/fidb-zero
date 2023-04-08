@@ -18,7 +18,7 @@ test("database-server-directory-post", async ({ meta }) => {
     ).toEqual(false)
   }
 
-  await fetch(new URL(`users/?kind=directory`, url), {
+  await fetch(new URL(`users?kind=directory`, url), {
     method: "POST",
     headers: {
       authorization,
