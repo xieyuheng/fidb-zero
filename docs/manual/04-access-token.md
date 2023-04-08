@@ -234,3 +234,6 @@ Here is how I understand them:
   TODO This means whoever can editing this `granted-permissions.json`,
   can also change the permissions that is granted to him/her,
   which does not make sense.
+
+  TODO Maybe we need to give token one level of indirect,
+  and let it point to permissions instead of storing permissions in it's value.
