@@ -172,7 +172,7 @@ We use `kind=data-find` for this operation.
   thus we need to specify the page (starting from 1, default to 1)
   and the page size (default to 50).
 
-  We use [qs](https://github.com/ljharb/qs) for parsing query string.
+  We use [`qs`](https://github.com/ljharb/qs) for parsing query string.
 
   For example, to get the first page of 3 user from China,
   we can specify `country` in `properties`,
@@ -188,7 +188,7 @@ We use `kind=data-find` for this operation.
   }
   ```
 
-  `qs` can parse the options from the following query string:
+  [`qs`](https://github.com/ljharb/qs) can parse the options from the following query string:
 
   ```
   GET /users?kind=data-find&page=1&size=3&properties[country]=China
