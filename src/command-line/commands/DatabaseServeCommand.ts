@@ -2,7 +2,6 @@ import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
 import { handle } from "../../database-server"
 import { createContext } from "../../database-server/Context"
-import * as ReverseProxyClient from "../../reverse-proxy-client"
 import { createRequestListener } from "../../server/createRequestListener"
 import { startServer } from "../../server/startServer"
 import { changeLogger, log } from "../../utils/log"
@@ -70,21 +69,5 @@ export class DatabaseServeCommand extends Command<Args> {
     })
 
     log({ who, ctx, url: String(url), tls })
-
-    if (argv["public-url"]) {
-      const successful = await ReverseProxyClient.connect({
-        publicURL: new URL(argv["public-url"]),
-        local: {
-          hostname: url.hostname,
-          port: Number(url.port),
-        },
-      })
-
-      log({ who, publicURL: argv["public-url"] })
-
-      if (!successful) {
-        process.exit(1)
-      }
-    }
   }
 }

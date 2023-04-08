@@ -1,4 +1,4 @@
-remove `reverse-proxy` -- it should have it's own project
+remove unused dependencies
 
 # docs
 
