@@ -15,11 +15,19 @@ thus the simplest to understand and implement.
 
 Any data directory that has a password can be used to do password login.
 
-- any data directory that has a password can be used to do password login.
-- upon a password login a token is generated and return in response.
-- the permissions of login token can be configed.
-- maybe use password-login-strategies.json to do the config.
+TODO Upon a password login a token is generated and return in response.
 
-  ```
-  loginDirectories: { [pattern]: { permissions: .. } }
-  ```
+TODO The permissions of login token can be configed.
+
+TODO Maybe use `password-login-strategies.json` file at the root of the database
+to do this config.
+
+```
+{
+  "loginDirectories": {
+    [pattern]: {
+      "permissions": ...
+    }
+  }
+}
+```
