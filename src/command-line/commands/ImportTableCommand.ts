@@ -13,10 +13,10 @@ type Opts = {
   logger?: string
 }
 
-export class ImportDatasetCommand extends Command<Args> {
-  name = "import-dataset"
+export class ImportTableCommand extends Command<Args> {
+  name = "import-table"
 
-  description = "Import dataset to a database"
+  description = "Import table to a database"
 
   args = { database: ty.string() }
   opts = {
@@ -44,7 +44,7 @@ export class ImportDatasetCommand extends Command<Args> {
       changeLogger(argv.logger)
     }
 
-    const who = "DatabaseImportDatasetCommand"
+    const who = this.name
 
     const results = await importDataArrayFromCsv(argv.from, {
       directory: argv.directory,

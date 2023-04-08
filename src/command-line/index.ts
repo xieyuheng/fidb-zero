@@ -7,7 +7,7 @@ export function createCommandRunner(): CommandRunner {
     commands: [
       new Commands.CommonHelpCommand(),
       new Commands.ServeCommand(),
-      new Commands.ImportDatasetCommand(),
+      new Commands.ImportTableCommand(),
     ],
   })
 }

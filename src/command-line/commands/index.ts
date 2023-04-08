@@ -1,4 +1,4 @@
 export * from "@xieyuheng/command-line/lib/commands"
 export * from "./DefaultCommand"
-export * from "./ImportDatasetCommand"
+export * from "./ImportTableCommand"
 export * from "./ServeCommand"
