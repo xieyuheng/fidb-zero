@@ -6,6 +6,8 @@ import { resolvePath } from "./utils/resolvePath"
 
 export type FileMetadata = {
   size: number
+  createdAt: number
+  updatedAt: number
 }
 
 export async function fileMetadataGetOrFail(
@@ -16,7 +18,11 @@ export async function fileMetadataGetOrFail(
 
   try {
     const stats = await fs.promises.stat(resolvePath(db, path))
-    return { size: stats.size }
+    return {
+      size: stats.size,
+      createdAt: stats.ctimeMs,
+      updatedAt: stats.mtimeMs,
+    }
   } catch (error) {
     if (isErrnoException(error) && error.code === "ENOENT") {
       throw new NotFound(`[${who}] path: ${path}`)

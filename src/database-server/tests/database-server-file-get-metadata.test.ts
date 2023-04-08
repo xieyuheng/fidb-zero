@@ -13,19 +13,23 @@ test("database-server-file-get-metadata", async ({ meta }) => {
     body: new TextEncoder().encode("Hello, I am Xie Yuheng."),
   })
 
-  expect(
-    await (
-      await fetch(
-        new URL(`users/xieyuheng/human.txt?kind=file-metadata`, url),
-        {
-          method: "GET",
-          headers: {
-            authorization,
-          },
+  {
+    const response = await fetch(
+      new URL(`users/xieyuheng/human.txt?kind=file-metadata`, url),
+      {
+        method: "GET",
+        headers: {
+          authorization,
         },
-      )
-    ).json(),
-  ).toEqual({ size: "Hello, I am Xie Yuheng.".length })
+      },
+    )
+
+    const json = await response.json()
+
+    expect(json.size).toEqual("Hello, I am Xie Yuheng.".length)
+    expect(typeof json.createdAt).toEqual("number")
+    expect(typeof json.updatedAt).toEqual("number")
+  }
 
   await fetch(new URL(`users/xieyuheng/human.txt?kind=file`, url), {
     method: "DELETE",
@@ -34,17 +38,17 @@ test("database-server-file-get-metadata", async ({ meta }) => {
     },
   })
 
-  expect(
-    (
-      await fetch(
-        new URL(`users/xieyuheng/human.txt?kind=file-metadata`, url),
-        {
-          method: "GET",
-          headers: {
-            authorization,
-          },
+  {
+    const response = await fetch(
+      new URL(`users/xieyuheng/human.txt?kind=file-metadata`, url),
+      {
+        method: "GET",
+        headers: {
+          authorization,
         },
-      )
-    ).status,
-  ).toEqual(404)
+      },
+    )
+
+    expect(response.status).toEqual(404)
+  }
 })
