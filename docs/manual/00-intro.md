@@ -94,3 +94,9 @@ Before we begin, let's solve the most import problem first.
   **Fi**le system as **DB**!
 
 I kinda like it already :)
+
+## Source Code
+
+The source code of this **FiDB** project is on [GitHub](https://github.com/fidb-official/fidb), and the source code of this manual is in the `docs/` directory of the repo.
+
+Welcame feedback.
