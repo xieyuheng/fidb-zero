@@ -222,10 +222,15 @@ Here is how I understand them:
   ]
   ```
 
-  Of course `readonlylink` must have permissions to the targets of the grant,
-  this also means that we must be able to know `readonlylink`'s permissions,
-  currently we can not do this. TODO
-
   If a token is not permitted to operate on a resource,
   `granted-permissions.json` is used to decide whether the token's `owner`
   is granted permissions to operate on this resource.
+
+  Of course `readonlylink` must have permissions to the targets of the grant.
+
+  TODO This means we must be able to know `readonlylink`'s permissions,
+  maybe store it in `permissions.json`.
+
+  TODO This means whoever can editing this `permissions.json`,
+  can change the permissions that is granted to him/her,
+  which does not make sense.
