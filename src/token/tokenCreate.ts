@@ -11,7 +11,7 @@ export async function tokenCreate(
 ): Promise<string> {
   const tokenName = randomTokenName()
 
-  await dataCreate(db, `tokens/${tokenName}`, {
+  await dataCreate(db, `.tokens/${tokenName}`, {
     permissions: options.permissions,
   })
 

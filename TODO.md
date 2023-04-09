@@ -1,4 +1,3 @@
-[token] use `.tokens/` instead of `tokens/`
 [database-server] `isSystemPath` -- path with part that starts with `.`
 
 [manual] access-token -- use `users/*/.login` instead of `login-targets/**`
