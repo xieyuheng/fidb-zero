@@ -1,8 +1,7 @@
+[manual] register-and-login
+
 [token] `Token` has `issuer` that points to `login-targets/**`
 [password] remove `password.permissions`
-
-[manual] access-token -- user be able to grant access to token owner
-[manual] register-and-login
 
 # docs
 
@@ -12,6 +11,8 @@
 [manual] management
 
 - `admins/` has password
+
+[manual] access-token -- user be able to grant access to token owner
 
 # token
 

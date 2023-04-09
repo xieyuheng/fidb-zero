@@ -27,11 +27,9 @@ I want to implement the above by the following:
 
 - **Solution 4.1:** Upon register, we prepare a user for future logins by
   creating a data in `login-targets`.
-
   For example, register `users/xieyuheng`
   will prepare `login-targets/users/xieyuheng`.
-
-  Which has a `permissions` property, the value of which will be discussed later.
+  Which has a `permissions` property we will be discuss later.
 
 - **Problem 4.2:** How should we issue token to a user?
 
