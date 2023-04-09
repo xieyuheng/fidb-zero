@@ -7,7 +7,6 @@
 
 [manual] management -- intro
 [manual] schema -- intro
-[manual] indexing -- intro
 
 [manual] command-line
 [manual] management
