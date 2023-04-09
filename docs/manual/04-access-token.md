@@ -209,8 +209,7 @@ I want to implement the above by the following:
   for the default permissions.
 
   For example, suppose we want all not logged in guests
-  to be able to read all users public data.
-  The `.configs/default-token-issuer/index.json` would be:
+  to be able to read all users public data:
 
   ```
   {

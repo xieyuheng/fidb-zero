@@ -15,7 +15,7 @@ thus the simplest to understand and implement.
 
 - To **register** a user by password,
   `POST` the user's path
-  with query parameter `kind=password-register`
+  with query parameter `kind=password-register`,
   the initial data of the user
   and register options.
 
@@ -43,12 +43,35 @@ thus the simplest to understand and implement.
   users/xieyuheng/.login/index.json
   ```
 
-- **Problem:** How to configure which directory can be used as login target?
+- To **login** a user by password,
+  `POST` the user's path
+  with query parameter `kind=password-login`
+  and the `password` in the body.
 
-- **Solution:** We can use `.configs/password-register-strategy`,
+  For example:
+
+  ```
+  POST users/xieyuheng?kind=password-login
+
+  {
+    "password": "123456"
+  }
+  ```
+
+  Upon success, a token will be return in response as a JSON string.
+
+  For example:
+
+  ```
+  "cc224145f46a393f8ca71c4eb62aafe1"
+  ```
+
+- **Problem 5.1:** How to configure which directory can be used as login target?
+
+- **Solution 5.1:** We can use `.configs/password-register-strategy`,
   at the root of the database,
   to configure which directory is allow to be login target,
-  and what `permissions` should be generated when creating new login target.
+  and what `permissions` should be granted when creating `.login`.
 
   For example, to allow all users be login target:
 
@@ -86,27 +109,4 @@ thus the simplest to understand and implement.
       }
     }
   }
-  ```
-
-- To **login** a user by password,
-  `POST` the user's path
-  with query parameter `kind=password-login`
-  and the `password` in the body.
-
-  For example:
-
-  ```
-  POST users/xieyuheng?kind=password-login
-
-  {
-    "password": "123456"
-  }
-  ```
-
-  Upon success, a token will be return in response as a JSON string.
-
-  For example:
-
-  ```
-  "cc224145f46a393f8ca71c4eb62aafe1"
   ```

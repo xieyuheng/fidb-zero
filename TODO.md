@@ -5,12 +5,13 @@
 
 # docs
 
-[manual] schema
-[manual] indexing
 [manual] command-line
 [manual] management
 
 - `admins/` has password
+
+[manual] schema
+[manual] indexing
 
 [manual] access-token -- user be able to grant access to token owner
 
