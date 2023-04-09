@@ -1,4 +1,5 @@
-[database-server] `isSystemPath` -- path with part that starts with `.`
+[handle] `isSystemPath` -- path with part that starts with `.`
+[handle] use `assertNotSystemPath` in all normal handlers
 [token] `Token` has `issuer` that points to a login target
 [password] remove `password.permissions`
 
@@ -25,9 +26,9 @@ Like `fidb website:deploy`.
 This command will only be meaningful
 if we have some scripts to generate database and datasets.
 
-# database-server
+# handle
 
-[database-server] rate limit by ip -- for `password-register`
+[handle] rate limit by ip -- for `password-register`
 
 [config] be able to config `rateLimits: { ... }`
 
@@ -36,8 +37,8 @@ if we have some scripts to generate database and datasets.
 [db] RegisterEmail(directory, options): Promise<void>
 [db] LoginEmail(directory, options): Promise<Token>
 
-[database-server] `handleEmail` -- `kind=email-register`
-[database-server] `handleEmail` -- `kind=email-login`
+[handle] `handleEmail` -- `kind=email-register`
+[handle] `handleEmail` -- `kind=email-login`
 
 # indexing
 
