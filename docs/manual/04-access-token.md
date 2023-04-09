@@ -28,8 +28,10 @@ I want to implement the above by the following:
 - **Solution 4.1:** Upon register, we prepare a user for future logins by
   creating a `.login` data for that user.
   For example, register `users/xieyuheng`
-  will create `users/xieyuheng/.login`,
-  which has a `permissions` property we will be discuss later.
+  will create `users/xieyuheng/.login`.
+
+  The `.login` data will have a `permissions` property,
+  which we discuss later.
 
   Since we do not want a user to change his/her own `permissions`,
   we make a convention that a path with part that starts with `.`

@@ -102,7 +102,8 @@ and solve it once for all.
 
 In an implementation, there might be functions
 that operate on those data files.
-For example, in my NodeJs implementation, I have:
+For example, in [my NodeJs implementation](github.com/fidb-official/fidb),
+I have:
 
 ```ts
 dataCreate(db: Database, path: string, input: JsonObject): Promise<Data>
