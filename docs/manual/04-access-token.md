@@ -33,6 +33,8 @@ I want to implement the above by the following:
 
   In a login target directory, we can store a `permissions.json` config file.
 
+  The format of which will be discussed later.
+
 - **Problem 4.2:** How should we issue token to a user?
 
 - **Solution 4.2:** Upon login, we store a token as data,
