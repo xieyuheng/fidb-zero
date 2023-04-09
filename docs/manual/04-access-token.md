@@ -26,13 +26,14 @@ I want to implement the above by the following:
 - **Problem 4.1:** How should we preparing a user for future logins?
 
 - **Solution 4.1:** Upon register, we prepare a user for future logins by
-  creating a `.login` data in that user.
+  creating a `.login` data for that user.
   For example, register `users/xieyuheng`
   will create `users/xieyuheng/.login`,
   which has a `permissions` property we will be discuss later.
 
   Since we do not want a user to change his/her own `permissions`,
-  we make it a convention that a path with part that starts with `.`
+  we make a convention that a path with part that starts with `.`
+  -- for example `users/xieyuheng/.login`,
   will be viewed as referencing _system resource_,
   thus can not be access by normal operations,
   such as `data`, `file` and `directory` operations.
@@ -59,8 +60,9 @@ I want to implement the above by the following:
   ...
   ```
 
-  And each token data has a `issuer` property
-  which is path pointing to a login target.
+  And each token data has an `issuer` property
+  which is path pointing to a login target
+  -- such as `users/xieyuheng`.
 
   Note that, there is one level of indirect here,
   when we want to know the `permissions` of a token,
@@ -190,14 +192,14 @@ I want to implement the above by the following:
 - **Problem 4.5:** How to config the default permissions?
 
 - **Solution 4.5:** The most direct and minimal solution
-  is to use a `default-token-issuer` data
+  is to use a `.configs/default-token-issuer` data
   at the root of the database directory,
   which contains a `permissions` property
   for the default permissions.
 
   For example, suppose we want all not logged in guests
   to be able to read all users public data.
-  The `default-token-issuer/index.json` would be:
+  The `.configs/default-token-issuer/index.json` would be:
 
   ```
   {

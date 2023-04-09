@@ -45,7 +45,7 @@ thus the simplest to understand and implement.
 
 - **Problem:** How to configure which directory can be used as login target?
 
-- **Solution:** We can use `password-register-strategy`,
+- **Solution:** We can use `.configs/password-register-strategy`,
   at the root of the database,
   to configure which directory is allow to be login target,
   and what `permissions` should be generated when creating new login target.
