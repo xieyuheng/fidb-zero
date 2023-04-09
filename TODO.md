@@ -1,8 +1,5 @@
 [database-server] `isSystemPath` -- path with part that starts with `.`
-
-[manual] register-and-login
-
-[token] `Token` has `issuer` that points to `login-targets/**`
+[token] `Token` has `issuer` that points to a login target
 [password] remove `password.permissions`
 
 # docs

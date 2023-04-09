@@ -13,13 +13,39 @@ thus the simplest to understand and implement.
 
 # Password Register and Login
 
-- **Problem:** How to do password register?
+- To **register** a user by password,
+  `POST` the user's path
+  with query parameter `kind=password-register`
+  the initial data of the user
+  and register options.
 
-- **Solution:** TODO
+  For example:
+
+  ```
+  POST users/xieyuheng?kind=password-register
+
+  {
+    "data": {
+      "username": "xieyuheng",
+      "name": "Xie Yuheng"
+    },
+    "options": {
+      "memo": "My favorite password.",
+      "password": "123456"
+    }
+  }
+  ```
+
+  Upon success, the following files will be created:
+
+  ```
+  users/xieyuheng/index.json
+  users/xieyuheng/.login/index.json
+  ```
 
 - **Problem:** How to configure which directory can be used as login target?
 
-- **Solution:** We can use `password-register-strategy.json` file,
+- **Solution:** We can use `password-register-strategy`,
   at the root of the database,
   to configure which directory is allow to be login target,
   and what `permissions` should be generated when creating new login target.
@@ -62,9 +88,25 @@ thus the simplest to understand and implement.
   }
   ```
 
-- **Problem:** How to do password login?
+- To **login** a user by password,
+  `POST` the user's path
+  with query parameter `kind=password-login`
+  and the `password` in the body.
 
-- **Solution:** Any data directory that has a password
-  can be used to do password login.
+  For example:
 
-  TODO
+  ```
+  POST users/xieyuheng?kind=password-login
+
+  {
+    "password": "123456"
+  }
+  ```
+
+  Upon success, a token will be return in response as a JSON string.
+
+  For example:
+
+  ```
+  "cc224145f46a393f8ca71c4eb62aafe1"
+  ```
