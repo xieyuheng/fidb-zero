@@ -26,10 +26,16 @@ I want to implement the above by the following:
 - **Problem 4.1:** How should we preparing a user for future logins?
 
 - **Solution 4.1:** Upon register, we prepare a user for future logins by
-  creating a data in `login-targets` directory.
+  creating a `.login` data in that user.
   For example, register `users/xieyuheng`
-  will create `login-targets/users/xieyuheng`.
-  Which has a `permissions` property we will be discuss later.
+  will create `users/xieyuheng/.login`,
+  which has a `permissions` property we will be discuss later.
+
+  Since we do not want a user to change his/her own `permissions`,
+  we make it a convention that a path with part that starts with `.`
+  will be viewed as referencing _system resource_,
+  thus can not be access by normal operations,
+  such as `data`, `file` and `directory` operations.
 
 - **Problem 4.2:** How should we issue token to a user?
 

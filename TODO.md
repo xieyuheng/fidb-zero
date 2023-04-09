@@ -1,6 +1,5 @@
 [database-server] `isSystemPath` -- path with part that starts with `.`
 
-[manual] access-token -- use `users/*/.login` instead of `login-targets/**`
 [manual] register-and-login
 
 [token] `Token` has `issuer` that points to `login-targets/**`
