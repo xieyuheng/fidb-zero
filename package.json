@@ -6,9 +6,6 @@
   "files": [
     "lib"
   ],
-  "engines": {
-    "node": ">=18"
-  },
   "bin": {
     "fidb": "bin/fidb.js"
   },
