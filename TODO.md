@@ -5,7 +5,6 @@
 
 # docs
 
-[manual] management -- intro
 [manual] schema -- intro
 
 [manual] command-line
