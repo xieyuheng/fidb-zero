@@ -2,7 +2,7 @@ import { expect, test } from "vitest"
 import type { PathEntry } from "../../path-entry"
 import { prepareTestServer } from "./prepareTestServer"
 
-test("database-server-directory-post", async ({ meta }) => {
+test("handle-directory-post", async ({ meta }) => {
   const { url, authorization } = await prepareTestServer(meta)
 
   {

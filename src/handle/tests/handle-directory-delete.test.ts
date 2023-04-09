@@ -2,7 +2,7 @@ import { expect, test } from "vitest"
 import type { PathEntry } from "../../path-entry"
 import { prepareTestServer } from "./prepareTestServer"
 
-test("database-server-directory-delete", async ({ meta }) => {
+test("handle-directory-delete", async ({ meta }) => {
   const { url, authorization } = await prepareTestServer(meta)
 
   await fetch(new URL(`users?kind=directory`, url), {

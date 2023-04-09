@@ -1,7 +1,7 @@
 import { expect, test } from "vitest"
 import { prepareTestServer } from "./prepareTestServer"
 
-test("database-server-file-get-metadata", async ({ meta }) => {
+test("handle-file-get-metadata", async ({ meta }) => {
   const { url, authorization } = await prepareTestServer(meta)
 
   await fetch(new URL(`users/xieyuheng/human.txt?kind=file`, url), {

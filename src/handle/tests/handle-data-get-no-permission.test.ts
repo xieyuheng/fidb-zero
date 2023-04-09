@@ -3,7 +3,7 @@ import { allOperations } from "../../operation"
 import { tokenCreate } from "../../token"
 import { prepareTestServer } from "./prepareTestServer"
 
-test("database-server-data-get-no-permission", async ({ meta }) => {
+test("handle-data-get-no-permission", async ({ meta }) => {
   const { url, db } = await prepareTestServer(meta)
 
   let authorization = `token ${await tokenCreate(db, {
