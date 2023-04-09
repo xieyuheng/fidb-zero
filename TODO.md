@@ -1,4 +1,3 @@
-[password] one user has one password -- instead has many passwords
 [token] `Token` has `issuer` that points to `login-targets/**`
 [password] remove `password.permissions`
 

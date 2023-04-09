@@ -4,7 +4,6 @@ import type { Database } from "../database"
 import { dataCreate } from "../db/dataCreate"
 import { Operation, OperationSchema } from "../operation"
 import { passwordHash } from "../utils/node/password"
-import { randomHexString } from "../utils/randomHexString"
 
 export type PasswordRegisterOptions = {
   memo: string
@@ -23,8 +22,7 @@ export async function passwordRegister(
   directory: string,
   options: PasswordRegisterOptions,
 ): Promise<void> {
-  const id = randomHexString(10)
-  await dataCreate(db, join(directory, "passwords", id), {
+  await dataCreate(db, join(directory, "password"), {
     hash: await passwordHash(options.password),
     memo: options.memo,
     permissions: options.permissions,

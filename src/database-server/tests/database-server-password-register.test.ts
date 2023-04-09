@@ -36,7 +36,7 @@ test("database-server-password-register", async ({ meta }) => {
 
   {
     const response = await fetch(
-      new URL(`users/xieyuheng/passwords?kind=directory`, url),
+      new URL(`users/xieyuheng/password?kind=directory`, url),
       {
         method: "GET",
         headers: {

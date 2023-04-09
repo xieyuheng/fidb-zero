@@ -1,7 +1,7 @@
 import { ty } from "@xieyuheng/ty"
 import { join } from "node:path"
 import type { Database } from "../database"
-import { dataFindAll } from "../db/dataFindAll"
+import { dataGet } from "../db"
 import { Unauthorized } from "../errors/Unauthorized"
 import { PasswordSchema } from "../password"
 import { tokenCreate } from "../token/tokenCreate"
@@ -22,20 +22,18 @@ export async function passwordLogin(
 ): Promise<string> {
   const who = "passwordLogin"
 
-  for await (const data of dataFindAll(db, join(directory, "passwords"), {
-    properties: {},
-  })) {
-    const password = PasswordSchema.validate(data)
-    if (await passwordCheck(options.password, password.hash)) {
-      const pattern = join(directory, "**")
-      const tokenName = await tokenCreate(db, {
-        permissions: {
-          [pattern]: password.permissions,
-        },
-      })
+  const password = PasswordSchema.validate(
+    await dataGet(db, join(directory, "password")),
+  )
+  if (await passwordCheck(options.password, password.hash)) {
+    const pattern = join(directory, "**")
+    const tokenName = await tokenCreate(db, {
+      permissions: {
+        [pattern]: password.permissions,
+      },
+    })
 
-      return tokenName
-    }
+    return tokenName
   }
 
   throw new Unauthorized(
