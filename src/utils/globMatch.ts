@@ -5,5 +5,8 @@ export function globMatch(pattern: string, input: string): boolean {
   //   micromatch.isMatch("", "**") => false
   //   micromatch.isMatch("/", "/**") => true
   // Note the argument order: `input` first, `pattern` second.
-  return micromatch.isMatch("/" + input, "/" + pattern)
+  return micromatch.isMatch("/" + input, "/" + pattern, {
+    // dotfiles are ignored unless a "." is explicitly defined in the pattern.
+    dot: false,
+  })
 }

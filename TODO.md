@@ -1,4 +1,5 @@
-handle-file-can-not-access-system-path.test.ts
+no need to use `assertNotSystemPath` -- use `micromatch` instead
+
 handle-directory-can-not-access-system-path.test.ts
 [token] `Token` has `issuer` that points to a login target
 [password] remove `password.permissions`

@@ -8,6 +8,7 @@ export function assertNotSystemPath(
   const { who } = options
 
   if (isSystemPath(path)) {
+    console.log(path, { who })
     throw new Unauthorized(`[${who} can not access system path]`)
   }
 }

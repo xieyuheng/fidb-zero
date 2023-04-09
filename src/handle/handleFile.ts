@@ -7,7 +7,6 @@ import { requestBuffer } from "../utils/node/requestBuffer"
 import { requestKind } from "../utils/node/requestKind"
 import { requestQuery } from "../utils/node/requestQuery"
 import type { Context } from "./Context"
-import { assertNotSystemPath } from "./assertNotSystemPath"
 import { requestPath } from "./requestPath"
 import { requestToken } from "./requestToken"
 
@@ -21,8 +20,6 @@ export async function handleFile(
   const query = requestQuery(request)
   const path = requestPath(ctx, request)
   const token = await requestToken(ctx, request)
-
-  assertNotSystemPath(path, { who: kind })
 
   if (request.method === "GET") {
     tokenAssert(token, path, "file:get")
