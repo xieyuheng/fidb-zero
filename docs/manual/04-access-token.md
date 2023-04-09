@@ -26,15 +26,14 @@ I want to implement the above by the following:
 - **Problem 4.1:** How should we preparing a user for future logins?
 
 - **Solution 4.1:** Upon register, we prepare a user for future logins by
-  creating a data in `login-targets`.
+  creating a data in `login-targets` directory.
   For example, register `users/xieyuheng`
   will prepare `login-targets/users/xieyuheng`.
   Which has a `permissions` property we will be discuss later.
 
 - **Problem 4.2:** How should we issue token to a user?
 
-- **Solution 4.2:** Upon login, we store a token as data,
-  in a preserved `tokens` table (a directory).
+- **Solution 4.2:** Upon login, we store a token as data in `tokens` directory.
 
   For example:
 
