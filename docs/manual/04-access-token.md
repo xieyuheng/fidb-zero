@@ -12,9 +12,7 @@ Here is how I understand them:
 
 - Access control is about
   using an access token to declare "I am authorized",
-  while the token maps to a list of permitted operations,
-  and each potential target of operations
-  has it's own list of permitted operations.
+  while the token maps to a list of permitted operations.
 
 - Login is about issuing access token to a user.
   Specially, password login is about issuing access token to a user
@@ -23,9 +21,21 @@ Here is how I understand them:
 - Register is about preparing a user for future logins.
   Specially, password register is about setting up the password for a user.
 
-- **Problem 4.1:** How should we map a token to permissions?
+I want to implement the above by the following:
 
-- **Solution 4.1:** We store tokens as data,
+- **Problem 4.1:** How should we preparing a user for future logins?
+
+- **Solution 4.1:** Upon register, we prepare a user for future logins by
+  creating a (nested) subdirectory in `login-targets`.
+
+  For example, register `users/xieyuheng`
+  will prepare a subdirectory `login-targets/users/xieyuheng`.
+
+  In a login target directory, we can store a `permissions.json` config file.
+
+- **Problem 4.2:** How should we issue token to a user?
+
+- **Solution 4.2:** Upon login, we store a token as data,
   in a preserved `tokens` table (a directory).
 
   For example:
@@ -46,9 +56,14 @@ Here is how I understand them:
   ...
   ```
 
-  And each token data has a `permissions` property.
+  And each token data has a `issuer` property
+  which is path pointing to a login target.
 
-- **Problem 4.2:** How should we represent permissions?
+  Note that, there is one level of indirect here,
+  when we want to know the `permissions` of a token,
+  we read the `permissions.json` of the token's issuer.
+
+- **Problem 4.3:** How should we represent permissions?
 
 - **Solution 4.3:** We use a record (a JSON object) to represent permissions,
   where the key is a path pattern, and the value is an array of operations.
@@ -80,7 +95,8 @@ Here is how I understand them:
   directory:delete
   ```
 
-  We use the [`micromatch`](https://github.com/micromatch/micromatch) wildcard and glob matching library for our path pattern.
+  We use the [`micromatch`](https://github.com/micromatch/micromatch)
+  glob matching library for our path pattern.
 
   For example, we want to have an admin token
   that can do everything to every directories.
@@ -141,9 +157,9 @@ Here is how I understand them:
   }
   ```
 
-- **Problem 4.3:** How should a user use a token?
+- **Problem 4.4:** How should a user use a token?
 
-- **Solution 4.3:** When sending a HTTP request,
+- **Solution 4.4:** When sending a HTTP request,
   a user should add the token to
   the [`Authorization` HTTP header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization).
 
@@ -165,9 +181,9 @@ Here is how I understand them:
   If no token is sent, a default token
   with default permissions will be used.
 
-- **Problem 4.4:** How to config the default permissions?
+- **Problem 4.5:** How to config the default permissions?
 
-- **Solution 4.4:** The most direct and minimal solution
+- **Solution 4.5:** The most direct and minimal solution
   is to use a `default-permissions.json` file
   at the root of the database directory,
   which contains the value of the default permissions.
@@ -188,24 +204,22 @@ Here is how I understand them:
   }
   ```
 
-- **Problem 4.5:** What if a user want to grant permissions
+- **Problem 4.6:** What if a user want to grant permissions
   to operate on his/hers non-public data
   to some other users?
 
-- **Solution 4.5:** A user can only grant permissions to other users,
-  but not to tokens, thus each token can optionally has an `owner` property
-  that point to the path of the user (or any data) that owns this token.
-
-  A user directory can have a `granted-permissions.json` config file,
-  that represents who his/her want to grant permissions to.
+- **Solution 4.6:** One token issuer (login target) grant permissions to other token issuers, by writing a `granted-permissions.json` config file,
+  in the grantee's directory.
 
   For example, the user `readonlylink` want to
   grant some permissions to `xieyuheng`:
 
+  - Of course `readonlylink` must have permissions to the targets of the grant.
+
   ```
   [
     {
-      "grantee": "users/xieyuheng",
+      "granter": "users/readonlylink",
       "permissions": {
         "users/readonlylink/**": [
           "file:get",
@@ -221,19 +235,3 @@ Here is how I understand them:
     ...
   ]
   ```
-
-  If a token is not permitted to operate on a resource,
-  `granted-permissions.json` is used to decide whether the token's `owner`
-  is granted permissions to operate on this resource.
-
-  Of course `readonlylink` must have permissions to the targets of the grant.
-
-  TODO This means we must be able to know `readonlylink`'s permissions,
-  maybe store it in `permissions.json`.
-
-  TODO This means whoever can editing this `granted-permissions.json`,
-  can also change the permissions that is granted to him/her,
-  which does not make sense.
-
-  TODO Maybe we need to give token one level of indirect,
-  and let it point to permissions instead of storing permissions in it's value.

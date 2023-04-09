@@ -1,3 +1,7 @@
+remove `owner` from `token`
+
+`Token` has `issuer` that points to `login-targets/**`
+
 # docs
 
 fix the use of `password.permissions`
