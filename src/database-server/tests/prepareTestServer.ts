@@ -1,9 +1,9 @@
 import Http from "node:http"
 import { handle } from "../../database-server"
 import { prepareTestDb } from "../../db/tests/prepareTestDb"
+import { allOperations } from "../../operation"
 import { createRequestListener } from "../../server/createRequestListener"
 import { tokenCreate } from "../../token"
-import { allOperations } from "../../token/Operation"
 import { findPort } from "../../utils/node/findPort"
 import { serverListen } from "../../utils/node/serverListen"
 

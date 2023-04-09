@@ -1,5 +1,5 @@
 import { Schema, ty } from "@xieyuheng/ty"
-import { Operation, OperationSchema } from "../token/Operation"
+import { Operation, OperationSchema } from "../operation"
 
 export type AuthDirectoryConfig = {
   permissions: Array<Operation>

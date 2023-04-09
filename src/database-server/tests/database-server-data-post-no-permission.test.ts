@@ -1,6 +1,6 @@
 import { expect, test } from "vitest"
+import { allOperations, readOperations } from "../../operation"
 import { tokenCreate } from "../../token"
-import { allOperations, readOperations } from "../../token/Operation"
 import { prepareTestServer } from "./prepareTestServer"
 
 test("database-server-data-post-no-permission", async ({ meta }) => {

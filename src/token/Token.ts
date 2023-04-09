@@ -1,6 +1,6 @@
 import ty, { Schema } from "@xieyuheng/ty"
 import { Data, DataSchema } from "../data"
-import { Operation, OperationSchema } from "./Operation"
+import { Operation, OperationSchema } from "../operation"
 
 export type Token = Data & {
   permissions: Record<string, Array<Operation>>

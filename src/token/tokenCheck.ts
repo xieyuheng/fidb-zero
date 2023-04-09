@@ -1,5 +1,5 @@
+import { Operation } from "../operation"
 import { globMatch } from "../utils/globMatch"
-import { Operation } from "./Operation"
 import type { Token } from "./Token"
 
 export function tokenCheck(

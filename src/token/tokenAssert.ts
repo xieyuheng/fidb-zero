@@ -1,5 +1,5 @@
 import { Unauthorized } from "../errors/Unauthorized"
-import { Operation } from "./Operation"
+import { Operation } from "../operation"
 import type { Token } from "./Token"
 import { tokenCheck } from "./tokenCheck"
 

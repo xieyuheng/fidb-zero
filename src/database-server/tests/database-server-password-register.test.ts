@@ -1,5 +1,5 @@
 import { expect, test } from "vitest"
-import { allOperations } from "../../token/Operation"
+import { allOperations } from "../../operation"
 import { prepareTestServer } from "./prepareTestServer"
 
 test("database-server-password-register", async ({ meta }) => {
