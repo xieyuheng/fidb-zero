@@ -23,7 +23,7 @@ export async function passwordLogin(
   const who = "passwordLogin"
 
   const password = PasswordSchema.validate(
-    await dataGet(db, join(directory, "password")),
+    await dataGet(db, join(directory, ".password")),
   )
   if (await passwordCheck(options.password, password.hash)) {
     const pattern = join(directory, "**")

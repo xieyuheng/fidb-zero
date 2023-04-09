@@ -22,7 +22,7 @@ export async function passwordRegister(
   directory: string,
   options: PasswordRegisterOptions,
 ): Promise<void> {
-  await dataCreate(db, join(directory, "password"), {
+  await dataCreate(db, join(directory, ".password"), {
     hash: await passwordHash(options.password),
     memo: options.memo,
     permissions: options.permissions,
