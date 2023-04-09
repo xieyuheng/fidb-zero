@@ -122,3 +122,20 @@ with the condition that the solutions of them must feel symmetric together.
   users/readonlylink/index.json
   users/readonlylink/config/index.json
   ```
+
+In an implementation, there might be functions
+that operate on those data files.
+For example, in my NodeJs implementation, I have:
+
+```ts
+dataCreate(db: Database, path: string, input: JsonObject): Promise<Data>
+dataGetOrFail(db: Database, path: string): Promise<Data>
+dataGet(db: Database, path: string): Promise<Data | undefined>
+dataPut(db: Database, path: string, input: JsonObject): Promise<Data>
+dataPatch(db: Database, path: string, input: JsonObject): Promise<Data>
+dataDelete(db: Database, path: string, input: JsonObject): Promise<void>
+```
+
+Now, whenever I want to save some data,
+I just put them in data files,
+and use these functions to operate on them.
