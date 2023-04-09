@@ -28,7 +28,7 @@ I want to implement the above by the following:
 - **Solution 4.1:** Upon register, we prepare a user for future logins by
   creating a data in `login-targets` directory.
   For example, register `users/xieyuheng`
-  will prepare `login-targets/users/xieyuheng`.
+  will create `login-targets/users/xieyuheng`.
   Which has a `permissions` property we will be discuss later.
 
 - **Problem 4.2:** How should we issue token to a user?
@@ -58,7 +58,7 @@ I want to implement the above by the following:
 
   Note that, there is one level of indirect here,
   when we want to know the `permissions` of a token,
-  we read it from the token's issuer.
+  we read it from the token's `issuer`.
 
 - **Problem 4.3:** How should we represent permissions
   -- the `permissions` property of a login target?

@@ -1,5 +1,5 @@
 import Http from "node:http"
-import { handle } from "../../database-server"
+import { handle } from ".."
 import { prepareTestDb } from "../../db/tests/prepareTestDb"
 import { allOperations } from "../../operation"
 import { createRequestListener } from "../../server/createRequestListener"
