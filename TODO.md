@@ -1,19 +1,18 @@
-# token
-
+[password] one user has one password -- instead has many passwords
 [token] `Token` has `issuer` that points to `login-targets/**`
-
-# password
-
 [password] remove `password.permissions`
-
-# docs
 
 [manual] access-token -- user be able to grant access to token owner
 [manual] register-and-login
+
+# docs
+
 [manual] schema
 [manual] indexing
 [manual] command-line
 [manual] management
+
+- `admins/` has password
 
 # token
 

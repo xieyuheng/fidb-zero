@@ -26,14 +26,12 @@ I want to implement the above by the following:
 - **Problem 4.1:** How should we preparing a user for future logins?
 
 - **Solution 4.1:** Upon register, we prepare a user for future logins by
-  creating a (nested) subdirectory in `login-targets`.
+  creating a data in `login-targets`.
 
   For example, register `users/xieyuheng`
-  will prepare a subdirectory `login-targets/users/xieyuheng`.
+  will prepare `login-targets/users/xieyuheng`.
 
-  In a login target directory, we can store a `permissions.json` config file.
-
-  The format of which will be discussed later.
+  Which has a `permissions` property, the value of which will be discussed later.
 
 - **Problem 4.2:** How should we issue token to a user?
 
@@ -63,9 +61,10 @@ I want to implement the above by the following:
 
   Note that, there is one level of indirect here,
   when we want to know the `permissions` of a token,
-  we read the `permissions.json` of the token's issuer.
+  we read it from the token's issuer.
 
-- **Problem 4.3:** How should we represent permissions?
+- **Problem 4.3:** How should we represent permissions
+  -- the `permissions` property of a login target?
 
 - **Solution 4.3:** We use a record (a JSON object) to represent permissions,
   where the key is a path pattern, and the value is an array of operations.
@@ -188,23 +187,26 @@ I want to implement the above by the following:
 - **Problem 4.5:** How to config the default permissions?
 
 - **Solution 4.5:** The most direct and minimal solution
-  is to use a `default-permissions.json` file
+  is to use a `default-token-issuer` data
   at the root of the database directory,
-  which contains the value of the default permissions.
+  which contains a `permissions` property
+  for the default permissions.
 
   For example, suppose we want all not logged in guests
   to be able to read all users public data.
-  The permissions would be:
+  The `default-token-issuer/index.json` would be:
 
   ```
   {
-    "users/*/public/**": [
-      "data:get",
-      "data-find:get",
-      "file:get",
-      "file-metadata:get",
-      "directory:get"
-    ]
+    "permissions": {
+      "users/*/public/**": [
+        "data:get",
+        "data-find:get",
+        "file:get",
+        "file-metadata:get",
+        "directory:get"
+      ]
+    }
   }
   ```
 
@@ -212,30 +214,34 @@ I want to implement the above by the following:
   to operate on his/hers non-public data
   to some other users?
 
-- **Solution 4.6:** One token issuer (login target) grant permissions to other token issuers, by writing a `granted-permissions.json` config file,
-  in the grantee's directory.
+- **Solution 4.6:** One token issuer (login target)
+  can grant permissions to other token issuers,
+  by writing the `granted` property of the grantee.
+
+  Of course the granter must have permissions to the targets of the grant.
 
   For example, the user `readonlylink` want to
   grant some permissions to `xieyuheng`:
 
-  - Of course `readonlylink` must have permissions to the targets of the grant.
-
   ```
-  [
-    {
-      "granter": "users/readonlylink",
-      "permissions": {
-        "users/readonlylink/**": [
-          "file:get",
-          "file:put",
-          "file:delete",
-          "file-metadata:get",
-          "directory:post",
-          "directory:get",
-          "directory:delete"
-        ]
-      }
-    },
-    ...
-  ]
+  {
+    "permissions": { ... },
+    "granted": [
+      {
+        "granter": "users/readonlylink",
+        "permissions": {
+          "users/readonlylink/**": [
+            "file:get",
+            "file:put",
+            "file:delete",
+            "file-metadata:get",
+            "directory:post",
+            "directory:get",
+            "directory:delete"
+          ]
+        }
+      },
+      ...
+    ]
+  }
   ```

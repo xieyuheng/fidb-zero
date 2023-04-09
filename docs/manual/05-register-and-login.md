@@ -19,10 +19,10 @@ thus the simplest to understand and implement.
 
 - **Problem:** How to configure which directory can be used as login target?
 
-- **Solution:** We can use `password-register-strategies.json` file,
+- **Solution:** We can use `password-register-strategy.json` file,
   at the root of the database,
   to configure which directory is allow to be login target,
-  and what `permissions.json` should be generated for it.
+  and what `permissions` should be generated when creating new login target.
 
   For example, to allow all users be login target:
 
