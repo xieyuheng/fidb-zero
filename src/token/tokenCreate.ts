@@ -1,7 +1,7 @@
 import type { Database } from "../database"
 import { dataCreate } from "../db/dataCreate"
 import { randomTokenName } from "../token/randomTokenName"
-import { Operation } from "./Token"
+import { Operation } from "./Operation"
 
 export async function tokenCreate(
   db: Database,

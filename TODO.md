@@ -1,16 +1,13 @@
-`Token` has `issuer` that points to `login-targets/**`
+# token
+
+[token] `Operation` of the format: `<kind-parameter>:<http-method>`
+[token] `Token` has `issuer` that points to `login-targets/**`
+
+# password
+
+[password] remove `password.permissions`
 
 # docs
-
-fix the use of `password.permissions`
-
-- Old solution: each password has `permissions` property
-  and can generate token with this `permissions` and path pattern `<this-directory>/**`,
-  and the permissions of a password is given by `authDirectories` in the `database.json` config.
-
-operation with kind prefix
-
-`default-permissions.json` -- used when no token is provided
 
 [manual] access-token -- user be able to grant access to token owner
 [manual] register-and-login
@@ -19,6 +16,9 @@ operation with kind prefix
 [manual] command-line
 [manual] management
 
+# token
+
+[token] `default-permissions.json` -- used when no token is provided
 [token] each directory can grant access to token owner
 
 # fidb database:deploy

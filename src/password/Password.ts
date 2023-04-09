@@ -1,6 +1,6 @@
 import ty, { Schema } from "@xieyuheng/ty"
 import { Data, DataSchema } from "../data"
-import { Operation, OperationSchema } from "../token"
+import { Operation, OperationSchema } from "../token/Operation"
 
 export type Password = Data & {
   memo: string

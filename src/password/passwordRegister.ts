@@ -2,7 +2,7 @@ import { ty } from "@xieyuheng/ty"
 import { join } from "node:path"
 import type { Database } from "../database"
 import { dataCreate } from "../db/dataCreate"
-import { Operation, OperationSchema } from "../token"
+import { Operation, OperationSchema } from "../token/Operation"
 import { passwordHash } from "../utils/node/password"
 import { randomHexString } from "../utils/randomHexString"
 

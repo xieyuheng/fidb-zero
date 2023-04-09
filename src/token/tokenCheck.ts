@@ -1,5 +1,6 @@
 import { globMatch } from "../utils/globMatch"
-import type { Operation, Token } from "./Token"
+import { Operation } from "./Operation"
+import type { Token } from "./Token"
 
 export function tokenCheck(
   token: Token,
