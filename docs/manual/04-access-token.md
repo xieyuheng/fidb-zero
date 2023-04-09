@@ -40,13 +40,13 @@ I want to implement the above by the following:
 
 - **Problem 4.2:** How should we issue token to a user?
 
-- **Solution 4.2:** Upon login, we store a token as data in `tokens` directory.
+- **Solution 4.2:** Upon login, we store a token as data in `.tokens` directory.
 
   For example:
 
   ```
-  tokens/cc224145f46a393f8ca71c4eb62aafe1/index.json
-  tokens/5d551a1ca96496acd2c68eefcd294e88/index.json
+  .tokens/cc224145f46a393f8ca71c4eb62aafe1/index.json
+  .tokens/5d551a1ca96496acd2c68eefcd294e88/index.json
   ...
   ```
 
@@ -61,8 +61,17 @@ I want to implement the above by the following:
   ```
 
   And each token data has an `issuer` property
-  which is path pointing to a login target
-  -- such as `users/xieyuheng`.
+  which is path pointing to a login target.
+
+  Example token:
+
+  ```
+  {
+    "issuer": "users/xieyuheng",
+    "@path": ".tokens/cc224145f46a393f8ca71c4eb62aafe1",
+    ...
+  }
+  ```
 
   Note that, there is one level of indirect here,
   when we want to know the `permissions` of a token,
