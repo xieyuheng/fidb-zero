@@ -5,6 +5,10 @@
 
 # docs
 
+[manual] management -- intro
+[manual] schema -- intro
+[manual] indexing -- intro
+
 [manual] command-line
 [manual] management
 
@@ -12,8 +16,7 @@
 
 [manual] schema
 [manual] indexing
-
-[manual] access-token -- user be able to grant access to token owner
+[manual] access-token -- HTTP API about granting access to another user
 
 # token
 
