@@ -174,7 +174,7 @@ We use `kind=data-find` for this operation.
 
   We use [`qs`](https://github.com/ljharb/qs) for parsing query string.
 
-  For example, to get the first page of 3 user from China,
+  For example, to get the first page of 3 user from China 🇨🇳,
   we can specify `country` in `properties`,
   and the query options should be:
 
