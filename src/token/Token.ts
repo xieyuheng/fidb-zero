@@ -5,7 +5,6 @@ export type Operation = "create" | "read" | "update" | "delete"
 
 export type Token = Data & {
   permissions: Record<string, Array<Operation>>
-  owner?: string
 }
 
 export const OperationSchema: Schema<Operation> = ty.union(
@@ -20,6 +19,5 @@ export const TokenSchema: Schema<Token> = ty.intersection(
   DataSchema,
   ty.object({
     permissions: ty.dict(ty.array(OperationSchema)),
-    owner: ty.optional(ty.string()),
   }),
 )
