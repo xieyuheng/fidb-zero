@@ -1,4 +1,3 @@
-[handle] use `assertNotSystemPath` in all normal handlers
 handle-data-can-access-system-path.test.ts
 [token] `Token` has `issuer` that points to a login target
 [password] remove `password.permissions`
