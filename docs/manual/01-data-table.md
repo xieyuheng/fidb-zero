@@ -36,7 +36,8 @@ while a file can not have any subdirectory at all.
   users/mimor/index.json
   ```
 
-  Let's call these `index.json` _data files_.
+  We will call `users/xieyuheng` data,
+  and call `users/xieyuheng/index.json` a _data file_.
 
   And the name of the subdirectory relative to the root of the database
   is viewed as the primary key of the row.
@@ -56,7 +57,8 @@ and solve it once for all.
 - **Problem 1.2:** How should we represent "has one" and "has many" relations in file system?
 
 - **Solution 1.2:** The data belong to another data,
-  should be represented as subdirectory belong to the corresponding directory.
+  should be represented as subdirectory
+  belong to the corresponding directory.
 
   For example, a user _has many_ projects,
   then each user has a `projects` subdirectory.

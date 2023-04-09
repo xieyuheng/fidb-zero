@@ -143,7 +143,7 @@ I want to implement the above by the following:
   For another example, when a user logged in,
   we want to give him/her a token
   that permits him/her to read and write his/hers own directory
-  but to read all other users' `public` directories.
+  but only to read all other users' `public` directories.
 
   Let's just suppose the user is me, and my username is `xieyuheng`.
   The permissions would be:
