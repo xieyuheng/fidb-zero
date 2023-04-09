@@ -3,6 +3,7 @@ import { handle } from "../../database-server"
 import { prepareTestDb } from "../../db/tests/prepareTestDb"
 import { createRequestListener } from "../../server/createRequestListener"
 import { tokenCreate } from "../../token"
+import { allOperations } from "../../token/Operation"
 import { findPort } from "../../utils/node/findPort"
 import { serverListen } from "../../utils/node/serverListen"
 
@@ -25,7 +26,7 @@ export async function prepareTestServer(options: { name: string }) {
 
   const authorization = `token ${await tokenCreate(db, {
     permissions: {
-      "**": ["create", "read", "update", "delete"],
+      "**": allOperations,
     },
   })}`
 

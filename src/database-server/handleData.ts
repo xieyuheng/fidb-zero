@@ -22,8 +22,8 @@ export async function handleData(
   const token = await requestToken(ctx, request)
 
   if (request.method === "GET") {
-    tokenAssert(token, path, "read")
     if (kind === "data-find") {
+      tokenAssert(token, path, "data-find:get")
       return await arrayFromAsyncIterable(
         Db.dataFind(db, path, {
           page: query.page ? Number.parseInt(query.page) : 1,
@@ -33,28 +33,29 @@ export async function handleData(
       )
     }
 
+    tokenAssert(token, path, "data:get")
     return await Db.dataGetOrFail(db, path)
   }
 
   if (request.method === "POST") {
-    tokenAssert(token, path, "create")
+    tokenAssert(token, path, "data:post")
     if (path === "") return
 
     return await Db.dataCreate(db, path, await requestJsonObject(request))
   }
 
   if (request.method === "PUT") {
-    tokenAssert(token, path, "update")
+    tokenAssert(token, path, "data:put")
     return await Db.dataPut(db, path, await requestJsonObject(request))
   }
 
   if (request.method === "PATCH") {
-    tokenAssert(token, path, "update")
+    tokenAssert(token, path, "data:patch")
     return await Db.dataPatch(db, path, await requestJsonObject(request))
   }
 
   if (request.method === "DELETE") {
-    tokenAssert(token, path, "delete")
+    tokenAssert(token, path, "data:delete")
     return await Db.dataDelete(db, path, await requestJsonObject(request))
   }
 

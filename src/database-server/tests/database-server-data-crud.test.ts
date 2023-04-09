@@ -19,16 +19,17 @@ test("database-server-data-crud", async ({ meta }) => {
   ).json()
 
   expect(created.name).toEqual("Xie Yuheng")
-  expect(
-    await (
-      await fetch(new URL(`users/xieyuheng`, url), {
-        method: "GET",
-        headers: {
-          authorization,
-        },
-      })
-    ).json(),
-  ).toEqual(created)
+
+  {
+    const response = await fetch(new URL(`users/xieyuheng`, url), {
+      method: "GET",
+      headers: {
+        authorization,
+      },
+    })
+
+    expect(await response.json()).toEqual(created)
+  }
 
   const putted = await (
     await fetch(new URL(`users/xieyuheng`, url), {

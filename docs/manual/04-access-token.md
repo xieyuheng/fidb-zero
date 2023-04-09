@@ -88,6 +88,7 @@ I want to implement the above by the following:
   data:patch
   data:delete
   data-find:get
+  file:post
   file:get
   file:put
   file:delete
@@ -141,6 +142,7 @@ I want to implement the above by the following:
       "data:patch",
       "data:delete",
       "data-find:get",
+      "file:post",
       "file:get",
       "file:put",
       "file:delete",

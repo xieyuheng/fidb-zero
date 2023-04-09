@@ -1,4 +1,5 @@
 import { expect, test } from "vitest"
+import { allOperations } from "../../token/Operation"
 import { prepareTestServer } from "./prepareTestServer"
 
 test("database-server-password-register", async ({ meta }) => {
@@ -9,7 +10,7 @@ test("database-server-password-register", async ({ meta }) => {
     description: "",
     authDirectories: {
       users: {
-        permissions: ["create", "read", "update", "delete"],
+        permissions: allOperations,
       },
     },
   }

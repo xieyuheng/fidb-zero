@@ -40,6 +40,7 @@ thus the simplest to understand and implement.
             "data:patch",
             "data:delete",
             "data-find:get",
+            "file:post",
             "file:get",
             "file:put",
             "file:delete",

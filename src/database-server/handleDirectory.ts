@@ -21,7 +21,7 @@ export async function handleDirectory(
   const token = await requestToken(ctx, request)
 
   if (request.method === "GET") {
-    tokenAssert(token, path, "read")
+    tokenAssert(token, path, "directory:get")
     return await arrayFromAsyncIterable(
       Db.directoryList(db, path, {
         page: query.page ? Number.parseInt(query.page) : 1,
@@ -31,12 +31,12 @@ export async function handleDirectory(
   }
 
   if (request.method === "POST") {
-    tokenAssert(token, path, "create")
+    tokenAssert(token, path, "directory:post")
     return await Db.directoryCreate(db, path)
   }
 
   if (request.method === "DELETE") {
-    tokenAssert(token, path, "delete")
+    tokenAssert(token, path, "directory:delete")
     if (path === "") return
 
     return await Db.directoryDelete(db, path)

@@ -1,5 +1,6 @@
 import { expect, test } from "vitest"
 import { tokenCreate } from "../../token"
+import { allOperations } from "../../token/Operation"
 import { prepareTestServer } from "./prepareTestServer"
 
 test("database-server-data-get-no-permission", async ({ meta }) => {
@@ -7,7 +8,7 @@ test("database-server-data-get-no-permission", async ({ meta }) => {
 
   let authorization = `token ${await tokenCreate(db, {
     permissions: {
-      "users/xieyuheng/**": ["create", "read", "update", "delete"],
+      "users/xieyuheng/**": allOperations,
     },
   })}`
 
@@ -39,7 +40,7 @@ test("database-server-data-get-no-permission", async ({ meta }) => {
 
   authorization = `token ${await tokenCreate(db, {
     permissions: {
-      "users/xyh/**": ["create", "read", "update", "delete"],
+      "users/xyh/**": allOperations,
     },
   })}`
 

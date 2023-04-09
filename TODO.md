@@ -1,6 +1,5 @@
 # token
 
-[token] `Operation` of the format: `<kind-parameter>:<http-method>`
 [token] `Token` has `issuer` that points to `login-targets/**`
 
 # password
