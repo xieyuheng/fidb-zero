@@ -3,6 +3,9 @@
   "version": "0.0.24",
   "repository": "github:fidb-official/fidb",
   "main": "./lib/index.js",
+  "engines": {
+    "node": ">=18"
+  },
   "files": [
     "lib"
   ],
@@ -14,7 +17,6 @@
     "build": "rm -rf lib; tsc",
     "build:watch": "rm -rf lib; tsc --watch",
     "build:tsdoc": "npx typedoc src/index.ts --out tsdoc",
-    "vercel-build": "npm run build:tsdoc",
     "test:ts": "vitest --dir src --threads false --run",
     "test:watch": "vitest --dir src --threads false",
     "test:coverage": "vitest --dir src --threads false --run --coverage ",
