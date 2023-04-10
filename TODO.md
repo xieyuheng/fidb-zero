@@ -1,5 +1,3 @@
-pathPatternGenerate.test.ts
-
 [password] `kind=password-register` create `.login` by `.configs/password-register-strategy`
 
 [password] `kind=password-login` create token by `.login`
