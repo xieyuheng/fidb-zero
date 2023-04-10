@@ -19,7 +19,7 @@ export async function handleFile(
   const kind = requestKind(request)
   const query = requestQuery(request)
   const path = requestPath(ctx, request)
-  const token = await requestToken(ctx, request)
+  const token = await requestToken(request)
 
   if (request.method === "GET") {
     await tokenAssert(db, token, path, "file:get")

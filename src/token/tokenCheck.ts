@@ -7,11 +7,11 @@ export async function tokenCheck(
   db: Database,
   token: Token,
   path: string,
-  name: Operation,
+  operation: Operation,
 ): Promise<boolean> {
-  for (const [pattern, names] of Object.entries(token.permissions)) {
+  for (const [pattern, operations] of Object.entries(token.permissions)) {
     if (globMatch(pattern, path)) {
-      if (names.includes(name)) return true
+      if (operations.includes(operation)) return true
     }
   }
 

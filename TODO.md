@@ -1,8 +1,4 @@
-`tokenAssert` take token name instead of token value
 `tokenCheck` take token name instead of token value
-
-- simple `requestToken`
-- use `tokenGetOrFail`
 
 [token] `Token` has `issuer` that points to a login target
 

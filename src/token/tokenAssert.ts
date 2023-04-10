@@ -1,18 +1,20 @@
 import { Database } from "../database"
 import { Unauthorized } from "../errors/Unauthorized"
 import { Operation } from "../operation"
-import type { Token } from "./Token"
 import { tokenCheck } from "./tokenCheck"
+import { tokenGetOrFail } from "./tokenGetOrFail"
 
 export async function tokenAssert(
   db: Database,
-  token: Token,
+  tokenName: string,
   path: string,
-  name: Operation,
+  operation: Operation,
 ): Promise<void> {
-  if (!(await tokenCheck(db, token, path, name))) {
+  const token = await tokenGetOrFail(db, tokenName)
+
+  if (!(await tokenCheck(db, token, path, operation))) {
     throw new Unauthorized(
-      `[tokenAssert] not permitted to ${name} path: ${path}`,
+      `[tokenAssert] not permitted to ${operation} path: ${path}`,
     )
   }
 }
