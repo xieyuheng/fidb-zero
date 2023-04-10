@@ -1,6 +1,15 @@
-`tokenIssuerCreate`
+`tokenCheck` take `db` and be async
 
-[token] `Token` has `issuer` that points to a login target -- `test-token-issuer`
+`tokenAssert` take token name instead of token value
+`tokenCheck` take token name instead of token value
+
+- simple `requestToken`
+- use `tokenGetOrFail`
+
+[token] `Token` has `issuer` that points to a login target
+
+- `test-token-issuers/all-read`
+- `test-token-issuers/all-read-write`
 
 remove `permissions` from `Token`
 

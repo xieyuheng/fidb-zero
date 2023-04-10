@@ -22,7 +22,7 @@ export async function handleFile(
   const token = await requestToken(ctx, request)
 
   if (request.method === "GET") {
-    tokenAssert(token, path, "file:get")
+    await tokenAssert(db, token, path, "file:get")
     if (kind === "file-metadata") {
       return await Db.fileMetadataGetOrFail(db, path)
     }
@@ -31,17 +31,17 @@ export async function handleFile(
   }
 
   if (request.method === "POST") {
-    tokenAssert(token, path, "file:post")
+    await tokenAssert(db, token, path, "file:post")
     return await Db.fileCreate(db, path, await requestBuffer(request))
   }
 
   if (request.method === "PUT") {
-    tokenAssert(token, path, "file:put")
+    await tokenAssert(db, token, path, "file:put")
     return await Db.filePut(db, path, await requestBuffer(request))
   }
 
   if (request.method === "DELETE") {
-    tokenAssert(token, path, "file:delete")
+    await tokenAssert(db, token, path, "file:delete")
     return await Db.fileDelete(db, path)
   }
 
