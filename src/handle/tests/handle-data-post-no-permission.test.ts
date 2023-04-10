@@ -1,4 +1,5 @@
 import { expect, test } from "vitest"
+import { dataCreate } from "../../db"
 import { allOperations, readOperations } from "../../operation"
 import { tokenCreate } from "../../token"
 import { prepareTestServer } from "./prepareTestServer"
@@ -6,12 +7,18 @@ import { prepareTestServer } from "./prepareTestServer"
 test("handle-data-post-no-permission", async ({ meta }) => {
   const { url, db } = await prepareTestServer(meta)
 
-  const authorization = `token ${await tokenCreate(db, {
+  await dataCreate(db, "users/xyh/.login", {
     permissions: {
       "users/*/**": readOperations,
       "users/xyh/**": allOperations,
     },
-  })}`
+  })
+
+  const tokenName = await tokenCreate(db, {
+    issuer: "users/xyh/.login",
+  })
+
+  const authorization = `token ${tokenName}`
 
   expect(
     (

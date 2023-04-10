@@ -1,16 +1,8 @@
 import { expect, test } from "vitest"
-import { readOperations } from "../../operation"
-import { tokenCreate } from "../../token"
 import { prepareTestServer } from "./prepareTestServer"
 
 test("handle-directory-can-not-access-system-path", async ({ meta }) => {
   const { url, db, authorization } = await prepareTestServer(meta)
-
-  const token = await tokenCreate(db, {
-    permissions: {
-      "**": readOperations,
-    },
-  })
 
   {
     const response = await fetch(new URL(`.tokens?kind=directory`, url), {

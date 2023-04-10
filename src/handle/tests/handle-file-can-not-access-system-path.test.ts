@@ -1,20 +1,15 @@
 import { expect, test } from "vitest"
-import { readOperations } from "../../operation"
-import { tokenCreate } from "../../token"
+import { randomTokenName } from "../../token/randomTokenName"
 import { prepareTestServer } from "./prepareTestServer"
 
 test("handle-file-can-not-access-system-path", async ({ meta }) => {
   const { url, db, authorization } = await prepareTestServer(meta)
 
-  const token = await tokenCreate(db, {
-    permissions: {
-      "**": readOperations,
-    },
-  })
+  const tokenName = randomTokenName()
 
   {
     const response = await fetch(
-      new URL(`.tokens/${token}/index.json?kind=file`, url),
+      new URL(`.tokens/${tokenName}/index.json?kind=file`, url),
       {
         method: "GET",
         headers: {

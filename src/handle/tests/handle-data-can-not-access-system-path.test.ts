@@ -1,4 +1,5 @@
 import { expect, test } from "vitest"
+import { dataCreate } from "../../db"
 import { readOperations } from "../../operation"
 import { tokenCreate } from "../../token"
 import { prepareTestServer } from "./prepareTestServer"
@@ -6,14 +7,18 @@ import { prepareTestServer } from "./prepareTestServer"
 test("handle-data-can-not-access-system-path", async ({ meta }) => {
   const { url, db, authorization } = await prepareTestServer(meta)
 
-  const token = await tokenCreate(db, {
+  await dataCreate(db, "test-token-issuers/all-read", {
     permissions: {
       "**": readOperations,
     },
   })
 
+  const tokenName = await tokenCreate(db, {
+    issuer: "test-token-issuers/all-read",
+  })
+
   {
-    const response = await fetch(new URL(`.tokens/${token}`, url), {
+    const response = await fetch(new URL(`.tokens/${tokenName}`, url), {
       method: "GET",
       headers: {
         authorization,

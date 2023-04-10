@@ -1,5 +1,6 @@
 import Http from "node:http"
 import { handle } from ".."
+import { dataCreate } from "../../db"
 import { prepareTestDb } from "../../db/tests/prepareTestDb"
 import { allOperations } from "../../operation"
 import { createRequestListener } from "../../server/createRequestListener"
@@ -24,11 +25,17 @@ export async function prepareTestServer(options: { name: string }) {
 
   await serverListen(server, { port, hostname })
 
-  const authorization = `token ${await tokenCreate(db, {
+  await dataCreate(db, "test-token-issuers/all-read-write", {
     permissions: {
       "**": allOperations,
     },
-  })}`
+  })
+
+  const tokenName = await tokenCreate(db, {
+    issuer: "test-token-issuers/all-read-write",
+  })
+
+  const authorization = `token ${tokenName}`
 
   const url = `http://${hostname}:${port}`
 

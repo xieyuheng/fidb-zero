@@ -1,4 +1,5 @@
 import { expect, test } from "vitest"
+import { dataCreate } from "../../db"
 import { allOperations } from "../../operation"
 import { tokenCreate } from "../../token"
 import { prepareTestServer } from "./prepareTestServer"
@@ -6,11 +7,17 @@ import { prepareTestServer } from "./prepareTestServer"
 test("handle-data-get-no-permission", async ({ meta }) => {
   const { url, db } = await prepareTestServer(meta)
 
-  let authorization = `token ${await tokenCreate(db, {
+  await dataCreate(db, "users/xieyuheng/.login", {
     permissions: {
       "users/xieyuheng/**": allOperations,
     },
-  })}`
+  })
+
+  const tokenName = await tokenCreate(db, {
+    issuer: "users/xieyuheng/.login",
+  })
+
+  let authorization = `token ${tokenName}`
 
   const created = await (
     await fetch(new URL(`users/xieyuheng`, url), {
@@ -38,11 +45,17 @@ test("handle-data-get-no-permission", async ({ meta }) => {
     ).json(),
   ).toEqual(created)
 
-  authorization = `token ${await tokenCreate(db, {
+  await dataCreate(db, "users/xyh/.login", {
     permissions: {
       "users/xyh/**": allOperations,
     },
-  })}`
+  })
+
+  const tokenNameXYH = await tokenCreate(db, {
+    issuer: "users/xyh/.login",
+  })
+
+  authorization = `token ${tokenNameXYH}`
 
   expect(
     (

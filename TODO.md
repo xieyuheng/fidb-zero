@@ -1,10 +1,3 @@
-[token] `Token` has `issuer` that points to a login target
-
-- `test-token-issuers/all-read`
-- `test-token-issuers/all-read-write`
-
-remove `permissions` from `Token`
-
 pathPatternMatch(pattern, path): Record<string, string>
 pathPatternGenerate(pattern, properties: Record<string, string>): string
 
