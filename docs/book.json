@@ -13,10 +13,10 @@
     "03-the-http-api.md",
     "04-access-token.md",
     "05-register-and-login.md",
-    "06-schema.md",
-    "07-indexing.md",
-    "08-command-line.md",
-    "09-management.md",
+    "06-command-line.md",
+    "07-management.md",
+    "08-schema.md",
+    "09-indexing.md",
     "appendix-a-faq.md"
   ]
 }
