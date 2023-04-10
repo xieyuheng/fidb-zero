@@ -1,5 +1,4 @@
 import { expect, test } from "vitest"
-import { allOperations } from "../../operation"
 import { prepareTestServer } from "./prepareTestServer"
 
 test("handle-info", async ({ meta }) => {
@@ -8,11 +7,6 @@ test("handle-info", async ({ meta }) => {
   db.config = {
     name: "handle-info",
     description: "Example config",
-    authDirectories: {
-      users: {
-        permissions: allOperations,
-      },
-    },
   }
 
   const info = await (

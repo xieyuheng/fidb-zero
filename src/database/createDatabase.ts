@@ -36,7 +36,6 @@ async function loadDatabaseConfig(
     return {
       name: options.name,
       description: options.description || "",
-      authDirectories: options.authDirectories || {},
     }
   } catch (error) {
     if (isErrnoException(error) && error.code === "ENOENT") {

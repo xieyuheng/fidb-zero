@@ -3,7 +3,6 @@
 - with `issuer` point to `**/.login`
 
 remove `permissions` from `Password`
-remove `authDirectories` from `DatabaseConfig`
 
 # docs
 
