@@ -1,7 +1,7 @@
 import { ty } from "@xieyuheng/ty"
 import { join } from "node:path"
 import type { Database } from "../database"
-import { dataCreate, dataGetOrFail } from "../db"
+import { dataGetOrFail } from "../db"
 import { Unauthorized } from "../errors/Unauthorized"
 import { PasswordSchema } from "../password"
 import { tokenCreate } from "../token/tokenCreate"
@@ -27,17 +27,9 @@ export async function passwordLogin(
   )
 
   if (await passwordCheck(options.password, password.hash)) {
-    const pattern = join(directory, "**")
-    const issuer = join(directory, ".login")
-    await dataCreate(db, issuer, {
-      permissions: password.permissions,
+    return await tokenCreate(db, {
+      issuer: join(directory, ".login"),
     })
-
-    const tokenName = await tokenCreate(db, {
-      issuer,
-    })
-
-    return tokenName
   }
 
   throw new Unauthorized(

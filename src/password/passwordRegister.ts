@@ -38,10 +38,13 @@ export async function passwordRegister(
         results,
       )
 
+      await dataCreate(db, join(directory, ".login"), {
+        permissions,
+      })
+
       await dataCreate(db, join(directory, ".password"), {
         hash: await passwordHash(options.password),
         memo: options.memo,
-        permissions,
       })
 
       return
