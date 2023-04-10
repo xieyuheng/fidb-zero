@@ -5,7 +5,7 @@ import { Operation, OperationSchema } from "../operation"
 export type Password = Data & {
   memo: string
   hash: string
-  permissions: Array<Operation>
+  permissions: Record<string, Array<Operation>>
 }
 
 export const PasswordSchema: Schema<Password> = ty.intersection(
@@ -13,6 +13,6 @@ export const PasswordSchema: Schema<Password> = ty.intersection(
   ty.object({
     memo: ty.string(),
     hash: ty.string(),
-    permissions: ty.array(OperationSchema),
+    permissions: ty.dict(ty.array(OperationSchema)),
   }),
 )

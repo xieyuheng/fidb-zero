@@ -12,3 +12,11 @@ export const TokenIssuerSchema: Schema<TokenIssuer> = ty.intersection(
     permissions: ty.dict(ty.array(OperationSchema)),
   }),
 )
+
+export type TokenIssuerInput = {
+  permissions: Record<string, Array<Operation>>
+}
+
+export const TokenIssuerInputSchema: Schema<TokenIssuerInput> = ty.object({
+  permissions: ty.dict(ty.array(OperationSchema)),
+})

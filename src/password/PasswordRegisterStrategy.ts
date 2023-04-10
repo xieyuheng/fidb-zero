@@ -1,11 +1,11 @@
 import ty, { Schema } from "@xieyuheng/ty"
-import { TokenIssuer, TokenIssuerSchema } from "../token/TokenIssuer"
+import { TokenIssuerInput, TokenIssuerInputSchema } from "../token/TokenIssuer"
 
 export type PasswordRegisterStrategy = {
-  loginTargets: Record<string, TokenIssuer>
+  loginTargets: Record<string, TokenIssuerInput>
 }
 
 export const PasswordRegisterStrategySchema: Schema<PasswordRegisterStrategy> =
   ty.object({
-    loginTargets: ty.dict(TokenIssuerSchema),
+    loginTargets: ty.dict(TokenIssuerInputSchema),
   })

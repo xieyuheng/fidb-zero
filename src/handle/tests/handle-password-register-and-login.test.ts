@@ -15,88 +15,116 @@ test("handle-password-register-and-login", async ({ meta }) => {
     },
   }
 
-  const created = await (
-    await fetch(new URL(`users/xieyuheng?kind=password-register`, url), {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
+  {
+    const response = await fetch(
+      new URL(`users/xieyuheng?kind=password-register`, url),
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          data: {
+            username: "xieyuheng",
+            name: "Xie Yuheng",
+          },
+          options: {
+            memo: "My favorite password.",
+            password: "123456",
+          },
+        }),
       },
+    )
+
+    expect(response.ok).toEqual(true)
+
+    const created = await response.json()
+
+    expect(created.username).toEqual("xieyuheng")
+    expect(created.name).toEqual("Xie Yuheng")
+  }
+
+  const token = await (
+    await fetch(new URL(`users/xieyuheng?kind=password-login`, url), {
+      method: "POST",
       body: JSON.stringify({
-        data: {
-          username: "xieyuheng",
-          name: "Xie Yuheng",
-        },
-        options: {
-          memo: "My favorite password.",
-          password: "123456",
-        },
+        password: "123456",
       }),
     })
   ).json()
 
-  {
-    const token = await (
-      await fetch(new URL(`users/xieyuheng?kind=password-login`, url), {
-        method: "POST",
-        body: JSON.stringify({
-          password: "123456",
-        }),
-      })
-    ).json()
+  expect(typeof token).toEqual("string")
 
+  let revision = ""
+
+  {
     // The `token` can read user data.
 
-    const gotten = await (
-      await fetch(new URL(`users/xieyuheng?kind=data`, url), {
-        method: "GET",
-        headers: {
-          authorization: `token ${token}`,
-        },
-      })
-    ).json()
+    const response = await fetch(new URL(`users/xieyuheng?kind=data`, url), {
+      method: "GET",
+      headers: {
+        authorization: `token ${token}`,
+      },
+    })
+
+    expect(response.ok).toEqual(true)
+
+    const gotten = await response.json()
 
     expect(gotten.name).toEqual("Xie Yuheng")
 
+    revision = gotten["@revision"]
+  }
+
+  {
     // The `token` can update user data.
 
-    const patched = await (
-      await fetch(new URL(`users/xieyuheng`, url), {
-        method: "PATCH",
-        headers: {
-          authorization: `token ${token}`,
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          "@revision": gotten["@revision"],
-          name: "谢宇恒",
-        }),
-      })
-    ).json()
+    const response = await fetch(new URL(`users/xieyuheng`, url), {
+      method: "PATCH",
+      headers: {
+        authorization: `token ${token}`,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        "@revision": revision,
+        name: "谢宇恒",
+      }),
+    })
+
+    expect(response.ok).toEqual(true)
+
+    const patched = await response.json()
 
     expect(patched.name).toEqual("谢宇恒")
 
+    revision = patched["@revision"]
+  }
+
+  {
     // The `token` can delete user data.
 
-    await fetch(new URL(`users/xieyuheng`, url), {
+    const response = await fetch(new URL(`users/xieyuheng`, url), {
       method: "DELETE",
       headers: {
         authorization: `token ${token}`,
         "content-type": "application/json",
       },
       body: JSON.stringify({
-        "@revision": patched["@revision"],
+        "@revision": revision,
       }),
     })
 
-    expect(
-      (
-        await fetch(new URL(`users/xieyuheng`, url), {
-          method: "GET",
-          headers: {
-            authorization: `token ${token}`,
-          },
-        })
-      ).status,
-    ).toEqual(404)
+    expect(response.ok).toEqual(true)
+  }
+
+  {
+    const response = await fetch(new URL(`users/xieyuheng`, url), {
+      method: "GET",
+      headers: {
+        authorization: `token ${token}`,
+      },
+    })
+
+    expect(response.status).toEqual(404)
   }
 })

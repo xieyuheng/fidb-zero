@@ -12,6 +12,7 @@ export async function tokenCheck(
   operation: Operation,
 ): Promise<boolean> {
   const token = await tokenGetOrFail(db, tokenName)
+
   const issuer = TokenIssuerSchema.validate(
     await dataGetOrFail(db, token.issuer),
   )

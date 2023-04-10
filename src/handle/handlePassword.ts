@@ -1,8 +1,6 @@
 import { ty } from "@xieyuheng/ty"
 import type Http from "node:http"
-import { dirname } from "node:path"
 import * as Db from "../db"
-import { Unauthorized } from "../errors/Unauthorized"
 import {
   passwordLogin,
   PasswordLoginOptionsSchema,
@@ -39,31 +37,19 @@ export async function handlePassword(
         await requestJsonObject(request),
       )
 
-      const config = db.config.authDirectories[dirname(path)]
-
-      if (config === undefined) {
-        throw new Unauthorized(
-          `[handlePassword] path is not an auth directory: ${path}`,
-        )
-      }
-
       const created = await Db.dataCreate(db, path, data)
 
       await passwordRegister(db, created["@path"], {
         memo: options.memo,
         password: options.password,
-        permissions: config.permissions,
       })
 
       return created
     }
 
     if (kind === "password-login") {
-      return passwordLogin(
-        db,
-        path,
-        PasswordLoginOptionsSchema.validate(await requestJsonObject(request)),
-      )
+      const json = await requestJsonObject(request)
+      return passwordLogin(db, path, PasswordLoginOptionsSchema.validate(json))
     }
   }
 
