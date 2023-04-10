@@ -1,5 +1,3 @@
-`tokenCheck` take token name instead of token value
-
 [token] `Token` has `issuer` that points to a login target
 
 - `test-token-issuers/all-read`
