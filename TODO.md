@@ -1,6 +1,5 @@
-pathPatternMatch(pattern, path): Record<string, string>
-pathPatternGenerate(pattern, properties: Record<string, string>): string
-
+pathPatternMatch.test.ts
+`pathPatternGenerate`
 [password] `kind=password-register` create `.login` by `.configs/password-register-strategy`
 
 [password] `kind=password-login` create token by `.login`
