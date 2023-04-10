@@ -4,7 +4,8 @@
 
 - with `issuer` point to `**/.login`
 
-[password] remove `password.permissions`
+remove `permissions` from `Password`
+remove `authDirectories` from `DatabaseConfig`
 
 # docs
 
