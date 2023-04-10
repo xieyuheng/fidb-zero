@@ -1,4 +1,3 @@
-pathPatternMatch.test.ts
 `pathPatternGenerate`
 [password] `kind=password-register` create `.login` by `.configs/password-register-strategy`
 

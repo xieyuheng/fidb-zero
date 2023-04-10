@@ -1,4 +1,4 @@
-import { globMatch } from "./globMatch"
+import { globMatch } from "../utils/globMatch"
 import { pathPatternParse } from "./pathPatternParse"
 
 export function pathPatternMatch(
@@ -6,11 +6,13 @@ export function pathPatternMatch(
   path: string,
 ): Record<string, string> | undefined {
   const results: Record<string, string> = {}
+
   const exps = pathPatternParse(pattern)
   const parts = path.split("/")
+
   while (true) {
-    const exp = exps.pop()
-    const part = parts.pop()
+    const exp = exps.shift()
+    const part = parts.shift()
 
     if (part === undefined && exp === undefined) {
       return results
@@ -20,12 +22,12 @@ export function pathPatternMatch(
       return undefined
     }
 
+    if (exp.kind === "Literal" && exp.value === "**" && exps.length === 0) {
+      return results
+    }
+
     if (part === undefined) {
-      if (exp.kind === "Literal" && exp.value === "**") {
-        return results
-      } else {
-        return undefined
-      }
+      return undefined
     }
 
     if (exp.kind === "Literal") {
@@ -35,7 +37,11 @@ export function pathPatternMatch(
     }
 
     if (exp.kind === "Var") {
-      results[exp.name] = part
+      if (results[exp.name] === undefined) {
+        results[exp.name] = part
+      } else if (results[exp.name] !== part) {
+        return undefined
+      }
     }
   }
 }
