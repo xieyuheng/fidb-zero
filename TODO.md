@@ -1,5 +1,3 @@
-`tokenCheck` take `db` and be async
-
 `tokenAssert` take token name instead of token value
 `tokenCheck` take token name instead of token value
 

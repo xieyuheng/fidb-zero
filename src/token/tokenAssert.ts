@@ -10,7 +10,7 @@ export async function tokenAssert(
   path: string,
   name: Operation,
 ): Promise<void> {
-  if (!tokenCheck(token, path, name)) {
+  if (!(await tokenCheck(db, token, path, name))) {
     throw new Unauthorized(
       `[tokenAssert] not permitted to ${name} path: ${path}`,
     )
