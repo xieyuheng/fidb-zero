@@ -69,7 +69,7 @@ I want to implement the above by the following:
 
   ```
   {
-    "issuer": "users/xieyuheng",
+    "issuer": "users/xieyuheng/.login",
     "@path": ".tokens/cc224145f46a393f8ca71c4eb62aafe1",
     ...
   }
@@ -243,7 +243,7 @@ I want to implement the above by the following:
     "permissions": { ... },
     "granted": [
       {
-        "granter": "users/readonlylink",
+        "granter": "users/readonlylink/.login",
         "permissions": {
           "users/readonlylink/**": [
             "file:get",

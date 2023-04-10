@@ -1,4 +1,18 @@
-[token] `Token` has `issuer` that points to a login target
+`tokenIssuerCreate`
+
+[token] `Token` has `issuer` that points to a login target -- `test-token-issuer`
+
+remove `permissions` from `Token`
+
+pathPatternMatch(pattern, path): Record<string, string>
+pathPatternGenerate(pattern, properties: Record<string, string>): string
+
+[password] `kind=password-register` create `.login` by `.configs/password-register-strategy`
+
+[password] `kind=password-login` create token by `.login`
+
+- with `issuer` point to `**/.login`
+
 [password] remove `password.permissions`
 
 # docs
