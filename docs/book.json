@@ -2,7 +2,7 @@
   "kind": "Book",
   "title": "FiDB Manual",
   "subtitle": "What if we use file system as database?",
-  "version": "0.0.1",
+  "version": "0.0.24",
   "authors": ["Xie Yuheng"],
   "date": "2023",
   "src": "manual",
