@@ -62,7 +62,7 @@ export class ServeCommand extends Command<Args> {
     const { url } = await startServer(requestListener, {
       hostname: argv.hostname,
       port: argv.port,
-      startingPort: 3000,
+      startingPort: 5108,
       tls,
     })
 

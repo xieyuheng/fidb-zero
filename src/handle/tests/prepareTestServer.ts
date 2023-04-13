@@ -23,7 +23,7 @@ export async function prepareTestServer(options: { name: string }) {
   server.on("request", requestListener)
 
   const hostname = "127.0.0.1"
-  const port = await findPort(3000)
+  const port = await findPort(5108)
 
   await serverListen(server, { port, hostname })
 

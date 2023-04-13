@@ -229,13 +229,11 @@ I want to implement the above by the following:
   .tokens/default/index.json
   ```
 
-  The token data should be:
+  The token data could be:
 
   ```
   {
-    "issuer": ".configs/default-token-issuer",
-    "@path": ".tokens/default",
-    ...
+    "issuer": ".configs/default-token-issuer"
   }
   ```
 

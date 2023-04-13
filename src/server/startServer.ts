@@ -20,7 +20,7 @@ export async function startServer(
   const port = Number(
     process.env.PORT ||
       options.port ||
-      (await findPort(options.startingPort || 3000)),
+      (await findPort(options.startingPort || 5108)),
   )
 
   await serverListen(server, { hostname, port })
