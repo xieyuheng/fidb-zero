@@ -22,7 +22,7 @@ the familiar concept of _data table_.
 This seems is the most simple solution, but we can not use it,
 because we want to use subdirectory relation
 to represent "has one" and "has many" relations,
-while a file can not have any subdirectory at all.
+but a file can NOT have any subdirectory at all.
 
 - **Solution 1.1.B:** Using a directory of directories to represent a table,
   where each subdirectory contains one JSON file named `index.json`
@@ -36,19 +36,20 @@ while a file can not have any subdirectory at all.
   users/mimor/index.json
   ```
 
-  We will call `users/xieyuheng` data,
-  and call `users/xieyuheng/index.json` a _data file_.
+  We will call `users/xieyuheng/index.json` a _data file_.
 
-  And the name of the subdirectory relative to the root of the database
+  And the path of the subdirectory relative to the root of the database
   is viewed as the primary key of the row.
 
   For example:
 
   ```
-  xieyuheng
-  readonlylink
-  mimor
+  users/xieyuheng
+  users/readonlylink
+  users/mimor
   ```
+
+  We will use paths like `users/xieyuheng` to refer to _the data_,
 
 We talked about representing "has one" and "has many" relations
 many many times already, let's articulate it as a problem
@@ -61,7 +62,7 @@ and solve it once for all.
   belong to the corresponding directory.
 
   For example, a user _has many_ projects,
-  then each user has a `projects` subdirectory.
+  thus each user has a `projects` subdirectory.
 
   The pattern of directories will be:
 
@@ -69,14 +70,12 @@ and solve it once for all.
   users/*/projects/*/index.json
   ```
 
-  Concrete examples:
+  For example:
 
   ```
   users/xieyuheng/index.json
   users/xieyuheng/projects/inner/index.json
   users/xieyuheng/projects/pomodoro/index.json
-  users/xieyuheng/projects/learn-x/index.json
-  users/xieyuheng/projects/cell-complex/index.json
 
   users/readonlylink/index.json
   users/readonlylink/projects/x-node/index.json
@@ -92,7 +91,7 @@ and solve it once for all.
   users/*/config/index.json
   ```
 
-  Concrete examples:
+  For example:
 
   ```
   users/xieyuheng/index.json
