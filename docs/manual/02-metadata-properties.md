@@ -26,9 +26,9 @@ we use `@path` as the property name of primary key.
 When reading data, the path of the directory that contains `index.json`
 will be added to the result as a metadata property.
 
-- The path is relative to the root of database.
+The path is relative to the root of database.
 
-For example, the primary keys of the following data
+For example, the `@path` of the following data
 
 ```
 users/xieyuheng/index.json
@@ -36,7 +36,7 @@ users/xieyuheng/projects/inner/index.json
 users/xieyuheng/projects/pomodoro/index.json
 ```
 
-Would be
+would be
 
 ```
 users/xieyuheng
@@ -44,20 +44,18 @@ users/xieyuheng/projects/inner
 users/xieyuheng/projects/pomodoro
 ```
 
-Which are just path to the directory, thus `@path`.
-
 ## @createdAt
 
 To make the data more convenient to use,
 we use `@createdAt` as the timestamp of creation.
 
 When reading data, if there is no `@createdAt` property,
-the created timestamp of the file
+the creation timestamp of the file
 will be added to the result as a metadata property.
 
-- The timestamp is the number of milliseconds that have elapsed
-  since the UNIX epoch, which is defined as
-  the midnight at the beginning of January 1, 1970, UTC.
+The timestamp is the number of milliseconds that have elapsed
+since the UNIX epoch, which is defined as
+the midnight at the beginning of January 1, 1970, UTC.
 
 ## @updatedAt
 
@@ -74,10 +72,10 @@ based on current timestamp.
 
 - **Problem 2.2:** When I want to update a data, I first read it by it's `@path`,
   then I edit the data and write it back to the database.
-  What it the during this time, the data is updated by other user?
-  How should I now about this?
+  What if during this time, the data is updated by another user?
+  How should I know about this?
 
-- **Solution 2.2:** We can use `@revision` as a metadata property.
+- **Solution 2.2:** We can add a `@revision` metadata property to the data.
 
   When reading data, if there is no `@revision` property,
   we add a random string as `@revision`.
@@ -86,4 +84,4 @@ based on current timestamp.
   if they are equal, the writing is successful
   and a new random `@revision` is created,
   if they are not equal, the writing is failed
-  error message will be return (for example, via HTTP).
+  and an error message should be return (for example, via HTTP).

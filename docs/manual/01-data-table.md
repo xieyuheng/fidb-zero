@@ -115,6 +115,6 @@ dataPatch(db: Database, path: string, input: JsonObject): Promise<Data>
 dataDelete(db: Database, path: string, input: JsonObject): Promise<void>
 ```
 
-Now, whenever I want to save some data,
+Whenever I want to have some data,
 I just put them in data files,
 and use these functions to operate on them.
