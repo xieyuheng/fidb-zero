@@ -49,7 +49,7 @@ are the _one-to-one "has one"_ relation
 and the _one-to-many "has many"_ relation,
 which are most naturally expressed by nested directories.
 
-For examples:
+For example:
 
 - A user _has many_ projects,
   so we give each user a `projects` subdirectory:
@@ -78,10 +78,9 @@ just like how normal relational databases do.
 Since we are optimizing our tool for the most used use case,
 the tool feels very handy and easy to understand.
 
-What if we use file system as database?
+_What if we use file system as database?_
 
-It feels like an idea worth trying.
-Let us explore how execatly can we implement this idea.
+It feels like an idea worth exploring.
 
 Before we begin, let's solve the most import problem first.
 

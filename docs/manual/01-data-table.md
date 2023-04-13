@@ -2,7 +2,7 @@
 title: Data Table
 ---
 
-To implement the idea of using file system as database,
+To implement the idea of FiDB,
 we must first answer the question about
 the familiar concept of _data table_.
 

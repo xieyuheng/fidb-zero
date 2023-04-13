@@ -225,7 +225,7 @@ such as markdown, image, mp3 and so on.
 - **Solution 3.1:** We can add `kind=...` query parameter to a request,
   where the value of `kind` explicitly denotes the kind of resource.
 
-  For examples, value can be `data`, `file`, `directory` and so on.
+  For example, value can be `data`, `file`, `directory` and so on.
 
   We require an implementation to view the value of `kind` as case insensitive,
   so a user can write both `kind=Data` and `kind=data`.
