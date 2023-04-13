@@ -32,14 +32,15 @@ is actually what URL and HTTP is designed for
 >
 > -- [RFC 9110 -- HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html).
 
-A resource identifier is a URL (or say a URI) that denotes a resource,
-while resource is an abstract concept which might have many kinds of implementations
+A resource identifier is a URL that denotes a resource,
+resource is an abstract concept which might have many kinds of implementations,
 and a representation of resource is an implementation of resource in concrete format
 that programmers can work with.
+
 We see that file system,
 with it's pathnames and files,
 is both the inspiration and the archetype of such system,
-and it is also how many such systems end up been implemented
+and it is also the way many HTTP servers end up been implemented
 specially at the early days of HTTP.
 
 Nowaday people use relational database and SQL to implement HTTP API,
