@@ -260,3 +260,7 @@ I want to implement the above by the following:
     ]
   }
   ```
+
+  **TODO** We also need HTTP API for this feature,
+  but since I am not currently using this feature,
+  I leave the design of the API for future.

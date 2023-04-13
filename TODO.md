@@ -1,10 +1,10 @@
+[token] `default-permissions.json` -- used when no token is provided
+
+# schema
+
 [manual] schema
 
 use `x-schema` instead of `xieyuheng/ty`
-
-[manual] access-token -- HTTP API about granting access to another user
-
-[token] `default-permissions.json` -- used when no token is provided
 
 # docs
 
