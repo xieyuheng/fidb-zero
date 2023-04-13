@@ -41,6 +41,21 @@ thus the simplest to understand and implement.
   ```
   users/xieyuheng/index.json
   users/xieyuheng/.login/index.json
+  users/xieyuheng/.password/index.json
+  ```
+
+  We use [brcryt](https://en.wikipedia.org/wiki/Bcrypt) to save password safely,
+  thus the password data might be:
+
+  ```
+  {
+    "hash": "$2b$10$HpzyzH0jUr/h5H27Z9F4mew9ijI6cbPldhH9OYJOXqXK.O.qxuKfW",
+    "memo": "My favorite password.",
+    "@path": "users/xieyuheng/.password",
+    "@revision": "ae937631eeec83a8edd2cbd381763274",
+    "@createdAt": 1681389842021,
+    "@updatedAt": 1681389842021
+  }
   ```
 
 - To **login** a user by password,

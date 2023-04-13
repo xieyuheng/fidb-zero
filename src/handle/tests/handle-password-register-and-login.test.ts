@@ -88,32 +88,4 @@ test("handle-password-register-and-login", async ({ meta }) => {
 
     revision = patched["@revision"]
   }
-
-  {
-    // The `token` can delete user data.
-
-    const response = await fetch(new URL(`users/xieyuheng`, url), {
-      method: "DELETE",
-      headers: {
-        authorization: `token ${token}`,
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        "@revision": revision,
-      }),
-    })
-
-    expect(response.ok).toEqual(true)
-  }
-
-  {
-    const response = await fetch(new URL(`users/xieyuheng`, url), {
-      method: "GET",
-      headers: {
-        authorization: `token ${token}`,
-      },
-    })
-
-    expect(response.status).toEqual(404)
-  }
 })

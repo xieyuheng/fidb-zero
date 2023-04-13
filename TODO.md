@@ -1,5 +1,3 @@
-handle-file-default-token.test.ts
-
 # schema
 
 [manual] schema
