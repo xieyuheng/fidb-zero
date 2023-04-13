@@ -1,4 +1,4 @@
-[token] `default-permissions.json` -- used when no token is provided
+[token] `.configs/default-token-issuer` -- used when no token is provided
 
 # schema
 

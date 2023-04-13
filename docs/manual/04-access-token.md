@@ -16,7 +16,7 @@ Here is how I understand them:
 
 - Login is about issuing access token to a user.
   Specially, password login is about issuing access token to a user
-  who has provided the right password.
+  who provided the right password.
 
 - Register is about preparing a user for future logins.
   Specially, password register is about setting up the password for a user.
@@ -27,16 +27,16 @@ I want to implement the above by the following:
 
 - **Solution 4.1:** Upon register, we prepare a user for future logins by
   creating a `.login` data for that user.
-  For example, register `users/xieyuheng`
+  For example, registering `users/xieyuheng`
   will create `users/xieyuheng/.login`.
 
   The `.login` data will have a `permissions` property,
   which we discuss later.
 
   Since we do not want a user to change his/her own `permissions`,
-  we make a convention that a path with part that starts with `.`
+  we make a convention that if part of a path starts with `.`
   -- for example `users/xieyuheng/.login`,
-  will be viewed as referencing _system resource_,
+  we view it as referencing _system resource_,
   thus can not be access by normal operations,
   such as `data`, `file` and `directory` operations.
 
@@ -48,24 +48,20 @@ I want to implement the above by the following:
 
   ```
   .tokens/cc224145f46a393f8ca71c4eb62aafe1/index.json
-  .tokens/5d551a1ca96496acd2c68eefcd294e88/index.json
-  ...
   ```
 
   Where the pathname is the token itself,
   for the above example,
-  the tokens are:
+  the token is:
 
   ```
   cc224145f46a393f8ca71c4eb62aafe1
-  5d551a1ca96496acd2c68eefcd294e88
-  ...
   ```
 
   And each token data has an `issuer` property
   which is path pointing to a login target.
 
-  Example token:
+  Example token data:
 
   ```
   {
@@ -77,7 +73,7 @@ I want to implement the above by the following:
 
   Note that, there is one level of indirect here,
   when we want to know the `permissions` of a token,
-  we read it from the token's `issuer`.
+  we read it from the token's `issuer` instead of from the token data.
 
 - **Problem 4.3:** How should we represent permissions
   -- the `permissions` property of a login target?
@@ -114,7 +110,7 @@ I want to implement the above by the following:
   ```
 
   We use the [`micromatch`](https://github.com/micromatch/micromatch)
-  glob matching library for our path pattern.
+  glob matching library for our path patterns.
 
   For example, we want to have an admin token
   that can do everything to every directories.
@@ -129,6 +125,7 @@ I want to implement the above by the following:
       "data:patch",
       "data:delete",
       "data-find:get",
+      "file:post",
       "file:get",
       "file:put",
       "file:delete",
@@ -140,7 +137,7 @@ I want to implement the above by the following:
   }
   ```
 
-  For another example, when a user logged in,
+  For another example, when a user is logged in,
   we want to give him/her a token
   that permits him/her to read and write his/hers own directory
   but only to read all other users' `public` directories.
@@ -202,13 +199,12 @@ I want to implement the above by the following:
 
 - **Problem 4.5:** How to config the default permissions?
 
-- **Solution 4.5:** The most direct and minimal solution
-  is to use a `.configs/default-token-issuer` data
+- **Solution 4.5:** We can use a `.configs/default-token-issuer` data
   at the root of the database directory,
   which contains a `permissions` property
   for the default permissions.
 
-  For example, suppose we want all not logged in guests
+  For example, suppose we want all guests
   to be able to read all users public data:
 
   ```
@@ -246,6 +242,7 @@ I want to implement the above by the following:
         "granter": "users/readonlylink/.login",
         "permissions": {
           "users/readonlylink/**": [
+            "file:post",
             "file:get",
             "file:put",
             "file:delete",
@@ -263,4 +260,4 @@ I want to implement the above by the following:
 
   **TODO** We also need HTTP API for this feature,
   but since I am not currently using this feature,
-  I leave the design of the API for future.
+  I leave the design of the API for the future.

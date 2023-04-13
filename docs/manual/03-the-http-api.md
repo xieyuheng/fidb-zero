@@ -8,11 +8,11 @@ The aim is to enable a developer to describe rules about HTTP API,
 and let fidb dynamicly serves the HTTP API based on the rules,
 thus a developer almost never need to write backend API code over database again.
 
-We will do this little by little.
+Ambitious goal, we will try to achieve this little by little.
 
 ## Data Operations
 
-Firstly, the most basic four operations is the **CRUD**
+Firstly, the most basic four operations are the **CRUD**
 -- **C**reate, **R**ead, **U**pdate and **D**elete.
 
 - To **create** data, `POST` the path with the data.
