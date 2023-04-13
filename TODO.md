@@ -1,4 +1,7 @@
-[token] `.configs/default-token-issuer` -- used when no token is provided
+[token] use default token
+
+handle-data-default-token.test.ts
+handle-file-default-token.test.ts
 
 # schema
 

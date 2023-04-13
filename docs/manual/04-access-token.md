@@ -221,6 +221,24 @@ I want to implement the above by the following:
   }
   ```
 
+  And we can use a token named `default` to point to the default issuer.
+
+  The token file should be:
+
+  ```
+  .tokens/default/index.json
+  ```
+
+  The token data should be:
+
+  ```
+  {
+    "issuer": ".configs/default-token-issuer",
+    "@path": ".tokens/default",
+    ...
+  }
+  ```
+
 - **Problem 4.6:** What if a user want to grant permissions
   to operate on his/hers non-public data
   to some other users?

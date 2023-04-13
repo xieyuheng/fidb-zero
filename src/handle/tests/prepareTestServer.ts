@@ -3,6 +3,7 @@ import { handle } from ".."
 import { dataCreate } from "../../db"
 import { prepareTestDb } from "../../db/tests/prepareTestDb"
 import { allOperations } from "../../operation"
+import { defaultPermissions } from "../../password/defaultPermissions"
 import { userLoginTargets } from "../../password/userLoginTargets"
 import { createRequestListener } from "../../server/createRequestListener"
 import { tokenCreate } from "../../token"
@@ -30,6 +31,14 @@ export async function prepareTestServer(options: { name: string }) {
     loginTargets: {
       ...userLoginTargets,
     },
+  })
+
+  await dataCreate(db, ".configs/default-token-issuer", {
+    permissions: defaultPermissions,
+  })
+
+  await dataCreate(db, ".tokens/default", {
+    issuer: ".configs/default-token-issuer",
   })
 
   await dataCreate(db, "test-token-issuers/all-read-write", {
