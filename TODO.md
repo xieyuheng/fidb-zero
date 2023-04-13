@@ -1,4 +1,3 @@
-handle-data-default-token.test.ts
 handle-file-default-token.test.ts
 
 # schema
