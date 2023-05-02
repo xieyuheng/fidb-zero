@@ -20,8 +20,8 @@ export async function fileMetadataGetOrFail(
     const stats = await fs.promises.stat(resolvePath(db, path))
     return {
       size: stats.size,
-      createdAt: stats.ctimeMs,
-      updatedAt: stats.mtimeMs,
+      createdAt: stats.birthtimeMs,
+      updatedAt: stats.ctimeMs,
     }
   } catch (error) {
     if (isErrnoException(error) && error.code === "ENOENT") {
