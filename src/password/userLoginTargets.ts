@@ -5,6 +5,7 @@ export const userLoginTargets: Record<string, TokenIssuerInput> = {
   "users/{user}": {
     permissions: {
       "users/{user}/**": allOperations,
+      "users/*": ["data:get"],
       "users/*/public/**": readOperations,
     },
   },
