@@ -1,5 +1,3 @@
-handle -- `kind=directory` should include `fileMetadata`
-
 support `kind=directory-recursive`
 
 api for move file -- will keep `createdAt`
