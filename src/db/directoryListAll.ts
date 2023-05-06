@@ -3,6 +3,7 @@ import { join } from "node:path"
 import type { Database } from "../database"
 import type { PathEntry } from "../path-entry"
 import { isErrnoException } from "../utils/node/isErrnoException"
+import { fileMetadataGetOrFail } from "./fileMetadataGetOrFail"
 import { resolvePath } from "./utils/resolvePath"
 
 export async function* directoryListAll(
@@ -16,15 +17,12 @@ export async function* directoryListAll(
 
     for await (const dirEntry of dir) {
       if (dirEntry.isDirectory()) {
-        yield {
-          kind: "Directory",
-          path: join(directory, dirEntry.name),
-        }
+        const path = join(directory, dirEntry.name)
+        yield { kind: "Directory", path }
       } else if (dirEntry.isFile()) {
-        yield {
-          kind: "File",
-          path: join(directory, dirEntry.name),
-        }
+        const path = join(directory, dirEntry.name)
+        const fileMetadata = await fileMetadataGetOrFail(db, path)
+        yield { kind: "File", path, ...fileMetadata }
       }
     }
   } catch (error) {
