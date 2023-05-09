@@ -1,5 +1,3 @@
-`handle` -- `file=rename`
-
 # schema
 
 [manual] schema

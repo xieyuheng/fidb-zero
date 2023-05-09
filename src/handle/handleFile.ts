@@ -1,9 +1,11 @@
+import { ty } from "@xieyuheng/ty"
 import type { Buffer } from "node:buffer"
 import type Http from "node:http"
 import * as Db from "../db"
 import { tokenAssert } from "../token"
 import type { Json } from "../utils/Json"
 import { requestBuffer } from "../utils/node/requestBuffer"
+import { requestJsonObject } from "../utils/node/requestJsonObject"
 import { requestKind } from "../utils/node/requestKind"
 import { requestQuery } from "../utils/node/requestQuery"
 import type { Context } from "./Context"
@@ -31,6 +33,14 @@ export async function handleFile(
   }
 
   if (request.method === "POST") {
+    if (query.kind === "file-rename") {
+      await tokenAssert(db, token, path, "file:delete")
+      const schema = ty.object({ to: ty.string() })
+      const { to } = schema.validate(await requestJsonObject(request))
+      await tokenAssert(db, token, to, "file:post")
+      return await Db.fileRename(db, path, to)
+    }
+
     await tokenAssert(db, token, path, "file:post")
     return await Db.fileCreate(db, path, await requestBuffer(request))
   }
