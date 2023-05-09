@@ -22,10 +22,12 @@ export async function handleDirectory(
 
   if (request.method === "GET") {
     await tokenAssert(db, token, path, "directory:get")
+
     return await arrayFromAsyncIterable(
       Db.directoryList(db, path, {
         page: query.page ? Number.parseInt(query.page) : 1,
         size: query.size ? Number.parseInt(query.size) : 15,
+        recursive: query.hasOwnProperty("recursive"),
       }),
     )
   }
