@@ -5,6 +5,7 @@ import { directoryListAll } from "./directoryListAll"
 export type ListOptions = {
   page: number // NOTE starting from 1
   size: number
+  recursive?: boolean
 }
 
 export async function* directoryList(
@@ -17,7 +18,9 @@ export async function* directoryList(
   const end = start + options.size
   let count = 0
 
-  for await (const pathEntry of directoryListAll(db, directory)) {
+  for await (const pathEntry of directoryListAll(db, directory, {
+    recursive: options.recursive,
+  })) {
     if (count >= end) {
       break
     }

@@ -26,10 +26,27 @@ test("db-directory-list-all", async ({ meta }) => {
     ),
   ).toEqual(true)
 
-  // NOTE The sub-directories are not included.
-  await Db.dataCreate(db, "users/projects/1", {})
-  await Db.dataCreate(db, "users/projects/2", {})
+  await Db.dataCreate(db, "users/1/projects/1", {})
+  await Db.dataCreate(db, "users/1/projects/2", {})
 
+  {
+    // The `recursive` option will include all sub-directories.
+
+    const pathEntries = await arrayFromAsyncIterable(
+      Db.directoryListAll(db, "", { recursive: true }),
+    )
+
+    expect(
+      Boolean(pathEntries.find(({ path }: PathEntry) => path === "users")),
+    ).toEqual(true)
+    expect(
+      Boolean(
+        pathEntries.find(({ path }: PathEntry) => path === "users/1/projects"),
+      ),
+    ).toEqual(true)
+  }
+
+  // The sub-directories are not included.
   expect(
     (await arrayFromAsyncIterable(Db.directoryListAll(db, ""))).length,
   ).toEqual(1)

@@ -1,6 +1,6 @@
 support `kind=directory-recursive`
 
-api for move file -- will keep `createdAt`
+api for moving file -- will keep `createdAt`
 
 # schema
 
