@@ -2,7 +2,7 @@
   "kind": "Author",
   "name": "FiDB",
   "tagline": "File system as database.",
-  "homepage": "../README.md",
+  "homepage": "author/HOME.md",
   "avatar": "assets/images/logo.png",
   "activities": [
     "activities/2023-03-22-hello-readonlylink.md",
