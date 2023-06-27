@@ -1,4 +1,5 @@
 import fs from "node:fs"
+import { dirname } from "node:path"
 import type { Database } from "../database"
 import { AlreadyExists } from "../errors"
 import { isErrnoException } from "../utils/node/isErrnoException"
@@ -23,8 +24,11 @@ export async function fileRename(
   }
 
   try {
+    await fs.promises.mkdir(dirname(resolvePath(db, to)), { recursive: true })
     await fs.promises.rename(resolvePath(db, from), resolvePath(db, to))
   } catch (error) {
+    console.log(error)
+
     if (isErrnoException(error)) {
       throw new Error(
         `[${who}] from: ${from}, to: ${to}, error.code: ${error.code}`,
