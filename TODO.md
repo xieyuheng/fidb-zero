@@ -4,13 +4,28 @@
 
 use `x-schema` instead of `xieyuheng/ty`
 
+# image
+
+[image] support compression
+
 # handle
 
 [handle] support `HEAD` query
 
+[handle] support contents hash based `PATCH` query
+
+[handle] support nested `PATCH` for data
+
 [handle] rate limit by ip -- for `password-register`
 
 [config] be able to config `rateLimits: { ... }`
+
+# fidb database:deploy
+
+Like `fidb website:deploy`.
+
+This command will only be meaningful
+if we have some scripts to generate database and datasets.
 
 # docs
 
@@ -25,13 +40,6 @@ use `x-schema` instead of `xieyuheng/ty`
 # token
 
 [token] each directory can grant access to token owner
-
-# fidb database:deploy
-
-Like `fidb website:deploy`.
-
-This command will only be meaningful
-if we have some scripts to generate database and datasets.
 
 # authentication by email -- for any directory
 
