@@ -1,4 +1,4 @@
 {
   "upgrade": true,
-  "reject": ["@types/inquirer", "inquirer", "prettier"]
+  "reject": ["@types/inquirer", "inquirer"]
 }
