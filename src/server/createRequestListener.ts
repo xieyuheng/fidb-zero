@@ -72,7 +72,10 @@ export function createRequestListener<Context>(options: {
         connection: "close",
       }
 
-      const message = error instanceof Error ? error.message : "Unknown error"
+      const message = encodeURIComponent(
+        error instanceof Error ? error.message : "Unknown error",
+      )
+
       if (error instanceof Unauthorized) {
         responseSetStatus(response, { code: 401, message })
         responseSetHeaders(response, headers)
