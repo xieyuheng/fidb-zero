@@ -1,0 +1,44 @@
+<front-cover>
+  What if we use file system as database?
+</front-cover>
+
+<question>
+  What do you mean by using file system as database?
+
+  <answer>
+    I mean a suite of protocols about implementing database concepts
+    in file system, including a suite of HTTP API which can read and
+    write data represented in file system.
+  </answer>
+</question>
+
+<question>
+  What is a protocol?
+
+  <answer>
+    A protocol is a kind of contract, an agreement that lets different
+    teams in different times and places write code that is guaranteed to
+    work together.
+
+    Code that can work together is called interoperable.
+
+    -- Pieter Hintjens
+  </answer>
+</question>
+
+<question>
+  What is a resource identifier?
+
+  <answer>
+    a resource identifier is a URL that denotes a resource.
+  </answer>
+</question>
+
+<question>
+  What is a representation of resource?
+
+  <answer>
+    A representation of resource is an implementation of resource
+    in concrete format that programmers can work with.
+  </answer>
+</question>
