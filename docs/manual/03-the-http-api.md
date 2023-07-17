@@ -220,7 +220,7 @@ beside operations on JSON data files,
 we also want to operate on other kinds of files
 such as markdown, image, mp3 and so on.
 
-- **Problem 3.1:** How to distinguish kinds of resources referenced by a path?
+- **Problem 3.1:** How to distinguish different kinds of resources referenced by a path?
 
 - **Solution 3.1:** We can add `kind=...` query parameter to a request,
   where the value of `kind` explicitly denotes the kind of resource.
@@ -288,11 +288,7 @@ and all file operations require us to write `kind=file`,
 we can improve this situation a little bit.
 
 - **Problem: 3.2** It is not convenient to always have to write
-  `kind=data` and `kind=file`,
-  specially we do not want to write `kind=file`
-  when using web apps that dynamicly load content from URL
-  -- like [readonly.link](https://readonly.link)
-  and [mimor.app](https://mimor.app).
+  `kind=data` and `kind=file`.
 
 - **Solution: 3.2** We can identify some situations
   where it is unambiguous to omit `kind=...`.
@@ -302,8 +298,10 @@ we can improve this situation a little bit.
   is to an existing file (instead of a directory).
 
   For `kind=data`, since it is the most used use case of our system,
-  we view it as the default when `kind` is omitted,
-  when the given `path` does not exist or the given path is to a directory.
+  when `kind` is omitted,
+  and the given `path` does not exist
+  or the given path is to a directory,
+  we view it as `kind=data`.
 
 Beside the file content,
 we also want to read metadata of a file,
@@ -361,9 +359,17 @@ then we naturally also want to operate on directories.
   ]
   ```
 
-  The `kind` can be `"Directory"` or `"File"`,
+  The `kind` might be `"Directory"` or `"File"`,
   the `path` is relative to the root of the database
   (thus can be used as primarily key).
+
+  The above request is not recursive,
+  if we want list all nested subdirectories
+  we can add `recursive` to the query:
+
+  ```
+  GET users?kind=directory&recursive
+  ```
 
 - To **delete** a directory recursively,
   `DELETE` the path with query parameter `kind=directory`.
