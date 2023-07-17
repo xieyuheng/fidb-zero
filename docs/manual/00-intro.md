@@ -33,9 +33,7 @@ is actually what URL and HTTP is designed for
 > -- [RFC 9110 -- HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html).
 
 A resource identifier is a URL that denotes a resource,
-resource is an abstract concept which might have many kinds of implementations,
-and a representation of resource is an implementation of resource in concrete format
-that programmers can work with.
+and a representation of resource is a concrete format that programmers can work with.
 
 We see that file system,
 with it's pathnames and files,

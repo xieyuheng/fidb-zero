@@ -46,8 +46,7 @@ users/xieyuheng/projects/pomodoro
 
 ## @createdAt
 
-To make the data more convenient to use,
-we use `@createdAt` as the timestamp of creation.
+We use `@createdAt` as the timestamp of creation.
 
 When reading data, if there is no `@createdAt` property,
 the creation timestamp of the file
@@ -59,8 +58,7 @@ the midnight at the beginning of January 1, 1970, UTC.
 
 ## @updatedAt
 
-To make the data more convenient to use,
-we use `@updatedAt` as the timestamp of modification.
+We use `@updatedAt` as the timestamp of modification.
 
 When reading data, if there is no `@updatedAt` property,
 `@createdAt` will be used as it's `@updatedAt`.

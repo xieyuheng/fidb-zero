@@ -38,7 +38,7 @@
   What is a representation of resource?
 
   <answer>
-    A representation of resource is an implementation of resource
-    in concrete format that programmers can work with.
+    A representation of resource is a concrete format
+    that programmers can work with.
   </answer>
 </question>
