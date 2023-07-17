@@ -31,7 +31,7 @@ class Database {
 }
 ```
 
-But, because we want to do many many things to the database,
+But, because we want to do many things to the database,
 maybe it does not make sense to implement
 all the functions as methods in the class.
 

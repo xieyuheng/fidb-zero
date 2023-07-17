@@ -52,7 +52,7 @@ but a file can NOT have any subdirectory at all.
   We will use paths like `users/xieyuheng` to refer to _the data_,
 
 We talked about representing "has one" and "has many" relations
-many many times already, let's articulate it as a problem
+many times already, let's articulate it as a problem
 and solve it once for all.
 
 - **Problem 1.2:** How should we represent "has one" and "has many" relations in file system?
