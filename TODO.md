@@ -4,9 +4,12 @@
 
 use `x-schema` instead of `xieyuheng/ty`
 
-# image
+# fidb database:deploy
 
-[image] support compression
+Like `fidb website:deploy`.
+
+This command will only be meaningful
+if we have some scripts to generate database and datasets.
 
 # handle
 
@@ -20,12 +23,9 @@ use `x-schema` instead of `xieyuheng/ty`
 
 [config] be able to config `rateLimits: { ... }`
 
-# fidb database:deploy
+# image
 
-Like `fidb website:deploy`.
-
-This command will only be meaningful
-if we have some scripts to generate database and datasets.
+[image] support compression
 
 # docs
 
