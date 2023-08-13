@@ -11,7 +11,17 @@ File system as database.
 
 ### Requirements
 
-Node.js version must be >= 20.1.
+Node.js version must be >= [20.1](https://nodejs.org/en/blog/release/v20.1.0).
+
+- For the `recursive` option to `readdir` and `opendir`.
+
+We do not write the `engines` limitation in `package.json`,
+
+```
+"engines": { "node": ">=20.1" }
+```
+
+so that we can `npm run build:tsdoc` on vercel.
 
 ### Command line tool
 
