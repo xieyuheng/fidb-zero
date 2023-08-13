@@ -3,9 +3,6 @@
   "version": "0.1.7",
   "repository": "github:fidb-official/fidb",
   "main": "./lib/index.js",
-  "engines": {
-    "node": ">=20.1"
-  },
   "files": [
     "lib"
   ],

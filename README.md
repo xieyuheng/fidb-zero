@@ -9,6 +9,10 @@ File system as database.
 
 ## Usages
 
+### Requirements
+
+Node.js version must be >= 20.1.
+
 ### Command line tool
 
 Install it by the following command:
