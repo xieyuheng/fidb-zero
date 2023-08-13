@@ -1,15 +1,6 @@
-# schema
-
-[manual] schema
-
-use `x-schema` instead of `xieyuheng/ty`
-
 # fidb database:deploy
 
-Like `fidb website:deploy`.
-
-This command will only be meaningful
-if we have some scripts to generate database and datasets.
+`fidb website:deploy`
 
 # handle
 
@@ -22,6 +13,12 @@ if we have some scripts to generate database and datasets.
 [handle] rate limit by ip -- for `password-register`
 
 [config] be able to config `rateLimits: { ... }`
+
+# schema
+
+[manual] schema
+
+use `x-schema` instead of `xieyuheng/ty`
 
 # image
 
@@ -64,3 +61,7 @@ b-tree over file system
 `Db.find` -- use index
 
 `Db.find` -- support deref a property which is a path to another data
+
+# generate
+
+scripts to generate database and datasets.

@@ -4,7 +4,7 @@ title: FAQ
 
 - **Q:** Why this manual is composed of problems and solutions?
 
-  **A:** I learned from Pieter Hintjens' unfinished book [Scalable C](https://readonly.link/books/https://books.readonly.link/scalable-c/book.json), I admire the author's ideas.
+  **A:** I learned it from Pieter Hintjens' unfinished book [Scalable C](https://readonly.link/books/https://books.readonly.link/scalable-c/book.json), I admire the author's ideas.
 
 - **Q:** Why this manual uses examples instead of rigorous specification?
 
