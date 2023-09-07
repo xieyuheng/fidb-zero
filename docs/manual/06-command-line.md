@@ -14,8 +14,6 @@ with all the APIs discussed in this manual by one command:
 fidb serve <database>
 ```
 
-<img style="max-width: 500px; width: 100%;" src="https://image-link.xieyuheng.com/spin/Snurra_uppochner.gif" />
-
 My implementation of FiDB is at [github.com/fidb-official/fidb](https://github.com/fidb-official/fidb).
 
 You can add new kinds of APIs by adding new `kind=...` parameters,
