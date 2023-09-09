@@ -1,6 +1,6 @@
-# fidb database:deploy
+# fidb serve-many
 
-`fidb website:deploy`
+`fidb serve-many` -- serve many databases with subdomain-based routing
 
 # handle
 

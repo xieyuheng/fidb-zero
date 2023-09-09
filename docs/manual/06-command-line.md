@@ -7,7 +7,7 @@ An implementation of FiDB server can be used as a command-line tool.
 I must say something about how I envisioned this project when I started it.
 I want to use a directory of subdirectories and files as a database,
 be able to edit data by hand in text editor,
-and whenever I wish, **spin** a HTTP server
+and whenever I wish, spin a HTTP server
 with all the APIs discussed in this manual by one command:
 
 ```
