@@ -23,7 +23,7 @@ so that we can `npm run build:tsdoc` on vercel.
 Install it by the following command:
 
 ```sh
-sudo npm install -g fidb
+npm install -g fidb
 ```
 
 The command line program is called `fidb`.
