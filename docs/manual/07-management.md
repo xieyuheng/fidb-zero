@@ -3,7 +3,7 @@ title: Management
 ---
 
 There is an online FiDB database manager
-at [fidb.dev/manager](https://fidb.dev/manager),
+at [fidb.app/manager](https://fidb.app/manager),
 which can manager data files in the form of table
 (inspired by the notorious Excel).
 
