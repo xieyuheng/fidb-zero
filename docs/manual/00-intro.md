@@ -97,7 +97,7 @@ I kinda like it already :)
 The source code of this **FiDB** project is on [GitHub](https://github.com/fidb-official/fidb), and the source code of this manual is in the `docs/` directory of the repo.
 
 This manual is available
-both [in the form of a manual](https://readonly.link/manuals/https://cdn.fidb.app/docs/manual.json)
-and [in the form of a book](https://readonly.link/books/https://cdn.fidb.app/docs/book.json).
+both [in the form of a manual](https://readonly.link/manuals/https://code-of-fidb.fidb.app/docs/manual.json)
+and [in the form of a book](https://readonly.link/books/https://code-of-fidb.fidb.app/docs/book.json).
 
 Welcome feedback.

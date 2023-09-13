@@ -1,9 +1,9 @@
 # FiDB
 
 [ [Webwite](https://fidb.app)
-| [Manual](https://readonly.link/manuals/https://cdn.fidb.app/docs/manual.json)
-| [Manual (book form)](https://readonly.link/books/https://cdn.fidb.app/docs/book.json)
-| [TSDoc](https://cdn.fidb.app/tsdoc/index.html) ]
+| [Manual](https://readonly.link/manuals/https://code-of-fidb.fidb.app/docs/manual.json)
+| [Manual (book form)](https://readonly.link/books/https://code-of-fidb.fidb.app/docs/book.json)
+| [TSDoc](https://code-of-fidb.fidb.app/tsdoc/index.html) ]
 
 File system as database.
 
