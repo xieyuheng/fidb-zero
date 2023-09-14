@@ -12,7 +12,6 @@
   "scripts": {
     "build": "rm -rf lib; tsc",
     "build:watch": "rm -rf lib; tsc --watch",
-    "build:tsdoc": "npx typedoc src/index.ts --out tsdoc",
     "test:ts": "vitest --dir src --threads false --run",
     "test:watch": "vitest --dir src --threads false",
     "test:coverage": "vitest --dir src --threads false --run --coverage ",

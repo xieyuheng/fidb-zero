@@ -2,8 +2,7 @@
 
 [ [Webwite](https://fidb.app)
 | [Manual](https://readonly.link/manuals/https://code-of-fidb.fidb.app/docs/manual.json)
-| [Manual (book form)](https://readonly.link/books/https://code-of-fidb.fidb.app/docs/book.json)
-| [TSDoc](https://code-of-fidb.fidb.app/tsdoc/index.html) ]
+| [Manual (book form)](https://readonly.link/books/https://code-of-fidb.fidb.app/docs/book.json) ]
 
 File system as database.
 
