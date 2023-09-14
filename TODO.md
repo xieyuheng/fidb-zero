@@ -1,4 +1,4 @@
-extract `permission/matchPermissions` from `tokenCheck`
+extract `permission/matchPermissionRecord` from `tokenCheck`
 
 move `handle` to `servers/database`
 
