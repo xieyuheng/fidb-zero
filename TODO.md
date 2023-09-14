@@ -1,5 +1,3 @@
-support `{ @include, from }` when reading a data file
-
 [manual] about permissions matching order
 
 # fidb init
