@@ -36,7 +36,7 @@ thus the simplest to understand and implement.
   }
   ```
 
-  Upon success, the following files will be created:
+  Upon success, the following data files will be created:
 
   ```
   users/xieyuheng/index.json
@@ -45,7 +45,7 @@ thus the simplest to understand and implement.
   ```
 
   We use [brcryt](https://en.wikipedia.org/wiki/Bcrypt) to save password safely,
-  thus the password data might be:
+  thus the password data file might be:
 
   ```
   {
@@ -83,8 +83,7 @@ thus the simplest to understand and implement.
 
 - **Problem 5.1:** How to configure which directory can be used as login target?
 
-- **Solution 5.1:** We can use `.configs/password-register-strategy`,
-  at the root of the database,
+- **Solution 5.1:** We can use `.configs/password-register-strategy` data file,
   to configure which directory is allow to be login target,
   and what `permissions` should be granted when creating `.login`.
 

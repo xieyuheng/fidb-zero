@@ -3,8 +3,8 @@ title: Access Token
 ---
 
 We already have HTTP API to do operations on fidb,
-but not everyone should be able to do every operations right?
-We need to control who can do what.
+but not everyone should be allowed to do every operations right?
+We need to control _who_ can do _what_.
 
 The story of access control to a database
 is only complete with the the story of register and login.
@@ -26,11 +26,11 @@ I want to implement the above by the following:
 - **Problem 4.1:** How should we preparing a user for future logins?
 
 - **Solution 4.1:** Upon register, we prepare a user for future logins by
-  creating a `.login` data for that user.
+  creating a `.login` data file for that user.
   For example, registering `users/xieyuheng`
   will create `users/xieyuheng/.login`.
 
-  The `.login` data will have a `permissions` property,
+  The `.login` data file will have a `permissions` property,
   which we discuss later.
 
   Since we do not want a user to change his/her own `permissions`,
@@ -42,7 +42,8 @@ I want to implement the above by the following:
 
 - **Problem 4.2:** How should we issue token to a user?
 
-- **Solution 4.2:** Upon login, we store a token as data in `.tokens` directory.
+- **Solution 4.2:** Upon login, we store a token
+  as a data file in `.tokens` directory.
 
   For example:
 
@@ -50,9 +51,8 @@ I want to implement the above by the following:
   .tokens/cc224145f46a393f8ca71c4eb62aafe1/index.json
   ```
 
-  Where the pathname is the token itself,
-  for the above example,
-  the token is:
+  Where the path contains the token.
+  For the above data file, the token is:
 
   ```
   cc224145f46a393f8ca71c4eb62aafe1
@@ -75,8 +75,8 @@ I want to implement the above by the following:
   when we want to know the `permissions` of a token,
   we read it from the token's `issuer` instead of from the token data.
 
-- **Problem 4.3:** How should we represent permissions
-  -- the `permissions` property of a login target?
+- **Problem 4.3:** How should we represent permissions?
+  i.e. the `permissions` property of a login target?
 
 - **Solution 4.3:** We use a record (a JSON object) to represent permissions,
   where the key is a path pattern, and the value is an array of operations.
@@ -186,7 +186,7 @@ I want to implement the above by the following:
   ```
 
   In our case, the `<auth-scheme>` should be `token`,
-  and the `<authorization-parameters>` should be the token.
+  and the `<authorization-parameters>` should be the value of the token.
 
   For example:
 
@@ -199,8 +199,7 @@ I want to implement the above by the following:
 
 - **Problem 4.5:** How to config the default permissions?
 
-- **Solution 4.5:** We can use a `.configs/default-token-issuer` data
-  at the root of the database directory,
+- **Solution 4.5:** We can use `.configs/default-token-issuer` data file,
   which contains a `permissions` property
   for the default permissions.
 

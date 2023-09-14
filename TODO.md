@@ -1,3 +1,13 @@
+support `{ @include, from }` when reading a data file
+
+[manual] about permissions matching order
+
+# fidb init
+
+`fidb init <directory>`
+
+template for creating a fidb database
+
 # fidb serve-many
 
 `fidb serve-many` -- serve many databases with subdomain-based routing
@@ -18,7 +28,7 @@
 
 [manual] schema
 
-use `x-schema` instead of `xieyuheng/ty`
+use `x-json` instead of `xieyuheng/ty`
 
 # image
 

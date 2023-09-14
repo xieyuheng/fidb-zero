@@ -220,7 +220,9 @@ beside operations on JSON data files,
 we also want to operate on other kinds of files
 such as markdown, image, mp3 and so on.
 
-- **Problem 3.1:** How to distinguish different kinds of resources referenced by a path?
+- **Problem 3.1:** File and data are both referenced by path,
+  but they are two different kinds of resources.
+  How to distinguish them?
 
 - **Solution 3.1:** We can add `kind=...` query parameter to a request,
   where the value of `kind` explicitly denotes the kind of resource.
@@ -253,6 +255,8 @@ Now we are ready to specify the HTTP API about file operations.
   Hello, I am Xie Yuheng.
   ```
 
+  If the file already exists, error should be reported.
+
 - To **read** a file, `GET` the path with query parameter `kind=file`.
 
   For example, after the POST above, we can read file by:
@@ -274,6 +278,9 @@ Now we are ready to specify the HTTP API about file operations.
 
   Hello, I am Xie Yuheng from China.
   ```
+
+  `PUT` is idempotent, if the file already exists, it will be updated,
+  if the file does not exist, it will be created.
 
 - To **delete** a file, `DELETE` the path with query parameter `kind=file`.
 
@@ -328,9 +335,9 @@ We use `kind=file-metadata` as the `kind` parameter for this operation.
 
 ## Directory Operations
 
-Since we are using file system as database,
+Since we are using file system as database
 and we can operate on files,
-then we naturally also want to operate on directories.
+we naturally also want to operate on directories.
 
 - To **create** a directory, `POST` the path with query parameter `kind=directory`.
 
@@ -340,7 +347,7 @@ then we naturally also want to operate on directories.
   POST users?kind=directory
   ```
 
-- To **read** a directory's direct subdirectories and subfiles,
+- To **read** a directory's direct subdirectories and files,
   `GET` the path with query parameter `kind=directory`.
 
   For example:
