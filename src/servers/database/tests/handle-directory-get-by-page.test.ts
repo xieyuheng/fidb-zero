@@ -1,5 +1,5 @@
 import { expect, test } from "vitest"
-import type { PathEntry } from "../../path-entry"
+import type { PathEntry } from "../../../path-entry"
 import { prepareTestServer } from "./prepareTestServer"
 
 test("handle-directory-get-by-page", async ({ meta }) => {

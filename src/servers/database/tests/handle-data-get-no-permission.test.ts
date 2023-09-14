@@ -1,7 +1,7 @@
 import { expect, test } from "vitest"
-import { dataCreate } from "../../db"
-import { allOperations } from "../../permission"
-import { tokenCreate } from "../../token"
+import { dataCreate } from "../../../db"
+import { allOperations } from "../../../permission"
+import { tokenCreate } from "../../../token"
 import { prepareTestServer } from "./prepareTestServer"
 
 test("handle-data-get-no-permission", async ({ meta }) => {

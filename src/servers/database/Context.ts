@@ -1,5 +1,5 @@
 import { resolve } from "node:path"
-import { createDatabase, Database } from "../database"
+import { createDatabase, Database } from "../../database"
 
 export type Context = {
   db: Database

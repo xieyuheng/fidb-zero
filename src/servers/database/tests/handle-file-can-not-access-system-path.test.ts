@@ -1,5 +1,5 @@
 import { expect, test } from "vitest"
-import { randomTokenName } from "../../token/randomTokenName"
+import { randomTokenName } from "../../../token/randomTokenName"
 import { prepareTestServer } from "./prepareTestServer"
 
 test("handle-file-can-not-access-system-path", async ({ meta }) => {

@@ -1,5 +1,5 @@
 import { expect, test } from "vitest"
-import { responseHeaders } from "../../utils/responseHeaders"
+import { responseHeaders } from "../../../utils/responseHeaders"
 import { prepareTestServer } from "./prepareTestServer"
 
 test("handle-file-crud", async ({ meta }) => {

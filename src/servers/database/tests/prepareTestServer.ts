@@ -1,14 +1,14 @@
 import Http from "node:http"
 import { handle } from ".."
-import { dataCreate } from "../../db"
-import { prepareTestDb } from "../../db/tests/prepareTestDb"
-import { defaultPermissions } from "../../password/defaultPermissions"
-import { userLoginTargets } from "../../password/userLoginTargets"
-import { allOperations } from "../../permission"
-import { createRequestListener } from "../../server/createRequestListener"
-import { tokenCreate } from "../../token"
-import { findPort } from "../../utils/node/findPort"
-import { serverListen } from "../../utils/node/serverListen"
+import { dataCreate } from "../../../db"
+import { prepareTestDb } from "../../../db/tests/prepareTestDb"
+import { defaultPermissions } from "../../../password/defaultPermissions"
+import { userLoginTargets } from "../../../password/userLoginTargets"
+import { allOperations } from "../../../permission"
+import { createRequestListener } from "../../../server/createRequestListener"
+import { tokenCreate } from "../../../token"
+import { findPort } from "../../../utils/node/findPort"
+import { serverListen } from "../../../utils/node/serverListen"
 
 export async function prepareTestServer(options: { name: string }) {
   const { db } = await prepareTestDb(options)

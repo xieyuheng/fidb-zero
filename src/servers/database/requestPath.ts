@@ -1,6 +1,6 @@
 import type Http from "node:http"
-import { normalizePath } from "../db/utils/normalizePath"
-import { requestURL } from "../utils/node/requestURL"
+import { normalizePath } from "../../db/utils/normalizePath"
+import { requestURL } from "../../utils/node/requestURL"
 import type { Context } from "./Context"
 
 export function requestPath(
