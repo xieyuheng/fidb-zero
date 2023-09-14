@@ -112,6 +112,12 @@ I want to implement the above by the following:
   We use the [`micromatch`](https://github.com/micromatch/micromatch)
   glob matching library for our path patterns.
 
+  Given a path and an operation, the path patterns of the permissions
+  will be matched one by one, for a matching path pattern,
+  we see if the operation is included in the array of operations,
+  if it is not included, we go on to try the next one,
+  the matching fails only when all entries of the permissions are failed.
+
   For example, we want to have an admin token
   that can do everything to every directories.
   The permissions would be:

@@ -1,4 +1,10 @@
-[manual] about permissions matching order
+extract `matchPermissions` from `tokenCheck`
+
+move `handle` to `servers/database`
+
+inline `startServer`
+
+inline `createServer`
 
 # fidb init
 
