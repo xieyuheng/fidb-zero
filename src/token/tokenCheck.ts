@@ -1,6 +1,6 @@
 import { Database } from "../database"
 import { dataGetOrFail } from "../db"
-import { Operation } from "../operation"
+import { Operation } from "../permission"
 import { globMatch } from "../utils/globMatch"
 import { tokenGetOrFail } from "./tokenGetOrFail"
 import { TokenIssuerSchema } from "./TokenIssuer"

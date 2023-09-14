@@ -1,4 +1,4 @@
-import { Operation, readOperations } from "../operation"
+import { Operation, readOperations } from "../permission"
 
 export const defaultPermissions: Record<string, Array<Operation>> = {
   users: ["directory:get"],

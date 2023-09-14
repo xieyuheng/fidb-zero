@@ -1,4 +1,4 @@
-import { allOperations, readOperations } from "../operation"
+import { allOperations, readOperations } from "../permission"
 import { TokenIssuerInput } from "../token/TokenIssuer"
 
 export const userLoginTargets: Record<string, TokenIssuerInput> = {

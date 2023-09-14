@@ -1,6 +1,6 @@
 import { Database } from "../database"
 import { Unauthorized } from "../errors/Unauthorized"
-import { Operation } from "../operation"
+import { Operation } from "../permission"
 import { tokenCheck } from "./tokenCheck"
 
 export async function tokenAssert(
