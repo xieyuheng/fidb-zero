@@ -1,13 +1,13 @@
 import { globMatch } from "../utils/globMatch"
-import { pathPatternParse } from "./pathPatternParse"
+import { parsePathPattern } from "./parsePathPattern"
 
-export function pathPatternMatch(
+export function matchPathPattern(
   pattern: string,
   path: string,
 ): Record<string, string> | undefined {
   const results: Record<string, string> = {}
 
-  const exps = pathPatternParse(pattern)
+  const exps = parsePathPattern(pattern)
   const parts = path.split("/")
 
   while (true) {

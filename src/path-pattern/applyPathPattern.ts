@@ -1,10 +1,10 @@
-import { pathPatternParse } from "./pathPatternParse"
+import { parsePathPattern } from "./parsePathPattern"
 
-export function pathPatternGenerate(
+export function applyPathPattern(
   pattern: string,
   properties: Record<string, string>,
 ): string {
-  const exps = pathPatternParse(pattern)
+  const exps = parsePathPattern(pattern)
 
   const parts = exps.map((exp) => {
     switch (exp.kind) {

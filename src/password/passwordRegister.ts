@@ -4,8 +4,8 @@ import type { Database } from "../database"
 import { dataGetOrFail } from "../db"
 import { dataCreate } from "../db/dataCreate"
 import { Unauthorized } from "../errors"
-import { pathPatternGenerateRecordKeys } from "../path-pattern/pathPatternGenerateRecordKeys"
-import { pathPatternMatch } from "../path-pattern/pathPatternMatch"
+import { applyPathPatternRecordKeys } from "../path-pattern/applyPathPatternRecordKeys"
+import { matchPathPattern } from "../path-pattern/matchPathPattern"
 import { passwordHash } from "../utils/node/password"
 import { PasswordRegisterStrategySchema } from "./PasswordRegisterStrategy"
 
@@ -31,9 +31,9 @@ export async function passwordRegister(
   )
 
   for (const [pattern, tokenIssuer] of Object.entries(strategy.loginTargets)) {
-    const results = pathPatternMatch(pattern, directory)
+    const results = matchPathPattern(pattern, directory)
     if (results !== undefined) {
-      const permissions = pathPatternGenerateRecordKeys(
+      const permissions = applyPathPatternRecordKeys(
         tokenIssuer.permissions,
         results,
       )

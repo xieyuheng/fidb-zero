@@ -1,21 +1,21 @@
 import { expect, test } from "vitest"
-import { pathPatternMatch } from "./pathPatternMatch"
+import { matchPathPattern } from "./matchPathPattern"
 
-test("pathPatternMatch", async () => {
-  expect(pathPatternMatch("users/{user}", "users/xieyuheng")).toEqual({
+test("matchPathPattern", async () => {
+  expect(matchPathPattern("users/{user}", "users/xieyuheng")).toEqual({
     user: "xieyuheng",
   })
 
-  expect(pathPatternMatch("users/{user}/**", "users/xieyuheng")).toEqual({
+  expect(matchPathPattern("users/{user}/**", "users/xieyuheng")).toEqual({
     user: "xieyuheng",
   })
 
-  expect(pathPatternMatch("users/{user}/*", "users/xieyuheng")).toEqual(
+  expect(matchPathPattern("users/{user}/*", "users/xieyuheng")).toEqual(
     undefined,
   )
 
   expect(
-    pathPatternMatch(
+    matchPathPattern(
       "users/{user}/projects/{user}",
       "users/xieyuheng/projects/xieyuheng",
     ),
@@ -24,14 +24,14 @@ test("pathPatternMatch", async () => {
   })
 
   expect(
-    pathPatternMatch(
+    matchPathPattern(
       "users/{user}/projects/{user}",
       "users/xieyuheng/projects/cicada",
     ),
   ).toEqual(undefined)
 
   expect(
-    pathPatternMatch(
+    matchPathPattern(
       "users/{user}/projects/{project}",
       "users/xieyuheng/projects/cicada",
     ),
@@ -41,7 +41,7 @@ test("pathPatternMatch", async () => {
   })
 
   expect(
-    pathPatternMatch(
+    matchPathPattern(
       "users/{user}/*/{project}",
       "users/xieyuheng/projects/cicada",
     ),
@@ -51,12 +51,12 @@ test("pathPatternMatch", async () => {
   })
 
   expect(
-    pathPatternMatch("users/{user}/**", "users/xieyuheng/projects/cicada"),
+    matchPathPattern("users/{user}/**", "users/xieyuheng/projects/cicada"),
   ).toEqual({
     user: "xieyuheng",
   })
 
-  expect(pathPatternMatch("users/{user}", "users/xieyuheng/config")).toEqual(
+  expect(matchPathPattern("users/{user}", "users/xieyuheng/config")).toEqual(
     undefined,
   )
 })

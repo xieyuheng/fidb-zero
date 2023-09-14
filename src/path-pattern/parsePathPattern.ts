@@ -2,7 +2,7 @@ export type PathPatternExp =
   | { kind: "Literal"; value: string }
   | { kind: "Var"; name: string }
 
-export function pathPatternParse(pattern: string): Array<PathPatternExp> {
+export function parsePathPattern(pattern: string): Array<PathPatternExp> {
   const parts = pattern.split("/")
   return parts.map(pathPatternPartParse)
 }

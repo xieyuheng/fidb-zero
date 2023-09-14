@@ -1,12 +1,12 @@
-import { pathPatternGenerate } from "./pathPatternGenerate"
+import { applyPathPattern } from "./applyPathPattern"
 
-export function pathPatternGenerateRecordKeys<A>(
+export function applyPathPatternRecordKeys<A>(
   record: Record<string, A>,
   properties: Record<string, string>,
 ): Record<string, A> {
   return Object.fromEntries(
     Object.entries(record).map(([key, value]) => [
-      pathPatternGenerate(key, properties),
+      applyPathPattern(key, properties),
       value,
     ]),
   )
