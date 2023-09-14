@@ -22,7 +22,7 @@ the familiar concept of _data table_.
 This seems is the most simple solution, but we can not use it,
 because we want to use subdirectory relation
 to represent "has one" and "has many" relations,
-but a file can NOT have any subdirectory at all.
+but a file CAN NOT have any subdirectories at all.
 
 - **Solution 1.1.B:** Using a directory of directories to represent a table,
   where each subdirectory contains one JSON file named `index.json`
@@ -39,9 +39,9 @@ but a file can NOT have any subdirectory at all.
   We will call `users/xieyuheng/index.json` a _data file_.
 
   And the path of the subdirectory relative to the root of the database
-  is viewed as the primary key of the row.
+  is viewed as the _primary key_ of the row.
 
-  For example:
+  For example the primary keys of the above data files are:
 
   ```
   users/xieyuheng
@@ -49,7 +49,7 @@ but a file can NOT have any subdirectory at all.
   users/mimor
   ```
 
-  We will use paths like `users/xieyuheng` to refer to _the data_,
+  We will use paths like `users/xieyuheng` to refer to the data file,
 
 We talked about representing "has one" and "has many" relations
 many times already, let's articulate it as a problem
@@ -64,20 +64,30 @@ and solve it once for all.
   For example, a user _has many_ projects,
   thus each user has a `projects` subdirectory.
 
-  The pattern of directories will be:
+  Suppose the pattern of data files for `users` is:
+
+  ```
+  users/*/index.json
+  ```
+
+  Example data files of `users`:
+
+  ```
+  users/readonlylink/index.json
+  users/xieyuheng/index.json
+  ```
+
+  The pattern of data files for `projects` would be:
 
   ```
   users/*/projects/*/index.json
   ```
 
-  For example:
+  Example data files of `projects`:
 
   ```
-  users/xieyuheng/index.json
   users/xieyuheng/projects/inner/index.json
   users/xieyuheng/projects/pomodoro/index.json
-
-  users/readonlylink/index.json
   users/readonlylink/projects/x-node/index.json
   users/readonlylink/projects/x-markdown/index.json
   ```
@@ -85,19 +95,16 @@ and solve it once for all.
   For another example, a user _has one_ config,
   thus each user has a `config` subdirectory.
 
-  The pattern of directories will be:
+  The pattern of data files for `config` is:
 
   ```
   users/*/config/index.json
   ```
 
-  For example:
+  Example data files of `config`:
 
   ```
-  users/xieyuheng/index.json
   users/xieyuheng/config/index.json
-
-  users/readonlylink/index.json
   users/readonlylink/config/index.json
   ```
 
