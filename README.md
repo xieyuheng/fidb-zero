@@ -14,9 +14,6 @@ Node.js version must be >= [20.1](https://nodejs.org/en/blog/release/v20.1.0) or
 
 - For the `recursive` option to `readdir` and `opendir`.
 
-We do not write the `engines` limitation in `package.json`,
-so that we can `npm run build:tsdoc` on vercel.
-
 ### Command line tool
 
 Install it by the following command:
@@ -28,8 +25,8 @@ npm install -g fidb
 The command line program is called `fidb`.
 
 ```sh
-fidb help                # Print help message
-fidb serve <path>        # Serve a database
+fidb help             # Print help message
+fidb serve <path>     # Serve a database
 ```
 
 ## Development
