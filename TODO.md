@@ -1,5 +1,3 @@
-extract `permission/matchPermissionRecord` from `tokenCheck`
-
 move `handle` to `servers/database`
 
 inline `startServer`

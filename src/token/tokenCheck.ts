@@ -1,7 +1,7 @@
 import { Database } from "../database"
 import { dataGetOrFail } from "../db"
 import { Operation } from "../permission"
-import { globMatch } from "../utils/globMatch"
+import { matchPermissionRecord } from "../permission/matchPermissionRecord"
 import { tokenGetOrFail } from "./tokenGetOrFail"
 import { TokenIssuerSchema } from "./TokenIssuer"
 
@@ -17,11 +17,5 @@ export async function tokenCheck(
     await dataGetOrFail(db, token.issuer),
   )
 
-  for (const [pattern, operations] of Object.entries(issuer.permissions)) {
-    if (globMatch(pattern, path)) {
-      if (operations.includes(operation)) return true
-    }
-  }
-
-  return false
+  return matchPermissionRecord(issuer.permissions, path, operation)
 }
