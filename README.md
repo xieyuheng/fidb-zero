@@ -52,6 +52,38 @@ Output:
 13:58:26.251 [initExampleUser] -- {"path":"users/bob","password":"bob456"}
 ```
 
+Let's run `tree` to see what files are created:
+
+```
+~/play/hello-world
+❯ tree -a
+.
+├── .config
+│   ├── default-token-issuer
+│   │   └── index.json
+│   └── password-register-strategy
+│       └── index.json
+├── database.json
+├── .tokens
+│   └── default
+│       └── index.json
+└── users
+    ├── alice
+    │   ├── index.json
+    │   ├── .login
+    │   │   └── index.json
+    │   └── .password
+    │       └── index.json
+    └── bob
+        ├── index.json
+        ├── .login
+        │   └── index.json
+        └── .password
+            └── index.json
+
+13 directories, 10 files
+```
+
 Serve the newly created database:
 
 ```sh
