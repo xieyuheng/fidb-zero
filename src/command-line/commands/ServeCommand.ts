@@ -48,9 +48,7 @@ export class ServeCommand extends Command<Args> {
   }
 
   async execute(argv: Args & Opts): Promise<void> {
-
-      changeLogger(argv["logger-name"] || "pretty")
-
+    changeLogger(argv["logger-name"] || "pretty")
 
     const who = this.name
 

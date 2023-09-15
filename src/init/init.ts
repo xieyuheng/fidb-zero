@@ -4,7 +4,7 @@ import { createDatabase } from "../database"
 import { log } from "../utils/log"
 import { pathExists } from "../utils/node/pathExists"
 import { initDatabaseConfigFile } from "./initDatabaseConfigFile"
-import { initDotConfig } from "./initDotConfig"
+import { initSystemResource } from "./initDotConfig"
 
 export async function init(directory: string): Promise<void> {
   log({ who: "init", directory })
@@ -28,5 +28,5 @@ export async function init(directory: string): Promise<void> {
 
   const config = await initDatabaseConfigFile(configFile)
   const db = await createDatabase({ path: directory, config })
-  await initDotConfig(db)
+  await initSystemResource(db)
 }

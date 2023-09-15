@@ -1,6 +1,5 @@
 # fidb init
 
-[init] `initDotConfig` -- `.config/password-register-strategy`
 [init] create users Ava Bella Carol Diana Eileen
 [init] create example database for web apps
 
