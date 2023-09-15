@@ -1,4 +1,5 @@
-import { resolve } from "node:path"
+import fs from "node:fs"
+import { join, resolve } from "node:path"
 import { loadDatabase } from "../../database"
 import { formatDateTime } from "../../utils/formatDate"
 import { randomHexString } from "../../utils/randomHexString"
@@ -12,6 +13,16 @@ export async function prepareTestDb(options: { name: string }) {
   )
 
   const path = resolve(PREFIX, file)
+
+  await fs.promises.mkdir(path, { recursive: true })
+
+  await fs.promises.writeFile(
+    join(path, "database.json"),
+    JSON.stringify({
+      name: "test",
+      description: "test database",
+    }),
+  )
 
   const db = await loadDatabase({ path })
 

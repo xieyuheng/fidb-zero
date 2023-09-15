@@ -8,14 +8,19 @@ test("db-directory-create", async ({ meta }) => {
   const { db } = await prepareTestDb(meta)
 
   expect(
-    (await arrayFromAsyncIterable(Db.directoryListAll(db, ""))).length,
+    (await arrayFromAsyncIterable(Db.directoryListAll(db, ""))).filter(
+      (entry) => !(entry.kind === "File" && entry.path === "database.json"),
+    ).length,
   ).toEqual(0)
 
   await Db.directoryCreate(db, "users")
 
   expect(
-    (await arrayFromAsyncIterable(Db.directoryListAll(db, ""))).length,
+    (await arrayFromAsyncIterable(Db.directoryListAll(db, ""))).filter(
+      (entry) => !(entry.kind === "File" && entry.path === "database.json"),
+    ).length,
   ).toEqual(1)
+
   expect(
     Boolean(
       (await arrayFromAsyncIterable(Db.directoryListAll(db, ""))).find(

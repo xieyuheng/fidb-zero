@@ -14,7 +14,11 @@ test("db-directory-list-with-file-metadata", async ({ meta }) => {
       Db.directoryList(db, "contents", { page: 1, size: 10 }),
     )
 
-    expect(pathEntries.length).toEqual(2)
+    expect(
+      pathEntries.filter(
+        (entry) => !(entry.kind === "File" && entry.path === "database.json"),
+      ).length,
+    ).toEqual(2)
     expect(
       Boolean(
         pathEntries.find(

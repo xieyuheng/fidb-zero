@@ -8,7 +8,9 @@ test("db-directory-list-all-recursive", async ({ meta }) => {
   const { db } = await prepareTestDb(meta)
 
   expect(
-    (await arrayFromAsyncIterable(Db.directoryListAll(db, ""))).length,
+    (await arrayFromAsyncIterable(Db.directoryListAll(db, ""))).filter(
+      (entry) => !(entry.kind === "File" && entry.path === "database.json"),
+    ).length,
   ).toEqual(0)
 
   await Db.dataCreate(db, "users/1", {})
@@ -16,8 +18,11 @@ test("db-directory-list-all-recursive", async ({ meta }) => {
   await Db.dataCreate(db, "users/3", {})
 
   expect(
-    (await arrayFromAsyncIterable(Db.directoryListAll(db, ""))).length,
+    (await arrayFromAsyncIterable(Db.directoryListAll(db, ""))).filter(
+      (entry) => !(entry.kind === "File" && entry.path === "database.json"),
+    ).length,
   ).toEqual(1)
+
   expect(
     Boolean(
       (await arrayFromAsyncIterable(Db.directoryListAll(db, ""))).find(
