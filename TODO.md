@@ -6,12 +6,6 @@ inline `createServer`
 
 `fidb serve-many` -- serve many databases with subdomain-based routing
 
-# readme
-
-[readme] `fidb serve`
-
-[readme] `fidb serve-many`
-
 # fidb init
 
 [init] create example database for web apps

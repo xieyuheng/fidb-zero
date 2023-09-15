@@ -82,6 +82,9 @@ The command line program is called `fidb`.
 ## Docs
 
 - [Init a database](#init-a-database)
+- [Serve one database](#serve-one-database)
+- [Login a user](#login-a-user)
+- [Register a user](#register-a-user)
 - [Use systemd to start service](#use-systemd-to-start-service)
 
 ### Init a database
@@ -141,11 +144,15 @@ Let's run `tree` to see what directories and files are created:
 13 directories, 10 files
 ```
 
+## Serve one database
+
 Use the `fidb serve` command to serve a database:
 
 ```sh
 fidb serve hello-world
 ```
+
+## Login a user
 
 Use `POST {data-file}?kind=password-login` HTTP request to login initialized a user:
 
@@ -171,6 +178,8 @@ Which can be used in the `Authorization` header for future requests.
 ```
 Authorization: token 34dbf6a79e7968ffc3cda1b51c3fada9
 ```
+
+## Register a user
 
 Use `POST {data-file}?kind=password-register` HTTP request to register a new user:
 
