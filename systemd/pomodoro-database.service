@@ -3,8 +3,7 @@ Description=Pomodoro database by FiDB
 After=network.target
 
 [Service]
-ExecStart=/usr/local/bin/fidb database:serve /databases/pomodoro \
-  --public-url https://pomodoro.fidb.app:5108
+ExecStart=/usr/local/bin/fidb database:serve /databases/pomodoro
 Restart=on-failure
 
 [Install]

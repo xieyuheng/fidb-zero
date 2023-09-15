@@ -1,14 +1,16 @@
-inline `startServer`
-
-inline `createServer`
-
 # fidb init
+
+`InitCommand`
 
 `fidb init <directory>`
 
 template for creating a fidb database
 
 # fidb serve-many
+
+inline `startServer`
+
+inline `createServer`
 
 `fidb serve-many` -- serve many databases with subdomain-based routing
 
@@ -22,7 +24,7 @@ template for creating a fidb database
 
 [handle] rate limit by ip -- for `password-register`
 
-[config] be able to config `rateLimits: { ... }`
+[config] be able to config rate limit
 
 # schema
 
@@ -71,7 +73,3 @@ b-tree over file system
 `Db.find` -- use index
 
 `Db.find` -- support deref a property which is a path to another data
-
-# generate
-
-scripts to generate database and datasets.
