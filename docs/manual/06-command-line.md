@@ -14,9 +14,11 @@ with all the APIs discussed in this manual by one command:
 fidb serve <database>
 ```
 
-My implementation of FiDB is at [github.com/fidb-official/fidb](https://github.com/fidb-official/fidb).
+For docs of this command-line tool,
+please see the `README.md` of
+[github.com/fidb-official/fidb](https://github.com/fidb-official/fidb).
 
-You can add new kinds of APIs by adding new `kind=...` parameters,
+We can add new kinds of APIs by adding new `kind=...` parameters,
 using new data files to configure your API,
 and again, spin it up with one command.
 

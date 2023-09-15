@@ -1,3 +1,11 @@
+# fidb serve-many
+
+inline `startServer`
+
+inline `createServer`
+
+`fidb serve-many` -- serve many databases with subdomain-based routing
+
 # readme
 
 [readme] `fidb serve`
@@ -11,16 +19,6 @@
 - personal note taking app -- with a frontend that can change backend at runtime
 
 `database.json` with optional `server` and `logger`
-
-`fidb init` log created files
-
-# fidb serve-many
-
-inline `startServer`
-
-inline `createServer`
-
-`fidb serve-many` -- serve many databases with subdomain-based routing
 
 # handle
 
@@ -46,11 +44,7 @@ use `x-json` instead of `xieyuheng/ty`
 
 # docs
 
-[manual] command-line
-
 [manual] management
-
-- `admins/` has password
 
 [manual] indexing
 
@@ -78,6 +72,6 @@ b-tree over file system
 
 # find
 
-`Db.find` -- use index
+`Db.dataFind` -- use index
 
-`Db.find` -- support deref a property which is a path to another data
+`Db.dataFind` -- support inline a `{ @ref }` which is a path to another data
