@@ -1,16 +1,61 @@
 # FiDB
 
-[ [Webwite](https://fidb.app)
-| [Manual](https://readonly.link/manuals/https://code-of-fidb.fidb.app/docs/manual.json)
-| [Manual (book form)](https://readonly.link/books/https://code-of-fidb.fidb.app/docs/book.json) ]
+This is a Node.js implementation of [**FiDB**](https://fidb.app)
+-- a suite of protocols to use file system as database.
 
-File system as database.
+Including a HTTP server to generate REST API from a database:
+
+```bash
+POST   {data-path}?kind=data
+GET    {data-path}?kind=data
+PUT    {data-path}?kind=data
+PATCH  {data-path}?kind=data
+DELETE {data-path}?kind=data
+
+GET    {data-directory}?kind=data-find
+
+POST   {file-path}?kind=file
+GET    {file-path}?kind=file
+PUT    {flie-path}?kind=file
+PATCH  {flie-path}?kind=file
+DELET  {flie-path}?kind=file
+
+GET    {flie-path}?kind=file-metadata.
+
+POST   {directory-path}?kind=directory
+GET    {directory-path}?kind=directory
+DELETE {directory-path}?kind=directory
+```
+
+A command-line tool to initialize and maintain database.
+
+```sh
+fidb help [name]   Display help for a command
+fidb init [path]   Initialize a directory to be a database
+fidb serve [path]  Serve a database
+```
+
+And some API functions to handle data files:
+
+```js
+import { Db } from "fidb"
+
+Db.dataCreate(db: Database, path: string, input: JsonObject): Promise<Data>
+Db.dataGetOrFail(db: Database, path: string): Promise<Data>
+Db.dataGet(db: Database, path: string): Promise<Data | undefined>
+Db.dataPut(db: Database, path: string, input: JsonObject): Promise<Data>
+Db.dataPatch(db: Database, path: string, input: JsonObject): Promise<Data>
+Db.dataDelete(db: Database, path: string, input: JsonObject): Promise<void>
+...
+```
 
 ## Install
 
 ### Requirements
 
-Node.js version must be >= [20.1](https://nodejs.org/en/blog/release/v20.1.0) or >= [18.17.0](https://nodejs.org/en/blog/release/v18.17.0).
+Node.js version must
+be >= [20.1](https://nodejs.org/en/blog/release/v20.1.0)
+or >= [18.17.0](https://nodejs.org/en/blog/release/v18.17.0).
 
 - For the `recursive` option to `readdir` and `opendir`.
 
@@ -23,11 +68,6 @@ npm install -g fidb
 ```
 
 The command line program is called `fidb`.
-
-```sh
-fidb help             # Print help message
-fidb serve <path>     # Serve a database
-```
 
 ## Docs
 

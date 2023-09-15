@@ -1,4 +1,4 @@
 export * from "./data"
 export * from "./database"
-export * from "./db"
+export * as Db from "./db"
 export * from "./errors"
