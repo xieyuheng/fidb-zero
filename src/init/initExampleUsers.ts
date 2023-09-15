@@ -1,40 +1,38 @@
 import { Database } from "../database"
 import { dataCreate } from "../db"
 import { passwordRegister } from "../password"
+import { JsonObject } from "../utils/Json"
 import { log } from "../utils/log"
 
 export async function initExampleUsers(db: Database): Promise<void> {
-  const who = "initExampleUsers"
+  await initExampleUser(db, "alice", {
+    data: { name: "Alice" },
+    password: "alice123",
+  })
 
-  {
-    const path = "users/alice"
-    const data = {
-      name: "Alice",
-    }
+  await initExampleUser(db, "bob", {
+    data: { name: "Bob" },
+    password: "bob456",
+  })
+}
 
-    const created = await dataCreate(db, path, data)
+export async function initExampleUser(
+  db: Database,
+  username: string,
 
-    log({ who, message: "create data file", path, data })
+  options: { data: JsonObject; password: string },
+): Promise<void> {
+  const who = "initExampleUser"
+  const path = `users/${username}`
 
-    await passwordRegister(db, created["@path"], {
-      memo: "",
-      password: "alice123",
-    })
-  }
+  const { data, password } = options
 
-  {
-    const path = "users/bob"
-    const data = {
-      name: "Bob",
-    }
+  await dataCreate(db, path, data)
 
-    await dataCreate(db, path, data)
+  await passwordRegister(db, path, {
+    memo: who,
+    password,
+  })
 
-    log({ who, message: "create data file", path, data })
-
-    await passwordRegister(db, path, {
-      memo: "",
-      password: "bob456",
-    })
-  }
+  log({ who, path, password })
 }

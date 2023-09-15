@@ -34,7 +34,7 @@ export class InitCommand extends Command<Args> {
   }
 
   async execute(argv: Args & Opts): Promise<void> {
-    changeLogger("pretty")
+    changeLogger("pretty-line")
 
     const directory = Path.resolve(argv.path)
     init(directory)

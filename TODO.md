@@ -1,7 +1,5 @@
 # fidb init
 
-[init] extract `initExampleUser`
-
 [init] show example login command-line
 [init] show example register command-line
 

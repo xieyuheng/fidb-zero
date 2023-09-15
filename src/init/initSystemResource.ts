@@ -20,7 +20,7 @@ export async function initSystemResource(db: Database): Promise<void> {
     }
 
     await dataCreate(db, path, data)
-    log({ who, message: "create data file", path, data })
+    log({ who, path })
   }
 
   {
@@ -30,7 +30,7 @@ export async function initSystemResource(db: Database): Promise<void> {
     }
 
     await dataCreate(db, path, data)
-    log({ who, message: "create data file", path, data })
+    log({ who, path })
   }
 
   {
@@ -68,6 +68,6 @@ export async function initSystemResource(db: Database): Promise<void> {
     }
 
     await dataCreate(db, path, data)
-    log({ who, message: "create data file", path, data })
+    log({ who, path })
   }
 }
