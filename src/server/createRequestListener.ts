@@ -1,32 +1,26 @@
 import { Errors as TyErrors } from "@xieyuheng/ty"
-import type Http from "node:http"
 import { AlreadyExists } from "../errors/AlreadyExists"
 import { NotFound } from "../errors/NotFound"
 import { Processing } from "../errors/Processing"
 import { RevisionMismatch } from "../errors/RevisionMismatch"
 import { Unauthorized } from "../errors/Unauthorized"
 import { Unprocessable } from "../errors/Unprocessable"
-import type { Json } from "../utils/Json"
+import { log } from "../utils/log"
 import { responseSetHeaders } from "../utils/node/responseSetHeaders"
 import { responseSetStatus } from "../utils/node/responseSetStatus"
-
-export type RequestListener = (
-  request: Http.IncomingMessage,
-  response: Http.ServerResponse,
-) => Promise<void>
-
-export type HandleRequest<Context> = (
-  ctx: Context,
-  request: Http.IncomingMessage,
-  response: Http.ServerResponse,
-) => Promise<Json | Buffer | void>
+import { LoggerOptions } from "./LoggerOptions"
+import { RequestHandler } from "./RequestHandler"
+import { RequestListener } from "./RequestListener"
 
 export function createRequestListener<Context>(options: {
   ctx: Context
-  handle: HandleRequest<Context>
+  handle: RequestHandler<Context>
+  logger?: LoggerOptions
 }): RequestListener {
   const { ctx, handle } = options
   return async (request, response) => {
+    const withLog = !options.logger?.disableRequestLogging
+
     try {
       const body = await handle(ctx, request, response)
 
@@ -35,7 +29,8 @@ export function createRequestListener<Context>(options: {
       }
 
       if (body === undefined) {
-        responseSetStatus(response, { code: 204 })
+        const code = 204
+        responseSetStatus(response, { code })
         responseSetHeaders(response, {
           "content-type": "application/json",
           "access-control-allow-origin": "*",
@@ -43,7 +38,8 @@ export function createRequestListener<Context>(options: {
         })
         response.end()
       } else if (body instanceof Buffer) {
-        responseSetStatus(response, { code: 200 })
+        const code = 200
+        responseSetStatus(response, { code })
         responseSetHeaders(response, {
           "content-type": "text/plain",
           "access-control-allow-origin": "*",
@@ -52,7 +48,9 @@ export function createRequestListener<Context>(options: {
         response.write(body)
         response.end()
       } else {
-        responseSetStatus(response, { code: 200 })
+        const code = 200
+
+        responseSetStatus(response, { code })
         responseSetHeaders(response, {
           "content-type": "application/json",
           "access-control-allow-origin": "*",
@@ -72,9 +70,16 @@ export function createRequestListener<Context>(options: {
         connection: "close",
       }
 
-      const message = encodeURIComponent(
-        error instanceof Error ? error.message : "Unknown error",
-      )
+      const message = error instanceof Error ? error.message : "Unknown error"
+
+      if (withLog)
+        log({
+          who: "RequestListener",
+          kind: "Error",
+          message,
+          host: request.headers.host,
+          url: request.url,
+        })
 
       if (error instanceof Unauthorized) {
         responseSetStatus(response, { code: 401, message })

@@ -1,7 +1,7 @@
-import type { RequestListener } from "../server/createRequestListener"
 import { findPort } from "../utils/node/findPort"
 import { serverListen } from "../utils/node/serverListen"
-import { createServer, TlsOptions } from "./createServer"
+import { RequestListener } from "./RequestListener"
+import { TlsOptions, createServer } from "./createServer"
 
 type Options = {
   hostname?: string
