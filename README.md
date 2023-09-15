@@ -3,7 +3,30 @@
 This is a Node.js implementation of [**FiDB**](https://fidb.app)
 -- a suite of protocols to use file system as database.
 
-Including a HTTP server to generate REST API from a database:
+
+Including some API functions to handle data files.
+
+```js
+import { Db } from "fidb"
+
+Db.dataCreate(db: Database, path: string, input: JsonObject): Promise<Data>
+Db.dataGetOrFail(db: Database, path: string): Promise<Data>
+Db.dataGet(db: Database, path: string): Promise<Data | undefined>
+Db.dataPut(db: Database, path: string, input: JsonObject): Promise<Data>
+Db.dataPatch(db: Database, path: string, input: JsonObject): Promise<Data>
+Db.dataDelete(db: Database, path: string, input: JsonObject): Promise<void>
+...
+```
+
+A command-line tool to initialize and maintain database.
+
+```
+fidb help [name]   Display help for a command
+fidb init [path]   Initialize a directory to be a database
+fidb serve [path]  Serve a database
+```
+
+And a HTTP server to generate REST API from a database.
 
 ```sh
 POST   {data-path}?kind=data
@@ -27,31 +50,9 @@ GET    {directory}?kind=directory
 DELETE {directory}?kind=directory
 ```
 
-A command-line tool to initialize and maintain database.
-
-```
-fidb help [name]   Display help for a command
-fidb init [path]   Initialize a directory to be a database
-fidb serve [path]  Serve a database
-```
-
-And some API functions to handle data files:
-
-```js
-import { Db } from "fidb"
-
-Db.dataCreate(db: Database, path: string, input: JsonObject): Promise<Data>
-Db.dataGetOrFail(db: Database, path: string): Promise<Data>
-Db.dataGet(db: Database, path: string): Promise<Data | undefined>
-Db.dataPut(db: Database, path: string, input: JsonObject): Promise<Data>
-Db.dataPatch(db: Database, path: string, input: JsonObject): Promise<Data>
-Db.dataDelete(db: Database, path: string, input: JsonObject): Promise<void>
-...
-```
-
 ## Ethos
 
-The ethos of the FiDB project is the following what-ifs:
+The ethos of the FiDB project is the following "what if ...?"s.
 
 > What if we use file system as database?
 
