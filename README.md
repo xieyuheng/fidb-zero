@@ -5,7 +5,7 @@ This is a Node.js implementation of [**FiDB**](https://fidb.app)
 
 Including a HTTP server to generate REST API from a database:
 
-```bash
+```sh
 POST   {data-path}?kind=data
 GET    {data-path}?kind=data
 PUT    {data-path}?kind=data
@@ -29,7 +29,7 @@ DELETE {directory}?kind=directory
 
 A command-line tool to initialize and maintain database.
 
-```sh
+```
 fidb help [name]   Display help for a command
 fidb init [path]   Initialize a directory to be a database
 fidb serve [path]  Serve a database
