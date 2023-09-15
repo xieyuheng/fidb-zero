@@ -38,11 +38,11 @@ export async function* directoryListAll(
 function relativePath(db: Database, absolutePath: string): string {
   const who = "relativePath"
 
-  if (!absolutePath.startsWith(db.path)) {
+  if (!absolutePath.startsWith(db.directory)) {
     throw new Error(
-      `[${who}] absolutePath: ${absolutePath}, does not startsWith db.path: ${db.path}`,
+      `[${who}] absolutePath: ${absolutePath}, does not startsWith db.directory: ${db.directory}`,
     )
   }
 
-  return absolutePath.slice((db.path + "/").length)
+  return absolutePath.slice((db.directory + "/").length)
 }

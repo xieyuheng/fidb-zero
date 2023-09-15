@@ -1,6 +1,6 @@
 import fs from "node:fs"
 import process from "node:process"
-import { createDatabase } from "../database"
+import { loadDatabase } from "../database"
 import { log } from "../utils/log"
 import { pathExists } from "../utils/node/pathExists"
 import { initDatabaseConfigFile } from "./initDatabaseConfigFile"
@@ -29,7 +29,7 @@ export async function init(directory: string): Promise<void> {
 
   const config = await initDatabaseConfigFile(configFile)
 
-  const db = await createDatabase({ path: directory, config })
+  const db = await loadDatabase({ path: directory })
 
   await initSystemResource(db)
   await initExampleUsers(db)

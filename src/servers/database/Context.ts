@@ -1,5 +1,5 @@
 import { resolve } from "node:path"
-import { createDatabase, Database } from "../../database"
+import { Database, loadDatabase } from "../../database"
 
 export type Context = {
   db: Database
@@ -12,7 +12,7 @@ type ContextOptions = {
 export async function createContext(options: ContextOptions): Promise<Context> {
   const { path } = options
 
-  const db = await createDatabase({ path: resolve(path) })
+  const db = await loadDatabase({ path: resolve(path) })
 
   return { db }
 }

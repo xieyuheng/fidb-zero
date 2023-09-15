@@ -1,5 +1,5 @@
 import { resolve } from "node:path"
-import { createDatabase } from "../../database"
+import { loadDatabase } from "../../database"
 import { formatDateTime } from "../../utils/formatDate"
 import { randomHexString } from "../../utils/randomHexString"
 import { slug } from "../../utils/slug"
@@ -13,7 +13,7 @@ export async function prepareTestDb(options: { name: string }) {
 
   const path = resolve(PREFIX, file)
 
-  const db = await createDatabase({ path })
+  const db = await loadDatabase({ path })
 
   return { db }
 }
