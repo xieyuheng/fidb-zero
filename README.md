@@ -14,17 +14,17 @@ DELETE {data-path}?kind=data
 
 GET    {data-directory}?kind=data-find
 
-POST   {file-path}?kind=file
-GET    {file-path}?kind=file
-PUT    {flie-path}?kind=file
-PATCH  {flie-path}?kind=file
-DELET  {flie-path}?kind=file
+POST   {file}?kind=file
+GET    {file}?kind=file
+PUT    {flie}?kind=file
+PATCH  {flie}?kind=file
+DELET  {flie}?kind=file
 
-GET    {flie-path}?kind=file-metadata.
+GET    {flie}?kind=file-metadata.
 
-POST   {directory-path}?kind=directory
-GET    {directory-path}?kind=directory
-DELETE {directory-path}?kind=directory
+POST   {directory}?kind=directory
+GET    {directory}?kind=directory
+DELETE {directory}?kind=directory
 ```
 
 A command-line tool to initialize and maintain database.
