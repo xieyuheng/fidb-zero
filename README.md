@@ -157,7 +157,7 @@ fidb serve hello-world
 
 ## Login a user
 
-Use `POST {data-file}?kind=password-login` HTTP request to login initialized a user:
+Use `POST {data-file}?kind=password-login` HTTP request to login an initialized user:
 
 ```sh
 curl -X POST "http://127.0.0.1:5108/users/alice?kind=password-login" --data-binary @-<< END
