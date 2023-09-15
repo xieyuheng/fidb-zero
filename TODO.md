@@ -1,9 +1,5 @@
 # fidb serve-many
 
-`databaseConfigFromCommandLineOptions`
-
-`startServer` take path and config
-
 `fidb serve-many` -- serve many databases with subdomain-based routing
 
 # fidb init

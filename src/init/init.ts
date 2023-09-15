@@ -15,6 +15,7 @@ export async function init(directory: string): Promise<void> {
   }
 
   const configFile = `${directory}/database.json`
+
   if (await pathExists(configFile)) {
     log({
       who: "init",
@@ -27,9 +28,9 @@ export async function init(directory: string): Promise<void> {
     process.exit(1)
   }
 
-  const config = await initDatabaseConfigFile(configFile)
+  await initDatabaseConfigFile(configFile)
 
-  const db = await loadDatabase({ path: directory })
+  const db = await loadDatabase({ directory })
 
   await initSystemResource(db)
   await initExampleUsers(db)

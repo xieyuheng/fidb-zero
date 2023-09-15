@@ -12,19 +12,19 @@ export async function prepareTestDb(options: { name: string }) {
     `${formatDateTime(Date.now())}-${randomHexString(4)}-${options.name}`,
   )
 
-  const path = resolve(PREFIX, file)
+  const directory = resolve(PREFIX, file)
 
-  await fs.promises.mkdir(path, { recursive: true })
+  await fs.promises.mkdir(directory, { recursive: true })
 
   await fs.promises.writeFile(
-    join(path, "database.json"),
+    join(directory, "database.json"),
     JSON.stringify({
       name: "test",
       description: "test database",
     }),
   )
 
-  const db = await loadDatabase({ path })
+  const db = await loadDatabase({ directory })
 
   return { db }
 }

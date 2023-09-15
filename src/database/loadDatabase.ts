@@ -3,16 +3,16 @@ import type { Database } from "./Database"
 import { readDatabaseConfigFile } from "./readDatabaseConfigFile"
 
 type Options = {
-  path: string
+  directory: string
 }
 
 export async function loadDatabase(options: Options): Promise<Database> {
-  const path = normalize(resolve(options.path))
-  const configFile = join(path, "database.json")
+  const directory = normalize(resolve(options.directory))
+  const configFile = join(directory, "database.json")
   const config = await readDatabaseConfigFile(configFile)
 
   return {
-    directory: path,
+    directory,
     config,
   }
 }

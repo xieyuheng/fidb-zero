@@ -1,15 +1,9 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
-import { createRequestListener } from "../../server/createRequestListener"
-import { handle } from "../../servers/database"
-import { createContext } from "../../servers/database/createContext"
+import { dirname } from "path"
+import { readDatabaseConfigFile } from "../../database/readDatabaseConfigFile"
 import { startServer } from "../../servers/database/startServer"
-import {
-  LoggerName,
-  LoggerNameSchema,
-  changeLogger,
-  log,
-} from "../../utils/log"
+import { LoggerName, LoggerNameSchema, changeLogger } from "../../utils/log"
 
 type Args = { path: string }
 type Opts = {
@@ -50,27 +44,8 @@ export class ServeCommand extends Command<Args> {
   async execute(argv: Args & Opts): Promise<void> {
     changeLogger(argv["logger-name"] || "pretty-line")
 
-    const who = this.name
-
-    const ctx = await createContext({ path: argv.path })
-    log({ who, message: "createContext", config: ctx.db.config })
-
-    const requestListener = createRequestListener({ ctx, handle })
-    const tls =
-      argv["tls-cert"] && argv["tls-key"]
-        ? {
-            cert: argv["tls-cert"],
-            key: argv["tls-key"],
-          }
-        : undefined
-
-    await startServer(requestListener, {
-      server: {
-        hostname: argv.hostname,
-        port: argv.port,
-        startingPort: 5108,
-        tls,
-      },
-    })
+    const config = await readDatabaseConfigFile(argv.path)
+    const path = dirname(argv.path)
+    await startServer(path, config)
   }
 }

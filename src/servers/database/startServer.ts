@@ -1,14 +1,24 @@
 import fs from "node:fs"
 import Http from "node:http"
 import Https from "node:https"
-import { RequestListener } from "../../server/RequestListener"
-import { ServerOptions } from "../../server/ServerOptions"
+import { DatabaseConfig } from "../../database"
+import { createRequestListener } from "../../server/createRequestListener"
 import { serverListenWithDefault } from "../../server/serverListenWithDefault"
+import { log } from "../../utils/log"
+import { createContext } from "./createContext"
+import { handle } from "./handle"
 
 export async function startServer(
-  listener: RequestListener,
-  config: { server?: ServerOptions },
+  directory: string,
+  config: DatabaseConfig,
 ): Promise<void> {
+  const who = "database/startServer"
+
+  const ctx = await createContext({ directory, config })
+  log({ who, message: "createContext", ctx })
+
+  const listener = createRequestListener({ ctx, handle, logger: config.logger })
+
   if (config.server?.tls) {
     const server = Https.createServer(
       {

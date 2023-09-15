@@ -1,12 +1,13 @@
-import { loadDatabase } from "../../database"
+import { DatabaseConfig } from "../../database"
 import { Context } from "./Context"
 
 export async function createContext(options: {
-  path: string
+  directory: string
+  config: DatabaseConfig
 }): Promise<Context> {
-  const { path } = options
+  const { directory, config } = options
 
-  const db = await loadDatabase({ path })
+  const db = { directory, config }
 
   return { db }
 }

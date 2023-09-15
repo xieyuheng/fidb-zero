@@ -1,4 +1,4 @@
-import { Database, loadDatabase } from "../../database"
+import { Database } from "../../database"
 
 export type Context = {
   db: Database
