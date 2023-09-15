@@ -1,7 +1,8 @@
 import fs from "node:fs"
 import { join, normalize, resolve } from "node:path"
 import type { Database } from "./Database"
-import { DatabaseConfig, emptyDatabaseConfig } from "./DatabaseConfig"
+import { DatabaseConfig } from "./DatabaseConfig"
+import { emptyDatabaseConfig } from "./emptyDatabaseConfig"
 import { readDatabaseConfigFile } from "./readDatabaseConfigFile"
 
 type Options = {

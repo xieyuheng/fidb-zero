@@ -1,5 +1,6 @@
 import fs from "node:fs"
-import { DatabaseConfig, emptyDatabaseConfig } from "../database"
+import { DatabaseConfig } from "../database"
+import { emptyDatabaseConfig } from "../database/emptyDatabaseConfig"
 import { log } from "../utils/log"
 
 export async function initDatabaseConfigFile(

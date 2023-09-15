@@ -10,11 +10,6 @@ export const DatabaseConfigSchema: Schema<DatabaseConfig> = ty.object({
   description: ty.string(),
 })
 
-export const emptyDatabaseConfig: DatabaseConfig = {
-  name: "",
-  description: "",
-}
-
 export type DatabaseConfigOptions = {
   name: string
   description?: string
