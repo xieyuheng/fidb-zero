@@ -205,7 +205,7 @@ I want to implement the above by the following:
 
 - **Problem 4.5:** How to config the default permissions?
 
-- **Solution 4.5:** We can use `.configs/default-token-issuer` data file,
+- **Solution 4.5:** We can use `.config/default-token-issuer` data file,
   which contains a `permissions` property
   for the default permissions.
 
@@ -238,7 +238,7 @@ I want to implement the above by the following:
 
   ```
   {
-    "issuer": ".configs/default-token-issuer"
+    "issuer": ".config/default-token-issuer"
   }
   ```
 

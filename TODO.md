@@ -1,7 +1,7 @@
 # fidb init
 
-[init] create `.configs/default-token-issuer`
-[init] create `.configs/password-register-strategy`
+[init] create `.config/default-token-issuer`
+[init] create `.config/password-register-strategy`
 [init] create users Ava Bella Carol Diana Eileen
 [init] create example database for web apps
 

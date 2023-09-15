@@ -15,6 +15,7 @@ export async function init(directory: string): Promise<void> {
   if (await pathExists(configFile)) {
     log({
       who: "init",
+      kind: "Error",
       message: "Config file already exists.",
       directory,
       configFile

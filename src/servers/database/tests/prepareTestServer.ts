@@ -27,18 +27,18 @@ export async function prepareTestServer(options: { name: string }) {
 
   await serverListen(server, { port, hostname })
 
-  await dataCreate(db, ".configs/password-register-strategy", {
+  await dataCreate(db, ".config/password-register-strategy", {
     loginTargets: {
       ...userLoginTargets,
     },
   })
 
-  await dataCreate(db, ".configs/default-token-issuer", {
+  await dataCreate(db, ".config/default-token-issuer", {
     permissions: defaultPermissions,
   })
 
   await dataCreate(db, ".tokens/default", {
-    issuer: ".configs/default-token-issuer",
+    issuer: ".config/default-token-issuer",
   })
 
   await dataCreate(db, "test-token-issuers/all-read-write", {

@@ -27,7 +27,7 @@ export async function passwordRegister(
   const who = "passwordRegister"
 
   const strategy = PasswordRegisterStrategySchema.validate(
-    await dataGetOrFail(db, ".configs/password-register-strategy"),
+    await dataGetOrFail(db, ".config/password-register-strategy"),
   )
 
   for (const [pattern, tokenIssuer] of Object.entries(strategy.loginTargets)) {

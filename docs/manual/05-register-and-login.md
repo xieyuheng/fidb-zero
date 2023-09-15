@@ -83,7 +83,7 @@ thus the simplest to understand and implement.
 
 - **Problem 5.1:** How to configure which directory can be used as login target?
 
-- **Solution 5.1:** We can use `.configs/password-register-strategy` data file,
+- **Solution 5.1:** We can use `.config/password-register-strategy` data file,
   to configure which directory is allow to be login target,
   and what `permissions` should be granted when creating `.login`.
 
