@@ -106,8 +106,8 @@ fidb init hello-world
 Example console output of `fidb init`:
 
 ```
-13:58:26.119 [init] -- {"directory":"/home/xyh/play/hello-world"}
-13:58:26.125 [initDatabaseConfigFile] -- {"file":"/home/xyh/play/hello-world/database.json"}
+13:58:26.119 [init] -- {"directory":"/tmp/hello-world"}
+13:58:26.125 [initDatabaseConfigFile] -- {"file":"/tmp/hello-world/database.json"}
 13:58:26.133 [initSystemResource] -- {"path":".config/default-token-issuer"}
 13:58:26.134 [initSystemResource] -- {"path":".tokens/default"}
 13:58:26.135 [initSystemResource] -- {"path":".config/password-register-strategy"}
@@ -118,7 +118,7 @@ Example console output of `fidb init`:
 Let's run `tree` to see what directories and files are created:
 
 ```
-~/play/hello-world
+/tmp/hello-world
 ❯ tree -a
 .
 ├── .config
