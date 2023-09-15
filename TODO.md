@@ -1,7 +1,5 @@
 # fidb serve-many
 
-`readDatabaseConfigFile`
-
 `databaseConfigFromCommandLineOptions`
 
 `startServer` take path and config
