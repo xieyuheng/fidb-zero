@@ -1,6 +1,10 @@
 # fidb serve-many
 
-inline `startServer`
+`readDatabaseConfigFile`
+
+`databaseConfigFromCommandLineOptions`
+
+`startServer` take path and config
 
 inline `createServer`
 
