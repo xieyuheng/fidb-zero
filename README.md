@@ -76,11 +76,18 @@ The command line program is called `fidb`.
 
 ### Init a database
 
+A database is just a directory of subdirectories and JSON data files,
+with a `database.json` config file,
+and with some more data files serve as
+detailed system configurations.
+
+Use the `fidb init` command to create a database:
+
 ```sh
 fidb init hello-world
 ```
 
-Output:
+Example console output of `fidb init`:
 
 ```
 13:58:26.119 [init] -- {"directory":"/home/xyh/play/hello-world"}
@@ -92,7 +99,7 @@ Output:
 13:58:26.251 [initExampleUser] -- {"path":"users/bob","password":"bob456"}
 ```
 
-Let's run `tree` to see what files are created:
+Let's run `tree` to see what directories and files are created:
 
 ```
 ~/play/hello-world
@@ -124,13 +131,13 @@ Let's run `tree` to see what files are created:
 13 directories, 10 files
 ```
 
-Serve the newly created database:
+Use the `fidb serve` command to serve a database:
 
 ```sh
 fidb serve hello-world
 ```
 
-Example `password-login`:
+Use `POST {data-file}?kind=password-login` HTTP request to login initialized a user:
 
 ```sh
 curl -X POST "http://127.0.0.1:5108/users/alice?kind=password-login" --data-binary @-<< END
@@ -142,13 +149,20 @@ curl -X POST "http://127.0.0.1:5108/users/alice?kind=password-login" --data-bina
 END
 ```
 
-Output of `password-login`:
+The response of a `POST {data-file}?kind=password-login` request
+is a access token in JSON string format.
 
 ```json
 "34dbf6a79e7968ffc3cda1b51c3fada9"
 ```
 
-Example `password-register`:
+Which can be used in the `Authorization` header for future requests.
+
+```
+Authorization: token 34dbf6a79e7968ffc3cda1b51c3fada9
+```
+
+Use `POST {data-file}?kind=password-register` HTTP request to register a new user:
 
 ```sh
 curl -X POST "http://127.0.0.1:5108/users/carol?kind=password-register" --data-binary @-<< END
@@ -166,7 +180,7 @@ curl -X POST "http://127.0.0.1:5108/users/carol?kind=password-register" --data-b
 END
 ```
 
-Output of `password-register`:
+Example response of `POST {data-file}?kind=password-register` request:
 
 ```json
 {
