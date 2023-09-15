@@ -2,6 +2,8 @@
 
 `fidb init <directory>` -- create `database.json`
 
+- `initDatabaseConfigFile`
+
 `database.json` with optional `server` and `logger`
 
 # fidb serve-many
@@ -11,6 +13,12 @@ inline `startServer`
 inline `createServer`
 
 `fidb serve-many` -- serve many databases with subdomain-based routing
+
+# readme
+
+[readme] `fidb init`
+[readme] `fidb serve`
+[readme] `fidb serve-many`
 
 # handle
 

@@ -6,7 +6,7 @@
 
 File system as database.
 
-## Usages
+## Install
 
 ### Requirements
 
@@ -28,6 +28,39 @@ The command line program is called `fidb`.
 fidb help             # Print help message
 fidb serve <path>     # Serve a database
 ```
+
+## Docs
+
+- [Use systemd to start service](#use-systemd-to-start-service)
+
+### Use systemd to start service
+
+Install service:
+
+```
+sudo cp <name>.service /etc/systemd/system/
+```
+
+Using service:
+
+```
+sudo systemctl start <name>.service
+sudo systemctl enable <name>.service
+sudo systemctl status <name>.service
+```
+
+To view log:
+
+```
+journalctl -f -u <name>.service
+```
+
+Reload systemd config files:
+
+```
+systemctl daemon-reload
+```
+
 
 ## Development
 
