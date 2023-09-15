@@ -59,18 +59,18 @@ export class ServeCommand extends Command<Args> {
     const tls =
       argv["tls-cert"] && argv["tls-key"]
         ? {
-            certPath: argv["tls-cert"],
-            keyPath: argv["tls-key"],
+            cert: argv["tls-cert"],
+            key: argv["tls-key"],
           }
         : undefined
 
-    const { url } = await startServer(requestListener, {
-      hostname: argv.hostname,
-      port: argv.port,
-      startingPort: 5108,
-      tls,
+    await startServer(requestListener, {
+      server: {
+        hostname: argv.hostname,
+        port: argv.port,
+        startingPort: 5108,
+        tls,
+      },
     })
-
-    log({ who, message: "startingPort", url: String(url) })
   }
 }

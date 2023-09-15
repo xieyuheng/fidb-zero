@@ -1,31 +1,25 @@
+import fs from "node:fs"
+import Http from "node:http"
+import Https from "node:https"
 import { RequestListener } from "../../server/RequestListener"
-import { findPort } from "../../utils/node/findPort"
-import { serverListen } from "../../utils/node/serverListen"
-import { TlsOptions, createServer } from "./createServer"
-
-type Options = {
-  hostname?: string
-  port?: number
-  startingPort?: number
-  tls?: TlsOptions
-}
+import { ServerOptions } from "../../server/ServerOptions"
+import { serverListenWithDefault } from "../../server/serverListenWithDefault"
 
 export async function startServer(
-  requestListener: RequestListener,
-  options: Options,
-): Promise<{ url: URL }> {
-  const { scheme, server } = await createServer(requestListener, options)
-
-  const hostname = options.hostname || "127.0.0.1"
-  const port = Number(
-    process.env.PORT ||
-      options.port ||
-      (await findPort(options.startingPort || 5108)),
-  )
-
-  await serverListen(server, { hostname, port })
-
-  const url = new URL(`${scheme}://${hostname}:${port}`)
-
-  return { url }
+  listener: RequestListener,
+  config: { server?: ServerOptions },
+): Promise<void> {
+  if (config.server?.tls) {
+    const server = Https.createServer(
+      {
+        cert: await fs.promises.readFile(config.server.tls.cert),
+        key: await fs.promises.readFile(config.server.tls.key),
+      },
+      listener,
+    )
+    await serverListenWithDefault(server, config.server)
+  } else {
+    const server = Http.createServer({}, listener)
+    await serverListenWithDefault(server, config.server)
+  }
 }
