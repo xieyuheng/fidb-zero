@@ -1,6 +1,10 @@
 # fidb init
 
-[init] create users Ava Bella Carol Diana Eileen
+[init] extract `initExampleUser`
+
+[init] show example login command-line
+[init] show example register command-line
+
 [init] create example database for web apps
 
 - personal note taking app -- with a frontend that can change backend at runtime
