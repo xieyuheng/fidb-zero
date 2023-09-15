@@ -118,9 +118,9 @@ Example console output of `fidb init`:
 Let's run `tree` to see what directories and files are created:
 
 ```
-/tmp/hello-world
-❯ tree -a
-.
+
+❯ tree -a hello-world/
+hello-world/
 ├── .config
 │   ├── default-token-issuer
 │   │   └── index.json
@@ -154,6 +154,8 @@ Use the `fidb serve` command to serve a database:
 ```sh
 fidb serve hello-world
 ```
+
+The default port of the server is `5108`, which looks like FiDB isn't it?
 
 ## Login a user
 

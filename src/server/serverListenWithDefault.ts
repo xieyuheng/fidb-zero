@@ -16,7 +16,7 @@ export async function serverListenWithDefault(
   const port = Number(
     process.env.PORT ||
       options?.port ||
-      (await findPort(options?.startingPort || 8080)),
+      (await findPort(options?.startingPort || 5108)),
   )
 
   await serverListen(server, { hostname, port })

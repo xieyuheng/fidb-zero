@@ -8,8 +8,6 @@
 
 - personal note taking app -- with a frontend that can change backend at runtime
 
-`database.json` with optional `server` and `logger`
-
 # handle
 
 [handle] support `HEAD` query
