@@ -31,7 +31,80 @@ fidb serve <path>     # Serve a database
 
 ## Docs
 
+- [Init a database](#init-a-database)
 - [Use systemd to start service](#use-systemd-to-start-service)
+
+### Init a database
+
+```sh
+fidb init hello-world
+```
+
+Output:
+
+```
+13:58:26.119 [init] -- {"directory":"/home/xyh/play/hello-world"}
+13:58:26.125 [initDatabaseConfigFile] -- {"file":"/home/xyh/play/hello-world/database.json"}
+13:58:26.133 [initSystemResource] -- {"path":".config/default-token-issuer"}
+13:58:26.134 [initSystemResource] -- {"path":".tokens/default"}
+13:58:26.135 [initSystemResource] -- {"path":".config/password-register-strategy"}
+13:58:26.201 [initExampleUser] -- {"path":"users/alice","password":"alice123"}
+13:58:26.251 [initExampleUser] -- {"path":"users/bob","password":"bob456"}
+```
+
+Serve the newly created database:
+
+```sh
+fidb serve hello-world
+```
+
+Example `password-login`:
+
+```sh
+curl -X POST "http://127.0.0.1:5108/users/alice?kind=password-login" --data-binary @-<< END
+
+{
+  "password": "alice123"
+}
+
+END
+```
+
+Output of `password-login`:
+
+```json
+"34dbf6a79e7968ffc3cda1b51c3fada9"
+```
+
+Example `password-register`:
+
+```sh
+curl -X POST "http://127.0.0.1:5108/users/carol?kind=password-register" --data-binary @-<< END
+
+{
+  "data": {
+    "name": "Carol"
+  },
+  "options": {
+    "memo": "Example `password-register`",
+    "password": "carol789"
+  }
+}
+
+END
+```
+
+Output of `password-register`:
+
+```json
+{
+  "name": "Carol",
+  "@path": "users/carol",
+  "@revision": "6bbf9a32c4d0f7964d1fee2aa9491523",
+  "@createdAt": 1694757904583,
+  "@updatedAt": 1694757904583
+}
+```
 
 ### Use systemd to start service
 

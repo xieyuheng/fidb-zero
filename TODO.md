@@ -1,10 +1,5 @@
 # readme
 
-[readme] `fidb init`
-
-- show example login command-line
-- show example register command-line
-
 [readme] `fidb serve`
 
 [readme] `fidb serve-many`
@@ -26,7 +21,6 @@ inline `startServer`
 inline `createServer`
 
 `fidb serve-many` -- serve many databases with subdomain-based routing
-
 
 # handle
 

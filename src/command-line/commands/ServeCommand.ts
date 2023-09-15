@@ -71,7 +71,6 @@ export class ServeCommand extends Command<Args> {
       tls,
     })
 
-
     log({ who, message: "startingPort", url: String(url) })
   }
 }
