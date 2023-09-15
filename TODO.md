@@ -46,6 +46,8 @@ use `x-json` instead of `xieyuheng/ty`
 
 [manual] management
 
+- `admins/` has password
+
 [manual] indexing
 
 # token

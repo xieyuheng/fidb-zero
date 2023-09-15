@@ -18,7 +18,7 @@ POST   {file}?kind=file
 GET    {file}?kind=file
 PUT    {flie}?kind=file
 PATCH  {flie}?kind=file
-DELET  {flie}?kind=file
+DELETE {flie}?kind=file
 
 GET    {flie}?kind=file-metadata.
 
@@ -48,6 +48,16 @@ Db.dataPatch(db: Database, path: string, input: JsonObject): Promise<Data>
 Db.dataDelete(db: Database, path: string, input: JsonObject): Promise<void>
 ...
 ```
+
+## Ethos
+
+The ethos of the FiDB project is the following what-ifs:
+
+> What if we use file system as database?
+
+> What if we generate HTTP API from the database, instead of writing trivial CRUD code over and over again?
+
+> What if we write web apps in a way that a user can switch backend, even using their local backend?
 
 ## Install
 
