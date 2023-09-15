@@ -1,7 +1,5 @@
 # fidb init
 
-[init] `init` -- exit if there is already a `database.json` file
-
 [init] create `.configs/default-token-issuer`
 [init] create `.configs/password-register-strategy`
 [init] create users Ava Bella Carol Diana Eileen
