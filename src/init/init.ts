@@ -1,8 +1,10 @@
 import fs from "node:fs"
 import process from "node:process"
+import { createDatabase } from "../database"
 import { log } from "../utils/log"
 import { pathExists } from "../utils/node/pathExists"
 import { initDatabaseConfigFile } from "./initDatabaseConfigFile"
+import { initDotConfig } from "./initDotConfig"
 
 export async function init(directory: string): Promise<void> {
   log({ who: "init", directory })
@@ -18,11 +20,13 @@ export async function init(directory: string): Promise<void> {
       kind: "Error",
       message: "Config file already exists.",
       directory,
-      configFile
+      configFile,
     })
 
     process.exit(1)
   }
 
-  await initDatabaseConfigFile(configFile)
+  const config = await initDatabaseConfigFile(configFile)
+  const db = await createDatabase({ path: directory, config })
+  await initDotConfig(db)
 }
