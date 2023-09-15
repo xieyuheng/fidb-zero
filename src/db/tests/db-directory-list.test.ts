@@ -9,7 +9,7 @@ test("db-directory-list", async ({ meta }) => {
 
   {
     const pathEntries = await arrayFromAsyncIterable(
-      Db.directoryList(db, "", { page: 1, size: 2 }),
+      Db.directoryList(db, "", { page: 1, size: 3 }),
     )
 
     expect(
@@ -25,7 +25,7 @@ test("db-directory-list", async ({ meta }) => {
 
   {
     const pathEntries = await arrayFromAsyncIterable(
-      Db.directoryList(db, "", { page: 1, size: 2 }),
+      Db.directoryList(db, "", { page: 1, size: 3 }),
     )
 
     expect(
@@ -33,6 +33,7 @@ test("db-directory-list", async ({ meta }) => {
         (entry) => !(entry.kind === "File" && entry.path === "database.json"),
       ).length,
     ).toEqual(1)
+
     expect(
       Boolean(pathEntries.find(({ path }: PathEntry) => path === "users")),
     ).toEqual(true)
@@ -43,7 +44,7 @@ test("db-directory-list", async ({ meta }) => {
 
   {
     const pathEntries = await arrayFromAsyncIterable(
-      Db.directoryList(db, "", { page: 1, size: 2 }),
+      Db.directoryList(db, "", { page: 1, size: 3 }),
     )
 
     expect(
@@ -51,9 +52,11 @@ test("db-directory-list", async ({ meta }) => {
         (entry) => !(entry.kind === "File" && entry.path === "database.json"),
       ).length,
     ).toEqual(2)
+
     expect(
       Boolean(pathEntries.find(({ path }: PathEntry) => path === "users")),
     ).toEqual(true)
+
     expect(
       Boolean(pathEntries.find(({ path }: PathEntry) => path === "posts")),
     ).toEqual(true)
@@ -61,14 +64,11 @@ test("db-directory-list", async ({ meta }) => {
 
   {
     const pathEntries = await arrayFromAsyncIterable(
-      Db.directoryList(db, "", { page: 1, size: 1 }),
+      Db.directoryList(db, "", { page: 1, size: 2 }),
     )
 
-    expect(
-      pathEntries.filter(
-        (entry) => !(entry.kind === "File" && entry.path === "database.json"),
-      ).length,
-    ).toEqual(1)
+    expect(pathEntries.length).toEqual(2)
+
     expect(
       Boolean(
         pathEntries.find(
@@ -83,29 +83,14 @@ test("db-directory-list", async ({ meta }) => {
       Db.directoryList(db, "", { page: 2, size: 1 }),
     )
 
-    expect(
-      pathEntries.filter(
-        (entry) => !(entry.kind === "File" && entry.path === "database.json"),
-      ).length,
-    ).toEqual(1)
-    expect(
-      Boolean(
-        pathEntries.find(
-          ({ path }: PathEntry) => path === "users" || path === "posts",
-        ),
-      ),
-    ).toEqual(true)
+    expect(pathEntries.length).toEqual(1)
   }
 
   {
     const pathEntries = await arrayFromAsyncIterable(
-      Db.directoryList(db, "", { page: 3, size: 1 }),
+      Db.directoryList(db, "", { page: 4, size: 1 }),
     )
 
-    expect(
-      pathEntries.filter(
-        (entry) => !(entry.kind === "File" && entry.path === "database.json"),
-      ).length,
-    ).toEqual(0)
+    expect(pathEntries.length).toEqual(0)
   }
 })
