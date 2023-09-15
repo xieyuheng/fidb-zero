@@ -1,10 +1,7 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
-import { createRequestListener } from "../../server/createRequestListener"
-import { startServer } from "../../server/startServer"
-import { handle } from "../../servers/database"
-import { createContext } from "../../servers/database/Context"
-import { changeLogger, log } from "../../utils/log"
+import Path from "node:path"
+import { init } from "../../init/init"
 
 type Args = { path: string }
 type Opts = {
@@ -36,8 +33,7 @@ export class InitCommand extends Command<Args> {
   }
 
   async execute(argv: Args & Opts): Promise<void> {
-    const who = this.name
-
-    log({ who })
+    const directory = Path.resolve(argv.path)
+    init(directory)
   }
 }

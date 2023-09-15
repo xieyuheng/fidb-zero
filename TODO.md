@@ -1,10 +1,17 @@
 # fidb init
 
-`fidb init <directory>` -- create `database.json`
+[init] `init` -- exit if there is already a `database.json` file
 
-- `initDatabaseConfigFile`
+[init] create `.configs/default-token-issuer`
+[init] create `.configs/password-register-strategy`
+[init] create users Ava Bella Carol Diana Eileen
+[init] create example database for web apps
+
+- personal note taking app -- with a frontend that can change backend at runtime
 
 `database.json` with optional `server` and `logger`
+
+`fidb init` log created files
 
 # fidb serve-many
 
