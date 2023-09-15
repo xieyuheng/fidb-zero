@@ -17,6 +17,7 @@ export async function init(directory: string): Promise<void> {
       who: "init",
       message: "Config file already exists.",
       directory,
+      configFile
     })
 
     process.exit(1)

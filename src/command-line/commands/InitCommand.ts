@@ -2,6 +2,7 @@ import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
 import Path from "node:path"
 import { init } from "../../init/init"
+import { changeLogger } from "../../utils/log"
 
 type Args = { path: string }
 type Opts = {
@@ -33,6 +34,8 @@ export class InitCommand extends Command<Args> {
   }
 
   async execute(argv: Args & Opts): Promise<void> {
+    changeLogger("pretty")
+
     const directory = Path.resolve(argv.path)
     init(directory)
   }

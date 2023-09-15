@@ -4,7 +4,12 @@ import { createRequestListener } from "../../server/createRequestListener"
 import { startServer } from "../../server/startServer"
 import { handle } from "../../servers/database"
 import { createContext } from "../../servers/database/Context"
-import { changeLogger, log } from "../../utils/log"
+import {
+  LoggerName,
+  LoggerNameSchema,
+  changeLogger,
+  log,
+} from "../../utils/log"
 
 type Args = { path: string }
 type Opts = {
@@ -12,7 +17,7 @@ type Opts = {
   port?: number
   "tls-cert"?: string
   "tls-key"?: string
-  logger?: string
+  "logger-name"?: LoggerName
 }
 
 export class ServeCommand extends Command<Args> {
@@ -26,7 +31,7 @@ export class ServeCommand extends Command<Args> {
     port: ty.optional(ty.number()),
     "tls-cert": ty.optional(ty.string()),
     "tls-key": ty.optional(ty.string()),
-    logger: ty.optional(ty.string()),
+    "logger-name": ty.optional(LoggerNameSchema),
   }
 
   // prettier-ignore
@@ -43,8 +48,8 @@ export class ServeCommand extends Command<Args> {
   }
 
   async execute(argv: Args & Opts): Promise<void> {
-    if (argv.logger) {
-      changeLogger(argv.logger)
+    if (argv["logger-name"]) {
+      changeLogger(argv["logger-name"])
     }
 
     const who = this.name

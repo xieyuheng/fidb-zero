@@ -61,7 +61,6 @@ Reload systemd config files:
 systemctl daemon-reload
 ```
 
-
 ## Development
 
 ```sh
