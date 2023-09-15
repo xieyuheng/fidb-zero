@@ -1,10 +1,8 @@
 # fidb init
 
-`InitCommand`
+`fidb init <directory>` -- create `database.json`
 
-`fidb init <directory>`
-
-template for creating a fidb database
+`database.json` with optional `server` and `logger`
 
 # fidb serve-many
 
