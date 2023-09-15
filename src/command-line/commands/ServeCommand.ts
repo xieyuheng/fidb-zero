@@ -53,6 +53,8 @@ export class ServeCommand extends Command<Args> {
     const who = this.name
 
     const ctx = await createContext({ path: argv.path })
+    log({ who, message: "createContext", config: ctx.db.config })
+
     const requestListener = createRequestListener({ ctx, handle })
     const tls =
       argv["tls-cert"] && argv["tls-key"]
@@ -69,6 +71,7 @@ export class ServeCommand extends Command<Args> {
       tls,
     })
 
-    log({ who, ctx, url: String(url), tls })
+
+    log({ who, message: "startingPort", url: String(url) })
   }
 }

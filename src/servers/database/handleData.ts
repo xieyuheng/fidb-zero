@@ -62,6 +62,7 @@ export async function handleData(
   throw new Error(
     [
       `[handleData] unhandled http request`,
+      ``,
       `  method: ${request.method}`,
       `  path: ${path}`,
     ].join("\n"),

@@ -56,6 +56,7 @@ export async function handle(
   throw new Error(
     [
       `[handle] unhandled content-type`,
+      ``,
       `  method: ${request.method}`,
       `  path: ${requestPath(ctx, request)}`,
     ].join("\n"),

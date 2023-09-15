@@ -11,8 +11,10 @@ export async function handlePing(
   }
 
   throw new Error(
-    [`[handlePing] unhandled http request`, `  method: ${request.method}`].join(
-      "\n",
-    ),
+    [
+      `[handlePing] unhandled http request`,
+      ``,
+      `  method: ${request.method}`,
+    ].join("\n"),
   )
 }

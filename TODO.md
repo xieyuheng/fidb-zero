@@ -1,7 +1,15 @@
-# fidb init
+# readme
 
-[init] show example login command-line
-[init] show example register command-line
+[readme] `fidb init`
+
+- show example login command-line
+- show example register command-line
+
+[readme] `fidb serve`
+
+[readme] `fidb serve-many`
+
+# fidb init
 
 [init] create example database for web apps
 
@@ -19,11 +27,6 @@ inline `createServer`
 
 `fidb serve-many` -- serve many databases with subdomain-based routing
 
-# readme
-
-[readme] `fidb init`
-[readme] `fidb serve`
-[readme] `fidb serve-many`
 
 # handle
 

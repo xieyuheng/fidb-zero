@@ -22,8 +22,10 @@ export async function handleInfo(
   }
 
   throw new Error(
-    [`[handleInfo] unhandled http request`, `  method: ${request.method}`].join(
-      "\n",
-    ),
+    [
+      `[handleInfo] unhandled http request`,
+      ``,
+      `  method: ${request.method}`,
+    ].join("\n"),
   )
 }

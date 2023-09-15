@@ -47,6 +47,7 @@ export async function handleDirectory(
   throw new Error(
     [
       `[handleDirectory] unhandled http request`,
+      ``,
       `  method: ${request.method}`,
       `  path: ${path}`,
     ].join("\n"),

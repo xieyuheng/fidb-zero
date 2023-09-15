@@ -56,6 +56,7 @@ export async function handlePassword(
   throw new Error(
     [
       `[handlePassword] unhandled http request`,
+      ``,
       `  method: ${request.method}`,
       `  path: ${path}`,
     ].join("\n"),
