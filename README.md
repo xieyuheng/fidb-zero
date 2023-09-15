@@ -56,9 +56,11 @@ The ethos of the FiDB project is the following "what if ...?"s.
 
 > What if we use file system as database?
 
-> What if we generate HTTP API from the database, instead of writing trivial CRUD code over and over again?
+> What if we generate HTTP API from the database, <br>
+> instead of writing trivial CRUD code over and over again?
 
-> What if we write web apps in a way that a user can switch backend, even using their local backend?
+> What if we write web apps in a way that a user can switch backend, <br>
+> even using their local backend?
 
 ## Install
 
