@@ -6,7 +6,8 @@
 
 [init] create example database for web apps
 
-- personal note taking app -- with a frontend that can change backend at runtime
+- family/close-friends note taking app -- with a frontend that can change backend at runtime
+- example family/close-friends note taking app
 
 # handle
 
@@ -15,6 +16,8 @@
 [handle] support contents hash based `PATCH` query
 
 [handle] support nested `PATCH` for data
+
+# rate limit
 
 [handle] rate limit by ip -- for `password-register`
 

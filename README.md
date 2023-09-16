@@ -172,7 +172,7 @@ END
 ```
 
 The response of a `POST {data-file}?kind=password-login` request
-is a access token in JSON string format.
+is an access token in JSON string format.
 
 ```json
 "34dbf6a79e7968ffc3cda1b51c3fada9"
