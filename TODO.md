@@ -4,10 +4,9 @@
 
 # fidb init
 
-[init] create example database for web apps
+[init] create example database for a wiki system -- x-wiki
 
-- family/close-friends note taking app -- with a frontend that can change backend at runtime
-- example family/close-friends note taking app
+- with a frontend that can change backend at runtime
 
 # handle
 
