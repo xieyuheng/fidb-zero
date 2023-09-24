@@ -6,7 +6,19 @@
 
 [init] create example database for a wiki system -- x-wiki
 
-- with a frontend that can change backend at runtime
+The idea of an example fidb app:
+
+x-news
+
+- https://lobste.rs/about
+- https://news.ycombinator.com
+- https://www.reddit.com
+- http://lambda-the-ultimate.org
+
+x-wiki
+
+- https://en.wikipedia.org/wiki/English_Wikipedia
+- https://en.wikipedia.org/wiki/WikiWikiWeb
 
 # handle
 
