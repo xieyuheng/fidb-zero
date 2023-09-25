@@ -1,5 +1,4 @@
 extract `responseSendContent`
-extract `requestFindSubdomain`
 
 [subdomain] `startServer` -- handle subdomain routing
 
