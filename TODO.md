@@ -1,3 +1,6 @@
+[subdomain] `createContext`
+[subdomain] `startServer`
+
 # fidb serve-many
 
 `ServeManyCommand` call `subdomain/startServer`
