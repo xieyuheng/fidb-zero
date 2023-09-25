@@ -87,9 +87,9 @@ The command line program is called `fidb`.
 - [Init a database](#init-a-database)
 - [Serve one database](#serve-one-database)
 - [Serve many databases](#serve-many-databases)
-- [Config logger](#config-logger)
 - [Login a user](#login-a-user)
 - [Register a user](#register-a-user)
+- [Config logger](#config-logger)
 - [Use systemd to start service](#use-systemd-to-start-service)
 
 ### Init a database
@@ -159,37 +159,34 @@ fidb serve hello-world
 
 The default port of the server is `5108`, which looks like FiDB isn't it?
 
-### Config logger
+## Serve many databases
 
-We can config logger in `/databases/database.json`:
+Use the `fidb serve-many` command
+to serve many databases in one directory,
+using subdomain-based routing.
 
-```json
-{
-  ...,
-  "logger": {
-    "name": "pretty-line",
-    "disableRequestLogging": true
-  }
-}
+For example, I have a VPS machine,
+where I put all my databases
+in the `/databases` directory.
+
+```
+/databases/wiki
+/databases/news
+...
 ```
 
-The type of logger options are:
+I can use `fidb serve-many` command to serve all of
+the databases in `/databases` directory.
 
-```ts
-export type LoggerOptions = {
-  name: "json" | "silent" | "pretty" | "pretty-line"
-  disableRequestLogging?: boolean
-}
+```sh
+zfidb serve-many /databases
 ```
 
-The default logger options are:
+When using `fidb serve-many`,
+the `server.hostname` option is required.
 
-```json
-{
-  "name": "pretty-line",
-  "disableRequestLogging": false
-}
-```
+And each database in `/databases` might have
+it's own `database.json` config file,
 
 ## Login a user
 
@@ -230,7 +227,7 @@ curl -X POST "http://127.0.0.1:5108/users/carol?kind=password-register" --data-b
     "name": "Carol"
   },
   "options": {
-    "memo": "Example `password-register`",
+    "memo": "password-register example",
     "password": "carol789"
   }
 }
@@ -247,6 +244,38 @@ Example response of `POST {data-file}?kind=password-register` request:
   "@revision": "6bbf9a32c4d0f7964d1fee2aa9491523",
   "@createdAt": 1694757904583,
   "@updatedAt": 1694757904583
+}
+```
+
+### Config logger
+
+We can config logger in `/databases/database.json`:
+
+```json
+{
+  ...,
+  "logger": {
+    "name": "pretty-line",
+    "disableRequestLogging": true
+  }
+}
+```
+
+The type of logger options are:
+
+```ts
+export type LoggerOptions = {
+  name: "json" | "silent" | "pretty" | "pretty-line"
+  disableRequestLogging?: boolean
+}
+```
+
+The default logger options are:
+
+```json
+{
+  "name": "pretty-line",
+  "disableRequestLogging": false
 }
 ```
 
@@ -301,4 +330,4 @@ introduction to yourself but not too long.
 
 ## License
 
-[GPLv3](LICENSE)
+    [GPLv3](LICENSE)
