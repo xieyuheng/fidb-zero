@@ -7,15 +7,10 @@ export async function handleInfo(
   request: Http.IncomingMessage,
 ): Promise<Json | void> {
   if (request.method === "GET") {
+    const { config } = db
     return {
-      db: {
-        config: db.config
-          ? {
-              name: db.config.name,
-              description: db.config.description || null,
-            }
-          : null,
-      },
+      name: config.name || null,
+      description: config.description || null,
     }
   }
 
