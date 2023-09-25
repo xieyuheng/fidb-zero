@@ -1,11 +1,5 @@
-[subdomain] `createContext`
-[subdomain] `startServer`
-
-# fidb serve-many
-
 `ServeManyCommand` call `subdomain/startServer`
-
-`fidb serve-many` -- serve many databases with subdomain-based routing
+[subdomain] `startServer` -- handle subdomain routing
 
 # docs
 
