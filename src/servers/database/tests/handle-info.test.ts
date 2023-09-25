@@ -4,10 +4,9 @@ import { prepareTestServer } from "./prepareTestServer"
 test("handle-info", async ({ meta }) => {
   const { url, db } = await prepareTestServer(meta)
 
-  db.config = {
-    name: "handle-info",
-    description: "Example config",
-  }
+  const name = "handle-info"
+  const description = "handle-info"
+  db.config = { name, description }
 
   const info = await (
     await fetch(new URL(`?kind=info`, url), {
@@ -19,8 +18,7 @@ test("handle-info", async ({ meta }) => {
   ).json()
 
   expect(info).toEqual({
-    db: {
-      config: db.config,
-    },
+    name,
+    description,
   })
 })
