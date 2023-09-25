@@ -90,6 +90,7 @@ The command line program is called `fidb`.
 - [Login a user](#login-a-user)
 - [Register a user](#register-a-user)
 - [Config logger](#config-logger)
+- [Get free certificate](#get-free-certificate)
 - [Use systemd to start service](#use-systemd-to-start-service)
 
 ### Init a database
@@ -170,23 +171,66 @@ where I put all my databases
 in the `/databases` directory.
 
 ```
-/databases/wiki
-/databases/news
+/databases/x-wiki
+/databases/x-news
 ...
 ```
+
+I bought a domain for my server -- say `fidb.app`,
+and configured my DNS to resolve `fidb.app`
+and `*.fidb.app` to my server.
+
+I also created certificate files for my domain using `certbot`.
+
+- About how to use `certbot`, please see
+  the ["Get free certificate"](#get-free-certificate) section.
 
 I can use `fidb serve-many` command to serve all of
 the databases in `/databases` directory.
 
 ```sh
-zfidb serve-many /databases
+fidb serve-many /databases/database.json
 ```
 
-When using `fidb serve-many`,
-the `server.hostname` option is required.
+Where `/databases/database.json` is:
 
-And each database in `/databases` might have
-it's own `database.json` config file,
+```json
+{
+  "server": {
+    "hostname": "fidb.app",
+    "port": 5108,
+    "tls": {
+      "cert": "/etc/letsencrypt/live/fidb.app/fullchain.pem",
+      "key": "/etc/letsencrypt/live/fidb.app/privkey.pem"
+    }
+  }
+}
+```
+
+- When using `fidb serve-many`,
+  the `server.hostname` option is required.
+
+- And each database in `/databases` might have
+  it's own `database.json` config file.
+
+Then I can access all my databases via subdomain of `fidb.app`.
+
+```
+https://x-wiki.fidb.app:5108
+https://x-news.fidb.app:5108
+...
+```
+
+If no subdomain is given in a request,
+`www/` will be used as the default subdomain directory
+(while no redirect will be done).
+
+Thus the following websites have the same contents:
+
+```
+https://fidb.app:5108
+https://www.fidb.app:5108
+```
 
 ## Login a user
 
@@ -278,6 +322,27 @@ The default logger options are:
   "disableRequestLogging": false
 }
 ```
+
+### Get free certificate
+
+You can use `certbot` to get free certificate for your domains.
+
+- [Certbot website](https://certbot.eff.org/instructions)
+- [Certbot on archlinux wiki](https://wiki.archlinux.org/title/certbot)
+
+After install `certbot`,
+I prefer creating certificate via DNS TXT record,
+using the following command:
+
+```sh
+sudo certbot certonly --manual --preferred-challenges dns
+```
+
+Then you can follow the prompt of `certbot`
+to create the certificate files,
+during which you will need to add TXT record
+to the DNS record of your domain
+to accomplish the challenge given by `certbot`.
 
 ### Use systemd to start service
 

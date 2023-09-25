@@ -1,9 +1,3 @@
-# docs
-
-[docs] Serve many databases -- TLS
-[docs] Use custom domain
-[docs] Get free certificate
-
 # handle
 
 [handle] support `HEAD` query
