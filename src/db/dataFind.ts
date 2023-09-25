@@ -1,7 +1,6 @@
 import { Data } from "../data"
 import { Database } from "../database"
-import { DataFindAllOptions } from "./dataFindAll"
-import { dataFindAll } from "./dataFindAll"
+import { DataFindAllOptions, dataFindAll } from "./dataFindAll"
 
 export type DataFindOptions = DataFindAllOptions & {
   page: number // NOTE starting from 1

@@ -1,7 +1,6 @@
 # docs
 
-[docs] Serve many websites
-[docs] Config logger
+[docs] Serve many databases
 [docs] Use custom domain
 [docs] Get free certificate
 

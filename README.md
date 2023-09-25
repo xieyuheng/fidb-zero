@@ -86,6 +86,8 @@ The command line program is called `fidb`.
 
 - [Init a database](#init-a-database)
 - [Serve one database](#serve-one-database)
+- [Serve many databases](#serve-many-databases)
+- [Config logger](#config-logger)
 - [Login a user](#login-a-user)
 - [Register a user](#register-a-user)
 - [Use systemd to start service](#use-systemd-to-start-service)
@@ -156,6 +158,38 @@ fidb serve hello-world
 ```
 
 The default port of the server is `5108`, which looks like FiDB isn't it?
+
+### Config logger
+
+We can config logger in `/databases/database.json`:
+
+```json
+{
+  ...,
+  "logger": {
+    "name": "pretty-line",
+    "disableRequestLogging": true
+  }
+}
+```
+
+The type of logger options are:
+
+```ts
+export type LoggerOptions = {
+  name: "json" | "silent" | "pretty" | "pretty-line"
+  disableRequestLogging?: boolean
+}
+```
+
+The default logger options are:
+
+```json
+{
+  "name": "pretty-line",
+  "disableRequestLogging": false
+}
+```
 
 ## Login a user
 
