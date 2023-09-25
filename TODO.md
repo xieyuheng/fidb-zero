@@ -1,4 +1,3 @@
-`ServeManyCommand` call `subdomain/startServer`
 [subdomain] `startServer` -- handle subdomain routing
 
 # docs
