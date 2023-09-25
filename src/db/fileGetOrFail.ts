@@ -1,5 +1,5 @@
-import type { Buffer } from "node:buffer"
-import type { Database } from "../database"
+import { Buffer } from "node:buffer"
+import { Database } from "../database"
 import { NotFound } from "../errors/NotFound"
 import { isErrnoException } from "../utils/node/isErrnoException"
 import { readBuffer } from "./utils/readBuffer"

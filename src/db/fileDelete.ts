@@ -1,4 +1,4 @@
-import type { Database } from "../database"
+import { Database } from "../database"
 import { fileGet } from "./fileGet"
 import { deletePath } from "./utils/deletePath"
 

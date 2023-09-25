@@ -1,7 +1,7 @@
-import type { Buffer } from "node:buffer"
+import { Buffer } from "node:buffer"
 import fs from "node:fs"
 import { dirname } from "node:path"
-import type { Database } from "../../database"
+import { Database } from "../../database"
 import { resolvePath } from "./resolvePath"
 
 export async function writeBuffer(

@@ -1,4 +1,4 @@
-import type Http from "node:http"
+import Http from "node:http"
 
 export function responseSetHeaders(
   response: Http.ServerResponse,

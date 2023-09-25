@@ -1,4 +1,4 @@
-import type { Database } from "../database"
+import { Database } from "../database"
 import { NotFound } from "../errors/NotFound"
 import { FileMetadata, fileMetadataGetOrFail } from "./fileMetadataGetOrFail"
 

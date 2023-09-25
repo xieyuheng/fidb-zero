@@ -1,4 +1,4 @@
-import type { Server } from "node:net"
+import { Server } from "node:net"
 
 export type ServerListenOptions = {
   hostname?: string

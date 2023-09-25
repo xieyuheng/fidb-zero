@@ -1,4 +1,4 @@
-import type Http from "node:http"
+import Http from "node:http"
 import { findSubdomain } from "../../subdomain/findSubdomain"
 import { requestBasedomain } from "../../utils/node/requestBasedomain"
 import { requestHostname } from "../../utils/node/requestHostname"

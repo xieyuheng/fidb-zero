@@ -1,6 +1,6 @@
-import type { Data } from "../data"
-import type { Database } from "../database"
-import type { DataFindAllOptions } from "./dataFindAll"
+import { Data } from "../data"
+import { Database } from "../database"
+import { DataFindAllOptions } from "./dataFindAll"
 import { dataFindAll } from "./dataFindAll"
 
 export type DataFindOptions = DataFindAllOptions & {

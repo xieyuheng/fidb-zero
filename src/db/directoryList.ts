@@ -1,5 +1,5 @@
-import type { Database } from "../database"
-import type { PathEntry } from "../path-entry"
+import { Database } from "../database"
+import { PathEntry } from "../path-entry"
 import { directoryListAll } from "./directoryListAll"
 
 export type ListOptions = {

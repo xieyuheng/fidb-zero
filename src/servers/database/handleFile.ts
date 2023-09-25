@@ -1,26 +1,24 @@
 import { ty } from "@xieyuheng/ty"
-import type { Buffer } from "node:buffer"
-import type Http from "node:http"
+import { Buffer } from "node:buffer"
+import Http from "node:http"
+import { Database } from "../../database"
 import * as Db from "../../db"
 import { tokenAssert } from "../../token"
-import type { Json } from "../../utils/Json"
+import { Json } from "../../utils/Json"
 import { requestBuffer } from "../../utils/node/requestBuffer"
 import { requestJsonObject } from "../../utils/node/requestJsonObject"
 import { requestKind } from "../../utils/node/requestKind"
 import { requestQuery } from "../../utils/node/requestQuery"
-import type { Context } from "./Context"
 import { requestPath } from "./requestPath"
 import { requestToken } from "./requestToken"
 
 export async function handleFile(
-  ctx: Context,
+  db: Database,
   request: Http.IncomingMessage,
 ): Promise<Json | Buffer | void> {
-  const { db } = ctx
-
   const kind = requestKind(request)
   const query = requestQuery(request)
-  const path = requestPath(ctx, request)
+  const path = requestPath(db, request)
   const token = await requestToken(request)
 
   if (request.method === "GET") {

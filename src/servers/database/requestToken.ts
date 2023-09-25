@@ -1,4 +1,4 @@
-import type Http from "node:http"
+import Http from "node:http"
 import { requestTokenName } from "../../utils/node/requestTokenName"
 
 export async function requestToken(

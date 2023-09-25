@@ -1,5 +1,5 @@
 import { Schema, ty } from "@xieyuheng/ty"
-import type { LogOptions } from "./LogOptions"
+import { LogOptions } from "./LogOptions"
 import { logJson } from "./logJson"
 import { logPretty } from "./logPretty"
 import { logPrettyLine } from "./logPrettyLine"

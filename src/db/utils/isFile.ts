@@ -1,4 +1,4 @@
-import type { Database } from "../../database"
+import { Database } from "../../database"
 import { pathIsFile } from "../../utils/node/pathIsFile"
 import { resolvePath } from "./resolvePath"
 

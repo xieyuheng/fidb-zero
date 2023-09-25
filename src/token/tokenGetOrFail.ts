@@ -1,4 +1,4 @@
-import type { Database } from "../database"
+import { Database } from "../database"
 import { dataGet } from "../db/dataGet"
 import { Unauthorized } from "../errors/Unauthorized"
 import { Token, TokenSchema } from "../token"

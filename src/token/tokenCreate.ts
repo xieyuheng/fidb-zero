@@ -1,4 +1,4 @@
-import type { Database } from "../database"
+import { Database } from "../database"
 import { dataCreate } from "../db/dataCreate"
 import { randomTokenName } from "../token/randomTokenName"
 

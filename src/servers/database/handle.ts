@@ -1,10 +1,10 @@
-import type { Buffer } from "node:buffer"
-import type Http from "node:http"
+import { Buffer } from "node:buffer"
+import Http from "node:http"
+import { Database } from "../../database"
 import * as Db from "../../db"
 import { handlePreflight } from "../../server/handlePreflight"
-import type { Json } from "../../utils/Json"
+import { Json } from "../../utils/Json"
 import { requestKind } from "../../utils/node/requestKind"
-import type { Context } from "./Context"
 import { handleData } from "./handleData"
 import { handleDirectory } from "./handleDirectory"
 import { handleFile } from "./handleFile"
@@ -14,7 +14,7 @@ import { handlePing } from "./handlePing"
 import { requestPath } from "./requestPath"
 
 export async function handle(
-  ctx: Context,
+  db: Database,
   request: Http.IncomingMessage,
   response: Http.ServerResponse,
 ): Promise<Json | Buffer | void> {
@@ -23,34 +23,34 @@ export async function handle(
   }
 
   const kind = requestKind(request)
-  const path = requestPath(ctx, request)
+  const path = requestPath(db, request)
 
-  if (await Db.isFile(ctx.db, path)) {
-    return await handleFile(ctx, request)
+  if (await Db.isFile(db, path)) {
+    return await handleFile(db, request)
   }
 
   if (kind.startsWith("data") || kind === "") {
-    return await handleData(ctx, request)
+    return await handleData(db, request)
   }
 
   if (kind.startsWith("file")) {
-    return await handleFile(ctx, request)
+    return await handleFile(db, request)
   }
 
   if (kind.startsWith("directory")) {
-    return await handleDirectory(ctx, request)
+    return await handleDirectory(db, request)
   }
 
   if (kind.startsWith("password")) {
-    return await handlePassword(ctx, request)
+    return await handlePassword(db, request)
   }
 
   if (kind.startsWith("info")) {
-    return await handleInfo(ctx, request)
+    return await handleInfo(db, request)
   }
 
   if (kind.startsWith("ping")) {
-    return await handlePing(ctx, request)
+    return await handlePing(db, request)
   }
 
   throw new Error(
@@ -58,7 +58,7 @@ export async function handle(
       `[handle] unhandled content-type`,
       ``,
       `  method: ${request.method}`,
-      `  path: ${requestPath(ctx, request)}`,
+      `  path: ${requestPath(db, request)}`,
     ].join("\n"),
   )
 }

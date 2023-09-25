@@ -1,4 +1,4 @@
-import type Http from "node:http"
+import Http from "node:http"
 import qs from "qs"
 import { requestURL } from "./requestURL"
 

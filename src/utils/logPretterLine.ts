@@ -1,6 +1,6 @@
 import { colors } from "./colors"
 import { formatTime } from "./formatDate"
-import type { LogOptions } from "./LogOptions"
+import { LogOptions } from "./LogOptions"
 
 export function logPretterLine(options: LogOptions): void {
   const { kind, who, elapse, message } = options

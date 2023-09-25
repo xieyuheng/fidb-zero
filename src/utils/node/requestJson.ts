@@ -1,5 +1,5 @@
-import type Http from "node:http"
-import type { Json } from "../Json"
+import Http from "node:http"
+import { Json } from "../Json"
 import { requestText } from "./requestText"
 import { requestURL } from "./requestURL"
 

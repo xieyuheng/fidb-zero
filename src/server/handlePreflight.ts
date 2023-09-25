@@ -1,4 +1,4 @@
-import type Http from "node:http"
+import Http from "node:http"
 import { responseSetHeaders } from "../utils/node/responseSetHeaders"
 
 export function handlePreflight(

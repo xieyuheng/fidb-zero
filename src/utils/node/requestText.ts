@@ -1,4 +1,4 @@
-import type Http from "node:http"
+import Http from "node:http"
 import { requestBuffer } from "./requestBuffer"
 
 export async function requestText(

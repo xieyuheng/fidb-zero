@@ -1,5 +1,5 @@
 import { Buffer } from "node:buffer"
-import type Http from "node:http"
+import Http from "node:http"
 
 export function requestBuffer(request: Http.IncomingMessage): Promise<Buffer> {
   return new Promise((resolve, reject) => {

@@ -1,6 +1,6 @@
 import { expect, test } from "vitest"
 import * as Db from ".."
-import type { PathEntry } from "../../path-entry"
+import { PathEntry } from "../../path-entry"
 import { arrayFromAsyncIterable } from "../../utils/arrayFromAsyncIterable"
 import { prepareTestDb } from "./prepareTestDb"
 

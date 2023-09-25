@@ -1,5 +1,5 @@
-import type { Data } from "../../data"
-import type { Database } from "../../database"
+import { Data } from "../../data"
+import { Database } from "../../database"
 import { writeJson } from "../../utils/node/writeJson"
 import { resolveDataPath } from "./resolveDataPath"
 

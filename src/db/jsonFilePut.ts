@@ -1,7 +1,7 @@
 import { Buffer } from "node:buffer"
-import type { Database } from "../database"
+import { Database } from "../database"
 import { NotFound } from "../errors/NotFound"
-import type { Json } from "../utils/Json"
+import { Json } from "../utils/Json"
 import { fileGet } from "./fileGet"
 import { writeBuffer } from "./utils/writeBuffer"
 

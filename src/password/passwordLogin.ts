@@ -1,6 +1,6 @@
 import { ty } from "@xieyuheng/ty"
 import { join } from "node:path"
-import type { Database } from "../database"
+import { Database } from "../database"
 import { dataGetOrFail } from "../db"
 import { Unauthorized } from "../errors/Unauthorized"
 import { PasswordSchema } from "../password"

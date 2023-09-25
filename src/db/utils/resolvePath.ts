@@ -1,5 +1,5 @@
 import { normalize, resolve } from "node:path"
-import type { Database } from "../../database"
+import { Database } from "../../database"
 import { Unauthorized } from "../../errors/Unauthorized"
 
 export function resolvePath(db: Database, path: string): string {

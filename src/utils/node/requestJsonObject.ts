@@ -1,4 +1,4 @@
-import type Http from "node:http"
+import Http from "node:http"
 import { isJsonObject, JsonObject } from "../Json"
 import { requestJson } from "./requestJson"
 

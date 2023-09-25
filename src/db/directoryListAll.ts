@@ -1,6 +1,6 @@
 import fs from "node:fs"
-import type { Database } from "../database"
-import type { PathEntry } from "../path-entry"
+import { Database } from "../database"
+import { PathEntry } from "../path-entry"
 import { isErrnoException } from "../utils/node/isErrnoException"
 import { fileMetadataGetOrFail } from "./fileMetadataGetOrFail"
 import { resolvePath } from "./utils/resolvePath"

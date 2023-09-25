@@ -1,4 +1,4 @@
-import type Http from "node:http"
+import Http from "node:http"
 
 export function requestURLAlwaysWithHttpProtocol(
   request: Http.IncomingMessage,

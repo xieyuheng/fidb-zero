@@ -1,23 +1,23 @@
 import fs from "node:fs"
 import Http from "node:http"
 import Https from "node:https"
-import { DatabaseConfig } from "../../database"
+import { Database } from "../../database"
 import { createRequestListener } from "../../server/createRequestListener"
 import { serverListenWithDefault } from "../../server/serverListenWithDefault"
 import { log } from "../../utils/log"
-import { createContext } from "./createContext"
 import { handle } from "./handle"
 
-export async function startServer(
-  directory: string,
-  config: DatabaseConfig,
-): Promise<void> {
+export async function startServer(db: Database): Promise<void> {
   const who = "database/startServer"
+  const { config } = db
 
-  const ctx = await createContext({ directory, config })
-  log({ who, message: "createContext", ctx })
+  log({ who, db })
 
-  const listener = createRequestListener({ ctx, handle, logger: config.logger })
+  const listener = createRequestListener({
+    ctx: db,
+    handle,
+    logger: config.logger,
+  })
 
   if (config.server?.tls) {
     const server = Https.createServer(

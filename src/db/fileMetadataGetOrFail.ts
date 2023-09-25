@@ -1,5 +1,5 @@
 import fs from "node:fs"
-import type { Database } from "../database"
+import { Database } from "../database"
 import { NotFound } from "../errors/NotFound"
 import { isErrnoException } from "../utils/node/isErrnoException"
 import { resolvePath } from "./utils/resolvePath"

@@ -1,7 +1,7 @@
 import { colors } from "./colors"
 import { formatTime } from "./formatDate"
 import { indent } from "./indent"
-import type { LogOptions } from "./LogOptions"
+import { LogOptions } from "./LogOptions"
 
 export function logPretter(options: LogOptions): void {
   const { kind, who, elapse, message } = options

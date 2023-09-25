@@ -1,4 +1,4 @@
-import type { Database } from "../../database"
+import { Database } from "../../database"
 import { resolvePath } from "./resolvePath"
 
 export function resolveDataPath(db: Database, path: string): string {

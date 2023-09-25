@@ -1,5 +1,5 @@
 import { Buffer } from "node:buffer"
-import type { Database } from "../database"
+import { Database } from "../database"
 import { NotFound } from "../errors/NotFound"
 import { Unprocessable } from "../errors/Unprocessable"
 import { isJsonObject, JsonObject } from "../utils/Json"

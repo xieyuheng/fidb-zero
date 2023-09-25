@@ -1,8 +1,8 @@
 import { normalize } from "node:path"
 import { Data, randomRevision } from "../data"
-import type { Database } from "../database"
+import { Database } from "../database"
 import { AlreadyExists } from "../errors/AlreadyExists"
-import type { JsonObject } from "../utils/Json"
+import { JsonObject } from "../utils/Json"
 import { dataGet } from "./dataGet"
 import { writeData } from "./utils/writeData"
 

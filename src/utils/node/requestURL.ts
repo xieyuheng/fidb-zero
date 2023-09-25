@@ -1,4 +1,4 @@
-import type Http from "node:http"
+import Http from "node:http"
 
 export function requestURL(request: Http.IncomingMessage): URL {
   if (request.url === undefined) {

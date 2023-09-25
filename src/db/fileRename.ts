@@ -1,6 +1,6 @@
 import fs from "node:fs"
 import { dirname } from "node:path"
-import type { Database } from "../database"
+import { Database } from "../database"
 import { AlreadyExists } from "../errors"
 import { isErrnoException } from "../utils/node/isErrnoException"
 import { fileGet } from "./fileGet"

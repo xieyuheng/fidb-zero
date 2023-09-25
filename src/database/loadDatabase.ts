@@ -1,5 +1,5 @@
 import { join, normalize, resolve } from "node:path"
-import type { Database } from "./Database"
+import { Database } from "./Database"
 import { readDatabaseConfigFile } from "./readDatabaseConfigFile"
 
 type Options = {

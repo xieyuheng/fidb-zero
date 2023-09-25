@@ -36,13 +36,15 @@ export class ServeCommand extends Command<Args> {
       const directory = dirname(path)
       const configFile = path
       const config = await readDatabaseConfigFile(configFile)
-      await startServer(directory, config)
+      const db = { directory, config }
+      await startServer(db)
     } else {
       const path = resolve(argv.path)
       const directory = path
       const configFile = join(path, "database.json")
       const config = await readDatabaseConfigFile(configFile)
-      await startServer(directory, config)
+      const db = { directory, config }
+      await startServer(db)
     }
   }
 }

@@ -1,9 +1,9 @@
-import type Http from "node:http"
-import type { Json } from "../../utils/Json"
-import type { Context } from "./Context"
+import Http from "node:http"
+import { Database } from "../../database"
+import { Json } from "../../utils/Json"
 
 export async function handlePing(
-  ctx: Context,
+  db: Database,
   request: Http.IncomingMessage,
 ): Promise<Json | void> {
   if (request.method === "GET") {

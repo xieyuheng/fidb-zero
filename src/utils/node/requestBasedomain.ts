@@ -1,4 +1,4 @@
-import type Http from "node:http"
+import Http from "node:http"
 import { requestHostname } from "./requestHostname"
 
 export function requestBasedomain(request: Http.IncomingMessage): string {

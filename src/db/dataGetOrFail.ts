@@ -1,5 +1,5 @@
 import { Data } from "../data"
-import type { Database } from "../database"
+import { Database } from "../database"
 import { NotFound } from "../errors/NotFound"
 import { isErrnoException } from "../utils/node/isErrnoException"
 import { readData } from "./utils/readData"

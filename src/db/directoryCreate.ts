@@ -1,5 +1,5 @@
 import fs from "node:fs"
-import type { Database } from "../database"
+import { Database } from "../database"
 import { resolvePath } from "./utils/resolvePath"
 
 export async function directoryCreate(

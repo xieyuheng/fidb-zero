@@ -1,4 +1,4 @@
-import type Http from "node:http"
+import Http from "node:http"
 import { normalize } from "node:path"
 import { requestPathname } from "./requestPathname"
 

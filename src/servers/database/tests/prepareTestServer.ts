@@ -14,7 +14,7 @@ export async function prepareTestServer(options: { name: string }) {
   const { db } = await prepareTestDb(options)
 
   const requestListener = createRequestListener({
-    ctx: { db },
+    ctx: db,
     handle,
   })
 

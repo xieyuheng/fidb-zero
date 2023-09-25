@@ -1,6 +1,6 @@
-import type { Database } from "../database"
+import { Database } from "../database"
 import { NotFound } from "../errors/NotFound"
-import type { Json } from "../utils/Json"
+import { Json } from "../utils/Json"
 import { fileGetOrFail } from "./fileGetOrFail"
 
 export async function jsonFileGet(

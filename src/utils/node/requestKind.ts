@@ -1,4 +1,4 @@
-import type Http from "node:http"
+import Http from "node:http"
 import { requestQuery } from "./requestQuery"
 
 export function requestKind(request: Http.IncomingMessage): string {

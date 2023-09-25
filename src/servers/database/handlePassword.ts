@@ -1,27 +1,25 @@
 import { ty } from "@xieyuheng/ty"
-import type Http from "node:http"
+import Http from "node:http"
+import { Database } from "../../database"
 import * as Db from "../../db"
 import {
   passwordLogin,
   PasswordLoginOptionsSchema,
   passwordRegister,
 } from "../../password"
-import type { Json } from "../../utils/Json"
+import { Json } from "../../utils/Json"
 import { requestJsonObject } from "../../utils/node/requestJsonObject"
 import { requestKind } from "../../utils/node/requestKind"
 import { requestQuery } from "../../utils/node/requestQuery"
-import type { Context } from "./Context"
 import { requestPath } from "./requestPath"
 
 export async function handlePassword(
-  ctx: Context,
+  db: Database,
   request: Http.IncomingMessage,
 ): Promise<Json | void> {
-  const { db } = ctx
-
   const kind = requestKind(request)
   const query = requestQuery(request)
-  const path = requestPath(ctx, request)
+  const path = requestPath(db, request)
 
   if (request.method === "POST") {
     if (kind === "password-register") {
