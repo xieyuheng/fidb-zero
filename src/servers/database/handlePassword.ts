@@ -11,7 +11,7 @@ import { Json } from "../../utils/Json"
 import { requestJsonObject } from "../../utils/node/requestJsonObject"
 import { requestKind } from "../../utils/node/requestKind"
 import { requestQuery } from "../../utils/node/requestQuery"
-import { requestPath } from "./requestPath"
+import { requestResolvedPath } from "./requestResolvedPath"
 
 export async function handlePassword(
   db: Database,
@@ -19,7 +19,7 @@ export async function handlePassword(
 ): Promise<Json | void> {
   const kind = requestKind(request)
   const query = requestQuery(request)
-  const path = requestPath(db, request)
+  const path = requestResolvedPath(db, request)
 
   if (request.method === "POST") {
     if (kind === "password-register") {

@@ -3,7 +3,7 @@ import { Database } from "../../database"
 import { normalizePath } from "../../db/utils/normalizePath"
 import { requestURL } from "../../utils/node/requestURL"
 
-export function requestPath(
+export function requestResolvedPath(
   db: Database,
   request: Http.IncomingMessage,
 ): string {

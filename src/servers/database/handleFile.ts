@@ -9,7 +9,7 @@ import { requestBuffer } from "../../utils/node/requestBuffer"
 import { requestJsonObject } from "../../utils/node/requestJsonObject"
 import { requestKind } from "../../utils/node/requestKind"
 import { requestQuery } from "../../utils/node/requestQuery"
-import { requestPath } from "./requestPath"
+import { requestResolvedPath } from "./requestResolvedPath"
 import { requestToken } from "./requestToken"
 
 export async function handleFile(
@@ -18,7 +18,7 @@ export async function handleFile(
 ): Promise<Json | Buffer | void> {
   const kind = requestKind(request)
   const query = requestQuery(request)
-  const path = requestPath(db, request)
+  const path = requestResolvedPath(db, request)
   const token = await requestToken(request)
 
   if (request.method === "GET") {

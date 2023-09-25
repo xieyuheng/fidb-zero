@@ -11,7 +11,7 @@ import { handleFile } from "./handleFile"
 import { handleInfo } from "./handleInfo"
 import { handlePassword } from "./handlePassword"
 import { handlePing } from "./handlePing"
-import { requestPath } from "./requestPath"
+import { requestResolvedPath } from "./requestResolvedPath"
 
 export async function handle(
   db: Database,
@@ -23,7 +23,7 @@ export async function handle(
   }
 
   const kind = requestKind(request)
-  const path = requestPath(db, request)
+  const path = requestResolvedPath(db, request)
 
   if (await Db.isFile(db, path)) {
     return await handleFile(db, request)
@@ -55,10 +55,10 @@ export async function handle(
 
   throw new Error(
     [
-      `[handle] unhandled content-type`,
+      `[database/handle] unhandled content-type`,
       ``,
       `  method: ${request.method}`,
-      `  path: ${requestPath(db, request)}`,
+      `  path: ${requestResolvedPath(db, request)}`,
     ].join("\n"),
   )
 }

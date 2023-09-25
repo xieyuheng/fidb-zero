@@ -7,7 +7,7 @@ import { arrayFromAsyncIterable } from "../../utils/arrayFromAsyncIterable"
 import { requestJsonObject } from "../../utils/node/requestJsonObject"
 import { requestKind } from "../../utils/node/requestKind"
 import { requestQuery } from "../../utils/node/requestQuery"
-import { requestPath } from "./requestPath"
+import { requestResolvedPath } from "./requestResolvedPath"
 import { requestToken } from "./requestToken"
 
 export async function handleData(
@@ -16,7 +16,7 @@ export async function handleData(
 ): Promise<Json | void> {
   const kind = requestKind(request)
   const query = requestQuery(request)
-  const path = requestPath(db, request)
+  const path = requestResolvedPath(db, request)
   const token = await requestToken(request)
 
   if (request.method === "GET") {

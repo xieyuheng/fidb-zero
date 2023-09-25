@@ -1,6 +1,4 @@
-extract `responseSendContent`
-
-[subdomain] `startServer` -- handle subdomain routing
+[subdomain] `handle` -- handle subdomain routing
 
 # docs
 
