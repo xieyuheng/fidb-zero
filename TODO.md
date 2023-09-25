@@ -1,5 +1,3 @@
-[subdomain] `handle` -- handle subdomain routing
-
 # docs
 
 [docs] Serve many websites
