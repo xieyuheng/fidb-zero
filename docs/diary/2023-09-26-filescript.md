@@ -1,5 +1,5 @@
 ---
-title: FilesSript
+title: FileScript
 author: Xie Yuheng
 date: 2023-09-26
 ---
