@@ -20,7 +20,7 @@ fix the use of `loginTargets` -- should be normalized
 
 use `x-json` instead of `xieyuheng/ty`
 
-should we use `x-json` for both schema and index?
+should we use `x-json` for both schema and inedx?
 
 # indexing
 
