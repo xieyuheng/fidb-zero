@@ -9,6 +9,8 @@ export async function initSystemResource(db: Database): Promise<void> {
     const path = ".config/default-token-issuer"
     const data = {
       permissions: {
+        users: ["directory:get"],
+        "users/*": ["data:get"],
         "users/*/public/**": [
           "data:get",
           "data-find:get",
@@ -55,6 +57,7 @@ export async function initSystemResource(db: Database): Promise<void> {
               "directory:get",
               "directory:delete",
             ],
+            "users/*": ["data:get"],
             "users/*/public/**": [
               "data:get",
               "data-find:get",

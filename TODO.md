@@ -1,5 +1,3 @@
-[init] fix `default-token-issuer` and `password-register-strategy`
-
 fix the use of `loginTargets` -- should be normalized
 
 # handle
