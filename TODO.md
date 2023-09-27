@@ -1,4 +1,9 @@
-password-login & password-register as different resources
+rename `subdomain/handle` to `handleSubdomain`
+
+`handlePasswordLogin` vs `handlePasswordRegister`
+`handleDataFind`
+
+`handleDatabase` should be a simple router
 
 rename .login to .login-token-issuer
 

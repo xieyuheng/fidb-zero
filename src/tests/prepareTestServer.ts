@@ -4,7 +4,7 @@ import { userLoginTargets } from "../password/userLoginTargets"
 import { allOperations } from "../permission"
 import { createData } from "../resources"
 import { createRequestListener } from "../server/createRequestListener"
-import { handle } from "../servers/database/handle"
+import { handleDatabase } from "../servers/database/handleDatabase"
 import { tokenCreate } from "../token"
 import { findPort } from "../utils/node/findPort"
 import { serverListen } from "../utils/node/serverListen"
@@ -15,7 +15,7 @@ export async function prepareTestServer(options: { name: string }) {
 
   const requestListener = createRequestListener({
     ctx: db,
-    handle,
+    handle: handleDatabase,
   })
 
   const server = Http.createServer()

@@ -5,7 +5,7 @@ import { Database } from "../../database"
 import { createRequestListener } from "../../server/createRequestListener"
 import { serverListenWithDefault } from "../../server/serverListenWithDefault"
 import { log } from "../../utils/log"
-import { handle } from "./handle"
+import { handleDatabase } from "./handleDatabase"
 
 export async function startServer(db: Database): Promise<void> {
   const who = "database/startServer"
@@ -15,7 +15,7 @@ export async function startServer(db: Database): Promise<void> {
 
   const listener = createRequestListener({
     ctx: db,
-    handle,
+    handle: handleDatabase,
     logger: config.logger,
   })
 

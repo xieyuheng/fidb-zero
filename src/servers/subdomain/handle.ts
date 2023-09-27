@@ -9,7 +9,7 @@ import { log } from "../../utils/log"
 import { requestPathname } from "../../utils/node/requestPathname"
 import { responseSetHeaders } from "../../utils/node/responseSetHeaders"
 import { responseSetStatus } from "../../utils/node/responseSetStatus"
-import { handle as handleDatabase } from "../database/handle"
+import { handleDatabase } from "../database/handleDatabase"
 import { Context } from "./Context"
 import { requestFindSubdomain } from "./requestFindSubdomain"
 

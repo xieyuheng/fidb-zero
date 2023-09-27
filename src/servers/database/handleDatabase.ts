@@ -13,7 +13,7 @@ import { handlePreflight } from "../../server/handlePreflight"
 import { Json } from "../../utils/Json"
 import { requestKind } from "../../utils/node/requestKind"
 
-export async function handle(
+export async function handleDatabase(
   db: Database,
   request: Http.IncomingMessage,
   response: Http.ServerResponse,
@@ -55,7 +55,7 @@ export async function handle(
 
   throw new Error(
     [
-      `[database/handle] unhandled content-type`,
+      `[handleDatabase] unhandled content-type`,
       ``,
       `  method: ${request.method}`,
       `  path: ${requestResolvedPath(db, request)}`,
