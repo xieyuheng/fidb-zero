@@ -8,7 +8,7 @@ import { serverListenWithDefault } from "../../server/serverListenWithDefault"
 import { findCertificate } from "../../subdomain/findCertificate"
 import { log } from "../../utils/log"
 import { createContext } from "./createContext"
-import { handleSubdomain } from "./handle"
+import { handleSubdomain } from "./handleSubdomain"
 
 export async function startServer(
   directory: string,
