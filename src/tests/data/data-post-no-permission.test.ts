@@ -1,10 +1,10 @@
 import { expect, test } from "vitest"
-import { allOperations, readOperations } from "../../../permission"
-import { dataCreate } from "../../../resources"
-import { tokenCreate } from "../../../token"
-import { prepareTestServer } from "./prepareTestServer"
+import { allOperations, readOperations } from "../../permission"
+import { dataCreate } from "../../resources"
+import { tokenCreate } from "../../token"
+import { prepareTestServer } from "../prepareTestServer"
 
-test("handle-data-post-no-permission", async ({ meta }) => {
+test("data-post-no-permission", async ({ meta }) => {
   const { url, db } = await prepareTestServer(meta)
 
   await dataCreate(db, "users/xyh/.login", {

@@ -1,8 +1,8 @@
 import { expect, test } from "vitest"
-import { randomTokenName } from "../../../token/randomTokenName"
-import { prepareTestServer } from "./prepareTestServer"
+import { randomTokenName } from "../../token/randomTokenName"
+import { prepareTestServer } from "../prepareTestServer"
 
-test("handle-file-can-not-access-system-path", async ({ meta }) => {
+test("file-can-not-access-system-path", async ({ meta }) => {
   const { url, db, authorization } = await prepareTestServer(meta)
 
   const tokenName = randomTokenName()

@@ -1,11 +1,11 @@
 import { expect, test } from "vitest"
-import { prepareTestServer } from "./prepareTestServer"
+import { prepareTestServer } from "../prepareTestServer"
 
-test("handle-info", async ({ meta }) => {
+test("info", async ({ meta }) => {
   const { url, db } = await prepareTestServer(meta)
 
-  const name = "handle-info"
-  const description = "handle-info"
+  const name = "info"
+  const description = "info"
   db.config = { name, description }
 
   const info = await (

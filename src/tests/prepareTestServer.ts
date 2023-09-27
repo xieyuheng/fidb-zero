@@ -1,13 +1,13 @@
 import Http from "node:http"
-import { defaultPermissions } from "../../../password/defaultPermissions"
-import { userLoginTargets } from "../../../password/userLoginTargets"
-import { allOperations } from "../../../permission"
-import * as Db from "../../../resources"
-import { createRequestListener } from "../../../server/createRequestListener"
-import { tokenCreate } from "../../../token"
-import { findPort } from "../../../utils/node/findPort"
-import { serverListen } from "../../../utils/node/serverListen"
-import { handle } from "../handle"
+import { defaultPermissions } from "../password/defaultPermissions"
+import { userLoginTargets } from "../password/userLoginTargets"
+import { allOperations } from "../permission"
+import { dataCreate } from "../resources"
+import { createRequestListener } from "../server/createRequestListener"
+import { handle } from "../servers/database/handle"
+import { tokenCreate } from "../token"
+import { findPort } from "../utils/node/findPort"
+import { serverListen } from "../utils/node/serverListen"
 import { prepareTestDb } from "./prepareTestDb"
 
 export async function prepareTestServer(options: { name: string }) {
@@ -27,21 +27,21 @@ export async function prepareTestServer(options: { name: string }) {
 
   await serverListen(server, { port, hostname })
 
-  await Db.dataCreate(db, ".config/password-register-strategy", {
+  await dataCreate(db, ".config/password-register-strategy", {
     loginTargets: {
       ...userLoginTargets,
     },
   })
 
-  await Db.dataCreate(db, ".config/default-token-issuer", {
+  await dataCreate(db, ".config/default-token-issuer", {
     permissions: defaultPermissions,
   })
 
-  await Db.dataCreate(db, ".tokens/default", {
+  await dataCreate(db, ".tokens/default", {
     issuer: ".config/default-token-issuer",
   })
 
-  await Db.dataCreate(db, "test-token-issuers/all-read-write", {
+  await dataCreate(db, "test-token-issuers/all-read-write", {
     permissions: {
       "**": allOperations,
     },

@@ -1,8 +1,8 @@
 import { expect, test } from "vitest"
-import { PathEntry } from "../../../path-entry"
-import { prepareTestServer } from "./prepareTestServer"
+import { PathEntry } from "../../path-entry"
+import { prepareTestServer } from "../prepareTestServer"
 
-test("handle-directory-post", async ({ meta }) => {
+test("directory-post", async ({ meta }) => {
   const { url, authorization } = await prepareTestServer(meta)
 
   {

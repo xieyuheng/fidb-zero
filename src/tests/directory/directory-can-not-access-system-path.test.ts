@@ -1,7 +1,7 @@
 import { expect, test } from "vitest"
-import { prepareTestServer } from "./prepareTestServer"
+import { prepareTestServer } from "../prepareTestServer"
 
-test("handle-directory-can-not-access-system-path", async ({ meta }) => {
+test("directory-can-not-access-system-path", async ({ meta }) => {
   const { url, db, authorization } = await prepareTestServer(meta)
 
   {

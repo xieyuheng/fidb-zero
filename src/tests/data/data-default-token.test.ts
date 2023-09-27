@@ -1,7 +1,7 @@
 import { expect, test } from "vitest"
-import { prepareTestServer } from "./prepareTestServer"
+import { prepareTestServer } from "../prepareTestServer"
 
-test("handle-data-default-token", async ({ meta }) => {
+test("data-default-token", async ({ meta }) => {
   const { url, authorization } = await prepareTestServer(meta)
 
   await fetch(new URL(`users/xieyuheng`, url), {

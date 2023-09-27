@@ -1,8 +1,8 @@
 import { expect, test } from "vitest"
-import { PathEntry } from "../../../path-entry"
-import { prepareTestServer } from "./prepareTestServer"
+import { PathEntry } from "../../path-entry"
+import { prepareTestServer } from "../prepareTestServer"
 
-test("handle-directory-get-file-metadata", async ({ meta }) => {
+test("directory-get-file-metadata", async ({ meta }) => {
   const { url, authorization } = await prepareTestServer(meta)
 
   await fetch(new URL(`contents/1.md?kind=file`, url), {

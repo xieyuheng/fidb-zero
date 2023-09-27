@@ -1,5 +1,3 @@
-remove tests by resource
-
 fix resource function naming
 
 re-org manual by resource

@@ -1,7 +1,7 @@
 import { expect, test } from "vitest"
-import { prepareTestServer } from "./prepareTestServer"
+import { prepareTestServer } from "../prepareTestServer"
 
-test("handle-password-register-and-login", async ({ meta }) => {
+test("password-register-and-login", async ({ meta }) => {
   const { url, db } = await prepareTestServer(meta)
 
   {

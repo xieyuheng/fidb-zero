@@ -1,8 +1,8 @@
 import { expect, test } from "vitest"
-import { PathEntry } from "../../../path-entry"
-import { prepareTestServer } from "./prepareTestServer"
+import { PathEntry } from "../../path-entry"
+import { prepareTestServer } from "../prepareTestServer"
 
-test("handle-directory-get-recursive", async ({ meta }) => {
+test("directory-get-recursive", async ({ meta }) => {
   const { url, authorization } = await prepareTestServer(meta)
 
   {

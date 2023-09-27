@@ -1,8 +1,8 @@
 import qs from "qs"
 import { expect, test } from "vitest"
-import { prepareTestServer } from "./prepareTestServer"
+import { prepareTestServer } from "../prepareTestServer"
 
-test("handle-data-find", async ({ meta }) => {
+test("data-find", async ({ meta }) => {
   const { url, authorization } = await prepareTestServer(meta)
 
   const array = [

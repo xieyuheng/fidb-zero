@@ -1,8 +1,8 @@
 import { expect, test } from "vitest"
-import { PathEntry } from "../../../path-entry"
-import { prepareTestServer } from "./prepareTestServer"
+import { PathEntry } from "../../path-entry"
+import { prepareTestServer } from "../prepareTestServer"
 
-test("handle-directory-delete", async ({ meta }) => {
+test("directory-delete", async ({ meta }) => {
   const { url, authorization } = await prepareTestServer(meta)
 
   await fetch(new URL(`users?kind=directory`, url), {

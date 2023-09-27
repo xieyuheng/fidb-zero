@@ -1,8 +1,8 @@
 import { expect, test } from "vitest"
-import { responseHeaders } from "../../../utils/responseHeaders"
-import { prepareTestServer } from "./prepareTestServer"
+import { responseHeaders } from "../../utils/responseHeaders"
+import { prepareTestServer } from "../prepareTestServer"
 
-test("handle-file-crud", async ({ meta }) => {
+test("file-crud", async ({ meta }) => {
   const { url, authorization } = await prepareTestServer(meta)
 
   await fetch(new URL(`users/xieyuheng/human.txt?kind=file`, url), {
