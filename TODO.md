@@ -1,6 +1,6 @@
-refactor `tests/` utils
-
 [docs] re-org manual by resource
+
+refactor `tests/` utils by `init`
 
 [password-register] fix the use of `loginTargets` in  `password-register-strategy` -- should be normalized
 

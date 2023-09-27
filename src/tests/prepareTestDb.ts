@@ -1,9 +1,12 @@
 import fs from "node:fs"
 import { join, resolve } from "node:path"
 import { loadDatabase } from "../database"
+import { createData } from "../resources"
 import { formatDateTime } from "../utils/formatDate"
 import { randomHexString } from "../utils/randomHexString"
 import { slug } from "../utils/slug"
+import { defaultPermissions } from "./defaultPermissions"
+import { userLoginTargets } from "./userLoginTargets"
 
 const PREFIX = resolve(__filename, "../../../tmp/databases/")
 
@@ -25,6 +28,20 @@ export async function prepareTestDb(options: { name: string }) {
   )
 
   const db = await loadDatabase({ directory })
+
+  await createData(db, ".config/password-register-strategy", {
+    loginTargets: {
+      ...userLoginTargets,
+    },
+  })
+
+  await createData(db, ".config/default-token-issuer", {
+    permissions: defaultPermissions,
+  })
+
+  await createData(db, ".tokens/default", {
+    issuer: ".config/default-token-issuer",
+  })
 
   return { db }
 }

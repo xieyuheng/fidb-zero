@@ -6,9 +6,7 @@ import { createRequestListener } from "../server/createRequestListener"
 import { tokenCreate } from "../token"
 import { findPort } from "../utils/node/findPort"
 import { serverListen } from "../utils/node/serverListen"
-import { defaultPermissions } from "./defaultPermissions"
 import { prepareTestDb } from "./prepareTestDb"
-import { userLoginTargets } from "./userLoginTargets"
 
 export async function prepareTestServer(options: { name: string }) {
   const { db } = await prepareTestDb(options)
@@ -26,20 +24,6 @@ export async function prepareTestServer(options: { name: string }) {
   const port = await findPort(5108)
 
   await serverListen(server, { port, hostname })
-
-  await createData(db, ".config/password-register-strategy", {
-    loginTargets: {
-      ...userLoginTargets,
-    },
-  })
-
-  await createData(db, ".config/default-token-issuer", {
-    permissions: defaultPermissions,
-  })
-
-  await createData(db, ".tokens/default", {
-    issuer: ".config/default-token-issuer",
-  })
 
   await createData(db, "test-token-issuers/all-read-write", {
     permissions: {
