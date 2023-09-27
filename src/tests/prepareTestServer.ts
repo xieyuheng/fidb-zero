@@ -1,14 +1,14 @@
 import Http from "node:http"
 import { handleDatabase } from "src/servers/database/handleDatabase"
-import { defaultPermissions } from "../password/defaultPermissions"
-import { userLoginTargets } from "../password/userLoginTargets"
 import { allOperations } from "../permission"
 import { createData } from "../resources"
 import { createRequestListener } from "../server/createRequestListener"
 import { tokenCreate } from "../token"
 import { findPort } from "../utils/node/findPort"
 import { serverListen } from "../utils/node/serverListen"
+import { defaultPermissions } from "./defaultPermissions"
 import { prepareTestDb } from "./prepareTestDb"
+import { userLoginTargets } from "./userLoginTargets"
 
 export async function prepareTestServer(options: { name: string }) {
   const { db } = await prepareTestDb(options)

@@ -1,11 +1,10 @@
 import { ty } from "@xieyuheng/ty"
 import { join } from "node:path"
-import { Database } from "../database"
-import { Unauthorized } from "../errors/Unauthorized"
-import { PasswordSchema } from "../password"
-import { getDataOrFail } from "../resources"
-import { tokenCreate } from "../token/tokenCreate"
-import { passwordCheck } from "../utils/node/password"
+import { Database } from "../../database"
+import { Unauthorized } from "../../errors/Unauthorized"
+import { PasswordSchema, getDataOrFail } from "../../resources"
+import { tokenCreate } from "../../token/tokenCreate"
+import { passwordCheck } from "../../utils/node/password"
 
 export type PasswordLoginOptions = {
   password: string
