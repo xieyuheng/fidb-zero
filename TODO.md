@@ -1,4 +1,3 @@
-extract `handleDataFind` from `handleData`
 extract `handleFileMetadata` from `handleFile`
 
 `handleDatabase` should be a simple router

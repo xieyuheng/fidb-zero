@@ -2,6 +2,7 @@ import { Buffer } from "node:buffer"
 import Http from "node:http"
 import { Database } from "../../database"
 import * as Db from "../../resources"
+import { handleDataFind } from "../../resources/data-find/handleDataFind"
 import { handleData } from "../../resources/data/handleData"
 import { handleDirectory } from "../../resources/directory/handleDirectory"
 import { handleFile } from "../../resources/file/handleFile"
@@ -32,8 +33,12 @@ export async function handleDatabase(
     return await handleFile(db, request)
   }
 
-  if (kind.startsWith("data") || kind === "") {
+  if (kind === "data" || kind === "") {
     return await handleData(db, request)
+  }
+
+  if (kind === "data-find") {
+    return await handleDataFind(db, request)
   }
 
   if (kind.startsWith("file")) {
