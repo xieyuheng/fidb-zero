@@ -107,21 +107,3 @@ and solve it once for all.
   users/xieyuheng/config/index.json
   users/readonlylink/config/index.json
   ```
-
-In an implementation, there might be functions
-that operate on those data files.
-For example, in [my NodeJs implementation](github.com/fidb-official/fidb),
-I have:
-
-```ts
-dataCreate(db: Database, path: string, input: JsonObject): Promise<Data>
-dataGetOrFail(db: Database, path: string): Promise<Data>
-dataGet(db: Database, path: string): Promise<Data | undefined>
-dataPut(db: Database, path: string, input: JsonObject): Promise<Data>
-dataPatch(db: Database, path: string, input: JsonObject): Promise<Data>
-dataDelete(db: Database, path: string, input: JsonObject): Promise<void>
-```
-
-Whenever I want to have some data,
-I just put them in data files,
-and use these functions to operate on them.

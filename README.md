@@ -4,21 +4,7 @@ This is a Node.js implementation of [**FiDB**](https://fidb.app)
 -- a suite of protocols to use file system as database.
 
 
-Including some API functions to handle data files.
-
-```js
-import { Db } from "fidb"
-
-Db.dataCreate(db: Database, path: string, input: JsonObject): Promise<Data>
-Db.dataGetOrFail(db: Database, path: string): Promise<Data>
-Db.dataGet(db: Database, path: string): Promise<Data | undefined>
-Db.dataPut(db: Database, path: string, input: JsonObject): Promise<Data>
-Db.dataPatch(db: Database, path: string, input: JsonObject): Promise<Data>
-Db.dataDelete(db: Database, path: string, input: JsonObject): Promise<void>
-...
-```
-
-A command-line tool to initialize and maintain database.
+Including a command-line tool to initialize and maintain database.
 
 ```
 fidb help [name]   Display help for a command

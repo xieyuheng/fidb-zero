@@ -1,3 +1,5 @@
+re-org node api by resource
+
 fix the use of `loginTargets` in  `password-register-strategy` -- should be normalized
 
 `permissions` should be an array -- to support sum type
