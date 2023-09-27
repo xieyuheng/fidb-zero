@@ -13,12 +13,12 @@ import { handleDatabase } from "../database/handleDatabase"
 import { Context } from "./Context"
 import { requestFindSubdomain } from "./requestFindSubdomain"
 
-export async function handle(
+export async function handleSubdomain(
   ctx: Context,
   request: Http.IncomingMessage,
   response: Http.ServerResponse,
 ): Promise<Json | Buffer | void> {
-  const who = "subdomain/handle"
+  const who = "handleSubdomain"
   const subdomain = await requestFindSubdomain(ctx, request)
   const pathname = requestPathname(request)
   const withLog = !ctx.config.logger?.disableRequestLogging

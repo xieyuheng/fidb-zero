@@ -1,5 +1,3 @@
-rename `subdomain/handle` to `handleSubdomain`
-
 `handlePasswordLogin` vs `handlePasswordRegister`
 `handleDataFind`
 

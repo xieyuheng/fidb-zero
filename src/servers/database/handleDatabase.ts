@@ -18,6 +18,8 @@ export async function handleDatabase(
   request: Http.IncomingMessage,
   response: Http.ServerResponse,
 ): Promise<Json | Buffer | void> {
+  const who = "handleDatabase"
+
   if (request.method === "OPTIONS") {
     return handlePreflight(request, response)
   }
@@ -55,7 +57,7 @@ export async function handleDatabase(
 
   throw new Error(
     [
-      `[handleDatabase] unhandled content-type`,
+      `[${who}] unhandled content-type`,
       ``,
       `  method: ${request.method}`,
       `  path: ${requestResolvedPath(db, request)}`,

@@ -8,7 +8,7 @@ import { serverListenWithDefault } from "../../server/serverListenWithDefault"
 import { findCertificate } from "../../subdomain/findCertificate"
 import { log } from "../../utils/log"
 import { createContext } from "./createContext"
-import { handle } from "./handle"
+import { handleSubdomain } from "./handle"
 
 export async function startServer(
   directory: string,
@@ -19,7 +19,11 @@ export async function startServer(
   const ctx = await createContext({ directory, config })
   log({ who, message: "createContext", ctx })
 
-  const listener = createRequestListener({ ctx, handle, logger: config.logger })
+  const listener = createRequestListener({
+    ctx,
+    handle: handleSubdomain,
+    logger: config.logger,
+  })
 
   if (config.server?.tls) {
     const server = Https.createServer(
