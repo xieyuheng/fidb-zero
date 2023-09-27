@@ -5,6 +5,8 @@ import * as Db from "../../resources"
 import { handleDataFind } from "../../resources/data-find/handleDataFind"
 import { handleData } from "../../resources/data/handleData"
 import { handleDirectory } from "../../resources/directory/handleDirectory"
+import { handleFileMetadata } from "../../resources/file-metadata/handleFileMetadata"
+import { handleFileRename } from "../../resources/file-rename/handleFileRename"
 import { handleFile } from "../../resources/file/handleFile"
 import { handleInfo } from "../../resources/info/handleInfo"
 import { handlePasswordLogin } from "../../resources/password-login/handlePasswordLogin"
@@ -29,11 +31,15 @@ export async function handleDatabase(
   const kind = requestKind(request)
   const path = requestResolvedPath(db, request)
 
-  if (await Db.isFile(db, path)) {
-    return await handleFile(db, request)
+  if (kind === "") {
+    if (await Db.isFile(db, path)) {
+      return await handleFile(db, request)
+    } else {
+      return await handleData(db, request)
+    }
   }
 
-  if (kind === "data" || kind === "") {
+  if (kind === "data") {
     return await handleData(db, request)
   }
 
@@ -41,8 +47,16 @@ export async function handleDatabase(
     return await handleDataFind(db, request)
   }
 
-  if (kind.startsWith("file")) {
+  if (kind === "file") {
     return await handleFile(db, request)
+  }
+
+  if (kind === "file-metadata") {
+    return await handleFileMetadata(db, request)
+  }
+
+  if (kind === "file-rename") {
+    return await handleFileRename(db, request)
   }
 
   if (kind === "directory") {

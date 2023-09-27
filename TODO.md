@@ -1,5 +1,3 @@
-extract `handleFileMetadata` from `handleFile`
-
 `handleDatabase` should be a simple router
 
 rename .login to .login-token-issuer
