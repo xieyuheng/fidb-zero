@@ -1,6 +1,6 @@
 import { expect, test } from "vitest"
-import { dataCreate } from "../../../db"
 import { allOperations } from "../../../permission"
+import { dataCreate } from "../../../resources"
 import { tokenCreate } from "../../../token"
 import { prepareTestServer } from "./prepareTestServer"
 

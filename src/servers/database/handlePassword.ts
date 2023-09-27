@@ -1,13 +1,13 @@
 import { ty } from "@xieyuheng/ty"
 import Http from "node:http"
 import { Database } from "../../database"
-import * as Db from "../../db"
 import {
   passwordLogin,
   PasswordLoginOptionsSchema,
   passwordRegister,
   PasswordRegisterOptionsSchema,
 } from "../../password"
+import * as Db from "../../resources"
 import { Json } from "../../utils/Json"
 import { requestJsonObject } from "../../utils/node/requestJsonObject"
 import { requestKind } from "../../utils/node/requestKind"

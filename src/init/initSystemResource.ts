@@ -1,5 +1,5 @@
 import { Database } from "../database"
-import { dataCreate } from "../db"
+import { dataCreate } from "../resources"
 import { log } from "../utils/log"
 
 export async function initSystemResource(db: Database): Promise<void> {

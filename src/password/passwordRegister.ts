@@ -1,11 +1,10 @@
 import { ty } from "@xieyuheng/ty"
 import { join } from "node:path"
 import { Database } from "../database"
-import { dataGetOrFail } from "../db"
-import { dataCreate } from "../db/dataCreate"
 import { Unauthorized } from "../errors"
 import { applyPathPatternRecordKeys } from "../path-pattern/applyPathPatternRecordKeys"
 import { matchPathPattern } from "../path-pattern/matchPathPattern"
+import { dataCreate, dataGetOrFail } from "../resources"
 import { passwordHash } from "../utils/node/password"
 import { PasswordRegisterStrategySchema } from "./PasswordRegisterStrategy"
 

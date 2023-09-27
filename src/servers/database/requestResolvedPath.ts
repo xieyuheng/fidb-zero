@@ -1,6 +1,6 @@
 import Http from "node:http"
 import { Database } from "../../database"
-import { normalizePath } from "../../db/utils/normalizePath"
+import { normalizePath } from "../../resources/utils/normalizePath"
 import { requestURL } from "../../utils/node/requestURL"
 
 export function requestResolvedPath(

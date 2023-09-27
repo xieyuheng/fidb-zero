@@ -1,0 +1,6 @@
+export * from "./dataCreate"
+export * from "./dataDelete"
+export * from "./dataGet"
+export * from "./dataGetOrFail"
+export * from "./dataPatch"
+export * from "./dataPut"

@@ -1,4 +1,8 @@
-re-org node api by resource
+re-org node api tests by resource
+
+fix resource function naming
+
+re-org manual by resource
 
 fix the use of `loginTargets` in  `password-register-strategy` -- should be normalized
 

@@ -32,7 +32,7 @@ test("handle-password-register-and-login", async ({ meta }) => {
     expect(created.name).toEqual("Xie Yuheng")
   }
 
-  const token = await (
+  const { token } = await (
     await fetch(new URL(`users/xieyuheng?kind=password-login`, url), {
       method: "POST",
       body: JSON.stringify({

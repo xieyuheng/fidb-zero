@@ -1,7 +1,7 @@
 import { Buffer } from "node:buffer"
 import Http from "node:http"
 import { Database } from "../../database"
-import * as Db from "../../db"
+import * as Db from "../../resources"
 import { handlePreflight } from "../../server/handlePreflight"
 import { Json } from "../../utils/Json"
 import { requestKind } from "../../utils/node/requestKind"

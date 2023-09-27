@@ -1,9 +1,9 @@
 import { Database } from "../database"
-import { dataGetOrFail } from "../db"
 import { Operation } from "../permission"
 import { matchPermissionRecord } from "../permission/matchPermissionRecord"
-import { tokenGetOrFail } from "./tokenGetOrFail"
+import { dataGetOrFail } from "../resources"
 import { TokenIssuerSchema } from "./TokenIssuer"
+import { tokenGetOrFail } from "./tokenGetOrFail"
 
 export async function tokenCheck(
   db: Database,

@@ -1,6 +1,6 @@
 import { Database } from "../database"
-import { dataCreate } from "../db"
 import { passwordRegister } from "../password"
+import { dataCreate } from "../resources"
 import { JsonObject } from "../utils/Json"
 import { log } from "../utils/log"
 

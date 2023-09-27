@@ -1,6 +1,6 @@
 import { Database } from "../database"
-import { dataGet } from "../db/dataGet"
 import { Unauthorized } from "../errors/Unauthorized"
+import { dataGet } from "../resources"
 import { Token, TokenSchema } from "../token"
 import { isValidTokenName } from "../token/isValidTokenName"
 
