@@ -55,5 +55,5 @@ export async function prepareTestServer(options: { name: string }) {
 
   const url = `http://${hostname}:${port}`
 
-  return { url, db, authorization, server }
+  return { url, db, authorization }
 }
