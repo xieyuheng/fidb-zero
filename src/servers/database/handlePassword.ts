@@ -45,7 +45,12 @@ export async function handlePassword(
 
     if (kind === "password-login") {
       const json = await requestJsonObject(request)
-      return passwordLogin(db, path, PasswordLoginOptionsSchema.validate(json))
+      const tokenName = await passwordLogin(
+        db,
+        path,
+        PasswordLoginOptionsSchema.validate(json),
+      )
+      return { token: tokenName }
     }
   }
 

@@ -1,5 +1,3 @@
-`token` should be returned in JSON -- instead of as a string
-
 fix the use of `loginTargets` in  `password-register-strategy` -- should be normalized
 
 `permissions` should be an array -- to support sum type
