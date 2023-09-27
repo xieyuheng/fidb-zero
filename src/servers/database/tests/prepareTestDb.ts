@@ -1,9 +1,9 @@
 import fs from "node:fs"
 import { join, resolve } from "node:path"
-import { loadDatabase } from "../../database"
-import { formatDateTime } from "../../utils/formatDate"
-import { randomHexString } from "../../utils/randomHexString"
-import { slug } from "../../utils/slug"
+import { loadDatabase } from "../../../database"
+import { formatDateTime } from "../../../utils/formatDate"
+import { randomHexString } from "../../../utils/randomHexString"
+import { slug } from "../../../utils/slug"
 
 const PREFIX = resolve(__filename, "../../../../tmp/databases/")
 

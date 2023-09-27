@@ -3,12 +3,12 @@ import { defaultPermissions } from "../../../password/defaultPermissions"
 import { userLoginTargets } from "../../../password/userLoginTargets"
 import { allOperations } from "../../../permission"
 import * as Db from "../../../resources"
-import { prepareTestDb } from "../../../resources/tests/prepareTestDb"
 import { createRequestListener } from "../../../server/createRequestListener"
 import { tokenCreate } from "../../../token"
 import { findPort } from "../../../utils/node/findPort"
 import { serverListen } from "../../../utils/node/serverListen"
 import { handle } from "../handle"
+import { prepareTestDb } from "./prepareTestDb"
 
 export async function prepareTestServer(options: { name: string }) {
   const { db } = await prepareTestDb(options)

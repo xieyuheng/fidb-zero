@@ -1,4 +1,4 @@
-re-org node api tests by resource
+remove tests by resource
 
 fix resource function naming
 
