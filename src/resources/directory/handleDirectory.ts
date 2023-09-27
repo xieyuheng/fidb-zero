@@ -6,8 +6,8 @@ import { Json } from "../../utils/Json"
 import { arrayFromAsyncIterable } from "../../utils/arrayFromAsyncIterable"
 import { requestKind } from "../../utils/node/requestKind"
 import { requestQuery } from "../../utils/node/requestQuery"
-import { requestResolvedPath } from "./requestResolvedPath"
-import { requestToken } from "./requestToken"
+import { requestResolvedPath } from "../requestResolvedPath"
+import { requestToken } from "../requestToken"
 
 export async function handleDirectory(
   db: Database,

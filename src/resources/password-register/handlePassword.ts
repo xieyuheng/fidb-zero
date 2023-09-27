@@ -12,7 +12,7 @@ import { Json } from "../../utils/Json"
 import { requestJsonObject } from "../../utils/node/requestJsonObject"
 import { requestKind } from "../../utils/node/requestKind"
 import { requestQuery } from "../../utils/node/requestQuery"
-import { requestResolvedPath } from "./requestResolvedPath"
+import { requestResolvedPath } from "../requestResolvedPath"
 
 export async function handlePassword(
   db: Database,

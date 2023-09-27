@@ -9,8 +9,8 @@ import { requestBuffer } from "../../utils/node/requestBuffer"
 import { requestJsonObject } from "../../utils/node/requestJsonObject"
 import { requestKind } from "../../utils/node/requestKind"
 import { requestQuery } from "../../utils/node/requestQuery"
-import { requestResolvedPath } from "./requestResolvedPath"
-import { requestToken } from "./requestToken"
+import { requestResolvedPath } from "../requestResolvedPath"
+import { requestToken } from "../requestToken"
 
 export async function handleFile(
   db: Database,

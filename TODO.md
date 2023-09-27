@@ -1,10 +1,8 @@
-[refactor] move handle functions to `resources/`
+password-login & password-register as different resources
+
+rename .login to .login-token-issuer
 
 [docs] re-org manual by resource
-
-[password-login] as a resource
-
-[password-register] as a resource
 
 [password-register] fix the use of `loginTargets` in  `password-register-strategy` -- should be normalized
 
