@@ -5,16 +5,16 @@ import tls from "node:tls"
 import { DatabaseConfig } from "../../database"
 import { createRequestListener } from "../../server/createRequestListener"
 import { serverListenWithDefault } from "../../server/serverListenWithDefault"
-import { findCertificate } from "../../subdomain/findCertificate"
 import { log } from "../../utils/log"
 import { createContext } from "./createContext"
+import { findCertificate } from "./findCertificate"
 import { handleSubdomain } from "./handleSubdomain"
 
-export async function startServer(
+export async function startSubdomainServer(
   directory: string,
   config: DatabaseConfig,
 ): Promise<void> {
-  const who = "subdomain/startServer"
+  const who = "startSubdomainServer"
 
   const ctx = await createContext({ directory, config })
   log({ who, message: "createContext", ctx })

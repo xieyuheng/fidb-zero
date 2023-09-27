@@ -2,7 +2,7 @@ import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
 import { dirname, join, resolve } from "node:path"
 import { readDatabaseConfigFile } from "../../database/readDatabaseConfigFile"
-import { startServer } from "../../servers/subdomain/startServer"
+import { startSubdomainServer } from "../../servers/subdomain/startSubdomainServer"
 import { pathIsFile } from "../../utils/node/pathIsFile"
 
 type Args = { path: string }
@@ -36,13 +36,13 @@ export class ServeManyCommand extends Command<Args> {
       const directory = dirname(path)
       const configFile = path
       const config = await readDatabaseConfigFile(configFile)
-      await startServer(directory, config)
+      await startSubdomainServer(directory, config)
     } else {
       const path = resolve(argv.path)
       const directory = path
       const configFile = join(path, "database.json")
       const config = await readDatabaseConfigFile(configFile)
-      await startServer(directory, config)
+      await startSubdomainServer(directory, config)
     }
   }
 }

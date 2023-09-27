@@ -7,8 +7,8 @@ import { serverListenWithDefault } from "../../server/serverListenWithDefault"
 import { log } from "../../utils/log"
 import { handleDatabase } from "./handleDatabase"
 
-export async function startServer(db: Database): Promise<void> {
-  const who = "database/startServer"
+export async function startDatabaseServer(db: Database): Promise<void> {
+  const who = "startDatabaseServer"
   const { config } = db
 
   log({ who, db })
