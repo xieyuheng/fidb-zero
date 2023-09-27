@@ -7,7 +7,7 @@ import { prepareTestServer } from "../prepareTestServer"
 test("data-patch-no-permission", async ({ meta }) => {
   const { url, db } = await prepareTestServer(meta)
 
-  await createData(db, "users/xieyuheng/.login", {
+  await createData(db, "users/xieyuheng/.login-token-issuer", {
     permissions: {
       "users/*": readOperations,
       "users/xieyuheng/**": allOperations,
@@ -15,7 +15,7 @@ test("data-patch-no-permission", async ({ meta }) => {
   })
 
   const tokenName = await tokenCreate(db, {
-    issuer: "users/xieyuheng/.login",
+    issuer: "users/xieyuheng/.login-token-issuer",
   })
 
   let authorization = `token ${tokenName}`
@@ -46,7 +46,7 @@ test("data-patch-no-permission", async ({ meta }) => {
     ).json(),
   ).toEqual(created)
 
-  await createData(db, "users/xyh/.login", {
+  await createData(db, "users/xyh/.login-token-issuer", {
     permissions: {
       "users/*": readOperations,
       "users/xyh/**": allOperations,
@@ -54,7 +54,7 @@ test("data-patch-no-permission", async ({ meta }) => {
   })
 
   const tokenNameXYH = await tokenCreate(db, {
-    issuer: "users/xyh/.login",
+    issuer: "users/xyh/.login-token-issuer",
   })
 
   authorization = `token ${tokenNameXYH}`

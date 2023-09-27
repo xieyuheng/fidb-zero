@@ -37,7 +37,7 @@ export async function passwordRegister(
         results,
       )
 
-      await createData(db, join(directory, ".login"), {
+      await createData(db, join(directory, ".login-token-issuer"), {
         permissions,
       })
 

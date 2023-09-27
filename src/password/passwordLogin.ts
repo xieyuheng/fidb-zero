@@ -28,7 +28,7 @@ export async function passwordLogin(
 
   if (await passwordCheck(options.password, password.hash)) {
     return await tokenCreate(db, {
-      issuer: join(directory, ".login"),
+      issuer: join(directory, ".login-token-issuer"),
     })
   }
 

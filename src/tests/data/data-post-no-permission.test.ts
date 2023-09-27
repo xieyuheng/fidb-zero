@@ -7,7 +7,7 @@ import { prepareTestServer } from "../prepareTestServer"
 test("data-post-no-permission", async ({ meta }) => {
   const { url, db } = await prepareTestServer(meta)
 
-  await createData(db, "users/xyh/.login", {
+  await createData(db, "users/xyh/.login-token-issuer", {
     permissions: {
       "users/*/**": readOperations,
       "users/xyh/**": allOperations,
@@ -15,7 +15,7 @@ test("data-post-no-permission", async ({ meta }) => {
   })
 
   const tokenName = await tokenCreate(db, {
-    issuer: "users/xyh/.login",
+    issuer: "users/xyh/.login-token-issuer",
   })
 
   const authorization = `token ${tokenName}`

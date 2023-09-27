@@ -122,13 +122,13 @@ hello-world/
 └── users
     ├── alice
     │   ├── index.json
-    │   ├── .login
+    │   ├── .login-token-issuer
     │   │   └── index.json
     │   └── .password
     │       └── index.json
     └── bob
         ├── index.json
-        ├── .login
+        ├── .login-token-issuer
         │   └── index.json
         └── .password
             └── index.json

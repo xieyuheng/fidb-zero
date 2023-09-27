@@ -1,6 +1,4 @@
-rename .login to .login-token-issuer
-
-refactor `tests/`
+refactor `tests/` utils
 
 [docs] re-org manual by resource
 

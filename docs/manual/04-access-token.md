@@ -26,16 +26,16 @@ I want to implement the above by the following:
 - **Problem 4.1:** How should we preparing a user for future logins?
 
 - **Solution 4.1:** Upon register, we prepare a user for future logins by
-  creating a `.login` data file for that user.
+  creating a `.login-token-issuer` data file for that user.
   For example, registering `users/xieyuheng`
-  will create `users/xieyuheng/.login`.
+  will create `users/xieyuheng/.login-token-issuer`.
 
-  The `.login` data file will have a `permissions` property,
+  The `.login-token-issuer` data file will have a `permissions` property,
   which we discuss later.
 
   Since we do not want a user to change his/her own `permissions`,
   we make a convention that if part of a path starts with `.`
-  -- for example `users/xieyuheng/.login`,
+  -- for example `users/xieyuheng/.login-token-issuer`,
   we view it as referencing _system resource_,
   thus can not be access by normal operations,
   such as `data`, `file` and `directory` operations.
@@ -65,7 +65,7 @@ I want to implement the above by the following:
 
   ```
   {
-    "issuer": "users/xieyuheng/.login",
+    "issuer": "users/xieyuheng/.login-token-issuer",
     "@path": ".tokens/cc224145f46a393f8ca71c4eb62aafe1",
     ...
   }
@@ -260,7 +260,7 @@ I want to implement the above by the following:
     "permissions": { ... },
     "granted": [
       {
-        "granter": "users/readonlylink/.login",
+        "granter": "users/readonlylink/.login-token-issuer",
         "permissions": {
           "users/readonlylink/**": [
             "file:post",

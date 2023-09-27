@@ -40,7 +40,7 @@ thus the simplest to understand and implement.
 
   ```
   users/xieyuheng/index.json
-  users/xieyuheng/.login/index.json
+  users/xieyuheng/.login-token-issuer/index.json
   users/xieyuheng/.password/index.json
   ```
 
@@ -85,7 +85,7 @@ thus the simplest to understand and implement.
 
 - **Solution 5.1:** We can use `.config/password-register-strategy` data file,
   to configure which directory is allow to be login target,
-  and what `permissions` should be granted when creating `.login`.
+  and what `permissions` should be granted when creating `.login-token-issuer`.
 
   For example, to allow all users be login target:
 
