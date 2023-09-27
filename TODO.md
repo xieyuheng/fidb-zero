@@ -1,5 +1,3 @@
-fix resource function naming
-
 re-org manual by resource
 
 fix the use of `loginTargets` in  `password-register-strategy` -- should be normalized

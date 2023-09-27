@@ -1,13 +1,13 @@
 import { expect, test } from "vitest"
 import { readOperations } from "../../permission"
-import { dataCreate } from "../../resources"
+import { createData } from "../../resources"
 import { tokenCreate } from "../../token"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("data-can-not-access-system-path", async ({ meta }) => {
   const { url, db, authorization } = await prepareTestServer(meta)
 
-  await dataCreate(db, "test-token-issuers/all-read", {
+  await createData(db, "test-token-issuers/all-read", {
     permissions: {
       "**": readOperations,
     },

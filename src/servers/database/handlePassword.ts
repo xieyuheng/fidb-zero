@@ -33,7 +33,7 @@ export async function handlePassword(
         await requestJsonObject(request),
       )
 
-      const created = await Db.dataCreate(db, path, data)
+      const created = await Db.createData(db, path, data)
 
       await passwordRegister(db, created["@path"], {
         memo: options.memo,

@@ -32,29 +32,29 @@ export async function handleData(
     }
 
     await tokenAssert(db, token, path, "data:get")
-    return await Db.dataGetOrFail(db, path)
+    return await Db.getDataOrFail(db, path)
   }
 
   if (request.method === "POST") {
     await tokenAssert(db, token, path, "data:post")
     if (path === "") return
 
-    return await Db.dataCreate(db, path, await requestJsonObject(request))
+    return await Db.createData(db, path, await requestJsonObject(request))
   }
 
   if (request.method === "PUT") {
     await tokenAssert(db, token, path, "data:put")
-    return await Db.dataPut(db, path, await requestJsonObject(request))
+    return await Db.putData(db, path, await requestJsonObject(request))
   }
 
   if (request.method === "PATCH") {
     await tokenAssert(db, token, path, "data:patch")
-    return await Db.dataPatch(db, path, await requestJsonObject(request))
+    return await Db.patchData(db, path, await requestJsonObject(request))
   }
 
   if (request.method === "DELETE") {
     await tokenAssert(db, token, path, "data:delete")
-    return await Db.dataDelete(db, path, await requestJsonObject(request))
+    return await Db.deleteData(db, path, await requestJsonObject(request))
   }
 
   throw new Error(

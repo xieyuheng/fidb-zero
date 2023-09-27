@@ -3,20 +3,20 @@ import { Database } from "../../database"
 import { NotFound, Unprocessable } from "../../errors"
 import { JsonObject, isJsonObject } from "../../utils/Json"
 import { writeBuffer } from "../utils/writeBuffer"
-import { jsonFileGet } from "./jsonFileGet"
+import { getJsonFile } from "./getJsonFile"
 
-export async function jsonFilePatch(
+export async function patchJsonFile(
   db: Database,
   path: string,
   jsonObject: JsonObject,
 ): Promise<void> {
-  const gotten = await jsonFileGet(db, path)
+  const gotten = await getJsonFile(db, path)
   if (gotten === undefined) {
-    throw new NotFound(`[jsonFilePatch] not found, path ${path}`)
+    throw new NotFound(`[patchJsonFile] not found, path ${path}`)
   }
 
   if (!isJsonObject(gotten)) {
-    throw new Unprocessable(`[jsonFilePatch] expect json object, path ${path}`)
+    throw new Unprocessable(`[patchJsonFile] expect json object, path ${path}`)
   }
 
   await writeBuffer(

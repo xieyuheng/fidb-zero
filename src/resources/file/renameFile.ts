@@ -4,18 +4,18 @@ import { Database } from "../../database"
 import { AlreadyExists } from "../../errors"
 import { isErrnoException } from "../../utils/node/isErrnoException"
 import { resolvePath } from "../utils/resolvePath"
-import { fileGet } from "./fileGet"
+import { getFile } from "./getFile"
 
-export async function fileRename(
+export async function renameFile(
   db: Database,
   from: string,
   to: string,
   options?: { override?: boolean },
 ): Promise<void> {
-  const who = "fileRename"
+  const who = "renameFile"
 
   if (!options?.override) {
-    const gotten = await fileGet(db, to)
+    const gotten = await getFile(db, to)
     if (gotten !== undefined) {
       throw new AlreadyExists(
         `[${who}] target of rename already exists, path: ${to}`,

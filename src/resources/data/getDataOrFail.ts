@@ -4,8 +4,8 @@ import { NotFound } from "../../errors"
 import { isErrnoException } from "../../utils/node/isErrnoException"
 import { readData } from "../utils/readData"
 
-export async function dataGetOrFail(db: Database, path: string): Promise<Data> {
-  const who = "dataGetOrFail"
+export async function getDataOrFail(db: Database, path: string): Promise<Data> {
+  const who = "getDataOrFail"
 
   try {
     return await readData(db, path)

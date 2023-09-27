@@ -1,5 +1,5 @@
 import { Database } from "../database"
-import { dataCreate } from "../resources"
+import { createData } from "../resources"
 import { randomTokenName } from "../token/randomTokenName"
 
 export async function tokenCreate(
@@ -9,6 +9,6 @@ export async function tokenCreate(
   },
 ): Promise<string> {
   const tokenName = randomTokenName()
-  await dataCreate(db, `.tokens/${tokenName}`, properties)
+  await createData(db, `.tokens/${tokenName}`, properties)
   return tokenName
 }

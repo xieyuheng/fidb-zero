@@ -1,7 +1,7 @@
 import { Database } from "../database"
 import { Operation } from "../permission"
 import { matchPermissionRecord } from "../permission/matchPermissionRecord"
-import { dataGetOrFail } from "../resources"
+import { getDataOrFail } from "../resources"
 import { TokenIssuerSchema } from "./TokenIssuer"
 import { tokenGetOrFail } from "./tokenGetOrFail"
 
@@ -14,7 +14,7 @@ export async function tokenCheck(
   const token = await tokenGetOrFail(db, tokenName)
 
   const issuer = TokenIssuerSchema.validate(
-    await dataGetOrFail(db, token.issuer),
+    await getDataOrFail(db, token.issuer),
   )
 
   return matchPermissionRecord(issuer.permissions, path, operation)

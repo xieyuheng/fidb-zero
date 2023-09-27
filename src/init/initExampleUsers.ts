@@ -1,6 +1,6 @@
 import { Database } from "../database"
 import { passwordRegister } from "../password"
-import { dataCreate } from "../resources"
+import { createData } from "../resources"
 import { JsonObject } from "../utils/Json"
 import { log } from "../utils/log"
 
@@ -27,7 +27,7 @@ export async function initExampleUser(
 
   const { data, password } = options
 
-  await dataCreate(db, path, data)
+  await createData(db, path, data)
 
   await passwordRegister(db, path, {
     memo: who,

@@ -1,13 +1,14 @@
+import { Data } from "../../data"
 import { Database } from "../../database"
 import { NotFound } from "../../errors"
-import { FileMetadata, fileMetadataGetOrFail } from "./fileMetadataGetOrFail"
+import { getDataOrFail } from "./getDataOrFail"
 
-export async function fileMetadataGet(
+export async function getData(
   db: Database,
   path: string,
-): Promise<FileMetadata | undefined> {
+): Promise<Data | undefined> {
   try {
-    return await fileMetadataGetOrFail(db, path)
+    return await getDataOrFail(db, path)
   } catch (error) {
     if (error instanceof NotFound) {
       return undefined

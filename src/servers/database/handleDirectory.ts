@@ -22,7 +22,7 @@ export async function handleDirectory(
     await tokenAssert(db, token, path, "directory:get")
 
     return await arrayFromAsyncIterable(
-      Db.directoryList(db, path, {
+      Db.listDirectory(db, path, {
         page: query.page ? Number.parseInt(query.page) : 1,
         size: query.size ? Number.parseInt(query.size) : 15,
         recursive: query.hasOwnProperty("recursive"),
@@ -32,14 +32,14 @@ export async function handleDirectory(
 
   if (request.method === "POST") {
     await tokenAssert(db, token, path, "directory:post")
-    return await Db.directoryCreate(db, path)
+    return await Db.createDirectory(db, path)
   }
 
   if (request.method === "DELETE") {
     await tokenAssert(db, token, path, "directory:delete")
     if (path === "") return
 
-    return await Db.directoryDelete(db, path)
+    return await Db.deleteDirectory(db, path)
   }
 
   throw new Error(

@@ -2,7 +2,7 @@ import Http from "node:http"
 import { defaultPermissions } from "../password/defaultPermissions"
 import { userLoginTargets } from "../password/userLoginTargets"
 import { allOperations } from "../permission"
-import { dataCreate } from "../resources"
+import { createData } from "../resources"
 import { createRequestListener } from "../server/createRequestListener"
 import { handle } from "../servers/database/handle"
 import { tokenCreate } from "../token"
@@ -27,21 +27,21 @@ export async function prepareTestServer(options: { name: string }) {
 
   await serverListen(server, { port, hostname })
 
-  await dataCreate(db, ".config/password-register-strategy", {
+  await createData(db, ".config/password-register-strategy", {
     loginTargets: {
       ...userLoginTargets,
     },
   })
 
-  await dataCreate(db, ".config/default-token-issuer", {
+  await createData(db, ".config/default-token-issuer", {
     permissions: defaultPermissions,
   })
 
-  await dataCreate(db, ".tokens/default", {
+  await createData(db, ".tokens/default", {
     issuer: ".config/default-token-issuer",
   })
 
-  await dataCreate(db, "test-token-issuers/all-read-write", {
+  await createData(db, "test-token-issuers/all-read-write", {
     permissions: {
       "**": allOperations,
     },

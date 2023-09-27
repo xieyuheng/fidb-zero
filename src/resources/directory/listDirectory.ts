@@ -1,6 +1,6 @@
 import { Database } from "../../database"
 import { PathEntry } from "../../path-entry"
-import { directoryListAll } from "./directoryListAll"
+import { listAllDirectory } from "./listAllDirectory"
 
 export type ListOptions = {
   page: number // NOTE starting from 1
@@ -8,7 +8,7 @@ export type ListOptions = {
   recursive?: boolean
 }
 
-export async function* directoryList(
+export async function* listDirectory(
   db: Database,
   directory: string,
   options: ListOptions,
@@ -18,7 +18,7 @@ export async function* directoryList(
   const end = start + options.size
   let count = 0
 
-  for await (const pathEntry of directoryListAll(db, directory, {
+  for await (const pathEntry of listAllDirectory(db, directory, {
     recursive: options.recursive,
   })) {
     if (count >= end) {

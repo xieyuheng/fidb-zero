@@ -1,5 +1,5 @@
 import { Database } from "../database"
-import { dataCreate } from "../resources"
+import { createData } from "../resources"
 import { log } from "../utils/log"
 
 export async function initSystemResource(db: Database): Promise<void> {
@@ -21,7 +21,7 @@ export async function initSystemResource(db: Database): Promise<void> {
       },
     }
 
-    await dataCreate(db, path, data)
+    await createData(db, path, data)
     log({ who, path })
   }
 
@@ -31,7 +31,7 @@ export async function initSystemResource(db: Database): Promise<void> {
       issuer: ".config/default-token-issuer",
     }
 
-    await dataCreate(db, path, data)
+    await createData(db, path, data)
     log({ who, path })
   }
 
@@ -70,7 +70,7 @@ export async function initSystemResource(db: Database): Promise<void> {
       },
     }
 
-    await dataCreate(db, path, data)
+    await createData(db, path, data)
     log({ who, path })
   }
 }

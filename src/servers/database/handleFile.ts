@@ -24,10 +24,10 @@ export async function handleFile(
   if (request.method === "GET") {
     await tokenAssert(db, token, path, "file:get")
     if (kind === "file-metadata") {
-      return await Db.fileMetadataGetOrFail(db, path)
+      return await Db.getFileMetadataOrFail(db, path)
     }
 
-    return await Db.fileGetOrFail(db, path)
+    return await Db.getFileOrFail(db, path)
   }
 
   if (request.method === "POST") {
@@ -36,21 +36,21 @@ export async function handleFile(
       const schema = ty.object({ to: ty.string() })
       const { to } = schema.validate(await requestJsonObject(request))
       await tokenAssert(db, token, to, "file:post")
-      return await Db.fileRename(db, path, to)
+      return await Db.renameFile(db, path, to)
     }
 
     await tokenAssert(db, token, path, "file:post")
-    return await Db.fileCreate(db, path, await requestBuffer(request))
+    return await Db.createFile(db, path, await requestBuffer(request))
   }
 
   if (request.method === "PUT") {
     await tokenAssert(db, token, path, "file:put")
-    return await Db.filePut(db, path, await requestBuffer(request))
+    return await Db.putFile(db, path, await requestBuffer(request))
   }
 
   if (request.method === "DELETE") {
     await tokenAssert(db, token, path, "file:delete")
-    return await Db.fileDelete(db, path)
+    return await Db.deleteFile(db, path)
   }
 
   throw new Error(

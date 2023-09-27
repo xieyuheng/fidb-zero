@@ -1,9 +1,9 @@
 import { Database } from "../../database"
 import { deletePath } from "../utils/deletePath"
-import { fileGet } from "./fileGet"
+import { getFile } from "./getFile"
 
-export async function fileDelete(db: Database, path: string): Promise<void> {
-  const gotten = await fileGet(db, path)
+export async function deleteFile(db: Database, path: string): Promise<void> {
+  const gotten = await getFile(db, path)
   if (gotten === undefined) {
     return
   }

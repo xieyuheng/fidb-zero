@@ -1,14 +1,14 @@
 import { Buffer } from "node:buffer"
 import { Database } from "../../database"
 import { NotFound } from "../../errors"
-import { fileGetOrFail } from "./fileGetOrFail"
+import { getFileOrFail } from "./getFileOrFail"
 
-export async function fileGet(
+export async function getFile(
   db: Database,
   path: string,
 ): Promise<Buffer | undefined> {
   try {
-    return await fileGetOrFail(db, path)
+    return await getFileOrFail(db, path)
   } catch (error) {
     if (error instanceof NotFound) {
       return undefined

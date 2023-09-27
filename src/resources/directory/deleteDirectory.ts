@@ -2,7 +2,7 @@ import fs from "node:fs"
 import { Database } from "../../database"
 import { resolvePath } from "../utils/resolvePath"
 
-export async function directoryDelete(
+export async function deleteDirectory(
   db: Database,
   directory: string,
 ): Promise<void> {
