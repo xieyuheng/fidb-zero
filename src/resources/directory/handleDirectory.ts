@@ -1,19 +1,20 @@
 import Http from "node:http"
 import { Database } from "../../database"
-import * as Db from "../../resources"
 import { tokenAssert } from "../../token"
 import { Json } from "../../utils/Json"
 import { arrayFromAsyncIterable } from "../../utils/arrayFromAsyncIterable"
-import { requestKind } from "../../utils/node/requestKind"
 import { requestQuery } from "../../utils/node/requestQuery"
 import { requestResolvedPath } from "../requestResolvedPath"
 import { requestToken } from "../requestToken"
+import { createDirectory } from "./createDirectory"
+import { deleteDirectory } from "./deleteDirectory"
+import { listDirectory } from "./listDirectory"
 
 export async function handleDirectory(
   db: Database,
   request: Http.IncomingMessage,
 ): Promise<Json | void> {
-  const kind = requestKind(request)
+  const who = "handleDirectory"
   const query = requestQuery(request)
   const path = requestResolvedPath(db, request)
   const token = await requestToken(request)
@@ -22,7 +23,7 @@ export async function handleDirectory(
     await tokenAssert(db, token, path, "directory:get")
 
     return await arrayFromAsyncIterable(
-      Db.listDirectory(db, path, {
+      listDirectory(db, path, {
         page: query.page ? Number.parseInt(query.page) : 1,
         size: query.size ? Number.parseInt(query.size) : 15,
         recursive: query.hasOwnProperty("recursive"),
@@ -32,19 +33,19 @@ export async function handleDirectory(
 
   if (request.method === "POST") {
     await tokenAssert(db, token, path, "directory:post")
-    return await Db.createDirectory(db, path)
+    return await createDirectory(db, path)
   }
 
   if (request.method === "DELETE") {
     await tokenAssert(db, token, path, "directory:delete")
     if (path === "") return
 
-    return await Db.deleteDirectory(db, path)
+    return await deleteDirectory(db, path)
   }
 
   throw new Error(
     [
-      `[handleDirectory] unhandled http request`,
+      `[${who}] unhandled http request`,
       ``,
       `  method: ${request.method}`,
       `  path: ${path}`,
