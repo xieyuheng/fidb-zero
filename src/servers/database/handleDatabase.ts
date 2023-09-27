@@ -6,7 +6,8 @@ import { handleData } from "../../resources/data/handleData"
 import { handleDirectory } from "../../resources/directory/handleDirectory"
 import { handleFile } from "../../resources/file/handleFile"
 import { handleInfo } from "../../resources/info/handleInfo"
-import { handlePassword } from "../../resources/password-register/handlePassword"
+import { handlePasswordLogin } from "../../resources/password-login/handlePasswordLogin"
+import { handlePasswordRegister } from "../../resources/password-register/handlePasswordRegister"
 import { handlePing } from "../../resources/ping/handlePing"
 import { requestResolvedPath } from "../../resources/requestResolvedPath"
 import { handlePreflight } from "../../server/handlePreflight"
@@ -39,19 +40,23 @@ export async function handleDatabase(
     return await handleFile(db, request)
   }
 
-  if (kind.startsWith("directory")) {
+  if (kind === "directory") {
     return await handleDirectory(db, request)
   }
 
-  if (kind.startsWith("password")) {
-    return await handlePassword(db, request)
+  if (kind === "password-login") {
+    return await handlePasswordLogin(db, request)
   }
 
-  if (kind.startsWith("info")) {
+  if (kind === "password-register") {
+    return await handlePasswordRegister(db, request)
+  }
+
+  if (kind === "info") {
     return await handleInfo(db, request)
   }
 
-  if (kind.startsWith("ping")) {
+  if (kind === "ping") {
     return await handlePing(db, request)
   }
 

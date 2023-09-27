@@ -1,9 +1,11 @@
-`handlePasswordLogin` vs `handlePasswordRegister`
-`handleDataFind`
+extract `handleDataFind` from `handleData`
+extract `handleFileMetadata` from `handleFile`
 
 `handleDatabase` should be a simple router
 
 rename .login to .login-token-issuer
+
+refactor `tests/`
 
 [docs] re-org manual by resource
 
