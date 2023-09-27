@@ -18,7 +18,6 @@ test("handle-password-register-and-login", async ({ meta }) => {
             name: "Xie Yuheng",
           },
           options: {
-            memo: "My favorite password.",
             password: "123456",
           },
         }),

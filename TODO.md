@@ -1,12 +1,23 @@
-fix the use of `loginTargets` -- should be normalized
+`token` should be returned in JSON -- instead of as a string
+
+fix the use of `loginTargets` in  `password-register-strategy` -- should be normalized
+
+`permissions` should be an array -- to support sum type
+
+- support permission group -- like unix user group
+
+  - should not copy permissions to every user, should use permission group
 
 # handle
 
 [handle] support `HEAD` query
 
-[handle] support contents hash based `PATCH` query
-
 [handle] support nested `PATCH` for data
+
+[handle] support contents hash based query
+
+- return file content only when it's hash is different
+- return a list of newer file contents
 
 # rate limit
 

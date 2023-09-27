@@ -1,6 +1,6 @@
 export type Json = JsonAtom | JsonArray | JsonObject
 
-export type JsonAtom = string | number | boolean | null
+export type JsonAtom = string | number | boolean | null | undefined
 
 export type JsonArray = Array<Json>
 

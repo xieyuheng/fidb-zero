@@ -6,6 +6,7 @@ import {
   passwordLogin,
   PasswordLoginOptionsSchema,
   passwordRegister,
+  PasswordRegisterOptionsSchema,
 } from "../../password"
 import { Json } from "../../utils/Json"
 import { requestJsonObject } from "../../utils/node/requestJsonObject"
@@ -25,10 +26,7 @@ export async function handlePassword(
     if (kind === "password-register") {
       const schema = ty.object({
         data: ty.any(),
-        options: ty.object({
-          memo: ty.string(),
-          password: ty.string(),
-        }),
+        options: PasswordRegisterOptionsSchema,
       })
 
       const { data, options } = schema.validate(

@@ -2,14 +2,14 @@ import ty, { Schema } from "@xieyuheng/ty"
 import { Data, DataSchema } from "../data"
 
 export type Password = Data & {
-  memo: string
+  memo?: string
   hash: string
 }
 
 export const PasswordSchema: Schema<Password> = ty.intersection(
   DataSchema,
   ty.object({
-    memo: ty.string(),
+    memo: ty.optional(ty.string()),
     hash: ty.string(),
   }),
 )

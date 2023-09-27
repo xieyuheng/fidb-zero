@@ -10,12 +10,12 @@ import { passwordHash } from "../utils/node/password"
 import { PasswordRegisterStrategySchema } from "./PasswordRegisterStrategy"
 
 export type PasswordRegisterOptions = {
-  memo: string
+  memo?: string
   password: string
 }
 
 export const PasswordRegisterOptionsSchema = ty.object({
-  memo: ty.string(),
+  memo: ty.optional(ty.string()),
   password: ty.string(),
 })
 
