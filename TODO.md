@@ -1,74 +1,56 @@
-re-org manual by resource
+[refactor] move handle functions to `resources/`
 
-fix the use of `loginTargets` in  `password-register-strategy` -- should be normalized
+[docs] re-org manual by resource
 
-`permissions` should be an array -- to support sum type
+[password-login] as a resource
+
+[password-register] as a resource
+
+[password-register] fix the use of `loginTargets` in  `password-register-strategy` -- should be normalized
+
+[permission] `permissions` should be an array -- to support sum type
 
 - support permission group -- like unix user group
 
   - should not copy permissions to every user, should use permission group
 
-# handle
+# data
 
-[handle] support `HEAD` query
+[data] support `HEAD` query
 
-[handle] support nested `PATCH` for data
+# data-find
 
-[handle] support contents hash based query
+[data-find] support nested `PATCH` for data
+
+# file
+
+[file] support contents hash based query
 
 - return file content only when it's hash is different
 - return a list of newer file contents
 
 # rate limit
 
-[handle] rate limit by ip -- for `password-register`
+[rate limit] be able to config rate limit of a resource
 
-[config] be able to config rate limit
+[rate limit] rate limit by ip -- for `password-register`
 
 # schema
 
-[manual] schema
+[schema] [maybe] use `x-json` instead of `xieyuheng/ty`
 
-use `x-json` instead of `xieyuheng/ty`
-
-should we use `x-json` for both schema and inedx?
+[schema] should we use `x-json` for both schema and index?
 
 # indexing
 
-b-tree over file system
+[indexing] how to config indexing of data resource?
 
-`Db.index(db, directory, key)`
+[indexing] b-tree over file system
 
-`Db.createIndex(db, directory, key)`
+[indexing] `index(db, directory, key)`
 
-# find
+[indexing] `createIndex(db, directory, key)`
 
-`Db.dataFind` -- use index
+# data-find
 
-`Db.dataFind` -- support inline a `{ @ref }` which is a path to another data
-
-# image
-
-[image] support compression
-
-# docs
-
-[manual] management
-
-- `admins/` has password
-
-[manual] indexing
-
-# token
-
-[token] each directory can grant access to token owner
-
-# authentication by email -- for any directory
-
-[db] `emailRegister(directory, options): Promise<void>`
-
-[db] `emailLogin(directory, options): Promise<Token>`
-
-[handle] `handleEmail` -- `kind=email-register`
-
-[handle] `handleEmail` -- `kind=email-login`
+[data-find] `dataFind` -- use index
