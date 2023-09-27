@@ -1,9 +1,9 @@
 import fs from "node:fs"
 import { Database } from "../../database"
 import { resolvePath } from "../../database/resolvePath"
-import { PathEntry } from "../../path-entry"
 import { isErrnoException } from "../../utils/node/isErrnoException"
 import { getFileMetadataOrFail } from "../file-metadata/getFileMetadataOrFail"
+import { PathEntry } from "./PathEntry"
 
 export async function* listAllDirectory(
   db: Database,
