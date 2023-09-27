@@ -1,9 +1,9 @@
 import fs from "node:fs"
 import { Data, Database } from "../../database"
+import { resolvePath } from "../../database/resolvePath"
 import { JsonAtom } from "../../utils/Json"
 import { isErrnoException } from "../../utils/node/isErrnoException"
 import { getData } from "../data/getData"
-import { resolvePath } from "../utils/resolvePath"
 
 export type DataFindAllOptions = {
   properties: Record<string, JsonAtom>

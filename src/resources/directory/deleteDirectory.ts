@@ -1,6 +1,6 @@
 import fs from "node:fs"
 import { Database } from "../../database"
-import { resolvePath } from "../utils/resolvePath"
+import { resolvePath } from "../../database/resolvePath"
 
 export async function deleteDirectory(
   db: Database,

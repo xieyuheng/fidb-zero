@@ -1,7 +1,7 @@
 import { Buffer } from "node:buffer"
 import Http from "node:http"
 import { Database } from "../../database"
-import * as Db from "../../resources"
+import { isFile } from "../../database/isFile"
 import { handleDataFind } from "../../resources/data-find/handleDataFind"
 import { handleData } from "../../resources/data/handleData"
 import { handleDirectory } from "../../resources/directory/handleDirectory"
@@ -32,7 +32,7 @@ export async function handleDatabase(
   const path = requestResolvedPath(db, request)
 
   if (kind === "") {
-    if (await Db.isFile(db, path)) {
+    if (await isFile(db, path)) {
       return await handleFile(db, request)
     } else {
       return await handleData(db, request)

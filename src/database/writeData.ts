@@ -1,5 +1,6 @@
-import { Data, Database } from "../../database"
-import { writeJson } from "../../utils/node/writeJson"
+import { writeJson } from "../utils/node/writeJson"
+import { Data } from "./Data"
+import { Database } from "./Database"
 import { resolveDataPath } from "./resolveDataPath"
 
 export async function writeData(

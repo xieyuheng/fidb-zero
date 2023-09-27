@@ -1,4 +1,3 @@
-move db `utils/` to `database/`
 `resourceRouter` map resource kind to handle function
 `resourceRoutes` register routes
 

@@ -1,7 +1,7 @@
 import { Data, Database } from "../../database"
+import { readData } from "../../database/readData"
 import { NotFound } from "../../errors"
 import { isErrnoException } from "../../utils/node/isErrnoException"
-import { readData } from "../utils/readData"
 
 export async function getDataOrFail(db: Database, path: string): Promise<Data> {
   const who = "getDataOrFail"

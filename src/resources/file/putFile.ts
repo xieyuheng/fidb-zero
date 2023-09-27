@@ -1,6 +1,6 @@
 import { Buffer } from "node:buffer"
 import { Database } from "../../database"
-import { writeBuffer } from "../utils/writeBuffer"
+import { writeBuffer } from "../../database/writeBuffer"
 
 export async function putFile(
   db: Database,

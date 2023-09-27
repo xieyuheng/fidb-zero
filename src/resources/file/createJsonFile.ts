@@ -1,7 +1,7 @@
 import { Database } from "../../database"
+import { writeBuffer } from "../../database/writeBuffer"
 import { AlreadyExists } from "../../errors"
 import { Json } from "../../utils/Json"
-import { writeBuffer } from "../utils/writeBuffer"
 import { getFile } from "./getFile"
 
 export async function createJsonFile(

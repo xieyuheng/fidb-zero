@@ -1,5 +1,5 @@
 import { normalize } from "node:path"
-import { Database } from "../../database"
+import { Database } from "./Database"
 import { resolvePath } from "./resolvePath"
 
 export function normalizePath(db: Database, path: string): string {

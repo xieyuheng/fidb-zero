@@ -1,8 +1,8 @@
 import { Buffer } from "node:buffer"
 import { Database } from "../../database"
+import { writeBuffer } from "../../database/writeBuffer"
 import { NotFound, Unprocessable } from "../../errors"
 import { JsonObject, isJsonObject } from "../../utils/Json"
-import { writeBuffer } from "../utils/writeBuffer"
 import { getJsonFile } from "./getJsonFile"
 
 export async function patchJsonFile(

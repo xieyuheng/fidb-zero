@@ -1,6 +1,6 @@
 import { normalize, resolve } from "node:path"
-import { Database } from "../../database"
-import { Unauthorized } from "../../errors/Unauthorized"
+import { Unauthorized } from "../errors"
+import { Database } from "./Database"
 
 export function resolvePath(db: Database, path: string): string {
   const who = "resolvePath"

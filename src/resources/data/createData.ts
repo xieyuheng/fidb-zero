@@ -1,8 +1,9 @@
 import { normalize } from "node:path"
-import { Data, Database, randomRevision } from "../../database"
+import { Data, Database } from "../../database"
+import { randomRevision } from "../../database/randomRevision"
+import { writeData } from "../../database/writeData"
 import { AlreadyExists } from "../../errors"
 import { JsonObject } from "../../utils/Json"
-import { writeData } from "../utils/writeData"
 import { getData } from "./getData"
 
 export async function createData(

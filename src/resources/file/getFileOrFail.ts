@@ -1,8 +1,8 @@
 import { Buffer } from "node:buffer"
 import { Database } from "../../database"
+import { readBuffer } from "../../database/readBuffer"
 import { NotFound } from "../../errors"
 import { isErrnoException } from "../../utils/node/isErrnoException"
-import { readBuffer } from "../utils/readBuffer"
 
 export async function getFileOrFail(
   db: Database,

@@ -1,9 +1,9 @@
 import fs from "node:fs"
 import { dirname } from "node:path"
 import { Database } from "../../database"
+import { resolvePath } from "../../database/resolvePath"
 import { AlreadyExists } from "../../errors"
 import { isErrnoException } from "../../utils/node/isErrnoException"
-import { resolvePath } from "../utils/resolvePath"
 import { getFile } from "./getFile"
 
 export async function renameFile(

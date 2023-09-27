@@ -1,7 +1,8 @@
 import fs from "node:fs"
 import { normalize } from "node:path"
-import { Data, DataSchema, Database, randomRevision } from "../../database"
-import { readJsonObject } from "../../utils/node/readJsonObject"
+import { Data, DataSchema, Database } from "../database"
+import { readJsonObject } from "../utils/node/readJsonObject"
+import { randomRevision } from "./randomRevision"
 import { resolveDataPath } from "./resolveDataPath"
 import { writeData } from "./writeData"
 

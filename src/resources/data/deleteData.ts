@@ -1,7 +1,7 @@
 import { Database } from "../../database"
+import { deletePathRecursive } from "../../database/deletePath"
 import { RevisionMismatch } from "../../errors"
 import { JsonObject } from "../../utils/Json"
-import { deletePathRecursive } from "../utils/deletePath"
 import { getData } from "./getData"
 
 export async function deleteData(

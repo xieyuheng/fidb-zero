@@ -1,5 +1,5 @@
 import fs from "node:fs"
-import { Database } from "../../database"
+import { Database } from "./Database"
 import { resolvePath } from "./resolvePath"
 
 export async function deletePath(db: Database, path: string): Promise<void> {

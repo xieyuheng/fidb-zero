@@ -1,5 +1,5 @@
 import { Database } from "../../database"
-import { deletePath } from "../utils/deletePath"
+import { deletePath } from "../../database/deletePath"
 import { getFile } from "./getFile"
 
 export async function deleteFile(db: Database, path: string): Promise<void> {
