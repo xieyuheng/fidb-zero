@@ -2,8 +2,8 @@ import { expect, test } from "vitest"
 import { PathEntry } from "../../resources/directory/PathEntry"
 import { prepareTestServer } from "../prepareTestServer"
 
-test("directory-delete", async ({ meta }) => {
-  const { url, authorization } = await prepareTestServer(meta)
+test("directory-delete", async ({ task }) => {
+  const { url, authorization } = await prepareTestServer(task)
 
   await fetch(new URL(`users?kind=directory`, url), {
     method: "POST",

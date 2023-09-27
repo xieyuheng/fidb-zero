@@ -4,8 +4,8 @@ import { createData } from "../../resources"
 import { tokenCreate } from "../../token"
 import { prepareTestServer } from "../prepareTestServer"
 
-test("data-get-no-permission", async ({ meta }) => {
-  const { url, db } = await prepareTestServer(meta)
+test("data-get-no-permission", async ({ task }) => {
+  const { url, db } = await prepareTestServer(task)
 
   await createData(db, "users/xieyuheng/.login-token-issuer", {
     permissions: {

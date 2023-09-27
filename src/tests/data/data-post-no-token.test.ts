@@ -1,8 +1,8 @@
 import { expect, test } from "vitest"
 import { prepareTestServer } from "../prepareTestServer"
 
-test("data-post-no-token", async ({ meta }) => {
-  const { url } = await prepareTestServer(meta)
+test("data-post-no-token", async ({ task }) => {
+  const { url } = await prepareTestServer(task)
 
   expect(
     (

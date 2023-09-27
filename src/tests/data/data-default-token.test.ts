@@ -1,8 +1,8 @@
 import { expect, test } from "vitest"
 import { prepareTestServer } from "../prepareTestServer"
 
-test("data-default-token", async ({ meta }) => {
-  const { url, authorization } = await prepareTestServer(meta)
+test("data-default-token", async ({ task }) => {
+  const { url, authorization } = await prepareTestServer(task)
 
   await fetch(new URL(`users/xieyuheng`, url), {
     method: "POST",

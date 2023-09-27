@@ -2,8 +2,8 @@ import qs from "qs"
 import { expect, test } from "vitest"
 import { prepareTestServer } from "../prepareTestServer"
 
-test("data-find", async ({ meta }) => {
-  const { url, authorization } = await prepareTestServer(meta)
+test("data-find", async ({ task }) => {
+  const { url, authorization } = await prepareTestServer(task)
 
   const array = [
     { "@path": "users/0", country: "China" },

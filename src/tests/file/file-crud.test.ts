@@ -2,8 +2,8 @@ import { expect, test } from "vitest"
 import { responseHeaders } from "../../utils/responseHeaders"
 import { prepareTestServer } from "../prepareTestServer"
 
-test("file-crud", async ({ meta }) => {
-  const { url, authorization } = await prepareTestServer(meta)
+test("file-crud", async ({ task }) => {
+  const { url, authorization } = await prepareTestServer(task)
 
   await fetch(new URL(`users/xieyuheng/human.txt?kind=file`, url), {
     method: "POST",

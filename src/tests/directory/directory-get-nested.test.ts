@@ -2,8 +2,8 @@ import { expect, test } from "vitest"
 import { PathEntry } from "../../resources/directory/PathEntry"
 import { prepareTestServer } from "../prepareTestServer"
 
-test("directory-get-nested", async ({ meta }) => {
-  const { url, authorization } = await prepareTestServer(meta)
+test("directory-get-nested", async ({ task }) => {
+  const { url, authorization } = await prepareTestServer(task)
 
   {
     const response = await fetch(new URL(`projects/1?kind=directory`, url), {

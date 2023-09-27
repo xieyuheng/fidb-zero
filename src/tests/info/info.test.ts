@@ -1,8 +1,8 @@
 import { expect, test } from "vitest"
 import { prepareTestServer } from "../prepareTestServer"
 
-test("info", async ({ meta }) => {
-  const { url, db } = await prepareTestServer(meta)
+test("info", async ({ task }) => {
+  const { url, db } = await prepareTestServer(task)
 
   const name = "info"
   const description = "info"

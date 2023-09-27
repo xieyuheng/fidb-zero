@@ -4,8 +4,8 @@ import { createData } from "../../resources"
 import { tokenCreate } from "../../token"
 import { prepareTestServer } from "../prepareTestServer"
 
-test("data-can-not-access-system-path", async ({ meta }) => {
-  const { url, db, authorization } = await prepareTestServer(meta)
+test("data-can-not-access-system-path", async ({ task }) => {
+  const { url, db, authorization } = await prepareTestServer(task)
 
   await createData(db, "test-token-issuers/all-read", {
     permissions: {

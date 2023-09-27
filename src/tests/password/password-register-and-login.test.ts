@@ -1,8 +1,8 @@
 import { expect, test } from "vitest"
 import { prepareTestServer } from "../prepareTestServer"
 
-test("password-register-and-login", async ({ meta }) => {
-  const { url, db } = await prepareTestServer(meta)
+test("password-register-and-login", async ({ task }) => {
+  const { url, db } = await prepareTestServer(task)
 
   {
     const response = await fetch(

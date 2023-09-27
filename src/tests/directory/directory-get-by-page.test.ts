@@ -2,8 +2,8 @@ import { expect, test } from "vitest"
 import { PathEntry } from "../../resources/directory/PathEntry"
 import { prepareTestServer } from "../prepareTestServer"
 
-test("directory-get-by-page", async ({ meta }) => {
-  const { url, authorization } = await prepareTestServer(meta)
+test("directory-get-by-page", async ({ task }) => {
+  const { url, authorization } = await prepareTestServer(task)
 
   await fetch(new URL(`projects/1/users/1`, url), {
     method: "POST",

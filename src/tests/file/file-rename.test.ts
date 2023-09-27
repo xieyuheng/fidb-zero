@@ -1,8 +1,8 @@
 import { expect, test } from "vitest"
 import { prepareTestServer } from "../prepareTestServer"
 
-test("file-rename", async ({ meta }) => {
-  const { url, authorization } = await prepareTestServer(meta)
+test("file-rename", async ({ task }) => {
+  const { url, authorization } = await prepareTestServer(task)
 
   await fetch(new URL(`users/xieyuheng/human.txt?kind=file`, url), {
     method: "POST",
