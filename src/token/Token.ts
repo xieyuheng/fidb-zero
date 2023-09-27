@@ -1,5 +1,5 @@
 import ty, { Schema } from "@xieyuheng/ty"
-import { Data, DataSchema } from "../data"
+import { Data, DataSchema } from "../database"
 
 export type Token = Data & {
   issuer: string

@@ -1,4 +1,10 @@
-`handleDatabase` should be a simple router
+move db `utils/` to `database/`
+`resourceRouter` map resource kind to handle function
+`resourceRoutes` register routes
+
+`resources/routes`
+
+`handleDatabase` use `routes`
 
 rename .login to .login-token-issuer
 

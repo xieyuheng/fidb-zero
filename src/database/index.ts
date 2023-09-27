@@ -1,3 +1,5 @@
+export * from "./Data"
+export * from "./randomRevision"
 export * from "./Database"
 export * from "./DatabaseConfig"
 export * from "./loadDatabase"

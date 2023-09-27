@@ -1,6 +1,5 @@
 import fs from "node:fs"
-import { Data } from "../../data"
-import { Database } from "../../database"
+import { Data, Database } from "../../database"
 import { JsonAtom } from "../../utils/Json"
 import { isErrnoException } from "../../utils/node/isErrnoException"
 import { getData } from "../data/getData"

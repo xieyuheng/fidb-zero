@@ -1,5 +1,4 @@
-import { Data } from "../../data"
-import { Database } from "../../database"
+import { Data, Database } from "../../database"
 import { NotFound } from "../../errors"
 import { getDataOrFail } from "./getDataOrFail"
 

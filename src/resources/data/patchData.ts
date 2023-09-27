@@ -1,6 +1,5 @@
 import { normalize } from "node:path"
-import { Data, randomRevision } from "../../data"
-import { Database } from "../../database"
+import { Data, Database, randomRevision } from "../../database"
 import { NotFound, RevisionMismatch } from "../../errors"
 import { JsonObject } from "../../utils/Json"
 import { writeData } from "../utils/writeData"
