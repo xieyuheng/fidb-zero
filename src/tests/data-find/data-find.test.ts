@@ -1,9 +1,9 @@
-import qs from "qs"
 import { expect, test } from "vitest"
+import { api } from "../../index"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("data-find", async ({ task }) => {
-  const { url, authorization } = await prepareTestServer(task)
+  const { ctx } = await prepareTestServer(task)
 
   const array = [
     { "@path": "users/0", country: "China" },
@@ -19,18 +19,11 @@ test("data-find", async ({ task }) => {
   ]
 
   for (const data of array) {
-    await fetch(new URL(`${data["@path"]}`, url), {
-      method: "POST",
-      headers: {
-        authorization,
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
+    await api.createData(ctx, data["@path"], data)
   }
 
   {
-    const query = qs.stringify({
+    const results = await api.dataFind(ctx, "users", {
       page: 1,
       size: 3,
       properties: {
@@ -38,21 +31,11 @@ test("data-find", async ({ task }) => {
       },
     })
 
-    const response = await fetch(
-      new URL(`users?kind=data-find&${query}`, url),
-      {
-        method: "GET",
-        headers: {
-          authorization,
-        },
-      },
-    )
-
-    expect((await response.json()).length).toEqual(3)
+    expect(results.length).toEqual(3)
   }
 
   {
-    const query = qs.stringify({
+    const results = await api.dataFind(ctx, "users", {
       page: 2,
       size: 3,
       properties: {
@@ -60,16 +43,6 @@ test("data-find", async ({ task }) => {
       },
     })
 
-    const response = await fetch(
-      new URL(`users?kind=data-find&${query}`, url),
-      {
-        method: "GET",
-        headers: {
-          authorization,
-        },
-      },
-    )
-
-    expect((await response.json()).length).toEqual(2)
+    expect(results.length).toEqual(2)
   }
 })

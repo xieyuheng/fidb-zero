@@ -1,6 +1,5 @@
 # client
 
-[client] data-find
 [client] directory
 [client] file
 [client] file-metadata
