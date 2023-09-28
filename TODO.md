@@ -1,4 +1,5 @@
 [docs] re-org manual by resource
+[docs] zh manual
 
 refactor `tests/` utils by `init`
 

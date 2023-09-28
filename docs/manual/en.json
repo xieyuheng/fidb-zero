@@ -4,11 +4,10 @@
   "version": "0.0.24",
   "authors": ["Xie Yuheng"],
   "date": "2023",
-  "src": "manual",
+  "src": "en",
   "main": "00-intro.md",
   "sections": {
     "default": [
-      "appendix-a-faq.md",
       "00-intro.md",
       "01-data-table.md",
       "02-metadata-properties.md",
