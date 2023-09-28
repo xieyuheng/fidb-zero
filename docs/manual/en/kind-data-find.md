@@ -13,7 +13,7 @@ we can specify `country` in `properties`,
 and the request should be:
 
 ```
-GET /users?kind=data-find&page=1&size=3&properties[country]=China
+GET /users?kind=data-find&page=1&size=3&properties.country=China
 ```
 
 There might be many query results,
