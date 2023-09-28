@@ -2,7 +2,7 @@
 title: kind=directory
 ---
 
-# POST {directory}?kind=directory
+## POST {directory}?kind=directory
 
 Create a directory.
 
@@ -12,7 +12,7 @@ For example:
 POST users/xieyuheng/public/contents?kind=directory
 ```
 
-# GET {directory}?kind=directory
+## GET {directory}?kind=directory
 
 Read a directory's direct subdirectories and files.
 
@@ -64,7 +64,7 @@ we can add `recursive` to the query:
 GET users/xieyuheng/public/contents?kind=directory&recursive
 ```
 
-# DELETE {directory}?kind=directory
+## DELETE {directory}?kind=directory
 
 Delete a directory recursively.
 

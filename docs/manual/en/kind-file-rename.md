@@ -2,7 +2,7 @@
 title: kind=file-rename
 ---
 
-# POST {flie}?kind=file-rename
+## POST {flie}?kind=file-rename
 
 Rename a file.
 

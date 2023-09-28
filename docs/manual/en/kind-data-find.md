@@ -2,7 +2,7 @@
 title: kind=data-find
 ---
 
-# GET {data-directory}?kind=data-find
+## GET {data-directory}?kind=data-find
 
 Find data in a data directory based on some properties.
 

@@ -2,7 +2,7 @@
 title: kind=password-login
 ---
 
-# POST {data-file}?kind=password-login
+## POST {data-file}?kind=password-login
 
 Login a user by password.
 
@@ -51,7 +51,7 @@ Note that, there is one level of indirect here,
 when we want to know the `permissions` of a token,
 we read it from the token's `issuer` instead of from the token data.
 
-# Permissions
+## Permissions
 
 We use a record (a JSON object) to represent permissions,
 where the key is a path pattern, and the value is an array of operations.

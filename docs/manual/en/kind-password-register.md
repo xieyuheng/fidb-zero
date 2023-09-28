@@ -2,7 +2,7 @@
 title: kind=password-register
 ---
 
-# POST {data-file}?kind=password-login
+## POST {data-file}?kind=password-login
 
 Register a user by password, to prepare a user for future logins.
 
@@ -59,7 +59,7 @@ we view it as referencing _system resource_,
 thus can not be access by normal operations,
 such as `data`, `file` and `directory` operations.
 
-# .config/password-register-strategy
+## .config/password-register-strategy
 
 We use `.config/password-register-strategy` data file,
 to configure which directory is allow to be login target,

@@ -30,7 +30,7 @@ password register and login,
 becasue it does not dependent on other services,
 thus the simplest to understand and implement.
 
-# The Authorization HTTP header
+## The Authorization HTTP header
 
 When sending a HTTP request,
 a user should add the token to
@@ -54,7 +54,7 @@ Authorization: token cc224145f46a393f8ca71c4eb62aafe1
 If no token is sent, a default token
 with default permissions will be used.
 
-# .config/default-token-issuer
+## .config/default-token-issuer
 
 We use `.config/default-token-issuer` data file to config the default permissions,
 which contains a `permissions` property

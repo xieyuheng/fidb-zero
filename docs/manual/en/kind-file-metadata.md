@@ -2,7 +2,7 @@
 title: kind=file-metadata
 ---
 
-# GET {flie}?kind=file-metadata
+## GET {flie}?kind=file-metadata
 
 Read a file's metadata.
 

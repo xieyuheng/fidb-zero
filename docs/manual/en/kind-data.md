@@ -7,7 +7,7 @@ When no `kind` query parameter is given:
 - `kind=data` will be the default if the path is a directory or does not exist.
 - `kind=file` will be the default if the path is a file.
 
-# POST {data-path}?kind=data
+## POST {data-path}?kind=data
 
 Create a data file.
 
@@ -38,7 +38,7 @@ users/xieyuheng/projects/inner/index.json
 users/xieyuheng/projects/pomodoro/index.json
 ```
 
-# GET {data-path}?kind=data
+## GET {data-path}?kind=data
 
 Read a data file.
 
@@ -58,7 +58,7 @@ GET users/xieyuheng/projects/inner
 GET users/xieyuheng/projects/pomodoro
 ```
 
-# PUT {data-path}?kind=data
+## PUT {data-path}?kind=data
 
 Update the whole data file.
 
@@ -94,7 +94,7 @@ PUT users/xieyuheng
 }
 ```
 
-# PATCH {data-path}?kind=data
+## PATCH {data-path}?kind=data
 
 Update some properties of a data file.
 
@@ -127,7 +127,7 @@ PATCH users/xieyuheng
 }
 ```
 
-# DELETE {data-path}?kind=data
+## DELETE {data-path}?kind=data
 
 Delete data file.
 

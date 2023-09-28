@@ -10,7 +10,7 @@ When no `kind` query parameter is given:
 This kind of resource is not limited to JSON data files,
 we can also use other kinds of files such as markdown, image, mp3 and so on.
 
-# POST {file}?kind=file
+## POST {file}?kind=file
 
 Create a file.
 
@@ -32,7 +32,7 @@ POST users/xieyuheng/human.txt?kind=file
 Hello, I am Xie Yuheng.
 ```
 
-# GET {file}?kind=file
+## GET {file}?kind=file
 
 Read a file.
 
@@ -46,7 +46,7 @@ The `Content-Type` of the HTTP response will be setted
 based on the corresponding file extension,
 for example, `.txt` maps to `text/plain`.
 
-# PUT {flie}?kind=file
+## PUT {flie}?kind=file
 
 Update a file.
 
@@ -61,7 +61,7 @@ PUT users/xieyuheng/human.txt?kind=file
 Hello, I am Xie Yuheng from China.
 ```
 
-# DELETE {flie}?kind=file
+## DELETE {flie}?kind=file
 
 
 Delete a file.
