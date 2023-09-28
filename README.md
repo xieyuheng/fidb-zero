@@ -3,7 +3,6 @@
 This is a Node.js implementation of [**FiDB**](https://fidb.app)
 -- a suite of protocols to use file system as database.
 
-
 Including a command-line tool to initialize and maintain database.
 
 ```
@@ -26,7 +25,6 @@ GET    {data-directory}?kind=data-find
 POST   {file}?kind=file
 GET    {file}?kind=file
 PUT    {flie}?kind=file
-PATCH  {flie}?kind=file
 DELETE {flie}?kind=file
 
 GET    {flie}?kind=file-metadata

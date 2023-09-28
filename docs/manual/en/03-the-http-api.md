@@ -44,7 +44,6 @@ and we will add more in the future.
   POST   {file}?kind=file
   GET    {file}?kind=file
   PUT    {flie}?kind=file
-  PATCH  {flie}?kind=file
   DELETE {flie}?kind=file
   ```
 

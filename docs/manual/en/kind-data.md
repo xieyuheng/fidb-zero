@@ -11,6 +11,9 @@ When no `kind` query parameter is given:
 
 Create a data file.
 
+If the data file already exists,
+error should be reported.
+
 For example, after the following `POST`s:
 
 ```
