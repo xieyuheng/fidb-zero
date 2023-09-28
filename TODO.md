@@ -1,6 +1,10 @@
 # client
 
-[client] data
+[client] data -- createData
+[client] data -- deleteData
+[client] data -- patchData
+[client] data -- putData
+
 [client] data-find
 [client] directory
 [client] file

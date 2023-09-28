@@ -13,6 +13,10 @@ export async function getData(
     },
   })
 
+  if (response.status === 404) {
+    return undefined
+  }
+
   checkResponse(ctx, response)
 
   return await response.json()
