@@ -1,5 +1,6 @@
 import { Data } from "../../database"
 import { ClientContext } from "../ClientContext"
+import { checkResponse } from "../checkResponse"
 
 export async function getData(
   ctx: ClientContext,
@@ -12,7 +13,7 @@ export async function getData(
     },
   })
 
-  // checkResponse(response)
+  checkResponse(ctx, response)
 
   return await response.json()
 }

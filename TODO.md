@@ -1,7 +1,5 @@
 # client
 
-[client] data -- `getData` -- call `checkResponse` which takes `ctx`
-
 [client] data
 [client] data-find
 [client] directory
