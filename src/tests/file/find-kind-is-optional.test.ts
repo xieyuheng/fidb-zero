@@ -10,19 +10,14 @@ test("file-content-type", async ({ task }) => {
   const bytes = new TextEncoder().encode(text)
   await api.fileCreate(ctx, `users/xieyuheng/human.txt`, bytes)
 
-  
-    const response = await fetch(
-      new URL(`users/xieyuheng/human.txt?kind=file`, url),
-      {
-        method: "GET",
-        headers: {
-          authorization,
-        },
-      },
-    )
+  const response = await fetch(new URL(`users/xieyuheng/human.txt`, url), {
+    method: "GET",
+    headers: {
+      authorization,
+    },
+  })
 
-    const headers = responseHeaders(response)
-    expect(headers["content-type"]).toEqual("text/plain")
-    expect(await response.text()).toEqual(text)
-  
+  const headers = responseHeaders(response)
+  expect(headers["content-type"]).toEqual("text/plain")
+  expect(await response.text()).toEqual(text)
 })
