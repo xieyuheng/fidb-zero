@@ -1,8 +1,9 @@
 import { expect, test } from "vitest"
+import { api } from "../../index"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("password-register-and-login", async ({ task }) => {
-  const { url, db } = await prepareTestServer(task)
+  const { url, ctx } = await prepareTestServer(task)
 
   {
     const response = await fetch(
@@ -32,14 +33,9 @@ test("password-register-and-login", async ({ task }) => {
     expect(created.name).toEqual("Xie Yuheng")
   }
 
-  const { token } = await (
-    await fetch(new URL(`users/xieyuheng?kind=password-login`, url), {
-      method: "POST",
-      body: JSON.stringify({
-        password: "123456",
-      }),
-    })
-  ).json()
+  const token = await api.passwordLogin(ctx, `users/xieyuheng`, {
+    password: "123456",
+  })
 
   expect(typeof token).toEqual("string")
 
