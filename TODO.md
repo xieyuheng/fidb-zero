@@ -1,5 +1,7 @@
 # client
 
+[resource] file functions should not take `Buffer` as argument
+
 [client] file
 [client] file-metadata
 [client] file-rename
