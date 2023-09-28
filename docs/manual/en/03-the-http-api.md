@@ -53,6 +53,12 @@ and we will add more in the future.
   GET    {flie}?kind=file-metadata
   ```
 
+- [kind=file-rename](kind-file-rename.md)
+
+  ```
+  POST   {flie}?kind=file-rename
+  ```
+
 - [kind=directory](kind-directory.md)
 
   ```

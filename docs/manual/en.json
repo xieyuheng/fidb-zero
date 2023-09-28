@@ -15,6 +15,7 @@
       "kind-data-find.md",
       "kind-file.md",
       "kind-file-metadata.md",
+      "kind-file-rename.md",
       "kind-directory.md",
       "04-access-token.md",
       "kind-password-login.md",

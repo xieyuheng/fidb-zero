@@ -1,6 +1,5 @@
 [docs] kind=password-login
 [docs] kind=password-register
-[docs] kind=file-rename
 
 # client
 
