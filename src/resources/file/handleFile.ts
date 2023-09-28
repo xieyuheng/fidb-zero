@@ -1,9 +1,8 @@
-import { Buffer } from "node:buffer"
 import Http from "node:http"
 import { Database } from "../../database"
 import { tokenAssert } from "../../token"
 import { Json } from "../../utils/Json"
-import { requestBuffer } from "../../utils/node/requestBuffer"
+import { requestBytes } from "../../utils/node/requestBytes"
 import { requestResolvedPath } from "../requestResolvedPath"
 import { requestToken } from "../requestToken"
 import { fileCreate } from "./fileCreate"
@@ -14,7 +13,7 @@ import { filePut } from "./filePut"
 export async function handleFile(
   db: Database,
   request: Http.IncomingMessage,
-): Promise<Json | Buffer | void> {
+): Promise<Json | Uint8Array | void> {
   const who = "handleFile"
   const path = requestResolvedPath(db, request)
   const token = await requestToken(request)
@@ -26,12 +25,12 @@ export async function handleFile(
 
   if (request.method === "POST") {
     await tokenAssert(db, token, path, "file:post")
-    return await fileCreate(db, path, await requestBuffer(request))
+    return await fileCreate(db, path, await requestBytes(request))
   }
 
   if (request.method === "PUT") {
     await tokenAssert(db, token, path, "file:put")
-    return await filePut(db, path, await requestBuffer(request))
+    return await filePut(db, path, await requestBytes(request))
   }
 
   if (request.method === "DELETE") {

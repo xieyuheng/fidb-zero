@@ -1,4 +1,3 @@
-import { Buffer } from "node:buffer"
 import Http from "node:http"
 import { Database } from "../database"
 import { Json } from "../utils/Json"
@@ -17,7 +16,7 @@ import { handlePing } from "./ping/handlePing"
 export type ResourceHandler = (
   db: Database,
   request: Http.IncomingMessage,
-) => Promise<Json | Buffer | void>
+) => Promise<Json | Uint8Array | void>
 
 export const resourceRoutes: Record<string, ResourceHandler> = {
   "": handleDefault,

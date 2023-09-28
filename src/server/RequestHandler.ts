@@ -5,4 +5,4 @@ export type RequestHandler<Context> = (
   ctx: Context,
   request: Http.IncomingMessage,
   response: Http.ServerResponse,
-) => Promise<Json | Buffer | void>
+) => Promise<Json | Uint8Array | void>

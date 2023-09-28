@@ -1,4 +1,3 @@
-import { Buffer } from "node:buffer"
 import Http from "node:http"
 import { Database } from "../../database"
 import { isFile } from "../../database/isFile"
@@ -10,7 +9,7 @@ import { Json } from "../../utils/Json"
 export async function handleDefault(
   db: Database,
   request: Http.IncomingMessage,
-): Promise<Json | Buffer | void> {
+): Promise<Json | Uint8Array | void> {
   const path = requestResolvedPath(db, request)
 
   if (await isFile(db, path)) {

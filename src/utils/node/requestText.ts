@@ -1,9 +1,9 @@
 import Http from "node:http"
-import { requestBuffer } from "./requestBuffer"
+import { requestBytes } from "./requestBytes"
 
 export async function requestText(
   request: Http.IncomingMessage,
 ): Promise<string> {
-  const buffer = await requestBuffer(request)
+  const buffer = await requestBytes(request)
   return buffer.toString()
 }

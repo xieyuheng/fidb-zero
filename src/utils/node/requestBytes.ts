@@ -1,11 +1,13 @@
 import { Buffer } from "node:buffer"
 import Http from "node:http"
 
-export function requestBuffer(request: Http.IncomingMessage): Promise<Buffer> {
+export function requestBytes(
+  request: Http.IncomingMessage,
+): Promise<Uint8Array> {
   return new Promise((resolve, reject) => {
-    const chunks: Array<Buffer> = []
+    const chunks: Array<Uint8Array> = []
 
-    request.on("data", (chunk: Buffer) => {
+    request.on("data", (chunk) => {
       chunks.push(chunk)
     })
 

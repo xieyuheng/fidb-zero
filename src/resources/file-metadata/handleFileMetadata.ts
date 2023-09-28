@@ -1,4 +1,3 @@
-import { Buffer } from "node:buffer"
 import Http from "node:http"
 import { Database } from "../../database"
 import { tokenAssert } from "../../token"
@@ -10,7 +9,7 @@ import { fileGetMetadataOrFail } from "./fileGetMetadataOrFail"
 export async function handleFileMetadata(
   db: Database,
   request: Http.IncomingMessage,
-): Promise<Json | Buffer | void> {
+): Promise<Json | void> {
   const who = "handleFileMetadata"
   const path = requestResolvedPath(db, request)
   const token = await requestToken(request)

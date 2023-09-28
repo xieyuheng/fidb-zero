@@ -1,6 +1,6 @@
 import { Buffer } from "node:buffer"
 import Http from "node:http"
-import { requestBuffer } from "./requestBuffer"
+import { requestBytes } from "./requestBytes"
 
 export async function requestFormatRaw(
   request: Http.IncomingMessage,
@@ -24,6 +24,6 @@ export async function requestFormatRaw(
     new TextEncoder().encode(head),
     new TextEncoder().encode("\r\n"),
     new TextEncoder().encode("\r\n"),
-    await requestBuffer(request),
+    await requestBytes(request),
   ])
 }

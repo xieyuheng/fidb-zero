@@ -1,4 +1,3 @@
-import { Buffer } from "node:buffer"
 import { Database } from "../../database"
 import { NotFound } from "../../errors"
 import { fileGetOrFail } from "./fileGetOrFail"
@@ -6,7 +5,7 @@ import { fileGetOrFail } from "./fileGetOrFail"
 export async function fileGet(
   db: Database,
   path: string,
-): Promise<Buffer | undefined> {
+): Promise<Uint8Array | undefined> {
   try {
     return await fileGetOrFail(db, path)
   } catch (error) {

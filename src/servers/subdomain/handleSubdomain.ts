@@ -1,4 +1,3 @@
-import { Buffer } from "node:buffer"
 import Http from "node:http"
 import { normalize, resolve } from "node:path"
 import { Database } from "../../database"
@@ -17,7 +16,7 @@ export async function handleSubdomain(
   ctx: Context,
   request: Http.IncomingMessage,
   response: Http.ServerResponse,
-): Promise<Json | Buffer | void> {
+): Promise<Json | Uint8Array | void> {
   const who = "handleSubdomain"
   const subdomain = await requestFindSubdomain(ctx, request)
   const pathname = requestPathname(request)

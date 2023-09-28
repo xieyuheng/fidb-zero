@@ -1,4 +1,3 @@
-import { Buffer } from "node:buffer"
 import Http from "node:http"
 import { Database } from "../../database"
 import { requestResolvedPath } from "../../resources/requestResolvedPath"
@@ -11,7 +10,7 @@ export async function handleDatabase(
   db: Database,
   request: Http.IncomingMessage,
   response: Http.ServerResponse,
-): Promise<Json | Buffer | void> {
+): Promise<Json | Uint8Array | void> {
   const who = "handleDatabase"
 
   if (request.method === "OPTIONS") {

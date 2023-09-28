@@ -12,7 +12,7 @@ import { fileRename } from "./fileRename"
 export async function handleFileRename(
   db: Database,
   request: Http.IncomingMessage,
-): Promise<Json | Buffer | void> {
+): Promise<Json | void> {
   const who = "handleFileRename"
   const path = requestResolvedPath(db, request)
   const token = await requestToken(request)
