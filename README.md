@@ -14,7 +14,7 @@ fidb serve [path]  Serve a database
 
 And a HTTP server to generate REST API from a database.
 
-```sh
+```
 POST   {data-path}?kind=data
 GET    {data-path}?kind=data
 PUT    {data-path}?kind=data
@@ -29,7 +29,7 @@ PUT    {flie}?kind=file
 PATCH  {flie}?kind=file
 DELETE {flie}?kind=file
 
-GET    {flie}?kind=file-metadata.
+GET    {flie}?kind=file-metadata
 
 POST   {directory}?kind=directory
 GET    {directory}?kind=directory

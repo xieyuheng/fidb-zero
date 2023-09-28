@@ -1,5 +1,12 @@
-[docs] re-org manual by resource
+[docs] fix en manual
 [docs] zh manual
+
+# client
+
+[client] setup api client
+[client] use api client in tests
+
+# refactor
 
 refactor `tests/` utils by `init`
 
