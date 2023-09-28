@@ -19,7 +19,7 @@ test("data-find", async ({ task }) => {
   ]
 
   for (const data of array) {
-    await api.createData(ctx, data["@path"], data)
+    await api.dataCreate(ctx, data["@path"], data)
   }
 
   {

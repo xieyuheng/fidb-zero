@@ -4,7 +4,7 @@ import { readBuffer } from "../../database/readBuffer"
 import { NotFound } from "../../errors"
 import { isErrnoException } from "../../utils/node/isErrnoException"
 
-export async function getFileOrFail(
+export async function fileGetOrFail(
   db: Database,
   path: string,
 ): Promise<Buffer> {

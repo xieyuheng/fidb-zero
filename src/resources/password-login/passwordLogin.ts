@@ -2,7 +2,7 @@ import { ty } from "@xieyuheng/ty"
 import { join } from "node:path"
 import { Database } from "../../database"
 import { Unauthorized } from "../../errors/Unauthorized"
-import { PasswordSchema, getDataOrFail } from "../../resources"
+import { PasswordSchema, dataGetOrFail } from "../../resources"
 import { tokenCreate } from "../../token/tokenCreate"
 import { passwordCheck } from "../../utils/node/password"
 
@@ -22,7 +22,7 @@ export async function passwordLogin(
   const who = "passwordLogin"
 
   const password = PasswordSchema.validate(
-    await getDataOrFail(db, join(directory, ".password")),
+    await dataGetOrFail(db, join(directory, ".password")),
   )
 
   if (await passwordCheck(options.password, password.hash)) {

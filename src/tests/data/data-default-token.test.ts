@@ -5,17 +5,17 @@ import { prepareTestServer } from "../prepareTestServer"
 test("data-default-token", async ({ task }) => {
   const { url, ctx } = await prepareTestServer(task)
 
-  await api.createData(ctx, `users/xieyuheng`, {
+  await api.dataCreate(ctx, `users/xieyuheng`, {
     username: "xieyuheng",
     name: "Xie Yuheng",
   })
 
-  await api.createData(ctx, `users/xieyuheng/projects/inner`, {
+  await api.dataCreate(ctx, `users/xieyuheng/projects/inner`, {
     name: "inner",
     description: "Ones inner universe.",
   })
 
-  await api.createData(ctx, `users/xieyuheng/public/projects/inner`, {
+  await api.dataCreate(ctx, `users/xieyuheng/public/projects/inner`, {
     name: "inner",
     description: "Ones inner universe.",
   })
@@ -36,13 +36,13 @@ test("data-default-token", async ({ task }) => {
   {
     // Default token can read user data.
 
-    await api.getDataOrFail(ctx, `users/xieyuheng`)
+    await api.dataGetOrFail(ctx, `users/xieyuheng`)
   }
 
   {
     // Default token can read public data.
 
-    const project = await api.getDataOrFail(
+    const project = await api.dataGetOrFail(
       ctx,
       `users/xieyuheng/public/projects/inner`,
     )

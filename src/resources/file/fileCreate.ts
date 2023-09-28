@@ -2,16 +2,16 @@ import { Buffer } from "node:buffer"
 import { Database } from "../../database"
 import { writeBuffer } from "../../database/writeBuffer"
 import { AlreadyExists } from "../../errors"
-import { getFile } from "./getFile"
+import { fileGet } from "./fileGet"
 
-export async function createFile(
+export async function fileCreate(
   db: Database,
   path: string,
   buffer: Buffer,
 ): Promise<void> {
-  const who = "createFile"
+  const who = "fileCreate"
 
-  const gotten = await getFile(db, path)
+  const gotten = await fileGet(db, path)
   if (gotten !== undefined) {
     throw new AlreadyExists(`[${who}] already exists, path: ${path}`)
   }

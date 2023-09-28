@@ -7,7 +7,7 @@ import { Json } from "../../utils/Json"
 import { requestJsonObject } from "../../utils/node/requestJsonObject"
 import { requestResolvedPath } from "../requestResolvedPath"
 import { requestToken } from "../requestToken"
-import { renameFile } from "./renameFile"
+import { fileRename } from "./fileRename"
 
 export async function handleFileRename(
   db: Database,
@@ -22,7 +22,7 @@ export async function handleFileRename(
     const schema = ty.object({ to: ty.string() })
     const { to } = schema.validate(await requestJsonObject(request))
     await tokenAssert(db, token, to, "file:post")
-    return await renameFile(db, path, to)
+    return await fileRename(db, path, to)
   }
 
   throw new Error(

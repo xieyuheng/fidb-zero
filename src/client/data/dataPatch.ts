@@ -1,21 +1,21 @@
 import { Data } from "../../database"
+import { JsonObject } from "../../utils/Json"
 import { ClientContext } from "../ClientContext"
 import { checkResponse } from "../checkResponse"
 
-export async function getData(
+export async function dataPatch(
   ctx: ClientContext,
   path: string,
-): Promise<Data | undefined> {
+  input: JsonObject,
+): Promise<Data> {
   const response = await fetch(new URL(path, ctx.url), {
-    method: "GET",
+    method: "PATCH",
     headers: {
       authorization: ctx.authorization,
+      "content-type": "application/json",
     },
+    body: JSON.stringify(input),
   })
-
-  if (response.status === 404) {
-    return undefined
-  }
 
   checkResponse(ctx, response)
 

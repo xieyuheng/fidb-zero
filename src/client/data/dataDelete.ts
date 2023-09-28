@@ -1,7 +1,7 @@
 import { ClientContext } from "../ClientContext"
 import { checkResponse } from "../checkResponse"
 
-export async function deleteData(
+export async function dataDelete(
   ctx: ClientContext,
   path: string,
   input: { "@revision": string },

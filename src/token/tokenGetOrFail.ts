@@ -1,6 +1,6 @@
 import { Database } from "../database"
 import { Unauthorized } from "../errors/Unauthorized"
-import { getData } from "../resources"
+import { dataGet } from "../resources"
 import { Token, TokenSchema } from "../token"
 import { isValidTokenName } from "../token/isValidTokenName"
 
@@ -14,7 +14,7 @@ export async function tokenGetOrFail(
     throw new Unauthorized(`[${who}] invalid token name: ${tokenName}`)
   }
 
-  const data = await getData(db, `.tokens/${tokenName}`)
+  const data = await dataGet(db, `.tokens/${tokenName}`)
 
   if (data === undefined) {
     throw new Unauthorized(`[${who}] invalid token name: ${tokenName}`)

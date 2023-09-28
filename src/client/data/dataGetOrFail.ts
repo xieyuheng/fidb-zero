@@ -2,7 +2,7 @@ import { Data } from "../../database"
 import { ClientContext } from "../ClientContext"
 import { checkResponse } from "../checkResponse"
 
-export async function getDataOrFail(
+export async function dataGetOrFail(
   ctx: ClientContext,
   path: string,
 ): Promise<Data> {

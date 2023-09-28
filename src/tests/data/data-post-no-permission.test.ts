@@ -1,13 +1,13 @@
 import { expect, test } from "vitest"
 import { allOperations, readOperations } from "../../permission"
-import { createData } from "../../resources"
+import { dataCreate } from "../../resources"
 import { tokenCreate } from "../../token"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("data-post-no-permission", async ({ task }) => {
   const { url, db } = await prepareTestServer(task)
 
-  await createData(db, "users/xyh/.login-token-issuer", {
+  await dataCreate(db, "users/xyh/.login-token-issuer", {
     permissions: {
       "users/*/**": readOperations,
       "users/xyh/**": allOperations,

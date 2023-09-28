@@ -1,14 +1,14 @@
 import { expect, test } from "vitest"
 import { api } from "../../index"
 import { allOperations, readOperations } from "../../permission"
-import { createData } from "../../resources"
+import { dataCreate } from "../../resources"
 import { tokenCreate } from "../../token"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("data-patch-no-permission", async ({ task }) => {
   const { url, db } = await prepareTestServer(task)
 
-  await createData(db, "users/xieyuheng/.login-token-issuer", {
+  await dataCreate(db, "users/xieyuheng/.login-token-issuer", {
     permissions: {
       "users/*": readOperations,
       "users/xieyuheng/**": allOperations,
@@ -23,15 +23,15 @@ test("data-patch-no-permission", async ({ task }) => {
 
   const ctx = api.createClientContext(url, tokenName)
 
-  const created = await api.createData(ctx, `users/xieyuheng`, {
+  const created = await api.dataCreate(ctx, `users/xieyuheng`, {
     username: "xieyuheng",
     name: "Xie Yuheng",
   })
 
   expect(created.name).toEqual("Xie Yuheng")
-  expect(await api.getData(ctx, `users/xieyuheng`)).toEqual(created)
+  expect(await api.dataGet(ctx, `users/xieyuheng`)).toEqual(created)
 
-  await createData(db, "users/xyh/.login-token-issuer", {
+  await dataCreate(db, "users/xyh/.login-token-issuer", {
     permissions: {
       "users/*": readOperations,
       "users/xyh/**": allOperations,
@@ -48,7 +48,7 @@ test("data-patch-no-permission", async ({ task }) => {
 
   // read is ok.
 
-  expect((await api.getDataOrFail(ctx, `users/xieyuheng`)).username).toEqual(
+  expect((await api.dataGetOrFail(ctx, `users/xieyuheng`)).username).toEqual(
     "xieyuheng",
   )
 

@@ -2,7 +2,7 @@ import Http from "node:http"
 import { handleDatabase } from "src/servers/database/handleDatabase"
 import { api } from "../index"
 import { allOperations } from "../permission"
-import { createData } from "../resources"
+import { dataCreate } from "../resources"
 import { createRequestListener } from "../server/createRequestListener"
 import { tokenCreate } from "../token"
 import { findPort } from "../utils/node/findPort"
@@ -26,7 +26,7 @@ export async function prepareTestServer(options: { name: string }) {
 
   await serverListen(server, { port, hostname })
 
-  await createData(db, "test-token-issuers/all-read-write", {
+  await dataCreate(db, "test-token-issuers/all-read-write", {
     permissions: {
       "**": allOperations,
     },

@@ -1,1 +1,1 @@
-export * from "./renameFile"
+export * from "./fileRename"

@@ -2,11 +2,12 @@ import fs from "node:fs"
 import { Database } from "../../database"
 import { resolvePath } from "../../database/resolvePath"
 
-export async function createDirectory(
+export async function directoryDelete(
   db: Database,
   directory: string,
 ): Promise<void> {
-  await fs.promises.mkdir(resolvePath(db, directory), {
+  await fs.promises.rm(resolvePath(db, directory), {
+    force: true,
     recursive: true,
   })
 }

@@ -2,10 +2,10 @@ import fs from "node:fs"
 import { Database } from "../../database"
 import { resolvePath } from "../../database/resolvePath"
 import { isErrnoException } from "../../utils/node/isErrnoException"
-import { getFileMetadataOrFail } from "../file-metadata/getFileMetadataOrFail"
+import { fileGetMetadataOrFail } from "../file-metadata/fileGetMetadataOrFail"
 import { PathEntry } from "./PathEntry"
 
-export async function* listAllDirectory(
+export async function* directoryListAll(
   db: Database,
   directory: string,
   options?: {
@@ -24,7 +24,7 @@ export async function* listAllDirectory(
       if (dirEntry.isDirectory()) {
         yield { kind: "Directory", path }
       } else if (dirEntry.isFile()) {
-        const fileMetadata = await getFileMetadataOrFail(db, path)
+        const fileMetadata = await fileGetMetadataOrFail(db, path)
         yield { kind: "File", path, ...fileMetadata }
       }
     }

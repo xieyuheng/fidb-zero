@@ -5,7 +5,7 @@ import { tokenAssert } from "../../token"
 import { Json } from "../../utils/Json"
 import { requestResolvedPath } from "../requestResolvedPath"
 import { requestToken } from "../requestToken"
-import { getFileMetadataOrFail } from "./getFileMetadataOrFail"
+import { fileGetMetadataOrFail } from "./fileGetMetadataOrFail"
 
 export async function handleFileMetadata(
   db: Database,
@@ -17,7 +17,7 @@ export async function handleFileMetadata(
 
   if (request.method === "GET") {
     await tokenAssert(db, token, path, "file:get")
-    return await getFileMetadataOrFail(db, path)
+    return await fileGetMetadataOrFail(db, path)
   }
 
   throw new Error(

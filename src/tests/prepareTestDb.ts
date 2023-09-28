@@ -1,7 +1,7 @@
 import fs from "node:fs"
 import { join, resolve } from "node:path"
 import { loadDatabase } from "../database"
-import { createData } from "../resources"
+import { dataCreate } from "../resources"
 import { formatDateTime } from "../utils/formatDate"
 import { randomHexString } from "../utils/randomHexString"
 import { slug } from "../utils/slug"
@@ -29,17 +29,17 @@ export async function prepareTestDb(options: { name: string }) {
 
   const db = await loadDatabase({ directory })
 
-  await createData(db, ".config/password-register-strategy", {
+  await dataCreate(db, ".config/password-register-strategy", {
     loginTargets: {
       ...userLoginTargets,
     },
   })
 
-  await createData(db, ".config/default-token-issuer", {
+  await dataCreate(db, ".config/default-token-issuer", {
     permissions: defaultPermissions,
   })
 
-  await createData(db, ".tokens/default", {
+  await dataCreate(db, ".tokens/default", {
     issuer: ".config/default-token-issuer",
   })
 

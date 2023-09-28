@@ -1,2 +1,2 @@
-export * from "./getFileMetadata"
-export * from "./getFileMetadataOrFail"
+export * from "./fileGetMetadata"
+export * from "./fileGetMetadataOrFail"

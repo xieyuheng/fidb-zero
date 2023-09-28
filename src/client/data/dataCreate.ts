@@ -3,7 +3,7 @@ import { JsonObject } from "../../utils/Json"
 import { ClientContext } from "../ClientContext"
 import { checkResponse } from "../checkResponse"
 
-export async function createData(
+export async function dataCreate(
   ctx: ClientContext,
   path: string,
   input: JsonObject,

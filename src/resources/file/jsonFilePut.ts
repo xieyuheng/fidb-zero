@@ -3,16 +3,16 @@ import { Database } from "../../database"
 import { writeBuffer } from "../../database/writeBuffer"
 import { NotFound } from "../../errors"
 import { Json } from "../../utils/Json"
-import { getFile } from "./getFile"
+import { fileGet } from "./fileGet"
 
-export async function putJsonFile(
+export async function jsonFilePut(
   db: Database,
   path: string,
   json: Json,
 ): Promise<void> {
-  const gotten = await getFile(db, path)
+  const gotten = await fileGet(db, path)
   if (gotten === undefined) {
-    throw new NotFound(`[putJsonFile] not found, path ${path}`)
+    throw new NotFound(`[jsonFilePut] not found, path ${path}`)
   }
 
   await writeBuffer(db, path, Buffer.from(JSON.stringify(json)))

@@ -10,11 +10,11 @@ export type FileMetadata = {
   updatedAt: number
 }
 
-export async function getFileMetadataOrFail(
+export async function fileGetMetadataOrFail(
   db: Database,
   path: string,
 ): Promise<FileMetadata> {
-  const who = "getFileMetadataOrFail"
+  const who = "fileGetMetadataOrFail"
 
   try {
     const stats = await fs.promises.stat(resolvePath(db, path))

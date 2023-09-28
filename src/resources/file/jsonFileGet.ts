@@ -1,16 +1,16 @@
 import { Database } from "../../database"
 import { NotFound } from "../../errors"
 import { Json } from "../../utils/Json"
-import { getFileOrFail } from "./getFileOrFail"
+import { fileGetOrFail } from "./fileGetOrFail"
 
-export async function getJsonFile(
+export async function jsonFileGet(
   db: Database,
   path: string,
 ): Promise<Json | undefined> {
   try {
-    const who = "getJsonFile"
+    const who = "jsonFileGet"
 
-    const buffer = await getFileOrFail(db, path)
+    const buffer = await fileGetOrFail(db, path)
     const text = buffer.toString()
 
     try {

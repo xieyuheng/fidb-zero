@@ -4,7 +4,7 @@ import { Database } from "../../database"
 import { Unauthorized } from "../../errors"
 import { applyPathPatternRecordKeys } from "../../path-pattern/applyPathPatternRecordKeys"
 import { matchPathPattern } from "../../path-pattern/matchPathPattern"
-import { createData, getDataOrFail } from "../../resources"
+import { dataCreate, dataGetOrFail } from "../../resources"
 import { passwordHash } from "../../utils/node/password"
 import { PasswordRegisterStrategySchema } from "./PasswordRegisterStrategy"
 
@@ -26,7 +26,7 @@ export async function passwordRegister(
   const who = "passwordRegister"
 
   const strategy = PasswordRegisterStrategySchema.validate(
-    await getDataOrFail(db, ".config/password-register-strategy"),
+    await dataGetOrFail(db, ".config/password-register-strategy"),
   )
 
   for (const [pattern, tokenIssuer] of Object.entries(strategy.loginTargets)) {
@@ -37,11 +37,11 @@ export async function passwordRegister(
         results,
       )
 
-      await createData(db, join(directory, ".login-token-issuer"), {
+      await dataCreate(db, join(directory, ".login-token-issuer"), {
         permissions,
       })
 
-      await createData(db, join(directory, ".password"), {
+      await dataCreate(db, join(directory, ".password"), {
         hash: await passwordHash(options.password),
         memo: options.memo,
       })

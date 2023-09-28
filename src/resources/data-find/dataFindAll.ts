@@ -3,7 +3,7 @@ import { Data, Database } from "../../database"
 import { resolvePath } from "../../database/resolvePath"
 import { JsonAtom } from "../../utils/Json"
 import { isErrnoException } from "../../utils/node/isErrnoException"
-import { getData } from "../data/getData"
+import { dataGet } from "../data/dataGet"
 
 export type DataFindAllOptions = {
   properties: Record<string, JsonAtom>
@@ -21,7 +21,7 @@ export async function* dataFindAll(
 
     for await (const dirEntry of dir) {
       if (dirEntry.isDirectory()) {
-        const data = await getData(db, `${directory}/${dirEntry.name}`)
+        const data = await dataGet(db, `${directory}/${dirEntry.name}`)
         if (data !== undefined) {
           if (
             Object.entries(options.properties).every(

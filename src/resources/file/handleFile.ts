@@ -6,10 +6,10 @@ import { Json } from "../../utils/Json"
 import { requestBuffer } from "../../utils/node/requestBuffer"
 import { requestResolvedPath } from "../requestResolvedPath"
 import { requestToken } from "../requestToken"
-import { createFile } from "./createFile"
-import { deleteFile } from "./deleteFile"
-import { getFileOrFail } from "./getFileOrFail"
-import { putFile } from "./putFile"
+import { fileCreate } from "./fileCreate"
+import { fileDelete } from "./fileDelete"
+import { fileGetOrFail } from "./fileGetOrFail"
+import { filePut } from "./filePut"
 
 export async function handleFile(
   db: Database,
@@ -21,22 +21,22 @@ export async function handleFile(
 
   if (request.method === "GET") {
     await tokenAssert(db, token, path, "file:get")
-    return await getFileOrFail(db, path)
+    return await fileGetOrFail(db, path)
   }
 
   if (request.method === "POST") {
     await tokenAssert(db, token, path, "file:post")
-    return await createFile(db, path, await requestBuffer(request))
+    return await fileCreate(db, path, await requestBuffer(request))
   }
 
   if (request.method === "PUT") {
     await tokenAssert(db, token, path, "file:put")
-    return await putFile(db, path, await requestBuffer(request))
+    return await filePut(db, path, await requestBuffer(request))
   }
 
   if (request.method === "DELETE") {
     await tokenAssert(db, token, path, "file:delete")
-    return await deleteFile(db, path)
+    return await fileDelete(db, path)
   }
 
   throw new Error(

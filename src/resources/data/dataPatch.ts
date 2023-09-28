@@ -4,16 +4,16 @@ import { randomRevision } from "../../database/randomRevision"
 import { writeData } from "../../database/writeData"
 import { NotFound, RevisionMismatch } from "../../errors"
 import { JsonObject } from "../../utils/Json"
-import { getData } from "./getData"
+import { dataGet } from "./dataGet"
 
-export async function patchData(
+export async function dataPatch(
   db: Database,
   path: string,
   input: JsonObject,
 ): Promise<Data> {
-  const who = "patchData"
+  const who = "dataPatch"
 
-  const data = await getData(db, path)
+  const data = await dataGet(db, path)
   if (data === undefined) {
     throw new NotFound(`[${who}] not found, path ${path}`)
   }
