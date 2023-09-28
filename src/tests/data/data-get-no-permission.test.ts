@@ -20,7 +20,7 @@ test("data-get-no-permission", async ({ task }) => {
 
   let authorization = `token ${tokenName}`
 
-  const ctx = { url, token: tokenName, authorization }
+  const ctx = api.createClientContext(url, tokenName)
 
   const created = await api.createData(ctx, `users/xieyuheng`, {
     username: "xieyuheng",

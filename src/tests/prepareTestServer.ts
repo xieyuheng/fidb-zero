@@ -1,5 +1,6 @@
 import Http from "node:http"
 import { handleDatabase } from "src/servers/database/handleDatabase"
+import { api } from "../index"
 import { allOperations } from "../permission"
 import { createData } from "../resources"
 import { createRequestListener } from "../server/createRequestListener"
@@ -39,11 +40,7 @@ export async function prepareTestServer(options: { name: string }) {
 
   const url = new URL(`http://${hostname}:${port}`)
 
-  const ctx = {
-    url,
-    authorization,
-    token: tokenName,
-  }
+  const ctx = api.createClientContext(url, tokenName)
 
   return { url, db, authorization, ctx }
 }
