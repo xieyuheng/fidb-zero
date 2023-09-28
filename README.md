@@ -1,5 +1,9 @@
 # FiDB
 
+[ [Webwite](https://fidb.app)
+| [Manual](https://readonly.link/manuals/https://code-of-fidb.fidb.app/docs/manual/en.json)
+| [手册](https://readonly.link/manuals/https://code-of-fidb.fidb.app/docs/manual/zh.json) ]
+
 This is a Node.js implementation of [**FiDB**](https://fidb.app)
 -- a suite of protocols to use file system as database.
 

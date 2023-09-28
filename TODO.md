@@ -1,3 +1,9 @@
+[docs] Tools
+
+[docs] FiDB Server
+[docs] FiDB Client
+[docs] FiDB Manager
+
 # client
 
 [client] setup api client
@@ -18,8 +24,6 @@ refactor `tests/` utils by `init`
 # docs
 
 [docs] update en manual about password register and login
-
-[website] fidb-website support chinese version
 
 [docs] zh manual
 
