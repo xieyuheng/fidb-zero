@@ -9,10 +9,14 @@ import { fileGet } from "../file/fileGet"
 export async function fileRename(
   db: Database,
   from: string,
-  to: string,
-  options?: { override?: boolean },
+  options: {
+    to: string
+    override?: boolean
+  },
 ): Promise<void> {
   const who = "fileRename"
+
+  const { to } = options
 
   if (!options?.override) {
     const gotten = await fileGet(db, to)

@@ -22,7 +22,7 @@ test("file-get-metadata", async ({ task }) => {
     expect(typeof metadata.updatedAt).toEqual("number")
   }
 
-  await api.fileDelete(ctx, `users/xieyuheng/human.txt?kind=file`)
+  await api.fileDelete(ctx, `users/xieyuheng/human.txt`)
 
   {
     const metadata = await api.fileGetMetadata(ctx, `users/xieyuheng/human.txt`)

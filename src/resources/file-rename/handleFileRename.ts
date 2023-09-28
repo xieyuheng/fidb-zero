@@ -21,7 +21,7 @@ export async function handleFileRename(
     const schema = ty.object({ to: ty.string() })
     const { to } = schema.validate(await requestJsonObject(request))
     await tokenAssert(db, token, to, "file:post")
-    return await fileRename(db, path, to)
+    return await fileRename(db, path, { to })
   }
 
   throw new Error(

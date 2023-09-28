@@ -1,6 +1,5 @@
 # client
 
-[client] file-rename
 [client] password-login
 [client] password-register
 
