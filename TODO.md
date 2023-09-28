@@ -1,5 +1,7 @@
 # client
 
+createClientContext
+
 [client] data-find
 [client] directory
 [client] file

@@ -1,4 +1,5 @@
 import { expect, test } from "vitest"
+import { api } from "../../index"
 import { allOperations } from "../../permission"
 import { createData } from "../../resources"
 import { tokenCreate } from "../../token"
@@ -19,31 +20,15 @@ test("data-get-no-permission", async ({ task }) => {
 
   let authorization = `token ${tokenName}`
 
-  const created = await (
-    await fetch(new URL(`users/xieyuheng`, url), {
-      method: "POST",
-      headers: {
-        authorization,
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        username: "xieyuheng",
-        name: "Xie Yuheng",
-      }),
-    })
-  ).json()
+  const ctx = { url, token: tokenName, authorization }
+
+  const created = await api.createData(ctx, `users/xieyuheng`, {
+    username: "xieyuheng",
+    name: "Xie Yuheng",
+  })
 
   expect(created.name).toEqual("Xie Yuheng")
-  expect(
-    await (
-      await fetch(new URL(`users/xieyuheng`, url), {
-        method: "GET",
-        headers: {
-          authorization,
-        },
-      })
-    ).json(),
-  ).toEqual(created)
+  expect(await api.getData(ctx, `users/xieyuheng`)).toEqual(created)
 
   await createData(db, "users/xyh/.login-token-issuer", {
     permissions: {

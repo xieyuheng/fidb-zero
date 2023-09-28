@@ -5,7 +5,7 @@ import { checkResponse } from "../checkResponse"
 export async function getDataOrFail(
   ctx: ClientContext,
   path: string,
-): Promise<Data | undefined> {
+): Promise<Data> {
   const response = await fetch(new URL(path, ctx.url), {
     method: "GET",
     headers: {

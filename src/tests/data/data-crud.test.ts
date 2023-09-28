@@ -3,7 +3,7 @@ import { api } from "../../index"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("data-crud", async ({ task }) => {
-  const { url, ctx, authorization } = await prepareTestServer(task)
+  const { ctx } = await prepareTestServer(task)
 
   const created = await api.createData(ctx, `users/xieyuheng`, {
     username: "xieyuheng",

@@ -1,43 +1,23 @@
 import { expect, test } from "vitest"
+import { api } from "../../index"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("data-default-token", async ({ task }) => {
-  const { url, authorization } = await prepareTestServer(task)
+  const { url, ctx } = await prepareTestServer(task)
 
-  await fetch(new URL(`users/xieyuheng`, url), {
-    method: "POST",
-    headers: {
-      authorization,
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      username: "xieyuheng",
-      name: "Xie Yuheng",
-    }),
+  await api.createData(ctx, `users/xieyuheng`, {
+    username: "xieyuheng",
+    name: "Xie Yuheng",
   })
 
-  await fetch(new URL(`users/xieyuheng/projects/inner`, url), {
-    method: "POST",
-    headers: {
-      authorization,
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      name: "inner",
-      description: "Ones inner universe.",
-    }),
+  await api.createData(ctx, `users/xieyuheng/projects/inner`, {
+    name: "inner",
+    description: "Ones inner universe.",
   })
 
-  await fetch(new URL(`users/xieyuheng/public/projects/inner`, url), {
-    method: "POST",
-    headers: {
-      authorization,
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      name: "inner",
-      description: "Ones inner universe.",
-    }),
+  await api.createData(ctx, `users/xieyuheng/public/projects/inner`, {
+    name: "inner",
+    description: "Ones inner universe.",
   })
 
   {
@@ -56,26 +36,18 @@ test("data-default-token", async ({ task }) => {
   {
     // Default token can read user data.
 
-    const response = await fetch(new URL(`users/xieyuheng`, url), {
-      method: "GET",
-    })
-
-    expect(response.status).toEqual(200)
+    await api.getDataOrFail(ctx, `users/xieyuheng`)
   }
 
   {
     // Default token can read public data.
 
-    const response = await fetch(
-      new URL(`users/xieyuheng/public/projects/inner`, url),
-      {
-        method: "GET",
-      },
+    const project = await api.getDataOrFail(
+      ctx,
+      `users/xieyuheng/public/projects/inner`,
     )
 
-    const json = await response.json()
-
-    expect(json.name).toEqual("inner")
-    expect(json.description).toEqual("Ones inner universe.")
+    expect(project.name).toEqual("inner")
+    expect(project.description).toEqual("Ones inner universe.")
   }
 })
