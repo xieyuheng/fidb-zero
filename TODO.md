@@ -1,6 +1,5 @@
 # client
 
-[client] ping
 [client] info
 
 [client] data -- createData

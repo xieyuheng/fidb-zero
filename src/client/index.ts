@@ -1,6 +1,7 @@
 export * from "./ClientContext"
 export * from "./ClientError"
 export * from "./data"
+export * from "./ping"
 // export * from "./data-find"
 // export * from "./directory"
 // export * from "./file"

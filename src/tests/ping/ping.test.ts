@@ -1,17 +1,9 @@
 import { expect, test } from "vitest"
+import { api } from "../../index"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("ping", async ({ task }) => {
-  const { url, db } = await prepareTestServer(task)
+  const { url, db, ctx } = await prepareTestServer(task)
 
-  expect(
-    await (
-      await fetch(new URL(`?kind=ping`, url), {
-        method: "GET",
-        headers: {
-          "content-type": "application/json",
-        },
-      })
-    ).json(),
-  ).toEqual("pong")
+  expect(await api.ping(ctx)).toEqual("pong")
 })
