@@ -1,5 +1,3 @@
-[client] password-register
-
 # refactor
 
 refactor `tests/` utils by `init`

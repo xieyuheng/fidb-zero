@@ -1,9 +1,7 @@
-import { ty } from "@xieyuheng/ty"
 import Http from "node:http"
 import { Database } from "../../database"
 import { Json } from "../../utils/Json"
 import { requestJsonObject } from "../../utils/node/requestJsonObject"
-import { dataCreate } from "../data"
 import { requestResolvedPath } from "../requestResolvedPath"
 import {
   PasswordRegisterOptionsSchema,
@@ -18,21 +16,11 @@ export async function handlePasswordRegister(
   const path = requestResolvedPath(db, request)
 
   if (request.method === "POST") {
-    const schema = ty.object({
-      data: ty.any(),
-      options: PasswordRegisterOptionsSchema,
-    })
+    const options = PasswordRegisterOptionsSchema.validate(
+      await requestJsonObject(request),
+    )
 
-    const { data, options } = schema.validate(await requestJsonObject(request))
-
-    const created = await dataCreate(db, path, data)
-
-    await passwordRegister(db, created["@path"], {
-      memo: options.memo,
-      password: options.password,
-    })
-
-    return created
+    return await passwordRegister(db, path, options)
   }
 
   throw new Error(

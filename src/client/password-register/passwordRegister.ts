@@ -1,10 +1,24 @@
 import { PasswordRegisterOptions } from "../../resources"
 import { ClientContext } from "../ClientContext"
+import { checkResponse } from "../checkResponse"
 
 export async function passwordRegister(
   ctx: ClientContext,
-  directory: string,
+  path: string,
   options: PasswordRegisterOptions,
 ): Promise<void> {
-  //
+  const response = await fetch(
+    new URL(`${path}?kind=password-register`, ctx.url),
+    {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(options),
+    },
+  )
+
+  checkResponse(ctx, response)
+
+  return await response.json()
 }

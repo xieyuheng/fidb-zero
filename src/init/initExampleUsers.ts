@@ -1,5 +1,5 @@
 import { Database } from "../database"
-import { dataCreate, passwordRegister } from "../resources"
+import { passwordRegister } from "../resources"
 import { JsonObject } from "../utils/Json"
 import { log } from "../utils/log"
 
@@ -18,20 +18,12 @@ export async function initExampleUsers(db: Database): Promise<void> {
 export async function initExampleUser(
   db: Database,
   username: string,
-
   options: { data: JsonObject; password: string },
 ): Promise<void> {
   const who = "initExampleUser"
   const path = `users/${username}`
 
-  const { data, password } = options
+  await passwordRegister(db, path, options)
 
-  await dataCreate(db, path, data)
-
-  await passwordRegister(db, path, {
-    memo: who,
-    password,
-  })
-
-  log({ who, path, password })
+  log({ who, path })
 }

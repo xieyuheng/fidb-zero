@@ -1,4 +1,5 @@
 import { expect, test } from "vitest"
+import { createClientContext } from "../../client"
 import { api } from "../../index"
 import { prepareTestServer } from "../prepareTestServer"
 
@@ -6,28 +7,13 @@ test("password-register-and-login", async ({ task }) => {
   const { url, ctx } = await prepareTestServer(task)
 
   {
-    const response = await fetch(
-      new URL(`users/xieyuheng?kind=password-register`, url),
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          data: {
-            username: "xieyuheng",
-            name: "Xie Yuheng",
-          },
-          options: {
-            password: "123456",
-          },
-        }),
+    const created = await api.passwordRegister(ctx, `users/xieyuheng`, {
+      data: {
+        username: "xieyuheng",
+        name: "Xie Yuheng",
       },
-    )
-
-    expect(response.ok).toEqual(true)
-
-    const created = await response.json()
+      password: "123456",
+    })
 
     expect(created.username).toEqual("xieyuheng")
     expect(created.name).toEqual("Xie Yuheng")
@@ -43,44 +29,20 @@ test("password-register-and-login", async ({ task }) => {
 
   {
     // The `token` can read user data.
-
-    const response = await fetch(new URL(`users/xieyuheng?kind=data`, url), {
-      method: "GET",
-      headers: {
-        authorization: `token ${token}`,
-      },
-    })
-
-    expect(response.ok).toEqual(true)
-
-    const gotten = await response.json()
-
+    const ctx = createClientContext(url, token)
+    const gotten = await api.dataGetOrFail(ctx, `users/xieyuheng`)
     expect(gotten.name).toEqual("Xie Yuheng")
-
     revision = gotten["@revision"]
   }
 
   {
     // The `token` can update user data.
-
-    const response = await fetch(new URL(`users/xieyuheng`, url), {
-      method: "PATCH",
-      headers: {
-        authorization: `token ${token}`,
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        "@revision": revision,
-        name: "谢宇恒",
-      }),
+    const ctx = createClientContext(url, token)
+    const patched = await api.dataPatch(ctx, `users/xieyuheng`, {
+      "@revision": revision,
+      name: "谢宇恒",
     })
-
-    expect(response.ok).toEqual(true)
-
-    const patched = await response.json()
-
     expect(patched.name).toEqual("谢宇恒")
-
     revision = patched["@revision"]
   }
 })

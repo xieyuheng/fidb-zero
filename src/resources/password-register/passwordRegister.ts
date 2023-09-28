@@ -1,54 +1,59 @@
 import { ty } from "@xieyuheng/ty"
 import { join } from "node:path"
-import { Database } from "../../database"
+import { Data, Database } from "../../database"
 import { Unauthorized } from "../../errors"
 import { applyPathPatternRecordKeys } from "../../path-pattern/applyPathPatternRecordKeys"
 import { matchPathPattern } from "../../path-pattern/matchPathPattern"
 import { dataCreate, dataGetOrFail } from "../../resources"
+import { JsonObject, isJsonObject } from "../../utils/Json"
 import { passwordHash } from "../../utils/node/password"
 import { PasswordRegisterStrategySchema } from "./PasswordRegisterStrategy"
 
 export type PasswordRegisterOptions = {
+  data: JsonObject
   memo?: string
   password: string
 }
 
 export const PasswordRegisterOptionsSchema = ty.object({
+  data: ty.guard(isJsonObject),
   memo: ty.optional(ty.string()),
   password: ty.string(),
 })
 
 export async function passwordRegister(
   db: Database,
-  directory: string,
+  path: string,
   options: PasswordRegisterOptions,
-): Promise<void> {
+): Promise<Data> {
   const who = "passwordRegister"
+
+  const { password, memo, data } = options
 
   const strategy = PasswordRegisterStrategySchema.validate(
     await dataGetOrFail(db, ".config/password-register-strategy"),
   )
 
   for (const [pattern, tokenIssuer] of Object.entries(strategy.loginTargets)) {
-    const results = matchPathPattern(pattern, directory)
+    const results = matchPathPattern(pattern, path)
     if (results !== undefined) {
       const permissions = applyPathPatternRecordKeys(
         tokenIssuer.permissions,
         results,
       )
 
-      await dataCreate(db, join(directory, ".login-token-issuer"), {
+      await dataCreate(db, join(path, ".login-token-issuer"), {
         permissions,
       })
 
-      await dataCreate(db, join(directory, ".password"), {
-        hash: await passwordHash(options.password),
-        memo: options.memo,
+      await dataCreate(db, join(path, ".password"), {
+        hash: await passwordHash(password),
+        memo: memo,
       })
 
-      return
+      return await dataCreate(db, path, data)
     }
   }
 
-  throw new Unauthorized(`[${who}] ${directory} is not login target`)
+  throw new Unauthorized(`[${who}] ${path} is not login target`)
 }
