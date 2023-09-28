@@ -1,47 +1,21 @@
 import { expect, test } from "vitest"
-import { PathEntry } from "../../resources/directory/PathEntry"
+import { api } from "../../index"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("directory-delete", async ({ task }) => {
-  const { url, authorization } = await prepareTestServer(task)
+  const { ctx } = await prepareTestServer(task)
 
-  await fetch(new URL(`users?kind=directory`, url), {
-    method: "POST",
-    headers: {
-      authorization,
-    },
-  })
+  await api.directoryCreate(ctx, `users`)
 
   {
-    const response = await fetch(new URL(`?kind=directory`, url), {
-      method: "GET",
-      headers: {
-        authorization,
-      },
-    })
-    const results = await response.json()
-    expect(
-      Boolean(results.find(({ path }: PathEntry) => path === "users")),
-    ).toEqual(true)
+    const results = await api.directoryList(ctx, "")
+    expect(Boolean(results.find(({ path }) => path === "users"))).toEqual(true)
   }
 
-  await fetch(new URL(`users?kind=directory`, url), {
-    method: "DELETE",
-    headers: {
-      authorization,
-    },
-  })
+  await api.directoryDelete(ctx, `users`)
 
   {
-    const response = await fetch(new URL(`?kind=directory`, url), {
-      method: "GET",
-      headers: {
-        authorization,
-      },
-    })
-    const results = await response.json()
-    expect(
-      Boolean(results.find(({ path }: PathEntry) => path === "users")),
-    ).toEqual(false)
+    const results = await api.directoryList(ctx, "")
+    expect(Boolean(results.find(({ path }) => path === "users"))).toEqual(false)
   }
 })

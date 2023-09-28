@@ -2,20 +2,23 @@ import { Database } from "../../database"
 import { PathEntry } from "./PathEntry"
 import { directoryListAll } from "./directoryListAll"
 
-export type ListOptions = {
-  page: number // NOTE starting from 1
-  size: number
+export type DirectoryListOptions = {
+  page?: number // NOTE starting from 1
+  size?: number
   recursive?: boolean
 }
 
 export async function* directoryList(
   db: Database,
   directory: string,
-  options: ListOptions,
+  options: DirectoryListOptions,
 ): AsyncIterable<PathEntry> {
-  const offset = options.page - 1
-  const start = offset * options.size
-  const end = start + options.size
+  const page = options.page || 1
+  const size = options.size || 50
+
+  const offset = page - 1
+  const start = offset * size
+  const end = start + size
   let count = 0
 
   for await (const pathEntry of directoryListAll(db, directory, {

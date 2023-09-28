@@ -2,7 +2,7 @@
 title: FiDB Client
 ---
 
-A JavaScript implementation of FiDB Clinet is at:
+A JavaScript implementation of FiDB Client is at:
 
 - [github.com/fidb-official/fidb](https://github.com/fidb-official/fidb)
 

@@ -1,73 +1,29 @@
 import { expect, test } from "vitest"
-import { PathEntry } from "../../resources/directory/PathEntry"
+import { api } from "../../index"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("directory-get", async ({ task }) => {
-  const { url, authorization } = await prepareTestServer(task)
+  const { ctx } = await prepareTestServer(task)
 
   {
-    const response = await fetch(new URL(`?kind=directory`, url), {
-      method: "GET",
-      headers: {
-        authorization,
-      },
-    })
-    const results = await response.json()
-    expect(
-      Boolean(results.find(({ path }: PathEntry) => path === "users")),
-    ).toEqual(false)
-    expect(
-      Boolean(results.find(({ path }: PathEntry) => path === "posts")),
-    ).toEqual(false)
+    const results = await api.directoryList(ctx, "")
+    expect(Boolean(results.find(({ path }) => path === "users"))).toEqual(false)
+    expect(Boolean(results.find(({ path }) => path === "posts"))).toEqual(false)
   }
 
-  await fetch(new URL(`users/1`, url), {
-    method: "POST",
-    headers: {
-      authorization,
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({}),
-  })
+  await api.dataCreate(ctx, `users/1`, {})
 
   {
-    const response = await fetch(new URL(`?kind=directory`, url), {
-      method: "GET",
-      headers: {
-        authorization,
-      },
-    })
-    const results = await response.json()
-    expect(
-      Boolean(results.find(({ path }: PathEntry) => path === "users")),
-    ).toEqual(true)
-    expect(
-      Boolean(results.find(({ path }: PathEntry) => path === "posts")),
-    ).toEqual(false)
+    const results = await api.directoryList(ctx, "")
+    expect(Boolean(results.find(({ path }) => path === "users"))).toEqual(true)
+    expect(Boolean(results.find(({ path }) => path === "posts"))).toEqual(false)
   }
 
-  await fetch(new URL(`posts/1`, url), {
-    method: "POST",
-    headers: {
-      authorization,
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({}),
-  })
+  await api.dataCreate(ctx, `posts/1`, {})
 
   {
-    const response = await fetch(new URL(`?kind=directory`, url), {
-      method: "GET",
-      headers: {
-        authorization,
-      },
-    })
-    const results = await response.json()
-    expect(
-      Boolean(results.find(({ path }: PathEntry) => path === "users")),
-    ).toEqual(true)
-    expect(
-      Boolean(results.find(({ path }: PathEntry) => path === "posts")),
-    ).toEqual(true)
+    const results = await api.directoryList(ctx, "")
+    expect(Boolean(results.find(({ path }) => path === "users"))).toEqual(true)
+    expect(Boolean(results.find(({ path }) => path === "posts"))).toEqual(true)
   }
 })

@@ -1,9 +1,11 @@
 # client
 
-[client] directory
 [client] file
 [client] file-metadata
 [client] file-rename
+
+[client] improve test directory-get-file-metadata
+
 [client] password-login
 [client] password-register
 

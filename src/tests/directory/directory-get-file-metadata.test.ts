@@ -3,7 +3,7 @@ import { PathEntry } from "../../resources/directory/PathEntry"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("directory-get-file-metadata", async ({ task }) => {
-  const { url, authorization } = await prepareTestServer(task)
+  const { url, authorization, ctx } = await prepareTestServer(task)
 
   await fetch(new URL(`contents/1.md?kind=file`, url), {
     method: "PUT",
