@@ -1,6 +1,3 @@
-[docs] kind=password-login
-[docs] kind=password-register
-
 # client
 
 [client] setup api client

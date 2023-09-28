@@ -67,14 +67,14 @@ and we will add more in the future.
   DELETE {directory}?kind=directory
   ```
 
-- [kind=password-login](kind-password-login.md)
-
-  ```
-  POST   {data-file}?kind=password-login
-  ```
-
 - [kind=password-register](kind-password-register.md)
 
   ```
   POST   {data-file}?kind=password-register
+  ```
+
+- [kind=password-login](kind-password-login.md)
+
+  ```
+  POST   {data-file}?kind=password-login
   ```

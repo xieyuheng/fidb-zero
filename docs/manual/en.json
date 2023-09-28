@@ -18,8 +18,8 @@
       "kind-file-rename.md",
       "kind-directory.md",
       "04-access-token.md",
-      "kind-password-login.md",
-      "kind-password-register.md"
+      "kind-password-register.md",
+      "kind-password-login.md"
     ]
   }
 }
