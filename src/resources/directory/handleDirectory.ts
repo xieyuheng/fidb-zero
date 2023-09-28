@@ -8,7 +8,7 @@ import { requestResolvedPath } from "../requestResolvedPath"
 import { requestToken } from "../requestToken"
 import { directoryCreate } from "./directoryCreate"
 import { directoryDelete } from "./directoryDelete"
-import { directoryList } from "./directoryList"
+import { directoryGet } from "./directoryGet"
 
 export async function handleDirectory(
   db: Database,
@@ -23,7 +23,7 @@ export async function handleDirectory(
     await tokenAssert(db, token, path, "directory:get")
 
     return await arrayFromAsyncIterable(
-      directoryList(db, path, {
+      directoryGet(db, path, {
         page: query.page ? Number.parseInt(query.page) : 1,
         size: query.size ? Number.parseInt(query.size) : 15,
         recursive: query.hasOwnProperty("recursive"),

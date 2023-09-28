@@ -5,7 +5,7 @@ import { isErrnoException } from "../../utils/node/isErrnoException"
 import { fileGetMetadataOrFail } from "../file-metadata/fileGetMetadataOrFail"
 import { PathEntry } from "./PathEntry"
 
-export async function* directoryListAll(
+export async function* directoryGetAll(
   db: Database,
   directory: string,
   options?: {

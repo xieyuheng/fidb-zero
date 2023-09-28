@@ -8,14 +8,14 @@ test("directory-delete", async ({ task }) => {
   await api.directoryCreate(ctx, `users`)
 
   {
-    const results = await api.directoryList(ctx, "")
+    const results = await api.directoryGet(ctx, "")
     expect(Boolean(results.find(({ path }) => path === "users"))).toEqual(true)
   }
 
   await api.directoryDelete(ctx, `users`)
 
   {
-    const results = await api.directoryList(ctx, "")
+    const results = await api.directoryGet(ctx, "")
     expect(Boolean(results.find(({ path }) => path === "users"))).toEqual(false)
   }
 })

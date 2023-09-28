@@ -10,7 +10,7 @@ test("directory-get-file-metadata", async ({ task }) => {
   await api.filePut(ctx, `contents/2.md`, "hello")
 
   {
-    const results = await api.directoryList(ctx, `contents`)
+    const results = await api.directoryGet(ctx, `contents`)
     expect(results.length).toEqual(2)
     expect(
       Boolean(

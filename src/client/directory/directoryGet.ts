@@ -1,13 +1,13 @@
 import qs from "qs"
-import { DirectoryListOptions } from "../../resources"
+import { DirectoryGetOptions } from "../../resources"
 import { PathEntry } from "../../resources/directory/PathEntry"
 import { ClientContext } from "../ClientContext"
 import { checkResponse } from "../checkResponse"
 
-export async function directoryList(
+export async function directoryGet(
   ctx: ClientContext,
   directory: string,
-  options?: DirectoryListOptions,
+  options?: DirectoryGetOptions,
 ): Promise<Array<PathEntry>> {
   const query = qs.stringify(options)
 

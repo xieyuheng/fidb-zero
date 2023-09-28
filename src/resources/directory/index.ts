@@ -1,4 +1,4 @@
 export * from "./directoryCreate"
 export * from "./directoryDelete"
-export * from "./directoryList"
-export * from "./directoryListAll"
+export * from "./directoryGet"
+export * from "./directoryGetAll"

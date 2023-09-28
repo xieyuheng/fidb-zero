@@ -9,7 +9,7 @@ test("directory-get-by-page", async ({ task }) => {
   await api.dataCreate(ctx, `projects/1/posts/1`, {})
 
   {
-    const results = await api.directoryList(ctx, `projects/1`, {
+    const results = await api.directoryGet(ctx, `projects/1`, {
       page: 1,
       size: 1,
     })
@@ -26,7 +26,7 @@ test("directory-get-by-page", async ({ task }) => {
   }
 
   {
-    const results = await api.directoryList(ctx, `projects/1`, {
+    const results = await api.directoryGet(ctx, `projects/1`, {
       page: 2,
       size: 1,
     })
@@ -43,7 +43,7 @@ test("directory-get-by-page", async ({ task }) => {
   }
 
   {
-    const results = await api.directoryList(ctx, `projects/1`, {
+    const results = await api.directoryGet(ctx, `projects/1`, {
       page: 3,
       size: 1,
     })

@@ -1,17 +1,17 @@
 import { Database } from "../../database"
 import { PathEntry } from "./PathEntry"
-import { directoryListAll } from "./directoryListAll"
+import { directoryGetAll } from "./directoryGetAll"
 
-export type DirectoryListOptions = {
+export type DirectoryGetOptions = {
   page?: number // NOTE starting from 1
   size?: number
   recursive?: boolean
 }
 
-export async function* directoryList(
+export async function* directoryGet(
   db: Database,
   directory: string,
-  options: DirectoryListOptions,
+  options: DirectoryGetOptions,
 ): AsyncIterable<PathEntry> {
   const page = options.page || 1
   const size = options.size || 50
@@ -21,7 +21,7 @@ export async function* directoryList(
   const end = start + size
   let count = 0
 
-  for await (const pathEntry of directoryListAll(db, directory, {
+  for await (const pathEntry of directoryGetAll(db, directory, {
     recursive: options.recursive,
   })) {
     if (count >= end) {
