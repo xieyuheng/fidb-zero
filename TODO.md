@@ -1,6 +1,5 @@
 # client
-
-[client] improve test directory-get-file-metadata
+ambr directoryList to directoryGet
 [client] file-metadata
 [client] file-rename
 [client] password-login

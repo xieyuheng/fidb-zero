@@ -4,7 +4,7 @@ import { checkResponse } from "../checkResponse"
 export async function filePut(
   ctx: ClientContext,
   path: string,
-  bytes: Uint8Array,
+  bytes: Uint8Array | string,
 ): Promise<undefined> {
   const response = await fetch(new URL(`${path}?kind=file`, ctx.url), {
     method: "PUT",

@@ -1,36 +1,16 @@
 import { expect, test } from "vitest"
+import { api } from "../../index"
 import { PathEntry } from "../../resources/directory/PathEntry"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("directory-get-file-metadata", async ({ task }) => {
-  const { url, authorization, ctx } = await prepareTestServer(task)
+  const { ctx } = await prepareTestServer(task)
 
-  await fetch(new URL(`contents/1.md?kind=file`, url), {
-    method: "PUT",
-    headers: {
-      authorization,
-      "content-type": "application/json",
-    },
-    body: "hi",
-  })
-
-  await fetch(new URL(`contents/2.md?kind=file`, url), {
-    method: "PUT",
-    headers: {
-      authorization,
-      "content-type": "application/json",
-    },
-    body: "hello",
-  })
+  await api.filePut(ctx, `contents/1.md`, "hi")
+  await api.filePut(ctx, `contents/2.md`, "hello")
 
   {
-    const response = await fetch(new URL(`contents/?kind=directory`, url), {
-      method: "GET",
-      headers: {
-        authorization,
-      },
-    })
-    const results = await response.json()
+    const results = await api.directoryList(ctx, `contents`)
     expect(results.length).toEqual(2)
     expect(
       Boolean(
