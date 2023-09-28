@@ -1,6 +1,7 @@
 export * from "./ClientContext"
 export * from "./ClientError"
 export * from "./attempt"
+export * from "./errorOrFail"
 export { attempt as try } from "./attempt"
 export * from "./createClientContext"
 export * from "./data"

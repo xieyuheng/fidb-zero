@@ -1,6 +1,5 @@
 # client
 
-api.errorOrFail
 [client] improve test file-crud
 [client] improve test directory-get-file-metadata
 [client] file-metadata
