@@ -1,8 +1,6 @@
 # client
 
-[client] `ClientError` -- with `code` and `message`
-
-[client] data -- `getData` -- call `clientErrorFromResponse`
+[client] data -- `getData` -- call `checkResponse` which takes `ctx`
 
 [client] data
 [client] data-find

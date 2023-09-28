@@ -12,5 +12,7 @@ export async function getData(
     },
   })
 
+  // checkResponse(response)
+
   return await response.json()
 }

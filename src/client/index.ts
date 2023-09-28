@@ -1,4 +1,5 @@
 export * from "./ClientContext"
+export * from "./ClientError"
 export * from "./data"
 // export * from "./data-find"
 // export * from "./directory"
