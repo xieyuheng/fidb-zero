@@ -39,16 +39,7 @@ test("data-crud", async ({ task }) => {
 
   expect(putted.username).toEqual(undefined)
   expect(putted.name).toEqual("谢宇恒")
-  expect(
-    await (
-      await fetch(new URL(`users/xieyuheng`, url), {
-        method: "GET",
-        headers: {
-          authorization,
-        },
-      })
-    ).json(),
-  ).toEqual(putted)
+  expect(await api.getData(ctx, `users/xieyuheng`)).toEqual(putted)
 
   const patched = await (
     await fetch(new URL(`users/xieyuheng`, url), {
@@ -66,16 +57,7 @@ test("data-crud", async ({ task }) => {
 
   expect(patched.username).toEqual("xyh")
   expect(patched.name).toEqual("谢宇恒")
-  expect(
-    await (
-      await fetch(new URL(`users/xieyuheng`, url), {
-        method: "GET",
-        headers: {
-          authorization,
-        },
-      })
-    ).json(),
-  ).toEqual(patched)
+  expect(await api.getData(ctx, `users/xieyuheng`)).toEqual(patched)
 
   await fetch(new URL(`users/xieyuheng`, url), {
     method: "DELETE",
@@ -87,14 +69,5 @@ test("data-crud", async ({ task }) => {
     }),
   })
 
-  expect(
-    (
-      await fetch(new URL(`users/xieyuheng`, url), {
-        method: "GET",
-        headers: {
-          authorization,
-        },
-      })
-    ).status,
-  ).toEqual(404)
+  expect(await api.getData(ctx, `users/xieyuheng`)).toEqual(undefined)
 })
