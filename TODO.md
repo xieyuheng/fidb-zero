@@ -1,8 +1,5 @@
 # client
 
-[client] data -- patchData
-[client] data -- putData
-
 [client] data-find
 [client] directory
 [client] file
