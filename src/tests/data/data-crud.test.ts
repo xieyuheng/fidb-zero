@@ -5,19 +5,10 @@ import { prepareTestServer } from "../prepareTestServer"
 test("data-crud", async ({ task }) => {
   const { url, ctx, authorization } = await prepareTestServer(task)
 
-  const created = await (
-    await fetch(new URL(`users/xieyuheng`, url), {
-      method: "POST",
-      headers: {
-        authorization,
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        username: "xieyuheng",
-        name: "Xie Yuheng",
-      }),
-    })
-  ).json()
+  const created = await api.createData(ctx, `users/xieyuheng`, {
+    username: "xieyuheng",
+    name: "Xie Yuheng",
+  })
 
   expect(created.name).toEqual("Xie Yuheng")
 
