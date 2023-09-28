@@ -2,54 +2,74 @@
 title: kind=directory
 ---
 
-Since we are using file system as database
-and we can operate on files,
-we naturally also want to operate on directories.
+# POST {directory}?kind=directory
 
-- To **create** a directory, `POST` the path with query parameter `kind=directory`.
+Create a directory.
 
-  For example:
+For example:
 
-  ```
-  POST users?kind=directory
-  ```
+```
+POST users/xieyuheng/public/contents?kind=directory
+```
 
-- To **read** a directory's direct subdirectories and files,
-  `GET` the path with query parameter `kind=directory`.
+# GET {directory}?kind=directory
 
-  For example:
+Read a directory's direct subdirectories and files.
 
-  ```
-  GET users?kind=directory
-  ```
+For example:
 
-  Results:
+```
+GET users/xieyuheng/public/contents?kind=directory
+```
 
-  ```
-  [
-    { "kind": "Directory", "path": "users/xieyuheng" },
-    { "kind": "Directory", "path": "users/readonlylink" },
-    ...
-  ]
-  ```
+Results:
 
-  The `kind` might be `"Directory"` or `"File"`,
-  the `path` is relative to the root of the database
-  (thus can be used as primarily key).
+```
+[
+  {
+    "kind": "Directory",
+    "path": "users/xieyuheng/public/contents/ai"
+  },
+  {
+    "kind": "Directory",
+    "path": "users/xieyuheng/public/contents/quotes"
+  },
+  {
+    "kind": "File",
+    "path": "users/xieyuheng/public/contents/debug.md",
+    "size": 1321,
+    "createdAt": 1695608364554.853,
+    "updatedAt": 1695608364554.853
+  },
+  {
+    "kind": "File",
+    "path": "users/xieyuheng/public/contents/hello.md",
+    "size": 3,
+    "createdAt": 1695608364554.853,
+    "updatedAt": 1695608364554.853
+  },
+  ...
+]
+```
 
-  The above request is not recursive,
-  if we want list all nested subdirectories
-  we can add `recursive` to the query:
+The `kind` might be `"Directory"` or `"File"`,
+the `path` is relative to the root of the database
+(thus can be used as primarily key).
 
-  ```
-  GET users?kind=directory&recursive
-  ```
+The above request is not recursive,
+if we want list all nested subdirectories
+we can add `recursive` to the query:
 
-- To **delete** a directory recursively,
-  `DELETE` the path with query parameter `kind=directory`.
+```
+GET users/xieyuheng/public/contents?kind=directory&recursive
+```
 
-  For example:
+# DELETE {directory}?kind=directory
 
-  ```
-  DELETE users?kind=directory
-  ```
+Delete a directory recursively.
+
+For example:
+
+```
+DELETE users/xieyuheng/public/contents?kind=directory
+```

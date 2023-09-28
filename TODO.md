@@ -1,6 +1,6 @@
+[docs] kind=password-login
+[docs] kind=password-register
 [docs] kind=file-rename
-
-[docs] zh manual
 
 # client
 
@@ -18,6 +18,14 @@ refactor `tests/` utils by `init`
 - support permission group -- like unix user group
 
   - should not copy permissions to every user, should use permission group
+
+# docs
+
+[docs] update en manual about password register and login
+
+[website] fidb-website support chinese version
+
+[docs] zh manual
 
 # data
 
