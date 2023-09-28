@@ -37,7 +37,7 @@ export function createRequestListener<Context>(options: {
           connection: "close",
         })
         response.end()
-      } else if (body instanceof Buffer) {
+      } else if (body instanceof Uint8Array) {
         const code = 200
         responseSetStatus(response, { code })
         responseSetHeaders(response, {
