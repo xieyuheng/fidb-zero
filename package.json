@@ -14,8 +14,6 @@
     "build:watch": "rm -rf lib; tsc --watch",
     "test:ts": "vitest --dir src --threads false --run",
     "test:watch": "vitest --dir src --threads false",
-    "test:coverage": "vitest --dir src --threads false --run --coverage ",
-    "test:gui": "vitest --dir src --threads false --ui",
     "test": "npm run test:ts",
     "format": "prettier src --write"
   },
@@ -38,9 +36,6 @@
     "@types/micromatch": "^4.0.3",
     "@types/node": "^20.7.1",
     "@types/qs": "^6.9.8",
-    "@vitest/coverage-c8": "^0.33.0",
-    "@vitest/coverage-istanbul": "^0.34.5",
-    "@vitest/ui": "^0.34.5",
     "@xieyuheng/test-runner": "^0.2.9",
     "prettier": "^3.0.3",
     "prettier-plugin-organize-imports": "^3.2.3",
