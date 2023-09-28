@@ -1,4 +1,4 @@
-[docs] Tools
+# docs
 
 [docs] FiDB Server
 [docs] FiDB Client

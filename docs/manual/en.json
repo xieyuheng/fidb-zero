@@ -20,6 +20,11 @@
       "04-access-token.md",
       "kind-password-register.md",
       "kind-password-login.md"
+    ],
+    "Tools": [
+      "05-fidb-server.md",
+      "06-fidb-client.md",
+      "07-fidb-manager.md"
     ]
   }
 }
