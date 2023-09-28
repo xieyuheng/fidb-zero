@@ -1,6 +1,5 @@
 # client
 
-[client] data -- deleteData
 [client] data -- patchData
 [client] data -- putData
 

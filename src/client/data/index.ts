@@ -1,5 +1,5 @@
 export * from "./createData"
-// export * from "./deleteData"
+export * from "./deleteData"
 export * from "./getData"
 export * from "./getDataOrFail"
 // export * from "./patchData"

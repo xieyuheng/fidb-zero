@@ -50,15 +50,7 @@ test("data-crud", async ({ task }) => {
   expect(patched.name).toEqual("谢宇恒")
   expect(await api.getData(ctx, `users/xieyuheng`)).toEqual(patched)
 
-  await fetch(new URL(`users/xieyuheng`, url), {
-    method: "DELETE",
-    headers: {
-      authorization,
-    },
-    body: JSON.stringify({
-      "@revision": patched["@revision"],
-    }),
-  })
+  await api.deleteData(ctx, `users/xieyuheng`, patched)
 
   expect(await api.getData(ctx, `users/xieyuheng`)).toEqual(undefined)
 })
