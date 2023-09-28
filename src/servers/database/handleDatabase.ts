@@ -23,8 +23,9 @@ export async function handleDatabase(
   if (handle === undefined) {
     throw new Error(
       [
-        `[${who}] unhandled content-type`,
+        `[${who}] unhandled resource kind.`,
         ``,
+        `  kind: ${String(kind)}`,
         `  method: ${request.method}`,
         `  path: ${requestResolvedPath(db, request)}`,
       ].join("\n"),

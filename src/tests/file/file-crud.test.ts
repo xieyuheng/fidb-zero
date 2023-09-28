@@ -1,55 +1,15 @@
 import { expect, test } from "vitest"
-import { responseHeaders } from "../../utils/responseHeaders"
+import { api } from "../../index"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("file-crud", async ({ task }) => {
-  const { url, authorization } = await prepareTestServer(task)
+  const { url, authorization, ctx } = await prepareTestServer(task)
 
-  await fetch(new URL(`users/xieyuheng/human.txt?kind=file`, url), {
-    method: "POST",
-    headers: {
-      authorization,
-      // NOTE "content-type" does not matter, file extension matters.
-      // "content-type": "text/plain",
-    },
-    body: new TextEncoder().encode("Hello, I am Xie Yuheng."),
-  })
+  const text = "Hello, I am Xie Yuheng."
+  const bytes = new TextEncoder().encode(text)
+  await api.fileCreate(ctx, `users/xieyuheng/human.txt`, bytes)
 
-  {
-    const response = await fetch(
-      new URL(`users/xieyuheng/human.txt?kind=file`, url),
-      {
-        method: "GET",
-        headers: {
-          authorization,
-        },
-      },
-    )
-
-    const headers = responseHeaders(response)
-    expect(headers["content-type"]).toEqual("text/plain")
-    expect(await response.text()).toEqual("Hello, I am Xie Yuheng.")
-  }
-
-  {
-    // NOTE use `response.arrayBuffer`.
-
-    const response = await fetch(
-      new URL(`users/xieyuheng/human.txt?kind=file`, url),
-      {
-        method: "GET",
-        headers: {
-          authorization,
-        },
-      },
-    )
-
-    const headers = responseHeaders(response)
-    expect(headers["content-type"]).toEqual("text/plain")
-    expect(new Uint8Array(await response.arrayBuffer())).toEqual(
-      new TextEncoder().encode("Hello, I am Xie Yuheng."),
-    )
-  }
+  expect(await api.fileGet(ctx, `users/xieyuheng/human.txt`)).toEqual(bytes)
 
   {
     // NOTE `kind=file` is optional.
@@ -61,12 +21,16 @@ test("file-crud", async ({ task }) => {
       },
     })
 
-    const headers = responseHeaders(response)
-    expect(headers["content-type"]).toEqual("text/plain")
-    expect(await response.text()).toEqual("Hello, I am Xie Yuheng.")
+    expect(await response.text()).toEqual(text)
   }
 
   {
+    // const result = await api.try(() =>
+    //   api.fileCreate(ctx, `users/xieyuheng/human.txt`, "hi!"),
+    //                             )
+
+    // expect(result.kind).toEqual("Error")
+
     // NOTE Post to existing file is not ok.
 
     const response = await fetch(
@@ -84,61 +48,13 @@ test("file-crud", async ({ task }) => {
     expect(response.status).toEqual(403)
   }
 
-  await fetch(new URL(`users/xieyuheng/human.txt?kind=file`, url), {
-    method: "PUT",
-    headers: {
-      authorization,
-    },
-    body: new TextEncoder().encode("Hello, I am Xie Yuheng from China."),
-  })
+  const newText = "Hello, I am Xie Yuheng from China."
+  const newBytes = new TextEncoder().encode(newText)
+  await api.filePut(ctx, `users/xieyuheng/human.txt`, newBytes)
 
-  {
-    const response = await fetch(
-      new URL(`users/xieyuheng/human.txt?kind=file`, url),
-      {
-        method: "GET",
-        headers: {
-          authorization,
-        },
-      },
-    )
+  expect(await api.fileGet(ctx, `users/xieyuheng/human.txt`)).toEqual(newBytes)
 
-    const headers = responseHeaders(response)
-    expect(headers["content-type"]).toEqual("text/plain")
-    expect(await response.text()).toEqual("Hello, I am Xie Yuheng from China.")
-  }
+  await api.fileDelete(ctx, `users/xieyuheng/human.txt`)
 
-  await fetch(new URL(`users/xieyuheng/human.txt?kind=file`, url), {
-    method: "DELETE",
-    headers: {
-      authorization,
-    },
-  })
-
-  {
-    const response = await fetch(
-      new URL(`users/xieyuheng/human.txt?kind=file`, url),
-      {
-        method: "GET",
-        headers: {
-          authorization,
-        },
-      },
-    )
-
-    expect(response.status).toEqual(404)
-  }
-
-  {
-    // NOTE `kind=file` is optional.
-
-    const response = await fetch(new URL(`users/xieyuheng/human.txt`, url), {
-      method: "GET",
-      headers: {
-        authorization,
-      },
-    })
-
-    expect(response.status).toEqual(404)
-  }
+  expect(await api.fileGet(ctx, `users/xieyuheng/human.txt`)).toEqual(undefined)
 })

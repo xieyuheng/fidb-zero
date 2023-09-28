@@ -1,11 +1,10 @@
 # client
 
-[client] file
+api.try & api.errorOrFail
+[client] improve test file-crud
+[client] improve test directory-get-file-metadata
 [client] file-metadata
 [client] file-rename
-
-[client] improve test directory-get-file-metadata
-
 [client] password-login
 [client] password-register
 
