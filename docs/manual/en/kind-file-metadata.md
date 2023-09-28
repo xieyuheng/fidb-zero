@@ -2,6 +2,8 @@
 title: kind=file-metadata
 ---
 
+# GET {flie}?kind=file-metadata
+
 Beside the file content,
 we also want to read metadata of a file,
 specially it's size.

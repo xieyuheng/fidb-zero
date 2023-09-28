@@ -16,7 +16,7 @@ Here is how I understand them:
 
 - Login is about issuing access token to a user.
   Specially, password login is about issuing access token to a user
-  who provided the right password.
+  who have provided the right password.
 
 - Register is about preparing a user for future logins.
   Specially, password register is about setting up the password for a user.

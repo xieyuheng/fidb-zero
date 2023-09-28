@@ -2,149 +2,157 @@
 title: kind=data
 ---
 
-Firstly, the most basic four operations are the **CRUD**
--- **C**reate, **R**ead, **U**pdate and **D**elete.
+When no `kind` query parameter is given:
 
-- To **create** data, `POST` the path with the data.
+- `kind=data` will be the default if the path is a directory or does not exist.
+- `kind=file` will be the default if the path is a file.
 
-  Note that, when JSON is used as HTTP request body,
-  the `Content-Type` header should be `application/json`,
-  this is the same for all HTTP APIs.
+# POST {data-path}?kind=data
 
-  For example, after the following `POST`s:
+Create a data file.
 
-  ```
-  POST users/xieyuheng
+For example, after the following `POST`s:
 
-  { "name": "Xie Yuheng" }
+```
+POST users/xieyuheng
 
-  POST users/xieyuheng/projects/inner
+{ "name": "Xie Yuheng" }
 
-  { "name": "inner", "description": "My inner universe." }
+POST users/xieyuheng/projects/inner
 
-  POST users/xieyuheng/projects/pomodoro
+{ "name": "inner", "description": "My inner universe." }
 
-  { "name": "Pomodoro", "description": "🍅 A Pomodoro timer." }
-  ```
+POST users/xieyuheng/projects/pomodoro
 
-  We will create the following data files:
+{ "name": "Pomodoro", "description": "🍅 A Pomodoro timer." }
+```
 
-  ```
-  users/xieyuheng/index.json
-  users/xieyuheng/projects/inner/index.json
-  users/xieyuheng/projects/pomodoro/index.json
-  ```
+We will create the following data files:
 
-- To **read** data, `GET` the path.
+```
+users/xieyuheng/index.json
+users/xieyuheng/projects/inner/index.json
+users/xieyuheng/projects/pomodoro/index.json
+```
 
-  For example, if we have the following data:
+# GET {data-path}?kind=data
 
-  ```
-  users/xieyuheng/index.json
-  users/xieyuheng/projects/inner/index.json
-  users/xieyuheng/projects/pomodoro/index.json
-  ```
+Read a data file.
 
-  The `GET` requests would be:
+For example, if we have the following data:
 
-  ```
-  GET users/xieyuheng
-  GET users/xieyuheng/projects/inner
-  GET users/xieyuheng/projects/pomodoro
-  ```
+```
+users/xieyuheng/index.json
+users/xieyuheng/projects/inner/index.json
+users/xieyuheng/projects/pomodoro/index.json
+```
 
-- To **update** the whole data, `PUT` the path with the data.
+The `GET` requests would be:
 
-  We first need to read the data to get `@revision`.
+```
+GET users/xieyuheng
+GET users/xieyuheng/projects/inner
+GET users/xieyuheng/projects/pomodoro
+```
 
-  ```
-  GET users/xieyuheng
-  ```
+# PUT {data-path}?kind=data
 
-  Result:
+Update the whole data file.
 
-  ```
-  {
-    "name": "Xie Yuheng",
-    "@path": "users/xieyuheng",
-    "@revision": "1b0d4dc0b6e68853aa0005b03c059a47",
-    "@createdAt": 1677377821957,
-    "@updatedAt": 1679424624733,
-  }
-  ```
+We first need to read the data to get `@revision`.
 
-  Update the whole data:
+```
+GET users/xieyuheng
+```
 
-  ```
-  PUT users/xieyuheng
+Result:
 
-  {
-    "name": "谢宇恒",
-    "@path": "users/xieyuheng",
-    "@revision": "1b0d4dc0b6e68853aa0005b03c059a47",
-    "@createdAt": 1677377821957,
-    "@updatedAt": 1679424624733
-  }
-  ```
+```
+{
+  "name": "Xie Yuheng",
+  "@path": "users/xieyuheng",
+  "@revision": "1b0d4dc0b6e68853aa0005b03c059a47",
+  "@createdAt": 1677377821957,
+  "@updatedAt": 1679424624733,
+}
+```
 
-- To **update** some properties of a data, `PATCH` the path with the data.
+Update the whole data:
 
-  We first need to read the data to get `@revision`.
+```
+PUT users/xieyuheng
 
-  ```
-  GET users/xieyuheng
-  ```
+{
+  "name": "谢宇恒",
+  "@path": "users/xieyuheng",
+  "@revision": "1b0d4dc0b6e68853aa0005b03c059a47",
+  "@createdAt": 1677377821957,
+  "@updatedAt": 1679424624733
+}
+```
 
-  Result:
+# PATCH {data-path}?kind=data
 
-  ```
-  {
-    "name": "谢宇恒",
-    "@path": "users/xieyuheng",
-    "@revision": "2b983c7a51376a61747eb9d79da13c77",
-    "@createdAt": 1677377821957,
-    "@updatedAt": 1679424824733
-  }
-  ```
+Update some properties of a data file.
 
-  Update only some properties:
+We first need to read the data to get `@revision`.
 
-  ```
-  PATCH users/xieyuheng
+```
+GET users/xieyuheng
+```
 
-  {
-    "@revision": "2b983c7a51376a61747eb9d79da13c77",
-    "country": "China"
-  }
-  ```
+Result:
 
-- To **delete** data, `DELETE` the path with the `@revision`.
+```
+{
+  "name": "谢宇恒",
+  "@path": "users/xieyuheng",
+  "@revision": "2b983c7a51376a61747eb9d79da13c77",
+  "@createdAt": 1677377821957,
+  "@updatedAt": 1679424824733
+}
+```
 
-  We first need to read the data to get `@revision`.
+Update only some properties:
 
-  ```
-  GET users/xieyuheng
-  ```
+```
+PATCH users/xieyuheng
 
-  Result:
+{
+  "@revision": "2b983c7a51376a61747eb9d79da13c77",
+  "country": "China"
+}
+```
 
-  ```
-  {
-    "name": "谢宇恒",
-    "country": "China",
-    "@path": "users/xieyuheng",
-    "@revision": "3f71a2d894180a2145ea7b05e2931e15",
-    "@createdAt": 1677377821957,
-    "@updatedAt": 1679425024733
-  }
-  ```
+# DELETE {data-path}?kind=data
 
-  Delete the data:
+Delete data file.
 
-  ```
-  DELETE users/xieyuheng
+We first need to read the data to get `@revision`.
 
-  {
-    "@revision": "3f71a2d894180a2145ea7b05e2931e15"
-  }
-  ```
+```
+GET users/xieyuheng
+```
+
+Result:
+
+```
+{
+  "name": "谢宇恒",
+  "country": "China",
+  "@path": "users/xieyuheng",
+  "@revision": "3f71a2d894180a2145ea7b05e2931e15",
+  "@createdAt": 1677377821957,
+  "@updatedAt": 1679425024733
+}
+```
+
+Delete the data:
+
+```
+DELETE users/xieyuheng
+
+{
+  "@revision": "3f71a2d894180a2145ea7b05e2931e15"
+}
+```

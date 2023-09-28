@@ -11,12 +11,12 @@
     "Data": ["01-data-table.md", "02-metadata-properties.md"],
     "Resources": [
       "03-the-http-api.md",
-      "04-access-token.md",
       "kind-data.md",
       "kind-data-find.md",
       "kind-file.md",
       "kind-file-metadata.md",
       "kind-directory.md",
+      "04-access-token.md",
       "kind-password-login.md",
       "kind-password-register.md"
     ]

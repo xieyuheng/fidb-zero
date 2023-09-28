@@ -1,4 +1,5 @@
-[docs] fix en manual
+requestQuery -- qs.parse -- allowDots
+[docs] kind=file-rename
 [docs] zh manual
 
 # client

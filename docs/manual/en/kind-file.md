@@ -2,28 +2,13 @@
 title: kind=file
 ---
 
-Since we are using file system as database,
-beside operations on JSON data files,
-we also want to operate on other kinds of files
-such as markdown, image, mp3 and so on.
+When no `kind` query parameter is given:
 
-- **Problem 3.1:** File and data are both referenced by path,
-  but they are two different kinds of resources.
-  How to distinguish them?
+- `kind=data` will be the default if the path is a directory or does not exist.
+- `kind=file` will be the default if the path is a file.
 
-- **Solution 3.1:** We can add `kind=...` query parameter to a request,
-  where the value of `kind` explicitly denotes the kind of resource.
-
-  For example, value can be `data`, `file`, `directory` and so on.
-
-  We require an implementation to view the value of `kind` as case insensitive,
-  so a user can write both `kind=Data` and `kind=data`.
-
-I feel good about this solution,
-because it is scalable,
-i.e. we can add as many kinds as we want in the future.
-
-Now we are ready to specify the HTTP API about file operations.
+This kind of resource is not limited to JSON data files,
+we can also use other kinds of files such as markdown, image, mp3 and so on.
 
 - To **create** a file, `POST` the path with query parameter `kind=file` and the file content.
 

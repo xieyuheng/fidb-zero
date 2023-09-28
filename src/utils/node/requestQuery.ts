@@ -6,5 +6,5 @@ export function requestQuery(
   request: Http.IncomingMessage,
 ): Record<string, any> {
   const url = requestURL(request)
-  return qs.parse(url.search.slice(1))
+  return qs.parse(url.search.slice(1), { allowDots: true })
 }
