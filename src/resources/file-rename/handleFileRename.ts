@@ -5,9 +5,9 @@ import { Database } from "../../database"
 import { tokenAssert } from "../../token"
 import { Json } from "../../utils/Json"
 import { requestJsonObject } from "../../utils/node/requestJsonObject"
-import { renameFile } from "../file/renameFile"
 import { requestResolvedPath } from "../requestResolvedPath"
 import { requestToken } from "../requestToken"
+import { renameFile } from "./renameFile"
 
 export async function handleFileRename(
   db: Database,

@@ -4,7 +4,7 @@ import { Database } from "../../database"
 import { resolvePath } from "../../database/resolvePath"
 import { AlreadyExists } from "../../errors"
 import { isErrnoException } from "../../utils/node/isErrnoException"
-import { getFile } from "./getFile"
+import { getFile } from "../file/getFile"
 
 export async function renameFile(
   db: Database,

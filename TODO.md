@@ -1,5 +1,7 @@
 # client
 
+change resource function name back to topic-prefix-naming
+
 [client] directory
 [client] file
 [client] file-metadata
