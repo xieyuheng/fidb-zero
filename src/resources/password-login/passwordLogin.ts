@@ -18,7 +18,7 @@ export async function passwordLogin(
   db: Database,
   directory: string,
   options: PasswordLoginOptions,
-): Promise<string> {
+): Promise<{ token: string }> {
   const who = "passwordLogin"
 
   const password = PasswordSchema.validate(
@@ -26,9 +26,11 @@ export async function passwordLogin(
   )
 
   if (await passwordCheck(options.password, password.hash)) {
-    return await tokenCreate(db, {
+    const token = await tokenCreate(db, {
       issuer: join(directory, ".login-token-issuer"),
     })
+
+    return { token }
   }
 
   throw new Unauthorized(

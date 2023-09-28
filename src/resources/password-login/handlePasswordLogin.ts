@@ -14,12 +14,11 @@ export async function handlePasswordLogin(
 
   if (request.method === "POST") {
     const json = await requestJsonObject(request)
-    const tokenName = await passwordLogin(
+    return await passwordLogin(
       db,
       path,
       PasswordLoginOptionsSchema.validate(json),
     )
-    return { token: tokenName }
   }
 
   throw new Error(

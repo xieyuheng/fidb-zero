@@ -33,7 +33,7 @@ test("password-register-and-login", async ({ task }) => {
     expect(created.name).toEqual("Xie Yuheng")
   }
 
-  const token = await api.passwordLogin(ctx, `users/xieyuheng`, {
+  const { token } = await api.passwordLogin(ctx, `users/xieyuheng`, {
     password: "123456",
   })
 

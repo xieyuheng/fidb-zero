@@ -1,4 +1,3 @@
-`passwordLogin` should return { token } instead of string
 [client] password-register
 
 # refactor

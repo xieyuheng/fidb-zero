@@ -6,7 +6,7 @@ export async function passwordLogin(
   ctx: ClientContext,
   directory: string,
   options: PasswordLoginOptions,
-): Promise<string> {
+): Promise<{ token: string }> {
   const response = await fetch(
     new URL(`${directory}?kind=password-login`, ctx.url),
     {
@@ -17,7 +17,5 @@ export async function passwordLogin(
 
   checkResponse(ctx, response)
 
-  const { token } = await response.json()
-
-  return token
+  return await response.json()
 }
