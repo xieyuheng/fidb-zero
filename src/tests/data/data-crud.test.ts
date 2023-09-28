@@ -1,8 +1,9 @@
 import { expect, test } from "vitest"
+import { api } from "../../index"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("data-crud", async ({ task }) => {
-  const { url, authorization } = await prepareTestServer(task)
+  const { url, ctx, authorization } = await prepareTestServer(task)
 
   const created = await (
     await fetch(new URL(`users/xieyuheng`, url), {
@@ -20,16 +21,7 @@ test("data-crud", async ({ task }) => {
 
   expect(created.name).toEqual("Xie Yuheng")
 
-  {
-    const response = await fetch(new URL(`users/xieyuheng`, url), {
-      method: "GET",
-      headers: {
-        authorization,
-      },
-    })
-
-    expect(await response.json()).toEqual(created)
-  }
+  expect(await api.getData(ctx, `users/xieyuheng`)).toEqual(created)
 
   const putted = await (
     await fetch(new URL(`users/xieyuheng`, url), {

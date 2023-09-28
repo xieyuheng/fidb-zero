@@ -1,6 +1,17 @@
 # client
 
-[client] use api client in tests
+[client] `ClientError` -- with `code` and `message`
+
+[client] data -- `getData` -- call `clientErrorFromResponse`
+
+[client] data
+[client] data-find
+[client] directory
+[client] file
+[client] file-metadata
+[client] file-rename
+[client] password-login
+[client] password-register
 
 # refactor
 

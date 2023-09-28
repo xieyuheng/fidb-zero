@@ -37,7 +37,13 @@ export async function prepareTestServer(options: { name: string }) {
 
   const authorization = `token ${tokenName}`
 
-  const url = `http://${hostname}:${port}`
+  const url = new URL(`http://${hostname}:${port}`)
 
-  return { url, db, authorization }
+  const ctx = {
+    url,
+    authorization,
+    token: tokenName,
+  }
+
+  return { url, db, authorization, ctx }
 }
