@@ -1,9 +1,3 @@
-# docs
-
-[docs] FiDB Server
-[docs] FiDB Client
-[docs] FiDB Manager
-
 # client
 
 [client] setup api client
@@ -24,6 +18,10 @@ refactor `tests/` utils by `init`
 # docs
 
 [docs] update en manual about password register and login
+
+[docs] FiDB Server
+[docs] FiDB Client
+[docs] FiDB Manager
 
 [docs] zh manual
 
