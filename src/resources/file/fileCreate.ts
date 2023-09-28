@@ -1,13 +1,12 @@
-import { Buffer } from "node:buffer"
 import { Database } from "../../database"
-import { writeBuffer } from "../../database/writeBuffer"
+import { writeBytes } from "../../database/writeBytes"
 import { AlreadyExists } from "../../errors"
 import { fileGet } from "./fileGet"
 
 export async function fileCreate(
   db: Database,
   path: string,
-  buffer: Buffer,
+  bytes: Uint8Array,
 ): Promise<void> {
   const who = "fileCreate"
 
@@ -16,5 +15,5 @@ export async function fileCreate(
     throw new AlreadyExists(`[${who}] already exists, path: ${path}`)
   }
 
-  await writeBuffer(db, path, buffer)
+  await writeBytes(db, path, bytes)
 }

@@ -1,14 +1,13 @@
-import { Buffer } from "node:buffer"
 import fs from "node:fs"
 import { dirname } from "node:path"
 import { Database } from "./Database"
 import { resolvePath } from "./resolvePath"
 
-export async function writeBuffer(
+export async function writeBytes(
   db: Database,
   path: string,
-  buffer: Buffer,
+  bytes: Uint8Array,
 ): Promise<void> {
   await fs.promises.mkdir(dirname(resolvePath(db, path)), { recursive: true })
-  await fs.promises.writeFile(resolvePath(db, path), buffer)
+  await fs.promises.writeFile(resolvePath(db, path), bytes)
 }

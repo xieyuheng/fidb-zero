@@ -1,11 +1,10 @@
-import { Buffer } from "node:buffer"
 import { Database } from "../../database"
-import { writeBuffer } from "../../database/writeBuffer"
+import { writeBytes } from "../../database/writeBytes"
 
 export async function filePut(
   db: Database,
   path: string,
-  buffer: Buffer,
+  bytes: Uint8Array,
 ): Promise<void> {
-  await writeBuffer(db, path, buffer)
+  await writeBytes(db, path, bytes)
 }
