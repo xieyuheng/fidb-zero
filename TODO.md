@@ -1,6 +1,6 @@
 # client
 
-[client] setup api client
+[client] `ClientContext`
 [client] use api client in tests
 
 # refactor

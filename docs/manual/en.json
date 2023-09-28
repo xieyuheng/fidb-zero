@@ -16,7 +16,9 @@
       "kind-file.md",
       "kind-file-metadata.md",
       "kind-file-rename.md",
-      "kind-directory.md",
+      "kind-directory.md"
+    ],
+    "Access Control": [
       "04-access-token.md",
       "kind-password-register.md",
       "kind-password-login.md"
