@@ -1,2 +1,2 @@
-export * from "./passwordRegister"
 export * from "./PasswordRegisterStrategy"
+export * from "./passwordRegister"

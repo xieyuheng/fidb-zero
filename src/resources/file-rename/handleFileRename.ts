@@ -1,5 +1,4 @@
 import { ty } from "@xieyuheng/ty"
-import { Buffer } from "node:buffer"
 import Http from "node:http"
 import { Database } from "../../database"
 import { tokenAssert } from "../../token"
