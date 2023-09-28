@@ -67,7 +67,7 @@ and solve it once for all.
   Suppose the pattern of data files for `users` is:
 
   ```
-  users/*/index.json
+  users/{user}/index.json
   ```
 
   Example data files of `users`:
@@ -80,7 +80,7 @@ and solve it once for all.
   The pattern of data files for `projects` would be:
 
   ```
-  users/*/projects/*/index.json
+  users/{user}/projects/{project}/index.json
   ```
 
   Example data files of `projects`:
@@ -98,7 +98,7 @@ and solve it once for all.
   The pattern of data files for `config` is:
 
   ```
-  users/*/config/index.json
+  users/{user}/config/index.json
   ```
 
   Example data files of `config`:
