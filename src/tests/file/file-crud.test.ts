@@ -24,32 +24,17 @@ test("file-crud", async ({ task }) => {
     expect(await response.text()).toEqual(text)
   }
 
-  {
-    // const result = await api.try(() =>
-    //   api.fileCreate(ctx, `users/xieyuheng/human.txt`, "hi!"),
-    //                             )
-
-    // expect(result.kind).toEqual("Error")
-
-    // NOTE Post to existing file is not ok.
-
-    const response = await fetch(
-      new URL(`users/xieyuheng/human.txt?kind=file`, url),
-      {
-        method: "POST",
-        headers: {
-          authorization,
-        },
-        body: new TextEncoder().encode("Hello, I am Xie Yuheng from China."),
-      },
-    )
-
-    expect(response.ok).toEqual(false)
-    expect(response.status).toEqual(403)
-  }
-
   const newText = "Hello, I am Xie Yuheng from China."
   const newBytes = new TextEncoder().encode(newText)
+
+  {
+    const error = await api.errorOrFail(() =>
+      api.fileCreate(ctx, `users/xieyuheng/human.txt`, newBytes),
+    )
+
+    expect(error.statusCode).toEqual(403)
+  }
+
   await api.filePut(ctx, `users/xieyuheng/human.txt`, newBytes)
 
   expect(await api.fileGet(ctx, `users/xieyuheng/human.txt`)).toEqual(newBytes)
