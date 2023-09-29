@@ -1,4 +1,4 @@
-import { globMatch } from "../utils/globMatch"
+import { globMatch } from "../../utils/globMatch"
 import { Operation } from "./Operation"
 import { PermissionRecord } from "./PermissionRecord"
 

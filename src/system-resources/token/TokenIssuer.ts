@@ -3,7 +3,7 @@ import { Data, DataSchema } from "../../database"
 import {
   PermissionRecord,
   PermissionRecordSchema,
-} from "../../permission/PermissionRecord"
+} from "../../models/permission/PermissionRecord"
 
 export type TokenIssuer = Data & {
   permissions: PermissionRecord

@@ -1,8 +1,8 @@
 import { expect, test } from "vitest"
 import { api } from "../.."
-import { allOperations } from "../../permission"
-import { loginTokenCreate } from "../../system-resources/token"
+import { allOperations } from "../../models/permission"
 import { loginTokenIssuerCreate } from "../../system-resources/login-token-issuer"
+import { loginTokenCreate } from "../../system-resources/token"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("data-get-no-permission", async ({ task }) => {

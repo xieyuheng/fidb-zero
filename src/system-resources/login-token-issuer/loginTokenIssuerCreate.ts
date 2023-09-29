@@ -1,5 +1,5 @@
 import { Database } from "../../database"
-import { PermissionRecord } from "../../permission/PermissionRecord"
+import { PermissionRecord } from "../../models/permission/PermissionRecord"
 import { dataCreate } from "../../resources"
 
 export async function loginTokenIssuerCreate(

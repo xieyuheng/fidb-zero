@@ -1,7 +1,7 @@
 import { resolve } from "node:path"
 import { api } from "../index"
 import { init } from "../init/init"
-import { allOperations } from "../permission"
+import { allOperations } from "../models/permission"
 import { dataCreate } from "../resources"
 import { startDatabaseServer } from "../servers/database/startDatabaseServer"
 import { tokenCreateRandom } from "../system-resources/token"

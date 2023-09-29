@@ -1,8 +1,8 @@
 import { expect, test } from "vitest"
 import { api } from "../.."
-import { allOperations, readOperations } from "../../permission"
-import { loginTokenCreate } from "../../system-resources/token"
+import { allOperations, readOperations } from "../../models/permission"
 import { loginTokenIssuerCreate } from "../../system-resources/login-token-issuer"
+import { loginTokenCreate } from "../../system-resources/token"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("data-patch-no-permission", async ({ task }) => {

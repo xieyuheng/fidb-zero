@@ -2,8 +2,10 @@ import { ty } from "@xieyuheng/ty"
 import { join } from "node:path"
 import { Data, Database } from "../../database"
 import { Unauthorized } from "../../errors"
-import { applyPathPatternRecordKeys } from "../../path-pattern/applyPathPatternRecordKeys"
-import { matchPathPattern } from "../../path-pattern/matchPathPattern"
+import {
+  applyPathPatternRecordKeys,
+  matchPathPattern,
+} from "../../models/path-pattern"
 import { dataCreate, dataGetOrFail } from "../../resources"
 import { loginTokenIssuerCreate } from "../../system-resources/login-token-issuer"
 import { PasswordRegisterStrategySchema } from "../../system-resources/password-register-strategy"

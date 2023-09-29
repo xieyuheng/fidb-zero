@@ -1,4 +1,4 @@
-import { globMatch } from "../utils/globMatch"
+import { globMatch } from "../../utils/globMatch"
 import { parsePathPattern } from "./parsePathPattern"
 
 export function matchPathPattern(
