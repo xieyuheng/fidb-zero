@@ -5,6 +5,7 @@ import { Unauthorized } from "../../errors"
 import { applyPathPatternRecordKeys } from "../../path-pattern/applyPathPatternRecordKeys"
 import { matchPathPattern } from "../../path-pattern/matchPathPattern"
 import { dataCreate, dataGetOrFail } from "../../resources"
+import { loginTokenIssuerCreate } from "../../system-resources/login-token-issuer"
 import { PasswordRegisterStrategySchema } from "../../system-resources/password-register-strategy"
 import { JsonObject, isJsonObject } from "../../utils/Json"
 import { passwordHash } from "../../utils/node/password"
@@ -42,7 +43,7 @@ export async function passwordRegister(
         results,
       )
 
-      await dataCreate(db, join(path, ".login-token-issuer"), {
+      await loginTokenIssuerCreate(db, path, {
         permissions,
       })
 
