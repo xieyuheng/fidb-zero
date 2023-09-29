@@ -15,7 +15,7 @@ test("data-can-not-access-system-path", async ({ task }) => {
   })
 
   const tokenName = await tokenCreateRandom(db, {
-    issuer: "test-token-issuers/all-read",
+    issuer: ".test-token-issuer",
   })
 
   {

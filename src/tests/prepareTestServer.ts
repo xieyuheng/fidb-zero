@@ -24,14 +24,14 @@ export async function prepareTestServer(options: { name: string }) {
 
   await startDatabaseServer(db)
 
-  await dataCreate(db, "test-token-issuers/all-read-write", {
+  await dataCreate(db, ".test-token-issuer", {
     permissions: {
       "**": allOperations,
     },
   })
 
   const tokenName = await tokenCreateRandom(db, {
-    issuer: "test-token-issuers/all-read-write",
+    issuer: ".test-token-issuer",
   })
 
   const url = new URL(`http://${hostname}:${port}`)
