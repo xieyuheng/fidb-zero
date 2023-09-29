@@ -1,7 +1,7 @@
 import { expect, test } from "vitest"
 import { api } from "../.."
 import { allOperations } from "../../permission"
-import { loginTokenCreate } from "../../system-resources/login-token"
+import { loginTokenCreate } from "../../system-resources/token"
 import { loginTokenIssuerCreate } from "../../system-resources/login-token-issuer"
 import { prepareTestServer } from "../prepareTestServer"
 
