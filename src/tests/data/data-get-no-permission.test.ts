@@ -1,9 +1,8 @@
 import { expect, test } from "vitest"
 import { api } from "../../index"
 import { allOperations } from "../../permission"
-import { dataCreate } from "../../resources"
+import { loginTokenCreate } from "../../system-resources/login-token"
 import { loginTokenIssuerCreate } from "../../system-resources/login-token-issuer"
-import { tokenCreate } from "../../system-resources/token"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("data-get-no-permission", async ({ task }) => {
@@ -15,14 +14,10 @@ test("data-get-no-permission", async ({ task }) => {
     },
   })
 
-  const tokenName = await tokenCreate(db, {
-    issuer: "users/xieyuheng/.login-token-issuer",
-  })
-
+  const tokenName = await loginTokenCreate(db, "users/xieyuheng")
   let authorization = `token ${tokenName}`
 
   const newCtx = api.createClientContext(ctx.url, tokenName)
-
   const created = await api.dataCreate(newCtx, `users/xieyuheng`, {
     username: "xieyuheng",
     name: "Xie Yuheng",
@@ -31,16 +26,13 @@ test("data-get-no-permission", async ({ task }) => {
   expect(created.name).toEqual("Xie Yuheng")
   expect(await api.dataGet(newCtx, `users/xieyuheng`)).toEqual(created)
 
-  await dataCreate(db, "users/xyh/.login-token-issuer", {
+  await loginTokenIssuerCreate(db, "users/xyh", {
     permissions: {
       "users/xyh/**": allOperations,
     },
   })
 
-  const tokenNameXYH = await tokenCreate(db, {
-    issuer: "users/xyh/.login-token-issuer",
-  })
-
+  const tokenNameXYH = await loginTokenCreate(db, "users/xyh")
   authorization = `token ${tokenNameXYH}`
 
   expect(

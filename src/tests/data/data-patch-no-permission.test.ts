@@ -1,8 +1,8 @@
 import { expect, test } from "vitest"
 import { api } from "../../index"
 import { allOperations, readOperations } from "../../permission"
+import { loginTokenCreate } from "../../system-resources/login-token"
 import { loginTokenIssuerCreate } from "../../system-resources/login-token-issuer"
-import { tokenCreate } from "../../system-resources/token"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("data-patch-no-permission", async ({ task }) => {
@@ -15,10 +15,7 @@ test("data-patch-no-permission", async ({ task }) => {
     },
   })
 
-  const tokenName = await tokenCreate(db, {
-    issuer: "users/xieyuheng/.login-token-issuer",
-  })
-
+  const tokenName = await loginTokenCreate(db, "users/xieyuheng")
   let authorization = `token ${tokenName}`
 
   const newCtx = api.createClientContext(ctx.url, tokenName)
@@ -38,10 +35,7 @@ test("data-patch-no-permission", async ({ task }) => {
     },
   })
 
-  const tokenNameXYH = await tokenCreate(db, {
-    issuer: "users/xyh/.login-token-issuer",
-  })
-
+  const tokenNameXYH = await loginTokenCreate(db, "users/xyh")
   authorization = `token ${tokenNameXYH}`
 
   newCtx.authorization = authorization

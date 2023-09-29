@@ -1,7 +1,7 @@
 import { expect, test } from "vitest"
 import { allOperations, readOperations } from "../../permission"
+import { loginTokenCreate } from "../../system-resources/login-token"
 import { loginTokenIssuerCreate } from "../../system-resources/login-token-issuer"
-import { tokenCreate } from "../../system-resources/token"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("data-post-no-permission", async ({ task }) => {
@@ -14,10 +14,7 @@ test("data-post-no-permission", async ({ task }) => {
     },
   })
 
-  const tokenName = await tokenCreate(db, {
-    issuer: "users/xyh/.login-token-issuer",
-  })
-
+  const tokenName = await loginTokenCreate(db, "users/xyh")
   const authorization = `token ${tokenName}`
 
   expect(

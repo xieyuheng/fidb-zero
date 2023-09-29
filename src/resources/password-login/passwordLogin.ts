@@ -3,7 +3,7 @@ import { join } from "node:path"
 import { Database } from "../../database"
 import { Unauthorized } from "../../errors/Unauthorized"
 import { PasswordSchema, dataGetOrFail } from "../../resources"
-import { tokenCreate } from "../../system-resources/token"
+import { loginTokenCreate } from "../../system-resources/login-token"
 import { passwordCheck } from "../../utils/node/password"
 
 export type PasswordLoginOptions = {
@@ -26,10 +26,7 @@ export async function passwordLogin(
   )
 
   if (await passwordCheck(options.password, password.hash)) {
-    const token = await tokenCreate(db, {
-      issuer: join(directory, ".login-token-issuer"),
-    })
-
+    const token = await loginTokenCreate(db, directory)
     return { token }
   }
 
