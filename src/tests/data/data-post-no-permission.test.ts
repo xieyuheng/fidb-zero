@@ -5,7 +5,7 @@ import { tokenCreate } from "../../token"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("data-post-no-permission", async ({ task }) => {
-  const { url, db } = await prepareTestServer(task)
+  const { ctx, db } = await prepareTestServer(task)
 
   await dataCreate(db, "users/xyh/.login-token-issuer", {
     permissions: {
@@ -22,7 +22,7 @@ test("data-post-no-permission", async ({ task }) => {
 
   expect(
     (
-      await fetch(new URL(`users/xieyuheng`, url), {
+      await fetch(new URL(`users/xieyuheng`, ctx.url), {
         method: "POST",
         headers: {
           authorization,

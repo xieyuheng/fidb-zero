@@ -4,7 +4,7 @@ import { api } from "../../index"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("password-register-and-login", async ({ task }) => {
-  const { url, ctx } = await prepareTestServer(task)
+  const { ctx } = await prepareTestServer(task)
 
   {
     const created = await api.passwordRegister(ctx, `users/xieyuheng`, {
@@ -26,6 +26,7 @@ test("password-register-and-login", async ({ task }) => {
   expect(typeof token).toEqual("string")
 
   let revision = ""
+  const url = ctx.url
 
   {
     // The `token` can read user data.

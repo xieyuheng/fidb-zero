@@ -3,7 +3,7 @@ import { api } from "../../index"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("data-default-token", async ({ task }) => {
-  const { url, ctx } = await prepareTestServer(task)
+  const { ctx } = await prepareTestServer(task)
 
   await api.dataCreate(ctx, `users/xieyuheng`, {
     username: "xieyuheng",
@@ -24,7 +24,7 @@ test("data-default-token", async ({ task }) => {
     // Default token can NOT read non public data.
 
     const response = await fetch(
-      new URL(`users/xieyuheng/projects/inner`, url),
+      new URL(`users/xieyuheng/projects/inner`, ctx.url),
       {
         method: "GET",
       },

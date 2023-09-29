@@ -2,11 +2,11 @@ import { expect, test } from "vitest"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("data-post-no-token", async ({ task }) => {
-  const { url } = await prepareTestServer(task)
+  const { ctx } = await prepareTestServer(task)
 
   expect(
     (
-      await fetch(new URL(`users/xieyuheng`, url), {
+      await fetch(new URL(`users/xieyuheng`, ctx.url), {
         method: "POST",
         headers: {
           "content-type": "application/json",

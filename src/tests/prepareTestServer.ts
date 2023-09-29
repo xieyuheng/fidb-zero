@@ -1,30 +1,19 @@
-import Http from "node:http"
-import { handleDatabase } from "src/servers/database/handleDatabase"
 import { api } from "../index"
 import { allOperations } from "../permission"
 import { dataCreate } from "../resources"
-import { createRequestListener } from "../server/createRequestListener"
+import { startDatabaseServer } from "../servers/database/startDatabaseServer"
 import { tokenCreate } from "../token"
 import { findPort } from "../utils/node/findPort"
-import { serverListen } from "../utils/node/serverListen"
 import { prepareTestDb } from "./prepareTestDb"
 
 export async function prepareTestServer(options: { name: string }) {
-  const { db } = await prepareTestDb(options)
-
-  const requestListener = createRequestListener({
-    ctx: db,
-    handle: handleDatabase,
-  })
-
-  const server = Http.createServer()
-
-  server.on("request", requestListener)
+  const db = await prepareTestDb(options)
 
   const hostname = "127.0.0.1"
   const port = await findPort(5108)
+  db.config.server = { hostname, port }
 
-  await serverListen(server, { port, hostname })
+  await startDatabaseServer(db)
 
   await dataCreate(db, "test-token-issuers/all-read-write", {
     permissions: {
@@ -36,11 +25,7 @@ export async function prepareTestServer(options: { name: string }) {
     issuer: "test-token-issuers/all-read-write",
   })
 
-  const authorization = `token ${tokenName}`
-
   const url = new URL(`http://${hostname}:${port}`)
-
   const ctx = api.createClientContext(url, tokenName)
-
-  return { url, db, authorization, ctx }
+  return { db, ctx }
 }

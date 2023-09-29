@@ -3,7 +3,7 @@ import { api } from "../../index"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("ping", async ({ task }) => {
-  const { url, db, ctx } = await prepareTestServer(task)
+  const { ctx } = await prepareTestServer(task)
 
   expect(await api.ping(ctx)).toEqual("pong")
 })

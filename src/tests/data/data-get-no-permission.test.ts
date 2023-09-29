@@ -6,7 +6,7 @@ import { tokenCreate } from "../../token"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("data-get-no-permission", async ({ task }) => {
-  const { url, db } = await prepareTestServer(task)
+  const { ctx, db } = await prepareTestServer(task)
 
   await dataCreate(db, "users/xieyuheng/.login-token-issuer", {
     permissions: {
@@ -20,15 +20,15 @@ test("data-get-no-permission", async ({ task }) => {
 
   let authorization = `token ${tokenName}`
 
-  const ctx = api.createClientContext(url, tokenName)
+  const newCtx = api.createClientContext(ctx.url, tokenName)
 
-  const created = await api.dataCreate(ctx, `users/xieyuheng`, {
+  const created = await api.dataCreate(newCtx, `users/xieyuheng`, {
     username: "xieyuheng",
     name: "Xie Yuheng",
   })
 
   expect(created.name).toEqual("Xie Yuheng")
-  expect(await api.dataGet(ctx, `users/xieyuheng`)).toEqual(created)
+  expect(await api.dataGet(newCtx, `users/xieyuheng`)).toEqual(created)
 
   await dataCreate(db, "users/xyh/.login-token-issuer", {
     permissions: {
@@ -44,7 +44,7 @@ test("data-get-no-permission", async ({ task }) => {
 
   expect(
     (
-      await fetch(new URL(`users/xieyuheng`, url), {
+      await fetch(new URL(`users/xieyuheng`, ctx.url), {
         method: "GET",
         headers: {
           authorization,

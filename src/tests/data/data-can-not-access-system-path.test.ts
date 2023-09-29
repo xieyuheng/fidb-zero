@@ -5,7 +5,7 @@ import { tokenCreate } from "../../token"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("data-can-not-access-system-path", async ({ task }) => {
-  const { url, db, authorization } = await prepareTestServer(task)
+  const { db, ctx } = await prepareTestServer(task)
 
   await dataCreate(db, "test-token-issuers/all-read", {
     permissions: {
@@ -18,10 +18,10 @@ test("data-can-not-access-system-path", async ({ task }) => {
   })
 
   {
-    const response = await fetch(new URL(`.tokens/${tokenName}`, url), {
+    const response = await fetch(new URL(`.tokens/${tokenName}`, ctx.url), {
       method: "GET",
       headers: {
-        authorization,
+        authorization: ctx.authorization,
       },
     })
 

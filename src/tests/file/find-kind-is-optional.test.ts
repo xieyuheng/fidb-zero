@@ -4,16 +4,16 @@ import { responseHeaders } from "../../utils/responseHeaders"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("file-content-type", async ({ task }) => {
-  const { url, authorization, ctx } = await prepareTestServer(task)
+  const { ctx } = await prepareTestServer(task)
 
   const text = "Hello, I am Xie Yuheng."
   const bytes = new TextEncoder().encode(text)
   await api.fileCreate(ctx, `users/xieyuheng/human.txt`, bytes)
 
-  const response = await fetch(new URL(`users/xieyuheng/human.txt`, url), {
+  const response = await fetch(new URL(`users/xieyuheng/human.txt`, ctx.url), {
     method: "GET",
     headers: {
-      authorization,
+      authorization: ctx.authorization,
     },
   })
 

@@ -3,7 +3,7 @@ import { api } from "../../index"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("info", async ({ task }) => {
-  const { url, db, ctx } = await prepareTestServer(task)
+  const { db, ctx } = await prepareTestServer(task)
 
   const name = "info"
   const description = "info"

@@ -1,13 +1,12 @@
 import fs from "node:fs"
 import process from "node:process"
-import { loadDatabase } from "../database"
+import { Database, loadDatabase } from "../database"
 import { log } from "../utils/log"
 import { pathExists } from "../utils/node/pathExists"
 import { initDatabaseConfigFile } from "./initDatabaseConfigFile"
-import { initExampleUsers } from "./initExampleUsers"
 import { initSystemResource } from "./initSystemResource"
 
-export async function init(directory: string): Promise<void> {
+export async function init(directory: string): Promise<Database> {
   log({ who: "init", directory })
 
   if (!(await pathExists(directory))) {
@@ -33,5 +32,7 @@ export async function init(directory: string): Promise<void> {
   const db = await loadDatabase({ directory })
 
   await initSystemResource(db)
-  await initExampleUsers(db)
+  // await initExampleUsers(db)
+
+  return db
 }
