@@ -1,13 +1,22 @@
+import { resolve } from "node:path"
 import { api } from "../index"
+import { init } from "../init/init"
 import { allOperations } from "../permission"
 import { dataCreate } from "../resources"
 import { startDatabaseServer } from "../servers/database/startDatabaseServer"
 import { tokenCreate } from "../token"
+import { formatDateTime } from "../utils/formatDate"
 import { findPort } from "../utils/node/findPort"
-import { prepareTestDb } from "./prepareTestDb"
+import { randomHexString } from "../utils/randomHexString"
+import { slug } from "../utils/slug"
+
+const PREFIX = resolve(__dirname, "../../tmp/databases/")
 
 export async function prepareTestServer(options: { name: string }) {
-  const db = await prepareTestDb(options)
+  const time = formatDateTime(Date.now())
+  const basename = slug(`${time}-${randomHexString(4)}-${options.name}`)
+  const directory = resolve(PREFIX, basename)
+  const db = await init(directory)
 
   const hostname = "127.0.0.1"
   const port = await findPort(5108)
