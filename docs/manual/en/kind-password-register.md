@@ -59,9 +59,9 @@ we view it as referencing _system resource_,
 thus can not be access by normal operations,
 such as `data`, `file` and `directory` operations.
 
-## .config/password-register-strategy
+## .password-register-strategy
 
-We use `.config/password-register-strategy` data file,
+We use `.password-register-strategy` data file,
 to configure which directory is allow to be login target,
 and what `permissions` should be granted when creating `.login-token-issuer`.
 

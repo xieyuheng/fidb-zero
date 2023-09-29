@@ -6,7 +6,7 @@ export async function initSystemResource(db: Database): Promise<void> {
   const who = "initSystemResource"
 
   {
-    const path = ".config/default-token-issuer"
+    const path = ".default-token-issuer"
     const data = {
       permissions: {
         users: ["directory:get"],
@@ -28,7 +28,7 @@ export async function initSystemResource(db: Database): Promise<void> {
   {
     const path = ".tokens/default"
     const data = {
-      issuer: ".config/default-token-issuer",
+      issuer: ".default-token-issuer",
     }
 
     await dataCreate(db, path, data)
@@ -36,7 +36,7 @@ export async function initSystemResource(db: Database): Promise<void> {
   }
 
   {
-    const path = ".config/password-register-strategy"
+    const path = ".password-register-strategy"
     const data = {
       loginTargets: {
         "users/{user}": {

@@ -54,9 +54,9 @@ Authorization: token cc224145f46a393f8ca71c4eb62aafe1
 If no token is sent, a default token
 with default permissions will be used.
 
-## .config/default-token-issuer
+## .default-token-issuer
 
-We use `.config/default-token-issuer` data file to config the default permissions,
+We use `.default-token-issuer` data file to config the default permissions,
 which contains a `permissions` property
 for the default permissions.
 
@@ -89,6 +89,6 @@ The token data could be:
 
 ```
 {
-  "issuer": ".config/default-token-issuer"
+  "issuer": ".default-token-issuer"
 }
 ```
