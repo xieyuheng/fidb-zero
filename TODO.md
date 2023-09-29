@@ -1,7 +1,5 @@
 # refactor
 
-move `token/` to `system-resources/`
-
 extract system-resources/login-token-issuer
 extract system-resources/password-register-strategy
 

@@ -1,7 +1,7 @@
-import { Database } from "../database"
-import { Operation } from "../permission"
-import { matchPermissionRecord } from "../permission/matchPermissionRecord"
-import { dataGetOrFail } from "../resources"
+import { Database } from "../../database"
+import { Operation } from "../../permission"
+import { matchPermissionRecord } from "../../permission/matchPermissionRecord"
+import { dataGetOrFail } from "../../resources"
 import { TokenIssuerSchema } from "./TokenIssuer"
 import { tokenGetOrFail } from "./tokenGetOrFail"
 

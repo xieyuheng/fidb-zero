@@ -2,7 +2,7 @@ import { expect, test } from "vitest"
 import { api } from "../../index"
 import { allOperations, readOperations } from "../../permission"
 import { dataCreate } from "../../resources"
-import { tokenCreate } from "../../token"
+import { tokenCreate } from "../../system-resources/token"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("data-patch-no-permission", async ({ task }) => {

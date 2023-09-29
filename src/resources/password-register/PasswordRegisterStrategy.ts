@@ -2,7 +2,7 @@ import ty, { Schema } from "@xieyuheng/ty"
 import {
   TokenIssuerInput,
   TokenIssuerInputSchema,
-} from "../../token/TokenIssuer"
+} from "../../system-resources/token/TokenIssuer"
 
 export type PasswordRegisterStrategy = {
   loginTargets: Record<string, TokenIssuerInput>

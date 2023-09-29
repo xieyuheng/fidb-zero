@@ -1,5 +1,5 @@
-import { Database } from "../database"
-import { dataCreate } from "../resources"
+import { Database } from "../../database"
+import { dataCreate } from "../../resources"
 import { randomTokenName } from "../token/randomTokenName"
 
 export async function tokenCreate(

@@ -1,5 +1,5 @@
 import { expect, test } from "vitest"
-import { randomTokenName } from "../../token/randomTokenName"
+import { randomTokenName } from "../../system-resources/token/randomTokenName"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("file-can-not-access-system-path", async ({ task }) => {

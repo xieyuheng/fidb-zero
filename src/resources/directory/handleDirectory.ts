@@ -1,6 +1,6 @@
 import Http from "node:http"
 import { Database } from "../../database"
-import { tokenAssert } from "../../token"
+import { tokenAssert } from "../../system-resources/token"
 import { Json } from "../../utils/Json"
 import { arrayFromAsyncIterable } from "../../utils/arrayFromAsyncIterable"
 import { requestQuery } from "../../utils/node/requestQuery"

@@ -3,7 +3,7 @@ import { join } from "node:path"
 import { Database } from "../../database"
 import { Unauthorized } from "../../errors/Unauthorized"
 import { PasswordSchema, dataGetOrFail } from "../../resources"
-import { tokenCreate } from "../../token/tokenCreate"
+import { tokenCreate } from "../../system-resources/token"
 import { passwordCheck } from "../../utils/node/password"
 
 export type PasswordLoginOptions = {

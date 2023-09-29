@@ -1,7 +1,7 @@
 import { ty } from "@xieyuheng/ty"
 import Http from "node:http"
 import { Database } from "../../database"
-import { tokenAssert } from "../../token"
+import { tokenAssert } from "../../system-resources/token"
 import { Json } from "../../utils/Json"
 import { requestJsonObject } from "../../utils/node/requestJsonObject"
 import { requestResolvedPath } from "../requestResolvedPath"

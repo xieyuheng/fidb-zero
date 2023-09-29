@@ -1,9 +1,9 @@
 import ty, { Schema } from "@xieyuheng/ty"
-import { Data, DataSchema } from "../database"
+import { Data, DataSchema } from "../../database"
 import {
   PermissionRecord,
   PermissionRecordSchema,
-} from "../permission/PermissionRecord"
+} from "../../permission/PermissionRecord"
 
 export type TokenIssuer = Data & {
   permissions: PermissionRecord
