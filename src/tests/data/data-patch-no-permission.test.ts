@@ -15,10 +15,10 @@ test("data-patch-no-permission", async ({ task }) => {
     },
   })
 
-  const tokenName = await loginTokenCreate(db, "users/xieyuheng")
-  let authorization = `token ${tokenName}`
-
-  const newCtx = api.createClientContext(ctx.url, tokenName)
+  const newCtx = api.createClientContext(
+    ctx.url,
+    await loginTokenCreate(db, "users/xieyuheng"),
+  )
 
   const created = await api.dataCreate(newCtx, `users/xieyuheng`, {
     username: "xieyuheng",
@@ -35,45 +35,38 @@ test("data-patch-no-permission", async ({ task }) => {
     },
   })
 
-  const tokenNameXYH = await loginTokenCreate(db, "users/xyh")
-  authorization = `token ${tokenNameXYH}`
-
-  newCtx.authorization = authorization
-
-  // read is ok.
-
-  expect((await api.dataGetOrFail(newCtx, `users/xieyuheng`)).username).toEqual(
-    "xieyuheng",
+  const anotherCtx = api.createClientContext(
+    ctx.url,
+    await loginTokenCreate(db, "users/xyh"),
   )
 
-  // write is NOT ok.
+  {
+    // read is ok.
 
-  expect(
-    (
-      await fetch(new URL(`users/xieyuheng`, ctx.url), {
-        method: "PATCH",
-        headers: {
-          authorization,
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          "@revision": created["@revision"],
-          name: "谢宇恒",
-        }),
-      })
-    ).status,
-  ).toEqual(401)
+    const user = await api.dataGetOrFail(anotherCtx, `users/xieyuheng`)
+    expect(user.username).toEqual("xieyuheng")
+  }
 
-  // delete is like write, NOT ok.
+  {
+    // write is NOT ok.
 
-  expect(
-    (
-      await fetch(new URL(`users/xieyuheng`, ctx.url), {
-        method: "DELETE",
-        headers: {
-          authorization,
-        },
-      })
-    ).status,
-  ).toEqual(401)
+    const error = await api.errorOrFail(() =>
+      api.dataPatch(anotherCtx, `users/xieyuheng`, {
+        "@revision": created["@revision"],
+        name: "谢宇恒",
+      }),
+    )
+    expect(error.statusCode).toEqual(401)
+  }
+
+  {
+    // delete is like write, NOT ok.
+
+    const error = await api.errorOrFail(() =>
+      api.dataDelete(anotherCtx, `users/xieyuheng`, {
+        "@revision": created["@revision"],
+      }),
+    )
+    expect(error.statusCode).toEqual(401)
+  }
 })

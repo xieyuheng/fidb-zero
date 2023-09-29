@@ -1,4 +1,5 @@
 import { expect, test } from "vitest"
+import { createClientContext } from "../../client"
 import { api } from "../../index"
 import { prepareTestServer } from "../prepareTestServer"
 
@@ -20,30 +21,29 @@ test("data-default-token", async ({ task }) => {
     description: "Ones inner universe.",
   })
 
+  const newctx = await createClientContext(ctx.url, "default")
+
   {
     // Default token can NOT read non public data.
 
-    const response = await fetch(
-      new URL(`users/xieyuheng/projects/inner`, ctx.url),
-      {
-        method: "GET",
-      },
+    const error = await api.errorOrFail(() =>
+      api.dataGet(newctx, `users/xieyuheng/projects/inner`),
     )
 
-    expect(response.status).toEqual(401)
+    expect(error.statusCode).toEqual(401)
   }
 
   {
     // Default token can read user data.
 
-    await api.dataGetOrFail(ctx, `users/xieyuheng`)
+    await api.dataGetOrFail(newctx, `users/xieyuheng`)
   }
 
   {
     // Default token can read public data.
 
     const project = await api.dataGetOrFail(
-      ctx,
+      newctx,
       `users/xieyuheng/public/projects/inner`,
     )
 

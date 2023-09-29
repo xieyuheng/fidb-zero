@@ -14,10 +14,11 @@ test("data-get-no-permission", async ({ task }) => {
     },
   })
 
-  const tokenName = await loginTokenCreate(db, "users/xieyuheng")
-  let authorization = `token ${tokenName}`
+  const newCtx = api.createClientContext(
+    ctx.url,
+    await loginTokenCreate(db, "users/xieyuheng"),
+  )
 
-  const newCtx = api.createClientContext(ctx.url, tokenName)
   const created = await api.dataCreate(newCtx, `users/xieyuheng`, {
     username: "xieyuheng",
     name: "Xie Yuheng",
@@ -32,17 +33,14 @@ test("data-get-no-permission", async ({ task }) => {
     },
   })
 
-  const tokenNameXYH = await loginTokenCreate(db, "users/xyh")
-  authorization = `token ${tokenNameXYH}`
+  const anotherCtx = api.createClientContext(
+    ctx.url,
+    await loginTokenCreate(db, "users/xyh"),
+  )
 
-  expect(
-    (
-      await fetch(new URL(`users/xieyuheng`, ctx.url), {
-        method: "GET",
-        headers: {
-          authorization,
-        },
-      })
-    ).status,
-  ).toEqual(401)
+  const error = await api.errorOrFail(() =>
+    api.dataGet(anotherCtx, `users/xieyuheng`),
+  )
+
+  expect(error.statusCode).toEqual(401)
 })

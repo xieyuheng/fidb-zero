@@ -1,6 +1,6 @@
 export * from "./Token"
 export * from "./tokenAssert"
 export * from "./tokenCheck"
-export * from "./tokenCreate"
+export * from "./tokenCreateRandom"
 export * from "./tokenGetOrFail"
 export * from "./tokenInitDefault"

@@ -1,4 +1,5 @@
 import { expect, test } from "vitest"
+import { api } from "../../index"
 import { allOperations, readOperations } from "../../permission"
 import { loginTokenCreate } from "../../system-resources/login-token"
 import { loginTokenIssuerCreate } from "../../system-resources/login-token-issuer"
@@ -14,22 +15,17 @@ test("data-post-no-permission", async ({ task }) => {
     },
   })
 
-  const tokenName = await loginTokenCreate(db, "users/xyh")
-  const authorization = `token ${tokenName}`
+  const newCtx = api.createClientContext(
+    ctx.url,
+    await loginTokenCreate(db, "users/xyh"),
+  )
 
-  expect(
-    (
-      await fetch(new URL(`users/xieyuheng`, ctx.url), {
-        method: "POST",
-        headers: {
-          authorization,
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          username: "xieyuheng",
-          name: "Xie Yuheng",
-        }),
-      })
-    ).status,
-  ).toEqual(401)
+  const error = api.errorOrFail(() =>
+    api.dataCreate(newCtx, `users/xieyuheng`, {
+      username: "xieyuheng",
+      name: "Xie Yuheng",
+    }),
+  )
+
+  expect((await error).statusCode).toEqual(401)
 })

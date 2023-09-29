@@ -1,7 +1,8 @@
 import { expect, test } from "vitest"
+import { api } from "../../index"
 import { readOperations } from "../../permission"
 import { dataCreate } from "../../resources"
-import { tokenCreate } from "../../system-resources/token"
+import { tokenCreateRandom } from "../../system-resources/token"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("data-can-not-access-system-path", async ({ task }) => {
@@ -13,18 +14,15 @@ test("data-can-not-access-system-path", async ({ task }) => {
     },
   })
 
-  const tokenName = await tokenCreate(db, {
+  const tokenName = await tokenCreateRandom(db, {
     issuer: "test-token-issuers/all-read",
   })
 
   {
-    const response = await fetch(new URL(`.tokens/${tokenName}`, ctx.url), {
-      method: "GET",
-      headers: {
-        authorization: ctx.authorization,
-      },
-    })
+    const error = await api.errorOrFail(() =>
+      api.dataGet(ctx, `.tokens/${tokenName}`),
+    )
 
-    expect(response.status).toEqual(401)
+    expect(error.statusCode).toEqual(401)
   }
 })

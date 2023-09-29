@@ -1,14 +1,13 @@
 import { Database } from "../../database"
 import { dataCreate } from "../../resources"
-import { randomTokenName } from "../token/randomTokenName"
 
 export async function tokenCreate(
   db: Database,
+  name: string,
   properties: {
     issuer: string
   },
 ): Promise<string> {
-  const tokenName = randomTokenName()
-  await dataCreate(db, `.tokens/${tokenName}`, properties)
-  return tokenName
+  await dataCreate(db, `.tokens/${name}`, properties)
+  return name
 }

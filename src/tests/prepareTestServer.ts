@@ -4,7 +4,7 @@ import { init } from "../init/init"
 import { allOperations } from "../permission"
 import { dataCreate } from "../resources"
 import { startDatabaseServer } from "../servers/database/startDatabaseServer"
-import { tokenCreate } from "../system-resources/token"
+import { tokenCreateRandom } from "../system-resources/token"
 import { formatDateTime } from "../utils/formatDate"
 import { findPort } from "../utils/node/findPort"
 import { randomHexString } from "../utils/randomHexString"
@@ -30,7 +30,7 @@ export async function prepareTestServer(options: { name: string }) {
     },
   })
 
-  const tokenName = await tokenCreate(db, {
+  const tokenName = await tokenCreateRandom(db, {
     issuer: "test-token-issuers/all-read-write",
   })
 

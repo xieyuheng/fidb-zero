@@ -1,11 +1,11 @@
 import { Database } from "../../database"
-import { tokenCreate } from "../token"
+import { tokenCreateRandom } from "../token"
 
 export async function loginTokenCreate(
   db: Database,
   path: string,
 ): Promise<string> {
-  return await tokenCreate(db, {
+  return await tokenCreateRandom(db, {
     issuer: `${path}/.login-token-issuer`,
   })
 }
