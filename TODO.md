@@ -1,6 +1,5 @@
 # refactor
 
-ambr "../../index"  "../.."
 [password-register] fix the use of `loginTargets` in  `password-register-strategy` -- should be normalized
 
 [permission] `permissions` should be an array -- to support sum type

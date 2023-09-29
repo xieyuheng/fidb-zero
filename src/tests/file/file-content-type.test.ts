@@ -1,5 +1,5 @@
 import { expect, test } from "vitest"
-import { api } from "../../index"
+import { api } from "../.."
 import { responseHeaders } from "../../utils/responseHeaders"
 import { prepareTestServer } from "../prepareTestServer"
 

@@ -1,5 +1,5 @@
 import { expect, test } from "vitest"
-import { api } from "../../index"
+import { api } from "../.."
 import { PathEntry } from "../../resources/directory/PathEntry"
 import { prepareTestServer } from "../prepareTestServer"
 

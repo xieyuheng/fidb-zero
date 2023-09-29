@@ -1,6 +1,6 @@
 import { expect, test } from "vitest"
+import { api } from "../.."
 import { createClientContext } from "../../client"
-import { api } from "../../index"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("data-default-token", async ({ task }) => {
