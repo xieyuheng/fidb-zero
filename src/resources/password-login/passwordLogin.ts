@@ -1,8 +1,7 @@
 import { ty } from "@xieyuheng/ty"
-import { join } from "node:path"
 import { Database } from "../../database"
 import { Unauthorized } from "../../errors/Unauthorized"
-import { PasswordSchema, dataGetOrFail } from "../../resources"
+import { passwordGetOrFail } from "../../system-resources/password"
 import { loginTokenCreate } from "../../system-resources/token"
 import { passwordCheck } from "../../utils/node/password"
 
@@ -16,21 +15,16 @@ export const PasswordLoginOptionsSchema = ty.object({
 
 export async function passwordLogin(
   db: Database,
-  directory: string,
+  path: string,
   options: PasswordLoginOptions,
 ): Promise<{ token: string }> {
   const who = "passwordLogin"
 
-  const password = PasswordSchema.validate(
-    await dataGetOrFail(db, join(directory, ".password")),
-  )
-
+  const password = await passwordGetOrFail(db, path)
   if (await passwordCheck(options.password, password.hash)) {
-    const token = await loginTokenCreate(db, directory)
+    const token = await loginTokenCreate(db, path)
     return { token }
   }
 
-  throw new Unauthorized(
-    `[${who}] invalid password for directory: ${directory}`,
-  )
+  throw new Unauthorized(`[${who}] invalid password for data file: ${path}`)
 }
