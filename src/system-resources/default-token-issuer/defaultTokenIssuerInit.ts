@@ -1,12 +1,8 @@
 import { Database } from "../../database"
 import { dataCreate } from "../../resources"
-import { log } from "../../utils/log"
 
 export async function defaultTokenIssuerInit(db: Database): Promise<void> {
-  const who = "defaultTokenIssuerInit"
-
-  const path = ".default-token-issuer"
-  const data = {
+  await dataCreate(db, ".default-token-issuer", {
     permissions: {
       users: ["directory:get"],
       "users/*": ["data:get"],
@@ -18,9 +14,5 @@ export async function defaultTokenIssuerInit(db: Database): Promise<void> {
         "directory:get",
       ],
     },
-  }
-
-  await dataCreate(db, path, data)
-
-  log({ who, path })
+  })
 }

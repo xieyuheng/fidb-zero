@@ -1,22 +1,14 @@
 import { Database } from "../database"
 import { dataCreate } from "../resources"
 import { defaultTokenIssuerInit } from "../system-resources/default-token-issuer/defaultTokenIssuerInit"
+import { tokenInitDefault } from "../system-resources/token"
 import { log } from "../utils/log"
 
 export async function initSystemResource(db: Database): Promise<void> {
   const who = "initSystemResource"
 
   await defaultTokenIssuerInit(db)
-
-  {
-    const path = ".tokens/default"
-    const data = {
-      issuer: ".default-token-issuer",
-    }
-
-    await dataCreate(db, path, data)
-    log({ who, path })
-  }
+  await tokenInitDefault(db)
 
   {
     const path = ".password-register-strategy"
