@@ -6,9 +6,9 @@ import {
   applyPathPatternRecordKeys,
   matchPathPattern,
 } from "../../models/path-pattern"
-import { dataCreate, dataGetOrFail } from "../../resources"
+import { dataCreate } from "../../resources"
 import { loginTokenIssuerCreate } from "../../system-resources/login-token-issuer"
-import { PasswordRegisterStrategySchema } from "../../system-resources/password-register-strategy"
+import { passwordRegisterStrategyGetOrFail } from "../../system-resources/password-register-strategy"
 import { JsonObject, isJsonObject } from "../../utils/Json"
 import { passwordHash } from "../../utils/node/password"
 
@@ -33,9 +33,7 @@ export async function passwordRegister(
 
   const { password, memo, data } = options
 
-  const strategy = PasswordRegisterStrategySchema.validate(
-    await dataGetOrFail(db, ".password-register-strategy"),
-  )
+  const strategy = await passwordRegisterStrategyGetOrFail(db)
 
   for (const [pattern, tokenIssuer] of Object.entries(strategy.loginTargets)) {
     const results = matchPathPattern(pattern, path)
