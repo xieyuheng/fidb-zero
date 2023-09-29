@@ -1,5 +1,4 @@
 import { ty } from "@xieyuheng/ty"
-import { join } from "node:path"
 import { Data, Database } from "../../database"
 import { Unauthorized } from "../../errors"
 import {
@@ -8,9 +7,9 @@ import {
 } from "../../models/path-pattern"
 import { dataCreate } from "../../resources"
 import { loginTokenIssuerCreate } from "../../system-resources/login-token-issuer"
+import { passwordCreate } from "../../system-resources/password"
 import { passwordRegisterStrategyGetOrFail } from "../../system-resources/password-register-strategy"
 import { JsonObject, isJsonObject } from "../../utils/Json"
-import { passwordHash } from "../../utils/node/password"
 
 export type PasswordRegisterOptions = {
   data: JsonObject
@@ -43,15 +42,8 @@ export async function passwordRegister(
         results,
       )
 
-      await loginTokenIssuerCreate(db, path, {
-        permissions,
-      })
-
-      await dataCreate(db, join(path, ".password"), {
-        hash: await passwordHash(password),
-        memo: memo,
-      })
-
+      await loginTokenIssuerCreate(db, path, { permissions })
+      await passwordCreate(db, path, { password, memo })
       return await dataCreate(db, path, data)
     }
   }

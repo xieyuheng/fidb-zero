@@ -1,6 +1,6 @@
 # refactor
 
-system-resources/password
+passwordGetOrFail
 
 [password-register] fix the use of `loginTargets` in  `password-register-strategy` -- should be normalized
 
