@@ -1,7 +1,6 @@
 # refactor
 
 extract system-resources/login-token-issuer
-extract system-resources/password-register-strategy
 
 [password-register] fix the use of `loginTargets` in  `password-register-strategy` -- should be normalized
 

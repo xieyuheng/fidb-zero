@@ -5,9 +5,9 @@ import { Unauthorized } from "../../errors"
 import { applyPathPatternRecordKeys } from "../../path-pattern/applyPathPatternRecordKeys"
 import { matchPathPattern } from "../../path-pattern/matchPathPattern"
 import { dataCreate, dataGetOrFail } from "../../resources"
+import { PasswordRegisterStrategySchema } from "../../system-resources/password-register-strategy"
 import { JsonObject, isJsonObject } from "../../utils/Json"
 import { passwordHash } from "../../utils/node/password"
-import { PasswordRegisterStrategySchema } from "./PasswordRegisterStrategy"
 
 export type PasswordRegisterOptions = {
   data: JsonObject
