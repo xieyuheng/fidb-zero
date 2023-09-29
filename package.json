@@ -42,7 +42,7 @@
     "typedoc": "^0.25.1",
     "typescript": "^5.2.2",
     "vite": "^4.4.9",
-    "vitest": "^0.34.5"
+    "vitest": "^0.34.6"
   },
   "license": "GPL-3.0-or-later"
 }

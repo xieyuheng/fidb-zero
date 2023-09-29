@@ -1,6 +1,6 @@
 # refactor
 
-[password-register] fix the use of `loginTargets` in  `password-register-strategy` -- should be normalized
+[password-register] `password-register-strategy/login-targets/{loginTarget}`
 
 [permission] `permissions` should be an array -- to support sum type
 
