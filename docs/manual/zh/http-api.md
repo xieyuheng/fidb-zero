@@ -2,25 +2,28 @@
 title: HTTP API
 ---
 
-We follow [the standard of HTTP](https://www.rfc-editor.org/rfc/rfc9110) to
-organize our APIs by different kind of resources.  When doing a
-request, we use the `kind` query parameter to say which kind of
-resource we want.  The value of `kind` is case insensitive, so a user
-can write both `kind=Data` and `kind=data`.
+我们遵从 [HTTP 标准](https://www.rfc-editor.org/rfc/rfc9110)
+将我们的 API 按照不同的资源来分门别类。
+请求资源的时候，我们用 `kind` 参数来指明不同的资源类型。
+`kind` 参数的值是不分大小写的，
+比如写 `kind=Data` 或 `kind=data` 是一样的效果。
 
-Notes:
+注意：
 
-- When JSON is used as HTTP request body,
-  the `Content-Type` header should be `application/json`,
-  this is the same for all HTTP APIs.
+- 当 HTTP 请求带有 JSON 正文时，
+  `Content-Type` 应该设置为 `application/json`。
+  对于所有 HTTP API 都是如此。
 
-- When no `kind` query parameter is given:
+- 当请求中没有写 `kind` 参数时：
 
-  - `kind=data` will be the default if the path is a directory or does not exist.
-  - `kind=file` will be the default if the path is a file.
+  - 如果请求的路径是一个文件夹，
+    或者请求的路径还不存在，
+    `kind=data` 会被作为默认参数。
 
-Currently we have the follow kind of resources,
-and we will add more in the future.
+  - 如果请求的路径是一个文件，
+    `kind=file` 会被作为默认参数。
+
+目前我们有下列资源类型，之后还会继续增加。
 
 - [kind=data](kind-data.md)
 

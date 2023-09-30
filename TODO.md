@@ -1,5 +1,3 @@
-[docs] zh manual -- HTTP API
-
 [docs] zh manual -- kind-data.md
 [docs] zh manual -- kind-data-find.md
 [docs] zh manual -- kind-file.md
