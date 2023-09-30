@@ -4,15 +4,15 @@ title: kind=file-metadata
 
 ## GET {flie}?kind=file-metadata
 
-Read a file's metadata.
+读取一个文件的元数据。
 
-For example:
+例如：
 
 ```
 GET users/xieyuheng/human.txt?kind=file-metadata
 ```
 
-The result could be:
+结果如下：
 
 ```
 {

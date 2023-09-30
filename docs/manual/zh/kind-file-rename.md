@@ -4,9 +4,9 @@ title: kind=file-rename
 
 ## POST {flie}?kind=file-rename
 
-Rename a file.
+重命名一个文件。
 
-For example:
+例如：
 
 ```
 POST users/xieyuheng/human.txt?kind=file-rename

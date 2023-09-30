@@ -1,17 +1,15 @@
-[docs] zh manual -- kind-file-metadata.md
-[docs] zh manual -- kind-file-rename.md
 [docs] zh manual -- kind-directory.md
-
-[docs] zh manual -- access-token.md
-
-[docs] zh manual -- kind-password-register.md
-[docs] zh manual -- kind-password-login.md
 
 [docs] zh manual -- fidb-server.md
 [docs] zh manual -- fidb-client.md
 [docs] zh manual -- fidb-manager.md
 
 [docs] update zh manual about password register and login
+
+[docs] zh manual -- access-token.md
+
+[docs] zh manual -- kind-password-register.md
+[docs] zh manual -- kind-password-login.md
 
 [maybe] "Access Control Matrix" as API
 
