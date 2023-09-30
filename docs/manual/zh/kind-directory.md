@@ -4,9 +4,9 @@ title: kind=directory
 
 ## POST {directory}?kind=directory
 
-Create a directory.
+创建一个文件夹（文件夹也叫目录）。
 
-For example:
+例如：
 
 ```
 POST users/xieyuheng/public/contents?kind=directory
@@ -14,15 +14,15 @@ POST users/xieyuheng/public/contents?kind=directory
 
 ## GET {directory}?kind=directory
 
-Read a directory's direct subdirectories and files.
+读取文件夹内的子文件夹与文件名。
 
-For example:
+例如：
 
 ```
 GET users/xieyuheng/public/contents?kind=directory
 ```
 
-Results:
+结果为：
 
 ```
 [
@@ -52,13 +52,13 @@ Results:
 ]
 ```
 
-The `kind` might be `"Directory"` or `"File"`,
-the `path` is relative to the root of the database
-(thus can be used as primarily key).
+返回的结果中 `kind` 属性可能是 `"Directory"` 或 `"File"`，
+`path` 属性是相对于文件夹根目录的路径，
+因此可以用作主键来做引用。
 
-The above request is not recursive,
-if we want list all nested subdirectories
-we can add `recursive` to the query:
+上面的结果列表并不是递归的，
+如果还想要递归地列表所有嵌套的子文件夹，
+我们可以在查询字符串中加上 `recursive`：
 
 ```
 GET users/xieyuheng/public/contents?kind=directory&recursive
@@ -66,9 +66,9 @@ GET users/xieyuheng/public/contents?kind=directory&recursive
 
 ## DELETE {directory}?kind=directory
 
-Delete a directory recursively.
+递归地删除一个文件夹。
 
-For example:
+例如：
 
 ```
 DELETE users/xieyuheng/public/contents?kind=directory

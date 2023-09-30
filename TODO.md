@@ -1,5 +1,3 @@
-[docs] zh manual -- kind-directory.md
-
 [docs] zh manual -- fidb-server.md
 [docs] zh manual -- fidb-client.md
 [docs] zh manual -- fidb-manager.md
