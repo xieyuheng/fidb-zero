@@ -9,8 +9,8 @@ title: 用户组与权限
 例如：
 
 ```
-.groups/owner
 .groups/guest
+.groups/owner
 .groups/user
 ```
 
@@ -56,8 +56,31 @@ directory:delete
 看想要进行的操作是否在其操作列表中。
 如果不在，整个匹配失败，不会继续匹配下一个记录。
 
-例如数据库的拥有者所在的用户组 `.groups/owner`，
-可以对所有路径进行任何操作：
+访客所在的用户组 `.groups/guest` 可以：
+
+- 读用户列表。
+- 读取用户的基本信息数据。
+- 读取所有用户的公开数据。
+
+```
+{
+  "permissions": {
+    "users": ["directory:get"],
+    "users/*": ["data:get"],
+    "users/*/public/**": [
+      "data:get",
+      "data-find:get",
+      "file:get",
+      "file-metadata:get",
+      "directory:get"
+    ]
+  }
+}
+```
+
+例如数据库的拥有者所在的用户组 `.groups/owner` 可以：
+
+- 对所有路径进行任何操作。
 
 ```
 {
@@ -77,28 +100,6 @@ directory:delete
       "directory:post",
       "directory:get",
       "directory:delete"
-    ]
-  }
-}
-```
-
-访客所在的用户组 `.groups/guest` 可以：
-
-- 读用户列表。
-- 读取用户的基本信息数据。
-- 读取所有用户的公开数据。
-
-```
-{
-  "permissions": {
-    "users": ["directory:get"],
-    "users/*": ["data:get"],
-    "users/*/public/**": [
-      "data:get",
-      "data-find:get",
-      "file:get",
-      "file-metadata:get",
-      "directory:get"
     ]
   }
 }
