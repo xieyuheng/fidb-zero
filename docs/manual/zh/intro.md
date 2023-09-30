@@ -2,67 +2,65 @@
 title: 引子
 ---
 
-What if we use file system as database?
+如果用文件系统当数据库会怎样？
 
-I want a set of reusable solutions to implement database concepts just
-by the file system, and HTTP APIs which can read and write data
-represented as data files.
+我想要要一套标准的解决方案，
+来用文件系统来实现数据库中的概念，
+要有读写数据文件的 HTTP API。
 
-In a sense, "file system as database"
-is actually what URL and HTTP are designed for.
-In the HTTP Semantics section of
-[RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html),
-it says:
+其实，某种意义上，URL 和 HTTP 正是为了以文件系统为数据库而设计的。
+[RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html)
+关于 HTTP 语义章节中写道：
 
-> It is tempting to think of resource identifiers as remote file
-> system pathnames and of representations as being a copy of the
-> contents of such files. In fact, that is how many resources are
-> implemented. However, there are no such limitations in practice.
+> 人们很容易把资源标识符（resource identifiers）视为远程文件系统上的路径，
+> 并且把表示（representations）视为其文件内容。
+> 其实，这正是很多资源实现的方式。
+> 只不过没有限制人们一定要用这种方式实现罢了。
 
-A resource identifier links to a resource.
-If we view a resource as a directory or a file,
-the abstract idea of resource identifier becomes much more concrete.
-We see that file system, with it's pathnames and files, is both the
-inspiration and the archetype of HTTP resource.
+一个资源标识符指向一个资源，这听起来很抽象。
+但是如果我们将资源视为具体的文件夹和文件，
+资源这个抽象的概念就马上变得具体了。
+我们可以看到，文件系统的路径与文件，
+既是 HTTP 资源的灵感来源，又是 HTTP 资源的典型代表。
 
-Nowaday people use relational database and SQL to implement HTTP API,
-but the most used relations between SQL data
-are the one-to-one "has one" relation
-and the one-to-many "has many" relation,
-which are most naturally expressed by nested directories.
+如今人们用关系型数据库和 SQL 来实现 HTTP API，
+但是最常用的数据之间的关系，
+其实是一对一的「有一个」关系，
+和一对多的「有多个」关系，
+这些关系用嵌套的文件夹来表示最为自然。
 
-For example:
+例如：
 
-- A user _has many_ projects,
-  so we give each user a `projects` subdirectory:
+- 一个用户有多个项目，
+  我们可以给每个用户一个 `projects` 子目录：
 
   ```
   /users/{user}/projects/{project}
   ```
 
-- A user _has one_ config,
-  so we give each user a `config` subdirectory:
+- 一个用户有一个配置，
+  我们可以给每个用户一个 `config` 子目录：
 
   ```
   /users/{user}/config
   ```
 
-  We might also just let `config` be a property of `user` data,
-  as people might do in some document database.
+  我们也可以将 `config` 作为 `user` 数据的属性，
+  很多文档型数据库是这样处理的。
 
-When designing a tool, such as HTTP API and syntax of a programming
-language, we should optimize our design for the most used use case.
-Thus using file system as database can be viewed as optimizing for
-"has one" and "has many" relations.  Since we are optimizing our tool
-for the most used use case, the tool feels more handy and easier to
-understand.  The many-to-many relation, can still be implemented by
-indexes, just like how a normal relational database would do.
+每当设计一个工具时，
+例如 HTTP API 和程序语言的语法，
+我们都应该为最常用的使用场景而优化我们的设计。
+因此以文件系统为数据库，
+可以看作是为「有一个」和「有多个」关系而优化的数据库。
+只要为最常用的使用场景而优化，工具就能得心应手。
+至于数据之间多对多的关系，我们依然可以像关系型数据库一样，用索引来实现。
 
-> What if we use file system as database?
+> 如果用文件系统当数据库会怎样？
 
-It feels like an idea worth exploring.
-I will call this project **FiDB**.
-The source code is [available on GitHub](https://github.com/fidb-official/fidb),
-and the source of this manual is in the `docs/` directory of the repository.
+这看来是个值得探究的主意。
+我将称这个项目为 **FiDB**。
+在 GitHub 上可以看到 [源代码](https://github.com/fidb-official/fidb)，
+这个手册的源代码在代码仓库的 `docs/` 路径下。
 
-Welcome feedback.
+欢迎反馈。

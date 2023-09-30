@@ -1,4 +1,3 @@
-[docs] zh manual -- 引子
 [docs] zh manual -- 数据表
 [docs] zh manual -- 元数据
 [docs] zh manual -- HTTP API
@@ -20,6 +19,8 @@
 [docs] zh manual -- fidb-manager.md
 
 [docs] update zh manual about password register and login
+
+[maybe] "Access Control Matrix" as API
 
 # refactor
 
