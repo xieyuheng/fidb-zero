@@ -1,8 +1,8 @@
-[docs] zh manual -- access-token.md -- about groups
+[docs] zh manual -- access-token.md -- about system resource
+[docs] zh manual -- access-token.md -- about permission
 
-[docs] update zh manual about password register and login
-
-[docs] zh manual -- kind-password-register.md
+[docs] zh manual -- kind-password-register.md -- .token-issuer
+[docs] zh manual -- kind-password-register.md -- user group
 [docs] zh manual -- kind-password-login.md
 
 [maybe] "Access Control Matrix" as API

@@ -23,7 +23,6 @@
       "kind-password-register.md",
       "kind-password-login.md"
     ],
-    "权限": [],
     "工具": ["fidb-server.md", "fidb-client.md", "fidb-manager.md"]
   }
 }
