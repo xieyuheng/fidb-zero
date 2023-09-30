@@ -4,23 +4,25 @@ title: kind=data-find
 
 ## GET {data-directory}?kind=data-find
 
-Find data in a data directory based on some properties.
+根据属性的值，在数据文件夹内查找数据。
 
-We use [`qs`](https://github.com/ljharb/qs) for parsing query string.
+我们用 [`qs`](https://github.com/ljharb/qs)
+来解析 URL 中的查询字符串（`?` 之后的字符串）。
 
-For example, to get the first page of 3 users from China,
-we can specify `country` in `properties`,
-and the request should be:
+例如，查询前三个来自中国的用户，
+我们可以在查询字符串中指定 `properties.country`：
 
 ```
 GET /users?kind=data-find&page=1&size=3&properties.country=China
 ```
 
-There might be many query results,
-thus we need to specify the page (starting from 1, default to 1)
-and the page size (default to 50).
+由于结果有可能很多，
+所以我们还要在查询字符串中指定页数 `page`
+与每一页数据的数量 `size`。
+页数从 1 开始，默认为 1；
+每一页数据的数量 50。
 
-Query results:
+查找的结果：
 
 ```
 [
