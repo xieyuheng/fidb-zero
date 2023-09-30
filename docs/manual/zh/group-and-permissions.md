@@ -80,11 +80,17 @@ directory:delete
 }
 ```
 
-访客所在的用户组 `.groups/guest` 可以读取所有用户的公开数据：
+访客所在的用户组 `.groups/guest` 可以：
+
+- 读用户列表。
+- 读取用户的基本信息数据。
+- 读取所有用户的公开数据。
 
 ```
 {
   "permissions": {
+    "users": ["directory:get"],
+    "users/*": ["data:get"],
     "users/*/public/**": [
       "data:get",
       "data-find:get",
@@ -96,15 +102,12 @@ directory:delete
 }
 ```
 
-一个注册并登陆了的用户，
-可以读写自己的文件夹内所有的数据，
-并且that permits him/her to read and write his/hers own directory
-but only to read all other users' `public` directories.
+一个注册并登陆了的用户所在的用户组 `.groups/user` 可以：
 
-Let's just suppose the user is me, and my username is `xieyuheng`.
-The permissions would be:
+- 读写自己用户文件夹内的所有内容。
+- 也拥有访客的所有权限。
 
-`.groups/user`，其中 `{user}` 会在检查权限时，代入当前的用户名：
+注意，数据中的 `{user}` 会在检查权限时，代入当前的用户名。
 
 ```
 {
@@ -125,6 +128,7 @@ The permissions would be:
       "directory:get",
       "directory:delete"
     ],
+    "users": ["directory:get"],
     "users/*": ["data:get"],
     "users/*/public/**": [
       "data:get",

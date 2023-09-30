@@ -1,5 +1,3 @@
-[docs] zh manual -- group-and-permissions.md
-
 [maybe] "Access Control Matrix" as API
 
 # refactor
