@@ -19,7 +19,7 @@
       "kind-directory.md"
     ],
     "Register and Login": [
-      "access-token.md",
+      "access-control.md",
       "kind-password-register.md",
       "kind-password-login.md"
     ],

@@ -1,6 +1,6 @@
-[docs] update zh manual about password register and login
+[docs] zh manual -- access-token.md -- about groups
 
-[docs] zh manual -- access-token.md
+[docs] update zh manual about password register and login
 
 [docs] zh manual -- kind-password-register.md
 [docs] zh manual -- kind-password-login.md

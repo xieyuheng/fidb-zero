@@ -1,8 +1,8 @@
 ---
-title: 访问令牌
+title: Access Control
 ---
 
-We already have HTTP API to do operations on fidb,
+We already have HTTP API to do operations on FiDB,
 but not everyone should be allowed to do every operations right?
 We need to control _who_ can do _what_.
 
@@ -30,11 +30,11 @@ password register and login,
 becasue it does not dependent on other services,
 thus the simplest to understand and implement.
 
-## The Authorization HTTP header
+## Using Access Token
 
 When sending a HTTP request,
-a user should add the token to
-the [`Authorization` HTTP header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization).
+a user should add the access token to
+the [Authorization HTTP header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization).
 
 The syntax of this header is:
 

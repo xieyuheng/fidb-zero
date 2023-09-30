@@ -19,7 +19,7 @@
       "kind-directory.md"
     ],
     "注册与登陆": [
-      "access-token.md",
+      "access-control.md",
       "kind-password-register.md",
       "kind-password-login.md"
     ],
