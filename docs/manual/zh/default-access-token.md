@@ -2,7 +2,7 @@
 title: 默认访问令牌
 ---
 
-我们用 `.default-token-issuer` 这个数据文件来配置默认访问令牌。
+我们用 `.guest-token-issuer` 这个数据文件来配置默认访问令牌。
 
 假设我们想要让没有令牌的访客，
 可以读取到所有用户的公开数据，
@@ -19,6 +19,6 @@ title: 默认访问令牌
 
 ```
 {
-  "issuer": ".default-token-issuer"
+  "issuer": ".guest-token-issuer"
 }
 ```

@@ -2,7 +2,7 @@ import { Database } from "../../database"
 import { dataCreate } from "../../resources"
 
 export async function defaultTokenIssuerInit(db: Database): Promise<void> {
-  await dataCreate(db, ".default-token-issuer", {
+  await dataCreate(db, ".guest-token-issuer", {
     permissions: {
       users: ["directory:get"],
       "users/*": ["data:get"],

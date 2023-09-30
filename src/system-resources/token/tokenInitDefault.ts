@@ -3,6 +3,6 @@ import { tokenCreate } from "./tokenCreate"
 
 export async function tokenInitDefault(db: Database): Promise<string> {
   return await tokenCreate(db, "default", {
-    issuer: ".default-token-issuer",
+    issuer: ".guest-token-issuer",
   })
 }
