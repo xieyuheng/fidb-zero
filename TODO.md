@@ -1,23 +1,13 @@
-[maybe] "Access Control Matrix" as API
-
 # refactor
 
-simplify the access control so that we have the concept of user
+token have `issuerUpdatedAt` -- access token map to `.token-issuer` not user
 
-- a user have a `.token-issuer`
-- we do not need any target because only user can login
-- access token map to `.token-issuer` not user
-  - a user might be deleted and recreated again,
-    the old token can not be used for the new uesr.
+- a user might be deleted and recreated again,
+  the old token can not be used for the new uesr.
 
-[permission] `permissions` should be an array -- to support sum type
-
-- support permission group -- like unix user group
-
-  - should not copy permissions to every user, should use permission group
+[maybe] "Access Control Matrix" as API
 
 # docs
-
 
 [docs] update en manual about password register and login
 
