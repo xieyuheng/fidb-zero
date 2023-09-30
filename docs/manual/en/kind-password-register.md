@@ -2,7 +2,7 @@
 title: kind=password-register
 ---
 
-## POST {data-file}?kind=password-login
+## POST users/{user}?kind=password-register
 
 Register a user by password, to prepare a user for future logins.
 

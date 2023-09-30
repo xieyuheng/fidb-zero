@@ -35,14 +35,14 @@ title: 引子
   我们可以给每个用户一个 `projects` 子目录：
 
   ```
-  /users/{user}/projects/{project}
+  users/{user}/projects/{project}
   ```
 
 - 一个用户有一个配置，
   我们可以给每个用户一个 `config` 子目录：
 
   ```
-  /users/{user}/config
+  users/{user}/config
   ```
 
   我们也可以将 `config` 作为 `user` 数据的属性，

@@ -73,11 +73,11 @@ title: HTTP API
 - [kind=password-register](kind-password-register.md)
 
   ```
-  POST   {data-file}?kind=password-register
+  POST   users/{user}?kind=password-register
   ```
 
 - [kind=password-login](kind-password-login.md)
 
   ```
-  POST   {data-file}?kind=password-login
+  POST   users/{user}?kind=password-login
   ```

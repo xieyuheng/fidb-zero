@@ -1,4 +1,3 @@
-[docs] zh manual -- access-token.md -- about system resource
 [docs] zh manual -- access-token.md -- about permission
 
 [docs] zh manual -- kind-password-register.md -- .token-issuer

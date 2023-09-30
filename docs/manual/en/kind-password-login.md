@@ -2,7 +2,7 @@
 title: kind=password-login
 ---
 
-## POST {data-file}?kind=password-login
+## POST users/{user}?kind=password-login
 
 Login a user by password.
 

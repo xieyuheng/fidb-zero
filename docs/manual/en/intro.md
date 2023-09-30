@@ -37,14 +37,14 @@ For example:
   so we give each user a `projects` subdirectory:
 
   ```
-  /users/{user}/projects/{project}
+  users/{user}/projects/{project}
   ```
 
 - A user _has one_ config,
   so we give each user a `config` subdirectory:
 
   ```
-  /users/{user}/config
+  users/{user}/config
   ```
 
   We might also just let `config` be a property of `user` data,
