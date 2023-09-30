@@ -1,7 +1,3 @@
-[docs] zh manual -- access-token.md -- about permission
-
-[docs] zh manual -- kind-password-register.md -- .token-issuer
-[docs] zh manual -- kind-password-register.md -- user group
 [docs] zh manual -- kind-password-login.md
 
 [maybe] "Access Control Matrix" as API

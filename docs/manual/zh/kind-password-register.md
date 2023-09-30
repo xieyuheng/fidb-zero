@@ -67,36 +67,3 @@ users/xieyuheng/.token-issuer/index.json
   "@updatedAt": 1681389842021
 }
 ```
-
-相对应的在 `.groups/user` 这个数据文件中配置这个用户组所拥有的权限：
-
-```
-{
-  "permissions": {
-    "users/{user}/**": [
-      "data:post",
-      "data:get",
-      "data:put",
-      "data:patch",
-      "data:delete",
-      "data-find:get",
-      "file:post",
-      "file:get",
-      "file:put",
-      "file:delete",
-      "file-metadata:get",
-      "directory:post",
-      "directory:get",
-      "directory:delete"
-    ],
-    "users/*": ["data:get"],
-    "users/*/public/**": [
-      "data:get",
-      "data-find:get",
-      "file:get",
-      "file-metadata:get",
-      "directory:get"
-    ]
-  }
-}
-```

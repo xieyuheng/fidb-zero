@@ -49,9 +49,9 @@ Authorization: token cc224145f46a393f8ca71c4eb62aafe1
 如果发送 HTTP 请求时没有提供访问令牌，
 服务器将会使用一个默认的访问令牌。
 
-## .default-token-issuer
+## 默认访问令牌
 
-我们用 `.default-token-issuer` 这个数据文件来配置默认的访问令牌的限。
+我们用 `.default-token-issuer` 这个数据文件来配置默认访问令牌。
 
 假设我们想要让没有令牌的访客，
 可以读取到所有用户的公开数据，
@@ -60,22 +60,6 @@ Authorization: token cc224145f46a393f8ca71c4eb62aafe1
 ```
 {
   "groups": [ "guest" ]
-}
-```
-
-相对应的在 `.groups/guest` 这个数据文件中配置这个用户组所拥有的权限。
-
-```
-{
-  "permissions": {
-    "users/*/public/**": [
-      "data:get",
-      "data-find:get",
-      "file:get",
-      "file-metadata:get",
-      "directory:get"
-    ]
-  }
 }
 ```
 
@@ -90,9 +74,94 @@ Authorization: token cc224145f46a393f8ca71c4eb62aafe1
 
 ## 系统资源
 
-像是 `.default-token-issuer`、`.groups/guest`、`.tokens/default` 这样的，
-路径中某一段以 `.` 开头的数据文件，
-我们称作系统资源。
+像是 `.default-token-issuer` 和`.tokens/default` 这样的，
+路径中某一段以 `.` 开头的数据文件，我们称作系统资源。
+
 我们规定，一般的数据资源的请求，
 如 `kind=data` 和 `kind=file`，
 不能访问系统文件。
+
+## 用户组与权限
+
+我们在 `.groups` 中配置用户组，
+每个用户组中记录这个用户组对不同路径下资源的权限。
+
+```
+.groups/owner
+.groups/user
+.groups/guest
+```
+
+`.groups/owner`：
+
+```
+{
+  "permissions": {
+    "**": [
+      "data:post",
+      "data:get",
+      "data:put",
+      "data:patch",
+      "data:delete",
+      "data-find:get",
+      "file:post",
+      "file:get",
+      "file:put",
+      "file:delete",
+      "file-metadata:get",
+      "directory:post",
+      "directory:get",
+      "directory:delete"
+    ]
+  }
+}
+```
+
+`.groups/user`：
+
+```
+{
+  "permissions": {
+    "users/{user}/**": [
+      "data:post",
+      "data:get",
+      "data:put",
+      "data:patch",
+      "data:delete",
+      "data-find:get",
+      "file:post",
+      "file:get",
+      "file:put",
+      "file:delete",
+      "file-metadata:get",
+      "directory:post",
+      "directory:get",
+      "directory:delete"
+    ],
+    "users/*": ["data:get"],
+    "users/*/public/**": [
+      "data:get",
+      "data-find:get",
+      "file:get",
+      "file-metadata:get",
+      "directory:get"
+    ]
+  }
+}
+```
+
+`.groups/guest`：
+
+```
+{
+  "permissions": {
+    "users/*/public/**": [
+      "data:get",
+      "data-find:get",
+      "file:get",
+      "file-metadata:get",
+      "directory:get"
+    ]
+  }
+}
+```
