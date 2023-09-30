@@ -1,5 +1,5 @@
 ---
-title: 默认访问令牌
+title: 访客的访问令牌
 ---
 
 我们用 `.guest-token-issuer` 这个数据文件来配置默认访问令牌。
@@ -15,7 +15,7 @@ title: 默认访问令牌
 ```
 
 默认的访问令牌应该给以 `default` 的名字，
-并且保存在 `.tokens/default` 这个数据文件中：
+并且保存在 `.tokens/guest` 这个数据文件中：
 
 ```
 {

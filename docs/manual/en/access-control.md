@@ -82,7 +82,7 @@ And we can use a token named `default` to point to the default issuer.
 The token file should be:
 
 ```
-.tokens/default/index.json
+.tokens/guest/index.json
 ```
 
 The token data could be:
