@@ -4,9 +4,9 @@ title: kind=password-login
 
 ## POST users/{user}?kind=password-login
 
-Login a user by password.
+通过用户名和密码登录一个用户。
 
-For example:
+例如：
 
 ```
 POST users/xieyuheng?kind=password-login
@@ -16,9 +16,7 @@ POST users/xieyuheng?kind=password-login
 }
 ```
 
-Upon success, a token will be returned.
-
-For example:
+成功时返回令牌：
 
 ```
 {
@@ -26,18 +24,13 @@ For example:
 }
 ```
 
-Upon login, we store a token as a data file in `.tokens` directory.
-
-For example:
+并且将新的令牌保存在 `.tokens` 目录下：
 
 ```
 .tokens/cc224145f46a393f8ca71c4eb62aafe1/index.json
 ```
 
-And each token data has an `issuer` property
-which is path pointing to a login target.
-
-Example token data:
+每个令牌有一个 `issuer` 属性，记录是谁发行的令牌。
 
 ```
 {
@@ -47,109 +40,9 @@ Example token data:
 }
 ```
 
-Note that, there is one level of indirect here,
-when we want to know the `permissions` of a token,
-we read it from the token's `issuer` instead of from the token data.
+收到带着令牌的 HTTP 请求时，服务器会依照 `issuer` 中的记录，
+找到所对应的用户名和用户所属的用户组。
 
-## Permissions
-
-We use a record (a JSON object) to represent permissions,
-where the key is a path pattern, and the value is an array of operations.
-
-An operation is composed of
-a kind parameter of HTTP API
-and a HTTP method
-(both are case insensitive):
-
-```
-<kind-parameter>:<http-method>
-```
-
-Example operations:
-
-```
-data:post
-data:get
-data:put
-data:patch
-data:delete
-data-find:get
-file:post
-file:get
-file:put
-file:delete
-file-metadata:get
-directory:post
-directory:get
-directory:delete
-```
-
-We use the [`micromatch`](https://github.com/micromatch/micromatch)
-glob matching library for our path patterns.
-
-Given a path and an operation, the path patterns of the permissions
-will be matched one by one, for a matching path pattern,
-we see if the operation is included in the array of operations,
-if it is not included, we go on to try the next one,
-the matching fails only when all entries of the permissions are failed.
-
-For example, we want to have an admin token
-that can do everything to every directories.
-The permissions would be:
-
-```
-{
-  "**": [
-    "data:post",
-    "data:get",
-    "data:put",
-    "data:patch",
-    "data:delete",
-    "data-find:get",
-    "file:post",
-    "file:get",
-    "file:put",
-    "file:delete",
-    "file-metadata:get",
-    "directory:post",
-    "directory:get",
-    "directory:delete"
-  ]
-}
-```
-
-For another example, when a user is logged in,
-we want to give him/her a token
-that permits him/her to read and write his/hers own directory
-but only to read all other users' `public` directories.
-
-Let's just suppose the user is me, and my username is `xieyuheng`.
-The permissions would be:
-
-```
-{
-  "users/xieyuheng/**": [
-    "data:post",
-    "data:get",
-    "data:put",
-    "data:patch",
-    "data:delete",
-    "data-find:get",
-    "file:post",
-    "file:get",
-    "file:put",
-    "file:delete",
-    "file-metadata:get",
-    "directory:post",
-    "directory:get",
-    "directory:delete"
-  ],
-  "users/*/public/**": [
-    "data:get",
-    "data-find:get",
-    "file:get",
-    "file-metadata:get",
-    "directory:get"
-  ]
-}
-```
+令牌中并不保存这些信息，
+这样当我们想要修改某一用户所属的用户组时，
+只要修改这个用户的 `.token-issuer` 中的数据就好了。

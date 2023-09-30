@@ -1,4 +1,4 @@
-[docs] zh manual -- kind-password-login.md
+[docs] zh manual -- group-and-permissions.md
 
 [maybe] "Access Control Matrix" as API
 

@@ -18,8 +18,12 @@
       "kind-file-rename.md",
       "kind-directory.md"
     ],
-    "注册与登陆": [
+    "用户": [
       "access-control.md",
+      "access-token.md",
+      "default-access-token.md",
+      "system-resources.md",
+      "group-and-permissions.md",
       "kind-password-register.md",
       "kind-password-login.md"
     ],

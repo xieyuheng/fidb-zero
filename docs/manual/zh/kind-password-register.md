@@ -28,7 +28,7 @@ users/xieyuheng/.password/index.json
 users/xieyuheng/.token-issuer/index.json
 ```
 
-其中 `users/xieyuheng/index.json`
+`users/xieyuheng/index.json`
 是用请求中的 `data` 属性初始化的用户数据：
 
 ```
