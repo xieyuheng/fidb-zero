@@ -11,24 +11,16 @@ title: kind=file
 - 如果请求的路径是一个文件，
   `kind=file` 会被作为默认参数。
 
-This kind of resource is not limited to JSON data files,
-we can also use other kinds of files such as markdown, image, mp3 and so on.
+文件这个类型的资源并不局限于 JSON 数据文件，
+我们也可以用别的文件类型，比如 Markdown、图片、MP3 等等。
 
 ## POST {file}?kind=file
 
-Create a file.
+创建一个文件。
 
-If the file already exists,
-error should be reported.
+如果文件已经存在，就报错。
 
-Note that, the `Content-Type` header should be `text/plain` for plaintext file,
-and `application/octet-stream` for other kinds of file.
-
-It actually does not matter what `Content-Type` is used here,
-because when reading a file, the file extension is used
-to determine the response `Content-Type` header.
-
-For example:
+例如：
 
 ```
 POST users/xieyuheng/human.txt?kind=file
@@ -36,28 +28,36 @@ POST users/xieyuheng/human.txt?kind=file
 Hello, I am Xie Yuheng.
 ```
 
+注意，对于纯文本文件，HTTP 的 `Content-Type` 头字段应该设置为 `text/plain`，
+对于其他类型的文件，应该设置为 `application/octet-stream`。
+
+其实 `Content-Type` 设置为什么并不紧要，
+因为在读取文件的时候，
+所返回的 HTTP `Content-Type` 头字段的值，
+将由文件扩展名来决定。
+
+
 ## GET {file}?kind=file
 
-Read a file.
+读取一个文件。
 
-For example, after the POST above, we can read file by:
+例如，在上面的 POST 之后，我们可以用 GET 读取文件：
 
 ```
 GET users/xieyuheng/human.txt?kind=file
 ```
 
-The `Content-Type` of the HTTP response will be setted
-based on the corresponding file extension,
-for example, `.txt` maps to `text/plain`.
+由于文件扩展名是 `.txt`，
+所以返回的 HTTP `Content-Type` 头字段的值是 `text/plain`。
 
 ## PUT {flie}?kind=file
 
-Update a file.
+更新一个文件。
 
-`PUT` is idempotent, if the file already exists, it will be updated,
-if the file does not exist, it will be created.
+PUT 是幂等的，如果文件已经存在，它就会更新文件，
+如果文件还不存在，它就会创建文件。
 
-For example:
+例如：
 
 ```
 PUT users/xieyuheng/human.txt?kind=file
@@ -68,9 +68,9 @@ Hello, I am Xie Yuheng from China.
 ## DELETE {flie}?kind=file
 
 
-Delete a file.
+删除一个文件。
 
-For example:
+例如：
 
 ```
 DELETE users/xieyuheng/human.txt?kind=file

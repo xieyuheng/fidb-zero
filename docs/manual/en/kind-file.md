@@ -7,8 +7,8 @@ When no `kind` query parameter is given:
 - `kind=data` will be the default if the path is a directory or does not exist.
 - `kind=file` will be the default if the path is a file.
 
-This kind of resource is not limited to JSON data files,
-we can also use other kinds of files such as markdown, image, mp3 and so on.
+File as a kind of resource is not limited to JSON data files,
+we can also use other kinds of files such as Markdown, image, MP3 and so on.
 
 ## POST {file}?kind=file
 
@@ -17,13 +17,6 @@ Create a file.
 If the file already exists,
 error should be reported.
 
-Note that, the `Content-Type` header should be `text/plain` for plaintext file,
-and `application/octet-stream` for other kinds of file.
-
-It actually does not matter what `Content-Type` is used here,
-because when reading a file, the file extension is used
-to determine the response `Content-Type` header.
-
 For example:
 
 ```
@@ -31,6 +24,13 @@ POST users/xieyuheng/human.txt?kind=file
 
 Hello, I am Xie Yuheng.
 ```
+
+Note that, the `Content-Type` header should be `text/plain` for plaintext file,
+and `application/octet-stream` for other kinds of file.
+
+It actually does not matter what `Content-Type` is used here,
+because when reading a file, the file extension is used
+to determine the response `Content-Type` header.
 
 ## GET {file}?kind=file
 
@@ -50,7 +50,7 @@ for example, `.txt` maps to `text/plain`.
 
 Update a file.
 
-`PUT` is idempotent, if the file already exists, it will be updated,
+PUT is idempotent, if the file already exists, it will be updated,
 if the file does not exist, it will be created.
 
 For example:

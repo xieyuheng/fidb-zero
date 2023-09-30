@@ -17,7 +17,7 @@ title: kind=data
 
 如果数据文件已经存在，就报错。
 
-例如，如下 `POST`：
+例如，如下 POST：
 
 ```
 POST users/xieyuheng
@@ -53,7 +53,7 @@ users/xieyuheng/projects/inner/index.json
 users/xieyuheng/projects/pomodoro/index.json
 ```
 
-读取数据的 `GET` 请求将是：
+读取数据的 GET 请求将是：
 
 ```
 GET users/xieyuheng
@@ -83,7 +83,7 @@ GET users/xieyuheng
 }
 ```
 
-用 `PUT` 来更新整个数据文件：
+用 PUT 来更新整个数据文件：
 
 ```
 PUT users/xieyuheng
@@ -119,7 +119,7 @@ GET users/xieyuheng
 }
 ```
 
-用 `PATCH` 来更新数据文件的部分属性：
+用 PATCH 来更新数据文件的部分属性：
 
 ```
 PATCH users/xieyuheng
@@ -153,7 +153,7 @@ GET users/xieyuheng
 }
 ```
 
-用 `DELETE` 删除数据文件：
+用 DELETE 删除数据文件：
 
 ```
 DELETE users/xieyuheng

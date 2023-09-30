@@ -50,7 +50,7 @@ users/xieyuheng/projects/inner/index.json
 users/xieyuheng/projects/pomodoro/index.json
 ```
 
-The `GET` requests would be:
+The GET requests would be:
 
 ```
 GET users/xieyuheng

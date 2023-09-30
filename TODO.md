@@ -1,4 +1,3 @@
-[docs] zh manual -- kind-file.md
 [docs] zh manual -- kind-file-metadata.md
 [docs] zh manual -- kind-file-rename.md
 [docs] zh manual -- kind-directory.md
