@@ -1,5 +1,3 @@
-[docs] manual -- drop all number prefix
-
 [docs] zh manual -- 引子
 [docs] zh manual -- 数据表
 [docs] zh manual -- 元数据

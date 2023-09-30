@@ -5,12 +5,12 @@
   "authors": ["Xie Yuheng"],
   "date": "2023",
   "src": "zh",
-  "main": "00-intro.md",
+  "main": "intro.md",
   "sections": {
-    "default": ["00-intro.md"],
-    "数据": ["01-data-table.md", "02-metadata-properties.md"],
+    "default": ["intro.md"],
+    "数据": ["data-table.md", "metadata-properties.md"],
     "资源": [
-      "03-http-api.md",
+      "http-api.md",
       "kind-data.md",
       "kind-data-find.md",
       "kind-file.md",
@@ -19,7 +19,7 @@
       "kind-directory.md"
     ],
     "注册与登陆": [
-      "04-access-token.md",
+      "access-token.md",
       "kind-password-register.md",
       "kind-password-login.md"
     ],

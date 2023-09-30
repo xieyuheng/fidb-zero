@@ -1,5 +1,5 @@
 ---
-title: Metadata Properties
+title: 元数据
 ---
 
 Metadata are data about data.
@@ -8,9 +8,9 @@ Beside the JSON data stored in file,
 when reading the data, we also want to add some metadata
 such as primary key, timestamps and so on,
 
-- **Problem 2.1:** How should we add metadata properties to JSON data?
+- **Problem:** How should we add metadata properties to JSON data?
 
-- **Solution 2.1:** We can use `@` as prefix of property name,
+- **Solution:** We can use `@` as prefix of property name,
   to denote that this property is metadata.
 
 For the ease of creating data by editing JSON files,
@@ -68,12 +68,12 @@ based on current timestamp.
 
 ## @revision
 
-- **Problem 2.2:** When I want to update a data, I first read it by it's `@path`,
+- **Problem:** When I want to update a data, I first read it by it's `@path`,
   then I edit the data and write it back to the database.
   What if during this time, the data is updated by another user?
   How should I know about this?
 
-- **Solution 2.2:** We can add a `@revision` metadata property to the data.
+- **Solution:** We can add a `@revision` metadata property to the data.
 
   When reading data, if there is no `@revision` property,
   we add a random string as `@revision`.

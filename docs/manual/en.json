@@ -5,12 +5,12 @@
   "authors": ["Xie Yuheng"],
   "date": "2023",
   "src": "en",
-  "main": "00-intro.md",
+  "main": "intro.md",
   "sections": {
-    "default": ["00-intro.md"],
-    "Data": ["01-data-table.md", "02-metadata-properties.md"],
+    "default": ["intro.md"],
+    "Data": ["data-table.md", "metadata-properties.md"],
     "Resources": [
-      "03-http-api.md",
+      "http-api.md",
       "kind-data.md",
       "kind-data-find.md",
       "kind-file.md",
@@ -18,15 +18,11 @@
       "kind-file-rename.md",
       "kind-directory.md"
     ],
-    "Register & Login": [
-      "04-access-token.md",
+    "Register and Login": [
+      "access-token.md",
       "kind-password-register.md",
       "kind-password-login.md"
     ],
-    "Tools": [
-      "fidb-server.md",
-      "fidb-client.md",
-      "fidb-manager.md"
-    ]
+    "Tools": ["fidb-server.md", "fidb-client.md", "fidb-manager.md"]
   }
 }

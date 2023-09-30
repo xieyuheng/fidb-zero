@@ -1,14 +1,14 @@
 ---
-title: 数据表
+title: Data Table
 ---
 
 To implement the idea of FiDB,
 we must first answer the question about
 the familiar concept of _data table_.
 
-- **Problem 1.1:** How should we represent data table in file system?
+- **Problem:** How should we represent data table in file system?
 
-- **Solution 1.1.A:** Using a directory of JSON files to represent a table,
+- **Solution A:** Using a directory of JSON files to represent a table,
   where each JSON file represents a row of the table.
 
   For example:
@@ -24,7 +24,7 @@ because we want to use subdirectory relation
 to represent "has one" and "has many" relations,
 but a file CAN NOT have any subdirectories at all.
 
-- **Solution 1.1.B:** Using a directory of directories to represent a table,
+- **Solution B:** Using a directory of directories to represent a table,
   where each subdirectory contains one JSON file named `index.json`
   that represents a row of the table.
 
@@ -55,9 +55,9 @@ We talked about representing "has one" and "has many" relations
 many times already, let's articulate it as a problem
 and solve it once for all.
 
-- **Problem 1.2:** How should we represent "has one" and "has many" relations in file system?
+- **Problem:** How should we represent "has one" and "has many" relations in file system?
 
-- **Solution 1.2:** The data belong to another data,
+- **Solution:** The data belong to another data,
   should be represented as subdirectory
   belong to the corresponding directory.
 
