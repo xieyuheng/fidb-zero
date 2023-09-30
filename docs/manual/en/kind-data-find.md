@@ -8,6 +8,10 @@ Find data in a data directory based on some properties.
 
 We use [`qs`](https://github.com/ljharb/qs) for parsing query string.
 
+There might be many query results,
+thus we need to specify the page (starting from 1, default to 1)
+and the page size (default to 50).
+
 For example, to get the first page of 3 users from China,
 we can specify `country` in `properties`,
 and the request should be:
@@ -15,10 +19,6 @@ and the request should be:
 ```
 GET /users?kind=data-find&page=1&size=3&properties.country=China
 ```
-
-There might be many query results,
-thus we need to specify the page (starting from 1, default to 1)
-and the page size (default to 50).
 
 Query results:
 
