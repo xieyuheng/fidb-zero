@@ -2,16 +2,18 @@
 title: 数据表
 ---
 
-To implement the idea of FiDB,
-we must first answer the question about
-the familiar concept of _data table_.
+想要实现 FiDB 这个想法，
+我们首先要回答一个问题，
+如何处理数据表（data table）
+这个人们所熟知的数据库中的概念？
 
-- **Problem:** How should we represent data table in file system?
+- **问题：** 如何在文件系统中表示数据表？
 
-- **Solution A:** Using a directory of JSON files to represent a table,
-  where each JSON file represents a row of the table.
+- **方案 A：** 用一个文件夹来表示数据表，
+  在其中保存 JSON 数据文件，
+  每个 JSON 数据文件代表数据表中的一行数据。
 
-  For example:
+  例如：
 
   ```
   users/xieyuheng.json
@@ -19,16 +21,17 @@ the familiar concept of _data table_.
   users/mimor.json
   ```
 
-This seems is the most simple solution, but we can not use it,
-because we want to use subdirectory relation
-to represent "has one" and "has many" relations,
-but a file CAN NOT have any subdirectories at all.
+看起来这是最简单的方案，
+但是我们并不能采纳这个方案，
+因为我们需要用子目录关系来表示「有一个」关系和「有多个」关系，
+然而文件是没有子目录的。
 
-- **Solution B:** Using a directory of directories to represent a table,
-  where each subdirectory contains one JSON file named `index.json`
-  that represents a row of the table.
+- **方案 B：** 用一个文件夹来表示数据表，
+  在其中保存子文件夹，
+  买个子文件夹有一个名为 `index.json` 的 JSON 数据文件，
+  每个 JSON 数据文件代表数据表中的一行数据。
 
-  For example:
+  例如：
 
   ```
   users/xieyuheng/index.json
@@ -36,12 +39,11 @@ but a file CAN NOT have any subdirectories at all.
   users/mimor/index.json
   ```
 
-  We will call `users/xieyuheng/index.json` a _data file_.
+  我们称 `users/xieyuheng/index.json` 为一个数据文件。
 
-  And the path of the subdirectory relative to the root of the database
-  is viewed as the _primary key_ of the row.
+  称 `users/xieyuheng` 这一行数据的主键。
 
-  For example the primary keys of the above data files are:
+  例如上面数据文件的主键为：
 
   ```
   users/xieyuheng
@@ -49,41 +51,39 @@ but a file CAN NOT have any subdirectories at all.
   users/mimor
   ```
 
-  We will use paths like `users/xieyuheng` to refer to the data file,
+  我们将用 `users/xieyuheng` 这样的路径来引用数据文件。
 
-We talked about representing "has one" and "has many" relations
-many times already, let's articulate it as a problem
-and solve it once for all.
+之前多次提到过要实现「有一个」关系和「有多个」关系，
+现在来明确地解决以下这个问题。
 
-- **Problem:** How should we represent "has one" and "has many" relations in file system?
+- **问题：** 如何在文件系统中表示「有一个」关系和「有多个」关系？
 
-- **Solution:** The data belong to another data,
-  should be represented as subdirectory
-  belong to the corresponding directory.
+- **方案：** 一个数据属于另一个数据，
+  应该表示为一个子文件夹属于一个对应的文件夹。
 
-  For example, a user _has many_ projects,
-  thus each user has a `projects` subdirectory.
+  例如，一个用户有多个项目，
+  因此每个用户有一个 `projects` 子文件夹。
 
-  Suppose the pattern of data files for `users` is:
+  如果，代表用户的数据文件形如：
 
   ```
   users/{user}/index.json
   ```
 
-  Example data files of `users`:
+  具体的用户数据文件例如：
 
   ```
   users/readonlylink/index.json
   users/xieyuheng/index.json
   ```
 
-  The pattern of data files for `projects` would be:
+  那么，代表项目的数据文件形如：
 
   ```
   users/{user}/projects/{project}/index.json
   ```
 
-  Example data files of `projects`:
+  具体的项目数据文件例如：
 
   ```
   users/xieyuheng/projects/inner/index.json
@@ -92,16 +92,16 @@ and solve it once for all.
   users/readonlylink/projects/x-markdown/index.json
   ```
 
-  For another example, a user _has one_ config,
-  thus each user has a `config` subdirectory.
+  又比如，一个用户有一个配置，
+  因此每个用户有一个 `config` 子文件夹。
 
-  The pattern of data files for `config` is:
+  代表配置的数据文件形如：
 
   ```
   users/{user}/config/index.json
   ```
 
-  Example data files of `config`:
+  具体的配置数据文件例如：
 
   ```
   users/xieyuheng/config/index.json

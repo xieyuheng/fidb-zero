@@ -1,4 +1,3 @@
-[docs] zh manual -- 数据表
 [docs] zh manual -- 元数据
 [docs] zh manual -- HTTP API
 
