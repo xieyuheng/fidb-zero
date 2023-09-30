@@ -12,12 +12,10 @@ For example:
 POST users/xieyuheng?kind=password-register
 
 {
+  "password": "123456",
   "data": {
     "username": "xieyuheng",
     "name": "Xie Yuheng"
-  },
-  "options": {
-    "password": "123456"
   }
 }
 ```
@@ -26,7 +24,7 @@ Upon success, the following data files will be created:
 
 ```
 users/xieyuheng/index.json
-users/xieyuheng/.login-token-issuer/index.json
+users/xieyuheng/.token-issuer/index.json
 users/xieyuheng/.password/index.json
 ```
 
@@ -45,25 +43,15 @@ thus the password data file might be:
 ```
 
 Upon register, we prepare a user for future logins by
-creating a `.login-token-issuer` data file for that user.
+creating a `.token-issuer` data file for that user.
 For example, registering `users/xieyuheng`
-will create `users/xieyuheng/.login-token-issuer`.
-
-The `.login-token-issuer` data file will have a `permissions` property,
-which we discuss later.
-
-Since we do not want a user to change his/her own `permissions`,
-we make a convention that if part of a path starts with `.`
--- for example `users/xieyuheng/.login-token-issuer`,
-we view it as referencing _system resource_,
-thus can not be access by normal operations,
-such as `data`, `file` and `directory` operations.
+will create `users/xieyuheng/.token-issuer`.
 
 ## .password-register-strategy
 
 We use `.password-register-strategy` data file,
 to configure which directory is allow to be login target,
-and what `permissions` should be granted when creating `.login-token-issuer`.
+and what `permissions` should be granted when creating `.token-issuer`.
 
 For example, to allow all users be login target:
 

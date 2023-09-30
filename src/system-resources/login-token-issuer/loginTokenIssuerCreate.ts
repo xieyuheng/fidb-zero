@@ -9,5 +9,5 @@ export async function loginTokenIssuerCreate(
     permissions: PermissionRecord
   },
 ): Promise<void> {
-  await dataCreate(db, `${path}/.login-token-issuer`, input)
+  await dataCreate(db, `${path}/.token-issuer`, input)
 }

@@ -41,7 +41,7 @@ Example token data:
 
 ```
 {
-  "issuer": "users/xieyuheng/.login-token-issuer",
+  "issuer": "users/xieyuheng/.token-issuer",
   "@path": ".tokens/cc224145f46a393f8ca71c4eb62aafe1",
   ...
 }

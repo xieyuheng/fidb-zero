@@ -6,6 +6,6 @@ export async function loginTokenCreate(
   path: string,
 ): Promise<string> {
   return await tokenCreateRandom(db, {
-    issuer: `${path}/.login-token-issuer`,
+    issuer: `${path}/.token-issuer`,
   })
 }

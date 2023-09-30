@@ -124,13 +124,13 @@ hello-world/
 └── users
     ├── alice
     │   ├── index.json
-    │   ├── .login-token-issuer
+    │   ├── .token-issuer
     │   │   └── index.json
     │   └── .password
     │       └── index.json
     └── bob
         ├── index.json
-        ├── .login-token-issuer
+        ├── .token-issuer
         │   └── index.json
         └── .password
             └── index.json
