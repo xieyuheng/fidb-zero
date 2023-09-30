@@ -2,19 +2,22 @@
 title: kind=data
 ---
 
-When no `kind` query parameter is given:
+当请求中没有写 `kind` 参数时：
 
-- `kind=data` will be the default if the path is a directory or does not exist.
-- `kind=file` will be the default if the path is a file.
+- 如果请求的路径是一个文件夹，
+  或者请求的路径还不存在，
+  `kind=data` 会被作为默认参数。
+
+- 如果请求的路径是一个文件，
+  `kind=file` 会被作为默认参数。
 
 ## POST {data-path}?kind=data
 
-Create a data file.
+创建一个数据文件。
 
-If the data file already exists,
-error should be reported.
+如果数据文件已经存在，就报错。
 
-For example, after the following `POST`s:
+例如，如下 `POST`：
 
 ```
 POST users/xieyuheng
@@ -30,7 +33,7 @@ POST users/xieyuheng/projects/pomodoro
 { "name": "Pomodoro", "description": "🍅 A Pomodoro timer." }
 ```
 
-We will create the following data files:
+将会创建如下数据文件：
 
 ```
 users/xieyuheng/index.json
@@ -40,9 +43,9 @@ users/xieyuheng/projects/pomodoro/index.json
 
 ## GET {data-path}?kind=data
 
-Read a data file.
+读取一个数据文件。
 
-For example, if we have the following data:
+例如，如果我们有如下数据文件：
 
 ```
 users/xieyuheng/index.json
@@ -50,7 +53,7 @@ users/xieyuheng/projects/inner/index.json
 users/xieyuheng/projects/pomodoro/index.json
 ```
 
-The `GET` requests would be:
+读取数据的 `GET` 请求将是：
 
 ```
 GET users/xieyuheng
@@ -60,15 +63,15 @@ GET users/xieyuheng/projects/pomodoro
 
 ## PUT {data-path}?kind=data
 
-Update the whole data file.
+更新整个数据文件。
 
-We first need to read the data to get `@revision`.
+我们首先要读取数据，以获得 `@revision`。
 
 ```
 GET users/xieyuheng
 ```
 
-Result:
+请求的结果：
 
 ```
 {
@@ -80,7 +83,7 @@ Result:
 }
 ```
 
-Update the whole data:
+用 `PUT` 来更新整个数据文件：
 
 ```
 PUT users/xieyuheng
@@ -96,15 +99,15 @@ PUT users/xieyuheng
 
 ## PATCH {data-path}?kind=data
 
-Update some properties of a data file.
+更新数据文件的某些属性。
 
-We first need to read the data to get `@revision`.
+我们首先要读取数据，以获得 `@revision`。
 
 ```
 GET users/xieyuheng
 ```
 
-Result:
+请求的结果：
 
 ```
 {
@@ -116,7 +119,7 @@ Result:
 }
 ```
 
-Update only some properties:
+用 `PATCH` 来更新数据文件的部分属性：
 
 ```
 PATCH users/xieyuheng
@@ -129,15 +132,15 @@ PATCH users/xieyuheng
 
 ## DELETE {data-path}?kind=data
 
-Delete data file.
+删除一个数据文件。
 
-We first need to read the data to get `@revision`.
+我们首先要读取数据，以获得 `@revision`。
 
 ```
 GET users/xieyuheng
 ```
 
-Result:
+请求的结果：
 
 ```
 {
@@ -150,7 +153,7 @@ Result:
 }
 ```
 
-Delete the data:
+用 `DELETE` 删除数据文件：
 
 ```
 DELETE users/xieyuheng

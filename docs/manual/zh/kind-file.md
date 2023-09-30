@@ -2,10 +2,14 @@
 title: kind=file
 ---
 
-When no `kind` query parameter is given:
+当请求中没有写 `kind` 参数时：
 
-- `kind=data` will be the default if the path is a directory or does not exist.
-- `kind=file` will be the default if the path is a file.
+- 如果请求的路径是一个文件夹，
+  或者请求的路径还不存在，
+  `kind=data` 会被作为默认参数。
+
+- 如果请求的路径是一个文件，
+  `kind=file` 会被作为默认参数。
 
 This kind of resource is not limited to JSON data files,
 we can also use other kinds of files such as markdown, image, mp3 and so on.
