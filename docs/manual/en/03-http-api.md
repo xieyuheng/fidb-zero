@@ -1,5 +1,5 @@
 ---
-title: The HTTP API
+title: HTTP API
 ---
 
 We follow [the standard of HTTP](https://www.rfc-editor.org/rfc/rfc9110) to

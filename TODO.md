@@ -1,6 +1,37 @@
+[docs] manual -- drop all number prefix
+
+[docs] zh manual -- 引子
+[docs] zh manual -- 数据表
+[docs] zh manual -- 元数据
+[docs] zh manual -- HTTP API
+
+[docs] zh manual -- kind-data.md
+[docs] zh manual -- kind-data-find.md
+[docs] zh manual -- kind-file.md
+[docs] zh manual -- kind-file-metadata.md
+[docs] zh manual -- kind-file-rename.md
+[docs] zh manual -- kind-directory.md
+
+[docs] zh manual -- access-token.md
+
+[docs] zh manual -- kind-password-register.md
+[docs] zh manual -- kind-password-login.md
+
+[docs] zh manual -- fidb-server.md
+[docs] zh manual -- fidb-client.md
+[docs] zh manual -- fidb-manager.md
+
+[docs] update zh manual about password register and login
+
 # refactor
 
-[password-register] `password-register-strategy/login-targets/{loginTarget}`
+simplify the access control so that we have the concept of user
+
+- a user have a `.token-issuer`
+- we do not need any target because only user can login
+- access token map to `.token-issuer` not user
+  - a user might be deleted and recreated again,
+    the old token can not be used for the new uesr.
 
 [permission] `permissions` should be an array -- to support sum type
 
@@ -10,13 +41,10 @@
 
 # docs
 
+
 [docs] update en manual about password register and login
 
-[docs] FiDB Server
-[docs] FiDB Client
 [docs] FiDB Manager
-
-[docs] zh manual
 
 # data
 
