@@ -1,4 +1,3 @@
-[docs] zh manual -- 元数据
 [docs] zh manual -- HTTP API
 
 [docs] zh manual -- kind-data.md

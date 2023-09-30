@@ -2,33 +2,33 @@
 title: 元数据
 ---
 
-Metadata are data about data.
+元数据是关于数据的数据。
 
-Beside the JSON data stored in file,
-when reading the data, we also want to add some metadata
-such as primary key, timestamps and so on,
+除了保存在文件中的 JSON 数据之外，
+在读取数据的时候，
+我们还想要加一些元数据，
+比如主键、时间戳等等。
 
-- **Problem:** How should we add metadata properties to JSON data?
+- **问题：** 如何在 JSON 数据中加元数据？
 
-- **Solution:** We can use `@` as prefix of property name,
-  to denote that this property is metadata.
+- **方案：** 我们可以给元数据属性的名字加上 `@` 前缀。
 
-For the ease of creating data by editing JSON files,
-all the metadata should be optional.
-Metadata properties should be created (or updated)
-when reading or writing the data.
+为了方便人们通过直接编辑 JSON 文件的方式来创建数据，
+所有元数据属性都是可选的，
+只有当读取数据的时候，
+才会将元数据加到数据上去。
 
 ## @path
 
-To make the data more convenient to use,
-we use `@path` as the property name of primary key.
+为了让读取到的数据更方便使用，
+我们用 `@path` 属性来保存主键。
 
-When reading data, the path of the directory that contains `index.json`
-will be added to the result as a metadata property.
+读取数据的时候，包含 `index.json` 文件的文件夹路径，
+将被作为 `@path` 属性加到返回的结果中。
 
-The path is relative to the root of database.
+这个路径是相对于数据库的根目录的。
 
-For example, the `@path` of the following data
+例如，下列数据的 `@path` 属性
 
 ```
 users/xieyuheng/index.json
@@ -36,7 +36,7 @@ users/xieyuheng/projects/inner/index.json
 users/xieyuheng/projects/pomodoro/index.json
 ```
 
-would be
+是
 
 ```
 users/xieyuheng
@@ -46,40 +46,37 @@ users/xieyuheng/projects/pomodoro
 
 ## @createdAt
 
-We use `@createdAt` as the timestamp of creation.
+我们用 `@createdAt` 创建时的时间戳。
 
-When reading data, if there is no `@createdAt` property,
-the creation timestamp of the file
-will be added to the result as a metadata property.
+当读取数据时，如果没有 `@createdAt` 属性，
+这个文件的创建时间将会被作为 `@createdAt` 属性加到返回的结果中。
 
-The timestamp is the number of milliseconds that have elapsed
-since the UNIX epoch, which is defined as
-the midnight at the beginning of January 1, 1970, UTC.
+时间戳是自 UNIX 纪元以来已经过去的毫秒数，
+起始于 UTC 时间 1970-01-01 日凌晨。
 
 ## @updatedAt
 
-We use `@updatedAt` as the timestamp of modification.
+我们用 `@updatedAt` 修改时的时间戳。
 
-When reading data, if there is no `@updatedAt` property,
-`@createdAt` will be used as it's `@updatedAt`.
+当读取数据时，如果没有 `@updatedAt` 属性，
+`@createdAt` 将会被作为初始的 `@updatedAt`。
 
-When writing data, new `@updatedAt` will be setted to the data
-based on current timestamp.
+当修改数据时，将会按照当前的时间更新 `@updatedAt`。
 
 ## @revision
 
-- **Problem:** When I want to update a data, I first read it by it's `@path`,
-  then I edit the data and write it back to the database.
-  What if during this time, the data is updated by another user?
-  How should I know about this?
+- **问题：** 当我要修改一个数据的时候，
+  我首先根据 `@path` 把数据读取回来，
+  然后我修改数据，然后我要把它保存回数据库。
+  如果这段时间数据已经被别的用户修改了怎么办？
+  我要怎么才能知道数据已经被修改了？
 
-- **Solution:** We can add a `@revision` metadata property to the data.
+- **方案：** 我们可以加一个 `@revision` 属性。
 
-  When reading data, if there is no `@revision` property,
-  we add a random string as `@revision`.
+  当读取数据时，如果没有 `@revision` 属性，
+  就生成一个随机的字符串作为 `@revision`。
 
-  When writing data, the given `@revision` is compared with existing `@revision`,
-  if they are equal, the writing is successful
-  and a new random `@revision` is created,
-  if they are not equal, the writing is failed
-  and an error message should be return (for example, via HTTP).
+  当修改数据时，请求中必须带有 `@revision` 属性，
+  给出的 `@revision` 将与数据库中当前的 `@revision` 相比较，
+  如果相同，修改成功，生成一个新的 `@revision`；
+  如果不相同，修改失败，返回错误信息（例如，通过 HTTP 的状态信息来返回错误信息）。
