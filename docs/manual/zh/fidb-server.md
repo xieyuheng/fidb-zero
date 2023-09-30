@@ -2,9 +2,8 @@
 title: FiDB 服务器
 ---
 
-A Node.js implementation of FiDB Server is at:
+一个用 Node.js 实现的 FiDB 服务器在：
 
 - [github.com/fidb-official/fidb](https://github.com/fidb-official/fidb)
 
-Please see [the Docs section](https://github.com/fidb-official/fidb#docs)
-of the README.md.
+请看 README.md 中的 [Docs 一节](https://github.com/fidb-official/fidb#docs)。

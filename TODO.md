@@ -1,7 +1,3 @@
-[docs] zh manual -- fidb-server.md
-[docs] zh manual -- fidb-client.md
-[docs] zh manual -- fidb-manager.md
-
 [docs] update zh manual about password register and login
 
 [docs] zh manual -- access-token.md
