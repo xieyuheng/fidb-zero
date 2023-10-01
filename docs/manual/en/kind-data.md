@@ -86,11 +86,8 @@ Update the whole data:
 PUT users/xieyuheng
 
 {
-  "name": "谢宇恒",
   "@path": "users/xieyuheng",
-  "@revision": "1b0d4dc0b6e68853aa0005b03c059a47",
-  "@createdAt": 1677377821957,
-  "@updatedAt": 1679424624733
+  "name": "谢宇恒"
 }
 ```
 
