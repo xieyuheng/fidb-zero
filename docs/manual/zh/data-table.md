@@ -41,7 +41,7 @@ title: 数据表
 
   我们称 `users/xieyuheng/index.json` 为一个数据文件。
 
-  称 `users/xieyuheng` 这一行数据的主键。
+  称 `users/xieyuheng` 这个路径为这一行数据的主键，我们将用路径来引用数据文件。
 
   例如上面数据文件的主键为：
 
@@ -50,8 +50,6 @@ title: 数据表
   users/readonlylink
   users/mimor
   ```
-
-  我们将用 `users/xieyuheng` 这样的路径来引用数据文件。
 
 之前多次提到过要实现「有一个」关系和「有多个」关系，
 现在来明确地解决以下这个问题。

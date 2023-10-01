@@ -23,12 +23,10 @@ title: 元数据
 为了让读取到的数据更方便使用，
 我们用 `@path` 属性来保存主键。
 
-读取数据的时候，包含 `index.json` 文件的文件夹路径，
-将被作为 `@path` 属性加到返回的结果中。
+我们选择 `@path` 这个属性名字，
+是因为想要明确表达我们是在用文件系统作为数据库。
 
-这个路径是相对于数据库的根目录的。
-
-例如，下列数据的 `@path` 属性
+例如，下列数据：
 
 ```
 users/xieyuheng/index.json
@@ -36,13 +34,15 @@ users/xieyuheng/projects/inner/index.json
 users/xieyuheng/projects/pomodoro/index.json
 ```
 
-是
+它们的 `@path` 属性为：
 
 ```
 users/xieyuheng
 users/xieyuheng/projects/inner
 users/xieyuheng/projects/pomodoro
 ```
+
+也就是包含 `index.json` 文件的文件夹的路径。
 
 ## @createdAt
 
