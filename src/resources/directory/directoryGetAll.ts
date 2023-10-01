@@ -1,4 +1,5 @@
 import fs from "node:fs"
+import { join, resolve } from "node:path"
 import { Database } from "../../database"
 import { resolvePath } from "../../database/resolvePath"
 import { isErrnoException } from "../../utils/node/isErrnoException"
@@ -19,7 +20,8 @@ export async function* directoryGetAll(
     })
 
     for await (const dirEntry of dir) {
-      const path = relativePath(db, (dirEntry as any).path)
+      const absolutePath = resolve(join(dirEntry.path, dirEntry.name))
+      const path = relativePath(db, absolutePath)
 
       if (dirEntry.isDirectory()) {
         yield { kind: "Directory", path }

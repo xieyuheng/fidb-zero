@@ -55,8 +55,7 @@ The ethos of the FiDB project is the following "what if ...?"s.
 ### Requirements
 
 Node.js version must
-be >= [20.1](https://nodejs.org/en/blog/release/v20.1.0)
-or >= [18.17.0](https://nodejs.org/en/blog/release/v18.17.0).
+be >= [20.8.0](https://nodejs.org/en/blog/release/v20.8.0).
 
 - For the `recursive` option to `readdir` and `opendir`.
 
