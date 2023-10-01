@@ -1,13 +1,11 @@
 import { Database } from "../../database"
-import { PermissionRecord } from "../../models/permission/PermissionRecord"
 import { dataCreate } from "../../resources"
+import { TokenIssuerInput } from "./TokenIssuer"
 
 export async function tokenIssuerCreate(
   db: Database,
   path: string,
-  input: {
-    permissions: PermissionRecord
-  },
+  input: TokenIssuerInput,
 ): Promise<void> {
   await dataCreate(db, `${path}/.token-issuer`, input)
 }

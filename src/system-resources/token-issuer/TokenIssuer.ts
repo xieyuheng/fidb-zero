@@ -1,16 +1,14 @@
 import ty, { Schema } from "@xieyuheng/ty"
 import { Data, DataSchema } from "../../database"
-import {
-  PermissionRecord,
-  PermissionRecordSchema,
-} from "../../models/permission/PermissionRecord"
 
 export type TokenIssuerInput = {
-  permissions: PermissionRecord
+  groups: Array<string>
+  user?: string
 }
 
 export const TokenIssuerInputSchema: Schema<TokenIssuerInput> = ty.object({
-  permissions: PermissionRecordSchema,
+  groups: ty.array(ty.string()),
+  user: ty.optional(ty.string()),
 })
 
 export type TokenIssuer = Data & TokenIssuerInput

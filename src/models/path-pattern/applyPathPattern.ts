@@ -2,7 +2,7 @@ import { parsePathPattern } from "./parsePathPattern"
 
 export function applyPathPattern(
   pattern: string,
-  properties: Record<string, string>,
+  properties: Record<string, string | undefined>,
 ): string {
   const exps = parsePathPattern(pattern)
 

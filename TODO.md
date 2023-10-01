@@ -1,11 +1,5 @@
 # refactor
 
-tokenIssuerCreate
-
-`TokenIssuer` has `groups` and `user`
-
-remove `password-register-strategy/`
-
 `Token` has `issuerUpdatedAt` -- access token map to `.token-issuer` not user
 
 - a user might be deleted and recreated again,

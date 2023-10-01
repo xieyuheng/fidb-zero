@@ -9,7 +9,11 @@ export function matchPermissionRecord(
 ): boolean {
   for (const [pattern, operations] of Object.entries(permissions)) {
     if (globMatch(pattern, path)) {
-      if (operations.includes(operation)) return true
+      if (operations.includes(operation)) {
+        return true
+      } else {
+        return false
+      }
     }
   }
 

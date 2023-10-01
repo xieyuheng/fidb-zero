@@ -4,6 +4,7 @@ import { init } from "../init/init"
 import { allOperations } from "../models/permission"
 import { dataCreate } from "../resources"
 import { startDatabaseServer } from "../servers/database/startDatabaseServer"
+import { groupCreate } from "../system-resources/group"
 import { tokenCreateRandom } from "../system-resources/token"
 import { formatDateTime } from "../utils/formatDate"
 import { findPort } from "../utils/node/findPort"
@@ -24,10 +25,14 @@ export async function prepareTestServer(options: { name: string }) {
 
   await startDatabaseServer(db)
 
-  await dataCreate(db, ".test-token-issuer", {
+  await groupCreate(db, "test", {
     permissions: {
       "**": allOperations,
     },
+  })
+
+  await dataCreate(db, ".test-token-issuer", {
+    groups: ["test"],
   })
 
   const tokenName = await tokenCreateRandom(db, {

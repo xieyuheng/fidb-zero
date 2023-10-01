@@ -1,6 +1,7 @@
 import { expect, test } from "vitest"
 import { api } from "../.."
 import { allOperations } from "../../models/permission"
+import { groupCreate } from "../../system-resources/group"
 import { loginTokenCreate } from "../../system-resources/token"
 import { tokenIssuerCreate } from "../../system-resources/token-issuer"
 import { prepareTestServer } from "../prepareTestServer"
@@ -8,10 +9,14 @@ import { prepareTestServer } from "../prepareTestServer"
 test("data-get-no-permission", async ({ task }) => {
   const { ctx, db } = await prepareTestServer(task)
 
-  await tokenIssuerCreate(db, "users/xieyuheng", {
+  await groupCreate(db, "xieyuheng", {
     permissions: {
       "users/xieyuheng/**": allOperations,
     },
+  })
+
+  await tokenIssuerCreate(db, "users/xieyuheng", {
+    groups: ["xieyuheng"],
   })
 
   const newCtx = api.createClientContext(
@@ -27,10 +32,14 @@ test("data-get-no-permission", async ({ task }) => {
   expect(created.name).toEqual("Xie Yuheng")
   expect(await api.dataGet(newCtx, `users/xieyuheng`)).toEqual(created)
 
-  await tokenIssuerCreate(db, "users/xyh", {
+  await groupCreate(db, "xyh", {
     permissions: {
       "users/xyh/**": allOperations,
     },
+  })
+
+  await tokenIssuerCreate(db, "users/xyh", {
+    groups: ["xyh"],
   })
 
   const anotherCtx = api.createClientContext(

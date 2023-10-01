@@ -1,13 +1,8 @@
 import { ty } from "@xieyuheng/ty"
 import { Data, Database } from "../../database"
 import { Unauthorized } from "../../errors"
-import {
-  applyPathPatternRecordKeys,
-  matchPathPattern,
-} from "../../models/path-pattern"
 import { dataCreate } from "../../resources"
 import { passwordCreate } from "../../system-resources/password"
-import { passwordRegisterStrategyGetOrFail } from "../../system-resources/password-register-strategy"
 import { tokenIssuerCreate } from "../../system-resources/token-issuer"
 import { JsonObject, isJsonObject } from "../../utils/Json"
 
@@ -27,24 +22,16 @@ export async function passwordRegister(
   options: PasswordRegisterOptions,
 ): Promise<Data> {
   const who = "passwordRegister"
-
   const { password, data } = options
 
-  const strategy = await passwordRegisterStrategyGetOrFail(db)
-
-  for (const [pattern, tokenIssuer] of Object.entries(strategy.loginTargets)) {
-    const results = matchPathPattern(pattern, path)
-    if (results !== undefined) {
-      const permissions = applyPathPatternRecordKeys(
-        tokenIssuer.permissions,
-        results,
-      )
-
-      await tokenIssuerCreate(db, path, { permissions })
-      await passwordCreate(db, path, { password })
-      return await dataCreate(db, path, data)
-    }
+  const parts = path.split("/")
+  if (!(parts.length === 2 && parts[0] === "users")) {
+    throw new Unauthorized(`[${who}] ${path} is not login target`)
   }
 
-  throw new Unauthorized(`[${who}] ${path} is not login target`)
+  const user = parts[1]
+
+  await tokenIssuerCreate(db, path, { groups: ["user"], user })
+  await passwordCreate(db, path, { password })
+  return await dataCreate(db, path, data)
 }
