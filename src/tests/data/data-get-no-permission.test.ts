@@ -3,7 +3,7 @@ import { api } from "../.."
 import { allOperations } from "../../models/permission"
 import { groupCreate } from "../../system-resources/group"
 import { loginTokenCreate } from "../../system-resources/token"
-import { tokenIssuerCreate } from "../../system-resources/token-issuer"
+import { loginTokenIssuerCreate } from "../../system-resources/token-issuer"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("data-get-no-permission", async ({ task }) => {
@@ -15,7 +15,7 @@ test("data-get-no-permission", async ({ task }) => {
     },
   })
 
-  await tokenIssuerCreate(db, "users/xieyuheng", {
+  await loginTokenIssuerCreate(db, "users/xieyuheng", {
     groups: ["xieyuheng"],
   })
 
@@ -38,7 +38,7 @@ test("data-get-no-permission", async ({ task }) => {
     },
   })
 
-  await tokenIssuerCreate(db, "users/xyh", {
+  await loginTokenIssuerCreate(db, "users/xyh", {
     groups: ["xyh"],
   })
 

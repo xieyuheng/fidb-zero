@@ -1,10 +1,5 @@
 # refactor
 
-`Token` has `issuerUpdatedAt` -- access token map to `.token-issuer` not user
-
-- a user might be deleted and recreated again,
-  the old token can not be used for the new uesr.
-
 [maybe] "Access Control Matrix" as API
 
 # docs

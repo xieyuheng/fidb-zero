@@ -31,12 +31,13 @@ export async function prepareTestServer(options: { name: string }) {
     },
   })
 
-  await dataCreate(db, ".test-token-issuer", {
+  const issuer = await dataCreate(db, ".test-token-issuer", {
     groups: ["test"],
   })
 
   const tokenName = await tokenCreateRandom(db, {
     issuer: ".test-token-issuer",
+    issuerUpdatedAt: issuer["@updatedAt"],
   })
 
   const url = new URL(`http://${hostname}:${port}`)

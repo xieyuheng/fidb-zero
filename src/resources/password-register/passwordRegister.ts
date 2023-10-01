@@ -3,7 +3,7 @@ import { Data, Database } from "../../database"
 import { Unauthorized } from "../../errors"
 import { dataCreate } from "../../resources"
 import { passwordCreate } from "../../system-resources/password"
-import { tokenIssuerCreate } from "../../system-resources/token-issuer"
+import { loginTokenIssuerCreate } from "../../system-resources/token-issuer"
 import { JsonObject, isJsonObject } from "../../utils/Json"
 
 export type PasswordRegisterOptions = {
@@ -31,7 +31,7 @@ export async function passwordRegister(
 
   const user = parts[1]
 
-  await tokenIssuerCreate(db, path, { groups: ["user"], user })
+  await loginTokenIssuerCreate(db, path, { groups: ["user"], user })
   await passwordCreate(db, path, { password })
   return await dataCreate(db, path, data)
 }
