@@ -18,7 +18,7 @@ export async function tokenCheck(
     await dataGetOrFail(db, token.issuer),
   )
 
-  if (token.issuerUpdatedAt !== issuer["@updatedAt"]) {
+  if (token.issuerRevision !== issuer["@revision"]) {
     // A user might be deleted and recreated again,
     // the old token can not be used for the new uesr.
     return false

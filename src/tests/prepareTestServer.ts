@@ -37,7 +37,7 @@ export async function prepareTestServer(options: { name: string }) {
 
   const tokenName = await tokenCreateRandom(db, {
     issuer: ".test-token-issuer",
-    issuerUpdatedAt: issuer["@updatedAt"],
+    issuerRevision: issuer["@revision"],
   })
 
   const url = new URL(`http://${hostname}:${port}`)

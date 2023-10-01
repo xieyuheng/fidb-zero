@@ -14,6 +14,6 @@ export async function loginTokenCreate(
 
   return await tokenCreateRandom(db, {
     issuer: `${path}/.token-issuer`,
-    issuerUpdatedAt: issuer["@updatedAt"],
+    issuerRevision: issuer["@revision"],
   })
 }

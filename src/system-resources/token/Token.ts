@@ -3,12 +3,12 @@ import { Data, DataSchema } from "../../database"
 
 export type TokenInput = {
   issuer: string
-  issuerUpdatedAt: number
+  issuerRevision: string
 }
 
 export const TokenInputSchema: Schema<TokenInput> = ty.object({
   issuer: ty.string(),
-  issuerUpdatedAt: ty.number(),
+  issuerRevision: ty.string(),
 })
 
 export type Token = Data & TokenInput

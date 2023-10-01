@@ -6,7 +6,7 @@ export async function tokenCreateRandom(
   db: Database,
   properties: {
     issuer: string
-    issuerUpdatedAt: number
+    issuerRevision: string
   },
 ): Promise<string> {
   return tokenCreate(db, randomTokenName(), properties)

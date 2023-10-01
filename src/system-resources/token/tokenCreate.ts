@@ -6,7 +6,7 @@ export async function tokenCreate(
   name: string,
   properties: {
     issuer: string
-    issuerUpdatedAt: number
+    issuerRevision: string
   },
 ): Promise<string> {
   await dataCreate(db, `.tokens/${name}`, properties)

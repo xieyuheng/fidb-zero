@@ -11,6 +11,6 @@ export async function tokenInitDefault(db: Database): Promise<string> {
 
   return await tokenCreate(db, "guest", {
     issuer: ".guest-token-issuer",
-    issuerUpdatedAt: issuer["@updatedAt"],
+    issuerRevision: issuer["@revision"],
   })
 }
