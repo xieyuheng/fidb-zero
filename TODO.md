@@ -1,7 +1,5 @@
 # refactor
 
-groupCreate
-
 tokenIssuerCreate
 
 `TokenIssuer` has `groups` and `user`

@@ -1,8 +1,8 @@
 import { Database } from "../../database"
-import { dataCreate } from "../../resources"
+import { groupCreate } from "./groupCreate"
 
 export async function groupInit(db: Database): Promise<void> {
-  await dataCreate(db, ".groups/guest", {
+  await groupCreate(db, "guest", {
     permissions: {
       users: ["directory:get"],
       "users/*": ["data:get"],
@@ -16,7 +16,7 @@ export async function groupInit(db: Database): Promise<void> {
     },
   })
 
-  await dataCreate(db, ".groups/owner", {
+  await groupCreate(db, "owner", {
     permissions: {
       "**": [
         "data:post",
@@ -37,7 +37,7 @@ export async function groupInit(db: Database): Promise<void> {
     },
   })
 
-  await dataCreate(db, ".groups/user", {
+  await groupCreate(db, "user", {
     permissions: {
       "users/{user}/**": [
         "data:post",
