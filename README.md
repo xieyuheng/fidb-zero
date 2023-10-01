@@ -33,6 +33,8 @@ DELETE {flie}?kind=file
 
 GET    {flie}?kind=file-metadata
 
+POST   {flie}?kind=file-rename
+
 POST   {directory}?kind=directory
 GET    {directory}?kind=directory
 DELETE {directory}?kind=directory
@@ -74,8 +76,8 @@ The command line program is called `fidb`.
 - [Init a database](#init-a-database)
 - [Serve one database](#serve-one-database)
 - [Serve many databases](#serve-many-databases)
-- [Login a user](#login-a-user)
 - [Register a user](#register-a-user)
+- [Login a user](#login-a-user)
 - [Config logger](#config-logger)
 - [Get free certificate](#get-free-certificate)
 - [Use systemd to start service](#use-systemd-to-start-service)
@@ -96,45 +98,19 @@ fidb init hello-world
 Example console output of `fidb init`:
 
 ```
-13:58:26.119 [init] -- {"directory":"/tmp/hello-world"}
-13:58:26.125 [initDatabaseConfigFile] -- {"file":"/tmp/hello-world/database.json"}
-13:58:26.133 [initSystemResource] -- {"path":".guest-token-issuer"}
-13:58:26.134 [initSystemResource] -- {"path":".tokens/guest"}
-13:58:26.135 [initSystemResource] -- {"path":".password-register-strategy"}
-13:58:26.201 [initExampleUser] -- {"path":"users/alice","password":"alice123"}
-13:58:26.251 [initExampleUser] -- {"path":"users/bob","password":"bob456"}
+17:07:19.297 [init] -- {"directory":"/databases/hello-world"}
+17:07:19.301 [initDatabaseConfigFile] -- {"file":"/databases/hello-world/database.json"}
 ```
 
-Let's run `tree` to see what directories and files are created:
+Let's see what files are created:
 
 ```
-
-❯ tree -a hello-world/
-hello-world/
-├── .config
-│   ├── default-token-issuer
-│   │   └── index.json
-│   └── password-register-strategy
-│       └── index.json
-├── database.json
-├── .tokens
-│   └── default
-│       └── index.json
-└── users
-    ├── alice
-    │   ├── index.json
-    │   ├── .token-issuer
-    │   │   └── index.json
-    │   └── .password
-    │       └── index.json
-    └── bob
-        ├── index.json
-        ├── .token-issuer
-        │   └── index.json
-        └── .password
-            └── index.json
-
-13 directories, 10 files
+database.json
+.groups/guest/index.json
+.groups/owner/index.json
+.groups/user/index.json
+.guest-token-issuer/index.json
+.tokens/guest/index.json
 ```
 
 ## Serve one database
@@ -219,6 +195,43 @@ https://fidb.app:5108
 https://www.fidb.app:5108
 ```
 
+## Register a user
+
+Use `POST {data-file}?kind=password-register` HTTP request to register a new user:
+
+```sh
+curl -X POST "http://127.0.0.1:5108/users/alice?kind=password-register" --data-binary @-<< END
+
+{
+  "password": "wonderland",
+  "data": {
+    "name": "Alice"
+  }
+}
+
+END
+```
+
+Example response:
+
+```json
+{
+  "name": "Alice",
+  "@path": "users/alice",
+  "@revision": "b0b913da866105ad66299baf6aa4d783",
+  "@createdAt": 1696152632809,
+  "@updatedAt": 1696152632809
+}
+```
+
+New data files for the user will be created:
+
+```
+users/alice/index.json
+users/alice/.password/index.json
+users/alice/.token-issuer/index.json
+```
+
 ## Login a user
 
 Use `POST {data-file}?kind=password-login` HTTP request to login an initialized user:
@@ -227,52 +240,29 @@ Use `POST {data-file}?kind=password-login` HTTP request to login an initialized 
 curl -X POST "http://127.0.0.1:5108/users/alice?kind=password-login" --data-binary @-<< END
 
 {
-  "password": "alice123"
+  "password": "wonderland"
 }
 
 END
 ```
 
-The response of a `POST {data-file}?kind=password-login` request
-is an access token in JSON string format.
+Example response:
 
 ```json
-"34dbf6a79e7968ffc3cda1b51c3fada9"
+
+{ "token":"07cb46bde600f9ab97a22ecee8bc2389" }
+```
+
+New data file for the token will be created:
+
+```
+.tokens/07cb46bde600f9ab97a22ecee8bc2389/index.json
 ```
 
 Which can be used in the `Authorization` header for future requests.
 
 ```
 Authorization: token 34dbf6a79e7968ffc3cda1b51c3fada9
-```
-
-## Register a user
-
-Use `POST {data-file}?kind=password-register` HTTP request to register a new user:
-
-```sh
-curl -X POST "http://127.0.0.1:5108/users/carol?kind=password-register" --data-binary @-<< END
-
-{
-  "password": "carol789",
-  "data": {
-    "name": "Carol"
-  }
-}
-
-END
-```
-
-Example response of `POST {data-file}?kind=password-register` request:
-
-```json
-{
-  "name": "Carol",
-  "@path": "users/carol",
-  "@revision": "6bbf9a32c4d0f7964d1fee2aa9491523",
-  "@createdAt": 1694757904583,
-  "@updatedAt": 1694757904583
-}
 ```
 
 ### Config logger

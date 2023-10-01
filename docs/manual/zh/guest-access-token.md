@@ -6,11 +6,13 @@ title: 访客访问令牌
 
 ```
 {
-  "groups": ["guest"],
+  "groups": [
+    "guest"
+  ],
   "@path": ".guest-token-issuer",
-  "@revision": "8aa3b11fc0381b986555362cff8dc76e",
-  "@createdAt": 1696150826106,
-  "@updatedAt": 1696150826106
+  "@revision": "a6c25435c0ff2a0c669478601028efda",
+  "@createdAt": 1696151055327,
+  "@updatedAt": 1696151055327
 }
 ```
 
@@ -19,10 +21,10 @@ title: 访客访问令牌
 ```
 {
   "issuer": ".guest-token-issuer",
-  "issuerRevision": 1696150826106,
+  "issuerRevision": "a6c25435c0ff2a0c669478601028efda",
   "@path": ".tokens/guest",
-  "@revision": "a1bcadd1573703e7fe69c61718d22e7d",
-  "@createdAt": 1696150826107,
-  "@updatedAt": 1696150826107
+  "@revision": "38311b8cacf04587bf0803c7fe244dad",
+  "@createdAt": 1696151055328,
+  "@updatedAt": 1696151055328
 }
 ```

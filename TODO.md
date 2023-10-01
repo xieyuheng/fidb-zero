@@ -1,6 +1,5 @@
 # docs
 
-[docs] fix docs in readme
 [docs] update en manual about password register and login
 [docs] FiDB Manager
 
