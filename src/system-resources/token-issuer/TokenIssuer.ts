@@ -5,17 +5,6 @@ import {
   PermissionRecordSchema,
 } from "../../models/permission/PermissionRecord"
 
-export type TokenIssuer = Data & {
-  permissions: PermissionRecord
-}
-
-export const TokenIssuerSchema: Schema<TokenIssuer> = ty.intersection(
-  DataSchema,
-  ty.object({
-    permissions: PermissionRecordSchema,
-  }),
-)
-
 export type TokenIssuerInput = {
   permissions: PermissionRecord
 }
@@ -23,3 +12,10 @@ export type TokenIssuerInput = {
 export const TokenIssuerInputSchema: Schema<TokenIssuerInput> = ty.object({
   permissions: PermissionRecordSchema,
 })
+
+export type TokenIssuer = Data & TokenIssuerInput
+
+export const TokenIssuerSchema: Schema<TokenIssuer> = ty.intersection(
+  DataSchema,
+  TokenIssuerInputSchema,
+)
