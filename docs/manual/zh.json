@@ -21,7 +21,7 @@
     "用户": [
       "access-control.md",
       "access-token.md",
-      "default-access-token.md",
+      "guest-access-token.md",
       "system-resources.md",
       "group-and-permissions.md",
       "kind-password-register.md",

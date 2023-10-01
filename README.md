@@ -383,4 +383,4 @@ introduction to yourself but not too long.
 
 ## License
 
-    [GPLv3](LICENSE)
+[GPLv3](LICENSE)
