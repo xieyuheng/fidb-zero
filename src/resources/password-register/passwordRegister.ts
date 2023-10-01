@@ -6,9 +6,9 @@ import {
   matchPathPattern,
 } from "../../models/path-pattern"
 import { dataCreate } from "../../resources"
-import { loginTokenIssuerCreate } from "../../system-resources/login-token-issuer"
 import { passwordCreate } from "../../system-resources/password"
 import { passwordRegisterStrategyGetOrFail } from "../../system-resources/password-register-strategy"
+import { tokenIssuerCreate } from "../../system-resources/token-issuer"
 import { JsonObject, isJsonObject } from "../../utils/Json"
 
 export type PasswordRegisterOptions = {
@@ -42,7 +42,7 @@ export async function passwordRegister(
         results,
       )
 
-      await loginTokenIssuerCreate(db, path, { permissions })
+      await tokenIssuerCreate(db, path, { permissions })
       await passwordCreate(db, path, { password, memo })
       return await dataCreate(db, path, data)
     }

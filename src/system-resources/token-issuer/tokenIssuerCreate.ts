@@ -2,7 +2,7 @@ import { Database } from "../../database"
 import { PermissionRecord } from "../../models/permission/PermissionRecord"
 import { dataCreate } from "../../resources"
 
-export async function loginTokenIssuerCreate(
+export async function tokenIssuerCreate(
   db: Database,
   path: string,
   input: {

@@ -1,14 +1,14 @@
 import { expect, test } from "vitest"
 import { api } from "../.."
 import { allOperations } from "../../models/permission"
-import { loginTokenIssuerCreate } from "../../system-resources/login-token-issuer"
 import { loginTokenCreate } from "../../system-resources/token"
+import { tokenIssuerCreate } from "../../system-resources/token-issuer"
 import { prepareTestServer } from "../prepareTestServer"
 
 test("data-get-no-permission", async ({ task }) => {
   const { ctx, db } = await prepareTestServer(task)
 
-  await loginTokenIssuerCreate(db, "users/xieyuheng", {
+  await tokenIssuerCreate(db, "users/xieyuheng", {
     permissions: {
       "users/xieyuheng/**": allOperations,
     },
@@ -27,7 +27,7 @@ test("data-get-no-permission", async ({ task }) => {
   expect(created.name).toEqual("Xie Yuheng")
   expect(await api.dataGet(newCtx, `users/xieyuheng`)).toEqual(created)
 
-  await loginTokenIssuerCreate(db, "users/xyh", {
+  await tokenIssuerCreate(db, "users/xyh", {
     permissions: {
       "users/xyh/**": allOperations,
     },
