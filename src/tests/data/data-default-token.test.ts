@@ -21,7 +21,7 @@ test("data-default-token", async ({ task }) => {
     description: "Ones inner universe.",
   })
 
-  const newctx = await createClientContext(ctx.url, "default")
+  const newctx = await createClientContext(ctx.url, "guest")
 
   {
     // Default token can NOT read non public data.

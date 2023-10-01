@@ -7,6 +7,7 @@ test("directory-get-recursive", async ({ task }) => {
 
   {
     const results = await api.directoryGet(ctx, "")
+
     expect(Boolean(results.find(({ path }) => path === "users"))).toEqual(false)
   }
 
@@ -14,6 +15,7 @@ test("directory-get-recursive", async ({ task }) => {
 
   {
     const results = await api.directoryGet(ctx, "", { recursive: true })
+
     expect(Boolean(results.find(({ path }) => path === "users"))).toEqual(true)
     expect(Boolean(results.find(({ path }) => path === "users/1"))).toEqual(
       true,
