@@ -8,12 +8,10 @@ export async function passwordCreate(
   path: string,
   options: {
     password: string
-    memo?: string
   },
 ): Promise<void> {
-  const { password, memo } = options
+  const { password } = options
   await dataCreate(db, join(path, ".password"), {
     hash: await passwordHash(password),
-    memo,
   })
 }

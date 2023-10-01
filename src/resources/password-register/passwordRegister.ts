@@ -13,13 +13,11 @@ import { JsonObject, isJsonObject } from "../../utils/Json"
 
 export type PasswordRegisterOptions = {
   data: JsonObject
-  memo?: string
   password: string
 }
 
 export const PasswordRegisterOptionsSchema = ty.object({
   data: ty.guard(isJsonObject),
-  memo: ty.optional(ty.string()),
   password: ty.string(),
 })
 
@@ -30,7 +28,7 @@ export async function passwordRegister(
 ): Promise<Data> {
   const who = "passwordRegister"
 
-  const { password, memo, data } = options
+  const { password, data } = options
 
   const strategy = await passwordRegisterStrategyGetOrFail(db)
 
@@ -43,7 +41,7 @@ export async function passwordRegister(
       )
 
       await tokenIssuerCreate(db, path, { permissions })
-      await passwordCreate(db, path, { password, memo })
+      await passwordCreate(db, path, { password })
       return await dataCreate(db, path, data)
     }
   }

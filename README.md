@@ -255,12 +255,9 @@ Use `POST {data-file}?kind=password-register` HTTP request to register a new use
 curl -X POST "http://127.0.0.1:5108/users/carol?kind=password-register" --data-binary @-<< END
 
 {
+  "password": "carol789",
   "data": {
     "name": "Carol"
-  },
-  "options": {
-    "memo": "password-register example",
-    "password": "carol789"
   }
 }
 

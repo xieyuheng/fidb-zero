@@ -12,12 +12,10 @@ For example:
 POST users/xieyuheng?kind=password-register
 
 {
+  "password": "123456",
   "data": {
     "username": "xieyuheng",
     "name": "Xie Yuheng"
-  },
-  "options": {
-    "password": "123456"
   }
 }
 ```
@@ -36,7 +34,6 @@ thus the password data file might be:
 ```
 {
   "hash": "$2b$10$HpzyzH0jUr/h5H27Z9F4mew9ijI6cbPldhH9OYJOXqXK.O.qxuKfW",
-  "memo": "My favorite password.",
   "@path": "users/xieyuheng/.password",
   "@revision": "ae937631eeec83a8edd2cbd381763274",
   "@createdAt": 1681389842021,
