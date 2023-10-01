@@ -46,22 +46,22 @@ users/xieyuheng/projects/pomodoro
 
 ## @createdAt
 
-我们用 `@createdAt` 创建时的时间戳。
+我们用 `@createdAt` 记录创建时的时间戳。
 
 当读取数据时，如果没有 `@createdAt` 属性，
-这个文件的创建时间将会被作为 `@createdAt` 属性加到返回的结果中。
+这个文件在文件系统中的创建时间将会被作为 `@createdAt` 属性加到返回的结果中。
 
 时间戳是自 UNIX 纪元以来已经过去的毫秒数，
 起始于 UTC 时间 1970-01-01 日凌晨。
 
 ## @updatedAt
 
-我们用 `@updatedAt` 修改时的时间戳。
+我们用 `@updatedAt` 记录修改时的时间戳。
 
 当读取数据时，如果没有 `@updatedAt` 属性，
 `@createdAt` 将会被作为初始的 `@updatedAt`。
 
-当修改数据时，将会按照当前的时间更新 `@updatedAt`。
+当修改数据时，将会根据服务器当前的时间更新 `@updatedAt`。
 
 ## @revision
 
