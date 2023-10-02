@@ -8,7 +8,7 @@ import { pathIsFile } from "../../utils/node/pathIsFile"
 type Args = { path: string }
 type Opts = {}
 
-export class ServeDatabaseCommand extends Command<Args> {
+export class ServeDatabase extends Command<Args> {
   name = "serve:database"
 
   description = "Serve a database"

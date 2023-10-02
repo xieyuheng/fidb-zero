@@ -8,7 +8,7 @@ import { pathIsFile } from "../../utils/node/pathIsFile"
 type Args = { path: string }
 type Opts = {}
 
-export class ServeSubdomainCommand extends Command<Args> {
+export class ServeSubdomain extends Command<Args> {
   name = "serve:subdomain"
 
   description = "Serve many databases using subdomain-based routing"

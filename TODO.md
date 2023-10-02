@@ -1,4 +1,6 @@
-fidb make:owner
+update @xieyuheng/command-line
+fidb make:owner -- setup
+MakeOwner
 
 # docs
 

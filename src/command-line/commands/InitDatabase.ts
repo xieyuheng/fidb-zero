@@ -13,7 +13,7 @@ type Opts = {
   logger?: string
 }
 
-export class InitDatabaseCommand extends Command<Args> {
+export class InitDatabase extends Command<Args> {
   name = "init:database"
 
   description = "Initialize a directory to be a database"
