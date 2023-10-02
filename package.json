@@ -18,6 +18,7 @@
     "format": "prettier src --write"
   },
   "dependencies": {
+    "@inquirer/prompts": "^3.1.2",
     "@xieyuheng/command-line": "^0.0.12",
     "@xieyuheng/ty": "^0.1.23",
     "bcrypt": "^5.1.1",

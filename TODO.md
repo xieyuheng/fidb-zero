@@ -1,5 +1,3 @@
-services/make/makeUser
-
 # docs
 
 [docs] update en manual about password register and login

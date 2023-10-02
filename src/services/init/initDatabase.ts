@@ -32,7 +32,6 @@ export async function initDatabase(directory: string): Promise<Database> {
   const db = await loadDatabase({ directory })
 
   await initSystemResource(db)
-  // await initExampleUsers(db)
 
   return db
 }

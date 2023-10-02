@@ -1,16 +1,22 @@
+import * as prompts from "@inquirer/prompts"
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
+import { join } from "path"
+import { readDatabaseConfigFile } from "../../database/readDatabaseConfigFile"
+import { dataGet } from "../../resources"
+import { makeUser } from "../../services/make/makeUser"
+import { log } from "../../utils/log"
 
-type Args = { "name:group": string }
-type Opts = {}
+type Args = { "username:group": string }
+type Opts = { data: string }
 
 export class MakeUser extends Command<Args> {
   name = "make:user"
 
   description = "Make a user"
 
-  args = { "name:group": ty.string() }
-  opts = {}
+  args = { "username:group": ty.string() }
+  opts = { data: ty.string() }
 
   // prettier-ignore
   help(runner: CommandRunner): string {
@@ -27,6 +33,35 @@ export class MakeUser extends Command<Args> {
   }
 
   async execute(argv: Args & Opts): Promise<void> {
-    console.log(argv)
+    const who = "MakeUser"
+
+    const [username, group] = argv["username:group"].split(":")
+    const path = process.cwd()
+    const directory = path
+    const configFile = join(path, "database.json")
+    const config = await readDatabaseConfigFile(configFile)
+    const db = { directory, config }
+
+    const found = await dataGet(db, `users/${username}`)
+    if (found !== undefined) {
+      return log({
+        who,
+        kind: "Error",
+        message: "user already exists",
+        username,
+      })
+    }
+
+    const password = await prompts.password({
+      message: "Password:",
+      mask: true,
+    })
+
+    if (password.length === 0) {
+      throw new Error(`[makeUser] password can not be empty.`)
+    }
+
+    const data = JSON.parse(argv.data)
+    await makeUser(db, username, group, { password, data })
   }
 }
