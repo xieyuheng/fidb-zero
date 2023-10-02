@@ -1,3 +1,5 @@
+fidb make:owner
+
 # docs
 
 [docs] update en manual about password register and login

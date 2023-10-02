@@ -9,7 +9,7 @@ type Args = { path: string }
 type Opts = {}
 
 export class ServeManyCommand extends Command<Args> {
-  name = "serve-many"
+  name = "serve:subdomain"
 
   description = "Serve many databases using subdomain-based routing"
 

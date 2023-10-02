@@ -55,6 +55,7 @@ export async function groupInit(db: Database): Promise<void> {
         "directory:get",
         "directory:delete",
       ],
+      users: ["directory:get"],
       "users/*": ["data:get"],
       "users/*/public/**": [
         "data:get",

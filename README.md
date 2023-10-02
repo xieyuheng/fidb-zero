@@ -125,7 +125,7 @@ The default port of the server is `5108`, which looks like FiDB isn't it?
 
 ## Serve many databases
 
-Use the `fidb serve-many` command
+Use the `fidb serve:subdomain` command
 to serve many databases in one directory,
 using subdomain-based routing.
 
@@ -148,11 +148,11 @@ I also created certificate files for my domain using `certbot`.
 - About how to use `certbot`, please see
   the ["Get free certificate"](#get-free-certificate) section.
 
-I can use `fidb serve-many` command to serve all of
+I can use `fidb serve:subdomain` command to serve all of
 the databases in `/databases` directory.
 
 ```sh
-fidb serve-many /databases/database.json
+fidb serve:subdomain /databases/database.json
 ```
 
 Where `/databases/database.json` is:
@@ -170,7 +170,7 @@ Where `/databases/database.json` is:
 }
 ```
 
-- When using `fidb serve-many`,
+- When using `fidb serve:subdomain`,
   the `server.hostname` option is required.
 
 - And each database in `/databases` might have
