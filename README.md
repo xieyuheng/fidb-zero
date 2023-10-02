@@ -92,13 +92,13 @@ with a `database.json` config file,
 and with some more data files serve as
 detailed system configurations.
 
-Use the `fidb init` command to create a database:
+Use the `fidb init:database` command to create a database:
 
 ```sh
-fidb init hello-world
+fidb init:database hello-world
 ```
 
-Example console output of `fidb init`:
+Example console output of `fidb init:database`:
 
 ```
 17:07:19.297 [init] -- {"directory":"/databases/hello-world"}
