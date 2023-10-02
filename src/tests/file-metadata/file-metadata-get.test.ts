@@ -2,7 +2,7 @@ import { expect, test } from "vitest"
 import { api } from "../.."
 import { prepareTestServer } from "../prepareTestServer"
 
-test("file-get-metadata", async ({ task }) => {
+test("file-metadata-get", async ({ task }) => {
   const { ctx } = await prepareTestServer(task)
 
   await api.fileCreate(
@@ -12,7 +12,7 @@ test("file-get-metadata", async ({ task }) => {
   )
 
   {
-    const metadata = await api.fileGetMetadataOrFail(
+    const metadata = await api.fileMetadataGetOrFail(
       ctx,
       `users/xieyuheng/human.txt`,
     )
@@ -25,7 +25,7 @@ test("file-get-metadata", async ({ task }) => {
   await api.fileDelete(ctx, `users/xieyuheng/human.txt`)
 
   {
-    const metadata = await api.fileGetMetadata(ctx, `users/xieyuheng/human.txt`)
+    const metadata = await api.fileMetadataGet(ctx, `users/xieyuheng/human.txt`)
     expect(metadata).toEqual(undefined)
   }
 })

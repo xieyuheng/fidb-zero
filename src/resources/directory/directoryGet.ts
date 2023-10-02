@@ -24,6 +24,11 @@ export async function* directoryGet(
   for await (const pathEntry of directoryGetAll(db, directory, {
     recursive: options.recursive,
   })) {
+    const parts = pathEntry.path.split("/")
+    if (parts.some((part) => part.startsWith("."))) {
+      continue
+    }
+
     if (count >= end) {
       break
     }

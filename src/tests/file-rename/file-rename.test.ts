@@ -8,7 +8,7 @@ test("file-rename", async ({ task }) => {
   const text = "Hello, I am Xie Yuheng."
   await api.fileCreate(ctx, `users/xieyuheng/human.txt`, text)
 
-  const fileMetadata = await api.fileGetMetadataOrFail(
+  const fileMetadata = await api.fileMetadataGetOrFail(
     ctx,
     `users/xieyuheng/human.txt`,
   )
@@ -23,7 +23,7 @@ test("file-rename", async ({ task }) => {
   )
 
   {
-    const newFileMetadata = await api.fileGetMetadataOrFail(
+    const newFileMetadata = await api.fileMetadataGetOrFail(
       ctx,
       `users/xieyuheng/robot.txt`,
     )

@@ -10,7 +10,7 @@ export type FileMetadata = {
   updatedAt: number
 }
 
-export async function fileGetMetadataOrFail(
+export async function fileMetadataGetOrFail(
   db: Database,
   path: string,
 ): Promise<FileMetadata> {

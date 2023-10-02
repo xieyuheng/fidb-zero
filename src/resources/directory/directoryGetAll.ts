@@ -3,7 +3,7 @@ import { join, resolve } from "node:path"
 import { Database } from "../../database"
 import { resolvePath } from "../../database/resolvePath"
 import { isErrnoException } from "../../utils/node/isErrnoException"
-import { fileGetMetadataOrFail } from "../file-metadata/fileGetMetadataOrFail"
+import { fileMetadataGetOrFail } from "../file-metadata/fileMetadataGetOrFail"
 import { PathEntry } from "./PathEntry"
 
 export async function* directoryGetAll(
@@ -26,7 +26,7 @@ export async function* directoryGetAll(
       if (dirEntry.isDirectory()) {
         yield { kind: "Directory", path }
       } else if (dirEntry.isFile()) {
-        const fileMetadata = await fileGetMetadataOrFail(db, path)
+        const fileMetadata = await fileMetadataGetOrFail(db, path)
         yield { kind: "File", path, ...fileMetadata }
       }
     }

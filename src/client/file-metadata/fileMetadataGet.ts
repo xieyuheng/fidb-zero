@@ -2,7 +2,7 @@ import { FileMetadata } from "../../resources"
 import { ClientContext } from "../ClientContext"
 import { checkResponse } from "../checkResponse"
 
-export async function fileGetMetadata(
+export async function fileMetadataGet(
   ctx: ClientContext,
   path: string,
 ): Promise<FileMetadata | undefined> {
