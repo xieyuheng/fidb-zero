@@ -1,5 +1,4 @@
-fidb make:owner -- setup
-MakeOwner
+MakeUser
 
 # docs
 

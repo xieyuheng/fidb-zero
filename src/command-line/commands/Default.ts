@@ -22,7 +22,7 @@ export class Default extends Command<Args, Opts> {
       return
     }
 
-    const command = new Commands.CommonHelpCommand()
+    const command = new Commands.CommonHelp()
     await command.execute({}, runner)
   }
 }

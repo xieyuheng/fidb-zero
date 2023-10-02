@@ -9,6 +9,7 @@ export function createCommandRunner(): CommandRunner {
       new Commands.InitDatabase(),
       new Commands.ServeDatabase(),
       new Commands.ServeSubdomain(),
+      new Commands.MakeUser(),
     ],
   })
 }
