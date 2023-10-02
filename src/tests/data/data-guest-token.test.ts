@@ -3,7 +3,7 @@ import { api } from "../.."
 import { createClientContext } from "../../client"
 import { prepareTestServer } from "../prepareTestServer"
 
-test("data-default-token", async ({ task }) => {
+test("data-guest-token", async ({ task }) => {
   const { ctx } = await prepareTestServer(task)
 
   await api.dataCreate(ctx, `users/xieyuheng`, {
@@ -24,7 +24,7 @@ test("data-default-token", async ({ task }) => {
   const newctx = await createClientContext(ctx.url, "guest")
 
   {
-    // Default token can NOT read non public data.
+    // The guest token can NOT read non public data.
 
     const error = await api.errorOrFail(() =>
       api.dataGet(newctx, `users/xieyuheng/projects/inner`),
@@ -34,13 +34,13 @@ test("data-default-token", async ({ task }) => {
   }
 
   {
-    // Default token can read user data.
+    // The guest token can read user data.
 
     await api.dataGetOrFail(newctx, `users/xieyuheng`)
   }
 
   {
-    // Default token can read public data.
+    // The guest token can read public data.
 
     const project = await api.dataGetOrFail(
       newctx,
