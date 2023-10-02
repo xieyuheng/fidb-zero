@@ -2,16 +2,16 @@ import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
 import { dirname, join, resolve } from "node:path"
 import { readDatabaseConfigFile } from "../../database/readDatabaseConfigFile"
-import { startSubdomainServer } from "../../servers/subdomain/startSubdomainServer"
+import { startDatabaseServer } from "../../servers/database/startDatabaseServer"
 import { pathIsFile } from "../../utils/node/pathIsFile"
 
 type Args = { path: string }
 type Opts = {}
 
-export class ServeManyCommand extends Command<Args> {
-  name = "serve:subdomain"
+export class ServeDatabaseCommand extends Command<Args> {
+  name = "serve:database"
 
-  description = "Serve many databases using subdomain-based routing"
+  description = "Serve a database"
 
   args = { path: ty.string() }
   opts = {}
@@ -21,11 +21,11 @@ export class ServeManyCommand extends Command<Args> {
     const { blue } = this.colors
 
     return [
-      `The ${blue(this.name)} command takes a database.json config file,`,
-      `and serve the directory that contains the config file`,
-      `using subdomain-based routing.`,
+      `The ${blue(this.name)} command takes a path`,
+      `to a database directory or to a ${blue('database.json')} file,`,
+      `and serve it as a database.`,
       ``,
-      blue(`  ${runner.name} ${this.name} /databases/database.json`),
+      blue(`  ${runner.name} ${this.name} tmp/databases/test`),
       ``,
     ].join("\n")
   }
@@ -36,13 +36,15 @@ export class ServeManyCommand extends Command<Args> {
       const directory = dirname(path)
       const configFile = path
       const config = await readDatabaseConfigFile(configFile)
-      await startSubdomainServer(directory, config)
+      const db = { directory, config }
+      await startDatabaseServer(db)
     } else {
       const path = resolve(argv.path)
       const directory = path
       const configFile = join(path, "database.json")
       const config = await readDatabaseConfigFile(configFile)
-      await startSubdomainServer(directory, config)
+      const db = { directory, config }
+      await startDatabaseServer(db)
     }
   }
 }

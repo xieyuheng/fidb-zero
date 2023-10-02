@@ -10,9 +10,12 @@ This is a Node.js implementation of [**FiDB**](https://fidb.app)
 Including a command-line tool to initialize and maintain database.
 
 ```
-fidb help [name]   Display help for a command
-fidb init [path]   Initialize a directory to be a database
-fidb serve [path]  Serve a database
+
+Commands:
+  help [name]             Display help for a command
+  init:database [path]    Initialize a directory to be a database
+  serve:database [path]   Serve a database
+  serve:subdomain [path]  Serve many databases using subdomain-based routing
 ```
 
 And a HTTP server to generate REST API from a database.
@@ -115,10 +118,10 @@ database.json
 
 ## Serve one database
 
-Use the `fidb serve` command to serve a database:
+Use the `fidb serve:database` command to serve a database:
 
 ```sh
-fidb serve hello-world
+fidb serve:database hello-world
 ```
 
 The default port of the server is `5108`, which looks like FiDB isn't it?
