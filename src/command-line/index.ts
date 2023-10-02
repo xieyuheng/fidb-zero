@@ -5,7 +5,7 @@ export function createCommandRunner(): CommandRunner {
   return new CommandRunners.CommonCommandRunner({
     defaultCommand: new Commands.Default(),
     commands: [
-      new Commands.CommonHelpCommand(),
+      new Commands.CommonHelp(),
       new Commands.InitDatabase(),
       new Commands.ServeDatabase(),
       new Commands.ServeSubdomain(),
