@@ -1,7 +1,7 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
 import Path from "node:path"
-import { init } from "../../init/init"
+import { initDatabase } from "../../services/init/initDatabase"
 import { changeLogger } from "../../utils/log"
 
 type Args = { path: string }
@@ -37,6 +37,6 @@ export class InitDatabase extends Command<Args> {
     changeLogger("pretty-line")
 
     const directory = Path.resolve(argv.path)
-    init(directory)
+    initDatabase(directory)
   }
 }
