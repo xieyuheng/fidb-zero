@@ -5,11 +5,11 @@ import { prepareTestServer } from "../prepareTestServer"
 test("data-can-not-access-system-path", async ({ task }) => {
   const { ctx } = await prepareTestServer(task)
 
-  {
-    const error = await api.errorOrFail(() =>
-      api.dataGet(ctx, `.guest-token-issuer`),
-    )
+  const newCtx = api.createClientContext(ctx.url, "default")
 
-    expect(error.statusCode).toEqual(401)
-  }
+  const error = await api.errorOrFail(() =>
+    api.dataGet(newCtx, `.guest-token-issuer`),
+  )
+
+  expect(error.statusCode).toEqual(401)
 })
