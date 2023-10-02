@@ -1,4 +1,5 @@
 import fs from "node:fs"
+import { join, resolve } from "node:path"
 import { Data, Database } from "../../database"
 import { resolvePath } from "../../database/resolvePath"
 import { JsonAtom } from "../../utils/Json"
@@ -20,6 +21,12 @@ export async function* dataFindAll(
     })
 
     for await (const dirEntry of dir) {
+      const path = resolve(join(dirEntry.path, dirEntry.name))
+      const parts = path.split("/")
+      if (parts.some((part) => part.startsWith("."))) {
+        continue
+      }
+
       if (dirEntry.isDirectory()) {
         const data = await dataGet(db, `${directory}/${dirEntry.name}`)
         if (data !== undefined) {
