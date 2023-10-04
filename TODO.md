@@ -1,6 +1,5 @@
 # docs
 
-[docs] en "kind-password-register.md"
 [docs] en "kind-password-login.md"
 
 [docs] FiDB Manager
