@@ -27,6 +27,8 @@
       "kind-password-register.md",
       "kind-password-login.md"
     ],
+    "Type": ["type.md"],
+    "Indexing": ["indexing.md"],
     "Tools": ["fidb-server.md", "fidb-client.md", "fidb-manager.md"]
   }
 }

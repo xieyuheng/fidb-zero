@@ -1,7 +1,3 @@
-# docs
-
-[docs] leave Type and Index as TODO
-
 # data
 
 [data] support `HEAD` query

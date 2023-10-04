@@ -27,6 +27,8 @@
       "kind-password-register.md",
       "kind-password-login.md"
     ],
+    "类型": ["type.md"],
+    "索引": ["indexing.md"],
     "工具": ["fidb-server.md", "fidb-client.md", "fidb-manager.md"]
   }
 }
