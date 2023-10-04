@@ -1,6 +1,5 @@
 # docs
 
-[docs] en "system-resources.md"
 [docs] en "group-and-permissions.md"
 [docs] en "kind-password-register.md"
 [docs] en "kind-password-login.md"

@@ -1,10 +1,11 @@
 ---
-title: 系统资源
+title: System Resources
 ---
 
-像是 `.guest-token-issuer` 和`.tokens/guest` 这样的，
-路径中某一段以 `.` 开头的数据文件，我们称作系统资源。
+Paths like `.guest-token-issuer` and`.tokens/guest`,
+where part of it starts with `.`,
+are viewed as system resources.
 
-我们规定，一般的数据资源的请求，
-如 `kind=data` 和 `kind=file`，
-不能访问系统文件。
+We make the convention that requests to normal resources,
+like `kind=data` and `kind=file`,
+can not access system data files.
