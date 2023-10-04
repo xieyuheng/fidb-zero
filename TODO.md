@@ -1,7 +1,6 @@
 # docs
 
-[docs] FiDB Manager
-[docs] leave schema and index as TODO
+[docs] leave Type and Index as TODO
 
 # data
 
