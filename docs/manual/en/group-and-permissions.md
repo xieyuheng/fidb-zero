@@ -1,12 +1,12 @@
 ---
-title: 用户组与权限
+title: Group and Permissions
 ---
 
-## 用户组
+## Group
 
-我们在 `.groups` 中配置用户组。
+We config user groups in `.groups`.
 
-例如：
+For examples:
 
 ```
 .groups/guest
@@ -14,21 +14,22 @@ title: 用户组与权限
 .groups/user
 ```
 
-每个用户组中记录这个用户组对不同路径下资源的权限。
+Each group record it's permissions to different paths.
 
-## 权限
+## Permissions
 
-我们用 key-value 映射来记录权限，其中：
-- key 是路径的模式。
-- value 是一个数组，其中的元素是用户所能实施的操作。
+We use a key-value map to record permissions.
 
-一个操作由资源类型与 HTTP 方法名字组成：
+- The key is a path pattern.
+- The value is an array of operations.
+
+An operation consists of the kind of resource and the HTTP method name:
 
 ```
 <resource-kind>:<http-method>
 ```
 
-例如：
+For examples:
 
 ```
 data:post
@@ -47,20 +48,23 @@ directory:get
 directory:delete
 ```
 
-我们用 [`micromatch`](https://github.com/micromatch/micromatch)
-来处理路径模式的模式匹配。
+We use [`micromatch`](https://github.com/micromatch/micromatch)
+to match path patterns.
 
-给出某个路径与想要进行的操作，
-将会用权限记录中的路径模式逐一匹配。
-对于第一个匹配到的结果，
-看想要进行的操作是否在其操作列表中。
-如果不在，整个匹配失败，不会继续匹配下一个记录。
+Given a path and an operation,
+the path patterns in the permissions
+will be used one by one to match the path.
+For the first matching result,
+see if the given operation is in the operation list.
+If no, the whole matching fails.
+Only first matching path pattern matters,
+we will not match the next path pattern.
 
-访客所在的用户组 `.groups/guest` 可以：
+The group for guests `.groups/guest` can:
 
-- 读用户列表。
-- 读取用户的基本信息数据。
-- 读取所有用户的公开数据。
+- List users.
+- Read a user's basic information.
+- Read a user's public data.
 
 ```
 {
@@ -78,9 +82,9 @@ directory:delete
 }
 ```
 
-例如数据库的拥有者所在的用户组 `.groups/owner` 可以：
+The group for the owner of the database `.groups/owner` can:
 
-- 对所有路径进行任何操作。
+- Do everything to everything path.
 
 ```
 {
@@ -105,12 +109,13 @@ directory:delete
 }
 ```
 
-一个注册并登陆了的用户所在的用户组 `.groups/user` 可以：
+The group for logged in user `.groups/user` can:
 
-- 读写自己用户文件夹内的所有内容。
-- 也拥有访客的所有权限。
+- Read and write his/her own data.
+- Do all the thing a guest can do.
 
-注意，数据中的 `{user}` 会在检查权限时，代入当前的用户名。
+Note that, the following `{user}` will be replaced by
+current username during permission checking.
 
 ```
 {
