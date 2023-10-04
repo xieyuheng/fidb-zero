@@ -1,7 +1,5 @@
 # docs
 
-[docs] en "kind-password-login.md"
-
 [docs] FiDB Manager
 [docs] leave schema and index as TODO
 

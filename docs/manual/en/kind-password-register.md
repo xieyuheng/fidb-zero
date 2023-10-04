@@ -55,7 +55,8 @@ by [brcryt](https://en.wikipedia.org/wiki/Bcrypt):
 }
 ```
 
-`users/xieyuheng/.token-issuer/index.json` record the groups of the user:
+`users/xieyuheng/.token-issuer/index.json` records
+the user name and the groups of the user:
 
 ```
 {

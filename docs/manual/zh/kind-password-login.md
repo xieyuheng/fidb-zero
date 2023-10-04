@@ -45,4 +45,5 @@ POST users/xieyuheng?kind=password-login
 
 令牌中并不保存这些信息，
 这样当我们想要修改某一用户所属的用户组时，
-只要修改这个用户的 `.token-issuer` 中的数据就好了。
+只要修改这个用户的 `.token-issuer` 中的数据就好了，
+而不用去修改这个用户的所有令牌。

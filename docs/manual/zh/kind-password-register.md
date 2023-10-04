@@ -55,7 +55,8 @@ users/xieyuheng/.token-issuer/index.json
 }
 ```
 
-`users/xieyuheng/.token-issuer/index.json` 记录这个用户所在的用户组：
+`users/xieyuheng/.token-issuer/index.json`
+记录这个用户的用户名与所在的用户组：
 
 ```
 {
