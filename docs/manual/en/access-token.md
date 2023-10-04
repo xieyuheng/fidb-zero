@@ -12,8 +12,10 @@ The syntax of this header is:
 Authorization: <auth-scheme> <authorization-parameters>
 ```
 
-In our case, the `<auth-scheme>` should be `token`,
-and the `<authorization-parameters>` should be the value of the token.
+In our case:
+
+- `<auth-scheme>` should be `token`.
+- `<authorization-parameters>` should be the value of the token.
 
 For example:
 

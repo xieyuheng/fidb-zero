@@ -1,6 +1,5 @@
 # docs
 
-[docs] en "access-token.md"
 [docs] en "guest-access-token.md"
 [docs] en "system-resources.md"
 [docs] en "group-and-permissions.md"
