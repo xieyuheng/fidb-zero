@@ -1,7 +1,14 @@
 # docs
 
-[docs] update en manual about password register and login
+[docs] en "access-token.md"
+[docs] en "guest-access-token.md"
+[docs] en "system-resources.md"
+[docs] en "group-and-permissions.md"
+[docs] en "kind-password-register.md"
+[docs] en "kind-password-login.md"
+
 [docs] FiDB Manager
+[docs] leave schema and index as TODO
 
 # data
 
@@ -26,9 +33,7 @@
 
 # schema
 
-[schema] [maybe] use `x-json` instead of `xieyuheng/ty`
-
-[schema] should we use `x-json` for both schema and index?
+[schema] need filescript to write schema
 
 # indexing
 
@@ -39,7 +44,5 @@
 [indexing] `index(db, directory, key)`
 
 [indexing] `createIndex(db, directory, key)`
-
-# data-find
 
 [data-find] `dataFind` -- use index

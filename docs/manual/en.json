@@ -18,8 +18,12 @@
       "kind-file-rename.md",
       "kind-directory.md"
     ],
-    "Register and Login": [
+    "User": [
       "access-control.md",
+      "access-token.md",
+      "guest-access-token.md",
+      "system-resources.md",
+      "group-and-permissions.md",
       "kind-password-register.md",
       "kind-password-login.md"
     ],
