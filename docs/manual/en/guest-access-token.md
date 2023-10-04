@@ -2,39 +2,30 @@
 title: Guest Access Token
 ---
 
-We use `.guest-token-issuer` data file to config the default permissions,
-which contains a `permissions` property
-for the default permissions.
-
-For example, suppose we want all guests
-to be able to read all users public data:
+We use `.guest-token-issuer/index.json` data file
+to config the permissions of the guest access token.
 
 ```
 {
-  "permissions": {
-    "users/*/public/**": [
-      "data:get",
-      "data-find:get",
-      "file:get",
-      "file-metadata:get",
-      "directory:get"
-    ]
-  }
+  "groups": [
+    "guest"
+  ],
+  "@path": ".guest-token-issuer",
+  "@revision": "a6c25435c0ff2a0c669478601028efda",
+  "@createdAt": 1696151055327,
+  "@updatedAt": 1696151055327
 }
 ```
 
-And we can use a token named `default` to point to the default issuer.
-
-The token file should be:
-
-```
-.tokens/guest/index.json
-```
-
-The token data could be:
+The guest access token is stored in `.tokens/guest/index.json`:
 
 ```
 {
-  "issuer": ".guest-token-issuer"
+  "issuer": ".guest-token-issuer",
+  "issuerRevision": "a6c25435c0ff2a0c669478601028efda",
+  "@path": ".tokens/guest",
+  "@revision": "38311b8cacf04587bf0803c7fe244dad",
+  "@createdAt": 1696151055328,
+  "@updatedAt": 1696151055328
 }
 ```
