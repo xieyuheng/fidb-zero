@@ -2,7 +2,7 @@
 title: FiDB Manager
 ---
 
-We have a database manager:
+We have a FiDB manager:
 
 - [fidb.app/databases](https://fidb.app/databases)
 

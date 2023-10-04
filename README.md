@@ -10,7 +10,6 @@ This is a Node.js implementation of [**FiDB**](https://fidb.app)
 Including a command-line tool to initialize and maintain database.
 
 ```
-
 Commands:
   help [name]             Display help for a command
   init:database [path]    Initialize a directory to be a database

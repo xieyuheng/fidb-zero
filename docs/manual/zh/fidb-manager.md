@@ -2,7 +2,7 @@
 title: FiDB 管理器
 ---
 
-我们有一个数据库管理器：
+我们有一个 FiDB 管理器：
 
 - [fidb.app/databases](https://fidb.app/databases)
 
