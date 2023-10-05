@@ -60,6 +60,7 @@ title: 引子
 
 这看来是个值得探究的主意。
 我将称这个项目为 **FiDB**。
+项目主页是 [fidb.app](https://fidb.app)，
 在 GitHub 上可以看到 [源代码](https://github.com/fidb-official/fidb)，
 这个手册的源代码在代码仓库的 `docs/` 路径下。
 
