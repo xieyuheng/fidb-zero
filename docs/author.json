@@ -3,8 +3,9 @@
   "name": "FiDB",
   "tagline": "File system as database.",
   "homepage": "author/HOME.md",
-  "avatar": "assets/images/logo.png",
-  "activities": [
-    "activities/2023-04-04-fidb-manual.md"
-  ]
+  "avatar": {
+    "light": "assets/images/logo.png",
+    "dark": "assets/images/logo-dark.png"
+  },
+  "activities": ["activities/2023-04-04-fidb-manual.md"]
 }
