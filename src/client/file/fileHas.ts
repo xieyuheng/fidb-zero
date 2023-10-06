@@ -1,11 +1,11 @@
 import { ClientContext } from "../ClientContext"
 import { checkResponse } from "../checkResponse"
 
-export async function dataHas(
+export async function fileHas(
   ctx: ClientContext,
   path: string,
 ): Promise<boolean> {
-  const response = await fetch(new URL(path, ctx.url), {
+  const response = await fetch(new URL(`${path}?kind=file`, ctx.url), {
     method: "HEAD",
     headers: {
       authorization: ctx.authorization,

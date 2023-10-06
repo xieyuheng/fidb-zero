@@ -1,5 +1,3 @@
-[file] client -- `fileHas`
-
 # data-find
 
 [data-find] support nested `PATCH` for data
