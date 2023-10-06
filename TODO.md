@@ -1,6 +1,6 @@
-# file
+# file content hash
 
-[file] support contents hash based query
+[file] support content hash based query
 
 - return file content only when it's hash is different
 - return a list of newer file contents
