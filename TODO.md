@@ -1,4 +1,5 @@
 [file] `handleFile` -- support HTTP `HEAD` method
+[file] client -- `fileHas`
 
 # data-find
 
@@ -14,8 +15,11 @@
 # rate limit
 
 [rate limit] be able to config rate limit of a resource
-
 [rate limit] rate limit by ip -- for `password-register`
+
+# quota
+
+[quota] for storage and transfer
 
 # schema
 
@@ -23,12 +27,8 @@
 
 # indexing
 
-[indexing] how to config indexing of data resource?
-
+[indexing] use filescript to config indexing of different path
 [indexing] b-tree over file system
-
 [indexing] `index(db, directory, key)`
-
 [indexing] `createIndex(db, directory, key)`
-
-[data-find] `dataFind` -- use index
+[indexing] `dataFind` -- use index
