@@ -18,6 +18,12 @@ export async function handleFile(
   const path = requestResolvedPath(db, request)
   const token = await requestToken(request)
 
+  if (request.method === "HEAD") {
+    await tokenAssert(db, token, path, "file:get")
+    await fileGetOrFail(db, path)
+    return undefined
+  }
+
   if (request.method === "GET") {
     await tokenAssert(db, token, path, "file:get")
     return await fileGetOrFail(db, path)

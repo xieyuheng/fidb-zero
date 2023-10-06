@@ -1,4 +1,3 @@
-[file] `handleFile` -- support HTTP `HEAD` method
 [file] client -- `fileHas`
 
 # data-find
