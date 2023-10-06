@@ -2,12 +2,12 @@ import fs from "node:fs"
 import { join, resolve } from "node:path"
 import { Data, Database } from "../../database"
 import { resolvePath } from "../../database/resolvePath"
-import { JsonAtom } from "../../utils/Json"
+import { Json } from "../../utils/Json"
 import { isErrnoException } from "../../utils/node/isErrnoException"
 import { dataGet } from "../data/dataGet"
 
 export type DataFindAllOptions = {
-  properties: Record<string, JsonAtom>
+  properties: Record<string, Json>
 }
 
 export async function* dataFindAll(
