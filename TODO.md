@@ -1,6 +1,4 @@
-# data
-
-[data] support `HEAD` query
+[file] `handleFile` -- support HTTP `HEAD` method
 
 # data-find
 

@@ -19,6 +19,12 @@ export async function handleData(
   const path = requestResolvedPath(db, request)
   const token = await requestToken(request)
 
+  if (request.method === "HEAD") {
+    await tokenAssert(db, token, path, "data:get")
+    await dataGetOrFail(db, path)
+    return undefined
+  }
+
   if (request.method === "GET") {
     await tokenAssert(db, token, path, "data:get")
     return await dataGetOrFail(db, path)

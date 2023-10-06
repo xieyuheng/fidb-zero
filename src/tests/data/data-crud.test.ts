@@ -5,6 +5,8 @@ import { prepareTestServer } from "../prepareTestServer"
 test("data-crud", async ({ task }) => {
   const { ctx } = await prepareTestServer(task)
 
+  expect(await api.dataHas(ctx, `users/xieyuheng`)).toEqual(false)
+
   const created = await api.dataCreate(ctx, `users/xieyuheng`, {
     username: "xieyuheng",
     name: "Xie Yuheng",
@@ -12,6 +14,7 @@ test("data-crud", async ({ task }) => {
 
   expect(created.name).toEqual("Xie Yuheng")
 
+  expect(await api.dataHas(ctx, `users/xieyuheng`)).toEqual(true)
   expect(await api.dataGet(ctx, `users/xieyuheng`)).toEqual(created)
 
   const putted = await api.dataPut(ctx, `users/xieyuheng`, {
