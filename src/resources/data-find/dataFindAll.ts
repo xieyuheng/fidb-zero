@@ -4,6 +4,7 @@ import { Data, Database } from "../../database"
 import { resolvePath } from "../../database/resolvePath"
 import { Json } from "../../utils/Json"
 import { isErrnoException } from "../../utils/node/isErrnoException"
+import { objectMatchProperties } from "../../utils/objectMatchProperties"
 import { dataGet } from "../data/dataGet"
 
 export type DataFindAllOptions = {
@@ -29,14 +30,11 @@ export async function* dataFindAll(
 
       if (dirEntry.isDirectory()) {
         const data = await dataGet(db, `${directory}/${dirEntry.name}`)
-        if (data !== undefined) {
-          if (
-            Object.entries(options.properties).every(
-              ([key, property]) => data[key] === property,
-            )
-          ) {
-            yield data
-          }
+        if (
+          data !== undefined &&
+          objectMatchProperties(data, options.properties)
+        ) {
+          yield data
         }
       }
     }

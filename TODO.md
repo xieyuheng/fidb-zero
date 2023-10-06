@@ -1,4 +1,3 @@
-[data-find] support nested properties match -- using `objectMatchProperties`
 [data] support nested `PATCH` for data
 
 # file
