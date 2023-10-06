@@ -1,5 +1,3 @@
-[data] support nested `PATCH` for data
-
 # file
 
 [file] support contents hash based query

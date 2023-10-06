@@ -4,6 +4,7 @@ import { randomRevision } from "../../database/randomRevision"
 import { writeData } from "../../database/writeData"
 import { NotFound, RevisionMismatch } from "../../errors"
 import { JsonObject } from "../../utils/Json"
+import { objectMergeProperties } from "../../utils/objectMergeProperties"
 import { dataGet } from "./dataGet"
 
 export async function dataPatch(
@@ -23,11 +24,11 @@ export async function dataPatch(
   }
 
   const result = {
-    ...data,
-    ...input,
+    ...objectMergeProperties(data, input),
     "@path": normalize(path),
     "@revision": randomRevision(),
     "@updatedAt": Date.now(),
+    "@createdAt": data["@createdAt"],
   }
 
   await writeData(db, path, result)
