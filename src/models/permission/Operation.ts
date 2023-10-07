@@ -1,4 +1,4 @@
-import ty, { Schema } from "@xieyuheng/ty"
+import { Schema, ty } from "@xieyuheng/ty"
 
 export type Operation =
   | "data:post"
@@ -45,4 +45,6 @@ function isOperation(x: string): x is Operation {
   return allOperations.includes(x as any)
 }
 
-export const OperationSchema: Schema<Operation> = ty.guard(isOperation)
+export const OperationSchema: Schema<Operation> = ty.predicate(isOperation, {
+  description: `The string should be an operation.`,
+})

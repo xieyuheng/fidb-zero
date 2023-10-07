@@ -1,5 +1,5 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
-import ty from "@xieyuheng/ty"
+import { ty } from "@xieyuheng/ty"
 import { dirname, join, resolve } from "node:path"
 import { readDatabaseConfigFile } from "../../database/readDatabaseConfigFile"
 import { startSubdomainServer } from "../../servers/subdomain/startSubdomainServer"

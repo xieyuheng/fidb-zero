@@ -1,4 +1,4 @@
-import ty, { Schema } from "@xieyuheng/ty"
+import { ty, Schema } from "@xieyuheng/ty"
 import { Operation, OperationSchema } from "../permission"
 
 export type PermissionRecord = Record<string, Array<Operation>>

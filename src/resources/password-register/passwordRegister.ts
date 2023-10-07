@@ -12,7 +12,9 @@ export type PasswordRegisterOptions = {
 }
 
 export const PasswordRegisterOptionsSchema = ty.object({
-  data: ty.guard(isJsonObject),
+  data: ty.predicate(isJsonObject, {
+    description: "The data should be a JSON Object.",
+  }),
   password: ty.string(),
 })
 
