@@ -11,7 +11,7 @@ export async function fileGetOrFail(
     return await readBytes(db, path)
   } catch (error) {
     if (isErrnoException(error) && error.code === "ENOENT") {
-      throw new NotFound(`[getOrFail] path: ${path}`)
+      throw new NotFound(`[fileGetOrFail] path: ${path}`)
     }
 
     throw error
