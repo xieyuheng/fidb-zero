@@ -5,31 +5,44 @@ date: 2023-10-14
 ---
 
 We can implement relations between user and user
-by making a `relations/` directory for each user,
+by making a `relations/{relation-name}/` directory for each user,
 and give other users the permission
 to edit `relations/{relation-name}/{other-user}`.
+
+- Note that, the `relations/` prefix is not necessary,
+  it is only there to denote that path under this prefix
+  are ought to grant permissions to other users.
 
 This means we are implementing relations by double-links.
 
 Take the `following` and `followed-by` relation as an example:
 
 ```
-users/{user}/relations/followed-by/{other-user}/index.json
 users/{other-user}/following/{user}/index.json
+users/{user}/relations/followed-by/{other-user}/index.json
 ```
 
 - Problem: Should we use `followed-by` or `followers`
   to name this direction of the relation?
 
-To implement relations between content and user,
+  Maybe we should use `followed-by` because it is more general,
+  for example we can use `liked-by` but not `likers`.
+
+To implement relations between content (file resource) and user,
 we can use a `content-relations/` directory
 and use `path-hash` to reference path of a content.
 
+We must use `path-hash` because
+path might contains the "/" character,
+thus can not be used as part of a path.
+
 ```
+users/{other-user}/liking/{path-hash}/index.json
 users/{user}/public/contents/{path}
-users/{user}/public/content-relations/{path-hash}/recalled-by/{other-user}/index.json
+users/{user}/public/content-relations/{path-hash}/liked-by/{other-user}/index.json
 ```
 
+This means we store metadata of file by a parallel data directory.
 Just like how the recall feature of mimor is implemented:
 
 ```
