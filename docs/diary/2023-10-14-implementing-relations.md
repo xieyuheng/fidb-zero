@@ -42,3 +42,13 @@ Because the target of access control is a user.
 This is not a bad limitation,
 because we are using a client/server architechure,
 in which every request is sent by a user or a guest.
+
+# Check consistency during reading
+
+Since a double-link is built by two requests,
+when the first request success but the second fail,
+the state of the double-link will be inconsistent.
+
+We can solve this problem by checking consistency
+during reading the first endpoint of the double-link,
+and amend the double-link if it is broken.
