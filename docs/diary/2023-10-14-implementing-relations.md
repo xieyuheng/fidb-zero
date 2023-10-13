@@ -18,6 +18,9 @@ users/{user}/relations/followed-by/{other-user}/index.json
 users/{other-user}/following/{user}/index.json
 ```
 
+- Problem: Should we use `followed-by` or `followers`
+  to name this direction of the relation?
+
 To implement relations between content and user,
 we can use a `content-relations/` directory
 and use `path-hash` to reference path of a content.
@@ -52,3 +55,15 @@ the state of the double-link will be inconsistent.
 We can solve this problem by checking consistency
 during reading the first endpoint of the double-link,
 and amend the double-link if it is broken.
+
+# Properties of double-link method for implementing relations
+
+We do not need to use index to get all the users a user is following,
+or all the followers of a user.
+
+both direction of a relation must be explicitly named.
+
+# Motivating constraint
+
+The motivating constraint of the idea of double-link,
+is the fact that we are using path pattern to represent permissions.
