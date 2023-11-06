@@ -71,7 +71,7 @@ Install it by the following command:
 npm install -g fidb
 ```
 
-The command line program is called `fidb`.
+The command-line program is called `fidb`.
 
 ## Docs
 
