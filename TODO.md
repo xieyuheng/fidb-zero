@@ -1,10 +1,6 @@
 # schema
 
-[schema] need javascript to write schema
-
-# double linked data
-
-用 double linked 而不是 path-based permission
+[schema] use javascript to write schema
 
 # file content hash
 
