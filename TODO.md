@@ -1,5 +1,3 @@
-回顾 fidb 项目，计划做成 lib 而不是 app
-
 # schema
 
 [schema] need javascript to write schema
