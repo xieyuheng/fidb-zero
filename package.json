@@ -1,6 +1,6 @@
 {
   "name": "fidb",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "type": "module",
   "repository": "github:fidb-official/fidb",
   "main": "./lib/index.js",
