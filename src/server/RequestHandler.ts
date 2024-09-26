@@ -1,5 +1,5 @@
 import Http from "node:http"
-import { Json } from "../utils/Json"
+import { type Json } from "../utils/Json.js"
 
 export type RequestHandler<Context> = (
   ctx: Context,

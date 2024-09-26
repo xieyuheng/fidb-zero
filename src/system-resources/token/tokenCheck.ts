@@ -1,10 +1,13 @@
-import { Database } from "../../database"
-import { applyPathPatternRecordKeys } from "../../models/path-pattern"
-import { Operation, matchPermissionRecord } from "../../models/permission"
-import { dataGetOrFail } from "../../resources"
-import { groupGet } from "../group"
-import { TokenIssuerSchema } from "../token-issuer"
-import { tokenGetOrFail } from "./tokenGetOrFail"
+import { type Database } from "../../database/index.js"
+import { applyPathPatternRecordKeys } from "../../models/path-pattern/index.js"
+import {
+  type Operation,
+  matchPermissionRecord,
+} from "../../models/permission/index.js"
+import { dataGetOrFail } from "../../resources/index.js"
+import { groupGet } from "../group/index.js"
+import { TokenIssuerSchema } from "../token-issuer/index.js"
+import { tokenGetOrFail } from "./tokenGetOrFail.js"
 
 export async function tokenCheck(
   db: Database,

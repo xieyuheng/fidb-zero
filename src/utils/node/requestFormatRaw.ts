@@ -1,6 +1,6 @@
 import { Buffer } from "node:buffer"
 import Http from "node:http"
-import { requestBytes } from "./requestBytes"
+import { requestBytes } from "./requestBytes.js"
 
 export async function requestFormatRaw(
   request: Http.IncomingMessage,

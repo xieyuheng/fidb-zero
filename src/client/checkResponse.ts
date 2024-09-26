@@ -1,5 +1,5 @@
-import { ClientContext } from "./ClientContext"
-import { ClientError } from "./ClientError"
+import { type ClientContext } from "./ClientContext.js"
+import { ClientError } from "./ClientError.js"
 
 export function checkResponse(ctx: ClientContext, response: Response): void {
   if (!response.ok) {

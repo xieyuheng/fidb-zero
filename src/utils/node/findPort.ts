@@ -1,5 +1,5 @@
-import detect from "detect-port"
+import getPort from "get-port"
 
 export async function findPort(port: number): Promise<number> {
-  return await detect(port)
+  return await getPort({port})
 }

@@ -1,10 +1,10 @@
 import fs from "node:fs"
 import { normalize } from "node:path"
-import { Data, DataSchema, Database } from "../database"
-import { readJsonObject } from "../utils/node/readJsonObject"
-import { randomRevision } from "./randomRevision"
-import { resolveDataPath } from "./resolveDataPath"
-import { writeData } from "./writeData"
+import { type Data, DataSchema, type Database } from "../database/index.js"
+import { readJsonObject } from "../utils/node/readJsonObject.js"
+import { randomRevision } from "./randomRevision.js"
+import { resolveDataPath } from "./resolveDataPath.js"
+import { writeData } from "./writeData.js"
 
 export async function readData(db: Database, path: string): Promise<Data> {
   path = normalize(path)

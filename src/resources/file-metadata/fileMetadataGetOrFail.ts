@@ -1,8 +1,8 @@
 import fs from "node:fs"
-import { Database } from "../../database"
-import { resolvePath } from "../../database/resolvePath"
-import { NotFound } from "../../errors"
-import { isErrnoException } from "../../utils/node/isErrnoException"
+import { type Database } from "../../database/index.js"
+import { resolvePath } from "../../database/resolvePath.js"
+import { NotFound } from "../../errors/index.js"
+import { isErrnoException } from "../../utils/node/isErrnoException.js"
 
 export type FileMetadata = {
   size: number

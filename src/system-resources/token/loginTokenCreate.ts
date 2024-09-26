@@ -1,7 +1,7 @@
-import { Database } from "../../database"
-import { Unauthorized } from "../../errors"
-import { tokenCreateRandom } from "../token"
-import { tokenIssuerGet } from "../token-issuer"
+import { type Database } from "../../database/index.js"
+import { Unauthorized } from "../../errors/index.js"
+import { tokenIssuerGet } from "../token-issuer/index.js"
+import { tokenCreateRandom } from "../token/index.js"
 
 export async function loginTokenCreate(
   db: Database,

@@ -1,7 +1,7 @@
-import { Database } from "../../database"
-import { Unauthorized } from "../../errors"
-import { Operation } from "../../models/permission"
-import { tokenCheck } from "./tokenCheck"
+import { type Database } from "../../database/index.js"
+import { Unauthorized } from "../../errors/index.js"
+import { type Operation } from "../../models/permission/index.js"
+import { tokenCheck } from "./tokenCheck.js"
 
 export async function tokenAssert(
   db: Database,

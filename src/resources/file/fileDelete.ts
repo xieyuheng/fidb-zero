@@ -1,6 +1,6 @@
-import { Database } from "../../database"
-import { deletePath } from "../../database/deletePath"
-import { fileGet } from "./fileGet"
+import { deletePath } from "../../database/deletePath.js"
+import { type Database } from "../../database/index.js"
+import { fileGet } from "./fileGet.js"
 
 export async function fileDelete(db: Database, path: string): Promise<void> {
   const gotten = await fileGet(db, path)

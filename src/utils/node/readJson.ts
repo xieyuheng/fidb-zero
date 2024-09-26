@@ -1,5 +1,5 @@
 import fs from "node:fs"
-import { Json } from "../Json"
+import { type Json } from "../Json.js"
 
 export async function readJson(path: string): Promise<Json> {
   const who = "readJson"

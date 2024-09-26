@@ -1,17 +1,17 @@
 import Http from "node:http"
-import { Database } from "../../database"
-import { requestResolvedPath } from "../../resources/requestResolvedPath"
-import { resourceRoutes } from "../../resources/resourceRoutes"
-import { handlePreflight } from "../../server/handlePreflight"
-import { Json } from "../../utils/Json"
-import { requestKind } from "../../utils/node/requestKind"
+import { type Database } from "../../database/index.js"
+import { requestResolvedPath } from "../../resources/requestResolvedPath.js"
+import { resourceRoutes } from "../../resources/resourceRoutes.js"
+import { handlePreflight } from "../../server/handlePreflight.js"
+import { type Json } from "../../utils/Json.js"
+import { requestKind } from "../../utils/node/requestKind.js"
 
 export async function handleDatabase(
   db: Database,
   request: Http.IncomingMessage,
   response: Http.ServerResponse,
 ): Promise<Json | Uint8Array | void> {
-  const who = "handleDatabase"
+  const who = "handleDatabase.js"
 
   if (request.method === "OPTIONS") {
     return handlePreflight(request, response)

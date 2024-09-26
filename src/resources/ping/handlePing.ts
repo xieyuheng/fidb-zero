@@ -1,6 +1,6 @@
 import Http from "node:http"
-import { Database } from "../../database"
-import { Json } from "../../utils/Json"
+import { type Database } from "../../database/index.js"
+import { type Json } from "../../utils/Json.js"
 
 export async function handlePing(
   db: Database,

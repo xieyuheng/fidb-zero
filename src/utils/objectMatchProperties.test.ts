@@ -1,5 +1,5 @@
 import { expect, test } from "vitest"
-import { objectMatchProperties } from "./objectMatchProperties"
+import { objectMatchProperties } from "./objectMatchProperties.js"
 
 test("objectMatchProperties", () => {
   expect(

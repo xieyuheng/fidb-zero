@@ -1,5 +1,5 @@
 import { Buffer } from "node:buffer"
-import { Json } from "../Json"
+import { type Json } from "../Json.js"
 
 export async function bufferJson(buffer: Buffer): Promise<Json> {
   const text = buffer.toString()

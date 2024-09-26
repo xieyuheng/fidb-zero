@@ -1,7 +1,7 @@
 import { expect, test } from "vitest"
-import { api } from "../.."
-import { PathEntry } from "../../resources/directory/PathEntry"
-import { prepareTestServer } from "../prepareTestServer"
+import { api } from "../../index.js"
+import { type PathEntry } from "../../resources/directory/PathEntry.js"
+import { prepareTestServer } from "../prepareTestServer.js"
 
 test("directory-get-file-metadata", async ({ task }) => {
   const { ctx } = await prepareTestServer(task)

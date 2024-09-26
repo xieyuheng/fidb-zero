@@ -1,5 +1,5 @@
-import { Database } from "../../database"
-import { dataCreate } from "../../resources"
+import { type Database } from "../../database/index.js"
+import { dataCreate } from "../../resources/index.js"
 
 export async function tokenCreate(
   db: Database,

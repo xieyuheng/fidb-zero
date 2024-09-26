@@ -1,5 +1,5 @@
 import { expect, test } from "vitest"
-import { slug } from "./slug"
+import { slug } from "./slug.js"
 
 // prettier-ignore
 test("slug", () => {

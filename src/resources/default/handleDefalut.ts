@@ -1,10 +1,10 @@
 import Http from "node:http"
-import { Database } from "../../database"
-import { isFile } from "../../database/isFile"
-import { handleData } from "../../resources/data/handleData"
-import { handleFile } from "../../resources/file/handleFile"
-import { requestResolvedPath } from "../../resources/requestResolvedPath"
-import { Json } from "../../utils/Json"
+import { type Database } from "../../database/index.js"
+import { isFile } from "../../database/isFile.js"
+import { handleData } from "../../resources/data/handleData.js"
+import { handleFile } from "../../resources/file/handleFile.js"
+import { requestResolvedPath } from "../../resources/requestResolvedPath.js"
+import { type Json } from "../../utils/Json.js"
 
 export async function handleDefault(
   db: Database,

@@ -1,4 +1,4 @@
-import { DatabaseConfig } from "./DatabaseConfig"
+import { type DatabaseConfig } from "./DatabaseConfig.js"
 
 export const emptyDatabaseConfig: DatabaseConfig = {
   name: "",

@@ -1,5 +1,5 @@
 import crypto from "node:crypto"
-import { byteArrayMerge } from "./byteArrayMerge"
+import { byteArrayMerge } from "./byteArrayMerge.js"
 
 // Learned from:
 // - https://github.com/diafygi/webcrypto-examples#aes-gcm

@@ -1,4 +1,4 @@
-import { ClientContext } from "./ClientContext"
+import { type ClientContext } from "./ClientContext.js"
 
 export function createClientContext(url: URL, token?: string): ClientContext {
   return {

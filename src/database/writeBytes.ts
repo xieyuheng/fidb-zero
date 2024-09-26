@@ -1,7 +1,7 @@
 import fs from "node:fs"
 import { dirname } from "node:path"
-import { Database } from "./Database"
-import { resolvePath } from "./resolvePath"
+import { type Database } from "./Database.js"
+import { resolvePath } from "./resolvePath.js"
 
 export async function writeBytes(
   db: Database,

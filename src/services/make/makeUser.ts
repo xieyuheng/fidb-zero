@@ -1,8 +1,8 @@
-import { Database } from "../../database"
-import { passwordRegister } from "../../resources"
-import { tokenIssuerPutGroups } from "../../system-resources/token-issuer"
-import { JsonObject } from "../../utils/Json"
-import { log } from "../../utils/log"
+import { type Database } from "../../database/index.js"
+import { passwordRegister } from "../../resources/index.js"
+import { tokenIssuerPutGroups } from "../../system-resources/token-issuer/index.js"
+import { type JsonObject } from "../../utils/Json.js"
+import { log } from "../../utils/log.js"
 
 export async function makeUser(
   db: Database,

@@ -1,6 +1,6 @@
 import { normalize } from "node:path"
-import { Database } from "./Database"
-import { resolvePath } from "./resolvePath"
+import { type Database } from "./Database.js"
+import { resolvePath } from "./resolvePath.js"
 
 export function normalizePath(db: Database, path: string): string {
   const resolvedPath = resolvePath(db, path)

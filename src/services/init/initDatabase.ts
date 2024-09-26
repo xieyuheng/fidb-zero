@@ -1,10 +1,10 @@
 import fs from "node:fs"
 import process from "node:process"
-import { Database, loadDatabase } from "../../database"
-import { log } from "../../utils/log"
-import { pathExists } from "../../utils/node/pathExists"
-import { initDatabaseConfigFile } from "./initDatabaseConfigFile"
-import { initSystemResource } from "./initSystemResource"
+import { type Database, loadDatabase } from "../../database/index.js"
+import { log } from "../../utils/log.js"
+import { pathExists } from "../../utils/node/pathExists.js"
+import { initDatabaseConfigFile } from "./initDatabaseConfigFile.js"
+import { initSystemResource } from "./initSystemResource.js"
 
 export async function initDatabase(directory: string): Promise<Database> {
   log({ who: "initDatabase", directory })

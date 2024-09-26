@@ -1,6 +1,6 @@
-import { Database } from "../../database"
-import { dataGet } from "../../resources"
-import { TokenIssuer, TokenIssuerSchema } from "./TokenIssuer"
+import { type Database } from "../../database/index.js"
+import { dataGet } from "../../resources/index.js"
+import { type TokenIssuer, TokenIssuerSchema } from "./TokenIssuer.js"
 
 export async function tokenIssuerGet(
   db: Database,

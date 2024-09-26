@@ -1,3 +1,3 @@
-export * from "./Password"
-export * from "./passwordCreate"
-export * from "./passwordGetOrFail"
+export * from "./Password.js"
+export * from "./passwordCreate.js"
+export * from "./passwordGetOrFail.js"

@@ -1,5 +1,5 @@
 import { parseFile } from "fast-csv"
-import { JsonObject } from "../Json"
+import { type JsonObject } from "../Json.js"
 
 export async function readCsv(file: string): Promise<Array<JsonObject>> {
   return new Promise((resolve, reject) => {

@@ -1,11 +1,11 @@
 import { normalize } from "node:path"
-import { Data, Database } from "../../database"
-import { randomRevision } from "../../database/randomRevision"
-import { writeData } from "../../database/writeData"
-import { NotFound, RevisionMismatch } from "../../errors"
-import { JsonObject } from "../../utils/Json"
-import { objectMergeProperties } from "../../utils/objectMergeProperties"
-import { dataGet } from "./dataGet"
+import { type Data, type Database } from "../../database/index.js"
+import { randomRevision } from "../../database/randomRevision.js"
+import { writeData } from "../../database/writeData.js"
+import { NotFound, RevisionMismatch } from "../../errors/index.js"
+import { type JsonObject } from "../../utils/Json.js"
+import { objectMergeProperties } from "../../utils/objectMergeProperties.js"
+import { dataGet } from "./dataGet.js"
 
 export async function dataPatch(
   db: Database,

@@ -1,6 +1,6 @@
-import { Data, Database } from "../../database"
-import { NotFound } from "../../errors"
-import { dataGetOrFail } from "./dataGetOrFail"
+import { type Data, type Database } from "../../database/index.js"
+import { NotFound } from "../../errors/index.js"
+import { dataGetOrFail } from "./dataGetOrFail.js"
 
 export async function dataGet(
   db: Database,

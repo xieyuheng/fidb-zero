@@ -1,5 +1,5 @@
-import { Database } from "../../database"
-import { fileGet } from "./fileGet"
+import { type Database } from "../../database/index.js"
+import { fileGet } from "./fileGet.js"
 
 export async function fileHas(db: Database, path: string): Promise<boolean> {
   const bytes = await fileGet(db, path)

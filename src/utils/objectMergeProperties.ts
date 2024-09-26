@@ -1,4 +1,4 @@
-import { JsonObject, isJsonObject } from "./Json"
+import { type JsonObject, isJsonObject } from "./Json.js"
 
 export function objectMergeProperties(
   target: JsonObject,

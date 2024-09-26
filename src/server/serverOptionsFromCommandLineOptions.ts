@@ -1,4 +1,4 @@
-import { ServerOptions } from "./ServerOptions"
+import { type ServerOptions } from "./ServerOptions.js"
 
 export function serverOptionsFromCommandLineOptions(options: {
   hostname?: string

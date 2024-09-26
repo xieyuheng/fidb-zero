@@ -1,7 +1,7 @@
 import { expect, test } from "vitest"
-import { api } from "../.."
-import { createClientContext } from "../../client"
-import { prepareTestServer } from "../prepareTestServer"
+import { createClientContext } from "../../client/index.js"
+import { api } from "../../index.js"
+import { prepareTestServer } from "../prepareTestServer.js"
 
 test("password-register-and-login", async ({ task }) => {
   const { ctx } = await prepareTestServer(task)

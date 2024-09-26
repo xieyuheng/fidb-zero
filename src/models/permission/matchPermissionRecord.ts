@@ -1,6 +1,6 @@
-import { globMatch } from "../../utils/globMatch"
-import { Operation } from "./Operation"
-import { PermissionRecord } from "./PermissionRecord"
+import { globMatch } from "../../utils/globMatch.js"
+import { type Operation } from "./Operation.js"
+import { type PermissionRecord } from "./PermissionRecord.js"
 
 export function matchPermissionRecord(
   permissions: PermissionRecord,

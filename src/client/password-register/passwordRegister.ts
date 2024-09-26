@@ -1,7 +1,7 @@
-import { Data } from "../../database"
-import { PasswordRegisterOptions } from "../../resources"
-import { ClientContext } from "../ClientContext"
-import { checkResponse } from "../checkResponse"
+import { type Data } from "../../database/index.js"
+import { type PasswordRegisterOptions } from "../../resources/index.js"
+import { type ClientContext } from "../ClientContext.js"
+import { checkResponse } from "../checkResponse.js"
 
 export async function passwordRegister(
   ctx: ClientContext,

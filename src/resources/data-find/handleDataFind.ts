@@ -1,12 +1,12 @@
 import Http from "node:http"
-import { Database } from "../../database"
-import { tokenAssert } from "../../system-resources/token"
-import { Json } from "../../utils/Json"
-import { arrayFromAsyncIterable } from "../../utils/arrayFromAsyncIterable"
-import { requestQuery } from "../../utils/node/requestQuery"
-import { requestResolvedPath } from "../requestResolvedPath"
-import { requestToken } from "../requestToken"
-import { dataFind } from "./dataFind"
+import { type Database } from "../../database/index.js"
+import { tokenAssert } from "../../system-resources/token/index.js"
+import { type Json } from "../../utils/Json.js"
+import { arrayFromAsyncIterable } from "../../utils/arrayFromAsyncIterable.js"
+import { requestQuery } from "../../utils/node/requestQuery.js"
+import { requestResolvedPath } from "../requestResolvedPath.js"
+import { requestToken } from "../requestToken.js"
+import { dataFind } from "./dataFind.js"
 
 export async function handleDataFind(
   db: Database,

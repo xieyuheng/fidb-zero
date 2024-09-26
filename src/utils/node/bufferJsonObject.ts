@@ -1,5 +1,5 @@
 import { Buffer } from "node:buffer"
-import { isJsonObject, JsonObject } from "../Json"
+import { isJsonObject, type JsonObject } from "../Json.js"
 
 export async function bufferJsonObject(buffer: Buffer): Promise<JsonObject> {
   const text = buffer.toString()

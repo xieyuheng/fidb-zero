@@ -1,5 +1,5 @@
 import crypto from "node:crypto"
-import { ivLength } from "./generateEncryptionKey"
+import { ivLength } from "./generateEncryptionKey.js"
 
 // Learned from:
 // - https://github.com/diafygi/webcrypto-examples#aes-gcm

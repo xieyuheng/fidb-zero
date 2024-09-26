@@ -1,7 +1,7 @@
-import { Database } from "../../database"
-import { writeBytes } from "../../database/writeBytes"
-import { AlreadyExists } from "../../errors"
-import { fileGet } from "./fileGet"
+import { type Database } from "../../database/index.js"
+import { writeBytes } from "../../database/writeBytes.js"
+import { AlreadyExists } from "../../errors/index.js"
+import { fileGet } from "./fileGet.js"
 
 export async function fileCreate(
   db: Database,

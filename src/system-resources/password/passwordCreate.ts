@@ -1,7 +1,7 @@
 import { join } from "node:path"
-import { Database } from "../../database"
-import { dataCreate } from "../../resources"
-import { passwordHash } from "../../utils/node/password"
+import { type Database } from "../../database/index.js"
+import { dataCreate } from "../../resources/index.js"
+import { passwordHash } from "../../utils/node/password.js"
 
 export async function passwordCreate(
   db: Database,

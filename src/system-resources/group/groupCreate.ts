@@ -1,6 +1,6 @@
-import { Database } from "../../database"
-import { dataCreate } from "../../resources"
-import { GroupInput } from "./Group"
+import { type Database } from "../../database/index.js"
+import { dataCreate } from "../../resources/index.js"
+import { type GroupInput } from "./Group.js"
 
 export async function groupCreate(
   db: Database,

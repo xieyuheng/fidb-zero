@@ -1,4 +1,4 @@
-import { parsePathPattern } from "./parsePathPattern"
+import { parsePathPattern } from "./parsePathPattern.js"
 
 export function applyPathPattern(
   pattern: string,

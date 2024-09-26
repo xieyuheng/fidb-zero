@@ -1,9 +1,9 @@
 import Http from "node:http"
 import Https from "node:https"
-import { log } from "../utils/log"
-import { findPort } from "../utils/node/findPort"
-import { serverListen } from "../utils/node/serverListen"
-import { ServerOptions } from "./ServerOptions"
+import { log } from "../utils/log.js"
+import { findPort } from "../utils/node/findPort.js"
+import { serverListen } from "../utils/node/serverListen.js"
+import { type ServerOptions } from "./ServerOptions.js"
 
 export async function serverListenWithDefault(
   server: Http.Server | Https.Server,
@@ -22,7 +22,7 @@ export async function serverListenWithDefault(
   await serverListen(server, { hostname, port })
 
   log({
-    who: "serverListenWithDefault",
+    who: "serverListenWithDefault.js",
     url: `${scheme}://${hostname}:${port}`,
   })
 }

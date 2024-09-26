@@ -1,11 +1,11 @@
 import fs from "node:fs"
 import Http from "node:http"
 import Https from "node:https"
-import { Database } from "../../database"
-import { createRequestListener } from "../../server/createRequestListener"
-import { serverListenWithDefault } from "../../server/serverListenWithDefault"
-import { log } from "../../utils/log"
-import { handleDatabase } from "./handleDatabase"
+import { type Database } from "../../database/index.js"
+import { createRequestListener } from "../../server/createRequestListener.js"
+import { serverListenWithDefault } from "../../server/serverListenWithDefault.js"
+import { log } from "../../utils/log.js"
+import { handleDatabase } from "./handleDatabase.js"
 
 export async function startDatabaseServer(db: Database): Promise<void> {
   const who = "startDatabaseServer"

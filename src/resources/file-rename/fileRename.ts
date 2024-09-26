@@ -1,10 +1,10 @@
 import fs from "node:fs"
 import { dirname } from "node:path"
-import { Database } from "../../database"
-import { resolvePath } from "../../database/resolvePath"
-import { AlreadyExists } from "../../errors"
-import { isErrnoException } from "../../utils/node/isErrnoException"
-import { fileGet } from "../file/fileGet"
+import { type Database } from "../../database/index.js"
+import { resolvePath } from "../../database/resolvePath.js"
+import { AlreadyExists } from "../../errors/index.js"
+import { isErrnoException } from "../../utils/node/isErrnoException.js"
+import { fileGet } from "../file/fileGet.js"
 
 export async function fileRename(
   db: Database,

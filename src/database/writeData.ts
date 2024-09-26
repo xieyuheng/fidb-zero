@@ -1,7 +1,7 @@
-import { writeJson } from "../utils/node/writeJson"
-import { Data } from "./Data"
-import { Database } from "./Database"
-import { resolveDataPath } from "./resolveDataPath"
+import { writeJson } from "../utils/node/writeJson.js"
+import { type Data } from "./Data.js"
+import { type Database } from "./Database.js"
+import { resolveDataPath } from "./resolveDataPath.js"
 
 export async function writeData(
   db: Database,

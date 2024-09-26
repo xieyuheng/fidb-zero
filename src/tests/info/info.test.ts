@@ -1,6 +1,6 @@
 import { expect, test } from "vitest"
-import { api } from "../.."
-import { prepareTestServer } from "../prepareTestServer"
+import { api } from "../../index.js"
+import { prepareTestServer } from "../prepareTestServer.js"
 
 test("info", async ({ task }) => {
   const { db, ctx } = await prepareTestServer(task)

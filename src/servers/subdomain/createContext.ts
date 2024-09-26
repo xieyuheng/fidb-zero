@@ -1,7 +1,7 @@
 import { resolve } from "node:path"
-import { DatabaseConfig } from "../../database"
-import { pathIsDirectory } from "../../utils/node/pathIsDirectory"
-import { Context } from "./Context"
+import { type DatabaseConfig } from "../../database/index.js"
+import { pathIsDirectory } from "../../utils/node/pathIsDirectory.js"
+import { type Context } from "./Context.js"
 
 type ContextOptions = {
   directory: string

@@ -1,1 +1,1 @@
-export * from "./passwordRegister"
+export * from "./passwordRegister.js"

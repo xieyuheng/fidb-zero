@@ -1,3 +1,5 @@
+回顾 fidb 项目，计划做成 lib 而不是 app
+
 # file content hash
 
 [file] support content hash based query

@@ -1,13 +1,12 @@
 import { expect, test } from "vitest"
-import { api } from "../.."
-import { prepareTestServer } from "../prepareTestServer"
+import { api } from "../../index.js"
+import { prepareTestServer } from "../prepareTestServer.js"
 
 test("file-crud", async ({ task }) => {
   const { ctx } = await prepareTestServer(task)
 
   const text = "Hello, I am Xie Yuheng."
   const bytes = new TextEncoder().encode(text)
-
 
   expect(await api.fileHas(ctx, `users/xieyuheng/human.txt`)).toEqual(false)
   await api.fileCreate(ctx, `users/xieyuheng/human.txt`, bytes)

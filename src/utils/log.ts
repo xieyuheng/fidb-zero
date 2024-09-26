@@ -1,8 +1,8 @@
 import { Schema, ty } from "@xieyuheng/ty"
-import { LogOptions } from "./LogOptions"
-import { logJson } from "./logJson"
-import { logPretty } from "./logPretty"
-import { logPrettyLine } from "./logPrettyLine"
+import { type LogOptions } from "./LogOptions.js"
+import { logJson } from "./logJson.js"
+import { logPretty } from "./logPretty.js"
+import { logPrettyLine } from "./logPrettyLine.js"
 
 export type LoggerName = "json" | "silent" | "pretty" | "pretty-line"
 

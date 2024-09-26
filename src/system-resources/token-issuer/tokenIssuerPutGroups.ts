@@ -1,6 +1,10 @@
-import { TokenIssuer, TokenIssuerSchema, tokenIssuerGetOrFail } from "."
-import { Database } from "../../database"
-import { dataPatch } from "../../resources"
+import { type Database } from "../../database/index.js"
+import { dataPatch } from "../../resources/index.js"
+import {
+  type TokenIssuer,
+  TokenIssuerSchema,
+  tokenIssuerGetOrFail,
+} from "./index.js"
 
 export async function tokenIssuerPutGroups(
   db: Database,

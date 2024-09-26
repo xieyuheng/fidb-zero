@@ -1,7 +1,7 @@
 import { expect, test } from "vitest"
-import { decrypt } from "./decrypt"
-import { encrypt } from "./encrypt"
-import { generateEncryptionKey } from "./generateEncryptionKey"
+import { decrypt } from "./decrypt.js"
+import { encrypt } from "./encrypt.js"
+import { generateEncryptionKey } from "./generateEncryptionKey.js"
 
 test("encrypt-decrypt", async () => {
   const data = new Uint8Array([1, 2, 3])

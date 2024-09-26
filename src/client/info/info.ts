@@ -1,6 +1,6 @@
-import { Json } from "../../utils/Json"
-import { ClientContext } from "../ClientContext"
-import { checkResponse } from "../checkResponse"
+import { type Json } from "../../utils/Json.js"
+import { type ClientContext } from "../ClientContext.js"
+import { checkResponse } from "../checkResponse.js"
 
 export async function info(ctx: ClientContext): Promise<Json> {
   const response = await fetch(new URL(`?kind=info`, ctx.url), {

@@ -1,7 +1,7 @@
-import { Data } from "../../database"
-import { JsonObject } from "../../utils/Json"
-import { ClientContext } from "../ClientContext"
-import { checkResponse } from "../checkResponse"
+import { type Data } from "../../database/index.js"
+import { type JsonObject } from "../../utils/Json.js"
+import { type ClientContext } from "../ClientContext.js"
+import { checkResponse } from "../checkResponse.js"
 
 export async function dataCreate(
   ctx: ClientContext,

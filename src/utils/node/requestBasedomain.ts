@@ -1,5 +1,5 @@
 import Http from "node:http"
-import { requestHostname } from "./requestHostname"
+import { requestHostname } from "./requestHostname.js"
 
 export function requestBasedomain(request: Http.IncomingMessage): string {
   const hostname = requestHostname(request)

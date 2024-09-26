@@ -1,5 +1,5 @@
-import { ClientError } from "./ClientError"
-import { attempt } from "./attempt"
+import { ClientError } from "./ClientError.js"
+import { attempt } from "./attempt.js"
 
 export async function errorOrFail<A>(
   f: () => Promise<A>,

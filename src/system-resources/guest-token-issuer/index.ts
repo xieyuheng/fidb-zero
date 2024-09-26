@@ -1,1 +1,1 @@
-export * from "./guestTokenIssuerInit"
+export * from "./guestTokenIssuerInit.js"

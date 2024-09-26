@@ -1,4 +1,4 @@
-import { ClientContext } from "./ClientContext"
+import { type ClientContext } from "./ClientContext.js"
 
 export class ClientError extends Error {
   constructor(

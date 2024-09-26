@@ -1,5 +1,5 @@
-import { ty, Schema } from "@xieyuheng/ty"
-import { Data, DataSchema } from "../../database"
+import { Schema, ty } from "@xieyuheng/ty"
+import { type Data, DataSchema } from "../../database/index.js"
 
 export type TokenInput = {
   issuer: string

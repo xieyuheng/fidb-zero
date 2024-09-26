@@ -1,9 +1,9 @@
 import Http from "node:http"
-import { Database } from "../../database"
-import { Json } from "../../utils/Json"
-import { requestJsonObject } from "../../utils/node/requestJsonObject"
-import { requestResolvedPath } from "../requestResolvedPath"
-import { PasswordLoginOptionsSchema, passwordLogin } from "./passwordLogin"
+import { type Database } from "../../database/index.js"
+import { type Json } from "../../utils/Json.js"
+import { requestJsonObject } from "../../utils/node/requestJsonObject.js"
+import { requestResolvedPath } from "../requestResolvedPath.js"
+import { PasswordLoginOptionsSchema, passwordLogin } from "./passwordLogin.js"
 
 export async function handlePasswordLogin(
   db: Database,

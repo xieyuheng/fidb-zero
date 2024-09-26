@@ -1,11 +1,11 @@
 import fs from "node:fs"
 import { join, resolve } from "node:path"
-import { Data, Database } from "../../database"
-import { resolvePath } from "../../database/resolvePath"
-import { Json } from "../../utils/Json"
-import { isErrnoException } from "../../utils/node/isErrnoException"
-import { objectMatchProperties } from "../../utils/objectMatchProperties"
-import { dataGet } from "../data/dataGet"
+import { type Data, type Database } from "../../database/index.js"
+import { resolvePath } from "../../database/resolvePath.js"
+import { type Json } from "../../utils/Json.js"
+import { isErrnoException } from "../../utils/node/isErrnoException.js"
+import { objectMatchProperties } from "../../utils/objectMatchProperties.js"
+import { dataGet } from "../data/dataGet.js"
 
 export type DataFindAllOptions = {
   properties: Record<string, Json>

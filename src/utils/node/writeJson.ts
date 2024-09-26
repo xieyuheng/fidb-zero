@@ -1,6 +1,6 @@
 import fs from "node:fs"
 import { dirname } from "node:path"
-import { Json } from "../Json"
+import { type Json } from "../Json.js"
 
 export async function writeJson(path: string, input: Json): Promise<void> {
   const text = JSON.stringify(input)

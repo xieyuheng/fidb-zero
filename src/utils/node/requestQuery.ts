@@ -1,6 +1,6 @@
 import Http from "node:http"
 import qs from "qs"
-import { requestURL } from "./requestURL"
+import { requestURL } from "./requestURL.js"
 
 export function requestQuery(
   request: Http.IncomingMessage,

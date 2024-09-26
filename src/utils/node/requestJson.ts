@@ -1,7 +1,7 @@
 import Http from "node:http"
-import { Json } from "../Json"
-import { requestText } from "./requestText"
-import { requestURL } from "./requestURL"
+import { type Json } from "../Json.js"
+import { requestText } from "./requestText.js"
+import { requestURL } from "./requestURL.js"
 
 export async function requestJson(
   request: Http.IncomingMessage,

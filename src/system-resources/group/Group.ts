@@ -1,9 +1,9 @@
 import { Schema, ty } from "@xieyuheng/ty"
-import { Data, DataSchema } from "../../database"
+import { type Data, DataSchema } from "../../database/index.js"
 import {
-  PermissionRecord,
+  type PermissionRecord,
   PermissionRecordSchema,
-} from "../../models/permission/PermissionRecord"
+} from "../../models/permission/PermissionRecord.js"
 
 export type GroupInput = {
   permissions: PermissionRecord

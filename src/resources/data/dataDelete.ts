@@ -1,8 +1,8 @@
-import { Database } from "../../database"
-import { deletePathRecursive } from "../../database/deletePath"
-import { RevisionMismatch } from "../../errors"
-import { JsonObject } from "../../utils/Json"
-import { dataGet } from "./dataGet"
+import { deletePathRecursive } from "../../database/deletePath.js"
+import { type Database } from "../../database/index.js"
+import { RevisionMismatch } from "../../errors/index.js"
+import { type JsonObject } from "../../utils/Json.js"
+import { dataGet } from "./dataGet.js"
 
 export async function dataDelete(
   db: Database,

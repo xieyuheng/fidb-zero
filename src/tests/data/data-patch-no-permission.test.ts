@@ -1,10 +1,10 @@
 import { expect, test } from "vitest"
-import { api } from "../.."
-import { allOperations, readOperations } from "../../models/permission"
-import { groupCreate } from "../../system-resources/group"
-import { loginTokenCreate } from "../../system-resources/token"
-import { loginTokenIssuerCreate } from "../../system-resources/token-issuer"
-import { prepareTestServer } from "../prepareTestServer"
+import { api } from "../../index.js"
+import { allOperations, readOperations } from "../../models/permission/index.js"
+import { groupCreate } from "../../system-resources/group/index.js"
+import { loginTokenIssuerCreate } from "../../system-resources/token-issuer/index.js"
+import { loginTokenCreate } from "../../system-resources/token/index.js"
+import { prepareTestServer } from "../prepareTestServer.js"
 
 test("data-patch-no-permission", async ({ task }) => {
   const { ctx, db } = await prepareTestServer(task)

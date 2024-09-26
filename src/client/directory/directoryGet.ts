@@ -1,8 +1,8 @@
 import qs from "qs"
-import { DirectoryGetOptions } from "../../resources"
-import { PathEntry } from "../../resources/directory/PathEntry"
-import { ClientContext } from "../ClientContext"
-import { checkResponse } from "../checkResponse"
+import { type PathEntry } from "../../resources/directory/PathEntry.js"
+import { type DirectoryGetOptions } from "../../resources/index.js"
+import { type ClientContext } from "../ClientContext.js"
+import { checkResponse } from "../checkResponse.js"
 
 export async function directoryGet(
   ctx: ClientContext,

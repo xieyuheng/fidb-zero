@@ -1,7 +1,7 @@
-import { Database } from "../../database"
-import { readBytes } from "../../database/readBytes"
-import { NotFound } from "../../errors"
-import { isErrnoException } from "../../utils/node/isErrnoException"
+import { type Database } from "../../database/index.js"
+import { readBytes } from "../../database/readBytes.js"
+import { NotFound } from "../../errors/index.js"
+import { isErrnoException } from "../../utils/node/isErrnoException.js"
 
 export async function fileGetOrFail(
   db: Database,

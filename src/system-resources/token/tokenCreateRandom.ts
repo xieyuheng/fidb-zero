@@ -1,6 +1,6 @@
-import { Database } from "../../database"
-import { randomTokenName } from "./randomTokenName"
-import { tokenCreate } from "./tokenCreate"
+import { type Database } from "../../database/index.js"
+import { randomTokenName } from "./randomTokenName.js"
+import { tokenCreate } from "./tokenCreate.js"
 
 export async function tokenCreateRandom(
   db: Database,

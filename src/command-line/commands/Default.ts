@@ -1,7 +1,7 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import { ty } from "@xieyuheng/ty"
-import * as Commands from "."
-import { packageJson } from "../../utils/node/packageJson"
+import { packageJson } from "../../utils/node/packageJson.js"
+import * as Commands from "./index.js"
 
 type Args = {}
 type Opts = { version?: boolean }

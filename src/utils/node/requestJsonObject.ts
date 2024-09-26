@@ -1,6 +1,6 @@
 import Http from "node:http"
-import { isJsonObject, JsonObject } from "../Json"
-import { requestJson } from "./requestJson"
+import { isJsonObject, type JsonObject } from "../Json.js"
+import { requestJson } from "./requestJson.js"
 
 export async function requestJsonObject(
   request: Http.IncomingMessage,

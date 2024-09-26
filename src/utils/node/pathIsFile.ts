@@ -1,5 +1,5 @@
 import fs from "node:fs"
-import { isErrnoException } from "../../utils/node/isErrnoException"
+import { isErrnoException } from "../../utils/node/isErrnoException.js"
 
 export async function pathIsFile(path: string): Promise<boolean> {
   try {

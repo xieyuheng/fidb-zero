@@ -1,4 +1,4 @@
-import { applyPathPattern } from "./applyPathPattern"
+import { applyPathPattern } from "./applyPathPattern.js"
 
 export function applyPathPatternRecordKeys<A>(
   record: Record<string, A>,

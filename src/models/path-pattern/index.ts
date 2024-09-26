@@ -1,3 +1,3 @@
-export * from "./applyPathPatternRecordKeys"
-export * from "./matchPathPattern"
-export * from "./parsePathPattern"
+export * from "./applyPathPatternRecordKeys.js"
+export * from "./matchPathPattern.js"
+export * from "./parsePathPattern.js"

@@ -1,12 +1,12 @@
 import { ty } from "@xieyuheng/ty"
 import Http from "node:http"
-import { Database } from "../../database"
-import { tokenAssert } from "../../system-resources/token"
-import { Json } from "../../utils/Json"
-import { requestJsonObject } from "../../utils/node/requestJsonObject"
-import { requestResolvedPath } from "../requestResolvedPath"
-import { requestToken } from "../requestToken"
-import { fileRename } from "./fileRename"
+import { type Database } from "../../database/index.js"
+import { tokenAssert } from "../../system-resources/token/index.js"
+import { type Json } from "../../utils/Json.js"
+import { requestJsonObject } from "../../utils/node/requestJsonObject.js"
+import { requestResolvedPath } from "../requestResolvedPath.js"
+import { requestToken } from "../requestToken.js"
+import { fileRename } from "./fileRename.js"
 
 export async function handleFileRename(
   db: Database,

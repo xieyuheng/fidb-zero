@@ -1,1 +1,1 @@
-export * from "./fileRename"
+export * from "./fileRename.js"

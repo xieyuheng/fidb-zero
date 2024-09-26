@@ -1,10 +1,10 @@
 import { ty } from "@xieyuheng/ty"
-import { Data, Database } from "../../database"
-import { Unauthorized } from "../../errors"
-import { dataCreate } from "../../resources"
-import { passwordCreate } from "../../system-resources/password"
-import { loginTokenIssuerCreate } from "../../system-resources/token-issuer"
-import { JsonObject, isJsonObject } from "../../utils/Json"
+import { type Data, type Database } from "../../database/index.js"
+import { Unauthorized } from "../../errors/index.js"
+import { dataCreate } from "../../resources/index.js"
+import { passwordCreate } from "../../system-resources/password/index.js"
+import { loginTokenIssuerCreate } from "../../system-resources/token-issuer/index.js"
+import { type JsonObject, isJsonObject } from "../../utils/Json.js"
 
 export type PasswordRegisterOptions = {
   data: JsonObject

@@ -1,5 +1,5 @@
 import { expect, test } from "vitest"
-import { objectMergeProperties } from "./objectMergeProperties"
+import { objectMergeProperties } from "./objectMergeProperties.js"
 
 test("objectMergeProperties", () => {
   expect(

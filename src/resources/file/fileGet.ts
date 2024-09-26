@@ -1,6 +1,6 @@
-import { Database } from "../../database"
-import { NotFound } from "../../errors"
-import { fileGetOrFail } from "./fileGetOrFail"
+import { type Database } from "../../database/index.js"
+import { NotFound } from "../../errors/index.js"
+import { fileGetOrFail } from "./fileGetOrFail.js"
 
 export async function fileGet(
   db: Database,

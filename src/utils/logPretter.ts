@@ -1,7 +1,7 @@
-import { colors } from "./colors"
-import { formatTime } from "./formatDate"
-import { indent } from "./indent"
-import { LogOptions } from "./LogOptions"
+import { colors } from "./colors.js"
+import { formatTime } from "./formatDate.js"
+import { indent } from "./indent.js"
+import { type LogOptions } from "./LogOptions.js"
 
 export function logPretter(options: LogOptions): void {
   const { kind, who, elapse, message } = options

@@ -1,6 +1,6 @@
 import { join, normalize, resolve } from "node:path"
-import { Database } from "./Database"
-import { readDatabaseConfigFile } from "./readDatabaseConfigFile"
+import { type Database } from "./Database.js"
+import { readDatabaseConfigFile } from "./readDatabaseConfigFile.js"
 
 type Options = {
   directory: string

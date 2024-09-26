@@ -1,5 +1,5 @@
-import { globMatch } from "../../utils/globMatch"
-import { parsePathPattern } from "./parsePathPattern"
+import { globMatch } from "../../utils/globMatch.js"
+import { parsePathPattern } from "./parsePathPattern.js"
 
 export function matchPathPattern(
   pattern: string,

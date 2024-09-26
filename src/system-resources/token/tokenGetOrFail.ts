@@ -1,8 +1,8 @@
-import { Database } from "../../database"
-import { Unauthorized } from "../../errors"
-import { dataGet } from "../../resources"
-import { Token, TokenSchema } from "../token"
-import { isValidTokenName } from "../token/isValidTokenName"
+import { type Database } from "../../database/index.js"
+import { Unauthorized } from "../../errors/index.js"
+import { dataGet } from "../../resources/index.js"
+import { type Token, TokenSchema } from "../token/index.js"
+import { isValidTokenName } from "../token/isValidTokenName.js"
 
 export async function tokenGetOrFail(
   db: Database,

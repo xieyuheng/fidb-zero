@@ -1,6 +1,6 @@
-import { Data } from "../../database"
-import { ClientContext } from "../ClientContext"
-import { checkResponse } from "../checkResponse"
+import { type Data } from "../../database/index.js"
+import { type ClientContext } from "../ClientContext.js"
+import { checkResponse } from "../checkResponse.js"
 
 export async function dataGetOrFail(
   ctx: ClientContext,

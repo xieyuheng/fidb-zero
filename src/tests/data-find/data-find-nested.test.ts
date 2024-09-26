@@ -1,6 +1,6 @@
 import { expect, test } from "vitest"
-import { api } from "../.."
-import { prepareTestServer } from "../prepareTestServer"
+import { api } from "../../index.js"
+import { prepareTestServer } from "../prepareTestServer.js"
 
 test("data-find-nested", async ({ task }) => {
   const { ctx } = await prepareTestServer(task)

@@ -1,7 +1,7 @@
-import { Database } from "../../database"
-import { Unauthorized } from "../../errors"
-import { tokenIssuerGet } from "../token-issuer"
-import { tokenCreate } from "./tokenCreate"
+import { type Database } from "../../database/index.js"
+import { Unauthorized } from "../../errors/index.js"
+import { tokenIssuerGet } from "../token-issuer/index.js"
+import { tokenCreate } from "./tokenCreate.js"
 
 export async function guestTokenInit(db: Database): Promise<string> {
   const issuer = await tokenIssuerGet(db, ".guest-token-issuer")

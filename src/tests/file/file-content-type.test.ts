@@ -1,7 +1,7 @@
 import { expect, test } from "vitest"
-import { api } from "../.."
-import { responseHeaders } from "../../utils/responseHeaders"
-import { prepareTestServer } from "../prepareTestServer"
+import { api } from "../../index.js"
+import { responseHeaders } from "../../utils/responseHeaders.js"
+import { prepareTestServer } from "../prepareTestServer.js"
 
 test("file-content-type", async ({ task }) => {
   const { ctx } = await prepareTestServer(task)

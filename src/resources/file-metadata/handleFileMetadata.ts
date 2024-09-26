@@ -1,10 +1,10 @@
 import Http from "node:http"
-import { Database } from "../../database"
-import { tokenAssert } from "../../system-resources/token"
-import { Json } from "../../utils/Json"
-import { requestResolvedPath } from "../requestResolvedPath"
-import { requestToken } from "../requestToken"
-import { fileMetadataGetOrFail } from "./fileMetadataGetOrFail"
+import { type Database } from "../../database/index.js"
+import { tokenAssert } from "../../system-resources/token/index.js"
+import { type Json } from "../../utils/Json.js"
+import { requestResolvedPath } from "../requestResolvedPath.js"
+import { requestToken } from "../requestToken.js"
+import { fileMetadataGetOrFail } from "./fileMetadataGetOrFail.js"
 
 export async function handleFileMetadata(
   db: Database,

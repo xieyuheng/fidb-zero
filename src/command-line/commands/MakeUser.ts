@@ -2,10 +2,10 @@ import * as prompts from "@inquirer/prompts"
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import { ty } from "@xieyuheng/ty"
 import { join } from "path"
-import { readDatabaseConfigFile } from "../../database/readDatabaseConfigFile"
-import { dataGet } from "../../resources"
-import { makeUser } from "../../services/make/makeUser"
-import { log } from "../../utils/log"
+import { readDatabaseConfigFile } from "../../database/readDatabaseConfigFile.js"
+import { dataGet } from "../../resources/index.js"
+import { makeUser } from "../../services/make/makeUser.js"
+import { log } from "../../utils/log.js"
 
 type Args = { "username:group": string }
 type Opts = { data: string }

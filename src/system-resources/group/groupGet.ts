@@ -1,6 +1,6 @@
-import { Database } from "../../database"
-import { dataGet } from "../../resources"
-import { Group, GroupSchema } from "./Group"
+import { type Database } from "../../database/index.js"
+import { dataGet } from "../../resources/index.js"
+import { type Group, GroupSchema } from "./Group.js"
 
 export async function groupGet(
   db: Database,
@@ -11,5 +11,6 @@ export async function groupGet(
     return undefined
   }
 
+  console.log(GroupSchema, data)
   return GroupSchema.validate(data)
 }

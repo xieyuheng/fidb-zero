@@ -1,8 +1,8 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import { ty } from "@xieyuheng/ty"
 import Path from "node:path"
-import { initDatabase } from "../../services/init/initDatabase"
-import { changeLogger } from "../../utils/log"
+import { initDatabase } from "../../services/init/initDatabase.js"
+import { changeLogger } from "../../utils/log.js"
 
 type Args = { path: string }
 type Opts = {

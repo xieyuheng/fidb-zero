@@ -1,7 +1,7 @@
-import { Database } from "../../database"
-import { passwordRegister } from "../../resources"
-import { JsonObject } from "../../utils/Json"
-import { log } from "../../utils/log"
+import { type Database } from "../../database/index.js"
+import { passwordRegister } from "../../resources/index.js"
+import { type JsonObject } from "../../utils/Json.js"
+import { log } from "../../utils/log.js"
 
 export async function initExampleUsers(db: Database): Promise<void> {
   await initExampleUser(db, "alice", {

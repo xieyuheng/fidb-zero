@@ -1,5 +1,5 @@
 import { Schema, ty } from "@xieyuheng/ty"
-import { LoggerName, LoggerNameSchema } from "../utils/log"
+import { type LoggerName, LoggerNameSchema } from "../utils/log.js"
 
 export type LoggerOptions = {
   name?: LoggerName

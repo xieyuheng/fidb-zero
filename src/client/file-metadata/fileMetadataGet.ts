@@ -1,6 +1,6 @@
-import { FileMetadata } from "../../resources"
-import { ClientContext } from "../ClientContext"
-import { checkResponse } from "../checkResponse"
+import { type FileMetadata } from "../../resources/index.js"
+import { type ClientContext } from "../ClientContext.js"
+import { checkResponse } from "../checkResponse.js"
 
 export async function fileMetadataGet(
   ctx: ClientContext,

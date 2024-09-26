@@ -1,6 +1,6 @@
 import fs from "node:fs"
-import { Database } from "../../database"
-import { resolvePath } from "../../database/resolvePath"
+import { type Database } from "../../database/index.js"
+import { resolvePath } from "../../database/resolvePath.js"
 
 export async function directoryCreate(
   db: Database,

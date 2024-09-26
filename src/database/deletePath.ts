@@ -1,6 +1,6 @@
 import fs from "node:fs"
-import { Database } from "./Database"
-import { resolvePath } from "./resolvePath"
+import { type Database } from "./Database.js"
+import { resolvePath } from "./resolvePath.js"
 
 export async function deletePath(db: Database, path: string): Promise<void> {
   await fs.promises.rm(resolvePath(db, path), {

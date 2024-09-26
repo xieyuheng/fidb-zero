@@ -1,6 +1,6 @@
-import { colors } from "./colors"
-import { formatTime } from "./formatDate"
-import { LogOptions } from "./LogOptions"
+import { colors } from "./colors.js"
+import { formatTime } from "./formatDate.js"
+import { type LogOptions } from "./LogOptions.js"
 
 export function logPrettyLine(options: LogOptions): void {
   const { kind, who, elapse, message } = options

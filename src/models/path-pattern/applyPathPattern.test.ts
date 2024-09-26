@@ -1,5 +1,5 @@
 import { expect, test } from "vitest"
-import { applyPathPattern } from "./applyPathPattern"
+import { applyPathPattern } from "./applyPathPattern.js"
 
 test("applyPathPattern", async () => {
   expect(

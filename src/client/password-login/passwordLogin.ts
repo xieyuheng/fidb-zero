@@ -1,6 +1,6 @@
-import { PasswordLoginOptions } from "../../resources"
-import { ClientContext } from "../ClientContext"
-import { checkResponse } from "../checkResponse"
+import { type PasswordLoginOptions } from "../../resources/index.js"
+import { type ClientContext } from "../ClientContext.js"
+import { checkResponse } from "../checkResponse.js"
 
 export async function passwordLogin(
   ctx: ClientContext,

@@ -1,6 +1,9 @@
-import { Database } from "../../database"
-import { NotFound } from "../../errors"
-import { FileMetadata, fileMetadataGetOrFail } from "./fileMetadataGetOrFail"
+import { type Database } from "../../database/index.js"
+import { NotFound } from "../../errors/index.js"
+import {
+  type FileMetadata,
+  fileMetadataGetOrFail,
+} from "./fileMetadataGetOrFail.js"
 
 export async function fileMetadataGet(
   db: Database,

@@ -1,5 +1,5 @@
-import { Database } from "../../database"
-import { groupCreate } from "./groupCreate"
+import { type Database } from "../../database/index.js"
+import { groupCreate } from "./groupCreate.js"
 
 export async function groupInit(db: Database): Promise<void> {
   await groupCreate(db, "guest", {

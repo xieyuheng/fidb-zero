@@ -1,5 +1,5 @@
 import { Schema, ty } from "@xieyuheng/ty"
-import { TlsOptions, TlsOptionsSchema } from "./TlsOptions"
+import { type TlsOptions, TlsOptionsSchema } from "./TlsOptions.js"
 
 export type ServerOptions = {
   hostname?: string

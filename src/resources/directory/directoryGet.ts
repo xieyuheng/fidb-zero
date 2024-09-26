@@ -1,6 +1,6 @@
-import { Database } from "../../database"
-import { PathEntry } from "./PathEntry"
-import { directoryGetAll } from "./directoryGetAll"
+import { type Database } from "../../database/index.js"
+import { type PathEntry } from "./PathEntry.js"
+import { directoryGetAll } from "./directoryGetAll.js"
 
 export type DirectoryGetOptions = {
   page?: number // NOTE starting from 1

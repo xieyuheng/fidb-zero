@@ -1,6 +1,12 @@
 import { Schema, ty } from "@xieyuheng/ty"
-import { LoggerOptions, LoggerOptionsSchema } from "../server/LoggerOptions"
-import { ServerOptions, ServerOptionsSchema } from "../server/ServerOptions"
+import {
+  type LoggerOptions,
+  LoggerOptionsSchema,
+} from "../server/LoggerOptions.js"
+import {
+  type ServerOptions,
+  ServerOptionsSchema,
+} from "../server/ServerOptions.js"
 
 export type DatabaseConfig = {
   name?: string

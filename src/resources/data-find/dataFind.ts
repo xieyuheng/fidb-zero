@@ -1,5 +1,5 @@
-import { Data, Database } from "../../database"
-import { DataFindAllOptions, dataFindAll } from "./dataFindAll"
+import { type Data, type Database } from "../../database/index.js"
+import { type DataFindAllOptions, dataFindAll } from "./dataFindAll.js"
 
 export type DataFindOptions = DataFindAllOptions & {
   page: number // NOTE starting from 1

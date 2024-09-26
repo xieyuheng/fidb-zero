@@ -1,2 +1,2 @@
-export * from "./fileMetadataGet"
-export * from "./fileMetadataGetOrFail"
+export * from "./fileMetadataGet.js"
+export * from "./fileMetadataGetOrFail.js"

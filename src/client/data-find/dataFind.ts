@@ -1,8 +1,8 @@
 import qs from "qs"
-import { Data } from "../../database"
-import { DataFindOptions } from "../../resources"
-import { ClientContext } from "../ClientContext"
-import { checkResponse } from "../checkResponse"
+import { type Data } from "../../database/index.js"
+import { type DataFindOptions } from "../../resources/index.js"
+import { type ClientContext } from "../ClientContext.js"
+import { checkResponse } from "../checkResponse.js"
 
 export async function dataFind(
   ctx: ClientContext,

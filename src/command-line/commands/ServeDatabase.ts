@@ -1,9 +1,9 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import { ty } from "@xieyuheng/ty"
 import { dirname, join, resolve } from "node:path"
-import { readDatabaseConfigFile } from "../../database/readDatabaseConfigFile"
-import { startDatabaseServer } from "../../servers/database/startDatabaseServer"
-import { pathIsFile } from "../../utils/node/pathIsFile"
+import { readDatabaseConfigFile } from "../../database/readDatabaseConfigFile.js"
+import { startDatabaseServer } from "../../servers/database/startDatabaseServer.js"
+import { pathIsFile } from "../../utils/node/pathIsFile.js"
 
 type Args = { path: string }
 type Opts = {}

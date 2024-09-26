@@ -1,5 +1,5 @@
 import { expect, test } from "vitest"
-import { prepareTestServer } from "../prepareTestServer"
+import { prepareTestServer } from "../prepareTestServer.js"
 
 test("data-post-no-token", async ({ task }) => {
   const { ctx } = await prepareTestServer(task)

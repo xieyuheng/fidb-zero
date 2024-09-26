@@ -1,5 +1,5 @@
 import { Schema, ty } from "@xieyuheng/ty"
-import { JsonObject } from "../utils/Json"
+import { type JsonObject } from "../utils/Json.js"
 
 export type Data = JsonObject & {
   "@path": string

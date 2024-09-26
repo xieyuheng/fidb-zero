@@ -1,2 +1,2 @@
-export * from "./Operation"
-export * from "./matchPermissionRecord"
+export * from "./matchPermissionRecord.js"
+export * from "./Operation.js"

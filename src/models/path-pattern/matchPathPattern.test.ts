@@ -1,5 +1,5 @@
 import { expect, test } from "vitest"
-import { matchPathPattern } from "./matchPathPattern"
+import { matchPathPattern } from "./matchPathPattern.js"
 
 test("matchPathPattern", async () => {
   expect(matchPathPattern("users/{user}", "users/xieyuheng")).toEqual({

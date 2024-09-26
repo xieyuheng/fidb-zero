@@ -1,1 +1,1 @@
-export * as api from "./client"
+export * as api from "./client/index.js"

@@ -1,6 +1,6 @@
-import { Database } from "../../database"
-import { dataCreate } from "../../resources"
-import { TokenIssuerInput } from "./TokenIssuer"
+import { type Database } from "../../database/index.js"
+import { dataCreate } from "../../resources/index.js"
+import { type TokenIssuerInput } from "./TokenIssuer.js"
 
 export async function loginTokenIssuerCreate(
   db: Database,

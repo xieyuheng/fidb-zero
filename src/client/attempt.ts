@@ -1,4 +1,4 @@
-import { ClientError } from "./ClientError"
+import { ClientError } from "./ClientError.js"
 
 export type ClientResult<A> =
   | { kind: "Error"; error: ClientError }

@@ -1,10 +1,10 @@
 import fs from "node:fs"
 import { join, resolve } from "node:path"
-import { Database } from "../../database"
-import { resolvePath } from "../../database/resolvePath"
-import { isErrnoException } from "../../utils/node/isErrnoException"
-import { fileMetadataGetOrFail } from "../file-metadata/fileMetadataGetOrFail"
-import { PathEntry } from "./PathEntry"
+import { type Database } from "../../database/index.js"
+import { resolvePath } from "../../database/resolvePath.js"
+import { isErrnoException } from "../../utils/node/isErrnoException.js"
+import { fileMetadataGetOrFail } from "../file-metadata/fileMetadataGetOrFail.js"
+import { type PathEntry } from "./PathEntry.js"
 
 export async function* directoryGetAll(
   db: Database,
