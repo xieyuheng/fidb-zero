@@ -1,5 +1,13 @@
 回顾 fidb 项目，计划做成 lib 而不是 app
 
+# schema
+
+[schema] need javascript to write schema
+
+# double linked data
+
+用 double linked 而不是 path-based permission
+
 # file content hash
 
 [file] support content hash based query
@@ -16,13 +24,9 @@
 
 [quota] for storage and transfer
 
-# schema
-
-[schema] need filescript to write schema
-
 # indexing
 
-[indexing] use filescript to config indexing of different path
+[indexing] use javascript to config indexing of different path
 [indexing] b-tree over file system
 [indexing] `index(db, directory, key)`
 [indexing] `createIndex(db, directory, key)`
