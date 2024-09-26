@@ -20,7 +20,7 @@ export async function prepareTestServer(options: { name: string }) {
   const db = await initDatabase(directory)
 
   const hostname = "127.0.0.1"
-  const port = await findPort(5108)
+  const port = await findPort()
   db.config.server = { hostname, port }
 
   await startDatabaseServer(db)
