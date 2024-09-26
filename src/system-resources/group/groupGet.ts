@@ -11,6 +11,5 @@ export async function groupGet(
     return undefined
   }
 
-  console.log(GroupSchema, data)
   return GroupSchema.validate(data)
 }
