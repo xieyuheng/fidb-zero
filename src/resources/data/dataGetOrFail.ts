@@ -4,7 +4,7 @@ import { NotFound } from "../../errors/index.js"
 import { isErrnoException } from "../../utils/node/isErrnoException.js"
 
 export async function dataGetOrFail(db: Database, path: string): Promise<Data> {
-  const who = "dataGetOrFail.js"
+  const who = "dataGetOrFail"
 
   try {
     return await readData(db, path)
