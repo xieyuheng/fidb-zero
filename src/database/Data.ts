@@ -1,4 +1,4 @@
-import { Schema, ty } from "@xieyuheng/ty"
+import ty, { Schema } from "@xieyuheng/ty"
 import { type JsonObject } from "../utils/Json.js"
 
 export type Data = JsonObject & {

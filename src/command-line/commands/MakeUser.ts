@@ -1,6 +1,6 @@
 import * as prompts from "@inquirer/prompts"
 import { Command, CommandRunner } from "@xieyuheng/command-line"
-import { ty } from "@xieyuheng/ty"
+import ty from "@xieyuheng/ty"
 import { join } from "path"
 import { readDatabaseConfigFile } from "../../database/readDatabaseConfigFile.js"
 import { dataGet } from "../../resources/index.js"

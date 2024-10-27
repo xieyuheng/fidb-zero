@@ -1,4 +1,4 @@
-import { Schema, ty } from "@xieyuheng/ty"
+import ty, { Schema } from "@xieyuheng/ty"
 import { type TlsOptions, TlsOptionsSchema } from "./TlsOptions.js"
 
 export type ServerOptions = {

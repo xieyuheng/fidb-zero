@@ -1,4 +1,4 @@
-import { Schema, ty } from "@xieyuheng/ty"
+import ty, { Schema } from "@xieyuheng/ty"
 import { type Operation, OperationSchema } from "./Operation.js"
 
 export type PermissionRecord = Record<string, Array<Operation>>

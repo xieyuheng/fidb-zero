@@ -1,4 +1,4 @@
-import { ty } from "@xieyuheng/ty"
+import ty from "@xieyuheng/ty"
 import { type Data, type Database } from "../../database/index.js"
 import { Unauthorized } from "../../errors/index.js"
 import { dataCreate } from "../../resources/index.js"

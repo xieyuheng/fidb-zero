@@ -1,5 +1,5 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
-import { ty } from "@xieyuheng/ty"
+import ty from "@xieyuheng/ty"
 import { packageJson } from "../../utils/node/packageJson.js"
 import * as Commands from "./index.js"
 

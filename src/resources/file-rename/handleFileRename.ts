@@ -1,4 +1,4 @@
-import { ty } from "@xieyuheng/ty"
+import ty from "@xieyuheng/ty"
 import Http from "node:http"
 import { type Database } from "../../database/index.js"
 import { tokenAssert } from "../../system-resources/token/index.js"

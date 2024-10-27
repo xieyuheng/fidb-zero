@@ -1,4 +1,4 @@
-import { Schema, ty } from "@xieyuheng/ty"
+import ty, { Schema } from "@xieyuheng/ty"
 import { type LogOptions } from "./LogOptions.js"
 import { logJson } from "./logJson.js"
 import { logPretty } from "./logPretty.js"

@@ -1,4 +1,4 @@
-import { Schema, ty } from "@xieyuheng/ty"
+import ty, { Schema } from "@xieyuheng/ty"
 import { type Data, DataSchema } from "../../database/index.js"
 
 export type Password = Data & {
