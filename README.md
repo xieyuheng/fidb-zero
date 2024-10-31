@@ -1,6 +1,6 @@
 # FiDB
 
-[ [Webwite](https://fidb.app)
+[ [Website](https://fidb.app)
 | [Manual](https://readonly.link/manuals/https://code-of-fidb.fidb.app/docs/manual/en.json)
 | [手册](https://readonly.link/manuals/https://code-of-fidb.fidb.app/docs/manual/zh.json) ]
 
