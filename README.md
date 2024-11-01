@@ -137,9 +137,9 @@ in the `/databases` directory.
 ...
 ```
 
-I bought a domain for my server -- say `fidb.app`,
-and configured my DNS to resolve `fidb.app`
-and `*.fidb.app` to my server.
+I bought a domain for my server -- say `example.com`,
+and configured my DNS to resolve `example.com`
+and `*.example.com` to my server.
 
 I also created certificate files for my domain using `certbot`.
 
@@ -158,11 +158,11 @@ Where `/databases/database.json` is:
 ```json
 {
   "server": {
-    "hostname": "fidb.app",
+    "hostname": "example.com",
     "port": 5108,
     "tls": {
-      "cert": "/etc/letsencrypt/live/fidb.app/fullchain.pem",
-      "key": "/etc/letsencrypt/live/fidb.app/privkey.pem"
+      "cert": "/etc/letsencrypt/live/example.com/fullchain.pem",
+      "key": "/etc/letsencrypt/live/example.com/privkey.pem"
     }
   }
 }
@@ -174,11 +174,11 @@ Where `/databases/database.json` is:
 - And each database in `/databases` might have
   it's own `database.json` config file.
 
-Then I can access all my databases via subdomain of `fidb.app`.
+Then I can access all my databases via subdomain of `example.com`.
 
 ```
-https://x-wiki.fidb.app:5108
-https://x-news.fidb.app:5108
+https://x-wiki.example.com:5108
+https://x-news.example.com:5108
 ...
 ```
 
@@ -189,8 +189,8 @@ If no subdomain is given in a request,
 Thus the following websites have the same contents:
 
 ```
-https://fidb.app:5108
-https://www.fidb.app:5108
+https://example.com:5108
+https://www.example.com:5108
 ```
 
 ## Register a user

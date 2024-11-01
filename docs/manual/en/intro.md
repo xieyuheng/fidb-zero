@@ -63,7 +63,7 @@ indexes, just like how a normal relational database would do.
 It feels like an idea worth exploring.
 
 I will call this project **FiDB**,
-homepage is at [fidb.app](https://fidb.app).
+homepage is at [example.com](https://example.com).
 
 The source code is [available on GitHub](https://github.com/fidb-official/fidb),
 and the source of this manual is in the `docs/` directory of the repository.
