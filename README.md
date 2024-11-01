@@ -1,10 +1,6 @@
 # FiDB
 
-[ [Website](https://fidb.app)
-| [Manual](https://readonly.link/manuals/https://code-of-fidb.fidb.app/docs/manual/en.json)
-| [手册](https://readonly.link/manuals/https://code-of-fidb.fidb.app/docs/manual/zh.json) ]
-
-This is a Node.js implementation of [**FiDB**](https://fidb.app)
+This is a Node.js implementation of **FiDB**
 -- a suite of protocols to use file system as database.
 
 Including a command-line tool to initialize and maintain database.
